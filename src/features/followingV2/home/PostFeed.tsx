@@ -411,11 +411,6 @@ let PostFeed = ({
     }
     return fillGap(cursor)
   })
-  const settleAtTop = useSettleAtTop(feed, feedParams, {
-    enabled: isAnchored && enabled !== false,
-    // At the newest post, nothing is new to the reader any more.
-    onRestAtTop: () => onHasNew?.(false),
-  })
   /** The list's scroll offset, which its scroll handlers keep. */
   const listOffsetY = useSharedValue(0)
 
@@ -996,6 +991,14 @@ let PostFeed = ({
       prepend.onPageSeen(top.fetchedAt)
     }
   })
+  const settleAtTop = useSettleAtTop(feed, feedParams, {
+    enabled: isAnchored && enabled !== false,
+    // At the newest post, nothing is new to the reader any more.
+    onRestAtTop: () => {
+      onHasNew?.(false)
+      pill.dismiss()
+    },
+  })
   /**
    * The list's scroll handlers. Settling, staging and the pill judge the
    * offset as the list reports it, as they have to know where the list really
@@ -1013,7 +1016,10 @@ let PostFeed = ({
             prepend.onBeginDrag()
           },
           // At the top, the reader has passed everything staged above them.
-          onReachTop: prepend.markRead,
+          onReachTop: () => {
+            prepend.markRead()
+            pill.dismiss()
+          },
         }
       : undefined,
     listOffsetY,
