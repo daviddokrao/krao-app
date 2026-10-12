@@ -499,7 +499,7 @@ export function SearchScreenShell({
   )
 
   const onShareSearch = useCallback(() => {
-    const url = new URL('https://bsky.app')
+    const url = new URL('https://krao.io')
     url.pathname = '/search'
     if (query) url.searchParams.set('q', query)
     for (const [key, value] of Object.entries(definedFilterParams(filters))) {
@@ -762,7 +762,7 @@ let SearchScreenInner = ({
             style={t.atoms.text_contrast_medium as StyleProp<ViewStyle>}
           />
           <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
-            <Trans>Find posts, users, and feeds on Bluesky</Trans>
+            <Trans>Find posts, users, and feeds on Krao</Trans>
           </Text>
         </View>
       </View>

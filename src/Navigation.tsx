@@ -827,7 +827,13 @@ const FlatNavigator = ({
 const LINKING = {
   // TODO figure out what we are going to use
   // note: `bluesky://` is what is used in app.config.js
-  prefixes: ['bsky://', 'bluesky://', 'https://bsky.app'],
+  prefixes: [
+    'krao://',
+    'bsky://',
+    'bluesky://',
+    'https://krao.io',
+    'https://bsky.app',
+  ],
 
   getPathFromState(state: State) {
     // find the current node in the navigation tree
@@ -1043,7 +1049,7 @@ function RoutesContainer({children}: React.PropsWithChildren<{}>) {
 
     if (IS_WEB) {
       void Referrer.getReferrerInfo().then(referrerInfo => {
-        if (referrerInfo && referrerInfo.hostname !== 'bsky.app') {
+        if (referrerInfo && referrerInfo.hostname !== 'krao.io') {
           ax.metric('deepLink:referrerReceived', {
             to: window.location.href,
             referrer: referrerInfo?.referrer,

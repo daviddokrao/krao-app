@@ -2,7 +2,13 @@ import {type Insets, Platform} from 'react-native'
 import {type Service} from '@atproto/lex'
 import {api} from '@bsky/sdk'
 
-import {BLUESKY_PROXY_DID, CHAT_PROXY_DID, IS_DEV} from '#/env'
+import {
+  BLUESKY_PROXY_DID,
+  CHAT_PROXY_DID,
+  DEFAULT_SERVICE_URL,
+  IS_DEV,
+  PUBLIC_API_URL,
+} from '#/env'
 import {type app} from '#/lexicons'
 
 export const LOCAL_DEV_SERVICE =
@@ -10,14 +16,14 @@ export const LOCAL_DEV_SERVICE =
 export const STAGING_SERVICE = 'https://staging.bsky.dev'
 export const BSKY_SERVICE = 'https://bsky.social'
 export const BSKY_SERVICE_DID = 'did:web:bsky.social'
-export const PUBLIC_BSKY_SERVICE = 'https://public.api.bsky.app'
-export const DEFAULT_SERVICE = BSKY_SERVICE
+export const PUBLIC_BSKY_SERVICE = PUBLIC_API_URL
+export const DEFAULT_SERVICE = DEFAULT_SERVICE_URL
 const HELP_DESK_LANG = 'en-us'
-export const HELP_DESK_URL = `https://blueskyweb.zendesk.com/hc/${HELP_DESK_LANG}`
+export const HELP_DESK_URL = `https://krao.io/help/${HELP_DESK_LANG}`
 export const CHAT_SERVICE = 'https://api.bsky.chat'
 export const EMBED_SERVICE = 'https://embed.bsky.app'
 export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`
-export const BSKY_DOWNLOAD_URL = 'https://bsky.app/download'
+export const BSKY_DOWNLOAD_URL = 'https://krao.io/download'
 export const STARTER_PACK_DEFAULT_SIZE = 150
 export const STARTER_PACK_MAX_SIZE = 500
 export const CARD_ASPECT_RATIO = 1200 / 630
@@ -124,7 +130,7 @@ export function LINK_META_PROXY(_serviceUrl: string) {
   return PROD_LINK_META_PROXY
 }
 
-export const STATUS_PAGE_URL = 'https://status.bsky.app/'
+export const STATUS_PAGE_URL = 'https://status.krao.io/'
 
 // Hitslop constants
 export const createHitslop = (size: number): Insets => ({
@@ -281,8 +287,8 @@ export const MOD_PROXY_SERVICE: Service = `${api.moderation.did}#atproto_labeler
 export const NOTIF_SERVICE: Service = `${BLUESKY_PROXY_DID}#bsky_notif`
 
 export const webLinks = {
-  tos: `https://bsky.social/about/support/tos`,
-  privacy: `https://bsky.social/about/support/privacy-policy`,
-  community: `https://bsky.social/about/support/community-guidelines`,
-  communityDeprecated: `https://bsky.social/about/support/community-guidelines-deprecated`,
+  tos: `https://krao.io/terms`,
+  privacy: `https://krao.io/privacy`,
+  community: `https://krao.io/community-guidelines`,
+  communityDeprecated: `https://krao.io/community-guidelines`,
 }

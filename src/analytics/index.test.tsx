@@ -28,7 +28,11 @@ import {account, device} from '#/storage'
 jest.mock('#/lib/appState', () => ({
   onAppStateChange: jest.fn(() => ({remove: jest.fn()})),
 }))
-jest.mock('#/env', () => ({ENV: 'test', IS_NATIVE: true}))
+jest.mock('#/env', () => ({
+  ENV: 'test',
+  IS_NATIVE: true,
+  METRICS_API_HOST: 'https://test.metrics.api',
+}))
 jest.mock('#/logger/transports/sentry', () => ({sentryTransport: jest.fn()}))
 jest.mock('#/logger/transports/console', () => ({consoleTransport: jest.fn()}))
 jest.mock('#/logger/sentry/featureFlags', () => ({

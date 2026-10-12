@@ -3,11 +3,11 @@ plugins {
   id 'expo-module-gradle-plugin'
 }
 
-group = 'xyz.blueskyweb.app.exporeceiveandroidintents'
+group = 'io.krao.app.exporeceiveandroidintents'
 version = '0.4.1'
 
 android {
-  namespace "xyz.blueskyweb.app.exporeceiveandroidintents"
+  namespace "io.krao.app.exporeceiveandroidintents"
   defaultConfig {
     versionCode 1
     versionName "0.4.1"

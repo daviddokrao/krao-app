@@ -86,7 +86,7 @@ function ShareDialogInner({
               <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
                 <Trans>
                   Share this Starter Pack and help people join your community on
-                  Bluesky.
+                  Krao.
                 </Trans>
               </Text>
             </View>

@@ -4,9 +4,29 @@ import {
   DEFAULT_SUBDUED_PALETTE,
 } from '@bsky.app/alf'
 
+/**
+ * Krao brand color scale, replacing the upstream blue `primary_*` values.
+ * Placeholder violet until the final brand colors are decided.
+ */
+export const KRAO_PRIMARY = {
+  primary_25: '#F9F6FF',
+  primary_50: '#F1EBFE',
+  primary_100: '#E3D8FD',
+  primary_200: '#CBB5FB',
+  primary_300: '#AE8CF8',
+  primary_400: '#9466F6',
+  primary_500: '#7B3FF2',
+  primary_600: '#6A2BDB',
+  primary_700: '#5821B5',
+  primary_800: '#461A8F',
+  primary_900: '#33136A',
+  primary_950: '#260E4F',
+  primary_975: '#1A0938',
+} as const
+
 const DEFAULT_THEMES = createThemes({
-  defaultPalette: DEFAULT_PALETTE,
-  subduedPalette: DEFAULT_SUBDUED_PALETTE,
+  defaultPalette: {...DEFAULT_PALETTE, ...KRAO_PRIMARY},
+  subduedPalette: {...DEFAULT_SUBDUED_PALETTE, ...KRAO_PRIMARY},
 })
 
 export const themes = {

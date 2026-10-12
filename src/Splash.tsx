@@ -42,7 +42,8 @@ export const Logo = forwardRef(function LogoImpl(props: SvgProps, ref) {
       style={[{width, height}, props.style]}>
       <Path
         fill={props.fill || '#fff'}
-        d="M13.873 3.77C21.21 9.243 29.103 20.342 32 26.3v15.732c0-.335-.13.043-.41.858-1.512 4.414-7.418 21.642-20.923 7.87-7.111-7.252-3.819-14.503 9.125-16.692-7.405 1.252-15.73-.817-18.014-8.93C1.12 22.804 0 8.431 0 6.488 0-3.237 8.579-.18 13.873 3.77ZM50.127 3.77C42.79 9.243 34.897 20.342 32 26.3v15.732c0-.335.13.043.41.858 1.512 4.414 7.418 21.642 20.923 7.87 7.111-7.252 3.819-14.503-9.125-16.692 7.405 1.252 15.73-.817 18.014-8.93C62.88 22.804 64 8.431 64 6.488 64-3.237 55.422-.18 50.127 3.77Z"
+        fillRule="evenodd"
+        d="M16 0h32l16 28.5L48 57H16L0 28.5 16 0Zm6 13v31h7V32l9 12h8.5L35 28.5 46.5 13H38l-9 12V13h-7Z"
       />
     </Svg>
   )
@@ -191,7 +192,7 @@ export function Splash(props: React.PropsWithChildren<Props>) {
             a.absolute,
             a.inset_0,
             // The splash PNGs contain partially transparent pixels.
-            {backgroundColor: isDarkMode ? '#002861' : '#006AFF'},
+            {backgroundColor: isDarkMode ? '#33136A' : '#7B3FF2'},
             splashAnimation,
           ]}>
           <Image

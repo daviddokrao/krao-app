@@ -23,28 +23,26 @@ export function getJoinMessage({
   if (diff.unit === 'now') {
     if (isMe) {
       return joinedViaStarterPack
-        ? i18n._(msg`You joined Bluesky using a Starter Pack just now`)
-        : i18n._(msg`You joined Bluesky just now`)
+        ? i18n._(msg`You joined Krao using a Starter Pack just now`)
+        : i18n._(msg`You joined Krao just now`)
     }
 
     return joinedViaStarterPack
-      ? i18n._(msg`${profileName} joined Bluesky using a Starter Pack just now`)
-      : i18n._(msg`${profileName} joined Bluesky just now`)
+      ? i18n._(msg`${profileName} joined Krao using a Starter Pack just now`)
+      : i18n._(msg`${profileName} joined Krao just now`)
   }
 
   const timeAgoString = formatDateDiff({diff, i18n, format: 'long'})
 
   if (isMe) {
     return joinedViaStarterPack
-      ? i18n._(
-          msg`You joined Bluesky using a Starter Pack ${timeAgoString} ago`,
-        )
-      : i18n._(msg`You joined Bluesky ${timeAgoString} ago`)
+      ? i18n._(msg`You joined Krao using a Starter Pack ${timeAgoString} ago`)
+      : i18n._(msg`You joined Krao ${timeAgoString} ago`)
   }
 
   return joinedViaStarterPack
     ? i18n._(
-        msg`${profileName} joined Bluesky using a Starter Pack ${timeAgoString} ago`,
+        msg`${profileName} joined Krao using a Starter Pack ${timeAgoString} ago`,
       )
-    : i18n._(msg`${profileName} joined Bluesky ${timeAgoString} ago`)
+    : i18n._(msg`${profileName} joined Krao ${timeAgoString} ago`)
 }

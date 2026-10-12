@@ -87,9 +87,7 @@ export const SplashScreen = ({
               haptics.tap()
             }}
             label={_(msg`Create new account`)}
-            accessibilityHint={_(
-              msg`Opens flow to create a new Bluesky account`,
-            )}
+            accessibilityHint={_(msg`Opens flow to create a new Krao account`)}
             size="large"
             color={isDarkMode ? 'secondary_inverted' : 'secondary'}
             style={[
@@ -117,7 +115,7 @@ export const SplashScreen = ({
             }}
             label={_(msg`Sign in`)}
             accessibilityHint={_(
-              msg`Opens flow to sign in to your existing Bluesky account`,
+              msg`Opens flow to sign in to your existing Krao account`,
             )}
             size="large"
             hoverStyle={{opacity: 0.5}}>

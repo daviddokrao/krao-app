@@ -1,4 +1,17 @@
 {
+  "bskylink/src/routes/siteAssociation.ts": {
+    "typescript/no-unsafe-call": {
+      "count": 2
+    },
+    "typescript/no-unsafe-member-access": {
+      "count": 2
+    }
+  },
+  "metro.config.ts": {
+    "typescript/no-unsafe-call": {
+      "count": 1
+    }
+  },
   "modules/bottom-sheet/src/BottomSheetNativeComponent.tsx": {
     "typescript/no-explicit-any": {
       "count": 2
@@ -58,6 +71,36 @@
   "modules/expo-bluesky-swiss-army/src/VisibilityView/index.tsx": {
     "typescript/require-await": {
       "count": 1
+    }
+  },
+  "plugins/notificationsExtension/withAppEntitlements.js": {
+    "typescript/require-await": {
+      "count": 1
+    }
+  },
+  "plugins/notificationsExtension/withExtensionEntitlements.js": {
+    "import/no-nodejs-modules": {
+      "count": 2
+    }
+  },
+  "plugins/shareExtension/withAppEntitlements.js": {
+    "typescript/require-await": {
+      "count": 1
+    }
+  },
+  "plugins/shareExtension/withExtensionEntitlements.js": {
+    "import/no-nodejs-modules": {
+      "count": 2
+    }
+  },
+  "plugins/starterPackAppClipExtension/withAppEntitlements.js": {
+    "typescript/require-await": {
+      "count": 1
+    }
+  },
+  "plugins/starterPackAppClipExtension/withClipEntitlements.js": {
+    "import/no-nodejs-modules": {
+      "count": 2
     }
   },
   "src/Splash.android.tsx": {

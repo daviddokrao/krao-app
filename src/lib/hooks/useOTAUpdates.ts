@@ -522,7 +522,7 @@ export const splash = (scheme: 'light' | 'dark') => {
     image: RNImage.resolveAssetSource(source)!.uri,
     imageFullScreen: true,
     imageResizeMode: 'cover',
-    backgroundColor: scheme === 'light' ? '#006AFF' : '#002861',
+    backgroundColor: scheme === 'light' ? '#7B3FF2' : '#33136A',
     spinner: {
       enabled: true,
       color: '#ffffff',

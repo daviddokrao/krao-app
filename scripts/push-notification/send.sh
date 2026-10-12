@@ -15,7 +15,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PAYLOAD_DIR="$SCRIPT_DIR/payloads"
 
 device="booted"
-bundle="xyz.blueskyweb.app"
+bundle="io.krao.app"
 did="${BLUESKY_TEST_DID:-}"
 name=""
 

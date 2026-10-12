@@ -349,7 +349,7 @@ jobs:
             api_key_path:"$PWD/asc_api_key.json" \
             distribute_only:true \
             app_platform:"ios" \
-            app_identifier:"xyz.blueskyweb.app" \
+            app_identifier:"io.krao.app" \
             app_version:"$APP_VERSION" \
             build_number:"$BUILD_NUMBER" \
             groups:"$TESTFLIGHT_GROUP" \

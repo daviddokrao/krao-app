@@ -36,7 +36,7 @@ export function InitialVerificationAnnouncement() {
       <Dialog.Handle />
 
       <Dialog.ScrollableInner
-        label={_(msg`Announcing verification on Bluesky`)}
+        label={_(msg`Announcing verification on Krao`)}
         style={[
           a.w_full,
           gtMobile && web({width: 'auto', maxWidth: 400, minWidth: 200}),
@@ -96,7 +96,7 @@ export function InitialVerificationAnnouncement() {
             </Text>
             <Text style={[a.leading_snug, a.text_md]}>
               <Trans>
-                We’re introducing a new layer of verification on Bluesky — an
+                We’re introducing a new layer of verification on Krao — an
                 easy-to-see checkmark.
               </Trans>
             </Text>
@@ -119,7 +119,7 @@ export function InitialVerificationAnnouncement() {
                 },
               ]}
               alt={_(
-                msg`An mockup of a iPhone showing the Bluesky app open to the profile of a verified user with a blue checkmark next to their display name.`,
+                msg`An mockup of a iPhone showing the Krao app open to the profile of a verified user with a blue checkmark next to their display name.`,
               )}
               useAppleWebpCodec
             />
