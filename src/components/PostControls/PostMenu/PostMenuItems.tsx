@@ -68,6 +68,7 @@ import {
 import {Eye_Stroke2_Corner0_Rounded as Eye} from '#/components/icons/Eye'
 import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlash} from '#/components/icons/EyeSlash'
 import {Filter_Stroke2_Corner0_Rounded as Filter} from '#/components/icons/Filter'
+import {Gift1_Stroke2_Corner0_Rounded as GiftIcon} from '#/components/icons/Gift1'
 import {
   Mute_Stroke2_Corner0_Rounded as Mute,
   Mute_Stroke2_Corner0_Rounded as MuteIcon,
@@ -92,6 +93,7 @@ import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {IS_INTERNAL} from '#/env'
+import {TipDialog} from '#/features/tips/components/TipDialog'
 import {type app} from '#/lexicons'
 
 let PostMenuItems = ({
@@ -145,6 +147,7 @@ let PostMenuItems = ({
   const postInteractionSettingsDialogControl = useDialogControl()
   const quotePostDetachConfirmControl = useDialogControl()
   const hideReplyConfirmControl = useDialogControl()
+  const tipDialogControl = useDialogControl()
   const {mutateAsync: toggleReplyVisibility} =
     useToggleReplyVisibilityMutation()
 
@@ -506,6 +509,20 @@ let PostMenuItems = ({
   return (
     <>
       <Menu.Outer>
+        {hasSession && !isAuthor && (
+          <>
+            <Menu.Group>
+              <Menu.Item
+                testID="postDropdownTipBtn"
+                label={l`Send a tip`}
+                onPress={() => tipDialogControl.open()}>
+                <Menu.ItemText>{l`Send a tip`}</Menu.ItemText>
+                <Menu.ItemIcon icon={GiftIcon} position="right" />
+              </Menu.Item>
+            </Menu.Group>
+            <Menu.Divider />
+          </>
+        )}
         {isAuthor && (
           <>
             <Menu.Group>
@@ -813,6 +830,14 @@ let PostMenuItems = ({
           </>
         )}
       </Menu.Outer>
+      <TipDialog
+        control={tipDialogControl}
+        target={{
+          did: postAuthor.did,
+          handle: postAuthor.handle,
+          subject: {uri: post.uri, cid: post.cid},
+        }}
+      />
       <Prompt.Basic
         control={deletePromptControl}
         title={l`Delete this post?`}

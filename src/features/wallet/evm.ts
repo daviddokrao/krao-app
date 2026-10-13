@@ -2,13 +2,21 @@ import {secp256k1} from '@noble/curves/secp256k1'
 import {keccak_256} from '@noble/hashes/sha3'
 import {bytesToHex, hexToBytes, utf8ToBytes} from '@noble/hashes/utils'
 
-import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {IS_WEB, KRAO_DEV_RPC_URL, KRAO_DEV_WALLET} from '#/env'
 
 export type EvmWallet = {
   address: string
   chainId: number
   /** EIP-191 personal_sign over the UTF-8 message, as 0x hex */
   signMessage: (message: string) => Promise<string>
+  /** Ask the wallet to switch to `chainId` if it is on another chain */
+  switchChain: (chainId: number) => Promise<void>
+  /** Send a transaction and resolve with its hash once it is submitted */
+  sendTransaction: (tx: {
+    to: string
+    value?: bigint
+    data?: string
+  }) => Promise<string>
 }
 
 export class WalletUnavailableError extends Error {}
@@ -44,14 +52,38 @@ export async function connectEvmWallet(): Promise<EvmWallet> {
     if (!address) {
       throw new WalletRejectedError('No account selected')
     }
+    const request = async (method: string, params?: unknown[]) => {
+      try {
+        return await provider.request({method, params})
+      } catch (err) {
+        if ((err as {code?: number})?.code === 4001) {
+          throw new WalletRejectedError('Request rejected in wallet')
+        }
+        throw err
+      }
+    }
     return {
       address,
       chainId: parseInt(chainIdHex, 16),
       signMessage: async message =>
-        (await provider.request({
-          method: 'personal_sign',
-          params: [`0x${bytesToHex(utf8ToBytes(message))}`, address],
-        })) as string,
+        (await request('personal_sign', [
+          `0x${bytesToHex(utf8ToBytes(message))}`,
+          address,
+        ])) as string,
+      switchChain: async chainId => {
+        await request('wallet_switchEthereumChain', [
+          {chainId: `0x${chainId.toString(16)}`},
+        ])
+      },
+      sendTransaction: async ({to, value, data}) =>
+        (await request('eth_sendTransaction', [
+          {
+            from: address,
+            to,
+            value: value ? `0x${value.toString(16)}` : undefined,
+            data,
+          },
+        ])) as string,
     }
   } catch (err) {
     // EIP-1193 code 4001: the user rejected the request
@@ -77,6 +109,35 @@ function devWallet(): EvmWallet {
   return {
     address,
     chainId: DEV_CHAIN_ID,
+    switchChain: () => Promise.resolve(),
+    // Anvil keeps its default accounts unlocked, so the node signs for us
+    sendTransaction: async ({to, value, data}) => {
+      const res = await fetch(KRAO_DEV_RPC_URL, {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: 1,
+          method: 'eth_sendTransaction',
+          params: [
+            {
+              from: address,
+              to,
+              value: value ? `0x${value.toString(16)}` : undefined,
+              data,
+            },
+          ],
+        }),
+      })
+      const body = (await res.json()) as {
+        result?: string
+        error?: {message: string}
+      }
+      if (!body.result) {
+        throw new Error(body.error?.message ?? 'Transaction failed')
+      }
+      return body.result
+    },
     signMessage: message => {
       const sig = secp256k1.sign(hashPersonalMessage(message), privateKey)
       return Promise.resolve(

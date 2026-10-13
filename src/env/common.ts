@@ -97,6 +97,13 @@ export const KRAO_DEV_WALLET: boolean =
   process.env.EXPO_PUBLIC_KRAO_DEV_WALLET === 'true'
 
 /**
+ * JSON-RPC of the local dev chain (Anvil) that the dev wallet sends
+ * transactions through.
+ */
+export const KRAO_DEV_RPC_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_DEV_RPC_URL || 'http://localhost:8545'
+
+/**
  * The DID of the chat service to proxy to
  */
 export const CHAT_PROXY_DID: DidString =
