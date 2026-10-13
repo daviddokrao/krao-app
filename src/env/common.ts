@@ -109,6 +109,16 @@ export const KRAO_GATE_URL: string =
  */
 export const KRAO_LINK_PREVIEW_URL: string =
   process.env.EXPO_PUBLIC_KRAO_LINK_PREVIEW_URL || KRAO_INDEXER_URL
+
+/**
+ * Krao's GIF service (the indexer): relays Tenor/Klipy media and forwards GIF
+ * search. Search needs an API key on the server, so the GIF picker only shows
+ * when KRAO_GIF_SEARCH is enabled.
+ */
+export const KRAO_GIF_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_GIF_URL || KRAO_INDEXER_URL
+export const KRAO_GIF_SEARCH: boolean =
+  process.env.EXPO_PUBLIC_KRAO_GIF_SEARCH === 'true'
 export const KRAO_GATE_DID: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.io'
 

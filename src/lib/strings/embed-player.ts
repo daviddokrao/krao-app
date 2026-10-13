@@ -1,5 +1,6 @@
 import {Dimensions} from 'react-native'
 
+import {GIF_MEDIA_URL} from '#/lib/constants'
 import {IS_WEB, KRAO_WEB_URL} from '#/env'
 
 const {height: SCREEN_HEIGHT} = Dimensions.get('window')
@@ -703,8 +704,14 @@ export function parseTenorGif(urlp: URL):
     // Tenor encodes the format in the ID prefix: AAAP3 = webm, AAAP1 = mp4.
     // Provide both as <source> tags so the browser picks via canPlayType
     // instead of relying on user-agent sniffing.
-    const webmUrl = `https://t.gifs.bsky.app/${id.replace('AAAAC', 'AAAP3')}/${filename.replace('.gif', '.webm')}`
-    const mp4Url = `https://t.gifs.bsky.app/${id.replace('AAAAC', 'AAAP1')}/${filename.replace('.gif', '.mp4')}`
+    const webmUrl = GIF_MEDIA_URL(
+      't',
+      `${id.replace('AAAAC', 'AAAP3')}/${filename.replace('.gif', '.webm')}`,
+    )
+    const mp4Url = GIF_MEDIA_URL(
+      't',
+      `${id.replace('AAAAC', 'AAAP1')}/${filename.replace('.gif', '.mp4')}`,
+    )
     return {
       success: true,
       playerUri: mp4Url,
@@ -718,7 +725,10 @@ export function parseTenorGif(urlp: URL):
 
   return {
     success: true,
-    playerUri: `https://t.gifs.bsky.app/${id.replace('AAAAC', 'AAAAM')}/${filename}`,
+    playerUri: GIF_MEDIA_URL(
+      't',
+      `${id.replace('AAAAC', 'AAAAM')}/${filename}`,
+    ),
     dimensions,
   }
 }
@@ -773,8 +783,8 @@ export function parseKlipyGif(urlp: URL):
   const webmSlug = urlp.searchParams.get('webm')
   const mp4Slug = urlp.searchParams.get('mp4')
 
-  const playerUrl = new URL(urlp.href)
-  playerUrl.hostname = 'k.gifs.bsky.app'
+  const playerUrl = new URL(GIF_MEDIA_URL('k', urlp.pathname))
+  playerUrl.search = urlp.search
 
   // Strip all metadata params — only the path matters for the CDN
   playerUrl.searchParams.delete('hh')

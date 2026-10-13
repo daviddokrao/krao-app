@@ -7,6 +7,7 @@ import {
   CHAT_PROXY_DID,
   DEFAULT_SERVICE_URL,
   KRAO_DISCOVER_FEED,
+  KRAO_GIF_URL,
   KRAO_LABELER,
   KRAO_LINK_PREVIEW_URL,
   PUBLIC_API_URL,
@@ -204,7 +205,16 @@ export const KNOWN_SHUTDOWN_FEEDS = [
   'at://did:plc:wqowuobffl66jv3kpsvo7ak4/app.bsky.feed.generator/the-algorithm', // for you by skygaze
 ]
 
-export const GIF_SERVICE = 'https://gifs.bsky.app'
+/** Krao's GIF service (the indexer, see KRAO_GIF_URL) */
+export const GIF_SERVICE = KRAO_GIF_URL
+
+/**
+ * A Tenor ('t') or Klipy ('k') media URL relayed through Krao's GIF service,
+ * so viewers never contact the provider's CDN themselves.
+ */
+export function GIF_MEDIA_URL(provider: 't' | 'k', path: string) {
+  return `${GIF_SERVICE}/gifs/${provider}/${path.replace(/^\/+/, '')}`
+}
 
 export const GIF_KLIPY_SEARCH = (params: string) =>
   `${GIF_SERVICE}/klipy/v2/search?${params}`

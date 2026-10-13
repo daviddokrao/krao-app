@@ -142,6 +142,7 @@ import {
   IS_NATIVE,
   IS_WEB,
   IS_WEB_SAFARI,
+  KRAO_GIF_SEARCH,
 } from '#/env'
 import {type Gif} from '#/features/gifPicker/types'
 import {app, chat} from '#/lexicons'
@@ -2265,7 +2266,9 @@ function ComposerFooter({
                 }
                 onAdd={onImageAdd}
               />
-              <SelectGifBtn onSelectGif={onSelectGif} disabled={!!media} />
+              {KRAO_GIF_SEARCH && (
+                <SelectGifBtn onSelectGif={onSelectGif} disabled={!!media} />
+              )}
               {IS_WEB && gtPhone ? (
                 <EmojiPicker.Root nextFocusRef={textInputRef}>
                   <EmojiPicker.Trigger label={l`Open emoji picker`}>

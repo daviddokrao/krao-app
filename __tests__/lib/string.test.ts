@@ -8,7 +8,7 @@ import {
   parseStarterPackUri,
 } from '#/lib/strings/starter-pack'
 import {messages} from '#/locale/locales/en/messages'
-import {klipyUrlToBskyGifUrl} from '#/features/gifPicker/utils'
+import {klipyUrlToGifRelayUrl} from '#/features/gifPicker/utils'
 import {cleanError} from '../../src/lib/strings/errors'
 import {createFullHandle, makeValidHandle} from '../../src/lib/strings/handles'
 import {enforceLen} from '../../src/lib/strings/helpers'
@@ -778,7 +778,7 @@ describe('parseEmbedPlayerFromUrl', () => {
       source: 'tenor',
       isGif: true,
       hideDetails: true,
-      playerUri: 'https://t.gifs.bsky.app/someID_AAAAM/someName.gif',
+      playerUri: 'https://indexer.krao.io/gifs/t/someID_AAAAM/someName.gif',
       dimensions: {
         width: 100,
         height: 100,
@@ -871,7 +871,7 @@ describe('parseEmbedPlayerFromUrl', () => {
       source: 'klipy',
       isGif: true,
       hideDetails: true,
-      playerUri: 'https://k.gifs.bsky.app/ii/abc123/73/ac/someFile.gif',
+      playerUri: 'https://indexer.krao.io/gifs/k/ii/abc123/73/ac/someFile.gif',
       dimensions: {
         width: 300,
         height: 200,
@@ -884,7 +884,7 @@ describe('parseEmbedPlayerFromUrl', () => {
       source: 'klipy',
       isGif: true,
       hideDetails: true,
-      playerUri: 'https://k.gifs.bsky.app/ii/abc123/73/ac/someFile.gif',
+      playerUri: 'https://indexer.krao.io/gifs/k/ii/abc123/73/ac/someFile.gif',
       dimensions: {
         width: 300,
         height: 200,
@@ -1084,30 +1084,27 @@ describe('createStarterPackGooglePlayUri', () => {
   })
 })
 
-describe('klipyUrlToBskyGifUrl', () => {
+describe('klipyUrlToGifRelayUrl', () => {
   const inputs = [
     'https://static.klipy.com/ii/abc123/73/ac/someFile.gif',
     'https://static.klipy.com/ii/abc123/73/ac/someFile.gif?hh=200&ww=300',
   ]
 
-  it.each(inputs)(
-    'returns url with k.gifs.bsky.app as hostname for input url',
-    input => {
-      const out = klipyUrlToBskyGifUrl(input)
-      expect(out.startsWith('https://k.gifs.bsky.app/')).toEqual(true)
-    },
-  )
+  it.each(inputs)('returns a Krao GIF relay url for input url', input => {
+    const out = klipyUrlToGifRelayUrl(input)
+    expect(out.startsWith('https://indexer.krao.io/gifs/k/')).toEqual(true)
+  })
 
   it('preserves the path and query params when rewriting', () => {
-    const out = klipyUrlToBskyGifUrl(
+    const out = klipyUrlToGifRelayUrl(
       'https://static.klipy.com/ii/abc123/73/ac/someFile.gif?hh=200&ww=300',
     )
     expect(out).toEqual(
-      'https://k.gifs.bsky.app/ii/abc123/73/ac/someFile.gif?hh=200&ww=300',
+      'https://indexer.krao.io/gifs/k/ii/abc123/73/ac/someFile.gif?hh=200&ww=300',
     )
   })
 
   it('returns empty string for invalid URLs', () => {
-    expect(klipyUrlToBskyGifUrl('not-a-url')).toEqual('')
+    expect(klipyUrlToGifRelayUrl('not-a-url')).toEqual('')
   })
 })
