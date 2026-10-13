@@ -60,6 +60,7 @@ import {Text} from '#/components/Typography'
 import {WhoCanReply} from '#/components/WhoCanReply'
 import {Features, useAnalytics} from '#/analytics'
 import {useActorStatus} from '#/features/liveNow'
+import {TipSummary} from '#/features/tips/components/TipSummary'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 
@@ -437,6 +438,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
               post={item.value.post}
               isThreadAuthor={isThreadAuthor}
             />
+            <TipSummary uri={post.uri} />
             {post.repostCount !== 0 ||
             post.likeCount !== 0 ||
             post.quoteCount !== 0 ||
