@@ -84,6 +84,19 @@ export const PUBLIC_API_URL: string =
   process.env.EXPO_PUBLIC_PUBLIC_API || 'https://api.krao.io'
 
 /**
+ * Krao indexer serving io.krao.* queries (linked wallets etc)
+ */
+export const KRAO_INDEXER_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_INDEXER_URL || 'https://indexer.krao.io'
+
+/**
+ * Enables a built-in test wallet (the public Hardhat dev key) for local
+ * development without a browser wallet extension. Never enable in production.
+ */
+export const KRAO_DEV_WALLET: boolean =
+  process.env.EXPO_PUBLIC_KRAO_DEV_WALLET === 'true'
+
+/**
  * The DID of the chat service to proxy to
  */
 export const CHAT_PROXY_DID: DidString =

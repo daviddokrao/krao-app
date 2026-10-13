@@ -77,6 +77,7 @@ export type CommonNavigatorParams = {
   ActivityNotificationSettings: undefined
   InterestsSettings: undefined
   AboutSettings: undefined
+  WalletsSettings: undefined
   AppIconSettings: undefined
   FindContactsSettings: undefined
   InviteScanner: undefined

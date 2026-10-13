@@ -127,6 +127,7 @@ import {ActivityNotificationSettingsScreen} from '#/screens/Settings/Notificatio
 import {PrivacyAndSecuritySettingsScreen} from '#/screens/Settings/PrivacyAndSecuritySettings'
 import {SettingsScreen} from '#/screens/Settings/Settings'
 import {ThreadPreferencesScreen} from '#/screens/Settings/ThreadPreferences'
+import {WalletsSettingsScreen} from '#/screens/Settings/WalletsSettings'
 import {
   StarterPackScreen,
   StarterPackScreenShort,
@@ -503,6 +504,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => InterestsSettingsScreen}
         options={{
           title: title(msg`Your interests`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="WalletsSettings"
+        getComponent={() => WalletsSettingsScreen}
+        options={{
+          title: title(msg`Wallets`),
           requireAuth: true,
         }}
       />

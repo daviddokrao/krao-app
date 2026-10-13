@@ -41,6 +41,7 @@ import {Accessibility_Stroke2_Corner2_Rounded as AccessibilityIcon} from '#/comp
 import {Beaker_Stroke2_Corner2_Rounded as BeakerIcon} from '#/components/icons/Beaker'
 import {Bell_Stroke2_Corner0_Rounded as NotificationIcon} from '#/components/icons/Bell'
 import {BubbleInfo_Stroke2_Corner2_Rounded as BubbleInfoIcon} from '#/components/icons/BubbleInfo'
+import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {ChevronTop_Stroke2_Corner0_Rounded as ChevronUpIcon} from '#/components/icons/Chevron'
 import {CircleQuestion_Stroke2_Corner2_Rounded as CircleQuestionIcon} from '#/components/icons/CircleQuestion'
 import {CodeBrackets_Stroke2_Corner2_Rounded as CodeBracketsIcon} from '#/components/icons/CodeBrackets'
@@ -178,6 +179,12 @@ export function SettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={PersonIcon} />
             <SettingsList.ItemText>
               <Trans>Account</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem to="/settings/wallets" label={l`Wallets`}>
+            <SettingsList.ItemIcon icon={ChainLinkIcon} />
+            <SettingsList.ItemText>
+              <Trans>Wallets</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.LinkItem
