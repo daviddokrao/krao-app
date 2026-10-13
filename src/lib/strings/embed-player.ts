@@ -1,16 +1,14 @@
 import {Dimensions} from 'react-native'
 
-import {IS_WEB} from '#/env'
+import {IS_WEB, KRAO_WEB_URL} from '#/env'
 
 const {height: SCREEN_HEIGHT} = Dimensions.get('window')
 
-const IFRAME_HOST = IS_WEB
-  ? window.location.host === 'localhost:8100'
-    ? 'http://localhost:8100'
-    : 'https://bsky.app'
-  : __DEV__ && !process.env.JEST_WORKER_ID
-    ? 'http://localhost:8100'
-    : 'https://bsky.app'
+/*
+ * The YouTube player page (public/iframe/youtube.html) is served by Krao's web
+ * app: the app's own origin on web, KRAO_WEB_URL on native.
+ */
+const IFRAME_HOST = IS_WEB ? window.location.origin : KRAO_WEB_URL
 
 export const embedPlayerSources = [
   'youtube',

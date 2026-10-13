@@ -58,6 +58,7 @@
     "patches/**",
     "*.html",
     "bskyweb/**",
+    "public/iframe/**",
     "bskyembed/**",
     "bskyogcard/**",
     "lint-rules/**",

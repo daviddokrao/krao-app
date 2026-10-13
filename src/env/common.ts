@@ -84,6 +84,13 @@ export const PUBLIC_API_URL: string =
   process.env.EXPO_PUBLIC_PUBLIC_API || 'https://api.krao.io'
 
 /**
+ * Krao's web app, which also hosts pages native apps embed (eg the YouTube
+ * player)
+ */
+export const KRAO_WEB_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_WEB_URL || 'https://krao.io'
+
+/**
  * Krao indexer serving io.krao.* queries (linked wallets etc)
  */
 export const KRAO_INDEXER_URL: string =

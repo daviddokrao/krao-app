@@ -465,70 +465,69 @@ describe('parseEmbedPlayerFromUrl', () => {
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=1',
-    },
-    {
-      type: 'youtube_video',
-      source: 'youtube',
-      playerUri:
-        'https://bsky.app/iframe/youtube.html?videoId=videoId&start=3723',
-    },
-    {
-      type: 'youtube_video',
-      source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
-    },
-    {
-      type: 'youtube_video',
-      source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
-    },
-    {
-      type: 'youtube_video',
-      source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=1',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=1',
     },
     {
       type: 'youtube_video',
       source: 'youtube',
       playerUri:
-        'https://bsky.app/iframe/youtube.html?videoId=videoId&start=90',
+        'https://krao.io/iframe/youtube.html?videoId=videoId&start=3723',
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
+    },
+    {
+      type: 'youtube_video',
+      source: 'youtube',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=1',
+    },
+    {
+      type: 'youtube_video',
+      source: 'youtube',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=90',
+    },
+    {
+      type: 'youtube_video',
+      source: 'youtube',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
+    },
+    {
+      type: 'youtube_video',
+      source: 'youtube',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
     },
     {
       type: 'youtube_short',
       source: 'youtubeShorts',
       hideDetails: true,
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: 'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
     },
 
     undefined,
