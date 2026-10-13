@@ -1,3 +1,4 @@
+import {createBatchLoader} from '#/lib/batchLoader'
 import {KRAO_INDEXER_URL} from '#/env'
 
 export type WalletStatus = 'verified' | 'pending' | 'invalid'
@@ -71,11 +72,14 @@ export class XrpcError extends Error {
 async function xrpc<T>(
   service: string,
   method: string,
-  {params, body}: {params?: Record<string, string>; body?: unknown} = {},
+  {
+    params,
+    body,
+  }: {params?: Record<string, string | string[]>; body?: unknown} = {},
 ): Promise<T> {
   const url = new URL(`/xrpc/${method}`, service)
   for (const [k, v] of Object.entries(params ?? {})) {
-    url.searchParams.append(k, v)
+    for (const item of [v].flat()) url.searchParams.append(k, item)
   }
   const res = await fetch(url.toString(), {
     method: body ? 'POST' : 'GET',
@@ -92,14 +96,25 @@ async function xrpc<T>(
   return data as T
 }
 
-/** Linked wallets for an account, from the Krao indexer */
+const loadChainProfile = createBatchLoader<string, ChainProfile>({
+  maxBatchSize: 25,
+  load: async dids => {
+    const {profiles} = await xrpc<{profiles: ChainProfile[]}>(
+      KRAO_INDEXER_URL,
+      'io.krao.actor.getChainProfiles',
+      {params: {actors: dids}},
+    )
+    return new Map(profiles.map(p => [p.did, p]))
+  },
+})
+
+/**
+ * Linked wallets, NFT avatar and badges of an account, from the Krao
+ * indexer. Lookups made together (eg for every author in a feed) share one
+ * request.
+ */
 export async function getChainProfile(did: string): Promise<ChainProfile> {
-  const {profiles} = await xrpc<{profiles: ChainProfile[]}>(
-    KRAO_INDEXER_URL,
-    'io.krao.actor.getChainProfiles',
-    {params: {actors: did}},
-  )
-  return profiles.find(p => p.did === did) ?? {did, wallets: []}
+  return (await loadChainProfile(did)) ?? {did, wallets: []}
 }
 
 /** Look up an NFT on-chain via the Krao indexer */

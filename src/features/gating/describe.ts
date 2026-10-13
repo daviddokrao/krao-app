@@ -2,7 +2,7 @@ import {useLingui} from '@lingui/react/macro'
 
 import {formatUnits, getTipAsset} from '#/features/tips/assets'
 import {shortAddress} from '#/features/wallet/siwe'
-import {type GateCondition} from './queries'
+import {type GateCondition, type GateRule} from './queries'
 
 /** Returns a formatter for gate requirements, eg "≥ 10 USDC on Base" */
 export function useDescribeCondition() {
@@ -18,5 +18,17 @@ export function useDescribeCondition() {
     return condition.tokenId
       ? l`a specific NFT from ${collection}`
       : l`any NFT from ${collection}`
+  }
+}
+
+/** Returns a formatter for a whole gate, eg "≥ 10 USDC on Base and …" */
+export function useDescribeRule() {
+  const {t: l} = useLingui()
+  const describe = useDescribeCondition()
+  return (rule: GateRule): string => {
+    const requirements = rule.conditions.map(describe)
+    return rule.match === 'any'
+      ? requirements.join(l` or `)
+      : requirements.join(l` and `)
   }
 }

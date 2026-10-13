@@ -7,7 +7,7 @@ import {Admonition} from '#/components/Admonition'
 import {InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
-import {useDescribeCondition} from '../describe'
+import {useDescribeRule} from '../describe'
 import {GateError, useGatedContentQuery, useGateRuleQuery} from '../queries'
 
 /**
@@ -18,17 +18,13 @@ export function GatedContent({uri}: {uri: string}) {
   const t = useTheme()
   const {t: l} = useLingui()
   const {hasSession} = useSession()
-  const describe = useDescribeCondition()
+  const describeRule = useDescribeRule()
   const {data: rule} = useGateRuleQuery(uri)
   const content = useGatedContentQuery(uri, !!rule?.hasContent)
 
   if (!rule?.hasContent) return null
 
-  const requirements = rule.conditions.map(describe)
-  const requirementText =
-    rule.match === 'any'
-      ? requirements.join(l` or `)
-      : requirements.join(l` and `)
+  const requirementText = describeRule(rule)
   const notEligible =
     content.error instanceof GateError && content.error.error === 'NotEligible'
 

@@ -1,6 +1,7 @@
 import {toDatetimeString} from '@atproto/syntax'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
+import {createBatchLoader} from '#/lib/batchLoader'
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient, useSession} from '#/state/session'
@@ -44,11 +45,15 @@ async function gateFetch<T>(
     params,
     body,
     token,
-  }: {params?: Record<string, string>; body?: unknown; token?: string},
+  }: {
+    params?: Record<string, string | string[]>
+    body?: unknown
+    token?: string
+  },
 ): Promise<T> {
   const url = new URL(`/xrpc/${method}`, KRAO_GATE_URL)
   for (const [k, v] of Object.entries(params ?? {})) {
-    url.searchParams.append(k, v)
+    for (const item of [v].flat()) url.searchParams.append(k, item)
   }
   const res = await fetch(url.toString(), {
     method: body ? 'POST' : 'GET',
@@ -85,18 +90,24 @@ function useServiceAuth() {
 
 const gateRuleQueryKey = (uri: string) => createQueryKey('gate-rule', {uri})
 
+/** Rule lookups made together (eg for a page of feed posts) share a request */
+const loadGateRule = createBatchLoader<string, GateRule>({
+  maxBatchSize: 25,
+  load: async uris => {
+    const {rules} = await gateFetch<{rules: GateRule[]}>(
+      'io.krao.gate.getRules',
+      {params: {uris}},
+    )
+    return new Map(rules.map(r => [r.subject, r]))
+  },
+})
+
 /** The token gate on a post, if any */
 export function useGateRuleQuery(uri: string) {
   return useQuery({
     staleTime: STALE.MINUTES.ONE,
     queryKey: gateRuleQueryKey(uri),
-    queryFn: async () => {
-      const {rules} = await gateFetch<{rules: GateRule[]}>(
-        'io.krao.gate.getRules',
-        {params: {uris: uri}},
-      )
-      return rules.find(r => r.subject === uri) ?? null
-    },
+    queryFn: async () => (await loadGateRule(uri)) ?? null,
   })
 }
 

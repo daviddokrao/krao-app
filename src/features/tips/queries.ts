@@ -1,6 +1,7 @@
 import {toDatetimeString} from '@atproto/syntax'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
+import {createBatchLoader} from '#/lib/batchLoader'
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient, useSession} from '#/state/session'
@@ -44,6 +45,35 @@ export function useTipsQuery(subject: string | undefined) {
       if (!res.ok) throw new Error('Could not load tips')
       return (await res.json()) as {tips: TipView[]; totals: TipTotal[]}
     },
+  })
+}
+
+const loadTipTotals = createBatchLoader<string, TipTotal[]>({
+  maxBatchSize: 25,
+  load: async subjects => {
+    const url = new URL('/xrpc/io.krao.feed.getTipTotals', KRAO_INDEXER_URL)
+    for (const subject of subjects) url.searchParams.append('subjects', subject)
+    const res = await fetch(url.toString())
+    if (!res.ok) throw new Error('Could not load tip totals')
+    const data = (await res.json()) as {
+      subjects: {subject: string; totals: TipTotal[]}[]
+    }
+    return new Map(data.subjects.map(s => [s.subject, s.totals]))
+  },
+})
+
+const createTipTotalsQueryKey = (subject: string) =>
+  createQueryKey('tip-totals', {subject})
+
+/**
+ * Verified tip totals of a post, for feeds. Posts rendered together share
+ * one request.
+ */
+export function useTipTotalsQuery(subject: string) {
+  return useQuery({
+    staleTime: STALE.MINUTES.ONE,
+    queryKey: createTipTotalsQueryKey(subject),
+    queryFn: async () => (await loadTipTotals(subject)) ?? [],
   })
 }
 
@@ -125,7 +155,12 @@ export function useSendTipMutation() {
         ...(currentAccount
           ? [createChainProfileQueryKey(currentAccount.did)]
           : []),
-        ...(subject ? [createTipsQueryKey(subject.uri)] : []),
+        ...(subject
+          ? [
+              createTipsQueryKey(subject.uri),
+              createTipTotalsQueryKey(subject.uri),
+            ]
+          : []),
       ]
       for (const delay of [1000, 3000, 8000]) {
         setTimeout(() => {
