@@ -6,9 +6,9 @@ import {
   BLUESKY_PROXY_DID,
   CHAT_PROXY_DID,
   DEFAULT_SERVICE_URL,
-  IS_DEV,
   KRAO_DISCOVER_FEED,
   KRAO_LABELER,
+  KRAO_LINK_PREVIEW_URL,
   PUBLIC_API_URL,
 } from '#/env'
 import {type app} from '#/lexicons'
@@ -95,17 +95,9 @@ export const IMAGE_SIZE_CONFIG_2K_1MB = {
   maxSize: 1000000,
 }
 
-export const STAGING_LINK_META_PROXY =
-  'https://cardyb.staging.bsky.dev/v1/extract?url='
-
-export const PROD_LINK_META_PROXY = 'https://cardyb.bsky.app/v1/extract?url='
-
+/** Krao's link preview service (cardyb-compatible, see KRAO_LINK_PREVIEW_URL) */
 export function LINK_META_PROXY(_serviceUrl: string) {
-  if (IS_DEV) {
-    return STAGING_LINK_META_PROXY
-  }
-
-  return PROD_LINK_META_PROXY
+  return `${KRAO_LINK_PREVIEW_URL}/v1/extract?url=`
 }
 
 export const STATUS_PAGE_URL = 'https://status.krao.io/'

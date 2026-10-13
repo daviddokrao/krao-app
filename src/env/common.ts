@@ -95,6 +95,13 @@ export const KRAO_INDEXER_URL: string =
  */
 export const KRAO_GATE_URL: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_URL || KRAO_INDEXER_URL
+
+/**
+ * Krao's link preview service (cardyb-compatible `/v1/extract` and
+ * `/v1/image`), served by the indexer
+ */
+export const KRAO_LINK_PREVIEW_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_LINK_PREVIEW_URL || KRAO_INDEXER_URL
 export const KRAO_GATE_DID: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.io'
 
