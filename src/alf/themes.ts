@@ -5,23 +5,23 @@ import {
 } from '@bsky.app/alf'
 
 /**
- * Krao brand color scale, replacing the upstream blue `primary_*` values.
- * Placeholder violet until the final brand colors are decided.
+ * Krao brand color scale (jade green #0E8C6E, see assets/brand/README.md),
+ * replacing the upstream blue `primary_*` values.
  */
 export const KRAO_PRIMARY = {
-  primary_25: '#F9F6FF',
-  primary_50: '#F1EBFE',
-  primary_100: '#E3D8FD',
-  primary_200: '#CBB5FB',
-  primary_300: '#AE8CF8',
-  primary_400: '#9466F6',
-  primary_500: '#7B3FF2',
-  primary_600: '#6A2BDB',
-  primary_700: '#5821B5',
-  primary_800: '#461A8F',
-  primary_900: '#33136A',
-  primary_950: '#260E4F',
-  primary_975: '#1A0938',
+  primary_25: '#F3FBF8',
+  primary_50: '#E6F6F1',
+  primary_100: '#C7EBDF',
+  primary_200: '#9ADBC6',
+  primary_300: '#5FC4A6',
+  primary_400: '#17A886',
+  primary_500: '#0E8C6E',
+  primary_600: '#0B755C',
+  primary_700: '#095F4B',
+  primary_800: '#074A3A',
+  primary_900: '#05362A',
+  primary_950: '#04271F',
+  primary_975: '#031B15',
 } as const
 
 const DEFAULT_THEMES = createThemes({

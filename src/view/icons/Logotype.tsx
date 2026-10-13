@@ -26,9 +26,9 @@ export function Logotype({
         y={15}
         textAnchor="middle"
         fontSize={19}
-        fontWeight="800"
+        fontWeight="700"
         fontFamily={KRAO_WORDMARK_FONT}
-        letterSpacing={-0.6}>
+        letterSpacing={-0.66}>
         {KRAO_WORDMARK}
       </Text>
     </Svg>

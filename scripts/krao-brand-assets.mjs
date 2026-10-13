@@ -1,6 +1,7 @@
 /*
- * Regenerates the Krao raster brand assets (favicon, app icons, splash) from
- * the vector mark. Run from the repo root after changing the mark or colors:
+ * Regenerates the app's raster brand assets (favicon, app icons, splash) from
+ * the official Krao star in assets/brand. Run from the repo root after the
+ * brand pack changes:
  *
  *   node scripts/krao-brand-assets.mjs
  */
@@ -9,96 +10,155 @@ import path from 'node:path'
 
 import sharp from 'sharp'
 
-/** Keep in sync with src/view/icons/kraoMark.ts and KRAO_PRIMARY in src/alf/themes.ts */
-const MARK_PATH =
-  'M16 0h32l16 28.5L48 57H16L0 28.5 16 0Zm6 13v31h7V32l9 12h8.5L35 28.5 46.5 13H38l-9 12V13h-7Z'
-const PRIMARY_500 = '#7B3FF2'
-const PRIMARY_600 = '#6A2BDB'
-const PRIMARY_300 = '#AE8CF8'
-const PRIMARY_900 = '#33136A'
-const PRIMARY_975 = '#1A0938'
+/** Keep in sync with src/view/icons/kraoMark.ts */
+const GREEN = '#0E8C6E'
+const GREEN_ON_DARK = '#17A886'
+const YELLOW = '#FFC233'
+const INK = '#16201A'
+const WHITE = '#FFFFFF'
+const TRIANGLES = [
+  'M 100 38.9 L 152.91 130.55 L 47.09 130.55 Z',
+  'M 139.27 53.19 L 120.9 157.42 L 39.83 89.39 Z',
+  'M 160.17 89.39 L 79.1 157.42 L 60.73 53.19 Z',
+]
+/** Square box around the star (incl. miter joins) in its 200x200 space */
+const STAR_BOX = {x: 28, y: 27, size: 144}
 
 const root = path.resolve(import.meta.dirname, '..')
 const out = p => path.join(root, p)
 
-/** SVG of the mark, centered in a w x h canvas, scaled to `scale` of the width. */
-function markSvg({w, h, scale, color, background}) {
-  const markW = w * scale
-  const s = markW / 64
-  const x = (w - markW) / 2
-  const y = (h - 57 * s) / 2
-  const bg = !background
-    ? ''
-    : background.gradient
-      ? `<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-           <stop offset="0" stop-color="${background.gradient[0]}"/>
-           <stop offset="1" stop-color="${background.gradient[1]}"/>
-         </linearGradient></defs><rect width="${w}" height="${h}" fill="url(#g)"/>`
-      : `<rect width="${w}" height="${h}" fill="${background}"/>`
+/**
+ * SVG of the star centered in a w x h canvas, sized to `scale` of the
+ * shorter side. `small` uses the heavier stroke meant for tiny sizes.
+ */
+function starSvg({w, h, scale, color, center = YELLOW, background, small}) {
+  const target = Math.min(w, h) * scale
+  const s = target / STAR_BOX.size
+  const x = (w - target) / 2 - STAR_BOX.x * s
+  const y = (h - target) / 2 - STAR_BOX.y * s
+  const stroke = small ? 15 : 10.4
+  const r = small ? 16 : 19
+  const bg = background
+    ? `<rect width="${w}" height="${h}" fill="${background}"/>`
+    : ''
   return Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
       ${bg}
-      <path transform="translate(${x} ${y}) scale(${s})" fill="${color}" fill-rule="evenodd" d="${MARK_PATH}"/>
+      <g transform="translate(${x} ${y}) scale(${s})">
+        <circle cx="100" cy="100" r="${r}" fill="${center}"/>
+        <g fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linejoin="miter">
+          ${TRIANGLES.map(d => `<path d="${d}"/>`).join('')}
+        </g>
+      </g>
     </svg>`,
   )
 }
 
 async function write(file, opts) {
-  await sharp(markSvg(opts)).png().toFile(out(file))
+  await sharp(starSvg(opts)).png().toFile(out(file))
   console.log(`  ${file} (${opts.w}x${opts.h})`)
 }
 
-const appIcon = {
-  scale: 0.56,
-  color: '#FFFFFF',
-  background: {gradient: [PRIMARY_500, PRIMARY_600]},
-}
-const appIconDark = {
-  scale: 0.56,
-  color: PRIMARY_300,
-  background: {gradient: [PRIMARY_900, PRIMARY_975]},
-}
+/** Same look as assets/brand/apple-touch-icon-180.png */
+const appIcon = {scale: 0.66, color: WHITE, background: GREEN}
+const appIconDark = {scale: 0.66, color: GREEN_ON_DARK, background: INK}
 
 console.log('Generating Krao brand assets:')
 
 // Web
-await write('assets/favicon.png', {w: 64, h: 64, scale: 0.9, color: PRIMARY_500})
-await write('assets/logo.png', {w: 500, h: 441, scale: 1, color: PRIMARY_500})
+// The official pack already has a hand-tuned 64px icon
+fs.copyFileSync(out('assets/brand/krao-icon-64.png'), out('assets/favicon.png'))
+console.log('  assets/favicon.png (copied from assets/brand)')
+await write('assets/logo.png', {w: 500, h: 441, scale: 1, color: GREEN})
 
-// App icons, including every alternate icon so no Bluesky artwork remains
-await write('assets/app-icons/ios_icon_default_next.png', {w: 1024, h: 1024, ...appIcon})
-await write('assets/app-icons/android_icon_default_next.png', {w: 1025, h: 1024, ...appIcon})
+// App icons, including every alternate icon so no upstream artwork remains
+await write('assets/app-icons/ios_icon_default_next.png', {
+  w: 1024,
+  h: 1024,
+  ...appIcon,
+})
+await write('assets/app-icons/android_icon_default_next.png', {
+  w: 1025,
+  h: 1024,
+  ...appIcon,
+})
 for (const platform of ['ios', 'android']) {
   const w = platform === 'android' ? 1025 : 1024
-  await write(`assets/app-icons/${platform}_icon_legacy_light.png`, {w, h: 1024, ...appIcon})
-  await write(`assets/app-icons/${platform}_icon_legacy_dark.png`, {w, h: 1024, ...appIconDark})
+  await write(`assets/app-icons/${platform}_icon_legacy_light.png`, {
+    w,
+    h: 1024,
+    ...appIcon,
+  })
+  await write(`assets/app-icons/${platform}_icon_legacy_dark.png`, {
+    w,
+    h: 1024,
+    ...appIconDark,
+  })
   for (const file of fs.readdirSync(out('assets/app-icons'))) {
     if (file.startsWith(`${platform}_icon_core_`)) {
-      const {width, height} = await sharp(out(`assets/app-icons/${file}`)).metadata()
+      const {width, height} = await sharp(
+        out(`assets/app-icons/${file}`),
+      ).metadata()
       await write(`assets/app-icons/${file}`, {w: width, h: height, ...appIcon})
     }
   }
 }
 
-// iOS Icon Composer bundles: white mark layer over the primary fill
+// iOS Icon Composer bundles: white star layer over the brand green fill
 for (const bundle of ['ios_icon_default.icon', 'ios_icon_testflight.icon']) {
   const layer = `assets/app-icons/${bundle}/Assets/iOS transparent.png`
   const {width, height} = await sharp(out(layer)).metadata()
-  await write(layer, {w: width, h: height, scale: 0.56, color: '#FFFFFF'})
+  await write(layer, {w: width, h: height, scale: 0.66, color: WHITE})
   const jsonFile = out(`assets/app-icons/${bundle}/icon.json`)
   const json = JSON.parse(fs.readFileSync(jsonFile, 'utf8'))
-  json.fill = {'automatic-gradient': 'srgb:0.48235,0.24706,0.94902,1.00000'}
+  json.fill = {'automatic-gradient': 'srgb:0.05490,0.54902,0.43137,1.00000'}
   fs.writeFileSync(jsonFile, JSON.stringify(json, null, 2) + '\n')
 }
 
-// Android adaptive icon layers (mark stays inside the 66% safe zone)
-await write('assets/icon-android-foreground.png', {w: 1024, h: 1024, scale: 0.4, color: '#FFFFFF'})
-await write('assets/icon-android-monochrome.png', {w: 1024, h: 1024, scale: 0.4, color: '#FFFFFF'})
-await write('assets/icon-android-notification.png', {w: 96, h: 96, scale: 0.8, color: '#FFFFFF'})
+// Android adaptive icon layers (star stays inside the 66% safe zone).
+// Monochrome and notification icons must be a single color.
+await write('assets/icon-android-foreground.png', {
+  w: 1024,
+  h: 1024,
+  scale: 0.5,
+  color: WHITE,
+})
+await write('assets/icon-android-monochrome.png', {
+  w: 1024,
+  h: 1024,
+  scale: 0.5,
+  color: WHITE,
+  center: WHITE,
+})
+await write('assets/icon-android-notification.png', {
+  w: 96,
+  h: 96,
+  scale: 0.9,
+  color: WHITE,
+  center: WHITE,
+  small: true,
+})
 
 // Splash screens
-await write('assets/splash/splash.png', {w: 1170, h: 2529, scale: 0.26, color: '#FFFFFF', background: PRIMARY_500})
-await write('assets/splash/splash-dark.png', {w: 1170, h: 2529, scale: 0.26, color: '#FFFFFF', background: PRIMARY_900})
-await write('assets/splash/android-splash-logo-white.png', {w: 306, h: 271, scale: 1, color: '#FFFFFF'})
+await write('assets/splash/splash.png', {
+  w: 1170,
+  h: 2529,
+  scale: 0.28,
+  color: WHITE,
+  background: GREEN,
+})
+await write('assets/splash/splash-dark.png', {
+  w: 1170,
+  h: 2529,
+  scale: 0.28,
+  color: GREEN_ON_DARK,
+  background: INK,
+})
+await write('assets/splash/android-splash-logo-white.png', {
+  w: 306,
+  h: 271,
+  scale: 1,
+  color: WHITE,
+})
 
 console.log('Done.')

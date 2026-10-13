@@ -5,12 +5,13 @@
  */
 
 import {useEffect, useRef, useState} from 'react'
-import Svg, {Path} from 'react-native-svg'
+import Svg from 'react-native-svg'
 
+import {KRAO_STAR} from '#/view/icons/kraoMark'
+import {KraoStarShape} from '#/view/icons/KraoStarShape'
 import {atoms as a, flattenToCSS} from '#/alf'
 
 const size = 100
-const ratio = 57 / 64
 
 export function Splash({
   isReady,
@@ -83,13 +84,9 @@ export function Splash({
           ])}>
           <Svg
             fill="none"
-            viewBox="0 0 64 57"
-            style={[a.relative, {width: size, height: size * ratio, top: -50}]}>
-            <Path
-              fill="#7B3FF2"
-              fillRule="evenodd"
-              d="M16 0h32l16 28.5L48 57H16L0 28.5 16 0Zm6 13v31h7V32l9 12h8.5L35 28.5 46.5 13H38l-9 12V13h-7Z"
-            />
+            viewBox={KRAO_STAR.viewBox}
+            style={[a.relative, {width: size, height: size, top: -50}]}>
+            <KraoStarShape />
           </Svg>
         </div>
       )}

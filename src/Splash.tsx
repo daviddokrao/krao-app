@@ -13,11 +13,13 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import Svg, {Path, type SvgProps} from 'react-native-svg'
+import Svg, {type SvgProps} from 'react-native-svg'
 import {scheduleOnRN} from 'react-native-worklets'
 import {Image} from 'expo-image'
 import * as SplashScreen from 'expo-splash-screen'
 
+import {KRAO_BRAND, KRAO_STAR} from '#/view/icons/kraoMark'
+import {KraoStarShape} from '#/view/icons/KraoStarShape'
 import {Logotype} from '#/view/icons/Logotype'
 import {atoms as a} from '#/alf'
 // @ts-expect-error
@@ -32,19 +34,17 @@ const darkSplashImageUri = RNImage.resolveAssetSource(
 
 export const Logo = forwardRef(function LogoImpl(props: SvgProps, ref) {
   const width = 1000
-  const height = width * (67 / 64)
+  const height = width
+  // Used as a mask for the reveal animation, so the dot shares the star color
+  const color = props.fill ? String(props.fill) : '#fff'
   return (
     <Svg
       fill="none"
       // @ts-expect-error it's fiiiiine
       ref={ref}
-      viewBox="0 0 64 66"
+      viewBox={KRAO_STAR.viewBox}
       style={[{width, height}, props.style]}>
-      <Path
-        fill={props.fill || '#fff'}
-        fillRule="evenodd"
-        d="M16 0h32l16 28.5L48 57H16L0 28.5 16 0Zm6 13v31h7V32l9 12h8.5L35 28.5 46.5 13H38l-9 12V13h-7Z"
-      />
+      <KraoStarShape color={color} centerColor={color} />
     </Svg>
   )
 })
@@ -192,7 +192,7 @@ export function Splash(props: React.PropsWithChildren<Props>) {
             a.absolute,
             a.inset_0,
             // The splash PNGs contain partially transparent pixels.
-            {backgroundColor: isDarkMode ? '#33136A' : '#7B3FF2'},
+            {backgroundColor: isDarkMode ? KRAO_BRAND.ink : KRAO_BRAND.green},
             splashAnimation,
           ]}>
           <Image
