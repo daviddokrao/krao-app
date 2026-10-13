@@ -59,6 +59,7 @@ import * as Skele from '#/components/Skeleton'
 import {Text} from '#/components/Typography'
 import {WhoCanReply} from '#/components/WhoCanReply'
 import {Features, useAnalytics} from '#/analytics'
+import {GatedContent} from '#/features/gating/components/GatedContent'
 import {useActorStatus} from '#/features/liveNow'
 import {TipSummary} from '#/features/tips/components/TipSummary'
 import {app} from '#/lexicons'
@@ -438,6 +439,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
               post={item.value.post}
               isThreadAuthor={isThreadAuthor}
             />
+            <GatedContent uri={post.uri} />
             <TipSummary uri={post.uri} />
             {post.repostCount !== 0 ||
             post.likeCount !== 0 ||

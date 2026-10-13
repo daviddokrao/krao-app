@@ -69,6 +69,7 @@ import {Eye_Stroke2_Corner0_Rounded as Eye} from '#/components/icons/Eye'
 import {EyeSlash_Stroke2_Corner0_Rounded as EyeSlash} from '#/components/icons/EyeSlash'
 import {Filter_Stroke2_Corner0_Rounded as Filter} from '#/components/icons/Filter'
 import {Gift1_Stroke2_Corner0_Rounded as GiftIcon} from '#/components/icons/Gift1'
+import {Lock_Stroke2_Corner0_Rounded as LockIcon} from '#/components/icons/Lock'
 import {
   Mute_Stroke2_Corner0_Rounded as Mute,
   Mute_Stroke2_Corner0_Rounded as MuteIcon,
@@ -93,6 +94,7 @@ import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {IS_INTERNAL} from '#/env'
+import {GateDialog} from '#/features/gating/components/GateDialog'
 import {TipDialog} from '#/features/tips/components/TipDialog'
 import {type app} from '#/lexicons'
 
@@ -148,6 +150,7 @@ let PostMenuItems = ({
   const quotePostDetachConfirmControl = useDialogControl()
   const hideReplyConfirmControl = useDialogControl()
   const tipDialogControl = useDialogControl()
+  const gateDialogControl = useDialogControl()
   const {mutateAsync: toggleReplyVisibility} =
     useToggleReplyVisibilityMutation()
 
@@ -527,6 +530,13 @@ let PostMenuItems = ({
           <>
             <Menu.Group>
               <Menu.Item
+                testID="postDropdownGateBtn"
+                label={l`Add token-gated content`}
+                onPress={() => gateDialogControl.open()}>
+                <Menu.ItemText>{l`Add token-gated content`}</Menu.ItemText>
+                <Menu.ItemIcon icon={LockIcon} position="right" />
+              </Menu.Item>
+              <Menu.Item
                 testID="pinPostBtn"
                 label={
                   isPinned ? l`Unpin from profile` : l`Pin to your profile`
@@ -830,6 +840,12 @@ let PostMenuItems = ({
           </>
         )}
       </Menu.Outer>
+      {isAuthor && (
+        <GateDialog
+          control={gateDialogControl}
+          post={{uri: post.uri, cid: post.cid}}
+        />
+      )}
       <TipDialog
         control={tipDialogControl}
         target={{
