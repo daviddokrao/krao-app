@@ -12,6 +12,8 @@ import {
   KRAO_GIF_URL,
   KRAO_LABELER,
   KRAO_LINK_PREVIEW_URL,
+  KRAO_VIDEO_DID,
+  KRAO_VIDEO_URL,
   PUBLIC_API_URL,
 } from '#/env'
 import {type app} from '#/lexicons'
@@ -230,8 +232,12 @@ export const GIF_KLIPY_FEATURED = (params: string) =>
 
 export const MAX_LABELERS = 20
 
-export const VIDEO_SERVICE = 'https://video.bsky.app'
-export const VIDEO_SERVICE_DID = 'did:web:video.bsky.app'
+/**
+ * Krao's video service (upload and transcoding) and the DID it answers to.
+ * Video uploads are off until one is configured.
+ */
+export const VIDEO_SERVICE = KRAO_VIDEO_URL
+export const VIDEO_SERVICE_DID = KRAO_VIDEO_DID
 
 export const VIDEO_MAX_DURATION_MS = 10 * 60 * 1000 // 10 minutes in milliseconds
 /**

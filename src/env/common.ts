@@ -138,6 +138,15 @@ export const KRAO_SHORT_LINK_URL: string =
 export const KRAO_OGCARD_URL: string =
   process.env.EXPO_PUBLIC_KRAO_OGCARD_URL || `${KRAO_INDEXER_URL}/ogcard`
 
+/**
+ * Krao's video service (app.bsky.video.* upload and transcoding) and its DID.
+ * Video uploads are off until one is configured.
+ */
+export const KRAO_VIDEO_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_VIDEO_URL || ''
+export const KRAO_VIDEO_DID: string =
+  process.env.EXPO_PUBLIC_KRAO_VIDEO_DID || ''
+
 /** Krao's chat service URL for signed-out reads; unset, there are none */
 export const KRAO_CHAT_URL: string = process.env.EXPO_PUBLIC_KRAO_CHAT_URL || ''
 export const KRAO_GATE_DID: string =

@@ -64,6 +64,7 @@ import {
   SUPPORTED_MIME_TYPES,
   type SupportedMimeTypes,
   VIDEO_MAX_DURATION_MS,
+  VIDEO_SERVICE,
 } from '#/lib/constants'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {createVideoTelemetry} from '#/lib/media/video/telemetry'
@@ -394,6 +395,11 @@ export const ComposePost = ({
 
   const selectVideo = useCallback(
     async (postId: string, asset: ImagePickerAsset) => {
+      // Videos upload through Krao's video service, which may not run yet
+      if (!VIDEO_SERVICE) {
+        Toast.show(l`Video uploads aren’t available yet.`, {type: 'warning'})
+        return
+      }
       /*
        * Share-extension deeplinks deliver a video URI without duration, so
        * probe before we decide whether to compress. The picker and web paste
