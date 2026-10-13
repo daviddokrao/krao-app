@@ -181,6 +181,8 @@ export type State =
 export type RouteParams = Record<string, string>
 export type MatchResult = {params: RouteParams}
 export type Route = {
+  /** The path pattern, eg `/profile/:name` */
+  pattern: string
   match: (path: string) => MatchResult | undefined
   build: (params?: Record<string, any>) => string
 }

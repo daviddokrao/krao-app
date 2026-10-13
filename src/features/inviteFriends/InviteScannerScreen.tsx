@@ -10,7 +10,9 @@ import {
 import {useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {expandProfilePath} from '#/lib/routes/shortProfile'
 import {type NavigationProp} from '#/lib/routes/types'
+import {isBskyAppUrl} from '#/lib/strings/url-helpers'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import {ArrowLeft_Stroke2_Corner0_Rounded as ArrowLeftIcon} from '#/components/icons/Arrow'
@@ -42,10 +44,16 @@ export function InviteScannerScreen() {
       const url = result.data?.trim()
       if (!url) return
 
-      // Match bsky.app/profile/{handle} URLs (with or without https://).
-      const profileMatch = url.match(
-        /^(?:https?:\/\/)?bsky\.app\/profile\/([^/?#]+)/i,
-      )
+      // Match Krao profile URLs, short or long, with or without https://
+      let profileMatch: RegExpExecArray | null = null
+      try {
+        const absolute = /^https?:\/\//i.test(url) ? url : `https://${url}`
+        if (isBskyAppUrl(absolute)) {
+          profileMatch = /^\/profile\/([^/?#]+)\/?$/.exec(
+            expandProfilePath(new URL(absolute).pathname),
+          )
+        }
+      } catch {}
       if (!profileMatch) {
         ax.metric('invite:scanner:scanned', {result: 'invalidQr'})
         setScannerEnabled(false)

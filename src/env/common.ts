@@ -98,6 +98,16 @@ export const KRAO_SITE_URL: string =
   process.env.EXPO_PUBLIC_KRAO_SITE_URL || 'https://krao.net'
 
 /**
+ * The handle domain of accounts on Krao's PDS, with its leading dot. Profile
+ * URLs drop it: `krao.net/lan` is the profile of `lan.krao.net`.
+ */
+export const KRAO_HANDLE_DOMAIN: string = (() => {
+  const domain: string =
+    process.env.EXPO_PUBLIC_KRAO_HANDLE_DOMAIN || '.krao.net'
+  return (domain.startsWith('.') ? domain : `.${domain}`).toLowerCase()
+})()
+
+/**
  * Krao indexer serving net.krao.* queries (linked wallets etc)
  */
 export const KRAO_INDEXER_URL: string =

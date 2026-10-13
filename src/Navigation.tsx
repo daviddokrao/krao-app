@@ -32,6 +32,7 @@ import {
 import {useWebScrollRestoration} from '#/lib/hooks/useWebScrollRestoration'
 import {useCallOnce} from '#/lib/once'
 import {buildStateObject, getCurrentRoute} from '#/lib/routes/helpers'
+import {expandProfilePath, shortenProfilePath} from '#/lib/routes/shortProfile'
 import {
   type AllNavigatorParams,
   type BottomTabNavigatorParams,
@@ -853,10 +854,12 @@ const LINKING = {
     if (typeof route === 'undefined') {
       return '/' // default to home
     }
-    return route.build((node.params || {}) as RouteParams)
+    return shortenProfilePath(route.build((node.params || {}) as RouteParams))
   },
 
   getStateFromPath(path: string) {
+    // Short profile URLs (`/lan/post/x`) map onto the /profile routes
+    path = expandProfilePath(path)
     const [name, params] = router.matchPath(path)
 
     // Any time we receive a url that starts with `intent/` we want to ignore it here. It will be handled in the

@@ -45,6 +45,7 @@ function createRoute(pattern: string): Route {
   })
   const matcherRe = new RegExp(`^${matcherReInternal}([?]|$)`, 'i')
   return {
+    pattern,
     match(path) {
       const {pathname, searchParams} = new URL(path, 'http://throwaway.com')
       const addedParams = Object.fromEntries(searchParams.entries())
