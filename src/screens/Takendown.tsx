@@ -11,6 +11,7 @@ import {countGraphemes} from 'unicode-segmenter/grapheme'
 import {
   MAX_REPORT_REASON_GRAPHEME_LENGTH,
   modProxyService,
+  webLinks,
 } from '#/lib/constants'
 import {cleanError} from '#/lib/strings/errors'
 import {useAppviewClient, useSession, useSessionApi} from '#/state/session'
@@ -210,10 +211,10 @@ export function Takendown() {
                 <Trans>
                   Your account was found to be in violation of the{' '}
                   <SimpleInlineLinkText
-                    label={_(msg`Bluesky Social Terms of Service`)}
-                    to="https://bsky.social/about/support/tos"
+                    label={_(msg`Krao Terms of Service`)}
+                    to={webLinks.tos}
                     style={[a.text_md, a.leading_snug]}>
-                    Bluesky Social Terms of Service
+                    Krao Terms of Service
                   </SimpleInlineLinkText>
                   . You have been sent an email outlining the specific violation
                   and suspension period, if applicable. You can appeal this

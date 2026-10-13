@@ -5,22 +5,22 @@ import TLDs from 'tlds'
 import {BSKY_SERVICE} from '#/lib/constants'
 import {isInvalidHandle} from '#/lib/strings/handles'
 import {startUriToStarterPackUri} from '#/lib/strings/starter-pack'
-import {KRAO_SHORT_LINK_URL} from '#/env'
+import {KRAO_SHORT_LINK_URL, KRAO_SITE_URL, KRAO_WEB_URL} from '#/env'
 
 /** Canonical web host for links this app creates (share links etc). */
-export const BSKY_APP_HOST = 'https://krao.io'
+export const BSKY_APP_HOST = KRAO_WEB_URL.replace(/\/$/, '')
 /**
- * Web hosts whose links open inside the app. Krao is federated with Bluesky,
- * so bsky.app links resolve to the same content.
+ * Web hosts whose links open inside the app. Krao is its own network, so
+ * bsky.app links point at content Krao does not have and open in the browser.
  */
-const APP_URL_PREFIXES = ['https://krao.io/', 'https://bsky.app/']
+const APP_URL_PREFIXES = [...new Set([`${BSKY_APP_HOST}/`, 'https://krao.io/'])]
 export const BSKY_HOSTING_ENDSWITH = '.host.bsky.network'
 const BSKY_TRUSTED_HOSTS = [
-  'krao\\.io',
-  'bsky\\.app',
-  'bsky\\.social',
-  'blueskyweb\\.xyz',
-  'blueskyweb\\.zendesk\\.com',
+  ...new Set(
+    ['krao.io', new URL(KRAO_WEB_URL).host, new URL(KRAO_SITE_URL).host].map(
+      host => host.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+    ),
+  ),
   ...(__DEV__ ? ['localhost:19006', 'localhost:8100'] : []),
 ]
 

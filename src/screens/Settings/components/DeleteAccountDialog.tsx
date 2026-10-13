@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {webLinks} from '#/lib/constants'
 import {useCleanError} from '#/lib/hooks/useCleanError'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {logger} from '#/logger'
@@ -340,7 +341,7 @@ function DeleteAccountDialogInner({
                 </Span>{' '}
                 and all associated data. Note that this will affect any other{' '}
                 <SimpleInlineLinkText
-                  to="https://bsky.social/about/faq"
+                  to={webLinks.faq}
                   label={_(msg`AT Protocol FAQ`)}>
                   AT Protocol
                 </SimpleInlineLinkText>{' '}

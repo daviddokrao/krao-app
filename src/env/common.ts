@@ -91,6 +91,13 @@ export const KRAO_WEB_URL: string =
   process.env.EXPO_PUBLIC_KRAO_WEB_URL || 'https://krao.io'
 
 /**
+ * Krao's public website, home of the help center and the policy pages (terms,
+ * privacy, community guidelines...)
+ */
+export const KRAO_SITE_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_SITE_URL || 'https://krao.io'
+
+/**
  * Krao indexer serving io.krao.* queries (linked wallets etc)
  */
 export const KRAO_INDEXER_URL: string =

@@ -31,14 +31,14 @@ export function useFilterFieldLabels(): Record<
         message: 'From these people',
         comment: 'Advanced search filter',
       }),
-      label: 'bsky.app atproto.com',
+      label: 'krao.io atproto.com',
     },
     mentions: {
       title: l({
         message: 'Mentions of these people',
         comment: 'Advanced search filter',
       }),
-      label: 'bsky.app atproto.com',
+      label: 'krao.io atproto.com',
     },
     tags: {
       title: l({
@@ -52,14 +52,14 @@ export function useFilterFieldLabels(): Record<
         message: 'These domains',
         comment: 'Advanced search filter',
       }),
-      label: 'bsky.app atproto.com',
+      label: 'krao.io atproto.com',
     },
     urls: {
       title: l({
         message: 'These URLs',
         comment: 'Advanced search filter',
       }),
-      label: 'https://bsky.app https://atproto.com',
+      label: 'https://krao.io https://atproto.com',
     },
   }
 }
