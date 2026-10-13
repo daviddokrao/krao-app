@@ -1,74 +1,47 @@
 import {forwardRef} from 'react'
 import {type TextProps} from 'react-native'
-import Svg, {
-  Defs,
-  LinearGradient,
-  Path,
-  type PathProps,
-  Stop,
-  type SvgProps,
-} from 'react-native-svg'
-import {Image} from 'expo-image'
+import Svg, {type PathProps, type SvgProps} from 'react-native-svg'
 
-import {KRAO_MARK_PATH} from '#/view/icons/kraoMark'
-import {useLogoVariant} from '#/view/icons/useLogoVariant'
+import {KRAO_BRAND, KRAO_STAR} from '#/view/icons/kraoMark'
+import {KraoStarShape} from '#/view/icons/KraoStarShape'
 import {flatten, useTheme} from '#/alf'
-
-const ratio = 57 / 64
 
 type Props = {
   allowVariants?: boolean
+  /**
+   * Star color. The legacy 'sky' gradient value maps to the brand green,
+   * since the brand rules do not allow gradients on the mark.
+   */
   fill?: PathProps['fill']
   style?: TextProps['style']
 } & Omit<SvgProps, 'style'>
 
 export const Logo = forwardRef(function LogoImpl(props: Props, ref) {
   const t = useTheme()
-  const {allowVariants = true, fill, ...rest} = props
-  const gradient = fill === 'sky'
+  const {allowVariants: _allowVariants, fill, ...rest} = props
   const styles = flatten(props.style)
-  const _fill = gradient
-    ? 'url(#sky)'
-    : fill || styles?.color || t.palette.primary_500
+  const brandColor =
+    t.scheme === 'dark' ? KRAO_BRAND.greenOnDark : KRAO_BRAND.green
+  const color =
+    !fill || fill === 'sky'
+      ? typeof styles?.color === 'string'
+        ? styles.color
+        : brandColor
+      : String(fill)
   // @ts-expect-error it's fiiiiine
   const size = parseInt(rest.width || 32, 10)
-
-  const logoVariant = useLogoVariant(allowVariants)
-
-  if (logoVariant === 'kawaii') {
-    return (
-      <Image
-        source={
-          size > 100
-            ? require('../../../assets/kawaii.png')
-            : require('../../../assets/kawaii_smol.png')
-        }
-        accessibilityLabel="Krao"
-        accessibilityHint=""
-        accessibilityIgnoresInvertColors
-        style={[{height: size, aspectRatio: 1.4}]}
-      />
-    )
-  }
 
   return (
     <Svg
       fill="none"
       // @ts-expect-error it's fiiiiine
       ref={ref}
-      viewBox="0 0 64 57"
+      viewBox={KRAO_STAR.viewBox}
+      accessibilityLabel="Krao"
+      accessibilityHint=""
       {...rest}
-      style={[{width: size, height: size * ratio}, styles]}>
-      {gradient && (
-        <Defs>
-          <LinearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0" stopColor="#6A2BDB" stopOpacity="1" />
-            <Stop offset="1" stopColor="#AE8CF8" stopOpacity="1" />
-          </LinearGradient>
-        </Defs>
-      )}
-
-      <Path fill={_fill} fillRule="evenodd" d={KRAO_MARK_PATH} />
+      style={[{width: size, height: size}, styles]}>
+      <KraoStarShape color={color} small={size <= 48} />
     </Svg>
   )
 })

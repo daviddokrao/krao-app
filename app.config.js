@@ -60,7 +60,7 @@ module.exports = function (_config) {
       },
       icon: './assets/app-icons/ios_icon_default_next.png',
       userInterfaceStyle: 'automatic',
-      primaryColor: '#7B3FF2',
+      primaryColor: '#0E8C6E',
       ios: {
         supportsTablet: false,
         bundleIdentifier: 'io.krao.app',
@@ -192,7 +192,7 @@ module.exports = function (_config) {
         adaptiveIcon: {
           foregroundImage: './assets/icon-android-foreground.png',
           monochromeImage: './assets/icon-android-monochrome.png',
-          backgroundColor: '#7B3FF2',
+          backgroundColor: '#0E8C6E',
         },
         googleServicesFile: './google-services.json',
         package: 'io.krao.app',
@@ -322,7 +322,7 @@ module.exports = function (_config) {
           'expo-notifications',
           {
             icon: './assets/icon-android-notification.png',
-            color: '#7B3FF2',
+            color: '#0E8C6E',
             sounds: PLATFORM === 'ios' ? ['assets/dm.aiff'] : ['assets/dm.mp3'],
           },
         ],
@@ -341,6 +341,8 @@ module.exports = function (_config) {
             fonts: [
               './assets/fonts/inter/InterVariable.woff2',
               './assets/fonts/inter/InterVariable-Italic.woff2',
+              // Krao wordmark
+              './assets/fonts/sora/Sora-Bold.ttf',
               // Android only
               './assets/fonts/inter/Inter-Regular.otf',
               './assets/fonts/inter/Inter-Italic.otf',
@@ -358,22 +360,22 @@ module.exports = function (_config) {
           {
             ios: {
               enableFullScreenImage_legacy: true, // iOS only
-              backgroundColor: '#7B3FF2', // primary_500
+              backgroundColor: '#0E8C6E', // primary_500
               image: './assets/splash/splash.png',
               resizeMode: 'cover',
               dark: {
                 enableFullScreenImage_legacy: true, // iOS only
-                backgroundColor: '#33136A', // primary_900
+                backgroundColor: '#16201A', // Krao ink
                 image: './assets/splash/splash-dark.png',
                 resizeMode: 'cover',
               },
             },
             android: {
-              backgroundColor: '#7B3FF2', // primary_500
+              backgroundColor: '#0E8C6E', // primary_500
               image: './assets/splash/android-splash-logo-white.png',
               imageWidth: 102, // even division of 306px
               dark: {
-                backgroundColor: '#33136A', // primary_900
+                backgroundColor: '#16201A', // Krao ink
                 image: './assets/splash/android-splash-logo-white.png',
                 imageWidth: 102,
               },

@@ -1,30 +1,30 @@
-import Svg, {Path, type PathProps, type SvgProps} from 'react-native-svg'
+import Svg, {type PathProps, type SvgProps} from 'react-native-svg'
 
-import {usePalette} from '#/lib/hooks/usePalette'
-import {KRAO_MARK_PATH} from '#/view/icons/kraoMark'
-
-const ratio = 57 / 64
+import {KRAO_BRAND, KRAO_STAR} from '#/view/icons/kraoMark'
+import {KraoStarShape} from '#/view/icons/KraoStarShape'
+import {useTheme} from '#/alf'
 
 export function Logomark({
   fill,
   ...rest
 }: {fill?: PathProps['fill']} & SvgProps) {
-  const pal = usePalette('default')
+  const t = useTheme()
   // @ts-expect-error it's fiiiiine
   const size = parseInt(rest.width || 32)
+  const color = fill
+    ? String(fill)
+    : t.scheme === 'dark'
+      ? KRAO_BRAND.greenOnDark
+      : KRAO_BRAND.green
 
   return (
     <Svg
       fill="none"
-      viewBox="0 0 64 57"
+      viewBox={KRAO_STAR.viewBox}
       {...rest}
       width={size}
-      height={Number(size) * ratio}>
-      <Path
-        fill={fill || pal.text.color}
-        fillRule="evenodd"
-        d={KRAO_MARK_PATH}
-      />
+      height={size}>
+      <KraoStarShape color={color} small={size <= 48} />
     </Svg>
   )
 }
