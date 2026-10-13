@@ -350,6 +350,12 @@ importers:
       '@lingui/react':
         specifier: ^5.9.2
         version: 5.9.5(@lingui/babel-plugin-lingui-macro@5.9.5(@typescript/typescript6@6.0.2)(supports-color@8.1.1))(react@19.2.3)
+      '@noble/curves':
+        specifier: 1.9.7
+        version: 1.9.7
+      '@noble/hashes':
+        specifier: 1.8.0
+        version: 1.8.0
       '@react-native-async-storage/async-storage':
         specifier: 2.2.0
         version: 2.2.0(react-native@0.86.3(patch_hash=d6c16c8305d443b2ed7969db4b7217555c7e686ac3757a0fb46fcb82ea8c40ac)(@babel/core@7.29.0(supports-color@8.1.1))(@react-native/jest-preset@0.86.3(@babel/core@7.29.0(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.0(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.18)(react@19.2.3)(supports-color@8.1.1))

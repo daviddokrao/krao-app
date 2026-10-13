@@ -35,6 +35,28 @@ export type SessionApiContext = {
     },
     logContext: Metrics['account:loggedIn']['logContext'],
   ) => Promise<void>
+  /**
+   * Sign in with session tokens from Krao's io.krao.server.createWalletSession
+   * (the wallet signature has already been checked by the PDS).
+   */
+  loginWithWalletSession: (
+    props: {
+      service: string
+      session: {
+        accessJwt: string
+        refreshJwt: string
+        handle: string
+        did: string
+        email?: string
+        emailConfirmed?: boolean
+        emailAuthFactor?: boolean
+        active?: boolean
+        status?: string
+        didDoc?: unknown
+      }
+    },
+    logContext: Metrics['account:loggedIn']['logContext'],
+  ) => Promise<void>
   logoutCurrentAccount: (
     logContext: Metrics['account:loggedOut']['logContext'],
   ) => void

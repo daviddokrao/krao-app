@@ -32,6 +32,7 @@ import {createStaticClick, InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
 import {IS_IOS, IS_NATIVE} from '#/env'
+import {WalletSignInButton} from '#/features/wallet/components/WalletSignInButton'
 import {type com} from '#/lexicons'
 import {ConfirmHostingProviderDialog} from './components/ConfirmHostingProviderDialog'
 import {HostingProviderDialog} from './components/HostingProviderDialog'
@@ -560,6 +561,15 @@ export const LoginForm = ({
           </Button>
         )}
       </View>
+
+      <WalletSignInButton
+        service={
+          hostingProvider.state.status === 'detected' ||
+          hostingProvider.state.status === 'overridden'
+            ? hostingProvider.state.pdsUrl
+            : serviceUrl
+        }
+      />
 
       {IS_NATIVE && (
         <Text style={[a.text_md, native([a.text_center, a.mx_auto]), a.mt_sm]}>

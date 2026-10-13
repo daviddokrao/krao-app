@@ -399,6 +399,42 @@ export async function createSessionBundleAndLogin(
 }
 
 /**
+ * Build a {@link SessionBundle} from session tokens the server already issued,
+ * eg by Krao's `io.krao.server.createWalletSession`.
+ */
+export async function createSessionBundleFromSessionData(
+  sessionData: SessionData,
+  onSessionChange: OnSessionChange,
+): Promise<{account: SessionAccount; bundle: SessionBundle}> {
+  let bundle!: SessionBundle
+  const hooks = makeSessionHooks({
+    onSessionChange,
+    getBundle: () => bundle,
+    getDid: () => sessionData.did,
+  })
+  const session = new PasswordSession(sessionData, hooks)
+
+  bundle = buildBundle(session)
+  registerBundleKillSwitch(bundle, hooks.kill)
+  const earlyAccount = sessionDataToSessionAccountOrThrow(session)
+
+  const gates = features.refresh({strategy: 'prefer-fresh-gates'})
+  configureModerationForAccount(bundle, earlyAccount)
+  const aa = prefetchAgeAssuranceServerData({
+    appviewClient: bundle.appviewClient,
+    accountClient: bundle.pdsClient,
+  })
+
+  const account = await finishPreparation(
+    bundle,
+    Promise.all([gates, aa]),
+    () => sessionDataToSessionAccountOrThrow(session),
+  )
+  hooks.arm()
+  return {account, bundle}
+}
+
+/**
  * Rebuild a bundle synchronously from stored tokens. The optional guard runs
  * after construction but before hooks are armed; rejected bundles are disposed.
  */

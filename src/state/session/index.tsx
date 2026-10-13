@@ -27,6 +27,7 @@ import {
   type AtpSessionEvent,
   createSessionBundleAndLogin,
   createSessionBundleAndResume,
+  createSessionBundleFromSessionData,
   createSessionBundleFromStoredAccount,
   disposeBundle,
   type PublicSessionBundle,
@@ -71,6 +72,7 @@ BundleContext.displayName = 'SessionBundleContext'
 const ApiContext = createContext<SessionApiContext>({
   createAccount: async () => {},
   login: async () => {},
+  loginWithWalletSession: async () => {},
   logoutCurrentAccount: () => {},
   logoutEveryAccount: () => {},
   resumeSession: async () => {},
@@ -325,6 +327,39 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
       ax.metric(
         'account:loggedIn',
         {logContext, withPassword: true},
+        {session: utils.accountToSessionMetadata(account)},
+      )
+      addSessionDebugLog({
+        type: 'method:end',
+        method: 'login',
+        account: redactAccount(account),
+      })
+    },
+    [ax, store, onSessionChange, cancelPendingTask],
+  )
+
+  const loginWithWalletSession = useCallback<
+    SessionApiContext['loginWithWalletSession']
+  >(
+    async ({service, session}, logContext) => {
+      addSessionDebugLog({type: 'method:start', method: 'login'})
+      const signal = cancelPendingTask()
+      const {bundle, account} = await createSessionBundleFromSessionData(
+        {...session, service} as SessionData,
+        onSessionChange,
+      )
+      if (signal.aborted) {
+        disposeBundle(bundle)
+        return
+      }
+      store.dispatch({
+        type: 'switched-to-account',
+        newBundle: bundle,
+        newAccount: account,
+      })
+      ax.metric(
+        'account:loggedIn',
+        {logContext, withPassword: false},
         {session: utils.accountToSessionMetadata(account)},
       )
       addSessionDebugLog({
@@ -661,6 +696,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     () => ({
       createAccount,
       login,
+      loginWithWalletSession,
       logoutCurrentAccount,
       logoutEveryAccount,
       resumeSession,
@@ -671,6 +707,7 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
     [
       createAccount,
       login,
+      loginWithWalletSession,
       logoutCurrentAccount,
       logoutEveryAccount,
       resumeSession,
