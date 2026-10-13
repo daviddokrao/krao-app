@@ -53,7 +53,10 @@ import {DiscoverDebug} from '#/components/PostControls/DiscoverDebug'
 import {RichText} from '#/components/RichText'
 import {SubtleHover} from '#/components/SubtleHover'
 import {Features, useAnalytics} from '#/analytics'
+import {GateBadge} from '#/features/gating/components/GateBadge'
 import {useActorStatus} from '#/features/liveNow'
+import {FeedTipSummary} from '#/features/tips/components/TipSummary'
+import {NftAvatarMark} from '#/features/wallet/components/NftAvatarMark'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 import {PostFeedReason} from './PostFeedReason'
@@ -386,14 +389,17 @@ let FeedItemInner = ({
 
         <View style={styles.layout}>
           <View style={styles.layoutAvi}>
-            <PreviewableUserAvatar
-              size={42}
-              profile={post.author}
-              moderation={moderation.ui('avatar')}
-              type={post.author.associated?.labeler ? 'labeler' : 'user'}
-              onBeforePress={onOpenAuthor}
-              live={live}
-            />
+            <View>
+              <PreviewableUserAvatar
+                size={42}
+                profile={post.author}
+                moderation={moderation.ui('avatar')}
+                type={post.author.associated?.labeler ? 'labeler' : 'user'}
+                onBeforePress={onOpenAuthor}
+                live={live}
+              />
+              <NftAvatarMark did={post.author.did} />
+            </View>
             {isThreadParent && (
               <View
                 style={[
@@ -445,6 +451,8 @@ let FeedItemInner = ({
               additionalPostAlerts={additionalPostAlerts}
               feedDescriptor={feedDescriptor}
             />
+            <GateBadge uri={post.uri} />
+            <FeedTipSummary uri={post.uri} />
             <PostControls
               post={post}
               record={record}
