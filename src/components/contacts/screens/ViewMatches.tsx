@@ -583,7 +583,7 @@ function ContactItem({
                 await SMS.sendSMSAsync(
                   [phoneNumber],
                   _(
-                    msg`I'm on Krao as ${currentAccount.handle} - come find me! https://krao.io/download`,
+                    msg`I'm on Krao as ${currentAccount.handle} - come find me! https://krao.net/download`,
                   ),
                 )
               } catch (err) {

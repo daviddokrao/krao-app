@@ -840,8 +840,8 @@ const LINKING = {
     'krao://',
     'bsky://',
     'bluesky://',
-    'https://krao.io',
-    ...(KRAO_WEB_URL === 'https://krao.io' ? [] : [KRAO_WEB_URL]),
+    'https://krao.net',
+    ...(KRAO_WEB_URL === 'https://krao.net' ? [] : [KRAO_WEB_URL]),
   ],
 
   getPathFromState(state: State) {
@@ -1058,7 +1058,7 @@ function RoutesContainer({children}: React.PropsWithChildren<{}>) {
 
     if (IS_WEB) {
       void Referrer.getReferrerInfo().then(referrerInfo => {
-        if (referrerInfo && referrerInfo.hostname !== 'krao.io') {
+        if (referrerInfo && referrerInfo.hostname !== 'krao.net') {
           ax.metric('deepLink:referrerReceived', {
             to: window.location.href,
             referrer: referrerInfo?.referrer,

@@ -51,9 +51,9 @@ export function makeStarterPackLink(
   rkey?: string,
 ) {
   if (typeof starterPackOrName === 'string') {
-    return `https://krao.io/start/${starterPackOrName}/${rkey}`
+    return `https://krao.net/start/${starterPackOrName}/${rkey}`
   } else {
     const uriRkey = new AtUri(starterPackOrName.uri).rkey
-    return `https://krao.io/start/${starterPackOrName.creator.handle}/${uriRkey}`
+    return `https://krao.net/start/${starterPackOrName.creator.handle}/${uriRkey}`
   }
 }

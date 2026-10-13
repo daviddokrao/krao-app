@@ -6,25 +6,25 @@ describe('invite URLs', () => {
   describe('getInviteShareUrl', () => {
     it('returns the canonical profile URL for a handle', () => {
       expect(getInviteShareUrl('alice.bsky.social')).toBe(
-        'https://krao.io/profile/alice.bsky.social',
+        'https://krao.net/profile/alice.bsky.social',
       )
     })
 
     it('preserves custom domains', () => {
       expect(getInviteShareUrl('thepope.dev')).toBe(
-        'https://krao.io/profile/thepope.dev',
+        'https://krao.net/profile/thepope.dev',
       )
     })
 
     it('strips a leading @ if present', () => {
       expect(getInviteShareUrl('@alice.bsky.social')).toBe(
-        'https://krao.io/profile/alice.bsky.social',
+        'https://krao.net/profile/alice.bsky.social',
       )
     })
 
     it('passes the handle through verbatim (handles are API-normalized, like makeProfileLink)', () => {
       expect(getInviteShareUrl('Alice.Bsky.Social')).toBe(
-        'https://krao.io/profile/Alice.Bsky.Social',
+        'https://krao.net/profile/Alice.Bsky.Social',
       )
     })
 
@@ -37,23 +37,23 @@ describe('invite URLs', () => {
   describe('getInviteDisplayUrl', () => {
     it('returns the scheme-stripped canonical profile URL', () => {
       expect(getInviteDisplayUrl('danielle.bsky.team')).toBe(
-        'krao.io/profile/danielle.bsky.team',
+        'krao.net/profile/danielle.bsky.team',
       )
     })
 
     it('uses the bare handle when there is no dot', () => {
-      expect(getInviteDisplayUrl('alice')).toBe('krao.io/profile/alice')
+      expect(getInviteDisplayUrl('alice')).toBe('krao.net/profile/alice')
     })
 
     it('passes the handle through verbatim (handles are API-normalized, like makeProfileLink)', () => {
       expect(getInviteDisplayUrl('Danielle.bsky.team')).toBe(
-        'krao.io/profile/Danielle.bsky.team',
+        'krao.net/profile/Danielle.bsky.team',
       )
     })
 
     it('strips a leading @ if present', () => {
       expect(getInviteDisplayUrl('@alice.bsky.social')).toBe(
-        'krao.io/profile/alice.bsky.social',
+        'krao.net/profile/alice.bsky.social',
       )
     })
 

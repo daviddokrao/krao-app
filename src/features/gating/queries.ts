@@ -6,15 +6,15 @@ import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient, useSession} from '#/state/session'
 import {KRAO_GATE_DID, KRAO_GATE_URL} from '#/env'
-import {com, io} from '#/lexicons'
+import {com, net} from '#/lexicons'
 
 export type TokenBalanceCondition = {
-  $type: 'io.krao.gate.defs#tokenBalance'
+  $type: 'net.krao.gate.defs#tokenBalance'
   asset: string
   minAmount: string
 }
 export type NftHoldingCondition = {
-  $type: 'io.krao.gate.defs#nftHolding'
+  $type: 'net.krao.gate.defs#nftHolding'
   chain: string
   contract: string
   tokenId?: string
@@ -95,7 +95,7 @@ const loadGateRule = createBatchLoader<string, GateRule>({
   maxBatchSize: 25,
   load: async uris => {
     const {rules} = await gateFetch<{rules: GateRule[]}>(
-      'io.krao.gate.getRules',
+      'net.krao.gate.getRules',
       {params: {uris}},
     )
     return new Map(rules.map(r => [r.subject, r]))
@@ -127,16 +127,16 @@ export function useGatedContentQuery(uri: string, enabled: boolean) {
     retry: false,
     queryKey: gatedContentQueryKey(uri, currentAccount?.did ?? ''),
     queryFn: async () =>
-      gateFetch<{uri: string; text?: string}>('io.krao.gate.getContent', {
+      gateFetch<{uri: string; text?: string}>('net.krao.gate.getContent', {
         params: {uri},
-        token: await getToken(io.krao.gate.getContent.$lxm),
+        token: await getToken(net.krao.gate.getContent.$lxm),
       }),
   })
 }
 
 /**
  * Attach token-gated text to one of the user's posts: store the text on the
- * gate service first, then publish the public io.krao.gate.rule record.
+ * gate service first, then publish the public net.krao.gate.rule record.
  */
 export function useCreateGateMutation() {
   const {currentAccount} = useSession()
@@ -154,11 +154,11 @@ export function useCreateGateMutation() {
       condition: GateCondition
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
-      await gateFetch('io.krao.gate.putContent', {
-        token: await getToken(io.krao.gate.putContent.$lxm),
+      await gateFetch('net.krao.gate.putContent', {
+        token: await getToken(net.krao.gate.putContent.$lxm),
         body: {uri: post.uri, text},
       })
-      await pdsClient.create(io.krao.gate.rule, {
+      await pdsClient.create(net.krao.gate.rule, {
         subject: post as never,
         conditions: [condition] as never,
         match: 'all',

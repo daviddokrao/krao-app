@@ -69,39 +69,39 @@ export const LOG_DEBUG: string = process.env.EXPO_PUBLIC_LOG_DEBUG || ''
  * The DID of the Bluesky appview to proxy to
  */
 export const BLUESKY_PROXY_DID: DidString =
-  process.env.EXPO_PUBLIC_BLUESKY_PROXY_DID || 'did:web:api.krao.io'
+  process.env.EXPO_PUBLIC_BLUESKY_PROXY_DID || 'did:web:api.krao.net'
 
 /**
  * The PDS used for sign up and as the default sign in provider
  */
 export const DEFAULT_SERVICE_URL: string =
-  process.env.EXPO_PUBLIC_DEFAULT_SERVICE || 'https://pds.krao.io'
+  process.env.EXPO_PUBLIC_DEFAULT_SERVICE || 'https://pds.krao.net'
 
 /**
  * The public appview used for logged-out requests
  */
 export const PUBLIC_API_URL: string =
-  process.env.EXPO_PUBLIC_PUBLIC_API || 'https://api.krao.io'
+  process.env.EXPO_PUBLIC_PUBLIC_API || 'https://api.krao.net'
 
 /**
  * Krao's web app, which also hosts pages native apps embed (eg the YouTube
  * player)
  */
 export const KRAO_WEB_URL: string =
-  process.env.EXPO_PUBLIC_KRAO_WEB_URL || 'https://krao.io'
+  process.env.EXPO_PUBLIC_KRAO_WEB_URL || 'https://krao.net'
 
 /**
  * Krao's public website, home of the help center and the policy pages (terms,
  * privacy, community guidelines...)
  */
 export const KRAO_SITE_URL: string =
-  process.env.EXPO_PUBLIC_KRAO_SITE_URL || 'https://krao.io'
+  process.env.EXPO_PUBLIC_KRAO_SITE_URL || 'https://krao.net'
 
 /**
- * Krao indexer serving io.krao.* queries (linked wallets etc)
+ * Krao indexer serving net.krao.* queries (linked wallets etc)
  */
 export const KRAO_INDEXER_URL: string =
-  process.env.EXPO_PUBLIC_KRAO_INDEXER_URL || 'https://indexer.krao.io'
+  process.env.EXPO_PUBLIC_KRAO_INDEXER_URL || 'https://indexer.krao.net'
 
 /**
  * Krao gate service holding token-gated post content, and the DID it answers
@@ -157,7 +157,7 @@ export const KRAO_VIDEO_DID: string =
 /** Krao's chat service URL for signed-out reads; unset, there are none */
 export const KRAO_CHAT_URL: string = process.env.EXPO_PUBLIC_KRAO_CHAT_URL || ''
 export const KRAO_GATE_DID: string =
-  process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.io'
+  process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.net'
 
 /**
  * Krao's "latest" feed, the app's Discover feed. Its owner may be given by
@@ -165,7 +165,7 @@ export const KRAO_GATE_DID: string =
  */
 export const KRAO_DISCOVER_FEED: string =
   process.env.EXPO_PUBLIC_KRAO_DISCOVER_FEED ||
-  'at://krao.io/app.bsky.feed.generator/latest'
+  'at://krao.net/app.bsky.feed.generator/latest'
 
 /**
  * Krao's moderation service (labeler), by DID or handle. It labels content
@@ -192,7 +192,7 @@ export const KRAO_DEV_RPC_URL: string =
  * The DID of the chat service to proxy to
  */
 export const CHAT_PROXY_DID: DidString =
-  process.env.EXPO_PUBLIC_CHAT_PROXY_DID || 'did:web:chat.krao.io'
+  process.env.EXPO_PUBLIC_CHAT_PROXY_DID || 'did:web:chat.krao.net'
 
 /**
  * Metrics API host. Metrics are disabled when unset.
@@ -238,7 +238,7 @@ export const GCP_PROJECT_ID: number =
  * locally running server, see `env.example` for more.
  */
 export const GEOLOCATION_DEV_URL = process.env.GEOLOCATION_DEV_URL
-export const GEOLOCATION_PROD_URL = `https://ip.krao.io`
+export const GEOLOCATION_PROD_URL = `https://ip.krao.net`
 export const GEOLOCATION_URL = IS_DEV
   ? (GEOLOCATION_DEV_URL ?? GEOLOCATION_PROD_URL)
   : GEOLOCATION_PROD_URL
@@ -248,7 +248,7 @@ export const GEOLOCATION_URL = IS_DEV
  * locally running server, see `env.example` for more.
  */
 export const LIVE_EVENTS_DEV_URL = process.env.LIVE_EVENTS_DEV_URL
-export const LIVE_EVENTS_PROD_URL = `https://live-events.krao.io`
+export const LIVE_EVENTS_PROD_URL = `https://live-events.krao.net`
 export const LIVE_EVENTS_URL = IS_DEV
   ? (LIVE_EVENTS_DEV_URL ?? LIVE_EVENTS_PROD_URL)
   : LIVE_EVENTS_PROD_URL
@@ -258,7 +258,7 @@ export const LIVE_EVENTS_URL = IS_DEV
  * locally running server, see `env.example` for more.
  */
 export const APP_CONFIG_DEV_URL = process.env.APP_CONFIG_DEV_URL
-export const APP_CONFIG_PROD_URL = `https://app-config.krao.io`
+export const APP_CONFIG_PROD_URL = `https://app-config.krao.net`
 export const APP_CONFIG_URL = IS_DEV
   ? (APP_CONFIG_DEV_URL ?? APP_CONFIG_PROD_URL)
   : APP_CONFIG_PROD_URL

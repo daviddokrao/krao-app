@@ -111,7 +111,7 @@ export function LINK_META_PROXY(_serviceUrl: string) {
   return `${KRAO_LINK_PREVIEW_URL}/v1/extract?url=`
 }
 
-export const STATUS_PAGE_URL = 'https://status.krao.io/'
+export const STATUS_PAGE_URL = 'https://status.krao.net/'
 
 // Hitslop constants
 export const createHitslop = (size: number): Insets => ({

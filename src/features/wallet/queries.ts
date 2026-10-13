@@ -6,7 +6,7 @@ import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient, useSession} from '#/state/session'
-import {com, io} from '#/lexicons'
+import {com, net} from '#/lexicons'
 import {getChainProfile} from './api'
 import {connectEvmWallet} from './evm'
 import {evmAccountId, formatWalletLinkMessage} from './siwe'
@@ -49,7 +49,7 @@ function isSameAccount(a: string, b: string) {
     : a === b
 }
 
-/** URIs of the user's io.krao.actor.wallet records for one wallet */
+/** URIs of the user's net.krao.actor.wallet records for one wallet */
 async function listWalletRecordUris(
   pdsClient: ReturnType<typeof usePdsClient>,
   did: string,
@@ -59,7 +59,7 @@ async function listWalletRecordUris(
   let cursor: string | undefined
   // Accounts hold a handful of wallet links, so this rarely pages
   for (let i = 0; i < 10; i++) {
-    const res = await pdsClient.list(io.krao.actor.wallet, {
+    const res = await pdsClient.list(net.krao.actor.wallet, {
       repo: did as `did:${string}:${string}`,
       cursor,
       limit: 100,
@@ -80,14 +80,14 @@ async function listWalletRecordUris(
 function deleteWrite(uri: string): $Typed<com.atproto.repo.applyWrites.Delete> {
   return {
     $type: 'com.atproto.repo.applyWrites#delete',
-    collection: 'io.krao.actor.wallet',
+    collection: 'net.krao.actor.wallet',
     rkey: new AtUri(uri).rkey,
   }
 }
 
 /**
  * Connect a wallet, have it sign a message naming the account's DID, and
- * store the signed link as an io.krao.actor.wallet record.
+ * store the signed link as an net.krao.actor.wallet record.
  */
 export function useLinkWalletMutation() {
   const {currentAccount} = useSession()
@@ -104,8 +104,8 @@ export function useLinkWalletMutation() {
       })
       const signature = await wallet.signMessage(message)
       const account = evmAccountId(wallet.chainId, wallet.address)
-      const record: io.krao.actor.wallet.Main = {
-        $type: 'io.krao.actor.wallet',
+      const record: net.krao.actor.wallet.Main = {
+        $type: 'net.krao.actor.wallet',
         account,
         proof: {type: 'siwe', message, signature},
         label,
@@ -123,7 +123,7 @@ export function useLinkWalletMutation() {
           ...existing.map(deleteWrite),
           {
             $type: 'com.atproto.repo.applyWrites#create',
-            collection: 'io.krao.actor.wallet',
+            collection: 'net.krao.actor.wallet',
             rkey: TID.nextStr(),
             value: record,
           },

@@ -59,14 +59,14 @@ function GateDialogInner({
     kind === 'token'
       ? minUnits
         ? {
-            $type: 'io.krao.gate.defs#tokenBalance',
+            $type: 'net.krao.gate.defs#tokenBalance',
             asset: asset.id,
             minAmount: minUnits.toString(),
           }
         : null
       : /^0x[0-9a-fA-F]{40}$/.test(contract.trim())
         ? {
-            $type: 'io.krao.gate.defs#nftHolding',
+            $type: 'net.krao.gate.defs#nftHolding',
             chain: 'eip155:8453',
             contract: contract.trim(),
             tokenId: tokenId.trim() || undefined,

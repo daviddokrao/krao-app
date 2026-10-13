@@ -41,7 +41,7 @@ export function useIntentHandler() {
       }
 
       const referrerInfo = await Referrer.getReferrerInfo()
-      if (referrerInfo && referrerInfo.hostname !== 'krao.io') {
+      if (referrerInfo && referrerInfo.hostname !== 'krao.net') {
         ax.metric('deepLink:referrerReceived', {
           to: url,
           referrer: referrerInfo?.referrer,

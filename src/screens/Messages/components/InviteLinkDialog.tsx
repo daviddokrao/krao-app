@@ -315,8 +315,8 @@ export function InviteLinkDialog({
       const linkEnabled = joinLink?.enabledStatus === 'enabled'
       const linkDisabled = joinLink?.enabledStatus === 'disabled'
       const joinLinkURI = joinLink?.code
-        ? `https://krao.io/chat/${joinLink.code}`
-        : 'https://krao.io/'
+        ? `https://krao.net/chat/${joinLink.code}`
+        : 'https://krao.net/'
       const createdAt = joinLink ? new Date(joinLink.createdAt) : null
       const currentOption =
         whoCanJoinOptions.find(

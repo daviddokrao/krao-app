@@ -10,7 +10,7 @@ import {getChainProfile} from '#/features/wallet/api'
 import {connectEvmWallet} from '#/features/wallet/evm'
 import {createChainProfileQueryKey} from '#/features/wallet/queries'
 import {evmAccountId} from '#/features/wallet/siwe'
-import {io} from '#/lexicons'
+import {net} from '#/lexicons'
 import {erc20TransferData, TIP_CHAIN_ID, type TipAsset} from './assets'
 
 export type TipView = {
@@ -39,7 +39,7 @@ export function useTipsQuery(subject: string | undefined) {
     staleTime: STALE.SECONDS.THIRTY,
     queryKey: createTipsQueryKey(subject ?? ''),
     queryFn: async () => {
-      const url = new URL('/xrpc/io.krao.feed.getTips', KRAO_INDEXER_URL)
+      const url = new URL('/xrpc/net.krao.feed.getTips', KRAO_INDEXER_URL)
       url.searchParams.set('subject', subject!)
       const res = await fetch(url.toString())
       if (!res.ok) throw new Error('Could not load tips')
@@ -51,7 +51,7 @@ export function useTipsQuery(subject: string | undefined) {
 const loadTipTotals = createBatchLoader<string, TipTotal[]>({
   maxBatchSize: 25,
   load: async subjects => {
-    const url = new URL('/xrpc/io.krao.feed.getTipTotals', KRAO_INDEXER_URL)
+    const url = new URL('/xrpc/net.krao.feed.getTipTotals', KRAO_INDEXER_URL)
     for (const subject of subjects) url.searchParams.append('subjects', subject)
     const res = await fetch(url.toString())
     if (!res.ok) throw new Error('Could not load tip totals')
@@ -97,7 +97,7 @@ export function useTipRecipientWallet(did: string) {
 
 /**
  * Send a tip: transfer the asset from the user's wallet to the recipient's
- * linked wallet, then record it as an io.krao.feed.tip so the indexer can
+ * linked wallet, then record it as an net.krao.feed.tip so the indexer can
  * verify the transaction and count it.
  */
 export function useSendTipMutation() {
@@ -132,7 +132,7 @@ export function useSendTipMutation() {
           })
         : await wallet.sendTransaction({to: recipientAddress, value: amount})
 
-      await pdsClient.create(io.krao.feed.tip, {
+      await pdsClient.create(net.krao.feed.tip, {
         recipient: recipientDid as `did:${string}:${string}`,
         subject: subject as never,
         asset: asset.id,

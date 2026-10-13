@@ -177,7 +177,7 @@ function BirthdayInner({
           <Trans>
             You must be at least 13 years old to use Krao. Read our{' '}
             <SimpleInlineLinkText
-              to="https://krao.io/terms"
+              to="https://krao.net/terms"
               label={l`Terms of Service`}>
               Terms of Service
             </SimpleInlineLinkText>{' '}

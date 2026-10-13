@@ -96,7 +96,7 @@ export function Root({
         color: 'primary',
         disabled: false,
         onPress: () => {
-          void setStringAsync(`https://krao.io/chat/${preview.code}`)
+          void setStringAsync(`https://krao.net/chat/${preview.code}`)
           Toast.show(l`Copied to clipboard`, {type: 'success'})
         },
       }

@@ -24,9 +24,9 @@ module.exports = function (_config) {
   const IS_DEV = !IS_TESTFLIGHT && !IS_PRODUCTION
 
   const ASSOCIATED_DOMAINS = [
-    'applinks:krao.io',
-    'appclips:krao.io',
-    'appclips:go.krao.io', // Allows App Clip to work when scanning QR codes
+    'applinks:krao.net',
+    'appclips:krao.net',
+    'appclips:go.krao.net', // Allows App Clip to work when scanning QR codes
     // When testing local services, enter an ngrok (et al) domain here. It must use a standard HTTP/HTTPS port.
     ...(IS_DEV || IS_TESTFLIGHT ? [] : []),
   ]
@@ -203,7 +203,7 @@ module.exports = function (_config) {
             data: [
               {
                 scheme: 'https',
-                host: 'krao.io',
+                host: 'krao.net',
               },
               ...(IS_DEV
                 ? [
@@ -223,7 +223,7 @@ module.exports = function (_config) {
         favicon: './assets/favicon.png',
       },
       updates: {
-        url: 'https://updates.krao.io/manifest',
+        url: 'https://updates.krao.net/manifest',
         enabled: UPDATES_ENABLED,
         fallbackToCacheTimeout: 30000,
         codeSigningCertificate: UPDATES_ENABLED
