@@ -19,7 +19,7 @@ describe.each([
     url.searchParams.set('t', timestamp)
 
     expect(parseEmbedPlayerFromUrl(url.href)?.playerUri).toBe(
-      `https://bsky.app/iframe/youtube.html?videoId=videoId&start=${seconds}`,
+      `https://krao.io/iframe/youtube.html?videoId=videoId&start=${seconds}`,
     )
   })
 
@@ -30,7 +30,7 @@ describe.each([
       if (timestamp !== null) url.searchParams.set('t', timestamp)
 
       expect(parseEmbedPlayerFromUrl(url.href)?.playerUri).toBe(
-        'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+        'https://krao.io/iframe/youtube.html?videoId=videoId&start=0',
       )
     },
   )

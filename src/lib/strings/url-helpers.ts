@@ -5,7 +5,7 @@ import TLDs from 'tlds'
 import {BSKY_SERVICE} from '#/lib/constants'
 import {isInvalidHandle} from '#/lib/strings/handles'
 import {startUriToStarterPackUri} from '#/lib/strings/starter-pack'
-import {logger} from '#/logger'
+import {KRAO_SHORT_LINK_URL} from '#/env'
 
 /** Canonical web host for links this app creates (share links etc). */
 export const BSKY_APP_HOST = 'https://krao.io'
@@ -409,24 +409,20 @@ export function createProxiedUrl(url: string): string {
   return `${LINK_REDIRECT_HOST}/redirect?u=${encodeURIComponent(url)}`
 }
 
+/** Whether the URL is one of Krao's short links (KRAO_SHORT_LINK_URL) */
 export function isShortLink(url: string): boolean {
-  return url.startsWith('https://go.bsky.app/')
+  return url.startsWith(`${KRAO_SHORT_LINK_URL}/`)
 }
 
 export function shortLinkToHref(url: string): string {
-  try {
-    const urlp = new URL(url)
-
-    // For now we only support Starter Packs, but in the future we should add additional paths to this check
-    const parts = urlp.pathname.split('/').filter(Boolean)
-    if (parts.length === 1) {
-      return `/starter-pack-short/${parts[0]}`
-    }
-    return url
-  } catch (e) {
-    logger.error('Failed to parse possible short link', {safeMessage: e})
-    return url
+  // For now we only support Starter Packs, but in the future we should add additional paths to this check
+  const code = isShortLink(url)
+    ? url.slice(KRAO_SHORT_LINK_URL.length + 1).split(/[?#]/)[0]
+    : ''
+  if (code && !code.includes('/')) {
+    return `/starter-pack-short/${code}`
   }
+  return url
 }
 
 export function getHostnameFromUrl(url: string | URL): string | null {

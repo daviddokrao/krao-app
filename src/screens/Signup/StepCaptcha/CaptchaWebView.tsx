@@ -2,14 +2,16 @@ import {useEffect, useMemo, useRef} from 'react'
 import {WebView, type WebViewNavigation} from 'react-native-webview'
 import {type ShouldStartLoadRequest} from 'react-native-webview/lib/WebViewTypes'
 
+import {KRAO_WEB_URL} from '#/env'
 import {type CaptchaWebViewProps} from './CaptchaWebView.shared'
 
-const ALLOWED_HOSTS = [
-  'bsky.social',
-  'bsky.app',
-  'staging.bsky.app',
-  'staging.bsky.dev',
-  'app.staging.bsky.dev',
+/**
+ * Where the PDS's captcha gate sends the browser when it is done: Krao's web
+ * app (configure the PDS to redirect there)
+ */
+const REDIRECT_HOST = safeHost(KRAO_WEB_URL)
+
+const HCAPTCHA_HOSTS = [
   'js.hcaptcha.com',
   'newassets.hcaptcha.com',
   'api2.hcaptcha.com',
@@ -45,20 +47,21 @@ export function CaptchaWebView({
     }
   }, [])
 
-  const redirectHost = useMemo(() => {
-    if (!state?.serviceUrl) return 'bsky.app'
-
-    return state?.serviceUrl &&
-      new URL(state?.serviceUrl).host === 'staging.bsky.dev'
-      ? 'app.staging.bsky.dev'
-      : 'bsky.app'
-  }, [state?.serviceUrl])
+  const redirectHost = REDIRECT_HOST
+  const allowedHosts = useMemo(
+    () => [
+      REDIRECT_HOST,
+      ...(state?.serviceUrl ? [safeHost(state.serviceUrl)] : []),
+      ...HCAPTCHA_HOSTS,
+    ],
+    [state?.serviceUrl],
+  )
 
   const wasSuccessful = useRef(false)
 
   const onShouldStartLoadWithRequest = (event: ShouldStartLoadRequest) => {
     const host = safeHost(event.url)
-    const allowed = ALLOWED_HOSTS.includes(host)
+    const allowed = allowedHosts.includes(host)
 
     /*
      * iOS routes subframe navigations through this handler and cancels them if

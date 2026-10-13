@@ -84,6 +84,13 @@ export const PUBLIC_API_URL: string =
   process.env.EXPO_PUBLIC_PUBLIC_API || 'https://api.krao.io'
 
 /**
+ * Krao's web app, which also hosts pages native apps embed (eg the YouTube
+ * player)
+ */
+export const KRAO_WEB_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_WEB_URL || 'https://krao.io'
+
+/**
  * Krao indexer serving io.krao.* queries (linked wallets etc)
  */
 export const KRAO_INDEXER_URL: string =
@@ -95,8 +102,70 @@ export const KRAO_INDEXER_URL: string =
  */
 export const KRAO_GATE_URL: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_URL || KRAO_INDEXER_URL
+
+/**
+ * Krao's link preview service (cardyb-compatible `/v1/extract` and
+ * `/v1/image`), served by the indexer
+ */
+export const KRAO_LINK_PREVIEW_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_LINK_PREVIEW_URL || KRAO_INDEXER_URL
+
+/**
+ * Krao's GIF service (the indexer): relays Tenor/Klipy media and forwards GIF
+ * search. Search needs an API key on the server, so the GIF picker only shows
+ * when KRAO_GIF_SEARCH is enabled.
+ */
+export const KRAO_GIF_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_GIF_URL || KRAO_INDEXER_URL
+export const KRAO_GIF_SEARCH: boolean =
+  process.env.EXPO_PUBLIC_KRAO_GIF_SEARCH === 'true'
+
+/**
+ * Krao's post embed service (a bskyembed deployment). "Embed post" is hidden
+ * until one is configured.
+ */
+export const KRAO_EMBED_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_EMBED_URL || ''
+
+/**
+ * Krao's link shortener (bskylink-compatible, on the indexer), used to share
+ * starter packs; short links are `<this URL>/<code>`
+ */
+export const KRAO_SHORT_LINK_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_SHORT_LINK_URL || `${KRAO_INDEXER_URL}/s`
+
+/** Krao's share card images for starter packs (on the indexer) */
+export const KRAO_OGCARD_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_OGCARD_URL || `${KRAO_INDEXER_URL}/ogcard`
+
+/**
+ * Krao's video service (app.bsky.video.* upload and transcoding) and its DID.
+ * Video uploads are off until one is configured.
+ */
+export const KRAO_VIDEO_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_VIDEO_URL || ''
+export const KRAO_VIDEO_DID: string =
+  process.env.EXPO_PUBLIC_KRAO_VIDEO_DID || ''
+
+/** Krao's chat service URL for signed-out reads; unset, there are none */
+export const KRAO_CHAT_URL: string = process.env.EXPO_PUBLIC_KRAO_CHAT_URL || ''
 export const KRAO_GATE_DID: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.io'
+
+/**
+ * Krao's "latest" feed, the app's Discover feed. Its owner may be given by
+ * handle; the app resolves it to a DID on startup (see resolveKraoServices).
+ */
+export const KRAO_DISCOVER_FEED: string =
+  process.env.EXPO_PUBLIC_KRAO_DISCOVER_FEED ||
+  'at://krao.io/app.bsky.feed.generator/latest'
+
+/**
+ * Krao's moderation service (labeler), by DID or handle. It labels content
+ * for everyone and receives reports and appeals. Unset, no app labeler is
+ * used.
+ */
+export const KRAO_LABELER: string = process.env.EXPO_PUBLIC_KRAO_LABELER || ''
 
 /**
  * Enables a built-in test wallet (the public Hardhat dev key) for local

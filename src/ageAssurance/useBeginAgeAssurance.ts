@@ -2,11 +2,7 @@ import {Platform} from 'react-native'
 import {useMutation} from '@tanstack/react-query'
 
 import {wait} from '#/lib/async/wait'
-import {
-  DEV_ENV_APPVIEW,
-  PUBLIC_APPVIEW,
-  PUBLIC_APPVIEW_DID,
-} from '#/lib/constants'
+import {PUBLIC_APPVIEW} from '#/lib/constants'
 import {createLexClient} from '#/lib/lexClient'
 import {isNetworkError} from '#/lib/network-error'
 import {usePdsClient} from '#/state/session'
@@ -17,8 +13,7 @@ import {BLUESKY_PROXY_DID} from '#/env'
 import {useGeolocation} from '#/geolocation'
 import {app, com} from '#/lexicons'
 
-const IS_DEV_ENV = BLUESKY_PROXY_DID !== PUBLIC_APPVIEW_DID
-const APPVIEW = IS_DEV_ENV ? DEV_ENV_APPVIEW : PUBLIC_APPVIEW
+const APPVIEW = PUBLIC_APPVIEW
 
 export function useBeginAgeAssurance() {
   const ax = useAnalytics()

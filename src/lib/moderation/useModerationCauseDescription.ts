@@ -1,9 +1,9 @@
 import {useMemo} from 'react'
-import {api} from '@bsky/sdk'
 import {type ModerationCause} from '@bsky/sdk/moderation'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
+import {KRAO_LABELER_DID} from '#/lib/constants'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useLabelDefinitions} from '#/state/preferences'
 import {useSession} from '#/state/session'
@@ -135,7 +135,7 @@ export function useModerationCauseDescription(
         : undefined
       let sourceDisplayName = labeler?.creator.displayName
       if (!source) {
-        if (cause.label.src === api.moderation.did) {
+        if (cause.label.src === KRAO_LABELER_DID) {
           source = 'moderation.bsky.app'
           sourceDisplayName = 'Bluesky Moderation Service'
         } else {

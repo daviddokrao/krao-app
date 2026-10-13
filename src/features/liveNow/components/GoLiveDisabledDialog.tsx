@@ -5,7 +5,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 
-import {MOD_PROXY_SERVICE} from '#/lib/constants'
+import {modProxyService} from '#/lib/constants'
 import {logger} from '#/logger'
 import {useAppviewClient} from '#/state/session'
 import {atoms as a, web} from '#/alf'
@@ -67,7 +67,7 @@ export function DialogInner({
             },
             reason: details,
           },
-          {service: MOD_PROXY_SERVICE},
+          {service: modProxyService()},
         )
       }
     },

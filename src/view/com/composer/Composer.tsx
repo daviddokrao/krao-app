@@ -64,6 +64,7 @@ import {
   SUPPORTED_MIME_TYPES,
   type SupportedMimeTypes,
   VIDEO_MAX_DURATION_MS,
+  VIDEO_SERVICE,
 } from '#/lib/constants'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {createVideoTelemetry} from '#/lib/media/video/telemetry'
@@ -142,6 +143,7 @@ import {
   IS_NATIVE,
   IS_WEB,
   IS_WEB_SAFARI,
+  KRAO_GIF_SEARCH,
 } from '#/env'
 import {type Gif} from '#/features/gifPicker/types'
 import {app, chat} from '#/lexicons'
@@ -393,6 +395,11 @@ export const ComposePost = ({
 
   const selectVideo = useCallback(
     async (postId: string, asset: ImagePickerAsset) => {
+      // Videos upload through Krao's video service, which may not run yet
+      if (!VIDEO_SERVICE) {
+        Toast.show(l`Video uploads aren’t available yet.`, {type: 'warning'})
+        return
+      }
       /*
        * Share-extension deeplinks deliver a video URI without duration, so
        * probe before we decide whether to compress. The picker and web paste
@@ -2265,7 +2272,9 @@ function ComposerFooter({
                 }
                 onAdd={onImageAdd}
               />
-              <SelectGifBtn onSelectGif={onSelectGif} disabled={!!media} />
+              {KRAO_GIF_SEARCH && (
+                <SelectGifBtn onSelectGif={onSelectGif} disabled={!!media} />
+              )}
               {IS_WEB && gtPhone ? (
                 <EmojiPicker.Root nextFocusRef={textInputRef}>
                   <EmojiPicker.Trigger label={l`Open emoji picker`}>

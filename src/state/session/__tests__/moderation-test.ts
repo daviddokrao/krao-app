@@ -1,5 +1,4 @@
 import {type Client} from '@atproto/lex'
-import {api} from '@bsky/sdk'
 import {beforeEach, describe, expect, it, jest} from '@jest/globals'
 
 jest.mock('#/storage', () => ({
@@ -26,9 +25,7 @@ describe('configureModerationForAccount', () => {
   it('applies cached account labelers to appview and chat', () => {
     const appviewClient = {setLabelers: jest.fn()} as unknown as Client
     const chatClient = {setLabelers: jest.fn()} as unknown as Client
-    jest
-      .mocked(account.get)
-      .mockReturnValue(['did:plc:account-labeler', api.moderation.did])
+    jest.mocked(account.get).mockReturnValue(['did:plc:account-labeler'])
 
     configureModerationForAccount(
       {appviewClient, chatClient},

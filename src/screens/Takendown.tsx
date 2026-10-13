@@ -10,7 +10,7 @@ import {countGraphemes} from 'unicode-segmenter/grapheme'
 
 import {
   MAX_REPORT_REASON_GRAPHEME_LENGTH,
-  MOD_PROXY_SERVICE,
+  modProxyService,
 } from '#/lib/constants'
 import {cleanError} from '#/lib/strings/errors'
 import {useAppviewClient, useSession, useSessionApi} from '#/state/session'
@@ -62,7 +62,7 @@ export function Takendown() {
           },
           reason: appealText,
         },
-        {service: MOD_PROXY_SERVICE},
+        {service: modProxyService()},
       )
     },
     onSuccess: () => setReason(''),

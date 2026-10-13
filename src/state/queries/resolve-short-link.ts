@@ -3,8 +3,9 @@ import {useQuery} from '@tanstack/react-query'
 import {resolveShortLink} from '#/lib/link-meta/resolve-short-link'
 import {parseStarterPackUri} from '#/lib/strings/starter-pack'
 import {STALE} from '#/state/queries/index'
+import {KRAO_SHORT_LINK_URL} from '#/env'
 
-const ROOT_URI = 'https://go.bsky.app/'
+const ROOT_URI = `${KRAO_SHORT_LINK_URL}/`
 
 const RQKEY_ROOT = 'resolved-short-link'
 export const RQKEY = (code: string) => [RQKEY_ROOT, code]

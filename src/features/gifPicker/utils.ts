@@ -1,19 +1,18 @@
+import {GIF_MEDIA_URL} from '#/lib/constants'
 import {logger} from '#/logger'
 
 /**
- * Rewrites a provider's CDN URL (Tenor or Klipy) to the corresponding
- * bsky proxy hostname. Leaves unrecognized hosts untouched.
+ * Rewrites a provider's CDN URL (Tenor or Klipy) to go through Krao's GIF
+ * relay. Leaves unrecognized hosts untouched.
  */
 export function gifPreviewUrl(gifUrl: string) {
   try {
     const url = new URL(gifUrl)
     if (url.hostname === 'media.tenor.com') {
-      url.hostname = 't.gifs.bsky.app'
-      return url.href
+      return GIF_MEDIA_URL('t', url.pathname + url.search)
     }
     if (url.hostname === 'static.klipy.com') {
-      url.hostname = 'k.gifs.bsky.app'
-      return url.href
+      return GIF_MEDIA_URL('k', url.pathname + url.search)
     }
     return gifUrl
   } catch (e) {
@@ -23,18 +22,16 @@ export function gifPreviewUrl(gifUrl: string) {
 }
 
 /**
- * Rewrites a KLIPY static CDN URL through the bsky proxy
- * (k.gifs.bsky.app) so downstream consumers can route requests
- * through Bluesky-owned infrastructure.
+ * Rewrites a KLIPY static CDN URL through Krao's GIF relay, so downstream
+ * consumers never contact Klipy directly.
  */
-export function klipyUrlToBskyGifUrl(klipyUrl: string) {
+export function klipyUrlToGifRelayUrl(klipyUrl: string) {
   let url
   try {
     url = new URL(klipyUrl)
   } catch (e) {
-    logger.debug('invalid url passed to klipyUrlToBskyGifUrl()')
+    logger.debug('invalid url passed to klipyUrlToGifRelayUrl()')
     return ''
   }
-  url.hostname = 'k.gifs.bsky.app'
-  return url.href
+  return GIF_MEDIA_URL('k', url.pathname + url.search)
 }
