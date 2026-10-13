@@ -70,7 +70,7 @@ describe('session', () => {
         "accounts": [],
         "currentBundleState": {
           "bundle": {
-            "service": "https://public.api.bsky.app/",
+            "service": "https://api.krao.io/",
           },
           "did": undefined,
         },
@@ -159,7 +159,7 @@ describe('session', () => {
         ],
         "currentBundleState": {
           "bundle": {
-            "service": "https://public.api.bsky.app/",
+            "service": "https://api.krao.io/",
           },
           "did": undefined,
         },
@@ -497,7 +497,7 @@ describe('session', () => {
         ],
         "currentBundleState": {
           "bundle": {
-            "service": "https://public.api.bsky.app/",
+            "service": "https://api.krao.io/",
           },
           "did": undefined,
         },
@@ -559,7 +559,7 @@ describe('session', () => {
         ],
         "currentBundleState": {
           "bundle": {
-            "service": "https://public.api.bsky.app/",
+            "service": "https://api.krao.io/",
           },
           "did": undefined,
         },
@@ -652,7 +652,7 @@ describe('session', () => {
         "accounts": [],
         "currentBundleState": {
           "bundle": {
-            "service": "https://public.api.bsky.app/",
+            "service": "https://api.krao.io/",
           },
           "did": undefined,
         },
@@ -832,7 +832,7 @@ describe('session', () => {
         ],
         "currentBundleState": {
           "bundle": {
-            "service": "https://public.api.bsky.app/",
+            "service": "https://api.krao.io/",
           },
           "did": undefined,
         },
@@ -1524,7 +1524,7 @@ describe('session', () => {
         ],
         "currentBundleState": {
           "bundle": {
-            "service": "https://public.api.bsky.app/",
+            "service": "https://api.krao.io/",
           },
           "did": undefined,
         },
@@ -1681,7 +1681,7 @@ describe('session', () => {
         ],
         "currentBundleState": {
           "bundle": {
-            "service": "https://public.api.bsky.app/",
+            "service": "https://api.krao.io/",
           },
           "did": undefined,
         },

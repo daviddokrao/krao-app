@@ -1,31 +1,31 @@
 {
-  "fill" : {
-    "automatic-gradient" : "srgb:0.00000,0.41569,1.00000,1.00000"
+  "fill": {
+    "automatic-gradient": "srgb:0.05490,0.54902,0.43137,1.00000"
   },
-  "groups" : [
+  "groups": [
     {
-      "layers" : [
+      "layers": [
         {
-          "fill" : "none",
-          "glass" : false,
-          "image-name" : "iOS transparent.png",
-          "name" : "iOS transparent"
+          "fill": "none",
+          "glass": false,
+          "image-name": "iOS transparent.png",
+          "name": "iOS transparent"
         }
       ],
-      "shadow" : {
-        "kind" : "neutral",
-        "opacity" : 0.5
+      "shadow": {
+        "kind": "neutral",
+        "opacity": 0.5
       },
-      "translucency" : {
-        "enabled" : true,
-        "value" : 0.5
+      "translucency": {
+        "enabled": true,
+        "value": 0.5
       }
     }
   ],
-  "supported-platforms" : {
-    "circles" : [
+  "supported-platforms": {
+    "circles": [
       "watchOS"
     ],
-    "squares" : "shared"
+    "squares": "shared"
   }
 }

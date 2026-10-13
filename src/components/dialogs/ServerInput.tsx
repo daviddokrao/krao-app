@@ -160,9 +160,9 @@ function DialogInner({
           <View role="tabpanel">
             <Admonition type="tip">
               <Trans>
-                Bluesky is an open network where you can choose your own
-                provider. If you're new here, we recommend sticking with the
-                default Bluesky Social option.
+                Krao is an open network where you can choose your own provider.
+                If you're new here, we recommend sticking with the default
+                Bluesky Social option.
               </Trans>
             </Admonition>
           </View>
@@ -212,7 +212,7 @@ function DialogInner({
               </Trans>
             ) : (
               <Trans>
-                Bluesky is an open network where you can choose your hosting
+                Krao is an open network where you can choose your hosting
                 provider. If you're a developer, you can host your own server.
               </Trans>
             )}{' '}

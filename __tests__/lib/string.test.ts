@@ -275,8 +275,8 @@ describe('toShareUrl', () => {
   const inputs = ['https://bsky.app', '/3jk7x4irgv52r', 'item/test/123']
   const outputs = [
     'https://bsky.app',
-    'https://bsky.app/3jk7x4irgv52r',
-    'https://bsky.app/item/test/123',
+    'https://krao.io/3jk7x4irgv52r',
+    'https://krao.io/item/test/123',
   ]
 
   it('appends https, when not present', () => {
@@ -1061,7 +1061,7 @@ describe('parseStarterPackHttpUri', () => {
 
 describe('createStarterPackGooglePlayUri', () => {
   const base =
-    'https://play.google.com/store/apps/details?id=xyz.blueskyweb.app&referrer=utm_source%3Dbluesky%26utm_medium%3Dstarterpack%26utm_content%3Dstarterpack_'
+    'https://play.google.com/store/apps/details?id=io.krao.app&referrer=utm_source%3Dbluesky%26utm_medium%3Dstarterpack%26utm_content%3Dstarterpack_'
 
   it('returns valid google play uri when input is valid', () => {
     expect(createStarterPackGooglePlayUri('name', 'rkey')).toEqual(

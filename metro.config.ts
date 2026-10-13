@@ -7,7 +7,11 @@ import {getSentryExpoConfig} from '@sentry/react-native/metro.js'
 let config = getSentryExpoConfig(import.meta.dirname, {
   // TODO: confirm this doesn't break anything when we switch to metro web
   includeWebReplay: false,
-  includeWebFeedback: false,
+  /*
+   * Stubbing @sentry/feedback crashes dev web: React Refresh touches every
+   * export of @sentry/browser, including feedbackAsyncIntegration.
+   */
+  includeWebFeedback: process.env.NODE_ENV !== 'production',
   annotateReactComponents: {
     textComponentNames: ['Text', 'ButtonText'],
   },

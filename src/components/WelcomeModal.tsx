@@ -114,7 +114,7 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                       a.user_select_none,
                       {color: '#354358', letterSpacing: -0.5},
                     ]}>
-                    Bluesky
+                    Krao
                   </Text>
                 </View>
               </View>
@@ -159,7 +159,7 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                     color="primary"
                     style={{
                       width: 200,
-                      backgroundColor: '#006AFF',
+                      backgroundColor: '#0E8C6E',
                     }}>
                     <ButtonText>
                       <Trans>Create account</Trans>
@@ -175,7 +175,7 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                     hoverStyle={[a.bg_transparent]}>
                     {({hovered}) => (
                       <ButtonText
-                        style={[hovered && [a.underline], {color: '#006AFF'}]}>
+                        style={[hovered && [a.underline], {color: '#0E8C6E'}]}>
                         <Trans>Explore the app</Trans>
                       </ButtonText>
                     )}
@@ -200,7 +200,7 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                         style={[
                           a.font_medium,
                           {
-                            color: '#006AFF',
+                            color: '#0E8C6E',
                             fontSize: undefined,
                           },
                           signInLinkHovered && a.underline,

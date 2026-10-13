@@ -41,7 +41,7 @@ export function useIntentHandler() {
       }
 
       const referrerInfo = await Referrer.getReferrerInfo()
-      if (referrerInfo && referrerInfo.hostname !== 'bsky.app') {
+      if (referrerInfo && referrerInfo.hostname !== 'krao.io') {
         ax.metric('deepLink:referrerReceived', {
           to: url,
           referrer: referrerInfo?.referrer,

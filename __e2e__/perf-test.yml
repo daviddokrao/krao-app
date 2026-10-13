@@ -1,6 +1,6 @@
 # flow.yaml
 
-appId: xyz.blueskyweb.app
+appId: io.krao.app
 ---
 - launchApp
 # Login

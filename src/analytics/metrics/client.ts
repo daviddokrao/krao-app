@@ -73,6 +73,11 @@ export class MetricsClient<M extends Record<string, any>> {
 
   flush() {
     if (!this.queue.length) return
+    if (!env.METRICS_API_HOST) {
+      // Metrics are disabled, drop events instead of sending them anywhere
+      this.queue.length = 0
+      return
+    }
     if (Date.now() < this.backoffUntil) {
       // Endpoint is unreachable. Hold the most recent events so the queue
       // can't grow without bound while we wait for the backoff to expire.

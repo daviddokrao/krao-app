@@ -55,7 +55,7 @@ export BLUESKY_TEST_DID=did:plc:yourdidhere
 ./send.sh follow
 ```
 
-Defaults: `--device booted`, `--bundle xyz.blueskyweb.app`. Run `./send.sh --help`
+Defaults: `--device booted`, `--bundle io.krao.app`. Run `./send.sh --help`
 for the full list of available payloads.
 
 ## Foreground vs background

@@ -69,31 +69,44 @@ export const LOG_DEBUG: string = process.env.EXPO_PUBLIC_LOG_DEBUG || ''
  * The DID of the Bluesky appview to proxy to
  */
 export const BLUESKY_PROXY_DID: DidString =
-  process.env.EXPO_PUBLIC_BLUESKY_PROXY_DID || 'did:web:api.bsky.app'
+  process.env.EXPO_PUBLIC_BLUESKY_PROXY_DID || 'did:web:api.krao.io'
+
+/**
+ * The PDS used for sign up and as the default sign in provider
+ */
+export const DEFAULT_SERVICE_URL: string =
+  process.env.EXPO_PUBLIC_DEFAULT_SERVICE || 'https://pds.krao.io'
+
+/**
+ * The public appview used for logged-out requests
+ */
+export const PUBLIC_API_URL: string =
+  process.env.EXPO_PUBLIC_PUBLIC_API || 'https://api.krao.io'
 
 /**
  * The DID of the chat service to proxy to
  */
 export const CHAT_PROXY_DID: DidString =
-  process.env.EXPO_PUBLIC_CHAT_PROXY_DID || 'did:web:api.bsky.chat'
+  process.env.EXPO_PUBLIC_CHAT_PROXY_DID || 'did:web:chat.krao.io'
 
 /**
- * Metrics API host
+ * Metrics API host. Metrics are disabled when unset.
  */
 export const METRICS_API_HOST: string =
-  process.env.EXPO_PUBLIC_METRICS_API_HOST || 'https://events.bsky.app'
+  process.env.EXPO_PUBLIC_METRICS_API_HOST || ''
 
 /**
- * Growthbook API host
+ * Growthbook API host. Feature flags fall back to defaults when unset.
  */
 export const GROWTHBOOK_API_HOST: string =
-  process.env.EXPO_PUBLIC_GROWTHBOOK_API_HOST || `${METRICS_API_HOST}/gb`
+  process.env.EXPO_PUBLIC_GROWTHBOOK_API_HOST ||
+  (METRICS_API_HOST ? `${METRICS_API_HOST}/gb` : '')
 
 /**
  * Growthbook client key
  */
 export const GROWTHBOOK_CLIENT_KEY: string =
-  process.env.EXPO_PUBLIC_GROWTHBOOK_CLIENT_KEY || 'sdk-7gkUkGy9wguUjyFe'
+  process.env.EXPO_PUBLIC_GROWTHBOOK_CLIENT_KEY || ''
 
 /**
  * Sentry DSN for telemetry
@@ -120,7 +133,7 @@ export const GCP_PROJECT_ID: number =
  * locally running server, see `env.example` for more.
  */
 export const GEOLOCATION_DEV_URL = process.env.GEOLOCATION_DEV_URL
-export const GEOLOCATION_PROD_URL = `https://ip.bsky.app`
+export const GEOLOCATION_PROD_URL = `https://ip.krao.io`
 export const GEOLOCATION_URL = IS_DEV
   ? (GEOLOCATION_DEV_URL ?? GEOLOCATION_PROD_URL)
   : GEOLOCATION_PROD_URL
@@ -130,7 +143,7 @@ export const GEOLOCATION_URL = IS_DEV
  * locally running server, see `env.example` for more.
  */
 export const LIVE_EVENTS_DEV_URL = process.env.LIVE_EVENTS_DEV_URL
-export const LIVE_EVENTS_PROD_URL = `https://live-events.workers.bsky.app`
+export const LIVE_EVENTS_PROD_URL = `https://live-events.krao.io`
 export const LIVE_EVENTS_URL = IS_DEV
   ? (LIVE_EVENTS_DEV_URL ?? LIVE_EVENTS_PROD_URL)
   : LIVE_EVENTS_PROD_URL
@@ -140,7 +153,7 @@ export const LIVE_EVENTS_URL = IS_DEV
  * locally running server, see `env.example` for more.
  */
 export const APP_CONFIG_DEV_URL = process.env.APP_CONFIG_DEV_URL
-export const APP_CONFIG_PROD_URL = `https://app-config.workers.bsky.app`
+export const APP_CONFIG_PROD_URL = `https://app-config.krao.io`
 export const APP_CONFIG_URL = IS_DEV
   ? (APP_CONFIG_DEV_URL ?? APP_CONFIG_PROD_URL)
   : APP_CONFIG_PROD_URL

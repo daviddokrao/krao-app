@@ -68,7 +68,7 @@ export default function HashtagScreen({
   }, [author])
 
   const onShare = useCallback(() => {
-    const url = new URL('https://bsky.app')
+    const url = new URL('https://krao.io')
     url.pathname = `/hashtag/${decodeURIComponent(tag)}`
     if (author) {
       url.searchParams.set('author', author)
@@ -243,7 +243,7 @@ function HashtagScreenTab({
             <Text> </Text>
             <Text style={t.atoms.text_contrast_medium}>
               to search for news, sports, politics, and everything else
-              happening on Bluesky.
+              happening on Krao.
             </Text>
           </Trans>
         </Text>

@@ -7,9 +7,16 @@ import {isInvalidHandle} from '#/lib/strings/handles'
 import {startUriToStarterPackUri} from '#/lib/strings/starter-pack'
 import {logger} from '#/logger'
 
-export const BSKY_APP_HOST = 'https://bsky.app'
+/** Canonical web host for links this app creates (share links etc). */
+export const BSKY_APP_HOST = 'https://krao.io'
+/**
+ * Web hosts whose links open inside the app. Krao is federated with Bluesky,
+ * so bsky.app links resolve to the same content.
+ */
+const APP_URL_PREFIXES = ['https://krao.io/', 'https://bsky.app/']
 export const BSKY_HOSTING_ENDSWITH = '.host.bsky.network'
 const BSKY_TRUSTED_HOSTS = [
+  'krao\\.io',
   'bsky\\.app',
   'bsky\\.social',
   'blueskyweb\\.xyz',
@@ -90,7 +97,7 @@ export function toShortUrl(url: string): string {
 
 export function toShareUrl(url: string): string {
   if (!url.startsWith('https')) {
-    const urlp = new URL('https://bsky.app')
+    const urlp = new URL(BSKY_APP_HOST)
     urlp.pathname = url
     url = urlp.toString()
   }
@@ -131,7 +138,7 @@ export function isBlueskyHostedUrl(url: string): boolean {
 }
 
 export function isBskyAppUrl(url: string): boolean {
-  return url.startsWith('https://bsky.app/')
+  return APP_URL_PREFIXES.some(prefix => url.startsWith(prefix))
 }
 
 export function isRelativeUrl(url: string): boolean {
@@ -139,10 +146,7 @@ export function isRelativeUrl(url: string): boolean {
 }
 
 export function isBskyRSSUrl(url: string): boolean {
-  return (
-    (url.startsWith('https://bsky.app/') || isRelativeUrl(url)) &&
-    /\/rss\/?$/.test(url)
-  )
+  return (isBskyAppUrl(url) || isRelativeUrl(url)) && /\/rss\/?$/.test(url)
 }
 
 export function isExternalUrl(url: string): boolean {
@@ -383,7 +387,14 @@ export function createBskyAppAbsoluteUrl(path: string): string {
   return `${BSKY_APP_HOST.replace(/\/$/, '')}/${sanitizedPath}`
 }
 
+/**
+ * Krao has no link redirect service yet, so outbound links are opened
+ * directly instead of through Bluesky's go.bsky.app redirector.
+ */
+const LINK_REDIRECT_HOST: string | undefined = undefined
+
 export function createProxiedUrl(url: string): string {
+  if (!LINK_REDIRECT_HOST) return url
   let u
   try {
     u = new URL(url)
@@ -395,7 +406,7 @@ export function createProxiedUrl(url: string): string {
     return url
   }
 
-  return `https://go.bsky.app/redirect?u=${encodeURIComponent(url)}`
+  return `${LINK_REDIRECT_HOST}/redirect?u=${encodeURIComponent(url)}`
 }
 
 export function isShortLink(url: string): boolean {

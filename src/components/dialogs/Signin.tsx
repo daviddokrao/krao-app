@@ -44,7 +44,7 @@ function SigninDialogInner({}: {control: Dialog.DialogOuterProps['control']}) {
 
   return (
     <Dialog.ScrollableInner
-      label={_(msg`Sign in to Bluesky or create a new account`)}
+      label={_(msg`Sign in to Krao or create a new account`)}
       style={[a.w_full, gtMobile && web({width: 'auto', maxWidth: 420})]}>
       <View style={[!IS_NATIVE && a.p_2xl]}>
         <View

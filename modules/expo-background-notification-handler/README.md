@@ -18,7 +18,7 @@ The primary use case is storing user preferences (like notification sound settin
 
 ### iOS Implementation
 
-Uses iOS App Groups (`group.app.bsky`) to share UserDefaults between the main app and the notification service extension. This allows the notification service extension to read preferences set by the main app without launching the app.
+Uses iOS App Groups (`group.io.krao.app`) to share UserDefaults between the main app and the notification service extension. This allows the notification service extension to read preferences set by the main app without launching the app.
 
 **Key Files:**
 - `ios/ExpoBackgroundNotificationHandlerModule.swift` - Native module implementation
@@ -141,13 +141,13 @@ When the app is foregrounded, the module defers to `expo-notifications` for noti
 ### iOS
 
 Requires App Group entitlement configured in Xcode:
-- App Group ID: `group.app.bsky`
+- App Group ID: `group.io.krao.app`
 
 ### Android
 
 Requires Firebase Cloud Messaging (FCM) integration:
 - Dependency: `com.google.firebase:firebase-messaging-ktx:24.0.0`
-- SharedPreferences name: `xyz.blueskyweb.app`
+- SharedPreferences name: `io.krao.app`
 
 ## Usage in the App
 

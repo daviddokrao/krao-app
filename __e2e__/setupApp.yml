@@ -1,7 +1,7 @@
-appId: xyz.blueskyweb.app
+appId: io.krao.app
 ---
 - launchApp:
-    appId: "xyz.blueskyweb.app"
+    appId: "io.krao.app"
     clearState: true
 - extendedWaitUntil:
     visible: "Sign in"
