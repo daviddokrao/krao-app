@@ -2,7 +2,7 @@ import {useCallback, useState} from 'react'
 import {View} from 'react-native'
 import {TID} from '@atproto/common-web'
 import {type Un$Typed} from '@atproto/lex'
-import {type AtUriString, toDatetimeString} from '@atproto/syntax'
+import {AtUri, type AtUriString, toDatetimeString} from '@atproto/syntax'
 import {overwriteSavedFeeds, setInterestsPref, upsertProfile} from '@bsky/sdk'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
@@ -11,10 +11,9 @@ import {useQueryClient} from '@tanstack/react-query'
 
 import {uploadBlob} from '#/lib/api'
 import {
-  BSKY_APP_ACCOUNT_DID,
+  DISCOVER_FEED_URI,
   DISCOVER_SAVED_FEED,
   TIMELINE_SAVED_FEED,
-  VIDEO_SAVED_FEED,
 } from '#/lib/constants'
 import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
 import {logger} from '#/logger'
@@ -98,8 +97,10 @@ export function StepFinished() {
      * Hoisted above the `try`: React Compiler cannot lower these inside one, and
      * `listItems` is already settled by the earlier try/catch.
      */
+    // New accounts follow Krao's own account, which owns the Discover feed
+    const kraoAccountDid = new AtUri(DISCOVER_FEED_URI).host
     const followDids = [
-      BSKY_APP_ACCOUNT_DID,
+      ...(kraoAccountDid.startsWith('did:') ? [kraoAccountDid] : []),
       ...(listItems?.map(i => i.subject.did) ?? []),
     ]
     const starterPackRef = starterPack
@@ -124,10 +125,6 @@ export function StepFinished() {
             },
             {
               ...TIMELINE_SAVED_FEED,
-              id: TID.nextStr(),
-            },
-            {
-              ...VIDEO_SAVED_FEED,
               id: TID.nextStr(),
             },
           ]

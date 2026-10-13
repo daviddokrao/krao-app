@@ -99,6 +99,14 @@ export const KRAO_GATE_DID: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.io'
 
 /**
+ * Krao's "latest" feed, the app's Discover feed. Its owner may be given by
+ * handle; the app resolves it to a DID on startup (see resolveDiscoverFeed).
+ */
+export const KRAO_DISCOVER_FEED: string =
+  process.env.EXPO_PUBLIC_KRAO_DISCOVER_FEED ||
+  'at://krao.io/app.bsky.feed.generator/latest'
+
+/**
  * Enables a built-in test wallet (the public Hardhat dev key) for local
  * development without a browser wallet extension. Never enable in production.
  */

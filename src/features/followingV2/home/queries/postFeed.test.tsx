@@ -13,7 +13,7 @@ import {
 import {type PersistedClient} from '@tanstack/react-query-persist-client'
 import {act, render, renderHook, waitFor} from '@testing-library/react-native'
 
-import {PROD_DEFAULT_FEED} from '#/lib/constants'
+import {DISCOVER_FEED_URI} from '#/lib/constants'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {logger} from '#/logger'
 import {
@@ -144,7 +144,7 @@ let mockPreferences:
     }
   | undefined
 
-const DISCOVER = PROD_DEFAULT_FEED('whats-hot')
+const DISCOVER = DISCOVER_FEED_URI
 const CUSTOM = 'at://did:plc:author/app.bsky.feed.generator/custom'
 
 /** How many pages each fake endpoint has. */

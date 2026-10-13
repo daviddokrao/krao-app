@@ -10,7 +10,7 @@ import {AppState, type AppStateStatus} from 'react-native'
 import {type AtUriString, type DidString} from '@atproto/syntax'
 import throttle from 'lodash.throttle'
 
-import {PROD_FEEDS, STAGING_FEEDS, TRENDING_DID} from '#/lib/constants'
+import {TRENDING_DID} from '#/lib/constants'
 import {type FeedSourceInfo, isFeedSourceFeedInfo} from '#/state/queries/feed'
 import {
   type FeedDescriptor,
@@ -21,7 +21,11 @@ import {useAnalytics} from '#/analytics'
 import {app} from '#/lexicons'
 import {useAppviewClient} from './session'
 
-export const FEEDBACK_FEEDS = [...PROD_FEEDS, ...STAGING_FEEDS]
+/**
+ * Feeds that receive interaction feedback (seen, liked, "show less"). Krao's
+ * feed generator does not take feedback yet, and none goes to anyone else's.
+ */
+export const FEEDBACK_FEEDS: string[] = []
 
 export const THIRD_PARTY_ALLOWED_INTERACTIONS = new Set<
   app.bsky.feed.defs.Interaction['event']

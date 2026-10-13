@@ -14,6 +14,7 @@ import {BottomSheetProvider} from '@bsky.app/bottom-sheet'
 import {BackgroundNotificationPreferencesProvider} from '@bsky.app/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
 import {useLingui} from '@lingui/react/macro'
 
+import {resolveDiscoverFeed} from '#/lib/constants'
 import {Provider as HideBottomBarBorderProvider} from '#/lib/hooks/useHideBottomBarBorder'
 import {QueryProvider} from '#/lib/react-query'
 import {ThemeProvider} from '#/lib/ThemeContext'
@@ -221,9 +222,12 @@ function App() {
   const [isReady, setIsReady] = useState(false)
 
   useEffect(() => {
-    void Promise.all([initPersistedState(), Geo.resolve(), setupDeviceId]).then(
-      () => setIsReady(true),
-    )
+    void Promise.all([
+      initPersistedState(),
+      Geo.resolve(),
+      setupDeviceId,
+      resolveDiscoverFeed(),
+    ]).then(() => setIsReady(true))
   }, [])
 
   if (!isReady) {

@@ -1,5 +1,6 @@
 import {type Insets, Platform} from 'react-native'
 import {type Service} from '@atproto/lex'
+import {AtUri} from '@atproto/syntax'
 import {api} from '@bsky/sdk'
 
 import {
@@ -7,6 +8,7 @@ import {
   CHAT_PROXY_DID,
   DEFAULT_SERVICE_URL,
   IS_DEV,
+  KRAO_DISCOVER_FEED,
   PUBLIC_API_URL,
 } from '#/env'
 import {type app} from '#/lexicons'
@@ -37,16 +39,8 @@ export const CARD_ASPECT_RATIO = 1200 / 630
 // -prf
 export const JOINED_THIS_WEEK = 560000 // estimate as of 12/18/24
 
-export const DISCOVER_DEBUG_DIDS: Record<string, true> = {
-  'did:plc:oisofpd7lj26yvgiivf3lxsi': true, // hailey.at
-  'did:plc:p2cp5gopk7mgjegy6wadk3ep': true, // samuel.bsky.team
-  'did:plc:ragtjsm2j2vknwkz3zp4oxrd': true, // pfrazee.com
-  'did:plc:vpkhqolt662uhesyj6nxm7ys': true, // why.bsky.team
-  'did:plc:3jpt2mvvsumj2r7eqk4gzzjz': true, // esb.lol
-  'did:plc:vjug55kidv6sye7ykr5faxxn': true, // emilyliu.me
-  'did:plc:tgqseeot47ymot4zro244fj3': true, // iwsmith.bsky.social
-  'did:plc:2dzyut5lxna5ljiaasgeuffz': true, // darrin.bsky.team
-}
+/** Accounts that see feed debug info on posts */
+export const DISCOVER_DEBUG_DIDS: Record<string, true> = {}
 
 const BASE_FEEDBACK_FORM_URL = `${HELP_DESK_URL}/requests/new`
 export function FEEDBACK_FORM_URL({
@@ -91,22 +85,6 @@ export function IS_PROD_SERVICE(url?: string) {
   return url && url !== STAGING_SERVICE && !url.startsWith(LOCAL_DEV_SERVICE)
 }
 
-export const PROD_DEFAULT_FEED = (rkey: string) =>
-  `at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/${rkey}`
-
-export const STAGING_DEFAULT_FEED = (rkey: string) =>
-  `at://did:plc:yofh3kx63drvfljkibw5zuxo/app.bsky.feed.generator/${rkey}`
-
-export const PROD_FEEDS = [
-  `feedgen|${PROD_DEFAULT_FEED('whats-hot')}`,
-  `feedgen|${PROD_DEFAULT_FEED('thevids')}`,
-]
-
-export const STAGING_FEEDS = [
-  `feedgen|${STAGING_DEFAULT_FEED('whats-hot')}`,
-  `feedgen|${STAGING_DEFAULT_FEED('thevids')}`,
-]
-
 export const IMAGE_SIZE_CONFIG_POSTS = {
   maxDimension: 4000,
   maxSize: 2000000,
@@ -146,37 +124,55 @@ export const LANG_DROPDOWN_HITSLOP = {top: 10, bottom: 10, left: 4, right: 4}
 export const BACK_HITSLOP = HITSLOP_30
 export const MAX_POST_LINES = 25
 
-export const BSKY_APP_ACCOUNT_DID = 'did:plc:z72i7hdynmk6r22z27h6tvur'
-
-export const BSKY_FEED_OWNER_DIDS = [
-  BSKY_APP_ACCOUNT_DID,
-  'did:plc:vpkhqolt662uhesyj6nxm7ys',
-  'did:plc:q6gjnaw2blty4crticxkmujt',
-]
+/**
+ * Feeds whose generators get the user's interests as a header. Krao's own
+ * feed does not use them, and they are not sent to anyone else's.
+ */
+export const BSKY_FEED_OWNER_DIDS: string[] = []
 
 export const TRENDING_DID = 'did:plc:qrz3lhbyuxbeilrc6nekdqme'
 export const TRENDING_HANDLE = 'trending.bsky.app'
 
-export const DISCOVER_FEED_URI =
-  'at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/whats-hot'
-export const VIDEO_FEED_URI =
-  'at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/thevids'
-export const STAGING_VIDEO_FEED_URI =
-  'at://did:plc:yofh3kx63drvfljkibw5zuxo/app.bsky.feed.generator/thevids'
-export const VIDEO_FEED_URIS = [VIDEO_FEED_URI, STAGING_VIDEO_FEED_URI]
+/**
+ * The Discover feed: Krao's "latest" feed (KRAO_DISCOVER_FEED). Holds the
+ * DID form once resolveDiscoverFeed() has run at startup, since AppViews
+ * only know feeds by DID.
+ */
+// oxlint-disable-next-line import/no-mutable-exports -- set once at startup
+export let DISCOVER_FEED_URI = KRAO_DISCOVER_FEED
+
+/** Resolves the Discover feed owner's handle, if it was given as one */
+export async function resolveDiscoverFeed() {
+  const uri = new AtUri(KRAO_DISCOVER_FEED)
+  if (uri.host.startsWith('did:')) return
+  try {
+    const url = new URL(
+      '/xrpc/com.atproto.identity.resolveHandle',
+      PUBLIC_API_URL,
+    )
+    url.searchParams.set('handle', uri.host)
+    const res = await fetch(url, {signal: AbortSignal.timeout(5000)})
+    const {did} = (await res.json()) as {did?: string}
+    if (did) DISCOVER_FEED_URI = `at://${did}/${uri.collection}/${uri.rkey}`
+  } catch {
+    // keep the handle form: the feed fails to load, the rest of the app works
+  }
+}
+
+/** Krao has no video feed yet, so Bluesky's video feed UI stays off */
+export const VIDEO_FEED_URI = ''
+export const VIDEO_FEED_URIS: string[] = []
+
 export const DISCOVER_SAVED_FEED = {
   type: 'feed',
-  value: DISCOVER_FEED_URI,
+  get value() {
+    return DISCOVER_FEED_URI
+  },
   pinned: true,
 }
 export const TIMELINE_SAVED_FEED = {
   type: 'timeline',
   value: 'following',
-  pinned: true,
-}
-export const VIDEO_SAVED_FEED = {
-  type: 'feed',
-  value: VIDEO_FEED_URI,
   pinned: true,
 }
 
@@ -236,11 +232,13 @@ export const urls = {
   },
 }
 
-export const PUBLIC_APPVIEW = 'https://api.bsky.app'
-export const PUBLIC_APPVIEW_DID = 'did:web:api.bsky.app'
+/**
+ * The AppView for direct reads (eg logged-out feeds) and the DID it answers
+ * to: Krao's, as configured for the rest of the app.
+ */
+export const PUBLIC_APPVIEW = PUBLIC_API_URL
+export const PUBLIC_APPVIEW_DID = BLUESKY_PROXY_DID
 export const PUBLIC_STAGING_APPVIEW_DID = 'did:web:api.staging.bsky.dev'
-
-export const DEV_ENV_APPVIEW = `http://localhost:2584` // always the same
 
 // temp hack for e2e - esb
 export const BLUESKY_PROXY_HEADER = {
