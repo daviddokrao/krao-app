@@ -4,7 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
-import {BSKY_SERVICE} from '#/lib/constants'
+import {DEFAULT_SERVICE} from '#/lib/constants'
 import * as persisted from '#/state/persisted'
 import {useSession} from '#/state/session'
 import {atoms as a, platform, useBreakpoints, useTheme, web} from '#/alf'
@@ -18,7 +18,8 @@ import {InlineLinkText} from '#/components/Link'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
 
-type SegmentedControlOptions = typeof BSKY_SERVICE | 'custom'
+/** The default service's URL, or 'custom' */
+type SegmentedControlOptions = string
 
 export function ServerInputDialog({
   control,
@@ -32,19 +33,19 @@ export function ServerInputDialog({
 
   // persist these options between dialog open/close
   const [fixedOption, setFixedOption] =
-    useState<SegmentedControlOptions>(BSKY_SERVICE)
+    useState<SegmentedControlOptions>(DEFAULT_SERVICE)
   const [previousCustomAddress, setPreviousCustomAddress] = useState('')
 
   const onClose = useCallback(() => {
     const result = formRef.current?.getFormState()
     if (result) {
       onSelect(result)
-      if (result !== BSKY_SERVICE) {
+      if (result !== DEFAULT_SERVICE) {
         setPreviousCustomAddress(result)
       }
     }
     ax.metric('signin:hostingProviderPressed', {
-      hostingProviderDidChange: fixedOption !== BSKY_SERVICE,
+      hostingProviderDidChange: fixedOption !== DEFAULT_SERVICE,
     })
   }, [ax, onSelect, fixedOption])
 
@@ -140,10 +141,10 @@ function DialogInner({
           onChange={setFixedOption}>
           <SegmentedControl.Item
             testID="bskyServiceSelectBtn"
-            value={BSKY_SERVICE}
-            label={_(msg`Bluesky`)}>
+            value={DEFAULT_SERVICE}
+            label={_(msg`Krao`)}>
             <SegmentedControl.ItemText>
-              {_(msg`Bluesky`)}
+              {_(msg`Krao`)}
             </SegmentedControl.ItemText>
           </SegmentedControl.Item>
           <SegmentedControl.Item
@@ -156,13 +157,13 @@ function DialogInner({
           </SegmentedControl.Item>
         </SegmentedControl.Root>
 
-        {fixedOption === BSKY_SERVICE && isFirstTimeUser && (
+        {fixedOption === DEFAULT_SERVICE && isFirstTimeUser && (
           <View role="tabpanel">
             <Admonition type="tip">
               <Trans>
                 Krao is an open network where you can choose your own provider.
-                If you're new here, we recommend sticking with the default
-                Bluesky Social option.
+                If you're new here, we recommend sticking with the default Krao
+                option.
               </Trans>
             </Admonition>
           </View>

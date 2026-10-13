@@ -3,6 +3,7 @@ import {AtUri} from '@atproto/syntax'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {EMBED_SERVICE} from '#/lib/constants'
 import {makeProfileLink} from '#/lib/routes/links'
 import {type NavigationProp} from '#/lib/routes/types'
 import {shareText, shareUrl} from '#/lib/sharing'
@@ -70,7 +71,8 @@ let ShareMenuItems = ({
     })
   }
 
-  const canEmbed = IS_WEB && gtMobile && !hideInPWI
+  // Embedding needs Krao's own embed service (EMBED_SERVICE)
+  const canEmbed = !!EMBED_SERVICE && IS_WEB && gtMobile && !hideInPWI
 
   const onShareATURI = () => {
     void shareText(postUri)

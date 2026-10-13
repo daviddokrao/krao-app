@@ -119,6 +119,16 @@ export const KRAO_GIF_URL: string =
   process.env.EXPO_PUBLIC_KRAO_GIF_URL || KRAO_INDEXER_URL
 export const KRAO_GIF_SEARCH: boolean =
   process.env.EXPO_PUBLIC_KRAO_GIF_SEARCH === 'true'
+
+/**
+ * Krao's post embed service (a bskyembed deployment). "Embed post" is hidden
+ * until one is configured.
+ */
+export const KRAO_EMBED_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_EMBED_URL || ''
+
+/** Krao's chat service URL for signed-out reads; unset, there are none */
+export const KRAO_CHAT_URL: string = process.env.EXPO_PUBLIC_KRAO_CHAT_URL || ''
 export const KRAO_GATE_DID: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.io'
 

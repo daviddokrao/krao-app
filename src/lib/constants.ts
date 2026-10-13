@@ -6,7 +6,9 @@ import {
   BLUESKY_PROXY_DID,
   CHAT_PROXY_DID,
   DEFAULT_SERVICE_URL,
+  KRAO_CHAT_URL,
   KRAO_DISCOVER_FEED,
+  KRAO_EMBED_URL,
   KRAO_GIF_URL,
   KRAO_LABELER,
   KRAO_LINK_PREVIEW_URL,
@@ -23,8 +25,13 @@ export const PUBLIC_BSKY_SERVICE = PUBLIC_API_URL
 export const DEFAULT_SERVICE = DEFAULT_SERVICE_URL
 const HELP_DESK_LANG = 'en-us'
 export const HELP_DESK_URL = `https://krao.io/help/${HELP_DESK_LANG}`
-export const CHAT_SERVICE = 'https://api.bsky.chat'
-export const EMBED_SERVICE = 'https://embed.bsky.app'
+/**
+ * Krao's chat service for signed-out reads (eg join link previews), if any.
+ * Signed-in chat goes through the PDS to CHAT_PROXY_DID instead.
+ */
+export const CHAT_SERVICE = KRAO_CHAT_URL
+/** Krao's post embed service; embedding is off until one runs (KRAO_EMBED_URL) */
+export const EMBED_SERVICE = KRAO_EMBED_URL
 export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`
 export const BSKY_DOWNLOAD_URL = 'https://krao.io/download'
 export const STARTER_PACK_DEFAULT_SIZE = 150

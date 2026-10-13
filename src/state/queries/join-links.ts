@@ -183,6 +183,9 @@ async function fetchJoinLinkPreviews({
   codes: string[]
   hasSession: boolean
 }) {
+  if (!hasSession && !CHAT_SERVICE) {
+    throw new Error('Join links can only be previewed when signed in')
+  }
   return await (hasSession ? client : getPublicChatClient()).call(
     chat.bsky.group.getJoinLinkPreviews,
     {codes},
