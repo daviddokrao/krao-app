@@ -148,9 +148,7 @@ export let DISCOVER_FEED_URI = KRAO_DISCOVER_FEED
  * startup. Empty when none is configured or it did not resolve.
  */
 // oxlint-disable-next-line import/no-mutable-exports -- set once at startup
-export let KRAO_LABELER_DID = KRAO_LABELER.startsWith('did:')
-  ? KRAO_LABELER
-  : ''
+export let KRAO_LABELER_DID = ''
 
 /**
  * Resolves the handles that the Discover feed and the labeler may be
@@ -160,12 +158,14 @@ export async function resolveKraoServices() {
   const feed = new AtUri(KRAO_DISCOVER_FEED)
   const [feedOwnerDid, labelerDid] = await Promise.all([
     resolveHandle(feed.host),
-    KRAO_LABELER_DID ? undefined : resolveHandle(KRAO_LABELER),
+    resolveHandle(KRAO_LABELER),
   ])
   if (feedOwnerDid) {
     DISCOVER_FEED_URI = `at://${feedOwnerDid}/${feed.collection}/${feed.rkey}`
   }
-  if (labelerDid) KRAO_LABELER_DID = labelerDid
+  KRAO_LABELER_DID = KRAO_LABELER.startsWith('did:')
+    ? KRAO_LABELER
+    : (labelerDid ?? '')
 }
 
 /**
