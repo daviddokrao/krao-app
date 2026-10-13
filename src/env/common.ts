@@ -90,6 +90,15 @@ export const KRAO_INDEXER_URL: string =
   process.env.EXPO_PUBLIC_KRAO_INDEXER_URL || 'https://indexer.krao.io'
 
 /**
+ * Krao gate service holding token-gated post content, and the DID it answers
+ * to (the audience of the service auth tokens sent to it)
+ */
+export const KRAO_GATE_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_GATE_URL || KRAO_INDEXER_URL
+export const KRAO_GATE_DID: string =
+  process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.io'
+
+/**
  * Enables a built-in test wallet (the public Hardhat dev key) for local
  * development without a browser wallet extension. Never enable in production.
  */
