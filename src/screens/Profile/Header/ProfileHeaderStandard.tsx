@@ -39,6 +39,7 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
+import {ChainBadges} from '#/features/wallet/components/ChainBadges'
 import {type app} from '#/lexicons'
 import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
@@ -139,6 +140,7 @@ let ProfileHeaderStandard = ({
               moderation={moderation}
             />
             <ProfileHeaderHandle profile={profile} />
+            <ChainBadges did={profile.did} />
           </View>
           {!isPlaceholderProfile && !isBlockedUser && (
             <View style={a.gap_md}>

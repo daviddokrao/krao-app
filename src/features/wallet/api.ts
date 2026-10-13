@@ -10,9 +10,39 @@ export type LinkedWallet = {
   createdAt?: string
 }
 
+export type NftRef = {
+  chain: string
+  contract: string
+  tokenId: string
+  standard?: string
+}
+
+export type NftAvatar = {
+  nft: NftRef
+  wallet: string
+  status: WalletStatus
+  collectionName?: string
+  image?: string
+  checkedAt?: string
+}
+
+export type BadgeId = 'wallet-verified' | 'nft-avatar' | 'tipper' | 'supported'
+
 export type ChainProfile = {
   did: string
   wallets: LinkedWallet[]
+  nftAvatar?: NftAvatar
+  tipsReceivedCount?: number
+  badges?: {id: string; count?: number}[]
+}
+
+export type ResolvedNft = {
+  nft: NftRef
+  owner?: string
+  ownedByQueried?: boolean
+  collectionName?: string
+  name?: string
+  image?: string
 }
 
 /** Output of io.krao.server.createWalletSession (same as createSession) */
@@ -70,6 +100,29 @@ export async function getChainProfile(did: string): Promise<ChainProfile> {
     {params: {actors: did}},
   )
   return profiles.find(p => p.did === did) ?? {did, wallets: []}
+}
+
+/** Look up an NFT on-chain via the Krao indexer */
+export function resolveNft(params: {
+  chain: string
+  contract: string
+  tokenId: string
+  owner?: string
+}) {
+  return xrpc<ResolvedNft>(KRAO_INDEXER_URL, 'io.krao.actor.resolveNft', {
+    params: Object.fromEntries(
+      Object.entries(params).filter(([, v]) => v !== undefined),
+    ),
+  })
+}
+
+/** URL of the NFT's image as a 512px PNG, rendered by the Krao indexer */
+export function nftImageUrl(nft: NftRef): string {
+  const url = new URL('/nft-image', KRAO_INDEXER_URL)
+  url.searchParams.set('chain', nft.chain)
+  url.searchParams.set('contract', nft.contract)
+  url.searchParams.set('tokenId', nft.tokenId)
+  return url.toString()
 }
 
 export function getWalletChallenge(service: string, account: string) {
