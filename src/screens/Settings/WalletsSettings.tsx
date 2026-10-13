@@ -17,6 +17,7 @@ import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
 import {type LinkedWallet} from '#/features/wallet/api'
+import {NftAvatarSection} from '#/features/wallet/components/NftAvatarSection'
 import {
   WalletRejectedError,
   WalletUnavailableError,
@@ -148,6 +149,14 @@ export function WalletsSettingsScreen({}: Props) {
               </Text>
             )}
           </SettingsList.Item>
+          {data && data.wallets.some(w => w.status === 'verified') && (
+            <>
+              <SettingsList.Divider />
+              <SettingsList.Item style={[a.flex_col, a.align_stretch]}>
+                <NftAvatarSection profile={data} />
+              </SettingsList.Item>
+            </>
+          )}
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>
