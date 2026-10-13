@@ -1,9 +1,10 @@
 import {logger} from '#/logger'
+import {KRAO_SHORT_LINK_URL} from '#/env'
 
 export function useShortenLink() {
   return async (inputUrl: string): Promise<{url: string}> => {
     const url = new URL(inputUrl)
-    const res = await fetch('https://go.bsky.app/link', {
+    const res = await fetch(`${KRAO_SHORT_LINK_URL}/link`, {
       method: 'POST',
       body: JSON.stringify({
         path: url.pathname,

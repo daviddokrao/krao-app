@@ -127,6 +127,17 @@ export const KRAO_GIF_SEARCH: boolean =
 export const KRAO_EMBED_URL: string =
   process.env.EXPO_PUBLIC_KRAO_EMBED_URL || ''
 
+/**
+ * Krao's link shortener (bskylink-compatible, on the indexer), used to share
+ * starter packs; short links are `<this URL>/<code>`
+ */
+export const KRAO_SHORT_LINK_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_SHORT_LINK_URL || `${KRAO_INDEXER_URL}/s`
+
+/** Krao's share card images for starter packs (on the indexer) */
+export const KRAO_OGCARD_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_OGCARD_URL || `${KRAO_INDEXER_URL}/ogcard`
+
 /** Krao's chat service URL for signed-out reads; unset, there are none */
 export const KRAO_CHAT_URL: string = process.env.EXPO_PUBLIC_KRAO_CHAT_URL || ''
 export const KRAO_GATE_DID: string =

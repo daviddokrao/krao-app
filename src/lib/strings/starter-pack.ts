@@ -1,5 +1,6 @@
 import {AtUri} from '@atproto/syntax'
 
+import {KRAO_OGCARD_URL} from '#/env'
 import type * as bsky from '#/types/bsky'
 
 export function createStarterPackLinkFromAndroidReferrer(
@@ -85,10 +86,10 @@ export function getStarterPackOgCard(
   rkey?: string,
 ) {
   if (typeof didOrStarterPack === 'string') {
-    return `https://ogcard.cdn.bsky.app/start/${didOrStarterPack}/${rkey}`
+    return `${KRAO_OGCARD_URL}/start/${didOrStarterPack}/${rkey}`
   } else {
     const rkey = new AtUri(didOrStarterPack.uri).rkey
-    return `https://ogcard.cdn.bsky.app/start/${didOrStarterPack.creator.did}/${rkey}`
+    return `${KRAO_OGCARD_URL}/start/${didOrStarterPack.creator.did}/${rkey}`
   }
 }
 
