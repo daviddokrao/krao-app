@@ -39,6 +39,7 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
+import {ProfileTipButton} from '#/features/tips/components/ProfileTipButton'
 import {ChainBadges} from '#/features/wallet/components/ChainBadges'
 import {type app} from '#/lexicons'
 import {GermButton} from '../components/GermButton'
@@ -391,6 +392,10 @@ export function HeaderStandardButtons({
                   moderationOpts={moderationOpts}
                   disableHint={minimal}
                 />
+              )}
+
+              {!minimal && (
+                <ProfileTipButton did={profile.did} handle={profile.handle} />
               )}
 
               <MessageProfileButton profile={profile} />
