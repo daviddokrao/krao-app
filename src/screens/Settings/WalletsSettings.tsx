@@ -201,7 +201,7 @@ function WalletRow({wallet}: {wallet: LinkedWallet}) {
         confirmButtonColor="negative"
         onConfirm={() =>
           unlink.mutate(
-            {uri: wallet.uri},
+            {account: wallet.account},
             {
               onSuccess: () => Toast.show(l`Wallet unlinked`),
               onError: () =>
