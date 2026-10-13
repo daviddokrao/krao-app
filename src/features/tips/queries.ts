@@ -7,6 +7,7 @@ import {usePdsClient, useSession} from '#/state/session'
 import {KRAO_INDEXER_URL} from '#/env'
 import {getChainProfile} from '#/features/wallet/api'
 import {connectEvmWallet} from '#/features/wallet/evm'
+import {createChainProfileQueryKey} from '#/features/wallet/queries'
 import {evmAccountId} from '#/features/wallet/siwe'
 import {io} from '#/lexicons'
 import {erc20TransferData, TIP_CHAIN_ID, type TipAsset} from './assets'
@@ -46,13 +47,16 @@ export function useTipsQuery(subject: string | undefined) {
   })
 }
 
-/** The recipient's first verified EVM wallet, which tips are sent to */
+/**
+ * The recipient's first verified EVM wallet, which tips are sent to. Shares
+ * the chain profile cache, which the profile header already loads.
+ */
 export function useTipRecipientWallet(did: string) {
   return useQuery({
     staleTime: STALE.SECONDS.THIRTY,
-    queryKey: createQueryKey('tip-recipient-wallet', {did}),
-    queryFn: async () => {
-      const profile = await getChainProfile(did)
+    queryKey: createChainProfileQueryKey(did),
+    queryFn: () => getChainProfile(did),
+    select: profile => {
       const wallet = profile.wallets.find(
         w => w.status === 'verified' && w.account.startsWith('eip155:'),
       )
@@ -111,14 +115,23 @@ export function useSendTipMutation() {
       })
       return txHash
     },
-    onSuccess: (_txHash, {subject}) => {
-      if (!subject) return
-      // The indexer verifies the transaction a moment after the record lands
+    onSuccess: (_txHash, {subject, recipientDid}) => {
+      /*
+       * The indexer verifies the transaction a moment after the record lands,
+       * which updates the post's tips and both accounts' tip badges.
+       */
+      const queryKeys = [
+        createChainProfileQueryKey(recipientDid),
+        ...(currentAccount
+          ? [createChainProfileQueryKey(currentAccount.did)]
+          : []),
+        ...(subject ? [createTipsQueryKey(subject.uri)] : []),
+      ]
       for (const delay of [1000, 3000, 8000]) {
         setTimeout(() => {
-          void queryClient.invalidateQueries({
-            queryKey: createTipsQueryKey(subject.uri),
-          })
+          for (const queryKey of queryKeys) {
+            void queryClient.invalidateQueries({queryKey})
+          }
         }, delay)
       }
     },
