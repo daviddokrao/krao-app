@@ -1,7 +1,6 @@
 import {type Insets, Platform} from 'react-native'
 import {type Service} from '@atproto/lex'
 import {AtUri} from '@atproto/syntax'
-import {api} from '@bsky/sdk'
 
 import {
   BLUESKY_PROXY_DID,
@@ -9,6 +8,7 @@ import {
   DEFAULT_SERVICE_URL,
   IS_DEV,
   KRAO_DISCOVER_FEED,
+  KRAO_LABELER,
   PUBLIC_API_URL,
 } from '#/env'
 import {type app} from '#/lexicons'
@@ -135,27 +135,54 @@ export const TRENDING_HANDLE = 'trending.bsky.app'
 
 /**
  * The Discover feed: Krao's "latest" feed (KRAO_DISCOVER_FEED). Holds the
- * DID form once resolveDiscoverFeed() has run at startup, since AppViews
+ * DID form once resolveKraoServices() has run at startup, since AppViews
  * only know feeds by DID.
  */
 // oxlint-disable-next-line import/no-mutable-exports -- set once at startup
 export let DISCOVER_FEED_URI = KRAO_DISCOVER_FEED
 
-/** Resolves the Discover feed owner's handle, if it was given as one */
-export async function resolveDiscoverFeed() {
-  const uri = new AtUri(KRAO_DISCOVER_FEED)
-  if (uri.host.startsWith('did:')) return
+/**
+ * DID of Krao's labeler (KRAO_LABELER), set by resolveKraoServices() at
+ * startup. Empty when none is configured or it did not resolve.
+ */
+// oxlint-disable-next-line import/no-mutable-exports -- set once at startup
+export let KRAO_LABELER_DID = KRAO_LABELER.startsWith('did:')
+  ? KRAO_LABELER
+  : ''
+
+/**
+ * Resolves the handles that the Discover feed and the labeler may be
+ * configured with. Runs before the app renders.
+ */
+export async function resolveKraoServices() {
+  const feed = new AtUri(KRAO_DISCOVER_FEED)
+  const [feedOwnerDid, labelerDid] = await Promise.all([
+    resolveHandle(feed.host),
+    KRAO_LABELER_DID ? undefined : resolveHandle(KRAO_LABELER),
+  ])
+  if (feedOwnerDid) {
+    DISCOVER_FEED_URI = `at://${feedOwnerDid}/${feed.collection}/${feed.rkey}`
+  }
+  if (labelerDid) KRAO_LABELER_DID = labelerDid
+}
+
+/**
+ * A handle's DID from the AppView, or undefined if it is not a handle or does
+ * not resolve. Callers keep their configured value then: that one feature
+ * fails, the rest of the app works.
+ */
+async function resolveHandle(handle: string) {
+  if (!handle || handle.startsWith('did:')) return undefined
   try {
     const url = new URL(
       '/xrpc/com.atproto.identity.resolveHandle',
       PUBLIC_API_URL,
     )
-    url.searchParams.set('handle', uri.host)
+    url.searchParams.set('handle', handle)
     const res = await fetch(url, {signal: AbortSignal.timeout(5000)})
-    const {did} = (await res.json()) as {did?: string}
-    if (did) DISCOVER_FEED_URI = `at://${did}/${uri.collection}/${uri.rkey}`
+    return ((await res.json()) as {did?: string}).did
   } catch {
-    // keep the handle form: the feed fails to load, the rest of the app works
+    return undefined
   }
 }
 
@@ -264,16 +291,21 @@ export const BLUESKY_PROXY_HEADER = {
 export const CHAT_PROXY_SERVICE: Service = `${CHAT_PROXY_DID}#bsky_chat`
 
 /**
- * Bluesky's own moderation service, in the `did#service_id` form a lex client's
+ * Krao's moderation service, in the `did#service_id` form a lex client's
  * per-call `service` option takes. Passing it emits `atproto-proxy: <this
  * value>` on that one request, routing a `com.atproto.moderation.*` call to
- * Bluesky's labeler.
+ * Krao's labeler. Without a labeler it is undefined, and the PDS hands the
+ * call to the moderation service it is configured with.
  *
  * Reports and appeals aimed at a DIFFERENT labeler build their own value from
  * that labeler's creator did instead, so this is a per-call option rather than a
  * client-level one like {@link CHAT_PROXY_SERVICE}.
  */
-export const MOD_PROXY_SERVICE: Service = `${api.moderation.did}#atproto_labeler`
+export function modProxyService(): Service | undefined {
+  return KRAO_LABELER_DID
+    ? (`${KRAO_LABELER_DID}#atproto_labeler` as Service)
+    : undefined
+}
 
 /**
  * The notification service's proxy target, in the `did#service_id` form a lex

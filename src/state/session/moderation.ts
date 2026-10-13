@@ -1,8 +1,7 @@
 import {type Client} from '@atproto/lex'
 import {type DidString} from '@atproto/syntax'
-import {api} from '@bsky/sdk'
 
-import {IS_TEST_USER} from '#/lib/constants'
+import {IS_TEST_USER, KRAO_LABELER_DID} from '#/lib/constants'
 import {com} from '#/lexicons'
 import {account as accountStorage} from '#/storage'
 import {
@@ -37,9 +36,9 @@ export function readLabelers(did: string): string[] | undefined {
 
 /**
  * Apply an account's labeler subscriptions to the appview client, without
- * duplicating the globally redacted Bluesky moderation authority.
+ * duplicating the globally redacted Krao moderation authority.
  *
- * The Bluesky DID is filtered out because it already flows through the global
+ * The Krao labeler DID is filtered out because it already flows through the global
  * `Client.appLabelers`, which lex emits with a `;redact` suffix. Listing it
  * per-instance would add a second, non-redacting entry for the same authority:
  * lex collects the two lists into a `Set` keyed on the suffixed string, so
@@ -53,14 +52,14 @@ export function applyLabelersToClient(
   subscribedDids: string[],
 ) {
   client.setLabelers(
-    subscribedDids.filter(did => did !== api.moderation.did) as DidString[],
+    subscribedDids.filter(did => did !== KRAO_LABELER_DID) as DidString[],
   )
 }
 
 export function configureModerationForGuest() {
   // This global mutation is *only* OK because this code is only relevant for testing.
   // Don't add any other global behavior here!
-  switchToBskyAppLabeler()
+  switchToKraoAppLabeler()
   configureAdditionalModerationAuthorities()
 }
 
@@ -75,7 +74,7 @@ export function configureModerationForAccount(
 ) {
   // This global mutation is *only* OK because this code is only relevant for testing.
   // Don't add any other global behavior here!
-  switchToBskyAppLabeler()
+  switchToKraoAppLabeler()
   if (IS_TEST_USER(account.handle)) {
     // Test accounts may briefly use the production authority while this resolves.
     void trySwitchToTestAppLabeler(bundle.appviewClient)
@@ -94,8 +93,8 @@ export function configureModerationForAccount(
   configureAdditionalModerationAuthorities()
 }
 
-function switchToBskyAppLabeler() {
-  configureGlobalAppLabelers([api.moderation.did])
+function switchToKraoAppLabeler() {
+  configureGlobalAppLabelers(KRAO_LABELER_DID ? [KRAO_LABELER_DID] : [])
 }
 
 /** Resolve and install the test environment's moderation authority. */

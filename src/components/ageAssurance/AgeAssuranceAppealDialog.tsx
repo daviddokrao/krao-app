@@ -5,7 +5,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 
-import {MOD_PROXY_SERVICE} from '#/lib/constants'
+import {modProxyService} from '#/lib/constants'
 import {useAppviewClient, useSession} from '#/state/session'
 import {atoms as a, useBreakpoints, web} from '#/alf'
 import {AgeAssuranceBadge} from '#/components/ageAssurance/AgeAssuranceBadge'
@@ -64,7 +64,7 @@ function Inner({control}: {control: Dialog.DialogControlProps}) {
           },
           reason: `AGE_ASSURANCE_INQUIRY: ` + details,
         },
-        {service: MOD_PROXY_SERVICE},
+        {service: modProxyService()},
       )
     },
     onError: err => {

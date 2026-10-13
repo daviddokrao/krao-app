@@ -7,10 +7,10 @@ import {
   useState,
 } from 'react'
 import {Pressable, type ScrollView, View} from 'react-native'
-import {api} from '@bsky/sdk'
 import {Trans, useLingui} from '@lingui/react/macro'
 
 import {wait} from '#/lib/async/wait'
+import {KRAO_LABELER_DID} from '#/lib/constants'
 import {formatTime} from '#/lib/media/video/formatTime'
 import {getLabelingServiceTitle} from '#/lib/moderation'
 import {useCallOnce} from '#/lib/once'
@@ -223,7 +223,7 @@ function Inner(
       .filter(l => {
         if (!state.selectedOption) return false
         if (isBskyOnlyReason || isBskyOnlySubject) {
-          return l.creator.did === api.moderation.did
+          return l.creator.did === KRAO_LABELER_DID
         }
         const supportedReasonTypes: string[] | undefined = l.reasonTypes
         if (supportedReasonTypes === undefined) return true
@@ -643,7 +643,7 @@ function Inner(
               </View>
 
               {videoTimestampSeconds !== undefined &&
-                state.selectedLabeler?.creator.did === api.moderation.did && (
+                state.selectedLabeler?.creator.did === KRAO_LABELER_DID && (
                   <IncludeVideoTimestampToggle
                     seconds={videoTimestampSeconds}
                     selected={state.includeVideoTimestamp}

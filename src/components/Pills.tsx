@@ -1,9 +1,9 @@
 import {useMemo} from 'react'
 import {View} from 'react-native'
-import {api} from '@bsky/sdk'
 import {type ModerationCause} from '@bsky/sdk/moderation'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {KRAO_LABELER_DID} from '#/lib/constants'
 import {useModerationCauseDescription} from '#/lib/moderation/useModerationCauseDescription'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {atoms as a, useTheme, type ViewStyleProp} from '#/alf'
@@ -67,7 +67,7 @@ export function Label({
   const desc = useModerationCauseDescription(cause)
   const isLabeler = Boolean(desc.sourceType && desc.sourceDid)
   const isBlueskyLabel =
-    desc.sourceType === 'labeler' && desc.sourceDid === api.moderation.did
+    desc.sourceType === 'labeler' && desc.sourceDid === KRAO_LABELER_DID
   const avi = size === 'lg' ? 16 : 12
 
   return (

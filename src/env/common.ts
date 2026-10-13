@@ -100,11 +100,18 @@ export const KRAO_GATE_DID: string =
 
 /**
  * Krao's "latest" feed, the app's Discover feed. Its owner may be given by
- * handle; the app resolves it to a DID on startup (see resolveDiscoverFeed).
+ * handle; the app resolves it to a DID on startup (see resolveKraoServices).
  */
 export const KRAO_DISCOVER_FEED: string =
   process.env.EXPO_PUBLIC_KRAO_DISCOVER_FEED ||
   'at://krao.io/app.bsky.feed.generator/latest'
+
+/**
+ * Krao's moderation service (labeler), by DID or handle. It labels content
+ * for everyone and receives reports and appeals. Unset, no app labeler is
+ * used.
+ */
+export const KRAO_LABELER: string = process.env.EXPO_PUBLIC_KRAO_LABELER || ''
 
 /**
  * Enables a built-in test wallet (the public Hardhat dev key) for local

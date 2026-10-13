@@ -3,7 +3,7 @@ import {type StyleProp, View, type ViewStyle} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 
-import {MOD_PROXY_SERVICE} from '#/lib/constants'
+import {modProxyService} from '#/lib/constants'
 import {logger} from '#/logger'
 import {useAppviewClient, useSession} from '#/state/session'
 import {atoms as a, useBreakpoints, useTheme} from '#/alf'
@@ -108,7 +108,7 @@ function DialogInner() {
           },
           reason: details,
         },
-        {service: MOD_PROXY_SERVICE},
+        {service: modProxyService()},
       )
     },
     onError: err => {

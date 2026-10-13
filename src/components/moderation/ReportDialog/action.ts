@@ -1,9 +1,9 @@
 import {type AtUriString, type DidString} from '@atproto/syntax'
-import {api} from '@bsky/sdk'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {useMutation} from '@tanstack/react-query'
 
+import {KRAO_LABELER_DID} from '#/lib/constants'
 import {logger} from '#/logger'
 import {useAppviewClient} from '#/state/session'
 import {com} from '#/lexicons'
@@ -121,7 +121,7 @@ export function useSubmitReportMutation() {
         state.includeVideoTimestamp &&
         videoTimestampSeconds != null &&
         subject.type === 'post' &&
-        labeler.creator.did === api.moderation.did
+        labeler.creator.did === KRAO_LABELER_DID
           ? {videoTimestampSeconds}
           : undefined
 
