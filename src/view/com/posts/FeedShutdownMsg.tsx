@@ -1,10 +1,12 @@
 import {useCallback} from 'react'
 import {View} from 'react-native'
+import {AtUri} from '@atproto/syntax'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
 import {DISCOVER_FEED_URI} from '#/lib/constants'
+import {makeCustomFeedLink} from '#/lib/routes/links'
 import {logger} from '#/logger'
 import {
   usePreferencesQuery,
@@ -22,6 +24,7 @@ import {Text} from '#/components/Typography'
 export function FeedShutdownMsg({feedUri}: {feedUri: string}) {
   const t = useTheme()
   const {_} = useLingui()
+  const discover = new AtUri(DISCOVER_FEED_URI)
   const setSelectedFeed = useSetSelectedFeed()
   const {data: preferences} = usePreferencesQuery()
   const {mutateAsync: removeFeed, isPending: isRemovePending} =
@@ -105,7 +108,7 @@ export function FeedShutdownMsg({feedUri}: {feedUri: string}) {
           This feed is no longer online. We are showing{' '}
           <InlineLinkText
             label={_(msg`The Discover feed`)}
-            to="/profile/bsky.app/feed/whats-hot"
+            to={makeCustomFeedLink(discover.host, discover.rkey)}
             style={[a.text_md]}>
             Discover
           </InlineLinkText>{' '}

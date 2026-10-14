@@ -5,7 +5,7 @@ import {useIsFocused} from '@react-navigation/native'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useQueryClient} from '@tanstack/react-query'
 
-import {TRENDING_DID, TRENDING_HANDLE, VIDEO_FEED_URIS} from '#/lib/constants'
+import {VIDEO_FEED_URIS} from '#/lib/constants'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {useSetTitle} from '#/lib/hooks/useSetTitle'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
@@ -180,17 +180,12 @@ export function CustomFeedScreenInner({
     return IS_NATIVE && _isVideoFeed
   }, [feedInfo])
 
-  const isTrending =
-    feedInfo.creatorDid.toLowerCase() === TRENDING_DID ||
-    feedInfo.creatorHandle.toLowerCase() === TRENDING_HANDLE
-
   return (
     <>
-      <CustomFeedHeader info={feedInfo} isTrending={isTrending} />
+      <CustomFeedHeader info={feedInfo} isTrending={false} />
       <FeedFeedbackProvider value={feedFeedback}>
         <PostFeed
           enabled
-          description={isTrending ? feedInfo.description : undefined}
           feed={feed}
           feedParams={feedParams}
           pollInterval={60e3}

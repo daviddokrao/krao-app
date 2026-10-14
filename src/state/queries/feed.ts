@@ -207,21 +207,12 @@ export function useFeedSourceInfoQuery({uri}: {uri: string}) {
   })
 }
 
-// HACK
-// the protocol doesn't yet tell us which feeds are personalized
-// this list is used to filter out feed recommendations from logged out users
-// for the ones we know need it
-// -prf
-export const KNOWN_AUTHED_ONLY_FEEDS = [
-  'at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/with-friends', // popular with friends, by bsky.app
-  'at://did:plc:tenurhgjptubkk5zf5qhi3og/app.bsky.feed.generator/mutuals', // mutuals, by skyfeed
-  'at://did:plc:tenurhgjptubkk5zf5qhi3og/app.bsky.feed.generator/only-posts', // only posts, by skyfeed
-  'at://did:plc:wzsilnxf24ehtmmc3gssy5bu/app.bsky.feed.generator/mentions', // mentions, by flicknow
-  'at://did:plc:q6gjnaw2blty4crticxkmujt/app.bsky.feed.generator/bangers', // my bangers, by jaz
-  'at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/mutuals', // mutuals, by bluesky
-  'at://did:plc:q6gjnaw2blty4crticxkmujt/app.bsky.feed.generator/my-followers', // followers, by jaz
-  'at://did:plc:vpkhqolt662uhesyj6nxm7ys/app.bsky.feed.generator/followpics', // the gram, by why
-]
+/**
+ * Personalized feeds, hidden from logged-out users' recommendations since the
+ * protocol does not say which feeds need a session. Krao's own feeds work
+ * logged out, so the list is empty until one does not.
+ */
+export const KNOWN_AUTHED_ONLY_FEEDS: string[] = []
 
 type GetPopularFeedsOptions = {limit?: number; enabled?: boolean}
 

@@ -1,13 +1,17 @@
 import {View} from 'react-native'
+import {AtUri} from '@atproto/syntax'
 import {Trans} from '@lingui/react/macro'
 
+import {DISCOVER_FEED_URI} from '#/lib/constants'
 import {usePalette} from '#/lib/hooks/usePalette'
 import {InfoCircleIcon} from '#/lib/icons'
+import {makeCustomFeedLink} from '#/lib/routes/links'
 import {TextLink} from '../util/Link'
 import {Text} from '../util/text/Text'
 
 export function DiscoverFallbackHeader() {
   const pal = usePalette('default')
+  const discover = new AtUri(DISCOVER_FEED_URI)
   return (
     <View
       style={[
@@ -30,7 +34,7 @@ export function DiscoverFallbackHeader() {
             We ran out of posts from your follows. Here's the latest from{' '}
             <TextLink
               type="md-medium"
-              href="/profile/bsky.app/feed/whats-hot"
+              href={makeCustomFeedLink(discover.host, discover.rkey)}
               text="Discover"
               style={pal.link}
             />
