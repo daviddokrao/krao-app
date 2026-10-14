@@ -25,6 +25,8 @@ import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
 import {IS_NATIVE} from '#/env'
+import {getReferralUrl} from '#/features/referral/api'
+import {useReferralOverviewQuery} from '#/features/referral/queries'
 import {ActionButtons} from './components/ActionButtons'
 import {ThemedQrCard} from './components/ThemedQrCard'
 import {ThemePicker} from './components/ThemePicker'
@@ -56,8 +58,22 @@ export function InviteFriendsDialogInner({
   // it like a load error so we don't display a broken share URL.
   const isHandleValid = !!handle && handle !== 'handle.invalid'
 
-  const canonicalShareUrl = isHandleValid ? getInviteShareUrl(handle) : ''
-  const displayUrl = isHandleValid ? getInviteDisplayUrl(handle) : ''
+  /*
+   * Krao: signing up needs a referral code, so the invite carries the
+   * viewer's code (krao.net/join/<code>); the profile link is the fallback
+   * while the code loads or if the rewards service is unreachable
+   */
+  const referralCode = useReferralOverviewQuery().data?.code
+  const canonicalShareUrl = referralCode
+    ? getReferralUrl(referralCode)
+    : isHandleValid
+      ? getInviteShareUrl(handle)
+      : ''
+  const displayUrl = referralCode
+    ? canonicalShareUrl.replace(/^https?:\/\//, '')
+    : isHandleValid
+      ? getInviteDisplayUrl(handle)
+      : ''
 
   const onShare = async () => {
     if (!canonicalShareUrl) {

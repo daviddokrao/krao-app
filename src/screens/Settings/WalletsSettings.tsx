@@ -189,10 +189,16 @@ function WalletRow({wallet}: {wallet: LinkedWallet}) {
             a.text_sm,
             verified
               ? {color: t.palette.positive_600}
-              : {color: t.palette.negative_500},
+              : wallet.status === 'pending'
+                ? t.atoms.text_contrast_medium
+                : {color: t.palette.negative_500},
           ]}>
           {chainName(wallet.account)} ·{' '}
-          {verified ? l`Verified` : l`Invalid signature`}
+          {verified
+            ? l`Verified`
+            : wallet.status === 'pending'
+              ? l`Checking…`
+              : l`Invalid signature`}
         </Text>
       </View>
       <SettingsList.BadgeButton
