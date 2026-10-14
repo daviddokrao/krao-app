@@ -897,7 +897,7 @@ msgstr "<0>{0}</0> {1, plural, other {lượt đăng lại}}"
 #. placeholder {1}: post.bookmarkCount
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:504
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
-msgstr ""
+msgstr "<0>{0}</0> {1, plural, other {lượt lưu}}"
 
 #. Like count display, the <0> tags enclose the number of likes in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(likeCount)
@@ -1363,7 +1363,7 @@ msgstr "Thêm vào danh sách"
 
 #: src/components/PostControls/BookmarkButton.tsx:121
 msgid "Add to saved posts"
-msgstr ""
+msgstr "Thêm vào bài đã lưu"
 
 #: src/components/dialogs/StarterPackDialog.tsx:178
 #: src/view/com/profile/ProfileMenu.tsx:368
@@ -2243,7 +2243,7 @@ msgstr ""
 
 #: src/components/dialogs/BirthDateSettings.tsx:163
 msgid "Birthdate"
-msgstr ""
+msgstr "Ngày sinh"
 
 #: src/screens/Settings/AccountSettings.tsx:145
 msgid "Birthday"
@@ -2766,7 +2766,7 @@ msgstr "Thay đổi nơi quản lý tài khoản"
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:176
 msgid "Changes saved"
-msgstr ""
+msgstr "Đã lưu thay đổi"
 
 #: src/components/dialogs/lists/CreateListFromStarterPackDialog.tsx:162
 msgid "Changes to the Starter Pack will not be reflected in the list after creation. The list will be an independent copy."
@@ -3665,7 +3665,7 @@ msgstr ""
 #. placeholder {0}: cleanError(error)
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:292
 msgid "Could not save changes: {0}"
-msgstr ""
+msgstr "Không thể lưu thay đổi: {0}"
 
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:64
 msgid "Could not share – please try again"
@@ -4281,7 +4281,7 @@ msgstr ""
 
 #: src/components/ageAssurance/useAgeAssuranceCopy.ts:26
 msgid "Don't worry! All existing messages and settings are saved and will be available after you verify you're an adult."
-msgstr ""
+msgstr "Đừng lo! Mọi tin nhắn và cài đặt hiện có vẫn được lưu và sẽ dùng lại được sau khi bạn xác minh mình đã đủ tuổi."
 
 #: src/components/contacts/components/InviteInfo.tsx:73
 #: src/components/contacts/components/InviteInfo.tsx:79
@@ -5206,11 +5206,11 @@ msgstr ""
 
 #: src/view/com/composer/Composer.tsx:739
 msgid "Failed to save draft"
-msgstr ""
+msgstr "Không lưu được bản nháp"
 
 #: src/components/Lightbox/Lightbox.web.tsx:320
 msgid "Failed to save image"
-msgstr ""
+msgstr "Không lưu được ảnh"
 
 #. placeholder {0}: String(e)
 #: src/lib/media/save-image.ios.ts:27
@@ -5432,7 +5432,7 @@ msgstr ""
 
 #: src/components/dialogs/nuxs/BookmarksAnnouncement.tsx:156
 msgid "Finally! Keep track of posts that matter to you. Save them to revisit anytime."
-msgstr ""
+msgstr "Cuối cùng cũng có! Lưu lại những bài đăng quan trọng với bạn để xem lại bất cứ lúc nào."
 
 #: src/lib/interests.ts:60
 msgid "Finance"
@@ -6604,7 +6604,7 @@ msgstr ""
 #: src/lib/media/save-image.ios.ts:25
 #: src/lib/media/save-image.ts:29
 msgid "Image saved"
-msgstr ""
+msgstr "Đã lưu ảnh"
 
 #: src/components/Lightbox/Lightbox.web.tsx:83
 msgid "Image viewer"
@@ -6612,7 +6612,7 @@ msgstr ""
 
 #: src/lib/media/save-image.ts:51
 msgid "Images cannot be saved unless permission is granted to access your photo library."
-msgstr ""
+msgstr "Không thể lưu ảnh nếu chưa cấp quyền truy cập thư viện ảnh."
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:52
 msgid "Impersonation"
@@ -6761,7 +6761,7 @@ msgstr ""
 
 #: src/components/dialogs/nuxs/BookmarksAnnouncement.tsx:38
 msgid "Introducing saved posts AKA bookmarks"
-msgstr ""
+msgstr "Giới thiệu bài đã lưu (dấu trang)"
 
 #: src/screens/Login/LoginForm.tsx:155
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:78
@@ -8556,7 +8556,7 @@ msgstr ""
 
 #: src/screens/Bookmarks.tsx:290
 msgid "Nothing saved yet"
-msgstr ""
+msgstr "Chưa lưu gì"
 
 #: src/Navigation.tsx:203
 #: src/screens/ModerationInbox/Subject.tsx:35
@@ -10183,7 +10183,7 @@ msgstr "Xóa khỏi bảng tin đã lưu"
 #: src/components/PostControls/BookmarkButton.tsx:120
 #: src/screens/Bookmarks.tsx:250
 msgid "Remove from saved posts"
-msgstr ""
+msgstr "Xoá khỏi bài đã lưu"
 
 #: src/components/FeedCard.tsx:401
 msgid "Remove from your feeds?"
@@ -10268,7 +10268,7 @@ msgstr "Đã xóa khỏi bảng tin được lưu"
 #: src/components/PostControls/BookmarkButton.tsx:88
 #: src/screens/Bookmarks.tsx:209
 msgid "Removed from saved posts"
-msgstr ""
+msgstr "Đã xoá khỏi bài đã lưu"
 
 #: src/components/dialogs/StarterPackDialog.tsx:281
 #: src/components/StarterPack/Main/ProfilesList.tsx:170
@@ -10802,7 +10802,7 @@ msgstr "Lưu"
 
 #: src/components/dialogs/BirthDateSettings.tsx:193
 msgid "Save birthdate"
-msgstr ""
+msgstr "Lưu ngày sinh"
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:195
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:204
@@ -10818,17 +10818,17 @@ msgstr "Lưu thay đổi"
 #: src/view/com/composer/Composer.tsx:1523
 #: src/view/com/composer/drafts/DraftsButton.tsx:89
 msgid "Save changes?"
-msgstr ""
+msgstr "Lưu thay đổi?"
 
 #: src/view/com/composer/Composer.tsx:1551
 #: src/view/com/composer/drafts/DraftsButton.tsx:121
 msgid "Save draft"
-msgstr ""
+msgstr "Lưu bản nháp"
 
 #: src/view/com/composer/Composer.tsx:1525
 #: src/view/com/composer/drafts/DraftsButton.tsx:91
 msgid "Save draft?"
-msgstr ""
+msgstr "Lưu bản nháp?"
 
 #: src/components/Lightbox/chrome/ImageMenu.tsx:99
 #: src/components/MediaPreview.tsx:237
@@ -10849,7 +10849,7 @@ msgstr "Lưu mã QR"
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:651
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:657
 msgid "Save these options for next time"
-msgstr ""
+msgstr "Lưu các tuỳ chọn này cho lần sau"
 
 #: src/screens/CustomFeed/components/CustomFeedHeader.tsx:368
 #: src/screens/CustomFeed/components/CustomFeedHeader.tsx:374
@@ -10860,7 +10860,7 @@ msgstr "Lưu vào bảng tin của tôi"
 #: src/view/shell/Drawer.tsx:633
 msgctxt "link to bookmarks screen"
 msgid "Saved"
-msgstr ""
+msgstr "Đã lưu"
 
 #: src/screens/SavedFeeds.tsx:198
 #: src/screens/SavedFeeds.tsx:375
@@ -10871,7 +10871,7 @@ msgstr "Bảng tin đã lưu"
 #: src/Navigation.tsx:603
 #: src/screens/Bookmarks.tsx:57
 msgid "Saved Posts"
-msgstr ""
+msgstr "Bài đã lưu"
 
 #: src/screens/CustomFeed/components/CustomFeedHeader.tsx:138
 #: src/screens/ProfileList/components/Header.tsx:93
@@ -14745,11 +14745,11 @@ msgstr ""
 
 #: src/view/com/composer/drafts/DraftsButton.tsx:106
 msgid "Would you like to save this as a draft before viewing your drafts?"
-msgstr ""
+msgstr "Bạn có muốn lưu bài này thành bản nháp trước khi xem các bản nháp không?"
 
 #: src/view/com/composer/Composer.tsx:1539
 msgid "Would you like to save this as a draft to edit later?"
-msgstr ""
+msgstr "Bạn có muốn lưu bài này thành bản nháp để sửa sau không?"
 
 #: src/view/screens/Profile.tsx:446
 #: src/view/screens/Profile.tsx:447
@@ -14945,11 +14945,11 @@ msgstr ""
 
 #: src/view/com/composer/Composer.tsx:1544
 msgid "You can only save drafts up to 1000 characters."
-msgstr ""
+msgstr "Bản nháp chỉ lưu được tối đa 1000 ký tự."
 
 #: src/view/com/composer/drafts/DraftsButton.tsx:112
 msgid "You can only save drafts up to 1000 characters. Would you like to discard this post before viewing your drafts?"
-msgstr ""
+msgstr "Bản nháp chỉ lưu được tối đa 1000 ký tự. Bạn có muốn huỷ bài này trước khi xem các bản nháp không?"
 
 #: src/view/com/composer/SelectMediaButton.tsx:449
 msgid "You can only select one GIF at a time."
@@ -15090,11 +15090,11 @@ msgstr "Bạn đã tạm thời đạt giới hạn tải lên video. Vui lòng 
 
 #: src/view/com/composer/Composer.tsx:1534
 msgid "You have unsaved changes to this draft, would you like to save them?"
-msgstr ""
+msgstr "Bản nháp này có thay đổi chưa lưu, bạn có muốn lưu không?"
 
 #: src/view/com/composer/drafts/DraftsButton.tsx:101
 msgid "You have unsaved changes. Would you like to save them before viewing your drafts?"
-msgstr ""
+msgstr "Bạn có thay đổi chưa lưu. Bạn có muốn lưu trước khi xem các bản nháp không?"
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:291
 msgid "You haven't created a Starter Pack yet!"
