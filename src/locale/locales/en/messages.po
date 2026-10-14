@@ -13,6 +13,14 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/features/gating/describe.ts:32
+msgid " and "
+msgstr " and "
+
+#: src/features/gating/describe.ts:31
+msgid " or "
+msgstr " or "
+
 #. Accessibility label for a category (e.g. Art, Video Games, Sports, etc.) that shows suggested accounts for the user to follow. The tab is currently selected.
 #: src/components/InterestTabs.tsx:333
 msgid "\"{interestsDisplayName}\" category (active)"
@@ -218,8 +226,8 @@ msgstr ""
 #. Number of users (always at least 25) who have joined Bluesky using a specific Starter Pack
 #. placeholder {0}: starterPack.joinedAllTimeCount || 0
 #: src/screens/StarterPack/StarterPackScreen.tsx:493
-msgid "{0, plural, other {# people have}} joined Bluesky via this Starter Pack!"
-msgstr "{0, plural, other {# people have}} joined Bluesky via this Starter Pack!"
+msgid "{0, plural, other {# people have}} joined Krao via this Starter Pack!"
+msgstr "{0, plural, other {# people have}} joined Krao via this Starter Pack!"
 
 #. placeholder {0}: starterPack.list.listItemCount - 4
 #: src/components/dialogs/StarterPackDialog.tsx:351
@@ -757,7 +765,7 @@ msgstr "{MAX_DESCRIPTION, plural, other {Description is too long. The maximum nu
 msgid "{MAX_DISPLAY_NAME, plural, other {Display name is too long. The maximum number of characters is #.}}"
 msgstr "{MAX_DISPLAY_NAME, plural, other {Display name is too long. The maximum number of characters is #.}}"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:391
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:397
 msgid "{MAX_HIDDEN_REPLIES, plural, other {You can hide a maximum of # replies.}}"
 msgstr ""
 
@@ -796,21 +804,21 @@ msgstr ""
 msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr ""
 
-#: src/components/dialogs/NewskieDialog/utils.ts:49
-msgid "{profileName} joined Bluesky {timeAgoString} ago"
-msgstr ""
+#: src/components/dialogs/NewskieDialog/utils.ts:47
+msgid "{profileName} joined Krao {timeAgoString} ago"
+msgstr "{profileName} joined Krao {timeAgoString} ago"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:32
-msgid "{profileName} joined Bluesky just now"
-msgstr "{profileName} joined Bluesky just now"
+msgid "{profileName} joined Krao just now"
+msgstr "{profileName} joined Krao just now"
 
-#: src/components/dialogs/NewskieDialog/utils.ts:47
-msgid "{profileName} joined Bluesky using a Starter Pack {timeAgoString} ago"
-msgstr "{profileName} joined Bluesky using a Starter Pack {timeAgoString} ago"
+#: src/components/dialogs/NewskieDialog/utils.ts:45
+msgid "{profileName} joined Krao using a Starter Pack {timeAgoString} ago"
+msgstr "{profileName} joined Krao using a Starter Pack {timeAgoString} ago"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:31
-msgid "{profileName} joined Bluesky using a Starter Pack just now"
-msgstr "{profileName} joined Bluesky using a Starter Pack just now"
+msgid "{profileName} joined Krao using a Starter Pack just now"
+msgstr "{profileName} joined Krao using a Starter Pack just now"
 
 #. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
 #. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
@@ -857,6 +865,11 @@ msgstr ""
 #: src/components/verification/VerificationsDialog.tsx:71
 msgid "{userName}'s verifications"
 msgstr ""
+
+#. placeholder {0}: target.handle
+#: src/features/tips/components/TipDialog.tsx:117
+msgid "@{0} hasn’t linked a wallet yet, so they can’t receive tips."
+msgstr "@{0} hasn’t linked a wallet yet, so they can’t receive tips."
 
 #: src/components/Post/Embed/AtCard/index.tsx:160
 msgid "@{displayedHandle}"
@@ -906,21 +919,21 @@ msgstr ""
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.quoteCount)
 #. placeholder {1}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:485
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:489
 msgid "<0>{0}</0> {1, plural, one {quote} other {quotes}}"
 msgstr ""
 
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:464
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:468
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr ""
 
 #. Save count display, the <0> tags enclose the number of saves in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.bookmarkCount)
 #. placeholder {1}: post.bookmarkCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:504
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:508
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
 msgstr ""
 
@@ -959,8 +972,8 @@ msgstr "<0>Community Guidelines: Harassment</0>"
 
 #: src/screens/Hashtag.tsx:232
 #: src/screens/Search/SearchResults.tsx:398
-msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Bluesky.</4>"
-msgstr ""
+msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Krao.</4>"
+msgstr "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Krao.</4>"
 
 #: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:251
 msgid "<0>Tap here to update your location with GPS.</0>"
@@ -970,6 +983,11 @@ msgstr "<0>Tap here to update your location with GPS.</0>"
 #: src/screens/StarterPack/Wizard/index.tsx:494
 msgid "<0>You</0> and<1> </1><2>{0} </2>are included in your Starter Pack"
 msgstr "<0>You</0> and<1> </1><2>{0} </2>are included in your Starter Pack"
+
+#. placeholder {0}: asset.symbol
+#: src/features/gating/describe.ts:15
+msgid "≥ {amount} {0} on Base"
+msgstr "≥ {amount} {0} on Base"
 
 #: src/lib/strings/handles.ts:38
 #: src/screens/Profile/Header/Handle.tsx:58
@@ -982,7 +1000,7 @@ msgstr ""
 msgid "24 hours"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:433
+#: src/screens/Login/LoginForm.tsx:434
 msgid "2FA Confirmation"
 msgstr ""
 
@@ -999,8 +1017,8 @@ msgid "7 days"
 msgstr ""
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:27
-msgid "A collection of popular feeds you can find on Bluesky, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
-msgstr ""
+msgid "A collection of popular feeds you can find on Krao, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
+msgstr "A collection of popular feeds you can find on Krao, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
 
 #: src/screens/ModerationInbox/index.tsx:204
 msgctxt "moderation-report-action"
@@ -1011,6 +1029,10 @@ msgstr "A label was added to your post"
 #: src/components/dms/getReactionInfo.ts:58
 msgid "a message"
 msgstr ""
+
+#: src/features/gating/describe.ts:13
+msgid "a minimum token balance"
+msgstr "a minimum token balance"
 
 #: src/components/contacts/screens/PhoneInput.tsx:103
 msgid "A network error occurred. Please check your internet connection"
@@ -1058,18 +1080,22 @@ msgstr ""
 
 #. Contains a post that originally appeared in English. Consider translating the post text if it makes sense in your language, and noting that the post was translated from English.
 #: src/components/dialogs/nuxs/DraftsAnnouncement.tsx:98
-msgid "A screenshot of the post composer with a new button next to the post button that says \"Drafts\", with a rainbow firework effect. Below, the text in the composer reads \"Hey, did you hear the news? Bluesky has drafts now!!!\"."
-msgstr ""
+msgid "A screenshot of the post composer with a new button next to the post button that says \"Drafts\", with a rainbow firework effect. Below, the text in the composer reads \"Hey, did you hear the news? Krao has drafts now!!!\"."
+msgstr "A screenshot of the post composer with a new button next to the post button that says \"Drafts\", with a rainbow firework effect. Below, the text in the composer reads \"Hey, did you hear the news? Krao has drafts now!!!\"."
 
 #: src/components/dms/dialogs/NewChatDialog.tsx:102
 #: src/components/dms/dialogs/ShareViaChatDialog.tsx:118
 msgid "A selected recipient is not followed by the sender."
 msgstr "A selected recipient is not followed by the sender."
 
-#: src/Navigation.tsx:513
+#: src/features/gating/describe.ts:19
+msgid "a specific NFT from {collection}"
+msgstr "a specific NFT from {collection}"
+
+#: src/Navigation.tsx:522
 #: src/screens/Settings/AboutSettings.tsx:85
-#: src/screens/Settings/Settings.tsx:267
-#: src/screens/Settings/Settings.tsx:270
+#: src/screens/Settings/Settings.tsx:274
+#: src/screens/Settings/Settings.tsx:277
 msgid "About"
 msgstr ""
 
@@ -1110,23 +1136,23 @@ msgid "Access requested! The group owner will review your request."
 msgstr "Access requested! The group owner will review your request."
 
 #: src/screens/Settings/AccessibilitySettings.tsx:45
-#: src/screens/Settings/Settings.tsx:237
-#: src/screens/Settings/Settings.tsx:240
+#: src/screens/Settings/Settings.tsx:244
+#: src/screens/Settings/Settings.tsx:247
 msgid "Accessibility"
 msgstr ""
 
-#: src/Navigation.tsx:420
+#: src/Navigation.tsx:421
 msgid "Accessibility Settings"
 msgstr ""
 
-#: src/Navigation.tsx:436
+#: src/Navigation.tsx:437
 #: src/screens/Settings/AccountSettings.tsx:54
-#: src/screens/Settings/Settings.tsx:177
-#: src/screens/Settings/Settings.tsx:180
+#: src/screens/Settings/Settings.tsx:178
+#: src/screens/Settings/Settings.tsx:181
 msgid "Account"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:423
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:429
 #: src/screens/Messages/components/RequestButtons.tsx:104
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:122
 #: src/view/com/profile/ProfileMenu.tsx:211
@@ -1152,7 +1178,7 @@ msgctxt "moderation-inbox-setting"
 msgid "Account labeling notifications"
 msgstr "Account labeling notifications"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:464
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:470
 #: src/view/com/profile/ProfileMenu.tsx:147
 msgctxt "toast"
 msgid "Account muted"
@@ -1167,17 +1193,17 @@ msgstr ""
 msgid "Account Muted by List"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:658
+#: src/screens/Settings/Settings.tsx:665
 msgid "Account options"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:693
+#: src/screens/Settings/Settings.tsx:700
 msgid "Account removed from quick access"
 msgstr ""
 
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:109
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:87
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:304
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:89
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:307
 #: src/view/com/profile/ProfileMenu.tsx:198
 msgctxt "toast"
 msgid "Account unblocked"
@@ -1188,7 +1214,7 @@ msgctxt "toast"
 msgid "Account unfollowed"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:445
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:451
 #: src/view/com/profile/ProfileMenu.tsx:134
 msgctxt "toast"
 msgid "Account unmuted"
@@ -1208,7 +1234,7 @@ msgstr "Activity"
 msgid "Activity from others"
 msgstr ""
 
-#: src/Navigation.tsx:489
+#: src/Navigation.tsx:490
 msgid "Activity notifications"
 msgstr "Activity notifications"
 
@@ -1264,18 +1290,18 @@ msgstr ""
 msgid "Add alt text (optional)"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:596
-#: src/screens/Settings/Settings.tsx:599
+#: src/screens/Settings/Settings.tsx:603
+#: src/screens/Settings/Settings.tsx:606
 #: src/view/shell/desktop/LeftNav.tsx:280
 #: src/view/shell/desktop/LeftNav.tsx:283
 msgid "Add another account"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1623
+#: src/view/com/composer/Composer.tsx:1630
 msgid "Add another post"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2294
+#: src/view/com/composer/Composer.tsx:2303
 msgid "Add another post to thread"
 msgstr ""
 
@@ -1304,6 +1330,11 @@ msgstr ""
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:447
 msgid "Add filter"
 msgstr "Add filter"
+
+#: src/features/gating/components/GateDialog.tsx:210
+#: src/features/gating/components/GateDialog.tsx:217
+msgid "Add gated content"
+msgstr "Add gated content"
 
 #: src/components/dms/AddMembersFlow.tsx:492
 msgid "Add group chat members"
@@ -1395,6 +1426,13 @@ msgstr ""
 #: src/view/com/profile/ProfileMenu.tsx:371
 msgid "Add to Starter Packs"
 msgstr "Add to Starter Packs"
+
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:534
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:536
+#: src/features/gating/components/GateDialog.tsx:31
+#: src/features/gating/components/GateDialog.tsx:94
+msgid "Add token-gated content"
+msgstr "Add token-gated content"
 
 #: src/components/dialogs/lists/ListAddRemoveUsersDialog.tsx:179
 msgid "Add user to list"
@@ -1647,6 +1685,15 @@ msgstr ""
 msgid "Alt text will be truncated. {MAX_ALT_TEXT, plural, other {Limit: {0} characters.}}"
 msgstr ""
 
+#: src/features/tips/components/TipDialog.tsx:167
+msgid "Amount"
+msgstr "Amount"
+
+#. placeholder {0}: asset.symbol
+#: src/features/tips/components/TipDialog.tsx:163
+msgid "Amount ({0})"
+msgstr "Amount ({0})"
+
 #. placeholder {0}: currentAccount?.email || '(no email)'
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:100
 msgid "An email has been sent to {0}. It includes a confirmation code which you can enter below."
@@ -1725,16 +1772,16 @@ msgstr ""
 
 #: src/components/contacts/components/HeroImage.tsx:28
 #: src/components/dialogs/nuxs/FindContactsAnnouncement.tsx:79
-msgid "An illustration depicting user avatars flowing from a contact book into the Bluesky app"
-msgstr ""
+msgid "An illustration depicting user avatars flowing from a contact book into the Krao app"
+msgstr "An illustration depicting user avatars flowing from a contact book into the Krao app"
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:45
-msgid "An illustration of several Bluesky posts alongside repost, like, and comment icons"
-msgstr ""
+msgid "An illustration of several Krao posts alongside repost, like, and comment icons"
+msgstr "An illustration of several Krao posts alongside repost, like, and comment icons"
 
 #: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:111
-msgid "An illustration of the Bluesky app with a paper airplane flying out of it, representing inviting friends"
-msgstr "An illustration of the Bluesky app with a paper airplane flying out of it, representing inviting friends"
+msgid "An illustration of the Krao app with a paper airplane flying out of it, representing inviting friends"
+msgstr "An illustration of the Krao app with a paper airplane flying out of it, representing inviting friends"
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:87
 #: src/components/verification/VerifierDialog.tsx:89
@@ -1769,8 +1816,8 @@ msgid "An issue occurred, please try again."
 msgstr ""
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:122
-msgid "An mockup of a iPhone showing the Bluesky app open to the profile of a verified user with a blue checkmark next to their display name."
-msgstr ""
+msgid "An mockup of a iPhone showing the Krao app open to the profile of a verified user with a blue checkmark next to their display name."
+msgstr "An mockup of a iPhone showing the Krao app open to the profile of a verified user with a blue checkmark next to their display name."
 
 #: src/components/moderation/ModerationDetailsDialog.tsx:154
 #: src/lib/moderation/useModerationCauseDescription.ts:142
@@ -1802,13 +1849,17 @@ msgid "Announcement"
 msgstr ""
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:39
-msgid "Announcing verification on Bluesky"
-msgstr ""
+msgid "Announcing verification on Krao"
+msgstr "Announcing verification on Krao"
 
 #. Placeholder text for a date picker
 #: src/screens/Search/components/AdvancedSearchDialog/ClearableDateField.tsx:43
 msgid "Any date"
 msgstr "Any date"
+
+#: src/features/gating/describe.ts:20
+msgid "any NFT from {collection}"
+msgstr "any NFT from {collection}"
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:459
 msgid "Anyone"
@@ -1834,7 +1885,7 @@ msgstr "Anyone can request to join"
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:112
 #: src/screens/Settings/ActivityPrivacySettings.tsx:117
-#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:165
+#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:163
 msgid "Anyone who follows me"
 msgstr ""
 
@@ -1842,7 +1893,7 @@ msgstr ""
 msgid "Anyone who has it will no longer be able to join or request to join. You can always create a new one."
 msgstr "Anyone who has it will no longer be able to join or request to join. You can always create a new one."
 
-#: src/Navigation.tsx:521
+#: src/Navigation.tsx:530
 #: src/screens/Settings/AppIconSettings/index.tsx:65
 #: src/screens/Settings/AppIconSettings/SettingsListItem.tsx:19
 #: src/screens/Settings/AppIconSettings/SettingsListItem.tsx:24
@@ -1880,7 +1931,7 @@ msgstr ""
 msgid "App passwords"
 msgstr ""
 
-#: src/Navigation.tsx:388
+#: src/Navigation.tsx:389
 #: src/screens/Settings/AppPasswords.tsx:52
 msgid "App Passwords"
 msgstr ""
@@ -1935,10 +1986,10 @@ msgstr ""
 msgid "Appeal this label"
 msgstr "Appeal this label"
 
-#: src/Navigation.tsx:428
+#: src/Navigation.tsx:429
 #: src/screens/Settings/AppearanceSettings.tsx:71
-#: src/screens/Settings/Settings.tsx:229
-#: src/screens/Settings/Settings.tsx:232
+#: src/screens/Settings/Settings.tsx:236
+#: src/screens/Settings/Settings.tsx:239
 msgid "Appearance"
 msgstr ""
 
@@ -1951,8 +2002,8 @@ msgstr "Apply"
 msgid "Apply default recommended feeds"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:527
-#: src/screens/Settings/Settings.tsx:529
+#: src/screens/Settings/Settings.tsx:534
+#: src/screens/Settings/Settings.tsx:536
 msgid "Apply Pull Request"
 msgstr ""
 
@@ -1961,12 +2012,12 @@ msgid "Apply update from this channel"
 msgstr "Apply update from this channel"
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:627
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:631
 msgid "Archived from {0}"
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:598
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:636
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:602
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:640
 msgid "Archived post"
 msgstr ""
 
@@ -2032,7 +2083,7 @@ msgstr ""
 msgid "Are you sure you want to rescind your request to join {0}?"
 msgstr "Are you sure you want to rescind your request to join {0}?"
 
-#: src/view/com/composer/Composer.tsx:1761
+#: src/view/com/composer/Composer.tsx:1768
 msgid "Are you sure you'd like to discard this post?"
 msgstr ""
 
@@ -2066,8 +2117,8 @@ msgstr "Ask apps and sites not to show my account to logged-out users"
 msgid "Ask apps to hide my posts from algorithmic recommendations"
 msgstr "Ask apps to hide my posts from algorithmic recommendations"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:616
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:618
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:643
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:645
 msgid "Assign topic for algo"
 msgstr ""
 
@@ -2079,7 +2130,7 @@ msgstr ""
 msgid "AT Protocol FAQ"
 msgstr "AT Protocol FAQ"
 
-#: src/Navigation.tsx:179
+#: src/Navigation.tsx:180
 #: src/screens/Atmosphere.tsx:31
 #: src/view/shell/desktop/LeftNav.tsx:714
 #: src/view/shell/Drawer.tsx:515
@@ -2111,7 +2162,7 @@ msgstr "Automatic"
 msgid "Automation label"
 msgstr "Automation label"
 
-#: src/Navigation.tsx:452
+#: src/Navigation.tsx:453
 #: src/screens/Settings/AutomationLabelSettings.tsx:104
 msgid "Automation Label"
 msgstr "Automation Label"
@@ -2148,8 +2199,8 @@ msgstr "Awaiting review"
 #: src/screens/Login/ChooseAccountForm.tsx:99
 #: src/screens/Login/ForgotPasswordForm.tsx:123
 #: src/screens/Login/ForgotPasswordForm.tsx:128
-#: src/screens/Login/LoginForm.tsx:508
-#: src/screens/Login/LoginForm.tsx:513
+#: src/screens/Login/LoginForm.tsx:509
+#: src/screens/Login/LoginForm.tsx:514
 #: src/screens/Login/SetNewPasswordForm.tsx:162
 #: src/screens/Login/SetNewPasswordForm.tsx:168
 #: src/screens/Messages/components/ChatDisabled.tsx:161
@@ -2254,10 +2305,10 @@ msgstr "Beta"
 msgid "Beta Feature"
 msgstr ""
 
-#: src/Navigation.tsx:444
+#: src/Navigation.tsx:445
 #: src/screens/Settings/BetaFeaturesSettings.tsx:116
-#: src/screens/Settings/Settings.tsx:251
-#: src/screens/Settings/Settings.tsx:254
+#: src/screens/Settings/Settings.tsx:258
+#: src/screens/Settings/Settings.tsx:261
 msgid "Beta features"
 msgstr "Beta features"
 
@@ -2289,7 +2340,7 @@ msgstr ""
 #: src/components/moderation/BlockDialog.tsx:190
 #: src/components/moderation/BlockDialog.tsx:210
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:193
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:196
 msgid "Block"
 msgstr ""
 
@@ -2299,8 +2350,8 @@ msgstr "Block {displayName}"
 
 #: src/components/dms/ConvoMenu.tsx:284
 #: src/components/dms/ConvoMenu.tsx:288
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:765
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:767
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:792
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:794
 #: src/screens/Messages/components/RequestButtons.tsx:154
 #: src/screens/Messages/components/RequestButtons.tsx:156
 #: src/view/com/profile/ProfileMenu.tsx:495
@@ -2369,7 +2420,7 @@ msgstr ""
 msgid "Blocked accounts"
 msgstr ""
 
-#: src/Navigation.tsx:224
+#: src/Navigation.tsx:225
 #: src/view/screens/ModerationBlockedAccounts.tsx:95
 msgid "Blocked Accounts"
 msgstr ""
@@ -2403,14 +2454,8 @@ msgstr ""
 msgid "bloomscrolling booksky"
 msgstr "bloomscrolling booksky"
 
-#: src/components/dialogs/ServerInput.tsx:144
-#: src/components/dialogs/ServerInput.tsx:146
 #: src/screens/CustomFeed/components/CustomFeedHeader.tsx:522
 msgid "Bluesky"
-msgstr ""
-
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:652
-msgid "Bluesky cannot confirm the authenticity of the claimed date."
 msgstr ""
 
 #: src/screens/Settings/AppIconSettings/useAppIconSets.ts:165
@@ -2422,35 +2467,6 @@ msgstr ""
 msgid "Bluesky has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension."
 msgstr "Bluesky has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension."
 
-#: src/components/contacts/screens/GetContacts.tsx:237
-msgid "Bluesky helps friends find each other by creating an encoded digital fingerprint, called a \"hash\", and then looking for matching hashes."
-msgstr ""
-
-#: src/components/dialogs/ServerInput.tsx:214
-#: src/screens/Login/components/HostingProviderDialog.tsx:236
-msgid "Bluesky is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
-msgstr ""
-
-#: src/components/dialogs/ServerInput.tsx:162
-msgid "Bluesky is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Bluesky Social option."
-msgstr ""
-
-#: src/components/ProgressGuide/List.tsx:115
-msgid "Bluesky is better with friends!"
-msgstr ""
-
-#: src/screens/Onboarding/StepFindContactsIntro/index.tsx:43
-msgid "Bluesky is more fun with friends"
-msgstr ""
-
-#: src/components/dialogs/nuxs/FindContactsAnnouncement.tsx:108
-msgid "Bluesky is more fun with friends! Import your contacts to see who’s already here."
-msgstr ""
-
-#: src/components/contacts/screens/ViewMatches.tsx:323
-msgid "Bluesky is more fun with friends. Do you want to invite some of yours? <0/>"
-msgstr ""
-
 #: src/screens/ModerationInbox/Notice.tsx:44
 #: src/screens/ModerationInbox/Report.tsx:38
 msgid "Bluesky Moderation Service"
@@ -2460,25 +2476,9 @@ msgstr "Bluesky Moderation Service"
 msgid "Bluesky Moderation Service removed a post from Bluesky for violating our <0>Community Guidelines</0>."
 msgstr "Bluesky Moderation Service removed a post from Bluesky for violating our <0>Community Guidelines</0>."
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:105
-msgid "Bluesky needs camera access to scan QR codes from other profiles."
-msgstr "Bluesky needs camera access to scan QR codes from other profiles."
-
 #: src/screens/Takendown.tsx:213
 msgid "Bluesky Social Terms of Service"
 msgstr ""
-
-#: src/screens/Settings/FindContactsSettings.tsx:579
-msgid "Bluesky stores your contacts as encoded data. Removing your contacts will immediately delete this data."
-msgstr ""
-
-#: src/components/StarterPack/ProfileStarterPacks.tsx:338
-msgid "Bluesky will choose a set of recommended accounts from people in your network."
-msgstr ""
-
-#: src/screens/Settings/components/PwiOptOut.tsx:102
-msgid "Bluesky will not show your account to logged-out users and will ask other apps to do the same. Other apps may not honor this request. It doesn't make your account private."
-msgstr "Bluesky will not show your account to logged-out users and will ask other apps to do the same. Other apps may not honor this request. It doesn't make your account private."
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:137
 msgid "Bluesky will proactively verify notable and authentic accounts."
@@ -2646,8 +2646,8 @@ msgstr "Camera access needed"
 #: src/components/dialogs/lists/CreateListFromStarterPackDialog.tsx:198
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:301
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:309
-#: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:175
-#: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:181
+#: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:174
+#: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:180
 #: src/components/Menu/index.tsx:373
 #: src/components/moderation/BlockDialog.tsx:201
 #: src/components/PostControls/RepostButton.tsx:210
@@ -2678,11 +2678,11 @@ msgstr "Camera access needed"
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:87
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:250
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:256
-#: src/screens/Settings/Settings.tsx:312
+#: src/screens/Settings/Settings.tsx:319
 #: src/screens/Takendown.tsx:102
 #: src/screens/Takendown.tsx:105
-#: src/view/com/composer/Composer.tsx:1839
-#: src/view/com/composer/Composer.tsx:1849
+#: src/view/com/composer/Composer.tsx:1846
+#: src/view/com/composer/Composer.tsx:1856
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:44
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:53
 #: src/view/shell/desktop/LeftNav.tsx:232
@@ -2767,7 +2767,7 @@ msgstr ""
 msgid "Change Handle"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:646
+#: src/screens/Login/LoginForm.tsx:656
 msgid "Change hosting provider"
 msgstr "Change hosting provider"
 
@@ -2823,7 +2823,7 @@ msgid "Channel"
 msgstr "Channel"
 
 #: src/lib/hooks/useNotificationHandler.ts:133
-#: src/Navigation.tsx:539
+#: src/Navigation.tsx:548
 #: src/view/shell/bottom-bar/BottomBar.tsx:246
 #: src/view/shell/desktop/LeftNav.tsx:726
 #: src/view/shell/Drawer.tsx:567
@@ -2883,7 +2883,7 @@ msgstr "Chat owners cannot leave a group chat."
 msgid "Chat recipient is not followed by the sender."
 msgstr "Chat recipient is not followed by the sender."
 
-#: src/Navigation.tsx:559
+#: src/Navigation.tsx:568
 msgid "Chat request inbox"
 msgstr ""
 
@@ -2893,7 +2893,7 @@ msgid "Chat requests"
 msgstr ""
 
 #: src/components/dms/ConvoMenu.tsx:88
-#: src/Navigation.tsx:554
+#: src/Navigation.tsx:563
 #: src/screens/Messages/ChatList.tsx:97
 #: src/screens/Messages/ChatList.tsx:101
 #: src/screens/Messages/ChatList.tsx:671
@@ -2951,9 +2951,13 @@ msgstr "Check for updates"
 msgid "Check my status"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:460
+#: src/screens/Login/LoginForm.tsx:461
 msgid "Check your email for a sign in code and enter it here."
 msgstr ""
+
+#: src/features/wallet/components/NftAvatarSection.tsx:94
+msgid "Checking ownership…"
+msgstr "Checking ownership…"
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:163
 msgid "Child safety"
@@ -3019,7 +3023,7 @@ msgstr "Choose who can join this group chat and how."
 msgid "Choose who to invite"
 msgstr ""
 
-#: src/components/dialogs/ServerInput.tsx:134
+#: src/components/dialogs/ServerInput.tsx:135
 #: src/screens/Login/components/HostingProviderDialog.tsx:155
 msgid "Choose your hosting provider"
 msgstr "Choose your hosting provider"
@@ -3042,11 +3046,11 @@ msgstr ""
 msgid "Clear"
 msgstr "Clear"
 
-#: src/screens/Settings/Settings.tsx:519
+#: src/screens/Settings/Settings.tsx:526
 msgid "Clear all storage data"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:521
+#: src/screens/Settings/Settings.tsx:528
 msgid "Clear all storage data (restart after this)"
 msgstr ""
 
@@ -3144,8 +3148,8 @@ msgstr ""
 #: src/components/dialogs/nuxs/DraftsAnnouncement.tsx:140
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:179
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:188
-#: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:192
-#: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:200
+#: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:191
+#: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:199
 #: src/components/dialogs/SearchablePeopleList.tsx:336
 #: src/components/dialogs/StarterPackDialog.tsx:181
 #: src/components/dms/AddMembersFlow.tsx:384
@@ -3252,7 +3256,7 @@ msgstr ""
 msgid "Closes password update alert"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1847
+#: src/view/com/composer/Composer.tsx:1854
 msgid "Closes post composer and discards post draft"
 msgstr ""
 
@@ -3286,7 +3290,7 @@ msgid "Comics"
 msgstr ""
 
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:46
-#: src/Navigation.tsx:378
+#: src/Navigation.tsx:379
 #: src/view/screens/CommunityGuidelines.tsx:28
 msgid "Community Guidelines"
 msgstr ""
@@ -3295,7 +3299,7 @@ msgstr ""
 msgid "Community Guidelines: Harassment"
 msgstr "Community Guidelines: Harassment"
 
-#: src/screens/Onboarding/StepFinished/index.tsx:335
+#: src/screens/Onboarding/StepFinished/index.tsx:332
 msgid "Complete onboarding and start using your account"
 msgstr ""
 
@@ -3310,7 +3314,7 @@ msgid "Compose new post"
 msgstr ""
 
 #. placeholder {0}: MAX_GRAPHEME_LENGTH || 0
-#: src/view/com/composer/Composer.tsx:1723
+#: src/view/com/composer/Composer.tsx:1730
 msgid "Compose posts up to {0, plural, other {# characters}} in length"
 msgstr ""
 
@@ -3318,11 +3322,11 @@ msgstr ""
 msgid "Compose reply"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2680
+#: src/view/com/composer/Composer.tsx:2689
 msgid "Compressing GIF..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2682
+#: src/view/com/composer/Composer.tsx:2691
 msgid "Compressing video..."
 msgstr ""
 
@@ -3342,7 +3346,7 @@ msgid "Confirm"
 msgstr ""
 
 #: src/components/dialogs/EmailDialog/components/TokenField.tsx:37
-#: src/screens/Login/LoginForm.tsx:439
+#: src/screens/Login/LoginForm.tsx:440
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:189
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:193
 #: src/screens/Settings/components/DeleteAccountDialog.tsx:250
@@ -3355,12 +3359,12 @@ msgstr ""
 msgid "Connecting to service..."
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:539
+#: src/screens/Login/LoginForm.tsx:540
 msgid "Connecting to service…"
 msgstr "Connecting to service…"
 
 #: src/screens/Login/ForgotPasswordForm.tsx:142
-#: src/screens/Login/LoginForm.tsx:545
+#: src/screens/Login/LoginForm.tsx:546
 msgid "Connecting…"
 msgstr "Connecting…"
 
@@ -3368,6 +3372,10 @@ msgstr "Connecting…"
 #: src/components/ageAssurance/AgeAssuranceRedirectDialog.tsx:209
 msgid "Connection issue"
 msgstr ""
+
+#: src/screens/Settings/WalletsSettings.tsx:114
+msgid "Connects a wallet and asks it to sign a link message"
+msgstr "Connects a wallet and asks it to sign a link message"
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:407
 #: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:129
@@ -3406,12 +3414,12 @@ msgstr ""
 msgid "Content & Media"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:209
-#: src/screens/Settings/Settings.tsx:212
+#: src/screens/Settings/Settings.tsx:216
+#: src/screens/Settings/Settings.tsx:219
 msgid "Content and media"
 msgstr ""
 
-#: src/Navigation.tsx:497
+#: src/Navigation.tsx:498
 msgid "Content and Media"
 msgstr ""
 
@@ -3492,6 +3500,11 @@ msgstr "Continue to group name"
 msgid "Continue to next step"
 msgstr ""
 
+#: src/features/wallet/components/NftAvatarSection.tsx:119
+#: src/features/wallet/components/NftAvatarSection.tsx:123
+msgid "Contract address"
+msgstr "Contract address"
+
 #: src/screens/Messages/Conversation.tsx:65
 msgid "Conversation"
 msgstr ""
@@ -3529,7 +3542,7 @@ msgstr "Copied link to clipboard"
 #: src/components/dms/ChatInvite/Root.tsx:100
 #: src/components/dms/MessageContextMenu.tsx:96
 #: src/components/PostControls/DiscoverDebug.tsx:36
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:269
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:275
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:75
 #: src/lib/sharing.ts:24
 #: src/lib/sharing.ts:42
@@ -3564,8 +3577,8 @@ msgstr ""
 msgid "Copy at:// URI"
 msgstr ""
 
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:152
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:155
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:154
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:157
 msgid "Copy author DID"
 msgstr ""
 
@@ -3605,8 +3618,8 @@ msgstr ""
 
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:140
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:143
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:86
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:89
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:88
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:91
 msgid "Copy link to post"
 msgstr ""
 
@@ -3624,13 +3637,13 @@ msgstr "Copy link to Starter Pack"
 msgid "Copy message text"
 msgstr ""
 
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:143
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:146
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:145
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:148
 msgid "Copy post at:// URI"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:571
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:573
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:598
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:600
 msgid "Copy post text"
 msgstr ""
 
@@ -3644,7 +3657,7 @@ msgstr ""
 
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:41
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:108
-#: src/Navigation.tsx:383
+#: src/Navigation.tsx:384
 #: src/view/screens/CopyrightPolicy.tsx:25
 msgid "Copyright Policy"
 msgstr ""
@@ -3712,6 +3725,10 @@ msgstr ""
 msgid "Could not load profile"
 msgstr "Could not load profile"
 
+#: src/screens/Settings/WalletsSettings.tsx:93
+msgid "Could not load your linked wallets."
+msgstr "Could not load your linked wallets."
+
 #: src/components/dms/ConvoMenu.tsx:212
 msgid "Could not mute chat"
 msgstr ""
@@ -3728,6 +3745,10 @@ msgstr ""
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:64
 msgid "Could not share – please try again"
 msgstr "Could not share – please try again"
+
+#: src/screens/Settings/WalletsSettings.tsx:208
+msgid "Could not unlink the wallet"
+msgstr "Could not unlink the wallet"
 
 #: src/state/queries/notifications/settings.ts:123
 msgid "Could not update notification settings"
@@ -3751,6 +3772,10 @@ msgstr "Couldn’t load GIFs"
 #: src/features/followingV2/home/GapRow.tsx:83
 msgid "Couldn’t load more posts. Try again"
 msgstr "Couldn’t load more posts. Try again"
+
+#: src/features/gating/components/GatedContent.tsx:70
+msgid "Couldn’t load the gated content."
+msgstr "Couldn’t load the gated content."
 
 #: src/components/InternationalPhoneCodeSelect.tsx:80
 msgid "Country code"
@@ -3785,7 +3810,7 @@ msgstr "Create a QR code for a Starter Pack"
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:206
 #: src/components/StarterPack/ProfileStarterPacks.tsx:315
-#: src/Navigation.tsx:590
+#: src/Navigation.tsx:599
 #: src/view/screens/Profile.tsx:575
 #: src/view/screens/Profile.tsx:576
 msgid "Create a Starter Pack"
@@ -3799,7 +3824,7 @@ msgstr "Create a Starter Pack for me"
 #: src/components/WelcomeModal.tsx:165
 #: src/screens/Messages/JoinRequest.tsx:318
 #: src/screens/Signup/index.tsx:139
-#: src/view/com/auth/SplashScreen.tsx:108
+#: src/view/com/auth/SplashScreen.tsx:106
 #: src/view/com/auth/SplashScreen.web.tsx:116
 #: src/view/shell/bottom-bar/BottomBar.tsx:355
 #: src/view/shell/bottom-bar/BottomBar.tsx:359
@@ -3903,8 +3928,8 @@ msgstr "Current beta features"
 msgid "Current chat"
 msgstr "Current chat"
 
-#: src/components/dialogs/ServerInput.tsx:152
-#: src/components/dialogs/ServerInput.tsx:154
+#: src/components/dialogs/ServerInput.tsx:153
+#: src/components/dialogs/ServerInput.tsx:155
 msgid "Custom"
 msgstr ""
 
@@ -3913,8 +3938,8 @@ msgid "Customization options"
 msgstr ""
 
 #: src/screens/Onboarding/Layout.tsx:126
-msgid "Customizes your Bluesky experience"
-msgstr ""
+msgid "Customizes your Krao experience"
+msgstr "Customizes your Krao experience"
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:202
 msgid "Dangerous challenges or activities"
@@ -3958,7 +3983,7 @@ msgstr "Day"
 msgid "Deactivate account"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:484
+#: src/screens/Settings/Settings.tsx:491
 msgid "Debug Moderation"
 msgstr ""
 
@@ -3979,7 +4004,7 @@ msgid "Default icons"
 msgstr ""
 
 #: src/components/dms/MessageOverlays.tsx:184
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:821
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:862
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:320
 #: src/screens/Settings/AppPasswords.tsx:214
 #: src/screens/StarterPack/StarterPackScreen.tsx:629
@@ -4011,8 +4036,8 @@ msgstr ""
 msgid "Delete chat"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:489
-#: src/screens/Settings/Settings.tsx:491
+#: src/screens/Settings/Settings.tsx:496
+#: src/screens/Settings/Settings.tsx:498
 msgid "Delete chat declaration record"
 msgstr ""
 
@@ -4049,9 +4074,9 @@ msgstr ""
 msgid "Delete my account"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:805
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:807
-#: src/view/com/composer/Composer.tsx:1735
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:832
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:834
+#: src/view/com/composer/Composer.tsx:1742
 msgid "Delete post"
 msgstr ""
 
@@ -4068,7 +4093,7 @@ msgstr "Delete Starter Pack?"
 msgid "Delete this list?"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:818
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:859
 msgid "Delete this post?"
 msgstr ""
 
@@ -4109,12 +4134,12 @@ msgstr "Description (1000 characters max)"
 msgid "Descriptive alt text"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:709
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:719
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:736
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:746
 msgid "Detach quote"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:854
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:895
 msgid "Detach quote post?"
 msgstr ""
 
@@ -4128,10 +4153,14 @@ msgctxt "toast"
 msgid "Developer mode enabled"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:294
-#: src/screens/Settings/Settings.tsx:297
+#: src/screens/Settings/Settings.tsx:301
+#: src/screens/Settings/Settings.tsx:304
 msgid "Developer options"
 msgstr ""
+
+#: src/screens/Settings/WalletsSettings.tsx:148
+msgid "Development test wallet enabled."
+msgstr "Development test wallet enabled."
 
 #: src/lib/translation/index.tsx:312
 msgid "Device failed to translate :("
@@ -4207,9 +4236,9 @@ msgstr ""
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:102
 #: src/screens/Profile/Header/EditProfileDialog.tsx:79
-#: src/view/com/composer/Composer.tsx:1513
-#: src/view/com/composer/Composer.tsx:1558
-#: src/view/com/composer/Composer.tsx:1768
+#: src/view/com/composer/Composer.tsx:1520
+#: src/view/com/composer/Composer.tsx:1565
+#: src/view/com/composer/Composer.tsx:1775
 #: src/view/com/composer/drafts/DraftItem.tsx:243
 #: src/view/com/composer/drafts/DraftsButton.tsx:128
 msgid "Discard"
@@ -4220,14 +4249,14 @@ msgstr ""
 msgid "Discard changes?"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1511
+#: src/view/com/composer/Composer.tsx:1518
 #: src/view/com/composer/drafts/DraftItem.tsx:240
 #: src/view/com/composer/drafts/DraftsButton.tsx:94
 msgid "Discard draft?"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1528
-#: src/view/com/composer/Composer.tsx:1760
+#: src/view/com/composer/Composer.tsx:1535
+#: src/view/com/composer/Composer.tsx:1767
 msgid "Discard post?"
 msgstr ""
 
@@ -4265,7 +4294,7 @@ msgstr ""
 msgid "Dismiss banner"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2622
+#: src/view/com/composer/Composer.tsx:2631
 msgid "Dismiss error"
 msgstr ""
 
@@ -4356,8 +4385,8 @@ msgstr ""
 #: src/components/dialogs/EmailDialog/screens/Verify.tsx:200
 #: src/components/dialogs/LanguageSelectDialog.tsx:327
 #: src/components/dialogs/NotificationSettingsDialog.tsx:106
-#: src/components/dialogs/ServerInput.tsx:237
-#: src/components/dialogs/ServerInput.tsx:239
+#: src/components/dialogs/ServerInput.tsx:238
+#: src/components/dialogs/ServerInput.tsx:240
 #: src/components/dms/AfterReportConversationDialog.tsx:164
 #: src/components/dms/AfterReportDialog.tsx:145
 #: src/components/forms/DateField/index.tsx:136
@@ -4395,10 +4424,6 @@ msgstr ""
 msgid "Download"
 msgstr "Download"
 
-#: src/screens/StarterPack/StarterPackLandingScreen.tsx:321
-msgid "Download Bluesky"
-msgstr ""
-
 #: src/screens/Settings/components/ExportCarDialog.tsx:153
 msgid "Download chat data"
 msgstr ""
@@ -4416,6 +4441,10 @@ msgstr "Download image"
 #: src/features/inviteFriends/components/ActionButtons.tsx:31
 msgid "Download invite QR code"
 msgstr "Download invite QR code"
+
+#: src/screens/StarterPack/StarterPackLandingScreen.tsx:321
+msgid "Download Krao"
+msgstr "Download Krao"
 
 #: src/screens/Settings/components/ExportCarDialog.tsx:122
 msgid "Download profile data"
@@ -4442,8 +4471,8 @@ msgid "Drop to add images"
 msgstr ""
 
 #: src/components/ageAssurance/useAgeAssuranceCopy.ts:20
-msgid "Due to laws in your region, certain features on Bluesky are currently restricted until you're able to verify you're an adult."
-msgstr ""
+msgid "Due to laws in your region, certain features on Krao are currently restricted until you're able to verify you're an adult."
+msgstr "Due to laws in your region, certain features on Krao are currently restricted until you're able to verify you're an adult."
 
 #: src/components/dialogs/MutedWords.tsx:164
 msgid "Duration:"
@@ -4524,8 +4553,8 @@ msgstr "Edit group name"
 msgid "Edit image"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:786
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:799
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:813
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:826
 msgid "Edit interaction settings"
 msgstr ""
 
@@ -4561,7 +4590,7 @@ msgstr ""
 msgid "Edit moderation list"
 msgstr ""
 
-#: src/Navigation.tsx:393
+#: src/Navigation.tsx:394
 #: src/view/screens/Feeds.tsx:512
 msgid "Edit My Feeds"
 msgstr ""
@@ -4587,12 +4616,12 @@ msgstr ""
 #: src/screens/Profile/Header/EditProfileDialog.tsx:265
 #: src/screens/Profile/Header/EditProfileDialog.tsx:271
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:300
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:339
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:342
 msgid "Edit profile"
 msgstr ""
 
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:303
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:341
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:344
 msgid "Edit Profile"
 msgstr ""
 
@@ -4613,7 +4642,7 @@ msgstr ""
 msgid "Edit who can reply"
 msgstr ""
 
-#: src/Navigation.tsx:595
+#: src/Navigation.tsx:604
 msgid "Edit your Starter Pack"
 msgstr "Edit your Starter Pack"
 
@@ -4669,8 +4698,8 @@ msgstr ""
 
 #: src/components/dialogs/Embed.tsx:106
 #: src/components/dialogs/Embed.tsx:110
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:118
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:123
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:120
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:125
 msgid "Embed post"
 msgstr ""
 
@@ -4772,6 +4801,10 @@ msgstr ""
 msgid "Enter a word or tag"
 msgstr ""
 
+#: src/features/tips/components/TipDialog.tsx:209
+msgid "Enter an amount"
+msgstr "Enter an amount"
+
 #: src/components/dialogs/EmailDialog/screens/Manage2FA/Disable.tsx:199
 #: src/components/dialogs/EmailDialog/screens/Verify.tsx:328
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:66
@@ -4794,7 +4827,7 @@ msgstr ""
 msgid "Enter the email you used to create your account. We'll send you a \"reset code\" so you can set a new password."
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:334
+#: src/screens/Login/LoginForm.tsx:335
 msgid "Enter the username or email address you used when you created your account"
 msgstr ""
 
@@ -4807,7 +4840,7 @@ msgstr ""
 msgid "Enter your email address"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:386
+#: src/screens/Login/LoginForm.tsx:387
 #: src/screens/Settings/components/DeleteAccountDialog.tsx:297
 msgid "Enter your password"
 msgstr ""
@@ -4824,7 +4857,7 @@ msgstr ""
 msgid "Entertainment"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2700
+#: src/view/com/composer/Composer.tsx:2709
 #: src/view/com/util/error/ErrorScreen.tsx:40
 msgid "Error"
 msgstr ""
@@ -4837,7 +4870,7 @@ msgstr ""
 msgid "Error loading post"
 msgstr ""
 
-#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:156
+#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:154
 msgid "Error loading preference"
 msgstr ""
 
@@ -4972,7 +5005,7 @@ msgstr ""
 msgid "Explicit sexual images."
 msgstr ""
 
-#: src/Navigation.tsx:799
+#: src/Navigation.tsx:808
 #: src/screens/Atmosphere.tsx:43
 #: src/screens/Search/Shell.tsx:549
 #: src/view/shell/desktop/LeftNav.tsx:692
@@ -5015,7 +5048,7 @@ msgstr ""
 msgid "External media may allow websites to collect information about you and your device. No information is sent or requested until you press the \"play\" button."
 msgstr ""
 
-#: src/Navigation.tsx:412
+#: src/Navigation.tsx:413
 #: src/screens/Settings/ExternalMediaPreferences.tsx:35
 msgid "External Media Preferences"
 msgstr ""
@@ -5089,7 +5122,7 @@ msgstr ""
 msgid "Failed to delete message"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:216
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:222
 msgid "Failed to delete post, please try again"
 msgstr ""
 
@@ -5268,7 +5301,7 @@ msgstr "Failed to rescind your request. Please try again."
 msgid "Failed to resolve location. Please try again."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:739
+#: src/view/com/composer/Composer.tsx:746
 msgid "Failed to save draft"
 msgstr ""
 
@@ -5306,7 +5339,7 @@ msgstr "Failed to send report"
 msgid "Failed to submit appeal, please try again."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:248
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:254
 msgid "Failed to toggle thread mute, please try again"
 msgstr ""
 
@@ -5365,7 +5398,7 @@ msgstr ""
 msgid "False information about elections"
 msgstr ""
 
-#: src/Navigation.tsx:323
+#: src/Navigation.tsx:324
 msgid "Feed"
 msgstr ""
 
@@ -5404,13 +5437,13 @@ msgstr ""
 msgid "Feedback"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:304
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:327
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:310
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:333
 msgctxt "toast"
 msgid "Feedback sent to feed operator"
 msgstr ""
 
-#: src/Navigation.tsx:575
+#: src/Navigation.tsx:584
 #: src/screens/SavedFeeds.tsx:112
 #: src/screens/SavedFeeds.tsx:303
 #: src/screens/Search/SearchResults.tsx:108
@@ -5486,7 +5519,7 @@ msgctxt "search"
 msgid "Filters"
 msgstr "Filters"
 
-#: src/screens/Onboarding/StepFinished/index.tsx:341
+#: src/screens/Onboarding/StepFinished/index.tsx:338
 msgid "Finalizing"
 msgstr ""
 
@@ -5513,13 +5546,13 @@ msgstr ""
 
 #: src/features/inviteFriends/components/FollowersPromoBanner.tsx:52
 #: src/screens/Settings/FindContactsSettings.tsx:84
-#: src/screens/Settings/Settings.tsx:220
-#: src/screens/Settings/Settings.tsx:223
+#: src/screens/Settings/Settings.tsx:227
+#: src/screens/Settings/Settings.tsx:230
 msgid "Find and invite friends"
 msgstr "Find and invite friends"
 
-#: src/Navigation.tsx:476
-#: src/Navigation.tsx:617
+#: src/Navigation.tsx:477
+#: src/Navigation.tsx:626
 msgid "Find Contacts"
 msgstr ""
 
@@ -5541,8 +5574,8 @@ msgid "Find people you know"
 msgstr "Find people you know"
 
 #: src/screens/Search/Shell.tsx:765
-msgid "Find posts, users, and feeds on Bluesky"
-msgstr ""
+msgid "Find posts, users, and feeds on Krao"
+msgstr "Find posts, users, and feeds on Krao"
 
 #: src/components/dialogs/nuxs/FindContactsAnnouncement.tsx:98
 msgid "Find your friends"
@@ -5550,8 +5583,8 @@ msgstr ""
 
 #: src/screens/Onboarding/StepFindContactsIntro/index.tsx:46
 #: src/screens/Settings/FindContactsSettings.tsx:136
-msgid "Find your friends on Bluesky by verifying your phone number and matching with your contacts. We protect your information and you control what happens next. <0>Learn more</0>"
-msgstr ""
+msgid "Find your friends on Krao by verifying your phone number and matching with your contacts. We protect your information and you control what happens next. <0>Learn more</0>"
+msgstr "Find your friends on Krao by verifying your phone number and matching with your contacts. We protect your information and you control what happens next. <0>Learn more</0>"
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:31
 msgid "Find your people"
@@ -5594,7 +5627,7 @@ msgstr "Focus the search field"
 #: src/components/ProfileHoverCard/index.web.tsx:514
 #: src/screens/Messages/ConversationSettings/Member.tsx:170
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:418
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:425
 #: src/screens/VideoFeed/index.tsx:1006
 #: src/view/com/notifications/NotificationFeedItem.tsx:890
 #: src/view/com/notifications/NotificationFeedItem.tsx:897
@@ -5603,7 +5636,7 @@ msgstr ""
 
 #. placeholder {0}: profile.handle
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:144
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:406
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:413
 msgid "Follow {0}"
 msgstr ""
 
@@ -5651,7 +5684,7 @@ msgstr ""
 #. User is not following this account, click to follow back
 #: src/components/ProfileCard.tsx:552
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:155
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:416
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:423
 #: src/view/com/notifications/NotificationFeedItem.tsx:890
 #: src/view/com/notifications/NotificationFeedItem.tsx:897
 msgid "Follow back"
@@ -5694,7 +5727,7 @@ msgid "Followers can join"
 msgstr "Followers can join"
 
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:277
+#: src/Navigation.tsx:278
 msgid "Followers of @{0} that you know"
 msgstr ""
 
@@ -5709,7 +5742,7 @@ msgstr ""
 #: src/components/ProfileHoverCard/index.web.tsx:502
 #: src/components/ProfileHoverCard/index.web.tsx:513
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:414
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:421
 #: src/screens/VideoFeed/index.tsx:1004
 #: src/view/com/notifications/NotificationFeedItem.tsx:869
 #: src/view/com/notifications/NotificationFeedItem.tsx:885
@@ -5727,7 +5760,7 @@ msgstr ""
 #. placeholder {0}: sanitizeDisplayName( displayNameOrHandle, moderation.ui('displayName'), )
 #. placeholder {0}: sanitizeDisplayName( profile.displayName || profile.handle, )
 #: src/components/ProfileCard.tsx:501
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:253
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:256
 #: src/view/com/notifications/NotificationFeedItem.tsx:820
 msgid "Following {0}"
 msgstr ""
@@ -5745,7 +5778,7 @@ msgstr ""
 msgid "Following feed preferences"
 msgstr ""
 
-#: src/Navigation.tsx:399
+#: src/Navigation.tsx:400
 #: src/screens/Settings/FollowingFeedPreferences.tsx:57
 msgid "Following Feed Preferences"
 msgstr ""
@@ -5808,15 +5841,15 @@ msgstr ""
 msgid "Forgot Password"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:418
-#: src/screens/Login/LoginForm.tsx:425
+#: src/screens/Login/LoginForm.tsx:419
+#: src/screens/Login/LoginForm.tsx:426
 msgid "Forgot password?"
 msgstr ""
 
 #. This is alt text for a marketing image which transcribes English text that appears in the image
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:153
-msgid "Four message bubbles representing a group chat. First message: \"Did you hear the news? Bluesky has group chats now!\" Second message: \"omg, no way\" Third message: \"Wow, 50 people in one chat!\" Fourth message: \"You can send invite links too!\""
-msgstr "Four message bubbles representing a group chat. First message: \"Did you hear the news? Bluesky has group chats now!\" Second message: \"omg, no way\" Third message: \"Wow, 50 people in one chat!\" Fourth message: \"You can send invite links too!\""
+msgid "Four message bubbles representing a group chat. First message: \"Did you hear the news? Krao has group chats now!\" Second message: \"omg, no way\" Third message: \"Wow, 50 people in one chat!\" Fourth message: \"You can send invite links too!\""
+msgstr "Four message bubbles representing a group chat. First message: \"Did you hear the news? Krao has group chats now!\" Second message: \"omg, no way\" Third message: \"Wow, 50 people in one chat!\" Fourth message: \"You can send invite links too!\""
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:22
 msgid "Free your feed"
@@ -5844,6 +5877,11 @@ msgstr ""
 #: src/screens/Search/components/AdvancedSearchDialog/hooks.tsx:30
 msgid "From these people"
 msgstr "From these people"
+
+#: src/features/gating/components/GateDialog.tsx:107
+#: src/features/gating/components/GateDialog.tsx:111
+msgid "Gated text"
+msgstr "Gated text"
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:335
 msgid "Generate a Starter Pack"
@@ -5985,7 +6023,7 @@ msgstr ""
 msgid "GIF"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2705
+#: src/view/com/composer/Composer.tsx:2714
 msgid "GIF uploaded"
 msgstr ""
 
@@ -6171,7 +6209,7 @@ msgctxt "toast"
 msgid "Group chat name updated"
 msgstr "Group chat name updated"
 
-#: src/Navigation.tsx:544
+#: src/Navigation.tsx:553
 #: src/screens/Messages/ConversationSettings/index.tsx:110
 msgid "Group chat settings"
 msgstr "Group chat settings"
@@ -6216,7 +6254,7 @@ msgstr "Group name"
 msgid "Group name is too long. {MAX_GROUP_NAME_GRAPHEME_LENGTH, plural, other {The maximum number of characters is #.}}"
 msgstr "Group name is too long. {MAX_GROUP_NAME_GRAPHEME_LENGTH, plural, other {The maximum number of characters is #.}}"
 
-#: src/screens/Settings/Settings.tsx:469
+#: src/screens/Settings/Settings.tsx:476
 msgid "GrowthBook"
 msgstr "GrowthBook"
 
@@ -6278,7 +6316,7 @@ msgstr ""
 msgid "Harming or endangering minors"
 msgstr ""
 
-#: src/Navigation.tsx:528
+#: src/Navigation.tsx:537
 msgid "Hashtag"
 msgstr ""
 
@@ -6304,11 +6342,11 @@ msgid "Having trouble?"
 msgstr ""
 
 #: src/components/contacts/screens/PhoneInput.tsx:290
-msgid "Held by Bluesky for 7 days to prevent abuse, then deleted"
-msgstr ""
+msgid "Held by Krao for 7 days to prevent abuse, then deleted"
+msgstr "Held by Krao for 7 days to prevent abuse, then deleted"
 
-#: src/screens/Settings/Settings.tsx:259
-#: src/screens/Settings/Settings.tsx:263
+#: src/screens/Settings/Settings.tsx:266
+#: src/screens/Settings/Settings.tsx:270
 #: src/view/shell/desktop/RightNav.tsx:130
 #: src/view/shell/desktop/RightNav.tsx:133
 #: src/view/shell/Drawer.tsx:460
@@ -6353,7 +6391,7 @@ msgstr ""
 #: src/components/moderation/ContentHider.tsx:208
 #: src/components/moderation/LabelPreference.tsx:141
 #: src/components/moderation/PostHider.tsx:137
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:829
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:870
 #: src/lib/moderation/useLabelBehaviorDescription.ts:18
 #: src/lib/moderation/useLabelBehaviorDescription.ts:23
 #: src/lib/moderation/useLabelBehaviorDescription.ts:28
@@ -6378,22 +6416,22 @@ msgstr "Hide group chat updates"
 msgid "Hide lists"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:615
+#: src/screens/Login/LoginForm.tsx:625
 msgid "Hide password"
 msgstr "Hide password"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:669
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:672
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:696
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:699
 msgid "Hide post for me"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:683
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:693
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:710
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:720
 msgid "Hide reply for everyone"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:669
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:672
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:696
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:699
 msgid "Hide reply for me"
 msgstr ""
 
@@ -6406,19 +6444,19 @@ msgstr "Hide reposts in feeds"
 msgid "Hide this card"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:826
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:867
 msgid "Hide this post?"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:826
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:861
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:867
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:902
 msgid "Hide this reply?"
 msgstr ""
 
 #: src/components/Post/Translated/index.tsx:213
 #: src/components/Post/Translated/index.tsx:347
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:546
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:548
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:573
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:575
 msgid "Hide translation"
 msgstr "Hide translation"
 
@@ -6434,8 +6472,8 @@ msgstr ""
 msgid "Hide user list"
 msgstr ""
 
-#: src/screens/Moderation/VerificationSettings.tsx:88
-#: src/screens/Moderation/VerificationSettings.tsx:97
+#: src/screens/Moderation/VerificationSettings.tsx:87
+#: src/screens/Moderation/VerificationSettings.tsx:96
 msgid "Hide verification badges"
 msgstr ""
 
@@ -6492,8 +6530,8 @@ msgstr ""
 msgid "Hold up! We’re gradually giving access to video, and you’re still waiting in line. Check back soon!"
 msgstr ""
 
-#: src/Navigation.tsx:794
-#: src/Navigation.tsx:815
+#: src/Navigation.tsx:803
+#: src/Navigation.tsx:824
 #: src/view/shell/bottom-bar/BottomBar.tsx:200
 #: src/view/shell/desktop/LeftNav.tsx:681
 #: src/view/shell/Drawer.tsx:541
@@ -6504,19 +6542,19 @@ msgstr ""
 msgid "Host:"
 msgstr ""
 
-#: src/components/dialogs/ServerInput.tsx:138
+#: src/components/dialogs/ServerInput.tsx:139
 #: src/screens/Login/components/HostingProviderDialog.tsx:159
 #: src/screens/Login/ForgotPasswordForm.tsx:84
-#: src/screens/Login/LoginForm.tsx:661
+#: src/screens/Login/LoginForm.tsx:671
 msgid "Hosting provider"
 msgstr ""
 
 #. placeholder {0}: toNiceHostingUrl(state.pdsUrl)
-#: src/screens/Login/LoginForm.tsx:657
+#: src/screens/Login/LoginForm.tsx:667
 msgid "Hosting provider: {0}"
 msgstr "Hosting provider: {0}"
 
-#: src/screens/Login/LoginForm.tsx:659
+#: src/screens/Login/LoginForm.tsx:669
 msgid "Hosting provider: Bluesky"
 msgstr "Hosting provider: Bluesky"
 
@@ -6538,8 +6576,8 @@ msgid "Human trafficking"
 msgstr ""
 
 #: src/components/contacts/screens/GetContacts.tsx:269
-msgid "I consent to Bluesky using my contacts for mutual friend discovery and to retain hashed data for matching until I opt out."
-msgstr ""
+msgid "I consent to Krao using my contacts for mutual friend discovery and to retain hashed data for matching until I opt out."
+msgstr "I consent to Krao using my contacts for mutual friend discovery and to retain hashed data for matching until I opt out."
 
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:140
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:143
@@ -6557,8 +6595,8 @@ msgstr ""
 
 #. placeholder {0}: currentAccount.handle
 #: src/components/contacts/screens/ViewMatches.tsx:586
-msgid "I'm on Bluesky as {0} - come find me! https://bsky.app/download"
-msgstr ""
+msgid "I'm on Krao as {0} - come find me! https://krao.io/download"
+msgstr "I'm on Krao as {0} - come find me! https://krao.io/download"
 
 #: src/components/Lightbox/Lightbox.web.tsx:247
 msgid "If alt text is long, toggles alt text expanded state"
@@ -6592,7 +6630,7 @@ msgstr ""
 msgid "If you need to update your email, <0>click here</0>."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:819
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:860
 msgid "If you remove this post, you won't be able to recover it."
 msgstr ""
 
@@ -6609,7 +6647,7 @@ msgstr ""
 msgid "If you want to restrict who can receive notifications for your account's activity, you can change this in <0>Settings → Privacy and Security</0>."
 msgstr ""
 
-#: src/components/dialogs/ServerInput.tsx:210
+#: src/components/dialogs/ServerInput.tsx:211
 msgid "If you're a developer, you can host your own server."
 msgstr ""
 
@@ -6787,7 +6825,7 @@ msgstr "Include posts made until this date"
 msgid "Include video timestamp ({videoTimestamp})"
 msgstr "Include video timestamp ({videoTimestamp})"
 
-#: src/screens/Login/LoginForm.tsx:161
+#: src/screens/Login/LoginForm.tsx:162
 msgid "Incorrect username or password"
 msgstr ""
 
@@ -6799,7 +6837,7 @@ msgstr ""
 msgid "Input new password"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:453
+#: src/screens/Login/LoginForm.tsx:454
 msgid "Input the code which has been emailed to you"
 msgstr ""
 
@@ -6831,7 +6869,7 @@ msgstr "Introducing group chats"
 msgid "Introducing saved posts AKA bookmarks"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:152
+#: src/screens/Login/LoginForm.tsx:153
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:78
 msgid "Invalid 2FA confirmation code."
 msgstr ""
@@ -6844,7 +6882,7 @@ msgstr "Invalid group chat code."
 msgid "Invalid handle. Please try a different one."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:397
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:403
 msgctxt "toast"
 msgid "Invalid interaction settings."
 msgstr ""
@@ -6863,6 +6901,10 @@ msgstr ""
 msgid "Invalid rescind request."
 msgstr "Invalid rescind request."
 
+#: src/screens/Settings/WalletsSettings.tsx:189
+msgid "Invalid signature"
+msgstr "Invalid signature"
+
 #: src/components/intents/VerifyEmailIntentDialog.tsx:88
 msgid "Invalid Verification Code"
 msgstr ""
@@ -6872,8 +6914,8 @@ msgid "Invite"
 msgstr ""
 
 #: src/components/contacts/screens/ViewMatches.tsx:575
-msgid "Invite {name} to join Bluesky"
-msgstr ""
+msgid "Invite {name} to join Krao"
+msgstr "Invite {name} to join Krao"
 
 #: src/screens/Signup/StepInfo/index.tsx:207
 msgid "Invite code"
@@ -6883,7 +6925,7 @@ msgstr ""
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr ""
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:361
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:364
 #: src/view/shell/Drawer.tsx:125
 msgid "Invite friends"
 msgstr "Invite friends"
@@ -6968,11 +7010,11 @@ msgid "It's just you right now! Add more people to your starter pack by searchin
 msgstr ""
 
 #. placeholder {0}: videoState.jobId
-#: src/view/com/composer/Composer.tsx:2641
+#: src/view/com/composer/Composer.tsx:2650
 msgid "Job ID: {0}"
 msgstr ""
 
-#. Link to a page with job openings at Bluesky
+#. Link to a page with job openings at Krao
 #: src/view/com/auth/SplashScreen.web.tsx:179
 msgid "Jobs"
 msgstr ""
@@ -6982,17 +7024,17 @@ msgstr ""
 msgid "Join"
 msgstr "Join"
 
-#: src/screens/StarterPack/StarterPackLandingScreen.tsx:202
-#: src/screens/StarterPack/StarterPackLandingScreen.tsx:207
-#: src/screens/StarterPack/StarterPackScreen.tsx:467
-#: src/screens/StarterPack/StarterPackScreen.tsx:477
-msgid "Join Bluesky"
-msgstr ""
-
 #: src/components/intents/GroupChatJoinDialog.tsx:70
 #: src/components/intents/GroupChatJoinDialog.tsx:469
 msgid "Join group chat"
 msgstr "Join group chat"
+
+#: src/screens/StarterPack/StarterPackLandingScreen.tsx:202
+#: src/screens/StarterPack/StarterPackLandingScreen.tsx:207
+#: src/screens/StarterPack/StarterPackScreen.tsx:467
+#: src/screens/StarterPack/StarterPackScreen.tsx:477
+msgid "Join Krao"
+msgstr "Join Krao"
 
 #: src/components/intents/GroupChatJoinDialog.tsx:194
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:29
@@ -7008,8 +7050,8 @@ msgstr ""
 msgid "Journalism"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1556
-#: src/view/com/composer/Composer.tsx:1571
+#: src/view/com/composer/Composer.tsx:1563
+#: src/view/com/composer/Composer.tsx:1578
 #: src/view/com/composer/drafts/DraftsButton.tsx:126
 msgid "Keep editing"
 msgstr ""
@@ -7019,16 +7061,70 @@ msgid "Keep me posted"
 msgstr ""
 
 #. Name for a feature flag
-#: src/analytics/features/index.ts:114
+#: src/analytics/features/index.ts:123
 msgid "Keep your place in the Following feed"
 msgstr "Keep your place in the Following feed"
+
+#: src/components/dialogs/ServerInput.tsx:145
+#: src/components/dialogs/ServerInput.tsx:147
+msgid "Krao"
+msgstr "Krao"
+
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:656
+msgid "Krao cannot confirm the authenticity of the claimed date."
+msgstr "Krao cannot confirm the authenticity of the claimed date."
+
+#: src/components/contacts/screens/GetContacts.tsx:237
+msgid "Krao helps friends find each other by creating an encoded digital fingerprint, called a \"hash\", and then looking for matching hashes."
+msgstr "Krao helps friends find each other by creating an encoded digital fingerprint, called a \"hash\", and then looking for matching hashes."
+
+#: src/components/dialogs/ServerInput.tsx:215
+#: src/screens/Login/components/HostingProviderDialog.tsx:236
+msgid "Krao is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
+msgstr "Krao is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
+
+#: src/components/dialogs/ServerInput.tsx:163
+msgid "Krao is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Krao option."
+msgstr "Krao is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Krao option."
+
+#: src/components/ProgressGuide/List.tsx:115
+msgid "Krao is better with friends!"
+msgstr "Krao is better with friends!"
+
+#: src/screens/Onboarding/StepFindContactsIntro/index.tsx:43
+msgid "Krao is more fun with friends"
+msgstr "Krao is more fun with friends"
+
+#: src/components/dialogs/nuxs/FindContactsAnnouncement.tsx:108
+msgid "Krao is more fun with friends! Import your contacts to see who’s already here."
+msgstr "Krao is more fun with friends! Import your contacts to see who’s already here."
+
+#: src/components/contacts/screens/ViewMatches.tsx:323
+msgid "Krao is more fun with friends. Do you want to invite some of yours? <0/>"
+msgstr "Krao is more fun with friends. Do you want to invite some of yours? <0/>"
+
+#: src/features/inviteFriends/InviteScannerScreen.tsx:105
+msgid "Krao needs camera access to scan QR codes from other profiles."
+msgstr "Krao needs camera access to scan QR codes from other profiles."
+
+#: src/screens/Settings/FindContactsSettings.tsx:579
+msgid "Krao stores your contacts as encoded data. Removing your contacts will immediately delete this data."
+msgstr "Krao stores your contacts as encoded data. Removing your contacts will immediately delete this data."
+
+#: src/components/StarterPack/ProfileStarterPacks.tsx:338
+msgid "Krao will choose a set of recommended accounts from people in your network."
+msgstr "Krao will choose a set of recommended accounts from people in your network."
+
+#: src/screens/Settings/components/PwiOptOut.tsx:102
+msgid "Krao will not show your account to logged-out users and will ask other apps to do the same. Other apps may not honor this request. It doesn't make your account private."
+msgstr "Krao will not show your account to logged-out users and will ask other apps to do the same. Other apps may not honor this request. It doesn't make your account private."
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:209
 msgid "KWS website"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:624
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:626
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:651
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:653
 msgid "Label reply for algo"
 msgstr "Label reply for algo"
 
@@ -7066,13 +7162,13 @@ msgstr ""
 msgid "Language"
 msgstr "Language"
 
-#: src/Navigation.tsx:250
+#: src/Navigation.tsx:251
 msgid "Language Settings"
 msgstr ""
 
 #: src/screens/Settings/LanguageSettings.tsx:98
-#: src/screens/Settings/Settings.tsx:243
-#: src/screens/Settings/Settings.tsx:246
+#: src/screens/Settings/Settings.tsx:250
+#: src/screens/Settings/Settings.tsx:253
 msgid "Languages"
 msgstr ""
 
@@ -7099,7 +7195,7 @@ msgstr ""
 
 #: src/components/verification/VerificationsDialog.tsx:169
 #: src/components/verification/VerifierDialog.tsx:137
-#: src/screens/Moderation/VerificationSettings.tsx:50
+#: src/screens/Moderation/VerificationSettings.tsx:49
 #: src/screens/Profile/Header/EditProfileDialog.tsx:346
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:215
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:279
@@ -7120,10 +7216,6 @@ msgstr "Learn more about <0>how to use advanced search</0>."
 msgid "Learn more about age assurance"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:167
-msgid "Learn more about Bluesky"
-msgstr ""
-
 #: src/components/contacts/components/InviteInfo.tsx:33
 msgid "Learn more about how inviting friends works"
 msgstr ""
@@ -7135,7 +7227,11 @@ msgctxt "english-only-resource"
 msgid "Learn more about importing contacts"
 msgstr ""
 
-#: src/components/dialogs/ServerInput.tsx:220
+#: src/view/com/auth/SplashScreen.web.tsx:167
+msgid "Learn more about Krao"
+msgstr "Learn more about Krao"
+
+#: src/components/dialogs/ServerInput.tsx:221
 #: src/screens/Login/components/HostingProviderDialog.tsx:241
 msgid "Learn more about self hosting your PDS."
 msgstr ""
@@ -7161,13 +7257,13 @@ msgstr ""
 #: src/components/verification/VerificationsDialog.tsx:154
 #: src/components/verification/VerifierDialog.tsx:123
 msgctxt "english-only-resource"
-msgid "Learn more about verification on Bluesky"
-msgstr ""
+msgid "Learn more about verification on Krao"
+msgstr "Learn more about verification on Krao"
 
-#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:130
-#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:133
-msgid "Learn more about what is public on Bluesky."
-msgstr ""
+#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:129
+#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:131
+msgid "Learn more about what is public on Krao."
+msgstr "Learn more about what is public on Krao."
 
 #: src/screens/Profile/components/GermButton.tsx:217
 msgid "Learn more about your Germ DM link"
@@ -7177,7 +7273,7 @@ msgstr ""
 msgid "Learn more in your <0>account settings.</0>"
 msgstr ""
 
-#: src/components/dialogs/ServerInput.tsx:222
+#: src/components/dialogs/ServerInput.tsx:223
 #: src/components/moderation/ContentHider.tsx:244
 #: src/screens/Login/components/HostingProviderDialog.tsx:243
 msgid "Learn more."
@@ -7230,8 +7326,8 @@ msgstr "Leave this group chat"
 
 #: src/components/dialogs/LinkWarning.tsx:83
 #: src/components/dialogs/LinkWarning.tsx:91
-msgid "Leaving Bluesky"
-msgstr ""
+msgid "Leaving Krao"
+msgstr "Leaving Krao"
 
 #: src/screens/Messages/ConversationSettings/prompts.tsx:145
 msgid "Leaving this chat will lock it permanently and you won’t be able to rejoin."
@@ -7254,7 +7350,7 @@ msgstr ""
 msgid "Let's get your password reset!"
 msgstr ""
 
-#: src/screens/Onboarding/StepFinished/index.tsx:343
+#: src/screens/Onboarding/StepFinished/index.tsx:340
 msgid "Let's go!"
 msgstr ""
 
@@ -7296,8 +7392,8 @@ msgstr ""
 msgid "Like this labeler"
 msgstr ""
 
-#: src/Navigation.tsx:328
-#: src/Navigation.tsx:333
+#: src/Navigation.tsx:329
+#: src/Navigation.tsx:334
 msgid "Liked by"
 msgstr ""
 
@@ -7361,11 +7457,24 @@ msgstr ""
 msgid "Linear"
 msgstr ""
 
+#: src/screens/Settings/WalletsSettings.tsx:113
+#: src/screens/Settings/WalletsSettings.tsx:130
+msgid "Link a wallet"
+msgstr "Link a wallet"
+
+#: src/screens/Settings/WalletsSettings.tsx:77
+msgid "Link a wallet to show it on your profile and to sign in with it. Your wallet signs a message that names your account, so anyone can verify the link. Krao never asks for your keys or moves your funds."
+msgstr "Link a wallet to show it on your profile and to sign in with it. Your wallet signs a message that names your account, so anyone can verify the link. Krao never asks for your keys or moves your funds."
+
 #: src/components/Lightbox/Lightbox.web.tsx:301
 msgid "Link copied to clipboard"
 msgstr "Link copied to clipboard"
 
-#: src/Navigation.tsx:283
+#: src/screens/Settings/WalletsSettings.tsx:135
+msgid "Linking wallets in the mobile app is coming soon. For now, link your wallet from Krao on the web."
+msgstr "Linking wallets in the mobile app is coming soon. For now, link your wallet from Krao on the web."
+
+#: src/Navigation.tsx:284
 msgid "List"
 msgstr ""
 
@@ -7456,7 +7565,7 @@ msgctxt "toast"
 msgid "List unmuted"
 msgstr ""
 
-#: src/Navigation.tsx:184
+#: src/Navigation.tsx:185
 #: src/view/screens/Lists.tsx:60
 #: src/view/screens/Profile.tsx:234
 #: src/view/screens/Profile.tsx:242
@@ -7529,7 +7638,7 @@ msgstr ""
 msgid "Load new posts"
 msgstr ""
 
-#: src/view/screens/Storybook/NewPostsPill.tsx:138
+#: src/view/screens/Storybook/NewPostsPill.tsx:137
 msgid "Load new posts from the people you follow"
 msgstr "Load new posts from the people you follow"
 
@@ -7578,7 +7687,7 @@ msgstr "Lock this group chat"
 msgid "Locked"
 msgstr "Locked"
 
-#: src/Navigation.tsx:358
+#: src/Navigation.tsx:359
 msgid "Log"
 msgstr ""
 
@@ -7599,6 +7708,11 @@ msgstr ""
 #: src/components/RichTextTag.tsx:55
 msgid "Long press to open tag menu for {0}"
 msgstr ""
+
+#: src/features/wallet/components/NftAvatarSection.tsx:143
+#: src/features/wallet/components/NftAvatarSection.tsx:153
+msgid "Look up NFT"
+msgstr "Look up NFT"
 
 #: src/screens/Login/SetNewPasswordForm.tsx:119
 msgid "Looks like XXXXX-XXXXX"
@@ -7632,6 +7746,10 @@ msgstr ""
 #: src/components/dialogs/LinkWarning.tsx:101
 msgid "Make sure this is where you intend to go!"
 msgstr ""
+
+#: src/features/gating/components/GatedContent.tsx:63
+msgid "Manage linked wallets"
+msgstr "Manage linked wallets"
 
 #: src/screens/Settings/ContentAndMediaSettings.tsx:62
 #: src/screens/Settings/ContentAndMediaSettings.tsx:65
@@ -7760,6 +7878,10 @@ msgstr "Mentions of these people"
 msgid "Menu"
 msgstr ""
 
+#: src/features/tips/components/TipDialog.tsx:181
+msgid "Message"
+msgstr "Message"
+
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:203
 msgctxt "action"
 msgid "Message"
@@ -7769,6 +7891,10 @@ msgstr "Message"
 msgctxt "description"
 msgid "Message"
 msgstr "Message"
+
+#: src/features/tips/components/TipDialog.tsx:177
+msgid "Message (optional)"
+msgstr "Message (optional)"
 
 #. placeholder {0}: profile.handle
 #: src/components/dms/MessageProfileButton.tsx:99
@@ -7816,7 +7942,7 @@ msgstr "Message is too long ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 msgid "Message options"
 msgstr ""
 
-#: src/Navigation.tsx:809
+#: src/Navigation.tsx:818
 msgid "Messages"
 msgstr ""
 
@@ -7833,6 +7959,15 @@ msgctxt "Name of app icon variant"
 msgid "Midnight"
 msgstr ""
 
+#: src/features/gating/components/GateDialog.tsx:167
+msgid "Minimum balance"
+msgstr "Minimum balance"
+
+#. placeholder {0}: asset.symbol
+#: src/features/gating/components/GateDialog.tsx:163
+msgid "Minimum balance ({0} on Base)"
+msgstr "Minimum balance ({0} on Base)"
+
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:179
 msgid "Minor harassment or bullying"
 msgstr ""
@@ -7846,18 +7981,18 @@ msgid "Missing media"
 msgstr ""
 
 #. Moderation inbox settings
-#: src/Navigation.tsx:199
+#: src/Navigation.tsx:200
 #: src/screens/ModerationInbox/Settings.tsx:34
 msgid "Mod inbox settings"
 msgstr "Mod inbox settings"
 
-#: src/Navigation.tsx:189
+#: src/Navigation.tsx:190
 #: src/screens/Moderation/index.tsx:103
 msgid "Moderation"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:193
-#: src/screens/Settings/Settings.tsx:196
+#: src/screens/Settings/Settings.tsx:200
+#: src/screens/Settings/Settings.tsx:203
 msgid "Moderation and content filters"
 msgstr "Moderation and content filters"
 
@@ -7865,7 +8000,7 @@ msgstr "Moderation and content filters"
 msgid "Moderation details"
 msgstr ""
 
-#: src/Navigation.tsx:194
+#: src/Navigation.tsx:195
 #: src/screens/Moderation/index.tsx:296
 #: src/screens/ModerationInbox/index.tsx:41
 msgid "Moderation inbox"
@@ -7905,7 +8040,7 @@ msgstr ""
 msgid "Moderation lists"
 msgstr ""
 
-#: src/Navigation.tsx:214
+#: src/Navigation.tsx:215
 #: src/view/screens/ModerationModlists.tsx:60
 msgid "Moderation Lists"
 msgstr ""
@@ -7914,7 +8049,7 @@ msgstr ""
 msgid "moderation settings"
 msgstr ""
 
-#: src/Navigation.tsx:343
+#: src/Navigation.tsx:344
 msgid "Moderation states"
 msgstr ""
 
@@ -7976,8 +8111,8 @@ msgstr ""
 msgid "Mute {0}"
 msgstr "Mute {0}"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:748
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:754
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:775
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:781
 #: src/view/com/profile/ProfileMenu.tsx:471
 #: src/view/com/profile/ProfileMenu.tsx:478
 msgid "Mute account"
@@ -8033,13 +8168,13 @@ msgstr ""
 msgid "Mute this word until you unmute it"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:639
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:642
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:666
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:669
 msgid "Mute thread"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:652
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:654
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:679
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:681
 msgid "Mute words & tags"
 msgstr ""
 
@@ -8055,7 +8190,7 @@ msgstr "Muted"
 msgid "Muted accounts"
 msgstr ""
 
-#: src/Navigation.tsx:219
+#: src/Navigation.tsx:220
 #: src/view/screens/ModerationMutedAccounts.tsx:107
 msgid "Muted Accounts"
 msgstr ""
@@ -8119,7 +8254,7 @@ msgstr "Navigate to Starter Pack"
 
 #: src/screens/Login/ForgotPasswordForm.tsx:148
 #: src/screens/Login/ForgotPasswordForm.tsx:173
-#: src/screens/Login/LoginForm.tsx:552
+#: src/screens/Login/LoginForm.tsx:553
 msgid "Navigates to the next screen"
 msgstr ""
 
@@ -8272,7 +8407,7 @@ msgstr ""
 msgid "New posts"
 msgstr "New posts"
 
-#: src/view/screens/Storybook/NewPostsPill.tsx:137
+#: src/view/screens/Storybook/NewPostsPill.tsx:136
 msgid "New posts are ready to load from the people you follow"
 msgstr "New posts are ready to load from the people you follow"
 
@@ -8288,9 +8423,9 @@ msgstr ""
 msgid "New Starter Pack"
 msgstr "New Starter Pack"
 
-#: src/screens/Login/LoginForm.tsx:566
-msgid "New to Bluesky? <0>Sign up</0>"
-msgstr "New to Bluesky? <0>Sign up</0>"
+#: src/screens/Login/LoginForm.tsx:576
+msgid "New to Krao? <0>Sign up</0>"
+msgstr "New to Krao? <0>Sign up</0>"
 
 #: src/components/dialogs/NewskieDialog/index.tsx:100
 msgid "New user info dialog"
@@ -8316,8 +8451,8 @@ msgstr ""
 #: src/screens/Login/ForgotPasswordForm.tsx:154
 #: src/screens/Login/SetNewPasswordForm.tsx:176
 #: src/screens/Login/SetNewPasswordForm.tsx:182
-#: src/screens/Onboarding/StepFinished/index.tsx:336
-#: src/screens/Onboarding/StepFinished/index.tsx:345
+#: src/screens/Onboarding/StepFinished/index.tsx:333
+#: src/screens/Onboarding/StepFinished/index.tsx:342
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:158
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:166
 #: src/screens/Signup/BackNextButtons.tsx:68
@@ -8331,6 +8466,31 @@ msgstr ""
 #: src/components/Lightbox/Lightbox.web.tsx:219
 msgid "Next image"
 msgstr ""
+
+#: src/features/wallet/components/NftAvatarSection.tsx:79
+msgid "NFT"
+msgstr "NFT"
+
+#: src/features/wallet/components/ChainBadges.tsx:22
+msgid "NFT avatar"
+msgstr "NFT avatar"
+
+#: src/features/gating/components/GateDialog.tsx:181
+msgid "NFT contract"
+msgstr "NFT contract"
+
+#: src/features/gating/components/GateDialog.tsx:177
+msgid "NFT contract on Base"
+msgstr "NFT contract on Base"
+
+#: src/features/gating/components/GateDialog.tsx:136
+#: src/features/gating/components/GateDialog.tsx:141
+msgid "NFT holders"
+msgstr "NFT holders"
+
+#: src/features/wallet/components/NftAvatarSection.tsx:59
+msgid "NFT profile picture"
+msgstr "NFT profile picture"
 
 #: src/features/inviteFriends/components/ThemePicker.tsx:33
 msgid "Night"
@@ -8347,8 +8507,8 @@ msgid "No action taken"
 msgstr "No action taken"
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:42
-msgid "No ads, no invasive tracking, no engagement traps. Bluesky respects your time and attention."
-msgstr ""
+msgid "No ads, no invasive tracking, no engagement traps. Krao respects your time and attention."
+msgstr "No ads, no invasive tracking, no engagement traps. Krao respects your time and attention."
 
 #: src/screens/Settings/AppPasswords.tsx:109
 msgid "No app passwords yet"
@@ -8383,6 +8543,15 @@ msgstr ""
 #: src/view/com/composer/drafts/DraftsListDialog.tsx:143
 msgid "No drafts yet"
 msgstr ""
+
+#: src/features/tips/components/TipDialog.tsx:70
+msgid "No Ethereum wallet was found in this browser."
+msgstr "No Ethereum wallet was found in this browser."
+
+#: src/features/wallet/components/WalletSignInButton.tsx:27
+#: src/screens/Settings/WalletsSettings.tsx:57
+msgid "No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again."
+msgstr "No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again."
 
 #: src/features/liveNow/components/EditLiveDialog.tsx:136
 msgid "No expiry set"
@@ -8430,7 +8599,7 @@ msgstr ""
 #. placeholder {0}: sanitizeDisplayName( displayNameOrHandle, moderation.ui('displayName'), )
 #. placeholder {0}: sanitizeDisplayName( profile.displayName || profile.handle, )
 #: src/components/ProfileCard.tsx:529
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:282
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:285
 #: src/view/com/notifications/NotificationFeedItem.tsx:841
 msgid "No longer following {0}"
 msgstr ""
@@ -8456,6 +8625,10 @@ msgstr ""
 msgid "No name"
 msgstr ""
 
+#: src/features/wallet/components/NftAvatarSection.tsx:53
+msgid "No NFT with that token ID exists in this contract on Base."
+msgstr "No NFT with that token ID exists in this contract on Base."
+
 #: src/view/com/notifications/NotificationFeed.tsx:130
 msgid "No notifications yet!"
 msgstr ""
@@ -8472,7 +8645,7 @@ msgstr ""
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:130
 #: src/screens/Settings/ActivityPrivacySettings.tsx:135
-#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:162
+#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:160
 msgctxt "enable for"
 msgid "No one"
 msgstr ""
@@ -8575,6 +8748,10 @@ msgstr "No translation received from your device."
 msgid "No video posts yet"
 msgstr ""
 
+#: src/screens/Settings/WalletsSettings.tsx:103
+msgid "No wallets linked yet."
+msgstr "No wallets linked yet."
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:473
 msgid "Nobody"
 msgstr ""
@@ -8630,7 +8807,7 @@ msgstr ""
 msgid "Not followed by anyone you’re following"
 msgstr "Not followed by anyone you’re following"
 
-#: src/Navigation.tsx:174
+#: src/Navigation.tsx:175
 #: src/view/screens/Profile.tsx:132
 msgid "Not Found"
 msgstr ""
@@ -8639,15 +8816,19 @@ msgstr ""
 msgid "Not ready to hit post? Keep your best ideas in Drafts until the timing is just right."
 msgstr ""
 
+#: src/features/wallet/components/NftAvatarSection.tsx:95
+msgid "Not verified – your linked wallets don’t hold this NFT"
+msgstr "Not verified – your linked wallets don’t hold this NFT"
+
 #: src/view/com/profile/ProfileMenu.tsx:579
 msgid "Note about sharing"
 msgstr ""
 
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:120
-msgid "Note: Bluesky is part of the Atmosphere, an open public network. These settings ask other apps and websites to limit your visibility, but they can choose not to. Your public content may still appear elsewhere."
-msgstr "Note: Bluesky is part of the Atmosphere, an open public network. These settings ask other apps and websites to limit your visibility, but they can choose not to. Your public content may still appear elsewhere."
+msgid "Note: Krao is part of the Atmosphere, an open public network. These settings ask other apps and websites to limit your visibility, but they can choose not to. Your public content may still appear elsewhere."
+msgstr "Note: Krao is part of the Atmosphere, an open public network. These settings ask other apps and websites to limit your visibility, but they can choose not to. Your public content may still appear elsewhere."
 
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:133
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:135
 msgid "Note: This post is only visible to logged-in users."
 msgstr ""
 
@@ -8659,14 +8840,14 @@ msgstr "Nothing on your account is restricted right now. Strikes from violations
 msgid "Nothing saved yet"
 msgstr ""
 
-#: src/Navigation.tsx:209
+#: src/Navigation.tsx:210
 #: src/screens/ModerationInbox/Notice.tsx:41
 msgid "Notice"
 msgstr "Notice"
 
 #: src/components/dialogs/NotificationSettingsDialog.tsx:72
-#: src/Navigation.tsx:483
-#: src/Navigation.tsx:570
+#: src/Navigation.tsx:484
+#: src/Navigation.tsx:579
 #: src/view/screens/Notifications.tsx:134
 msgid "Notification settings"
 msgstr ""
@@ -8676,14 +8857,14 @@ msgstr ""
 msgid "Notification sounds"
 msgstr ""
 
-#: src/Navigation.tsx:565
-#: src/Navigation.tsx:804
+#: src/Navigation.tsx:574
+#: src/Navigation.tsx:813
 #: src/screens/Messages/Settings.tsx:255
 #: src/screens/Notifications/ActivityList.tsx:31
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:93
 #: src/screens/Settings/NotificationSettings/index.tsx:125
-#: src/screens/Settings/Settings.tsx:201
-#: src/screens/Settings/Settings.tsx:204
+#: src/screens/Settings/Settings.tsx:208
+#: src/screens/Settings/Settings.tsx:211
 #: src/view/screens/Notifications.tsx:128
 #: src/view/shell/bottom-bar/BottomBar.tsx:283
 #: src/view/shell/desktop/LeftNav.tsx:702
@@ -8731,7 +8912,7 @@ msgstr ""
 #: src/components/dms/InitiateChatFlow.tsx:838
 #: src/components/dms/MessageItem.tsx:758
 #: src/screens/Login/PasswordUpdatedForm.tsx:35
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:658
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:662
 msgid "Okay"
 msgstr ""
 
@@ -8747,14 +8928,18 @@ msgid "On"
 msgstr "On"
 
 #: src/screens/Settings/components/AlgoVisibilityOptOut.tsx:43
-msgid "On Bluesky, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
-msgstr "On Bluesky, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
+msgid "On Krao, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
+msgstr "On Krao, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
+
+#: src/features/wallet/components/ChainBadges.tsx:37
+msgid "On-chain badges"
+msgstr "On-chain badges"
 
 #: src/components/StarterPack/QrCode.tsx:78
 msgid "on<0><1/><2><3/></2></0>"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:409
+#: src/screens/Settings/Settings.tsx:416
 msgid "Onboarding reset"
 msgstr ""
 
@@ -8768,11 +8953,11 @@ msgstr "One of the selected recipients does not allow group chats."
 msgid "One of the selected recipients has blocked you and cannot be messaged."
 msgstr "One of the selected recipients has blocked you and cannot be messaged."
 
-#: src/view/com/composer/Composer.tsx:947
+#: src/view/com/composer/Composer.tsx:954
 msgid "One or more GIFs is missing alt text."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:944
+#: src/view/com/composer/Composer.tsx:951
 msgid "One or more images is missing alt text."
 msgstr ""
 
@@ -8784,11 +8969,11 @@ msgstr ""
 msgid "One or more of your selected files are too large. Maximum size is {VIDEO_MAX_SIZE_MB} MB."
 msgstr "One or more of your selected files are too large. Maximum size is {VIDEO_MAX_SIZE_MB} MB."
 
-#: src/view/com/composer/Composer.tsx:750
+#: src/view/com/composer/Composer.tsx:757
 msgid "One or more posts are too long to save as a draft. {MAX_DRAFT_GRAPHEME_LENGTH, plural, one {The maximum number of characters is # character.} other {The maximum number of characters is # characters.}}"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:954
+#: src/view/com/composer/Composer.tsx:961
 msgid "One or more videos is missing alt text."
 msgstr ""
 
@@ -8801,7 +8986,7 @@ msgstr ""
 #. placeholder {0}: result.accepted.length
 #. placeholder {1}: next.length
 #. placeholder {2}: next.length
-#: src/view/com/composer/Composer.tsx:236
+#: src/view/com/composer/Composer.tsx:238
 msgid "Only {0} of {1} {2, plural, one {image} other {images}} added; limit is {MAX_GALLERY_IMAGES}"
 msgstr "Only {0} of {1} {2, plural, one {image} other {images}} added; limit is {MAX_GALLERY_IMAGES}"
 
@@ -8819,7 +9004,7 @@ msgstr "Only followers can join this group chat."
 
 #: src/screens/Settings/ActivityPrivacySettings.tsx:121
 #: src/screens/Settings/ActivityPrivacySettings.tsx:126
-#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:160
+#: src/screens/Settings/PrivacyAndSecuritySettings.tsx:158
 msgid "Only followers who I follow"
 msgstr ""
 
@@ -8909,7 +9094,7 @@ msgid "Open drawer menu"
 msgstr ""
 
 #: src/screens/Messages/components/MessageComposer.tsx:228
-#: src/view/com/composer/Composer.tsx:2271
+#: src/view/com/composer/Composer.tsx:2280
 msgid "Open emoji picker"
 msgstr ""
 
@@ -8940,8 +9125,8 @@ msgstr "Open group chat"
 msgid "Open group chat settings"
 msgstr "Open group chat settings"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:556
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:562
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:583
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:589
 msgid "Open in Google Translate"
 msgstr "Open in Google Translate"
 
@@ -8954,7 +9139,7 @@ msgstr ""
 msgid "Open message options"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:482
+#: src/screens/Settings/Settings.tsx:489
 msgid "Open moderation debug page"
 msgstr ""
 
@@ -8996,11 +9181,11 @@ msgstr ""
 msgid "Open Starter Pack menu"
 msgstr "Open Starter Pack menu"
 
-#: src/screens/Settings/Settings.tsx:475
+#: src/screens/Settings/Settings.tsx:482
 msgid "Open storybook page"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:460
+#: src/screens/Settings/Settings.tsx:467
 msgid "Open system log"
 msgstr ""
 
@@ -9016,7 +9201,7 @@ msgstr "Opens {displayName} feed"
 msgid "Opens a dialog to add a content warning to your post"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:647
+#: src/screens/Login/LoginForm.tsx:657
 msgid "Opens a dialog to change the hosting provider you sign in to"
 msgstr "Opens a dialog to change the hosting provider you sign in to"
 
@@ -9062,22 +9247,22 @@ msgid "Opens device gallery to select up to {MAX_GALLERY_IMAGES, plural, other {
 msgstr "Opens device gallery to select up to {MAX_GALLERY_IMAGES, plural, other {# images}}, or a single video or GIF."
 
 #: src/screens/Messages/JoinRequest.tsx:313
-#: src/view/com/auth/SplashScreen.tsx:91
+#: src/view/com/auth/SplashScreen.tsx:90
 #: src/view/com/auth/SplashScreen.web.tsx:110
-msgid "Opens flow to create a new Bluesky account"
-msgstr ""
+msgid "Opens flow to create a new Krao account"
+msgstr "Opens flow to create a new Krao account"
 
 #: src/screens/Messages/JoinRequest.tsx:299
-#: src/view/com/auth/SplashScreen.tsx:120
+#: src/view/com/auth/SplashScreen.tsx:118
 #: src/view/com/auth/SplashScreen.web.tsx:124
-msgid "Opens flow to sign in to your existing Bluesky account"
-msgstr ""
+msgid "Opens flow to sign in to your existing Krao account"
+msgstr "Opens flow to sign in to your existing Krao account"
 
 #: src/components/images/Gallery/index.tsx:460
 msgid "Opens full image"
 msgstr "Opens full image"
 
-#: src/screens/Settings/Settings.tsx:260
+#: src/screens/Settings/Settings.tsx:267
 msgid "Opens helpdesk in browser"
 msgstr ""
 
@@ -9245,8 +9430,8 @@ msgid "Our moderation team has received your report."
 msgstr ""
 
 #: src/screens/Messages/components/ChatDisabled.tsx:54
-msgid "Our moderators have reviewed reports and decided to disable your access to chats on Bluesky."
-msgstr ""
+msgid "Our moderators have reviewed reports and decided to disable your access to chats on Krao."
+msgstr "Our moderators have reviewed reports and decided to disable your access to chats on Krao."
 
 #: src/components/dialogs/StarterPackDialog.tsx:372
 msgid "Owner"
@@ -9268,8 +9453,8 @@ msgstr ""
 msgid "Party GIFs"
 msgstr "Party GIFs"
 
-#: src/screens/Login/LoginForm.tsx:362
-#: src/screens/Login/LoginForm.tsx:369
+#: src/screens/Login/LoginForm.tsx:363
+#: src/screens/Login/LoginForm.tsx:370
 #: src/screens/Settings/AccountSettings.tsx:124
 #: src/screens/Settings/AccountSettings.tsx:128
 #: src/screens/Settings/components/DeleteAccountDialog.tsx:290
@@ -9321,12 +9506,12 @@ msgid "People {ownerName} follows can request to join"
 msgstr "People {ownerName} follows can request to join"
 
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:270
+#: src/Navigation.tsx:271
 msgid "People followed by @{0}"
 msgstr ""
 
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:263
+#: src/Navigation.tsx:264
 msgid "People following @{0}"
 msgstr ""
 
@@ -9419,8 +9604,8 @@ msgstr ""
 msgid "Pin to Home"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:515
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:520
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:542
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:547
 msgid "Pin to your profile"
 msgstr ""
 
@@ -9500,8 +9685,8 @@ msgid "Please choose your password."
 msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/Update.tsx:283
-msgid "Please click on the link in the email we just sent you to verify your new email address. This is an important step to allow you to continue enjoying all the features of Bluesky."
-msgstr ""
+msgid "Please click on the link in the email we just sent you to verify your new email address. This is an important step to allow you to continue enjoying all the features of Krao."
+msgstr "Please click on the link in the email we just sent you to verify your new email address. This is an important step to allow you to continue enjoying all the features of Krao."
 
 #: src/screens/Signup/state.ts:325
 msgid "Please complete the verification captcha."
@@ -9578,11 +9763,11 @@ msgstr ""
 msgid "Please enter your new email address."
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:193
+#: src/screens/Login/LoginForm.tsx:194
 msgid "Please enter your password"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:187
+#: src/screens/Login/LoginForm.tsx:188
 msgid "Please enter your username"
 msgstr ""
 
@@ -9632,8 +9817,8 @@ msgid "Please submit your report through the Report non-consensual intimate imag
 msgstr "Please submit your report through the Report non-consensual intimate imagery (NCII) form."
 
 #: src/features/inviteFriends/InviteScannerScreen.web.tsx:40
-msgid "Please use the Bluesky mobile app to scan a QR code."
-msgstr "Please use the Bluesky mobile app to scan a QR code."
+msgid "Please use the Krao mobile app to scan a QR code."
+msgstr "Please use the Krao mobile app to scan a QR code."
 
 #: src/screens/Settings/FindContactsSettings.tsx:110
 msgid "Please use the native app to import your contacts."
@@ -9660,7 +9845,7 @@ msgstr ""
 msgid "Porn"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1913
+#: src/view/com/composer/Composer.tsx:1920
 msgctxt "action"
 msgid "Post"
 msgstr ""
@@ -9686,12 +9871,12 @@ msgstr ""
 msgid "Post a video"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1911
+#: src/view/com/composer/Composer.tsx:1918
 msgctxt "action"
 msgid "Post All"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1570
+#: src/view/com/composer/Composer.tsx:1577
 msgid "Post anyway"
 msgstr "Post anyway"
 
@@ -9705,10 +9890,10 @@ msgid "Post by {account}"
 msgstr "Post by {account}"
 
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:296
-#: src/Navigation.tsx:303
-#: src/Navigation.tsx:310
-#: src/Navigation.tsx:317
+#: src/Navigation.tsx:297
+#: src/Navigation.tsx:304
+#: src/Navigation.tsx:311
+#: src/Navigation.tsx:318
 msgid "Post by @{0}"
 msgstr ""
 
@@ -9716,7 +9901,7 @@ msgstr ""
 msgid "Post created"
 msgstr "Post created"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:196
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:202
 msgctxt "toast"
 msgid "Post deleted"
 msgstr ""
@@ -9725,7 +9910,7 @@ msgstr ""
 msgid "Post failed to upload. Please check your Internet connection and try again."
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:135
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:137
 #: src/screens/PostThread/components/ThreadItemPost.tsx:121
 #: src/screens/PostThread/components/ThreadItemTreePost.tsx:112
 #: src/screens/VideoFeed/index.tsx:577
@@ -9746,14 +9931,14 @@ msgstr ""
 msgid "Post interaction settings"
 msgstr ""
 
-#: src/Navigation.tsx:230
+#: src/Navigation.tsx:231
 #: src/screens/ModerationInteractionSettings/index.tsx:36
 msgid "Post Interaction Settings"
 msgstr ""
 
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:193
-msgid "Post it to Bluesky or share anywhere."
-msgstr "Post it to Bluesky or share anywhere."
+msgid "Post it to Krao or share anywhere."
+msgstr "Post it to Krao or share anywhere."
 
 #. Accessibility label for button that opens dialog to choose post language settings
 #: src/view/com/composer/select-language/PostLanguageSelect.tsx:193
@@ -9866,13 +10051,13 @@ msgstr ""
 msgid "Privacy"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:185
-#: src/screens/Settings/Settings.tsx:188
+#: src/screens/Settings/Settings.tsx:192
+#: src/screens/Settings/Settings.tsx:195
 msgid "Privacy and security"
 msgstr ""
 
-#: src/Navigation.tsx:460
-#: src/Navigation.tsx:468
+#: src/Navigation.tsx:461
+#: src/Navigation.tsx:469
 #: src/screens/Settings/ActivityPrivacySettings.tsx:41
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:47
 msgid "Privacy and Security"
@@ -9885,7 +10070,7 @@ msgstr ""
 
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:36
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:103
-#: src/Navigation.tsx:368
+#: src/Navigation.tsx:369
 #: src/screens/Settings/AboutSettings.tsx:102
 #: src/screens/Settings/AboutSettings.tsx:105
 #: src/view/screens/PrivacyPolicy.tsx:25
@@ -9898,11 +10083,11 @@ msgstr ""
 msgid "Privacy violation of a minor"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2694
+#: src/view/com/composer/Composer.tsx:2703
 msgid "Processing GIF..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2696
+#: src/view/com/composer/Composer.tsx:2705
 msgid "Processing video..."
 msgstr ""
 
@@ -9934,6 +10119,10 @@ msgstr "Profile link copied"
 msgid "Profile not found"
 msgstr ""
 
+#: src/features/wallet/components/NftAvatarSection.tsx:196
+msgid "Profile picture updated"
+msgstr "Profile picture updated"
+
 #: src/screens/Profile/Header/EditProfileDialog.tsx:186
 msgctxt "toast"
 msgid "Profile updated"
@@ -9953,22 +10142,22 @@ msgid "Public, sharable lists of users to mute or block in bulk."
 msgstr ""
 
 #. Accessibility label for button to publish a single post
-#: src/view/com/composer/Composer.tsx:1897
+#: src/view/com/composer/Composer.tsx:1904
 msgid "Publish post"
 msgstr ""
 
 #. Accessibility label for button to publish multiple posts in a thread
-#: src/view/com/composer/Composer.tsx:1892
+#: src/view/com/composer/Composer.tsx:1899
 msgid "Publish posts"
 msgstr ""
 
 #. Accessibility label for button to publish multiple replies in a thread
-#: src/view/com/composer/Composer.tsx:1881
+#: src/view/com/composer/Composer.tsx:1888
 msgid "Publish replies"
 msgstr ""
 
 #. Accessibility label for button to publish a single reply
-#: src/view/com/composer/Composer.tsx:1886
+#: src/view/com/composer/Composer.tsx:1893
 msgid "Publish reply"
 msgstr ""
 
@@ -10009,11 +10198,11 @@ msgstr ""
 msgid "Quote post"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:347
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:353
 msgid "Quote post was re-attached"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:346
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:352
 msgid "Quote post was successfully detached"
 msgstr ""
 
@@ -10031,7 +10220,7 @@ msgstr ""
 msgid "Quotes"
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:481
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:485
 msgid "Quotes of this post"
 msgstr ""
 
@@ -10043,8 +10232,8 @@ msgstr ""
 msgid "Rate limit exceeded. Please try again later."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:708
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:718
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:735
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:745
 msgid "Re-attach quote"
 msgstr ""
 
@@ -10109,10 +10298,6 @@ msgstr "Read our Community Guidelines"
 msgid "Read our Terms of Service"
 msgstr "Read our Terms of Service"
 
-#: src/view/com/auth/SplashScreen.web.tsx:172
-msgid "Read the Bluesky blog"
-msgstr ""
-
 #: src/screens/Signup/StepInfo/Policies.tsx:53
 #: src/screens/Signup/StepInfo/Policies.tsx:79
 msgid "Read the Bluesky Privacy Policy"
@@ -10122,6 +10307,10 @@ msgstr ""
 #: src/screens/Signup/StepInfo/Policies.tsx:66
 msgid "Read the Bluesky Terms of Service"
 msgstr ""
+
+#: src/view/com/auth/SplashScreen.web.tsx:172
+msgid "Read the Krao blog"
+msgstr "Read the Krao blog"
 
 #: src/components/WelcomeModal.tsx:148
 msgid "Real conversations."
@@ -10201,11 +10390,12 @@ msgstr ""
 #: src/components/StarterPack/Main/ProfilesList.tsx:207
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:110
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:117
+#: src/features/wallet/components/NftAvatarSection.tsx:105
 #: src/screens/Bookmarks.tsx:259
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
 #: src/screens/Messages/ConversationSettings/prompts.tsx:170
 #: src/screens/Moderation/index.tsx:534
-#: src/screens/Settings/Settings.tsx:695
+#: src/screens/Settings/Settings.tsx:702
 #: src/view/com/posts/PostFeedErrorMessage.tsx:219
 msgid "Remove"
 msgstr ""
@@ -10231,8 +10421,8 @@ msgstr "Remove {displayName}?"
 msgid "Remove {q}"
 msgstr "Remove {q}"
 
-#: src/screens/Settings/Settings.tsx:676
-#: src/screens/Settings/Settings.tsx:679
+#: src/screens/Settings/Settings.tsx:683
+#: src/screens/Settings/Settings.tsx:686
 msgid "Remove account"
 msgstr ""
 
@@ -10292,7 +10482,7 @@ msgstr "Remove from chat"
 msgid "Remove from my feeds"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:689
+#: src/screens/Settings/Settings.tsx:696
 msgid "Remove from quick access?"
 msgstr ""
 
@@ -10327,6 +10517,10 @@ msgstr "Remove member"
 #: src/components/dialogs/MutedWords.tsx:615
 msgid "Remove mute word from your list"
 msgstr ""
+
+#: src/features/wallet/components/NftAvatarSection.tsx:99
+msgid "Remove NFT badge"
+msgstr "Remove NFT badge"
 
 #: src/screens/Search/components/SearchHistory.tsx:243
 msgid "Remove profile"
@@ -10482,7 +10676,7 @@ msgstr ""
 msgid "Reply"
 msgstr "Reply"
 
-#: src/view/com/composer/Composer.tsx:1909
+#: src/view/com/composer/Composer.tsx:1916
 msgctxt "action"
 msgid "Reply"
 msgstr ""
@@ -10515,12 +10709,12 @@ msgstr ""
 msgid "Reply to {handle}"
 msgstr "Reply to {handle}"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:385
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:391
 msgctxt "toast"
 msgid "Reply visibility updated"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:384
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:390
 msgid "Reply was successfully hidden"
 msgstr ""
 
@@ -10561,8 +10755,8 @@ msgstr ""
 msgid "Report message"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:774
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:776
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:801
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:803
 msgid "Report post"
 msgstr ""
 
@@ -10666,7 +10860,7 @@ msgstr ""
 msgid "Reposts Hidden"
 msgstr "Reposts Hidden"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:460
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:464
 msgid "Reposts of this post"
 msgstr ""
 
@@ -10717,7 +10911,7 @@ msgstr "Requested"
 msgid "Requests"
 msgstr "Requests"
 
-#: src/Navigation.tsx:549
+#: src/Navigation.tsx:558
 #: src/screens/Messages/JoinRequests.tsx:56
 #: src/screens/Messages/JoinRequests.tsx:422
 msgid "Requests to join"
@@ -10777,8 +10971,8 @@ msgstr ""
 msgid "Resend Verification Email"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:511
-#: src/screens/Settings/Settings.tsx:513
+#: src/screens/Settings/Settings.tsx:518
+#: src/screens/Settings/Settings.tsx:520
 msgid "Reset activity subscription nudge"
 msgstr ""
 
@@ -10786,8 +10980,8 @@ msgstr ""
 msgid "Reset code"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:496
-#: src/screens/Settings/Settings.tsx:498
+#: src/screens/Settings/Settings.tsx:503
+#: src/screens/Settings/Settings.tsx:505
 msgid "Reset onboarding state"
 msgstr ""
 
@@ -10795,7 +10989,7 @@ msgstr ""
 msgid "Reset password"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:419
+#: src/screens/Login/LoginForm.tsx:420
 msgid "Reset your password by sending a code to your email"
 msgstr "Reset your password by sending a code to your email"
 
@@ -10817,7 +11011,7 @@ msgstr "Restore the {defaultChannel} deployment"
 msgid "Resync contacts"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:529
+#: src/screens/Login/LoginForm.tsx:530
 msgid "Retries signing in"
 msgstr ""
 
@@ -10836,8 +11030,8 @@ msgstr ""
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoFallback.tsx:56
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoFallback.tsx:59
 #: src/components/StarterPack/ProfileStarterPacks.tsx:371
-#: src/screens/Login/LoginForm.tsx:528
-#: src/screens/Login/LoginForm.tsx:534
+#: src/screens/Login/LoginForm.tsx:529
+#: src/screens/Login/LoginForm.tsx:535
 #: src/screens/Messages/ChatList.tsx:429
 #: src/screens/Messages/components/MessageListError.tsx:24
 #: src/screens/Messages/Inbox.tsx:210
@@ -10881,7 +11075,7 @@ msgstr ""
 msgid "Returns to the previous step"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:615
+#: src/screens/Login/LoginForm.tsx:625
 msgid "Reveal password"
 msgstr "Reveal password"
 
@@ -10927,22 +11121,22 @@ msgstr ""
 #: src/screens/SavedFeeds.tsx:124
 #: src/screens/SavedFeeds.tsx:311
 #: src/screens/SavedFeeds.tsx:315
-#: src/view/com/composer/Composer.tsx:1551
+#: src/view/com/composer/Composer.tsx:1558
 #: src/view/com/composer/drafts/DraftsButton.tsx:121
 msgid "Save changes"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1523
+#: src/view/com/composer/Composer.tsx:1530
 #: src/view/com/composer/drafts/DraftsButton.tsx:89
 msgid "Save changes?"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1551
+#: src/view/com/composer/Composer.tsx:1558
 #: src/view/com/composer/drafts/DraftsButton.tsx:121
 msgid "Save draft"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1525
+#: src/view/com/composer/Composer.tsx:1532
 #: src/view/com/composer/drafts/DraftsButton.tsx:91
 msgid "Save draft?"
 msgstr ""
@@ -10974,7 +11168,7 @@ msgid "Save to my feeds"
 msgstr ""
 
 #. Description of a feature flag (Keep your place in the Following feed)
-#: src/analytics/features/index.ts:120
+#: src/analytics/features/index.ts:129
 msgid "Save your position in the Following feed between sessions. New posts wait above you until you’re ready to view them."
 msgstr "Save your position in the Following feed between sessions. New posts wait above you until you’re ready to view them."
 
@@ -10990,7 +11184,7 @@ msgid "Saved Feeds"
 msgstr ""
 
 #: src/components/dialogs/nuxs/BookmarksAnnouncement.tsx:145
-#: src/Navigation.tsx:609
+#: src/Navigation.tsx:618
 #: src/screens/Bookmarks.tsx:60
 msgid "Saved Posts"
 msgstr ""
@@ -11021,7 +11215,7 @@ msgstr "Scan"
 
 #: src/features/inviteFriends/InviteScannerScreen.tsx:82
 #: src/features/inviteFriends/InviteScannerScreen.web.tsx:23
-#: src/Navigation.tsx:348
+#: src/Navigation.tsx:349
 msgid "Scan QR code"
 msgstr "Scan QR code"
 
@@ -11060,7 +11254,7 @@ msgstr ""
 
 #. placeholder {0}: profile.handle
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:289
+#: src/Navigation.tsx:290
 #: src/screens/Profile/ProfileSearch.tsx:37
 msgid "Search @{0}'s posts"
 msgstr ""
@@ -11191,8 +11385,8 @@ msgid "See #{tag} posts by user"
 msgstr ""
 
 #: src/view/com/auth/SplashScreen.web.tsx:177
-msgid "See jobs at Bluesky"
-msgstr ""
+msgid "See jobs at Krao"
+msgstr "See jobs at Krao"
 
 #: src/components/FeedInterstitials.tsx:495
 #: src/components/FeedInterstitials.tsx:554
@@ -11410,6 +11604,22 @@ msgstr ""
 msgid "Self-harm or dangerous behaviors"
 msgstr ""
 
+#. placeholder {0}: formatUnits(amount, asset.decimals)
+#. placeholder {1}: asset.symbol
+#: src/features/tips/components/TipDialog.tsx:205
+msgid "Send {0} {1}"
+msgstr "Send {0} {1}"
+
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:520
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:522
+#: src/features/tips/components/TipDialog.tsx:41
+msgid "Send a tip"
+msgstr "Send a tip"
+
+#: src/features/tips/components/ProfileTipButton.tsx:30
+msgid "Send a tip to @{handle}"
+msgstr "Send a tip to @{handle}"
+
 #: src/components/contacts/screens/PhoneInput.tsx:255
 #: src/components/contacts/screens/PhoneInput.tsx:260
 msgid "Send code"
@@ -11454,6 +11664,10 @@ msgstr ""
 msgid "Send the message from your phone"
 msgstr ""
 
+#: src/features/tips/components/TipDialog.tsx:197
+msgid "Send tip"
+msgstr "Send tip"
+
 #: src/components/dialogs/EmailDialog/screens/Verify.tsx:304
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:127
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:130
@@ -11462,21 +11676,29 @@ msgstr ""
 
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:114
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:120
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:103
-#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:109
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:105
+#: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:111
 msgid "Send via chat"
 msgstr "Send via chat"
+
+#: src/features/tips/components/TipDialog.tsx:124
+msgid "Sending tips from the mobile app is coming soon. Use Krao on the web for now."
+msgstr "Sending tips from the mobile app is coming soon. Use Krao on the web for now."
 
 #. placeholder {0}: formatDateTime(i18n, new Date(message.sentAt), { timeStyle: 'short', })
 #: src/components/dms/MessageContextMenu.tsx:174
 msgid "Sent at {0}"
 msgstr "Sent at {0}"
 
+#: src/features/tips/components/TipDialog.tsx:106
+msgid "Sent on Base straight from your wallet to theirs. Krao never holds your funds."
+msgstr "Sent on Base straight from your wallet to theirs. Krao never holds your funds."
+
 #: src/components/contacts/screens/PhoneInput.tsx:283
 msgid "Sent to our phone number verification provider Plivo"
 msgstr ""
 
-#: src/components/dialogs/ServerInput.tsx:174
+#: src/components/dialogs/ServerInput.tsx:175
 #: src/screens/Login/components/HostingProviderDialog.tsx:200
 msgid "Server address"
 msgstr ""
@@ -11506,11 +11728,11 @@ msgstr ""
 msgid "Set your birthdate below and we'll get you back to posting and exploring in no time!"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:349
+#: src/screens/Login/LoginForm.tsx:350
 msgid "set your hosting provider manually"
 msgstr "set your hosting provider manually"
 
-#: src/screens/Login/LoginForm.tsx:483
+#: src/screens/Login/LoginForm.tsx:484
 msgid "Set your hosting provider manually"
 msgstr "Set your hosting provider manually"
 
@@ -11518,8 +11740,8 @@ msgstr "Set your hosting provider manually"
 msgid "Sets email for password reset"
 msgstr ""
 
-#: src/Navigation.tsx:245
-#: src/screens/Settings/Settings.tsx:102
+#: src/Navigation.tsx:246
+#: src/screens/Settings/Settings.tsx:103
 #: src/view/shell/desktop/LeftNav.tsx:783
 #: src/view/shell/Drawer.tsx:708
 msgid "Settings"
@@ -11680,8 +11902,8 @@ msgid "Share this Starter Pack"
 msgstr "Share this Starter Pack"
 
 #: src/components/StarterPack/ShareDialog.tsx:87
-msgid "Share this Starter Pack and help people join your community on Bluesky."
-msgstr "Share this Starter Pack and help people join your community on Bluesky."
+msgid "Share this Starter Pack and help people join your community on Krao."
+msgstr "Share this Starter Pack and help people join your community on Krao."
 
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:130
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:133
@@ -11702,7 +11924,7 @@ msgstr ""
 msgid "Share your thoughts…"
 msgstr "Share your thoughts…"
 
-#: src/Navigation.tsx:353
+#: src/Navigation.tsx:354
 msgid "Shared Preferences Tester"
 msgstr ""
 
@@ -11762,8 +11984,8 @@ msgstr ""
 msgid "Show group chat updates"
 msgstr "Show group chat updates"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:602
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:604
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:629
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:631
 msgid "Show less like this"
 msgstr ""
 
@@ -11779,8 +12001,8 @@ msgstr ""
 msgid "Show more"
 msgstr "Show more"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:594
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:596
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:621
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:623
 msgid "Show more like this"
 msgstr ""
 
@@ -11811,8 +12033,8 @@ msgstr ""
 msgid "Show replies as"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:682
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:692
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:709
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:719
 msgid "Show reply for everyone"
 msgstr ""
 
@@ -11844,11 +12066,11 @@ msgstr ""
 msgid "Show when you’re live"
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:599
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:603
 msgid "Shows information about when this post was created"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:127
+#: src/screens/Settings/Settings.tsx:128
 msgid "Shows other accounts you can switch to"
 msgstr ""
 
@@ -11864,14 +12086,14 @@ msgstr ""
 #: src/screens/Hashtag.tsx:233
 #: src/screens/Login/index.tsx:143
 #: src/screens/Login/index.tsx:165
-#: src/screens/Login/LoginForm.tsx:272
-#: src/screens/Login/LoginForm.tsx:551
-#: src/screens/Login/LoginForm.tsx:557
+#: src/screens/Login/LoginForm.tsx:273
+#: src/screens/Login/LoginForm.tsx:552
+#: src/screens/Login/LoginForm.tsx:558
 #: src/screens/Messages/JoinRequest.tsx:298
 #: src/screens/Messages/JoinRequest.tsx:304
 #: src/screens/Search/SearchResults.tsx:399
-#: src/view/com/auth/SplashScreen.tsx:118
-#: src/view/com/auth/SplashScreen.tsx:125
+#: src/view/com/auth/SplashScreen.tsx:116
+#: src/view/com/auth/SplashScreen.tsx:123
 #: src/view/com/auth/SplashScreen.web.tsx:122
 #: src/view/com/auth/SplashScreen.web.tsx:130
 #: src/view/shell/bottom-bar/BottomBar.tsx:364
@@ -11882,6 +12104,10 @@ msgstr ""
 #: src/view/shell/NavSignupCard.tsx:63
 msgid "Sign in"
 msgstr ""
+
+#: src/features/gating/components/GatedContent.tsx:49
+msgid "Sign in and link a wallet to unlock this content."
+msgstr "Sign in and link a wallet to unlock this content."
 
 #. placeholder {0}: account.handle
 #: src/components/AccountList.tsx:135
@@ -11910,22 +12136,27 @@ msgid "Sign in to account that is not listed"
 msgstr ""
 
 #: src/components/dialogs/Signin.tsx:47
-msgid "Sign in to Bluesky or create a new account"
-msgstr ""
+msgid "Sign in to Krao or create a new account"
+msgstr "Sign in to Krao or create a new account"
 
 #: src/screens/Messages/JoinRequest.tsx:223
 msgid "Sign in to request access to this group chat."
 msgstr "Sign in to request access to this group chat."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:580
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:582
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:607
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:609
 msgid "Sign in to view post"
 msgstr ""
 
+#: src/features/wallet/components/WalletSignInButton.tsx:40
+#: src/features/wallet/components/WalletSignInButton.tsx:51
+msgid "Sign in with wallet"
+msgstr "Sign in with wallet"
+
 #: src/ageAssurance/components/DataUnavailableScreen.tsx:22
-#: src/screens/Settings/Settings.tsx:277
-#: src/screens/Settings/Settings.tsx:279
-#: src/screens/Settings/Settings.tsx:311
+#: src/screens/Settings/Settings.tsx:284
+#: src/screens/Settings/Settings.tsx:286
+#: src/screens/Settings/Settings.tsx:318
 #: src/screens/SignupQueued.tsx:100
 #: src/screens/SignupQueued.tsx:103
 #: src/screens/Takendown.tsx:88
@@ -11939,12 +12170,12 @@ msgstr ""
 msgid "Sign Out"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:308
+#: src/screens/Settings/Settings.tsx:315
 #: src/view/shell/desktop/LeftNav.tsx:228
 msgid "Sign out?"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:569
+#: src/screens/Login/LoginForm.tsx:579
 msgid "Sign up"
 msgstr "Sign up"
 
@@ -11959,6 +12190,10 @@ msgstr ""
 msgid "Signed in as @{0}"
 msgstr ""
 
+#: src/features/wallet/components/WalletSignInButton.tsx:41
+msgid "Signs in by signing a message with a wallet linked to your account"
+msgstr "Signs in by signing a message with a wallet linked to your account"
+
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:299
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:302
 msgid "Since"
@@ -11968,8 +12203,8 @@ msgstr "Since"
 #: src/components/contacts/screens/VerifyNumber.tsx:208
 #: src/screens/Onboarding/StepFindContactsIntro/index.tsx:86
 #: src/screens/Onboarding/StepFindContactsIntro/index.tsx:90
-#: src/screens/Onboarding/StepFinished/index.tsx:301
-#: src/screens/Onboarding/StepFinished/index.tsx:323
+#: src/screens/Onboarding/StepFinished/index.tsx:298
+#: src/screens/Onboarding/StepFinished/index.tsx:320
 #: src/screens/Onboarding/StepSuggestedAccounts/index.tsx:285
 #: src/screens/Onboarding/StepSuggestedStarterpacks/index.tsx:111
 #: src/screens/StarterPack/Wizard/index.tsx:199
@@ -11981,12 +12216,12 @@ msgstr ""
 msgid "Skip contact sharing and continue to the app"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1568
+#: src/view/com/composer/Composer.tsx:1575
 msgid "Skip empty posts?"
 msgstr "Skip empty posts?"
 
-#: src/screens/Onboarding/StepFinished/index.tsx:294
-#: src/screens/Onboarding/StepFinished/index.tsx:320
+#: src/screens/Onboarding/StepFinished/index.tsx:291
+#: src/screens/Onboarding/StepFinished/index.tsx:317
 msgid "Skip introduction and start using your account"
 msgstr ""
 
@@ -12016,7 +12251,7 @@ msgid "Social media you control."
 msgstr ""
 
 #. Name for a feature flag
-#: src/analytics/features/index.ts:96
+#: src/analytics/features/index.ts:105
 msgid "Social proofing on posts"
 msgstr "Social proofing on posts"
 
@@ -12131,8 +12366,8 @@ msgstr ""
 msgid "Sorry, we're unable to load account suggestions at this time."
 msgstr ""
 
-#: src/App.tsx:142
-#: src/App.web.tsx:122
+#: src/App.tsx:143
+#: src/App.web.tsx:123
 msgid "Sorry! Your session expired. Please sign in again."
 msgstr ""
 
@@ -12168,7 +12403,7 @@ msgid "Sports"
 msgstr ""
 
 #. Description of a feature flag (Social proofing on posts)
-#: src/analytics/features/index.ts:102
+#: src/analytics/features/index.ts:111
 msgid "Spot posts your friends and follows have liked."
 msgstr "Spot posts your friends and follows have liked."
 
@@ -12204,8 +12439,8 @@ msgstr "Start chat"
 msgid "Start chat with {displayName}"
 msgstr ""
 
-#: src/Navigation.tsx:580
-#: src/Navigation.tsx:585
+#: src/Navigation.tsx:589
+#: src/Navigation.tsx:594
 #: src/screens/StarterPack/Wizard/index.tsx:190
 msgid "Starter Pack"
 msgstr ""
@@ -12262,7 +12497,7 @@ msgstr ""
 msgid "Step {0} of {1}"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:414
+#: src/screens/Settings/Settings.tsx:421
 msgid "Storage cleared, you need to restart the app now."
 msgstr ""
 
@@ -12270,14 +12505,14 @@ msgstr ""
 msgid "Stored as part of a secure code for matching with others"
 msgstr ""
 
-#: src/Navigation.tsx:338
-#: src/screens/Settings/Settings.tsx:477
+#: src/Navigation.tsx:339
+#: src/screens/Settings/Settings.tsx:484
 msgid "Storybook"
 msgstr ""
 
 #: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:182
-msgid "Streaming on Twitch? Set your live status on Bluesky to add a badge to your avatar. Tapping it takes people straight to your stream."
-msgstr ""
+msgid "Streaming on Twitch? Set your live status on Krao to add a badge to your avatar. Tapping it takes people straight to your stream."
+msgstr "Streaming on Twitch? Set your live status on Krao to add a badge to your avatar. Tapping it takes people straight to your stream."
 
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:123
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:129
@@ -12406,7 +12641,7 @@ msgctxt "Name of app icon variant"
 msgid "Sunset"
 msgstr ""
 
-#: src/Navigation.tsx:363
+#: src/Navigation.tsx:364
 #: src/view/screens/Support.tsx:25
 #: src/view/screens/Support.tsx:28
 msgid "Support"
@@ -12415,6 +12650,11 @@ msgstr ""
 #: src/components/contacts/screens/PhoneInput.tsx:236
 msgid "Support for this feature in your country has not been enabled yet! Please check back later."
 msgstr ""
+
+#. placeholder {0}: count ?? 0
+#: src/features/wallet/components/ChainBadges.tsx:24
+msgid "Supported · {0}"
+msgstr "Supported · {0}"
 
 #: src/components/dms/dialogs/NewChatDialog.tsx:93
 #: src/components/dms/dialogs/ShareViaChatDialog.tsx:109
@@ -12428,9 +12668,9 @@ msgstr "Suspended accounts cannot participate in chat."
 
 #: src/components/dialogs/SwitchAccount.tsx:47
 #: src/components/dialogs/SwitchAccount.tsx:50
-#: src/screens/Settings/Settings.tsx:126
-#: src/screens/Settings/Settings.tsx:138
-#: src/screens/Settings/Settings.tsx:636
+#: src/screens/Settings/Settings.tsx:127
+#: src/screens/Settings/Settings.tsx:139
+#: src/screens/Settings/Settings.tsx:643
 #: src/view/shell/desktop/LeftNav.tsx:266
 msgid "Switch account"
 msgstr ""
@@ -12464,7 +12704,7 @@ msgstr ""
 #: src/screens/Log.tsx:49
 #: src/screens/Settings/AboutSettings.tsx:117
 #: src/screens/Settings/AboutSettings.tsx:120
-#: src/screens/Settings/Settings.tsx:462
+#: src/screens/Settings/Settings.tsx:469
 msgid "System log"
 msgstr ""
 
@@ -12477,8 +12717,8 @@ msgid "Take the conversation private."
 msgstr "Take the conversation private."
 
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:110
-msgid "Tap below to allow Bluesky to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
-msgstr ""
+msgid "Tap below to allow Krao to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
+msgstr "Tap below to allow Krao to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
 
 #: src/components/dms/MessageItem.tsx:697
 msgid "Tap for details"
@@ -12498,8 +12738,8 @@ msgid "Tap here to update your location with GPS."
 msgstr "Tap here to update your location with GPS."
 
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:165
-msgid "Tap to acknowledge that you understand and agree to these updates and continue using Bluesky"
-msgstr ""
+msgid "Tap to acknowledge that you understand and agree to these updates and continue using Krao"
+msgstr "Tap to acknowledge that you understand and agree to these updates and continue using Krao"
 
 #: src/components/ContextMenu/Backdrop.ios.tsx:54
 #: src/components/ContextMenu/Backdrop.ios.tsx:80
@@ -12599,7 +12839,7 @@ msgstr ""
 #: src/components/dialogs/BirthDateSettings.tsx:181
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:31
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:98
-#: src/Navigation.tsx:373
+#: src/Navigation.tsx:374
 #: src/screens/Settings/AboutSettings.tsx:94
 #: src/screens/Settings/AboutSettings.tsx:97
 #: src/view/screens/TermsOfService.tsx:25
@@ -12661,8 +12901,8 @@ msgid "That's everything!"
 msgstr ""
 
 #: src/components/moderation/BlockDialog.tsx:150
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:187
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:431
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:190
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:438
 msgid "The account will be able to interact with you after unblocking."
 msgstr ""
 
@@ -12701,8 +12941,8 @@ msgid "The Discover feed now knows what you like"
 msgstr ""
 
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:324
-msgid "The experience is better in the app. Download Bluesky now and we'll pick back up where you left off."
-msgstr ""
+msgid "The experience is better in the app. Download Krao now and we'll pick back up where you left off."
+msgstr "The experience is better in the app. Download Krao now and we'll pick back up where you left off."
 
 #: src/view/com/posts/FeedShutdownMsg.tsx:70
 msgid "The feed has been replaced with Discover."
@@ -12756,6 +12996,12 @@ msgstr ""
 #: src/view/com/composer/state/video.ts:488
 msgid "The processed video is too large. Please try again with a smaller file."
 msgstr "The processed video is too large. Please try again with a smaller file."
+
+#: src/features/tips/components/TipDialog.tsx:72
+#: src/features/wallet/components/WalletSignInButton.tsx:29
+#: src/screens/Settings/WalletsSettings.tsx:59
+msgid "The request was cancelled in your wallet."
+msgstr "The request was cancelled in your wallet."
 
 #: src/view/com/composer/state/video.ts:463
 msgid "The selected video could not be encoded."
@@ -12816,6 +13062,10 @@ msgstr ""
 #: src/view/com/composer/state/video.ts:466
 msgid "The video could not be uploaded to your hosting provider. Please try again."
 msgstr "The video could not be uploaded to your hosting provider. Please try again."
+
+#: src/features/wallet/components/WalletSignInButton.tsx:33
+msgid "The wallet signature could not be verified."
+msgstr "The wallet signature could not be verified."
 
 #: src/screens/Settings/AppearanceSettings.tsx:137
 msgid "Theme"
@@ -12896,18 +13146,18 @@ msgid "There was an issue updating your feeds, please check your internet connec
 msgstr ""
 
 #. placeholder {0}: e.toString()
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:428
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:450
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:469
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:434
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:456
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:475
 #: src/screens/Messages/ConversationSettings/Member.tsx:71
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:114
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:127
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:117
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:130
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:92
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:263
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:293
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:309
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:94
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:266
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:296
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:312
 #: src/view/com/profile/ProfileMenu.tsx:139
 #: src/view/com/profile/ProfileMenu.tsx:152
 #: src/view/com/profile/ProfileMenu.tsx:171
@@ -12940,8 +13190,8 @@ msgid "There was an unexpected issue in the application. Please let us know if t
 msgstr ""
 
 #: src/screens/SignupQueued.tsx:139
-msgid "There's been a rush of new users to Bluesky! We'll activate your account as soon as we can."
-msgstr ""
+msgid "There's been a rush of new users to Krao! We'll activate your account as soon as we can."
+msgstr "There's been a rush of new users to Krao! We'll activate your account as soon as we can."
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:662
 msgid "These are your default settings"
@@ -13026,8 +13276,8 @@ msgid "This author has chosen to make their posts visible only to people who are
 msgstr ""
 
 #: src/screens/Profile/components/GermButton.tsx:249
-msgid "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your Bluesky account from Germ DM altogether by clicking the button below."
-msgstr ""
+msgid "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your Krao account from Germ DM altogether by clicking the button below."
+msgstr "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your Krao account from Germ DM altogether by clicking the button below."
 
 #: src/screens/Messages/components/ChatEnded.tsx:48
 msgid "This chat has ended"
@@ -13079,8 +13329,8 @@ msgid "This content is not available because one of the users involved has block
 msgstr ""
 
 #: src/view/com/posts/PostFeedErrorMessage.tsx:120
-msgid "This content is not viewable without a Bluesky account."
-msgstr ""
+msgid "This content is not viewable without a Krao account."
+msgstr "This content is not viewable without a Krao account."
 
 #: src/components/intents/GroupChatJoinDialog.tsx:151
 msgid "This conversation is locked."
@@ -13230,15 +13480,19 @@ msgstr "This moderation service does not support that report reason. Please choo
 msgid "This moderation service is unavailable. See below for more details. If this issue persists, contact us."
 msgstr ""
 
+#: src/features/wallet/components/NftAvatarSection.tsx:209
+msgid "This NFT isn’t held by any of your linked wallets, so it can’t be verified as yours."
+msgstr "This NFT isn’t held by any of your linked wallets, so it can’t be verified as yours."
+
 #: src/components/dms/MessagesListBlockedFooter.tsx:84
 msgid "This person is blocking you"
 msgstr "This person is blocking you"
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:639
-msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
-msgstr ""
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:643
+msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Krao on <1>{1}</1>."
+msgstr "This post claims to have been created on <0>{0}</0>, but was first seen by Krao on <1>{1}</1>."
 
 #: src/components/WhoCanReply.tsx:256
 msgid "This post has an unknown type of threadgate on it. Your app may be out of date."
@@ -13252,11 +13506,11 @@ msgstr ""
 msgid "This post was deleted by its author"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:827
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:868
 msgid "This post will be hidden from feeds and threads. This cannot be undone."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1141
+#: src/view/com/composer/Composer.tsx:1148
 msgid "This post's author has disabled quote posts."
 msgstr ""
 
@@ -13264,7 +13518,7 @@ msgstr ""
 msgid "This profile is only visible to logged-in users. It won't be visible to people who aren't signed in."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:862
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:903
 msgid "This reply will be sorted into a hidden section at the bottom of your thread and will mute notifications for subsequent replies - both for yourself and others."
 msgstr ""
 
@@ -13342,6 +13596,10 @@ msgstr "This video can’t be played on your device. Your browser or system may 
 msgid "This video can’t be previewed in your browser. It will still be uploaded."
 msgstr "This video can’t be previewed in your browser. It will still be uploaded."
 
+#: src/features/wallet/components/WalletSignInButton.tsx:31
+msgid "This wallet is not linked to an account on this hosting provider. Sign in with your password and link it in Settings → Wallets first."
+msgstr "This wallet is not linked to an account on this hosting provider. Sign in with your password and link it in Settings → Wallets first."
+
 #: src/components/dialogs/lists/CreateListFromStarterPackDialog.tsx:155
 msgid "This will create a new list with the same name, description, and members as this Starter Pack."
 msgstr "This will create a new list with the same name, description, and members as this Starter Pack."
@@ -13352,15 +13610,15 @@ msgid "This will delete \"{0}\" from your muted words. You can always add it bac
 msgstr ""
 
 #: src/screens/Settings/components/DeleteAccountDialog.tsx:336
-msgid "This will irreversibly delete your Bluesky account <0>{currentHandle}</0> and all associated data. Note that this will affect any other <1>AT Protocol</1> services you use with this account."
-msgstr ""
+msgid "This will irreversibly delete your Krao account <0>{currentHandle}</0> and all associated data. Note that this will affect any other <1>AT Protocol</1> services you use with this account."
+msgstr "This will irreversibly delete your Krao account <0>{currentHandle}</0> and all associated data. Note that this will affect any other <1>AT Protocol</1> services you use with this account."
 
 #. placeholder {0}: account.handle
-#: src/screens/Settings/Settings.tsx:690
+#: src/screens/Settings/Settings.tsx:697
 msgid "This will remove @{0} from the quick access list."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:855
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:896
 msgid "This will remove your post from this quote post for all users, and replace it with a placeholder."
 msgstr ""
 
@@ -13383,7 +13641,7 @@ msgstr ""
 msgid "Threaded"
 msgstr ""
 
-#: src/Navigation.tsx:406
+#: src/Navigation.tsx:407
 msgid "Threads Preferences"
 msgstr ""
 
@@ -13399,6 +13657,26 @@ msgstr ""
 #: src/screens/ModerationInbox/components/Timeline.tsx:12
 msgid "Timeline"
 msgstr "Timeline"
+
+#. placeholder {0}: target.handle
+#: src/features/tips/components/TipDialog.tsx:103
+msgid "Tip @{0}"
+msgstr "Tip @{0}"
+
+#. placeholder {0}: formatUnits(amount, asset.decimals)
+#. placeholder {1}: asset.symbol
+#: src/features/tips/components/TipDialog.tsx:90
+msgid "Tip sent: {0} {1}"
+msgstr "Tip sent: {0} {1}"
+
+#: src/features/tips/components/TipSummary.tsx:56
+msgid "Tipped {amounts} ({count})"
+msgstr "Tipped {amounts} ({count})"
+
+#. placeholder {0}: count ?? 0
+#: src/features/wallet/components/ChainBadges.tsx:23
+msgid "Tipper · {0}"
+msgstr "Tipper · {0}"
 
 #: src/components/SendErrorReportDialog.tsx:68
 msgid "Title"
@@ -13422,6 +13700,11 @@ msgstr ""
 msgid "To log out, <0>click here</0>. Or if you’d prefer, you can <1>delete your account</1>."
 msgstr "To log out, <0>click here</0>. Or if you’d prefer, you can <1>delete your account</1>."
 
+#. placeholder {0}: shortAddress(recipientWallet.data)
+#: src/features/tips/components/TipDialog.tsx:190
+msgid "To wallet {0}"
+msgstr "To wallet {0}"
+
 #: src/components/dms/DateDivider.tsx:28
 msgid "Today"
 msgstr ""
@@ -13433,6 +13716,39 @@ msgstr ""
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:212
 msgid "Toggles the sound"
 msgstr ""
+
+#. placeholder {0}: lookup.data.nft.tokenId
+#: src/features/wallet/components/NftAvatarSection.tsx:170
+msgid "Token {0}"
+msgstr "Token {0}"
+
+#: src/features/gating/components/GateDialog.tsx:127
+#: src/features/gating/components/GateDialog.tsx:132
+msgid "Token balance"
+msgstr "Token balance"
+
+#: src/features/gating/components/GateDialog.tsx:194
+#: src/features/wallet/components/NftAvatarSection.tsx:132
+#: src/features/wallet/components/NftAvatarSection.tsx:136
+msgid "Token ID"
+msgstr "Token ID"
+
+#: src/features/gating/components/GateDialog.tsx:190
+msgid "Token ID (optional, any token if empty)"
+msgstr "Token ID (optional, any token if empty)"
+
+#. placeholder {0}: describeRule(rule)
+#: src/features/gating/components/GateBadge.tsx:34
+msgid "Token-gated · holders of {0}"
+msgstr "Token-gated · holders of {0}"
+
+#: src/features/gating/components/GatedContent.tsx:45
+msgid "Token-gated · holders of {requirementText}"
+msgstr "Token-gated · holders of {requirementText}"
+
+#: src/features/gating/components/GateDialog.tsx:84
+msgid "Token-gated content added"
+msgstr "Token-gated content added"
 
 #: src/components/contacts/screens/VerifyNumber.tsx:127
 msgid "Too many attempts. Please wait a few minutes and try again."
@@ -13460,7 +13776,7 @@ msgstr ""
 msgid "Top replies first"
 msgstr ""
 
-#: src/Navigation.tsx:533
+#: src/Navigation.tsx:542
 msgid "Topic"
 msgstr ""
 
@@ -13468,8 +13784,8 @@ msgstr ""
 #: src/components/dms/MessageContextMenu.tsx:193
 #: src/components/Post/Translated/index.tsx:147
 #: src/components/Post/Translated/index.tsx:154
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:557
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:563
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:584
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:590
 msgid "Translate"
 msgstr ""
 
@@ -13481,8 +13797,8 @@ msgstr "Translated"
 msgid "Translating"
 msgstr "Translating"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:538
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:540
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:565
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:567
 msgid "Translating…"
 msgstr "Translating…"
 
@@ -13559,8 +13875,8 @@ msgstr "Try again in a moment."
 msgid "Try Google Translate"
 msgstr "Try Google Translate"
 
-#: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:165
-#: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:171
+#: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:164
+#: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:170
 msgid "Try it"
 msgstr "Try it"
 
@@ -13581,8 +13897,8 @@ msgid "Type:"
 msgstr ""
 
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:87
-msgid "Unable to access location. You'll need to visit your system settings to enable location services for Bluesky."
-msgstr ""
+msgid "Unable to access location. You'll need to visit your system settings to enable location services for Krao."
+msgstr "Unable to access location. You'll need to visit your system settings to enable location services for Krao."
 
 #: src/lib/hooks/useCleanError.ts:32
 #: src/lib/strings/errors.ts:44
@@ -13596,7 +13912,7 @@ msgstr ""
 
 #: src/screens/Login/ForgotPasswordForm.tsx:70
 #: src/screens/Login/index.tsx:100
-#: src/screens/Login/LoginForm.tsx:165
+#: src/screens/Login/LoginForm.tsx:166
 #: src/screens/Login/SetNewPasswordForm.tsx:82
 #: src/screens/Signup/index.tsx:89
 msgid "Unable to contact your service. Please check your Internet connection."
@@ -13628,11 +13944,11 @@ msgstr "Unable to load your account"
 msgid "Unable to resolve handle"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:536
+#: src/screens/Settings/Settings.tsx:543
 msgid "Unapply Pull Request"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:538
+#: src/screens/Settings/Settings.tsx:545
 msgid "Unapply Pull Request {currentChannel}"
 msgstr ""
 
@@ -13651,15 +13967,15 @@ msgstr ""
 #: src/components/moderation/BlockDialog.tsx:188
 #: src/components/moderation/BlockDialog.tsx:210
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:193
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:374
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:436
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:196
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:377
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:443
 #: src/screens/ProfileList/components/Header.tsx:171
 #: src/screens/ProfileList/components/Header.tsx:178
 msgid "Unblock"
 msgstr ""
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:378
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:381
 msgctxt "action"
 msgid "Unblock"
 msgstr ""
@@ -13679,8 +13995,8 @@ msgstr ""
 msgid "Unblock account?"
 msgstr "Unblock account?"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:185
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:429
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:188
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:436
 msgid "Unblock Account?"
 msgstr ""
 
@@ -13738,7 +14054,7 @@ msgid "Undo repost ({0, plural, one {# repost} other {# reposts}})"
 msgstr ""
 
 #. placeholder {0}: profile.handle
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:405
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:412
 msgid "Unfollow {0}"
 msgstr ""
 
@@ -13756,12 +14072,12 @@ msgid "Unfortunately, none of your subscribed labelers supports this report type
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:266
-msgid "Unfortunately, the birthdate you have saved to your profile makes you too young to access Bluesky."
-msgstr ""
+msgid "Unfortunately, the birthdate you have saved to your profile makes you too young to access Krao."
+msgstr "Unfortunately, the birthdate you have saved to your profile makes you too young to access Krao."
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:250
-msgid "Unfortunately, your declared age indicates that you are not old enough to access Bluesky in your region."
-msgstr ""
+msgid "Unfortunately, your declared age indicates that you are not old enough to access Krao in your region."
+msgstr "Unfortunately, your declared age indicates that you are not old enough to access Krao in your region."
 
 #: src/components/verification/VerificationsDialog.tsx:210
 msgid "Unknown verifier"
@@ -13784,6 +14100,15 @@ msgstr ""
 #: src/components/PostControls/index.tsx:274
 msgid "Unlike ({0, plural, one {# like} other {# likes}})"
 msgstr ""
+
+#: src/screens/Settings/WalletsSettings.tsx:193
+#: src/screens/Settings/WalletsSettings.tsx:200
+msgid "Unlink"
+msgstr "Unlink"
+
+#: src/screens/Settings/WalletsSettings.tsx:198
+msgid "Unlink this wallet?"
+msgstr "Unlink this wallet?"
 
 #: src/screens/Messages/components/ChatLocked.tsx:95
 msgid "Unlock chat"
@@ -13810,8 +14135,8 @@ msgstr ""
 msgid "Unmute {0}"
 msgstr "Unmute {0}"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:747
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:753
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:774
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:780
 #: src/view/com/profile/ProfileMenu.tsx:470
 #: src/view/com/profile/ProfileMenu.tsx:476
 msgid "Unmute account"
@@ -13830,8 +14155,8 @@ msgstr ""
 msgid "Unmute this group chat"
 msgstr "Unmute this group chat"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:639
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:642
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:666
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:669
 msgid "Unmute thread"
 msgstr ""
 
@@ -13856,8 +14181,8 @@ msgstr ""
 msgid "Unpin from home"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:515
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:520
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:542
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:547
 msgid "Unpin from profile"
 msgstr ""
 
@@ -13884,8 +14209,8 @@ msgctxt "moderation-report-filter"
 msgid "Unread"
 msgstr "Unread"
 
-#: src/screens/Settings/Settings.tsx:503
-#: src/screens/Settings/Settings.tsx:505
+#: src/screens/Settings/Settings.tsx:510
+#: src/screens/Settings/Settings.tsx:512
 msgid "Unsnooze email reminder"
 msgstr ""
 
@@ -13910,7 +14235,7 @@ msgstr ""
 msgid "Unsupported clipboard content"
 msgstr "Unsupported clipboard content"
 
-#: src/view/com/composer/Composer.tsx:1660
+#: src/view/com/composer/Composer.tsx:1667
 msgid "Unsupported video type: {mimeType}"
 msgstr ""
 
@@ -13966,12 +14291,12 @@ msgstr ""
 msgid "Update your location"
 msgstr "Update your location"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:352
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:358
 msgctxt "toast"
 msgid "Updating quote attachment failed"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:401
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:407
 msgctxt "toast"
 msgid "Updating reply visibility failed"
 msgstr ""
@@ -14003,7 +14328,7 @@ msgstr ""
 msgid "Upload from Library"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2687
+#: src/view/com/composer/Composer.tsx:2696
 msgid "Uploading GIF..."
 msgstr ""
 
@@ -14017,13 +14342,22 @@ msgstr ""
 msgid "Uploading link thumbnail..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2689
+#: src/view/com/composer/Composer.tsx:2698
 msgid "Uploading video..."
 msgstr ""
+
+#: src/features/wallet/components/NftAvatarSection.tsx:112
+msgid "Use an NFT held by one of your linked wallets on Base. Krao checks ownership on-chain and shows a badge while you hold it."
+msgstr "Use an NFT held by one of your linked wallets on Base. Krao checks ownership on-chain and shows a badge while you hold it."
 
 #: src/screens/Settings/AppPasswords.tsx:68
 msgid "Use app passwords to sign in to other Bluesky clients without giving full access to your account or password."
 msgstr ""
+
+#: src/features/wallet/components/NftAvatarSection.tsx:184
+#: src/features/wallet/components/NftAvatarSection.tsx:204
+msgid "Use as profile picture"
+msgstr "Use as profile picture"
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:576
 msgid "Use default provider"
@@ -14053,8 +14387,8 @@ msgid "Use this to sign in to the other app along with your handle."
 msgstr ""
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:287
-msgid "Use your account email address, or another real email address you control, in case KWS or Bluesky needs to contact you."
-msgstr ""
+msgid "Use your account email address, or another real email address you control, in case KWS or Krao needs to contact you."
+msgstr "Use your account email address, or another real email address you control, in case KWS or Krao needs to contact you."
 
 #: src/view/screens/Profile.tsx:395
 msgid "user"
@@ -14128,11 +14462,11 @@ msgstr ""
 msgid "Username must only contain letters (a-z), numbers, and hyphens"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:303
+#: src/screens/Login/LoginForm.tsx:304
 msgid "Username or email"
 msgstr "Username or email"
 
-#: src/screens/Login/LoginForm.tsx:313
+#: src/screens/Login/LoginForm.tsx:314
 msgid "Username or email address"
 msgstr ""
 
@@ -14158,18 +14492,30 @@ msgstr ""
 msgid "Verification settings"
 msgstr ""
 
-#: src/Navigation.tsx:238
+#: src/Navigation.tsx:239
 #: src/screens/Moderation/VerificationSettings.tsx:34
 msgid "Verification Settings"
 msgstr ""
 
 #: src/screens/Moderation/VerificationSettings.tsx:43
-msgid "Verifications on Bluesky work differently than on other platforms. <0>Learn more here.</0>"
-msgstr ""
+msgid "Verifications on Krao work differently than on other platforms. <0>Learn more here.</0>"
+msgstr "Verifications on Krao work differently than on other platforms. <0>Learn more here.</0>"
+
+#: src/screens/Settings/WalletsSettings.tsx:189
+msgid "Verified"
+msgstr "Verified"
+
+#: src/features/wallet/components/NftAvatarSection.tsx:92
+msgid "Verified – held by your linked wallet"
+msgstr "Verified – held by your linked wallet"
 
 #: src/components/verification/VerificationsDialog.tsx:106
 msgid "Verified by:"
 msgstr ""
+
+#: src/features/wallet/components/ChainBadges.tsx:21
+msgid "Verified wallet"
+msgstr "Verified wallet"
 
 #: src/components/verification/VerificationCreatePrompt.tsx:85
 #: src/components/verification/VerificationCreatePrompt.tsx:87
@@ -14271,7 +14617,7 @@ msgstr ""
 msgid "Video failed to process"
 msgstr ""
 
-#: src/Navigation.tsx:601
+#: src/Navigation.tsx:610
 msgid "Video Feed"
 msgstr ""
 
@@ -14306,9 +14652,13 @@ msgstr ""
 msgid "Video settings"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2707
+#: src/view/com/composer/Composer.tsx:2716
 msgid "Video uploaded"
 msgstr ""
+
+#: src/view/com/composer/Composer.tsx:400
+msgid "Video uploads aren’t available yet."
+msgstr "Video uploads aren’t available yet."
 
 #. placeholder {0}: embed.alt
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:123
@@ -14319,13 +14669,13 @@ msgstr ""
 msgid "Videos"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:452
-#: src/view/com/composer/Composer.tsx:584
+#: src/view/com/composer/Composer.tsx:459
+#: src/view/com/composer/Composer.tsx:591
 #: src/view/com/composer/SelectMediaButton.tsx:446
 msgid "Videos must be 10 minutes or less."
 msgstr "Videos must be 10 minutes or less."
 
-#: src/view/com/composer/Composer.tsx:1248
+#: src/view/com/composer/Composer.tsx:1255
 msgctxt "Action to view the post the user just created"
 msgid "View"
 msgstr ""
@@ -14387,7 +14737,7 @@ msgstr ""
 msgid "View full thread"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:467
+#: src/screens/Settings/Settings.tsx:474
 msgid "View GrowthBook information"
 msgstr "View GrowthBook information"
 
@@ -14418,7 +14768,7 @@ msgstr ""
 msgid "View more trending videos"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1243
+#: src/view/com/composer/Composer.tsx:1250
 msgid "View post"
 msgstr ""
 
@@ -14546,6 +14896,21 @@ msgstr ""
 msgid "Volume"
 msgstr ""
 
+#: src/screens/Settings/WalletsSettings.tsx:124
+msgid "Wallet linked"
+msgstr "Wallet linked"
+
+#: src/screens/Settings/WalletsSettings.tsx:206
+msgid "Wallet unlinked"
+msgstr "Wallet unlinked"
+
+#: src/Navigation.tsx:514
+#: src/screens/Settings/Settings.tsx:184
+#: src/screens/Settings/Settings.tsx:187
+#: src/screens/Settings/WalletsSettings.tsx:68
+msgid "Wallets"
+msgstr "Wallets"
+
 #: src/components/moderation/LabelPreference.tsx:142
 #: src/lib/moderation/useLabelBehaviorDescription.ts:20
 #: src/lib/moderation/useLabelBehaviorDescription.ts:25
@@ -14577,7 +14942,7 @@ msgstr "We could not connect to the service that provides this custom feed. It m
 msgid "We could not find this list. It was probably deleted."
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:345
+#: src/screens/Login/LoginForm.tsx:346
 msgid "We couldn't find an account with that username. Please check that you've typed it correctly, or <0>set your hosting provider manually</0>."
 msgstr "We couldn't find an account with that username. Please check that you've typed it correctly, or <0>set your hosting provider manually</0>."
 
@@ -14605,7 +14970,7 @@ msgstr "We couldn’t load this conversation’s settings"
 msgid "We couldn't load your account settings. Check your internet connection and try again."
 msgstr "We couldn't load your account settings. Check your internet connection and try again."
 
-#: src/screens/Login/LoginForm.tsx:479
+#: src/screens/Login/LoginForm.tsx:480
 msgid "We couldn’t verify your hosting provider. Check your internet connection, or <0>set your hosting provider manually</0>."
 msgstr "We couldn’t verify your hosting provider. Check your internet connection, or <0>set your hosting provider manually</0>."
 
@@ -14622,8 +14987,8 @@ msgid "We estimate {estimatedTime} until your account is ready."
 msgstr ""
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:206
-msgid "We have partnered with <0>KWS</0> to handle age verification. When you click \"Begin\" below, KWS will email you instructions to complete the verification process. If your email address has already been used to verify your age for another game or service that uses KWS, you won’t need to do it again. When you’re done, you'll be brought back to continue using Bluesky."
-msgstr ""
+msgid "We have partnered with <0>KWS</0> to handle age verification. When you click \"Begin\" below, KWS will email you instructions to complete the verification process. If your email address has already been used to verify your age for another game or service that uses KWS, you won’t need to do it again. When you’re done, you'll be brought back to continue using Krao."
+msgstr "We have partnered with <0>KWS</0> to handle age verification. When you click \"Begin\" below, KWS will email you instructions to complete the verification process. If your email address has already been used to verify your age for another game or service that uses KWS, you won’t need to do it again. When you’re done, you'll be brought back to continue using Krao."
 
 #. placeholder {0}: currentAccount?.email
 #: src/components/intents/VerifyEmailIntentDialog.tsx:104
@@ -14725,16 +15090,16 @@ msgid "We’re having network issues, try again"
 msgstr "We’re having network issues, try again"
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:98
-msgid "We’re introducing a new layer of verification on Bluesky — an easy-to-see checkmark."
-msgstr ""
+msgid "We’re introducing a new layer of verification on Krao — an easy-to-see checkmark."
+msgstr "We’re introducing a new layer of verification on Krao — an easy-to-see checkmark."
 
 #: src/screens/Signup/index.tsx:140
 msgid "We’re so excited to have you join us!"
 msgstr "We’re so excited to have you join us!"
 
 #: src/ageAssurance/useVerificationFlow.ts:117
-msgid "We're sorry, but based on the data shared by your device, you are not old enough to access Bluesky."
-msgstr "We're sorry, but based on the data shared by your device, you are not old enough to access Bluesky."
+msgid "We're sorry, but based on the data shared by your device, you are not old enough to access Krao."
+msgstr "We're sorry, but based on the data shared by your device, you are not old enough to access Krao."
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:230
 #: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:219
@@ -14765,7 +15130,7 @@ msgstr "We’re sorry, but your search could not be completed. Please try again 
 msgid "We're sorry, you cannot access this screen at this time."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1139
+#: src/view/com/composer/Composer.tsx:1146
 msgid "We're sorry! The post you are replying to has been deleted."
 msgstr ""
 
@@ -14829,7 +15194,7 @@ msgid "what’s up"
 msgstr "what’s up"
 
 #: src/view/com/auth/SplashScreen.web.tsx:98
-#: src/view/com/composer/Composer.tsx:1624
+#: src/view/com/composer/Composer.tsx:1631
 #: src/view/com/feeds/ComposerPrompt.tsx:206
 msgid "What's up?"
 msgstr ""
@@ -14850,6 +15215,10 @@ msgstr "Who can join this group chat and how"
 #: src/components/WhoCanReply.tsx:103
 msgid "Who can reply"
 msgstr ""
+
+#: src/features/gating/components/GateDialog.tsx:123
+msgid "Who can unlock it"
+msgstr "Who can unlock it"
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:132
 msgid "Who can verify?"
@@ -14915,7 +15284,7 @@ msgstr "Would you like to block this user and/or leave this conversation?"
 msgid "Would you like to save this as a draft before viewing your drafts?"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1539
+#: src/view/com/composer/Composer.tsx:1546
 msgid "Would you like to save this as a draft to edit later?"
 msgstr ""
 
@@ -14924,12 +15293,12 @@ msgstr ""
 msgid "Write a post"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1722
+#: src/view/com/composer/Composer.tsx:1729
 msgid "Write post"
 msgstr ""
 
 #: src/screens/PostThread/components/ThreadComposePrompt.tsx:91
-#: src/view/com/composer/Composer.tsx:1622
+#: src/view/com/composer/Composer.tsx:1629
 msgid "Write your reply"
 msgstr ""
 
@@ -14976,11 +15345,11 @@ msgstr ""
 msgid "Yes, delete this Starter Pack"
 msgstr "Yes, delete this Starter Pack"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:857
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:898
 msgid "Yes, detach"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:864
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:905
 msgid "Yes, hide"
 msgstr ""
 
@@ -14997,8 +15366,8 @@ msgid "You are a trusted verifier"
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:177
-msgid "You are accessing Bluesky from a region that legally requires us to verify your age before allowing you to access the app."
-msgstr ""
+msgid "You are accessing Krao from a region that legally requires us to verify your age before allowing you to access the app."
+msgstr "You are accessing Krao from a region that legally requires us to verify your age before allowing you to access the app."
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
 #: src/components/dms/MessageItem.tsx:735
@@ -15023,8 +15392,8 @@ msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:403
 #: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:125
-msgid "You are currently unable to access Bluesky's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
-msgstr ""
+msgid "You are currently unable to access Krao's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
+msgstr "You are currently unable to access Krao's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
 
 #: src/screens/SignupQueued.tsx:166
 msgid "You are in line."
@@ -15068,8 +15437,8 @@ msgid "You can adjust your interests at any time from \"Content and media\" sett
 msgstr ""
 
 #: src/screens/Settings/components/DeleteAccountDialog.tsx:217
-msgid "You can also <0>temporarily deactivate</0> your account instead. Your profile, posts, feeds, and lists will no longer be visible to other Bluesky users. You can reactivate your account at any time by logging in."
-msgstr ""
+msgid "You can also <0>temporarily deactivate</0> your account instead. Your profile, posts, feeds, and lists will no longer be visible to other Krao users. You can reactivate your account at any time by logging in."
+msgstr "You can also <0>temporarily deactivate</0> your account instead. Your profile, posts, feeds, and lists will no longer be visible to other Krao users. You can reactivate your account at any time by logging in."
 
 #: src/view/com/posts/FollowingEmptyState.tsx:60
 #: src/view/com/posts/FollowingEndOfFeed.tsx:61
@@ -15102,8 +15471,8 @@ msgid "You can now choose to be notified when specific people post. If there’s
 msgstr ""
 
 #: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:154
-msgid "You can now invite friends with a link or QR code. Share the link anywhere, or let them scan the code to join you on Bluesky."
-msgstr "You can now invite friends with a link or QR code. Share the link anywhere, or let them scan the code to join you on Bluesky."
+msgid "You can now invite friends with a link or QR code. Share the link anywhere, or let them scan the code to join you on Krao."
+msgstr "You can now invite friends with a link or QR code. Share the link anywhere, or let them scan the code to join you on Krao."
 
 #: src/screens/Login/index.tsx:207
 #: src/screens/Login/PasswordUpdatedForm.tsx:25
@@ -15111,11 +15480,11 @@ msgid "You can now sign in with your new password."
 msgstr ""
 
 #. Toast shown when the user tries to add more images but the post gallery is already at the cap
-#: src/view/com/composer/Composer.tsx:223
+#: src/view/com/composer/Composer.tsx:225
 msgid "You can only add up to {MAX_GALLERY_IMAGES, plural, other {# images}} per post"
 msgstr "You can only add up to {MAX_GALLERY_IMAGES, plural, other {# images}} per post"
 
-#: src/view/com/composer/Composer.tsx:1544
+#: src/view/com/composer/Composer.tsx:1551
 msgid "You can only save drafts up to 1000 characters."
 msgstr ""
 
@@ -15197,8 +15566,8 @@ msgid "You have blocked this user. You cannot view their content."
 msgstr ""
 
 #: src/components/ageAssurance/useAgeAssuranceCopy.ts:17
-msgid "You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on Bluesky must remain restricted until you're able to verify you're an adult."
-msgstr ""
+msgid "You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on Krao must remain restricted until you're able to verify you're an adult."
+msgstr "You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on Krao must remain restricted until you're able to verify you're an adult."
 
 #: src/view/screens/Notifications.tsx:291
 msgid "You have completely disabled reply, quote, and mention notifications, so this tab will no longer update. To adjust this, visit your <0>notification settings</0>."
@@ -15260,7 +15629,7 @@ msgstr ""
 msgid "You have temporarily reached the limit for video uploads. Please try again later."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1534
+#: src/view/com/composer/Composer.tsx:1541
 msgid "You have unsaved changes to this draft, would you like to save them?"
 msgstr ""
 
@@ -15294,21 +15663,21 @@ msgstr ""
 msgid "You initiated this flow already, {0} ago. It may take up to 5 minutes for emails to reach your inbox. Please consider waiting a few minutes before trying again."
 msgstr ""
 
-#: src/components/dialogs/NewskieDialog/utils.ts:42
-msgid "You joined Bluesky {timeAgoString} ago"
-msgstr ""
+#: src/components/dialogs/NewskieDialog/utils.ts:40
+msgid "You joined Krao {timeAgoString} ago"
+msgstr "You joined Krao {timeAgoString} ago"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:27
-msgid "You joined Bluesky just now"
-msgstr "You joined Bluesky just now"
+msgid "You joined Krao just now"
+msgstr "You joined Krao just now"
 
-#: src/components/dialogs/NewskieDialog/utils.ts:40
-msgid "You joined Bluesky using a Starter Pack {timeAgoString} ago"
-msgstr "You joined Bluesky using a Starter Pack {timeAgoString} ago"
+#: src/components/dialogs/NewskieDialog/utils.ts:39
+msgid "You joined Krao using a Starter Pack {timeAgoString} ago"
+msgstr "You joined Krao using a Starter Pack {timeAgoString} ago"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:26
-msgid "You joined Bluesky using a Starter Pack just now"
-msgstr "You joined Bluesky using a Starter Pack just now"
+msgid "You joined Krao using a Starter Pack just now"
+msgstr "You joined Krao using a Starter Pack just now"
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:83
 msgid "You may appeal non-self labels if you feel they were placed in error."
@@ -15334,8 +15703,8 @@ msgid "You must be a chat owner to remove a member."
 msgstr "You must be a chat owner to remove a member."
 
 #: src/components/dialogs/BirthDateSettings.tsx:177
-msgid "You must be at least 13 years old to use Bluesky. Read our <0>Terms of Service</0> for more information."
-msgstr ""
+msgid "You must be at least 13 years old to use Krao. Read our <0>Terms of Service</0> for more information."
+msgstr "You must be at least 13 years old to use Krao. Read our <0>Terms of Service</0> for more information."
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:362
 msgid "You must be following at least seven other people to generate a Starter Pack."
@@ -15363,7 +15732,7 @@ msgstr "You own this chat"
 msgid "You previously deactivated @{0}."
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:425
+#: src/screens/Settings/Settings.tsx:432
 msgid "You probably want to restart the app now."
 msgstr ""
 
@@ -15404,7 +15773,7 @@ msgstr "You requested to join"
 msgid "You will be eligible to appear in this Starter Pack again."
 msgstr "You will be eligible to appear in this Starter Pack again."
 
-#: src/screens/Settings/Settings.tsx:309
+#: src/screens/Settings/Settings.tsx:316
 #: src/view/shell/desktop/LeftNav.tsx:229
 msgid "You will be signed out of all your accounts."
 msgstr ""
@@ -15414,16 +15783,20 @@ msgstr ""
 msgid "You will no longer appear in this Starter Pack. The creator will be able to see that you've opted out and remove you if they wish."
 msgstr "You will no longer appear in this Starter Pack. The creator will be able to see that you've opted out and remove you if they wish."
 
+#: src/screens/Settings/WalletsSettings.tsx:199
+msgid "You will no longer be able to sign in with it, and it will be removed from your profile."
+msgstr "You will no longer be able to sign in with it, and it will be removed from your profile."
+
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:137
 msgid "You will no longer receive notifications for {0}"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:242
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:248
 msgid "You will no longer receive notifications for this thread"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:233
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:239
 msgid "You will now receive notifications for this thread"
 msgstr ""
 
@@ -15458,8 +15831,8 @@ msgid "You'll follow these people right away"
 msgstr ""
 
 #: src/components/contacts/screens/GetContacts.tsx:316
-msgid "You'll need to go to the System Settings for Bluesky and give permission if you want to use this feature."
-msgstr ""
+msgid "You'll need to go to the System Settings for Krao and give permission if you want to use this feature."
+msgstr "You'll need to go to the System Settings for Krao and give permission if you want to use this feature."
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:169
@@ -15516,7 +15889,7 @@ msgstr ""
 msgid "You've reached the end of your feed! Find some more accounts to follow."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:737
+#: src/view/com/composer/Composer.tsx:744
 msgid "You've reached the maximum number of drafts"
 msgstr ""
 
@@ -15620,12 +15993,12 @@ msgid "Your choice will be remembered for future links. You can change it at any
 msgstr ""
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:378
-msgid "Your contact {firstAuthorLink} is on Bluesky"
-msgstr ""
+msgid "Your contact {firstAuthorLink} is on Krao"
+msgstr "Your contact {firstAuthorLink} is on Krao"
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:376
-msgid "Your contact {firstAuthorName} is on Bluesky"
-msgstr ""
+msgid "Your contact {firstAuthorName} is on Krao"
+msgstr "Your contact {firstAuthorName} is on Krao"
 
 #: src/components/contacts/screens/ViewMatches.tsx:462
 msgid "Your contact {name}"
@@ -15654,8 +16027,8 @@ msgid "Your email appears to be invalid."
 msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:62
-msgid "Your email has not yet been verified. Please verify your email in order to enjoy all the features of Bluesky."
-msgstr ""
+msgid "Your email has not yet been verified. Please verify your email in order to enjoy all the features of Krao."
+msgstr "Your email has not yet been verified. Please verify your email in order to enjoy all the features of Krao."
 
 #: src/state/shell/progress-guide.tsx:214
 msgid "Your first like!"
@@ -15686,7 +16059,7 @@ msgstr "Your hosting provider does not support videos this large. Please try aga
 msgid "Your hosting provider is detected automatically from the username you enter."
 msgstr "Your hosting provider is detected automatically from the username you enter."
 
-#: src/Navigation.tsx:505
+#: src/Navigation.tsx:506
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:62
 #: src/screens/Settings/ContentAndMediaSettings.tsx:94
 #: src/screens/Settings/ContentAndMediaSettings.tsx:97
@@ -15702,6 +16075,10 @@ msgstr ""
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:89
 msgid "Your interests help us find what you like!"
 msgstr ""
+
+#: src/features/gating/components/GatedContent.tsx:59
+msgid "Your linked wallets don’t meet this requirement yet. <0>Manage wallets</0>"
+msgstr "Your linked wallets don’t meet this requirement yet. <0>Manage wallets</0>"
 
 #: src/screens/Signup/StepInfo/index.tsx:375
 msgid "Your location has been updated."
@@ -15720,8 +16097,8 @@ msgid "Your note:"
 msgstr "Your note:"
 
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:74
-msgid "Your password has been changed successfully! Please use your new password when you sign in to Bluesky from now on."
-msgstr ""
+msgid "Your password has been changed successfully! Please use your new password when you sign in to Krao from now on."
+msgstr "Your password has been changed successfully! Please use your new password when you sign in to Krao from now on."
 
 #: src/screens/Signup/StepInfo/index.tsx:166
 msgid "Your password must be at least 8 characters long."
@@ -15730,6 +16107,10 @@ msgstr ""
 #: src/screens/ModerationInbox/Notice.tsx:66
 msgid "Your post"
 msgstr "Your post"
+
+#: src/features/gating/components/GateDialog.tsx:97
+msgid "Your post stays public as a teaser. This extra text is stored on Krao’s gate service, not in your public repo, and is only shown to people whose linked wallets meet the requirement."
+msgstr "Your post stays public as a teaser. This extra text is stored on Krao’s gate service, not in your public repo, and is only shown to people whose linked wallets meet the requirement."
 
 #: src/screens/ModerationInbox/Notice.tsx:52
 msgid "Your post was removed"
@@ -15740,11 +16121,11 @@ msgctxt "moderation-report-action"
 msgid "Your post was removed"
 msgstr "Your post was removed"
 
-#: src/view/com/composer/Composer.tsx:1239
+#: src/view/com/composer/Composer.tsx:1246
 msgid "Your post was sent"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1236
+#: src/view/com/composer/Composer.tsx:1243
 msgid "Your posts were sent"
 msgstr ""
 
@@ -15762,14 +16143,14 @@ msgid "Your profile picture surrounded by concentric circles of other users' pro
 msgstr ""
 
 #: src/screens/Settings/components/DeactivateAccountDialog.tsx:75
-msgid "Your profile, posts, feeds, and lists will no longer be visible to other Bluesky users. You can reactivate your account at any time by logging in."
-msgstr ""
+msgid "Your profile, posts, feeds, and lists will no longer be visible to other Krao users. You can reactivate your account at any time by logging in."
+msgstr "Your profile, posts, feeds, and lists will no longer be visible to other Krao users. You can reactivate your account at any time by logging in."
 
-#: src/view/com/composer/Composer.tsx:1238
+#: src/view/com/composer/Composer.tsx:1245
 msgid "Your reply was sent"
 msgstr ""
 
-#: src/Navigation.tsx:204
+#: src/Navigation.tsx:205
 #: src/screens/ModerationInbox/Report.tsx:35
 msgid "Your report"
 msgstr "Your report"
@@ -15792,7 +16173,7 @@ msgstr "Your reports notifications"
 msgid "Your selected interests help us serve you content you care about."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1569
+#: src/view/com/composer/Composer.tsx:1576
 msgid "Your thread has empty posts that will be skipped. The remaining posts will be published as a thread."
 msgstr "Your thread has empty posts that will be skipped. The remaining posts will be published as a thread."
 
