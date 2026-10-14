@@ -146,6 +146,7 @@ import {setNavigationMetadata} from '#/analytics/metadata'
 import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB, KRAO_WEB_URL} from '#/env'
 import {HomeScreen} from '#/features/followingV2/home'
 import {InviteScannerScreen} from '#/features/inviteFriends'
+import {RewardsAdminScreen} from '#/features/referral/admin/RewardsAdminScreen'
 import {JoinScreen} from '#/features/referral/JoinScreen'
 import {ReferralScreen} from '#/features/referral/ReferralScreen'
 import {router} from '#/routes'
@@ -522,6 +523,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         name="Join"
         getComponent={() => JoinScreen}
         options={{title: title(msg`Join Krao`)}}
+      />
+      <Stack.Screen
+        name="RewardsAdmin"
+        getComponent={() => RewardsAdminScreen}
+        options={{
+          title: title(msg`Referral admin`),
+          requireAuth: true,
+        }}
       />
       <Stack.Screen
         name="ReferralSettings"
