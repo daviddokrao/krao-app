@@ -187,13 +187,15 @@ let PostMenuItems = ({
   const recipientWallet = useTipRecipientWallet(
     canSendTips ? postAuthor.did : '',
   )
-  const {data: gateRule} = useGateRuleQuery(post.uri)
+  const {data: gateRule, isLoading: isGateRuleLoading} = useGateRuleQuery(
+    post.uri,
+  )
   const ownGateRule = isAuthor ? (gateRule ?? undefined) : undefined
   const removeGate = useRemoveGateMutation()
   const onRemoveGate = () => {
     if (!ownGateRule) return
     removeGate.mutate(
-      {ruleUri: ownGateRule.uri, postUri: post.uri},
+      {postUri: post.uri},
       {
         onSuccess: () => Toast.show(l`Token gate removed`, {type: 'success'}),
         onError: () =>
@@ -559,6 +561,8 @@ let PostMenuItems = ({
             <Menu.Group>
               <Menu.Item
                 testID="postDropdownGateBtn"
+                // Until the gate is known, "Add" could put a second rule on it
+                disabled={isGateRuleLoading}
                 label={
                   ownGateRule
                     ? l`Replace token-gated content`

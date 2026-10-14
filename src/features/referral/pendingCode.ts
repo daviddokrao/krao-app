@@ -17,6 +17,11 @@ export function setPendingReferralCode(code: string) {
   })
 }
 
+/** Once an account is created, so the next sign-up does not reuse it */
+export function clearPendingReferralCode() {
+  device.set(['kraoPendingReferralCode'], undefined)
+}
+
 export function getPendingReferralCode(): string {
   const pending = device.get(['kraoPendingReferralCode'])
   if (!pending || Date.now() - pending.savedAt > MAX_AGE_MS) return ''

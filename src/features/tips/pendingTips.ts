@@ -13,7 +13,8 @@ export type PendingTipRecord = {
   createdAt: string
 }
 
-type PendingTip = {did: string; record: PendingTipRecord}
+/** `rkey` is chosen once, so writing the record again cannot duplicate it */
+type PendingTip = {did: string; rkey: string; record: PendingTipRecord}
 
 function all(): PendingTip[] {
   return device.get(['kraoPendingTips']) ?? []
@@ -23,10 +24,17 @@ function all(): PendingTip[] {
  * Kept before the tip record is written: the money has already moved, so a
  * failed write must not lose the tip. Written again on the next try.
  */
-export function savePendingTip(did: string, record: PendingTipRecord) {
+export function savePendingTip(
+  did: string,
+  rkey: string,
+  record: PendingTipRecord,
+) {
   device.set(
     ['kraoPendingTips'],
-    [...all().filter(t => t.record.txHash !== record.txHash), {did, record}],
+    [
+      ...all().filter(t => t.record.txHash !== record.txHash),
+      {did, rkey, record},
+    ],
   )
 }
 
@@ -37,8 +45,10 @@ export function removePendingTip(txHash: string) {
   )
 }
 
-export function pendingTipsFor(did: string): PendingTipRecord[] {
+export function pendingTipsFor(
+  did: string,
+): {rkey: string; record: PendingTipRecord}[] {
   return all()
-    .filter(t => t.did === did)
-    .map(t => t.record)
+    .filter(t => t.did === did && !!t.rkey)
+    .map(({rkey, record}) => ({rkey, record}))
 }

@@ -124,14 +124,20 @@ function useAdminList<T>(
     queryKey: adminKey(name, params),
     initialPageParam: undefined as string | undefined,
     queryFn: async ({pageParam}) => {
-      const page = await call<Record<string, unknown>>(`${ADMIN}.${method}`, {
-        params: {
-          ...params,
-          limit: String(PAGE_SIZE),
-          ...(pageParam ? {cursor: pageParam} : {}),
-        },
-      })
-      return {items: pick(page), cursor: page.cursor as string | undefined}
+      // `pick` may filter rows out: keep reading until a page has some
+      let cursor = pageParam
+      for (;;) {
+        const page = await call<Record<string, unknown>>(`${ADMIN}.${method}`, {
+          params: {
+            ...params,
+            limit: String(PAGE_SIZE),
+            ...(cursor ? {cursor} : {}),
+          },
+        })
+        const items = pick(page)
+        cursor = page.cursor as string | undefined
+        if (items.length || !cursor) return {items, cursor}
+      }
     },
     getNextPageParam: page => page.cursor,
     select: data => data.pages.flatMap(page => page.items),

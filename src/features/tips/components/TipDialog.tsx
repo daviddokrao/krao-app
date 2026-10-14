@@ -20,6 +20,7 @@ import {formatUnits, parseUnits, TIP_ASSETS, type TipAsset} from '../assets'
 import {
   TipNotRecordedError,
   UnlinkedTipWalletError,
+  useSavePendingTipsMutation,
   useSendTipMutation,
   useTipRecipientWallet,
 } from '../queries'
@@ -63,6 +64,7 @@ function TipDialogInner({
   const {t: l} = useLingui()
   const recipientWallet = useTipRecipientWallet(target.did)
   const sendTip = useSendTipMutation()
+  const savePending = useSavePendingTipsMutation()
   const [asset, setAsset] = useState<TipAsset>(TIP_ASSETS[0])
   const [amountText, setAmountText] = useState(TIP_ASSETS[0].presets[1])
   const [message, setMessage] = useState('')
@@ -209,24 +211,47 @@ function TipDialogInner({
 
           {errorMessage && <Admonition type="error">{errorMessage}</Admonition>}
 
-          <Button
-            testID="sendTipButton"
-            label={l`Send tip`}
-            color="primary"
-            size="large"
-            disabled={!amount || sendTip.isPending}
-            onPress={onSend}>
-            {sendTip.isPending && <ButtonIcon icon={Loader} />}
-            <ButtonText>
-              {amount ? (
-                <Trans>
-                  Send {formatUnits(amount, asset.decimals)} {asset.symbol}
-                </Trans>
-              ) : (
-                <Trans>Enter an amount</Trans>
-              )}
-            </ButtonText>
-          </Button>
+          {sendTip.error instanceof TipNotRecordedError ? (
+            // The money already moved: only the record is left to save
+            <Button
+              testID="saveTipButton"
+              label={l`Try saving the tip again`}
+              color="primary"
+              size="large"
+              disabled={savePending.isPending}
+              onPress={() =>
+                savePending.mutate(undefined, {
+                  onSuccess: () =>
+                    control.close(() => {
+                      Toast.show(l`Tip saved`, {type: 'success'})
+                    }),
+                })
+              }>
+              {savePending.isPending && <ButtonIcon icon={Loader} />}
+              <ButtonText>
+                <Trans>Try saving the tip again</Trans>
+              </ButtonText>
+            </Button>
+          ) : (
+            <Button
+              testID="sendTipButton"
+              label={l`Send tip`}
+              color="primary"
+              size="large"
+              disabled={!amount || sendTip.isPending}
+              onPress={onSend}>
+              {sendTip.isPending && <ButtonIcon icon={Loader} />}
+              <ButtonText>
+                {amount ? (
+                  <Trans>
+                    Send {formatUnits(amount, asset.decimals)} {asset.symbol}
+                  </Trans>
+                ) : (
+                  <Trans>Enter an amount</Trans>
+                )}
+              </ButtonText>
+            </Button>
+          )}
         </>
       )}
     </View>

@@ -186,21 +186,39 @@ export function useRemoveGateMutation() {
   const pdsClient = usePdsClient()
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async ({ruleUri}: {ruleUri: string; postUri: string}) => {
+    mutationFn: async ({postUri}: {postUri: string}) => {
       if (!currentAccount) throw new Error('Not signed in')
-      await pdsClient.delete(net.krao.gate.rule, {
-        repo: currentAccount.did,
-        rkey: new AtUri(ruleUri).rkey,
-      })
+      // Every rule on the post: the gate service shows only the newest, but
+      // its content stays as long as any rule is left
+      let cursor: string | undefined
+      do {
+        const page = await pdsClient.call(com.atproto.repo.listRecords, {
+          repo: currentAccount.did,
+          collection: 'net.krao.gate.rule',
+          limit: 100,
+          cursor,
+        })
+        for (const record of page.records) {
+          const subject = (record.value as {subject?: {uri?: string}}).subject
+          if (subject?.uri !== postUri) continue
+          await pdsClient.delete(net.krao.gate.rule, {
+            repo: currentAccount.did,
+            rkey: new AtUri(record.uri).rkey,
+          })
+        }
+        cursor = page.cursor
+      } while (cursor)
     },
     onSuccess: (_data, {postUri}) => {
       // The indexer drops the rule a moment after the record is deleted
       queryClient.setQueryData(gateRuleQueryKey(postUri), null)
-      setTimeout(() => {
-        void queryClient.invalidateQueries({
-          queryKey: gateRuleQueryKey(postUri),
-        })
-      }, 2000)
+      for (const delay of [3000, 10000]) {
+        setTimeout(() => {
+          void queryClient.invalidateQueries({
+            queryKey: gateRuleQueryKey(postUri),
+          })
+        }, delay)
+      }
     },
   })
 }

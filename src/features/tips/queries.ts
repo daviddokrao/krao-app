@@ -1,3 +1,4 @@
+import {TID} from '@atproto/common-web'
 import {toDatetimeString} from '@atproto/syntax'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
@@ -111,6 +112,42 @@ export class TipNotRecordedError extends Error {}
 const RECORD_RETRY_DELAYS_MS = [0, 1000, 3000]
 
 /**
+ * Write a tip record kept by savePendingTip. A put at the rkey chosen when
+ * it was saved, so writing it twice (a lost response, a retry) leaves one
+ * record.
+ */
+async function writePendingTip(
+  pdsClient: ReturnType<typeof usePdsClient>,
+  did: string,
+  rkey: string,
+  record: PendingTipRecord,
+) {
+  await pdsClient.put(net.krao.feed.tip, record as never, {
+    repo: did as `did:${string}:${string}`,
+    rkey,
+  })
+  removePendingTip(record.txHash)
+}
+
+/**
+ * Save the records of tips that were paid but not recorded. Never moves
+ * money: this is what to offer after TipNotRecordedError, instead of sending
+ * again.
+ */
+export function useSavePendingTipsMutation() {
+  const {currentAccount} = useSession()
+  const pdsClient = usePdsClient()
+  return useMutation({
+    mutationFn: async () => {
+      if (!currentAccount) throw new Error('Not signed in')
+      for (const {rkey, record} of pendingTipsFor(currentAccount.did)) {
+        await writePendingTip(pdsClient, currentAccount.did, rkey, record)
+      }
+    },
+  })
+}
+
+/**
  * Send a tip: transfer the asset from the user's wallet to the recipient's
  * linked wallet, then record it as an net.krao.feed.tip so the indexer can
  * verify the transaction and count it.
@@ -136,13 +173,11 @@ export function useSendTipMutation() {
       message?: string
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
-      const writeTip = async (record: PendingTipRecord) => {
-        await pdsClient.create(net.krao.feed.tip, record as never)
-        removePendingTip(record.txHash)
-      }
+      const writeTip = (rkey: string, record: PendingTipRecord) =>
+        writePendingTip(pdsClient, currentAccount.did, rkey, record)
       // Tips paid earlier whose record failed to save
-      for (const record of pendingTipsFor(currentAccount.did)) {
-        await writeTip(record).catch(() => {})
+      for (const {rkey, record} of pendingTipsFor(currentAccount.did)) {
+        await writeTip(rkey, record).catch(() => {})
       }
       const wallet = await connectEvmWallet()
       /*
@@ -184,11 +219,12 @@ export function useSendTipMutation() {
         createdAt: toDatetimeString(new Date()),
       }
       // The money has moved: keep the record until it is written
-      savePendingTip(currentAccount.did, record)
+      const rkey = TID.nextStr()
+      savePendingTip(currentAccount.did, rkey, record)
       for (const [i, delay] of RECORD_RETRY_DELAYS_MS.entries()) {
         await new Promise(resolve => setTimeout(resolve, delay))
         try {
-          await writeTip(record)
+          await writeTip(rkey, record)
           return txHash
         } catch (err) {
           if (i === RECORD_RETRY_DELAYS_MS.length - 1) {

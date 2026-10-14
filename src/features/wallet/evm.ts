@@ -99,6 +99,13 @@ export async function connectEvmWallet(): Promise<EvmWallet> {
           await request('wallet_addEthereumChain', [
             {chainId: hexId, ...params},
           ])
+          // Adding may not switch (EIP-3085 leaves it to the wallet)
+          await request('wallet_switchEthereumChain', [{chainId: hexId}])
+        }
+        // Never send on another chain than the one asked for
+        const current = (await request('eth_chainId')) as string
+        if (parseInt(current, 16) !== chainId) {
+          throw new WalletRejectedError('The wallet did not switch networks')
         }
       },
       sendTransaction: async ({to, value, data}) =>

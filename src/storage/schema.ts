@@ -91,7 +91,7 @@ export type Device = {
   /** Krao: the referral code from the last krao.net/join/<code> link */
   kraoPendingReferralCode?: {code: string; savedAt: number}
   /** Krao: tips whose transfer was sent but whose record is not written yet */
-  kraoPendingTips?: {did: string; record: PendingTipRecord}[]
+  kraoPendingTips?: {did: string; rkey: string; record: PendingTipRecord}[]
 }
 
 export type Account = {
