@@ -15,6 +15,7 @@ import {
   useGatedContentQuery,
   useGateRuleQuery,
 } from '../queries'
+import {GatedVideo} from './GatedVideo'
 
 /**
  * The token-gated part of a post. Shows the content to eligible viewers and
@@ -63,9 +64,13 @@ export function GatedContent({uri}: {uri: string}) {
               {content.data.text}
             </Text>
           )}
-          {content.data.media?.map(media => (
-            <GatedImage key={media.url} media={media} />
-          ))}
+          {content.data.media?.map(media =>
+            media.mimeType.startsWith('video/') ? (
+              <GatedVideo key={media.url} media={media} />
+            ) : (
+              <GatedImage key={media.url} media={media} />
+            ),
+          )}
         </>
       ) : notEligible ? (
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>

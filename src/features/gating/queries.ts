@@ -46,9 +46,10 @@ export type GatedContent = {
   media?: GatedMedia[]
 }
 
-/** The gate service's limit, see net.krao.gate.uploadMedia */
+/** The gate service's limits, see net.krao.gate.uploadMedia */
 const GATED_IMAGE_MAX_BYTES = 5 * 1024 * 1024
-/** Most images one post's gated content can hold */
+export const GATED_VIDEO_MAX_BYTES = 50 * 1024 * 1024
+/** Most images and videos one post's gated content can hold */
 export const GATED_IMAGES_MAX = 4
 
 export class GateError extends Error {
@@ -95,14 +96,21 @@ async function gateFetch<T>(
 }
 
 /**
- * Uploads an image to the gate service. It is stored there only, never as a
- * blob in the user's public repo.
+ * Uploads an image or video to the gate service. It is stored there only,
+ * never as a blob in the user's public repo. Images are compressed to fit;
+ * videos (MP4 or WebM) are sent as they are.
  */
-async function uploadGatedImage(image: PickerImage, token: string) {
-  const compressed = await compressIfNeeded(image, {
-    maxDimension: 2000,
-    maxSize: GATED_IMAGE_MAX_BYTES - 64 * 1024,
-  })
+async function uploadGatedMedia(media: PickerImage, token: string) {
+  const isVideo = media.mime.startsWith('video/')
+  if (isVideo && media.size > GATED_VIDEO_MAX_BYTES) {
+    throw new GateError(undefined, 'Gated videos can be at most 50 MB')
+  }
+  const compressed = isVideo
+    ? media
+    : await compressIfNeeded(media, {
+        maxDimension: 2000,
+        maxSize: GATED_IMAGE_MAX_BYTES - 64 * 1024,
+      })
   const blob = await (await fetch(compressed.path)).blob()
   const res = await fetch(
     new URL('/xrpc/net.krao.gate.uploadMedia', KRAO_GATE_URL).toString(),
@@ -121,11 +129,13 @@ async function uploadGatedImage(image: PickerImage, token: string) {
     media?: GatedMedia
   }
   if (!res.ok || !data.media) {
-    throw new GateError(data.error, data.message ?? 'Image upload failed')
+    throw new GateError(data.error, data.message ?? 'Upload failed')
   }
   return {
     ...data.media,
-    aspectRatio: {width: compressed.width, height: compressed.height},
+    ...(compressed.width && compressed.height
+      ? {aspectRatio: {width: compressed.width, height: compressed.height}}
+      : {}),
   }
 }
 
@@ -216,7 +226,7 @@ export function useCreateGateMutation() {
       const media: GatedMedia[] = []
       for (const image of images) {
         media.push(
-          await uploadGatedImage(
+          await uploadGatedMedia(
             image,
             await getToken('net.krao.gate.uploadMedia'),
           ),

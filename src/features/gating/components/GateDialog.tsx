@@ -3,7 +3,7 @@ import {View} from 'react-native'
 import {Image} from 'expo-image'
 import {Trans, useLingui} from '@lingui/react/macro'
 
-import {openPicker} from '#/lib/media/picker'
+import {openUnifiedPicker} from '#/lib/media/picker'
 import {type PickerImage} from '#/lib/media/picker.shared'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
@@ -12,6 +12,7 @@ import * as Dialog from '#/components/Dialog'
 import * as TextField from '#/components/forms/TextField'
 import {Image_Stroke2_Corner2_Rounded as ImageIcon} from '#/components/icons/Image'
 import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
+import {VideoClip_Stroke2_Corner0_Rounded as VideoIcon} from '#/components/icons/VideoClip'
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
@@ -85,11 +86,18 @@ function GateDialogInner({
   const canSave =
     !!condition && (!!text.trim() || images.length > 0) && !createGate.isPending
 
-  const onAddImage = async () => {
-    const picked = await openPicker({
-      selectionLimit: GATED_IMAGES_MAX - images.length,
-      allowsMultipleSelection: true,
+  const onAddMedia = async () => {
+    const result = await openUnifiedPicker({
+      selectionCountRemaining: GATED_IMAGES_MAX - images.length,
     })
+    const picked: PickerImage[] = (result.assets ?? []).map(asset => ({
+      path: asset.uri,
+      mime:
+        asset.mimeType ?? (asset.type === 'video' ? 'video/mp4' : 'image/jpeg'),
+      width: asset.width,
+      height: asset.height,
+      size: asset.fileSize ?? 0,
+    }))
     setImages(prev => [...prev, ...picked].slice(0, GATED_IMAGES_MAX))
   }
 
@@ -114,9 +122,9 @@ function GateDialogInner({
         </Text>
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
-            Your post stays public as a teaser. This extra text and these images
-            are stored on Krao’s gate service, not in your public repo, and are
-            only shown to people whose linked wallets meet the requirement.
+            Your post stays public as a teaser. This extra text and media are
+            stored on Krao’s gate service, not in your public repo, and are only
+            shown to people whose linked wallets meet the requirement.
           </Trans>
         </Text>
       </View>
@@ -139,14 +147,30 @@ function GateDialogInner({
           <View style={[a.flex_row, a.flex_wrap, a.gap_sm]}>
             {images.map((image, i) => (
               <View key={image.path} style={[a.relative]}>
-                <Image
-                  source={{uri: image.path}}
-                  style={[a.rounded_sm, {width: 72, height: 72}]}
-                  contentFit="cover"
-                  accessibilityIgnoresInvertColors
-                />
+                {image.mime.startsWith('video/') ? (
+                  <View
+                    style={[
+                      a.rounded_sm,
+                      a.align_center,
+                      a.justify_center,
+                      t.atoms.bg_contrast_50,
+                      {width: 72, height: 72},
+                    ]}>
+                    <VideoIcon
+                      size="lg"
+                      style={[t.atoms.text_contrast_medium]}
+                    />
+                  </View>
+                ) : (
+                  <Image
+                    source={{uri: image.path}}
+                    style={[a.rounded_sm, {width: 72, height: 72}]}
+                    contentFit="cover"
+                    accessibilityIgnoresInvertColors
+                  />
+                )}
                 <Button
-                  label={l`Remove image`}
+                  label={l`Remove media`}
                   color="secondary"
                   size="tiny"
                   shape="round"
@@ -163,14 +187,14 @@ function GateDialogInner({
         {images.length < GATED_IMAGES_MAX && (
           <Button
             testID="gateAddImageButton"
-            label={l`Add a gated image`}
+            label={l`Add a gated image or video`}
             color="secondary"
             size="small"
             style={[a.self_start]}
-            onPress={() => void onAddImage()}>
+            onPress={() => void onAddMedia()}>
             <ButtonIcon icon={ImageIcon} />
             <ButtonText>
-              <Trans>Add image</Trans>
+              <Trans>Add image or video</Trans>
             </ButtonText>
           </Button>
         )}
