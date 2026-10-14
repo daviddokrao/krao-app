@@ -189,16 +189,16 @@ function WalletRow({wallet}: {wallet: LinkedWallet}) {
             a.text_sm,
             verified
               ? {color: t.palette.positive_600}
-              : wallet.status === 'pending'
-                ? t.atoms.text_contrast_medium
-                : {color: t.palette.negative_500},
+              : {color: t.palette.negative_500},
           ]}>
           {chainName(wallet.account)} ·{' '}
           {verified
             ? l`Verified`
-            : wallet.status === 'pending'
-              ? l`Checking…`
-              : l`Invalid signature`}
+            : wallet.reason === 'Another account linked this wallet first'
+              ? l`Linked to another account first, so it doesn’t count here`
+              : wallet.reason === 'Too many linked wallets'
+                ? l`Not counted: at most 10 wallets per account`
+                : l`Invalid signature`}
         </Text>
       </View>
       <SettingsList.BadgeButton
