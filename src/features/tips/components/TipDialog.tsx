@@ -1,7 +1,10 @@
 import {useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
+import {useNavigation} from '@react-navigation/native'
 
+import {type NavigationProp} from '#/lib/routes/types'
+import {useSession} from '#/state/session'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
@@ -15,6 +18,7 @@ import {
   WalletRejectedError,
   WalletUnavailableError,
 } from '#/features/wallet/evm'
+import {useChainProfileQuery} from '#/features/wallet/queries'
 import {shortAddress} from '#/features/wallet/siwe'
 import {formatUnits, parseUnits, TIP_ASSETS, type TipAsset} from '../assets'
 import {
@@ -62,7 +66,16 @@ function TipDialogInner({
 }) {
   const t = useTheme()
   const {t: l} = useLingui()
+  const navigation = useNavigation<NavigationProp>()
+  const {currentAccount} = useSession()
   const recipientWallet = useTipRecipientWallet(target.did)
+  const {data: myChainProfile, isLoading: isMyProfileLoading} =
+    useChainProfileQuery(currentAccount?.did)
+  // Tips go out from one of the tipper's own linked wallets (the indexer
+  // credits nothing else), so say so before the form is filled in
+  const hasOwnWallet = !!myChainProfile?.wallets.some(
+    w => w.status === 'verified' && w.account.startsWith('eip155:'),
+  )
   const sendTip = useSendTipMutation()
   const savePending = useSavePendingTipsMutation()
   const [asset, setAsset] = useState<TipAsset>(TIP_ASSETS[0])
@@ -81,7 +94,7 @@ function TipDialogInner({
           ? l`Your tip was sent, but it could not be saved to your account yet. It will be saved the next time you send a tip.`
           : sendTip.error instanceof UnlinkedTipWalletError
             ? l`Link this wallet to your account in Settings → Wallets before tipping with it.`
-            : sendTip.error.message
+            : l`Something went wrong sending the tip. Please try again.`
 
   const onSend = () => {
     if (!amount || !recipientWallet.data) return
@@ -121,7 +134,7 @@ function TipDialogInner({
         </Text>
       </View>
 
-      {recipientWallet.isLoading ? (
+      {recipientWallet.isLoading || isMyProfileLoading ? (
         <Loader />
       ) : !recipientWallet.data ? (
         <Admonition type="info">
@@ -137,6 +150,28 @@ function TipDialogInner({
             for now.
           </Trans>
         </Admonition>
+      ) : !hasOwnWallet ? (
+        <View style={[a.gap_md]}>
+          <Admonition type="info">
+            <Trans>
+              To send tips, first link the wallet you will pay from to your
+              account.
+            </Trans>
+          </Admonition>
+          <Button
+            label={l`Link a wallet`}
+            color="primary"
+            size="large"
+            onPress={() =>
+              control.close(() => {
+                navigation.navigate('WalletsSettings')
+              })
+            }>
+            <ButtonText>
+              <Trans>Link a wallet</Trans>
+            </ButtonText>
+          </Button>
+        </View>
       ) : (
         <>
           <View style={[a.flex_row, a.gap_sm]}>
@@ -210,6 +245,11 @@ function TipDialogInner({
           </Text>
 
           {errorMessage && <Admonition type="error">{errorMessage}</Admonition>}
+          {savePending.error && (
+            <Admonition type="error">
+              <Trans>The tip could not be saved yet. Please try again.</Trans>
+            </Admonition>
+          )}
 
           {sendTip.error instanceof TipNotRecordedError ? (
             // The money already moved: only the record is left to save

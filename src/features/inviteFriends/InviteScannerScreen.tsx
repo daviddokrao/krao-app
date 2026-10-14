@@ -47,21 +47,22 @@ export function InviteScannerScreen() {
       // Match Krao profile URLs, short or long, with or without https://,
       // and Krao invite links (krao.net/join/<code>)
       let profileMatch: RegExpExecArray | null = null
-      let joinMatch: RegExpExecArray | null = null
+      let joinCode: string | undefined
       try {
         const absolute = /^https?:\/\//i.test(url) ? url : `https://${url}`
         if (isBskyAppUrl(absolute)) {
           const pathname = new URL(absolute).pathname
-          joinMatch = /^\/join\/([^/?#]+)\/?$/.exec(pathname)
+          const joinMatch = /^\/join\/([^/?#]+)\/?$/.exec(pathname)
+          if (joinMatch) joinCode = decodeURIComponent(joinMatch[1])
           profileMatch = /^\/profile\/([^/?#]+)\/?$/.exec(
             expandProfilePath(pathname),
           )
         }
       } catch {}
-      if (joinMatch) {
+      if (joinCode) {
         ax.metric('invite:scanner:scanned', {result: 'profileFound'})
         setScannerEnabled(false)
-        navigation.replace('Join', {code: decodeURIComponent(joinMatch[1])})
+        navigation.replace('Join', {code: joinCode})
         return
       }
       if (!profileMatch) {

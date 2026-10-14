@@ -31,7 +31,10 @@ export function GateBadge({uri}: {uri: string}) {
       <Text
         numberOfLines={1}
         style={[a.text_xs, a.font_semi_bold, {color: t.palette.primary_700}]}>
-        🔒 <Trans>Token-gated · holders of {describeRule(rule)}</Trans>
+        <Text accessible={false} importantForAccessibility="no">
+          🔒{' '}
+        </Text>
+        <Trans>Token-gated · holders of {describeRule(rule)}</Trans>
       </Text>
     </View>
   )

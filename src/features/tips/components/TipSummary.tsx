@@ -52,7 +52,9 @@ function TipTotalsLine({
       ]}>
       <Text
         style={[compact ? a.text_xs : a.text_sm, t.atoms.text_contrast_medium]}>
-        💎{' '}
+        <Text accessible={false} importantForAccessibility="no">
+          💎{' '}
+        </Text>
         <Trans>
           Tipped {amounts} ({count})
         </Trans>
