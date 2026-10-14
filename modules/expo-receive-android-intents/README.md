@@ -35,7 +35,7 @@ The module uses Expo's module lifecycle hooks to intercept Android intents at tw
    - **Text**: URL-encodes the text
    - **Images**: Saves to app cache, extracts dimensions (limited to 4 images max)
    - **Video**: Copies to app cache with extension detection, extracts dimensions
-4. **Deep Link Generation**: Creates a `bluesky://intent/compose` URL with encoded parameters
+4. **Deep Link Generation**: Creates a `krao://intent/compose` URL with encoded parameters
 5. **App Launch**: Starts a new activity with the deep link, which is handled by `useIntentHandler`
 
 ### Deep Link Format
@@ -44,13 +44,13 @@ The module generates deep links in the following formats:
 
 ```
 # Text only
-bluesky://intent/compose?text=<encoded-text>
+krao://intent/compose?text=<encoded-text>
 
 # Images (single or multiple)
-bluesky://intent/compose?imageUris=<uri1>|<width>|<height>,<uri2>|<width>|<height>&text=<encoded-text>
+krao://intent/compose?imageUris=<uri1>|<width>|<height>,<uri2>|<width>|<height>&text=<encoded-text>
 
 # Video (single only)
-bluesky://intent/compose?videoUri=<uri>|<width>|<height>&text=<encoded-text>
+krao://intent/compose?videoUri=<uri>|<width>|<height>&text=<encoded-text>
 ```
 
 All URIs use the `file://` scheme pointing to files in the app's cache directory. Dimensions are included to avoid expensive measurement operations in JavaScript.

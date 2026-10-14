@@ -14,8 +14,8 @@ import {BottomSheetProvider} from '@bsky.app/bottom-sheet'
 import {BackgroundNotificationPreferencesProvider} from '@bsky.app/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
 import {useLingui} from '@lingui/react/macro'
 
-import {resolveKraoServices} from '#/lib/constants'
 import {Provider as HideBottomBarBorderProvider} from '#/lib/hooks/useHideBottomBarBorder'
+import {initKraoServices} from '#/lib/kraoServices'
 import {QueryProvider} from '#/lib/react-query'
 import {ThemeProvider} from '#/lib/ThemeContext'
 import {Provider as TranslateOnDeviceProvider} from '#/lib/translation'
@@ -226,7 +226,7 @@ function App() {
       initPersistedState(),
       Geo.resolve(),
       setupDeviceId,
-      resolveKraoServices(),
+      initKraoServices(),
     ]).then(() => setIsReady(true))
   }, [])
 

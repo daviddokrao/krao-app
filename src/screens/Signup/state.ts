@@ -11,6 +11,7 @@ import {matchXrpcError} from '#/lib/xrpc-error'
 import {useSessionApi} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
 import {type AnalyticsContextType, useAnalytics} from '#/analytics'
+import {clearPendingReferralCode} from '#/features/referral/pendingCode'
 import {com} from '#/lexicons'
 
 export type ServiceDescription = com.atproto.server.describeServer.$OutputBody
@@ -354,6 +355,7 @@ export function useSubmitSignup() {
          * Must happen last so that if the user has multiple tabs open and
          * createAccount fails, one tab is not stuck in onboarding — Eric
          */
+        clearPendingReferralCode()
         onboardingDispatch({type: 'start'})
       } catch (err) {
         const e = err as Error

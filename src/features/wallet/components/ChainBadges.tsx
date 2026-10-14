@@ -42,6 +42,10 @@ export function ChainBadges({did}: {did: string}) {
         return (
           <View
             key={badge.id}
+            // One label per badge, so the emoji is not read out on its own
+            accessible
+            accessibilityLabel={labels[id](badge.count)}
+            accessibilityHint=""
             style={[
               a.flex_row,
               a.align_center,

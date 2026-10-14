@@ -32,12 +32,12 @@ The extension is implemented as a native iOS Share Extension using Swift. When a
 
 ### Deep Link Format
 
-The extension communicates with the main app using deep links with the `bluesky://` scheme:
+The extension communicates with the main app using deep links with the `krao://` scheme:
 
 ```
-bluesky://intent/compose?text=<encoded-text>
-bluesky://intent/compose?imageUris=<uri1>|<width>|<height>,<uri2>|<width>|<height>
-bluesky://intent/compose?videoUri=<uri>|<width>|<height>
+krao://intent/compose?text=<encoded-text>
+krao://intent/compose?imageUris=<uri1>|<width>|<height>,<uri2>|<width>|<height>
+krao://intent/compose?videoUri=<uri>|<width>|<height>
 ```
 
 The scheme can be customized by setting the `MainAppScheme` key in `Info.plist` to support forks.

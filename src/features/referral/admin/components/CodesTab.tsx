@@ -17,12 +17,19 @@ import {
   useCreateCodeMutation,
   useUpdateCodeMutation,
 } from '../queries'
-import {AccountName, EmptyRow, useFormatDate, useResolveAccount} from './shared'
+import {
+  AccountName,
+  EmptyRow,
+  LoadMore,
+  useFormatDate,
+  useResolveAccount,
+} from './shared'
 
 /** Campaign and partner codes: create them, see their use, turn them off */
 export function CodesTab() {
   const t = useTheme()
-  const {data, isLoading, isError} = useCodesQuery()
+  const query = useCodesQuery()
+  const {data, isLoading, isError} = query
 
   return (
     <View style={[a.gap_lg]}>
@@ -42,6 +49,7 @@ export function CodesTab() {
           ))}
         </View>
       )}
+      <LoadMore query={query} />
     </View>
   )
 }
