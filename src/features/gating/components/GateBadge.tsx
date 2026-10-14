@@ -1,5 +1,5 @@
 import {View} from 'react-native'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 
 import {atoms as a, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
@@ -12,6 +12,7 @@ import {useGateRuleQuery} from '../queries'
  */
 export function GateBadge({uri}: {uri: string}) {
   const t = useTheme()
+  const {t: l} = useLingui()
   const describeRule = useDescribeRule()
   const {data: rule} = useGateRuleQuery(uri)
   if (!rule?.hasContent) return null
@@ -30,11 +31,11 @@ export function GateBadge({uri}: {uri: string}) {
       ]}>
       <Text
         numberOfLines={1}
+        // The label leaves the emoji out: screen readers would read it aloud
+        accessibilityLabel={l`Token-gated · holders of ${describeRule(rule)}`}
+        accessibilityHint=""
         style={[a.text_xs, a.font_semi_bold, {color: t.palette.primary_700}]}>
-        <Text accessible={false} importantForAccessibility="no">
-          🔒{' '}
-        </Text>
-        <Trans>Token-gated · holders of {describeRule(rule)}</Trans>
+        🔒 <Trans>Token-gated · holders of {describeRule(rule)}</Trans>
       </Text>
     </View>
   )

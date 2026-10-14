@@ -422,7 +422,7 @@ msgstr ""
 
 #. placeholder {0}: option.symbol
 #: src/features/gating/components/GateDialog.tsx:295
-#: src/features/tips/components/TipDialog.tsx:183
+#: src/features/tips/components/TipDialog.tsx:190
 msgid "{0}, selected"
 msgstr "{0}, đang chọn"
 
@@ -842,7 +842,7 @@ msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr "{numMatches, plural, other {Tìm thấy # liên hệ}}"
 
 #. placeholder {0}: asset.symbol
-#: src/features/tips/components/TipDialog.tsx:204
+#: src/features/tips/components/TipDialog.tsx:211
 msgid "{preset} {0}, selected"
 msgstr "{preset} {0}, đang chọn"
 
@@ -921,7 +921,7 @@ msgid "{voided} voided, {reversed} reversed"
 msgstr "Đã huỷ {voided}, đã trừ lại {reversed}"
 
 #. placeholder {0}: target.handle
-#: src/features/tips/components/TipDialog.tsx:141
+#: src/features/tips/components/TipDialog.tsx:144
 msgid "@{0} hasn’t linked a wallet yet, so they can’t receive tips."
 msgstr "@{0} chưa liên kết ví nên không thể nhận tiền tip."
 
@@ -1795,12 +1795,12 @@ msgstr "Mô tả thay thế cho ảnh {0}"
 msgid "Alt text will be truncated. {MAX_ALT_TEXT, plural, other {Limit: {0} characters.}}"
 msgstr "Văn bản thay thế sẽ bị cắt ngắn. {MAX_ALT_TEXT, plural, other {Giới hạn: {0} kí tự.}}"
 
-#: src/features/tips/components/TipDialog.tsx:221
+#: src/features/tips/components/TipDialog.tsx:228
 msgid "Amount"
 msgstr "Số lượng"
 
 #. placeholder {0}: asset.symbol
-#: src/features/tips/components/TipDialog.tsx:217
+#: src/features/tips/components/TipDialog.tsx:224
 msgid "Amount ({0})"
 msgstr "Số lượng ({0})"
 
@@ -2851,7 +2851,7 @@ msgstr "Bởi bạn"
 msgid "Camera"
 msgstr "Máy ảnh"
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:114
+#: src/features/inviteFriends/InviteScannerScreen.tsx:115
 msgid "Camera access needed"
 msgstr "Cần quyền truy cập máy ảnh"
 
@@ -3475,7 +3475,7 @@ msgstr ""
 msgid "Close menu"
 msgstr "Đóng bảng chọn"
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:185
+#: src/features/inviteFriends/InviteScannerScreen.tsx:186
 msgid "Close scanner"
 msgstr "Đóng trình quét"
 
@@ -4091,6 +4091,10 @@ msgstr "Không thể tải thêm bài đăng. Hãy thử lại"
 msgid "Couldn’t load the gated content."
 msgstr "Không thể tải nội dung có giới hạn."
 
+#: src/features/tips/components/TipDialog.tsx:158
+msgid "Couldn’t load your wallets. Please try again later."
+msgstr "Không tải được danh sách ví của bạn. Vui lòng thử lại sau."
+
 #: src/components/InternationalPhoneCodeSelect.tsx:80
 msgid "Country code"
 msgstr ""
@@ -4651,7 +4655,7 @@ msgstr "Đóng phần này"
 msgid "Dismiss this suggestion"
 msgstr ""
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:186
+#: src/features/inviteFriends/InviteScannerScreen.tsx:187
 msgid "Dismisses the QR scanner"
 msgstr "Đóng trình quét mã QR"
 
@@ -5145,7 +5149,7 @@ msgstr "Nhập mật khẩu"
 msgid "Enter a word or tag"
 msgstr "Nhập từ hoặc thẻ"
 
-#: src/features/tips/components/TipDialog.tsx:290
+#: src/features/tips/components/TipDialog.tsx:297
 msgid "Enter an amount"
 msgstr "Nhập số lượng"
 
@@ -6546,8 +6550,8 @@ msgstr "Tính năng phát trực tiếp hiện đang bị tắt đối với tà
 msgid "Got it"
 msgstr ""
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:126
-#: src/features/inviteFriends/InviteScannerScreen.tsx:131
+#: src/features/inviteFriends/InviteScannerScreen.tsx:127
+#: src/features/inviteFriends/InviteScannerScreen.tsx:132
 msgid "Grant access"
 msgstr "Cấp quyền truy cập"
 
@@ -7591,7 +7595,7 @@ msgstr "Dịch vụ kiểm duyệt Krao"
 msgid "Krao Moderation Service removed a post from Krao for violating our <0>Community Guidelines</0>."
 msgstr "Dịch vụ kiểm duyệt Krao đã gỡ một bài đăng khỏi Krao do vi phạm <0>Nguyên tắc cộng đồng</0> của chúng tôi."
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:123
+#: src/features/inviteFriends/InviteScannerScreen.tsx:124
 msgid "Krao needs camera access to scan QR codes from other profiles."
 msgstr "Krao cần quyền truy cập máy ảnh để quét mã QR từ các hồ sơ khác."
 
@@ -7994,8 +7998,8 @@ msgid "Linear"
 msgstr "Ngang hàng"
 
 #: src/features/gating/components/GatedContent.tsx:111
-#: src/features/tips/components/TipDialog.tsx:162
-#: src/features/tips/components/TipDialog.tsx:171
+#: src/features/tips/components/TipDialog.tsx:169
+#: src/features/tips/components/TipDialog.tsx:178
 #: src/screens/Settings/WalletsSettings.tsx:114
 #: src/screens/Settings/WalletsSettings.tsx:131
 msgid "Link a wallet"
@@ -8013,7 +8017,7 @@ msgstr "Liên kết ví để hiển thị trên hồ sơ và đăng nhập bằ
 msgid "Link copied to clipboard"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:96
+#: src/features/tips/components/TipDialog.tsx:99
 msgid "Link this wallet to your account in Settings → Wallets before tipping with it."
 msgstr "Hãy liên kết ví này với tài khoản trong Cài đặt → Ví trước khi dùng nó để tip."
 
@@ -8433,7 +8437,7 @@ msgstr ""
 msgid "Menu"
 msgstr "Trình đơn"
 
-#: src/features/tips/components/TipDialog.tsx:235
+#: src/features/tips/components/TipDialog.tsx:242
 msgid "Message"
 msgstr "Tin nhắn"
 
@@ -8447,7 +8451,7 @@ msgctxt "description"
 msgid "Message"
 msgstr "Tin nhắn"
 
-#: src/features/tips/components/TipDialog.tsx:231
+#: src/features/tips/components/TipDialog.tsx:238
 msgid "Message (optional)"
 msgstr "Tin nhắn (tùy chọn)"
 
@@ -9139,7 +9143,7 @@ msgstr "Không có bảng DNS"
 msgid "No drafts yet"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:90
+#: src/features/tips/components/TipDialog.tsx:93
 msgid "No Ethereum wallet was found in this browser."
 msgstr "Không tìm thấy ví Ethereum nào trong trình duyệt này."
 
@@ -9704,7 +9708,7 @@ msgstr "Chỉ hỗ trợ tệp WebVTT (.vtt)"
 msgid "Oops, something went wrong!"
 msgstr "Ôi, có gì đó không đúng!"
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:236
+#: src/features/inviteFriends/InviteScannerScreen.tsx:237
 msgid "Oops, this profile doesn't exist. Try scanning another one."
 msgstr "Rất tiếc, hồ sơ này không tồn tại. Hãy thử quét mã khác."
 
@@ -10854,7 +10858,7 @@ msgstr ""
 msgid "Profile link copied"
 msgstr "Đã sao chép liên kết hồ sơ"
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:228
+#: src/features/inviteFriends/InviteScannerScreen.tsx:229
 #: src/lib/strings/errors.ts:78
 msgid "Profile not found"
 msgstr "Không tìm thấy hồ sơ"
@@ -12073,7 +12077,7 @@ msgstr ""
 msgid "Scan"
 msgstr "Quét"
 
-#: src/features/inviteFriends/InviteScannerScreen.tsx:100
+#: src/features/inviteFriends/InviteScannerScreen.tsx:101
 #: src/features/inviteFriends/InviteScannerScreen.web.tsx:23
 #: src/Navigation.tsx:353
 msgid "Scan QR code"
@@ -12474,7 +12478,7 @@ msgstr ""
 
 #. placeholder {0}: formatUnits(amount, asset.decimals)
 #. placeholder {1}: asset.symbol
-#: src/features/tips/components/TipDialog.tsx:286
+#: src/features/tips/components/TipDialog.tsx:293
 msgid "Send {0} {1}"
 msgstr "Gửi {0} {1}"
 
@@ -12532,7 +12536,7 @@ msgstr "Gửi báo cáo cho {title}"
 msgid "Send the message from your phone"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:278
+#: src/features/tips/components/TipDialog.tsx:285
 msgid "Send tip"
 msgstr "Gửi tip"
 
@@ -12549,7 +12553,7 @@ msgstr "Gửi email xác minh"
 msgid "Send via chat"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:148
+#: src/features/tips/components/TipDialog.tsx:151
 msgid "Sending tips from the mobile app is coming soon. Use Krao on the web for now."
 msgstr "Tính năng gửi tip từ ứng dụng di động sắp ra mắt. Hiện tại hãy dùng Krao trên web."
 
@@ -12558,7 +12562,7 @@ msgstr "Tính năng gửi tip từ ứng dụng di động sắp ra mắt. Hiệ
 msgid "Sent at {0}"
 msgstr "Đã gửi lúc {0}"
 
-#: src/features/tips/components/TipDialog.tsx:130
+#: src/features/tips/components/TipDialog.tsx:133
 msgid "Sent on Base straight from your wallet to theirs. Krao never holds your funds."
 msgstr "Gửi trên Base trực tiếp từ ví của bạn đến ví của họ. Krao không bao giờ giữ tiền của bạn."
 
@@ -13227,7 +13231,7 @@ msgstr "Đã có lỗi khi liên kết ví. Vui lòng thử lại."
 msgid "Something went wrong saving the gated content. Please try again."
 msgstr "Đã có lỗi khi lưu nội dung giới hạn theo token. Vui lòng thử lại."
 
-#: src/features/tips/components/TipDialog.tsx:97
+#: src/features/tips/components/TipDialog.tsx:100
 msgid "Something went wrong sending the tip. Please try again."
 msgstr "Đã có lỗi khi gửi tip. Vui lòng thử lại."
 
@@ -13971,7 +13975,7 @@ msgstr "người mời"
 msgid "the referrer’s referrer"
 msgstr "người mời của người mời"
 
-#: src/features/tips/components/TipDialog.tsx:92
+#: src/features/tips/components/TipDialog.tsx:95
 #: src/features/wallet/components/WalletSignInButton.tsx:29
 #: src/screens/Settings/WalletsSettings.tsx:60
 msgid "The request was cancelled in your wallet."
@@ -14023,7 +14027,7 @@ msgstr "Biểu mẫu hỗ trợ đã được chuyển đi. Nếu bạn cần gi
 msgid "The Terms of Service have been moved to"
 msgstr "Điều khoản dịch vụ đã được chuyển đến"
 
-#: src/features/tips/components/TipDialog.tsx:250
+#: src/features/tips/components/TipDialog.tsx:257
 msgid "The tip could not be saved yet. Please try again."
 msgstr "Chưa lưu được tip. Vui lòng thử lại."
 
@@ -14694,21 +14698,22 @@ msgid "Timeline"
 msgstr ""
 
 #. placeholder {0}: target.handle
-#: src/features/tips/components/TipDialog.tsx:127
+#: src/features/tips/components/TipDialog.tsx:130
 msgid "Tip @{0}"
 msgstr "Tip cho @{0}"
 
-#: src/features/tips/components/TipDialog.tsx:266
+#: src/features/tips/components/TipDialog.tsx:273
 msgid "Tip saved"
 msgstr "Đã lưu tip"
 
 #. placeholder {0}: formatUnits(amount, asset.decimals)
 #. placeholder {1}: asset.symbol
-#: src/features/tips/components/TipDialog.tsx:114
+#: src/features/tips/components/TipDialog.tsx:117
 msgid "Tip sent: {0} {1}"
 msgstr "Đã gửi tip: {0} {1}"
 
-#: src/features/tips/components/TipSummary.tsx:58
+#: src/features/tips/components/TipSummary.tsx:56
+#: src/features/tips/components/TipSummary.tsx:60
 msgid "Tipped {amounts} ({count})"
 msgstr "Đã tip {amounts} ({count})"
 
@@ -14744,12 +14749,12 @@ msgstr ""
 msgid "To log out, <0>click here</0>. Or if you’d prefer, you can <1>delete your account</1>."
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:156
+#: src/features/tips/components/TipDialog.tsx:163
 msgid "To send tips, first link the wallet you will pay from to your account."
 msgstr "Để gửi tip, trước hết hãy liên kết ví mà bạn sẽ dùng để trả với tài khoản của bạn."
 
 #. placeholder {0}: shortAddress(recipientWallet.data)
-#: src/features/tips/components/TipDialog.tsx:244
+#: src/features/tips/components/TipDialog.tsx:251
 msgid "To wallet {0}"
 msgstr "Đến ví {0}"
 
@@ -14798,10 +14803,12 @@ msgid "Token ID (optional, any token if empty)"
 msgstr "ID token (tùy chọn, để trống là bất kỳ token nào)"
 
 #. placeholder {0}: describeRule(rule)
-#: src/features/gating/components/GateBadge.tsx:37
+#: src/features/gating/components/GateBadge.tsx:35
+#: src/features/gating/components/GateBadge.tsx:38
 msgid "Token-gated · holders of {0}"
 msgstr "Giới hạn theo token · người nắm giữ {0}"
 
+#: src/features/gating/components/GatedContent.tsx:61
 #: src/features/gating/components/GatedContent.tsx:64
 msgid "Token-gated · holders of {requirementText}"
 msgstr "Giới hạn theo token · người nắm giữ {requirementText}"
@@ -14930,8 +14937,8 @@ msgstr ""
 
 #: src/features/gating/components/GatedContent.tsx:124
 #: src/features/gating/components/GatedContent.tsx:130
-#: src/features/inviteFriends/InviteScannerScreen.tsx:239
-#: src/features/inviteFriends/InviteScannerScreen.tsx:244
+#: src/features/inviteFriends/InviteScannerScreen.tsx:240
+#: src/features/inviteFriends/InviteScannerScreen.tsx:245
 msgid "Try again"
 msgstr "Thử lại"
 
@@ -14954,8 +14961,8 @@ msgstr ""
 msgid "Try it"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:258
-#: src/features/tips/components/TipDialog.tsx:272
+#: src/features/tips/components/TipDialog.tsx:265
+#: src/features/tips/components/TipDialog.tsx:279
 msgid "Try saving the tip again"
 msgstr "Thử lưu tip lại"
 
@@ -17450,7 +17457,7 @@ msgstr "Mục quan tâm mà bạn chọn giúp chúng tôi đưa nội dung mà 
 msgid "Your thread has empty posts that will be skipped. The remaining posts will be published as a thread."
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:94
+#: src/features/tips/components/TipDialog.tsx:97
 msgid "Your tip was sent, but it could not be saved to your account yet. It will be saved the next time you send a tip."
 msgstr "Tip đã được gửi nhưng chưa lưu được vào tài khoản. Tip sẽ được lưu vào lần bạn gửi tip tiếp theo."
 

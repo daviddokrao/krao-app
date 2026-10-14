@@ -57,11 +57,11 @@ export function GatedContent({uri}: {uri: string}) {
         {backgroundColor: t.palette.primary_25},
       ]}>
       <Text
+        // The label leaves the emoji out: screen readers would read it aloud
+        accessibilityLabel={l`Token-gated · holders of ${requirementText}`}
+        accessibilityHint=""
         style={[a.text_sm, a.font_semi_bold, {color: t.palette.primary_700}]}>
-        <Text accessible={false} importantForAccessibility="no">
-          🔒{' '}
-        </Text>
-        <Trans>Token-gated · holders of {requirementText}</Trans>
+        🔒 <Trans>Token-gated · holders of {requirementText}</Trans>
       </Text>
       {!hasSession ? (
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>

@@ -69,8 +69,11 @@ function TipDialogInner({
   const navigation = useNavigation<NavigationProp>()
   const {currentAccount} = useSession()
   const recipientWallet = useTipRecipientWallet(target.did)
-  const {data: myChainProfile, isLoading: isMyProfileLoading} =
-    useChainProfileQuery(currentAccount?.did)
+  const {
+    data: myChainProfile,
+    isLoading: isMyProfileLoading,
+    isError: isMyProfileError,
+  } = useChainProfileQuery(currentAccount?.did)
   // Tips go out from one of the tipper's own linked wallets (the indexer
   // credits nothing else), so say so before the form is filled in
   const hasOwnWallet = !!myChainProfile?.wallets.some(
@@ -149,6 +152,10 @@ function TipDialogInner({
             Sending tips from the mobile app is coming soon. Use Krao on the web
             for now.
           </Trans>
+        </Admonition>
+      ) : isMyProfileError ? (
+        <Admonition type="error">
+          <Trans>Couldn’t load your wallets. Please try again later.</Trans>
         </Admonition>
       ) : !hasOwnWallet ? (
         <View style={[a.gap_md]}>
