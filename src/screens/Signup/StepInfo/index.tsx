@@ -18,7 +18,6 @@ import {HostingProvider} from '#/components/forms/HostingProvider'
 import * as TextField from '#/components/forms/TextField'
 import {Envelope_Stroke2_Corner0_Rounded as Envelope} from '#/components/icons/Envelope'
 import {Lock_Stroke2_Corner0_Rounded as Lock} from '#/components/icons/Lock'
-import {Ticket_Stroke2_Corner0_Rounded as Ticket} from '#/components/icons/Ticket'
 import {createStaticClick, SimpleInlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {usePreemptivelyCompleteActivePolicyUpdate} from '#/components/PolicyUpdateOverlay/usePreemptivelyCompleteActivePolicyUpdate'
@@ -30,6 +29,7 @@ import {
 } from '#/ageAssurance/util'
 import {useAnalytics} from '#/analytics'
 import {IS_NATIVE} from '#/env'
+import {ReferralCodeField} from '#/features/referral/components/ReferralCodeField'
 import {
   useDeviceGeolocationApi,
   useIsDeviceGeolocationGranted,
@@ -122,7 +122,7 @@ export function StepInfo({
     if (state.serviceDescription?.inviteCodeRequired && !inviteCode) {
       return dispatch({
         type: 'setError',
-        value: l`Please enter your invite code.`,
+        value: l`Please enter your referral code.`,
         field: 'invite-code',
       })
     }
@@ -202,35 +202,17 @@ export function StepInfo({
         ) : state.serviceDescription ? (
           <>
             {state.serviceDescription.inviteCodeRequired && (
-              <View>
-                <TextField.LabelText>
-                  <Trans>Invite code</Trans>
-                </TextField.LabelText>
-                <TextField.Root isInvalid={state.errorField === 'invite-code'}>
-                  <TextField.Icon icon={Ticket} />
-                  <TextField.Input
-                    onChangeText={value => {
-                      dispatch({type: 'setInviteCode', value: value.trim()})
-                      if (
-                        state.errorField === 'invite-code' &&
-                        value.trim().length > 0
-                      ) {
-                        dispatch({type: 'clearError'})
-                      }
-                    }}
-                    label={l`Required for this provider`}
-                    value={state.inviteCode}
-                    autoCapitalize="none"
-                    autoComplete="email"
-                    keyboardType="email-address"
-                    returnKeyType="next"
-                    submitBehavior={native('submit')}
-                    onSubmitEditing={native(() =>
-                      emailInputRef.current?.focus(),
-                    )}
-                  />
-                </TextField.Root>
-              </View>
+              <ReferralCodeField
+                value={state.inviteCode}
+                onChange={value => {
+                  dispatch({type: 'setInviteCode', value})
+                  if (state.errorField === 'invite-code' && value.length > 0) {
+                    dispatch({type: 'clearError'})
+                  }
+                }}
+                isInvalid={state.errorField === 'invite-code'}
+                nextInputRef={emailInputRef}
+              />
             )}
             <View>
               <TextField.LabelText>

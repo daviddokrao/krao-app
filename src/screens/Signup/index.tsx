@@ -31,6 +31,7 @@ import {ScreenTransition} from '#/components/ScreenTransition'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
 import {GCP_PROJECT_ID, IS_ANDROID} from '#/env'
+import {getPendingReferralCode} from '#/features/referral/pendingCode'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 
@@ -40,6 +41,8 @@ export function Signup({onPressBack}: {onPressBack: () => void}) {
   const t = useTheme()
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
+    // From a krao.net/join/<code> link
+    inviteCode: getPendingReferralCode(),
     analytics: ax,
   })
   const {gtMobile} = useBreakpoints()
