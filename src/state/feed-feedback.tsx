@@ -10,7 +10,6 @@ import {AppState, type AppStateStatus} from 'react-native'
 import {type AtUriString, type DidString} from '@atproto/syntax'
 import throttle from 'lodash.throttle'
 
-import {TRENDING_DID} from '#/lib/constants'
 import {type FeedSourceInfo, isFeedSourceFeedInfo} from '#/state/queries/feed'
 import {
   type FeedDescriptor,
@@ -263,14 +262,10 @@ export function useFeedFeedbackContext() {
 // TODO
 // We will introduce a permissions framework for 3p feeds to
 // take advantage of the feed feedback API. Until that's in
-// place, we're hardcoding it to the discover and trending feeds.
+// place, we're hardcoding it to the discover feed.
 // -prf
 export function isDiscoverFeed(feed?: FeedDescriptor) {
   return !!feed && FEEDBACK_FEEDS.includes(feed)
-}
-
-export function isTrendingFeed(feed?: FeedDescriptor) {
-  return !!feed && feed.startsWith(`feedgen|at://${TRENDING_DID}/`)
 }
 
 function isInteractionAllowed(
@@ -281,7 +276,7 @@ function isInteractionAllowed(
   if (!enabled || !feed) {
     return false
   }
-  if (isDiscoverFeed(feed) || isTrendingFeed(feed)) {
+  if (isDiscoverFeed(feed)) {
     return true
   }
   return THIRD_PARTY_ALLOWED_INTERACTIONS.has(interaction)

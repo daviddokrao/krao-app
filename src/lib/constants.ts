@@ -133,9 +133,6 @@ export const MAX_POST_LINES = 25
  */
 export const BSKY_FEED_OWNER_DIDS: string[] = []
 
-export const TRENDING_DID = 'did:plc:qrz3lhbyuxbeilrc6nekdqme'
-export const TRENDING_HANDLE = 'trending.bsky.app'
-
 /**
  * The Discover feed: Krao's "popular" feed (KRAO_DISCOVER_FEED). Holds the
  * DID form once resolveKraoServices() has run at startup, since AppViews
@@ -211,9 +208,8 @@ export const RECOMMENDED_SAVED_FEEDS: Pick<
   'type' | 'value' | 'pinned'
 >[] = [DISCOVER_SAVED_FEED, TIMELINE_SAVED_FEED]
 
-export const KNOWN_SHUTDOWN_FEEDS = [
-  'at://did:plc:wqowuobffl66jv3kpsvo7ak4/app.bsky.feed.generator/the-algorithm', // for you by skygaze
-]
+/** Feeds that show a "this feed is no longer online" notice. None on Krao yet */
+export const KNOWN_SHUTDOWN_FEEDS: string[] = []
 
 /** Krao's GIF service (the indexer, see KRAO_GIF_URL) */
 export const GIF_SERVICE = KRAO_GIF_URL
