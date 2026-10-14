@@ -1,7 +1,6 @@
 import '../index.css'
 
 import {Client, isAtUriString} from '@atproto/lex'
-import {api} from '@bsky/sdk'
 import {app} from '@bsky/sdk/lexicons'
 import {h, render} from 'preact'
 
@@ -9,6 +8,7 @@ import {applyTheme, initSystemColorMode} from '#/color-mode'
 import {Container} from '#/components/container'
 import {Link} from '#/components/link'
 import {Post} from '#/components/post'
+import {APPVIEW_URL, WEB_URL} from '#/krao'
 import {getRkey} from '#/util/rkey'
 
 import logo from '../../assets/logo.svg'
@@ -16,7 +16,7 @@ import logo from '../../assets/logo.svg'
 const root = document.getElementById('app')
 if (!root) throw new Error('No root element')
 
-const client = new Client(api.app.urlPublic, {strictResponseProcessing: false})
+const client = new Client(APPVIEW_URL, {strictResponseProcessing: false})
 
 const uri = `at://${window.location.pathname.slice('/embed/'.length)}`
 if (!isAtUriString(uri)) {
@@ -84,7 +84,7 @@ function PwiOptOut({post}: {post: app.bsky.feed.defs.PostView}) {
         <Link
           href={href}
           className="max-w-80 rounded-lg bg-brand text-white text-center py-1 px-4 w-full mx-auto">
-          View on Bluesky
+          View on Krao
         </Link>
       </div>
     </Container>
@@ -93,9 +93,9 @@ function PwiOptOut({post}: {post: app.bsky.feed.defs.PostView}) {
 
 function ErrorMessage() {
   return (
-    <Container href="https://bsky.app/">
+    <Container href={`${WEB_URL}/`}>
       <Link
-        href="https://bsky.app/"
+        href={`${WEB_URL}/`}
         className="transition-transform hover:scale-110 absolute top-4 right-4">
         <img src={logo} className="h-6" />
       </Link>

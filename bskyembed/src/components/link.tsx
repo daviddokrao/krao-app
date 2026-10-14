@@ -1,5 +1,7 @@
 import {h, HTMLAttributes} from 'preact'
 
+import {WEB_URL} from '#/krao'
+
 export function Link({
   href,
   className,
@@ -21,7 +23,7 @@ export function Link({
 
   return (
     <a
-      href={`${href.startsWith('http') ? href : `https://bsky.app${href}`}${
+      href={`${href.startsWith('http') ? href : `${WEB_URL}${href}`}${
         disableTracking ? '' : `?${newSearchParam.toString()}`
       }`}
       target="_blank"

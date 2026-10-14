@@ -10,6 +10,7 @@ import {Like as LikeIcon} from '#/icons/Like'
 import {Reply as ReplyIcon} from '#/icons/Reply'
 import {Repost as RepostIcon} from '#/icons/Repost'
 import {Robot as RobotIcon} from '#/icons/Robot'
+import {isWebUrl} from '#/krao'
 import {CONTENT_LABELS} from '#/labels'
 import {niceDate} from '#/util/nice-date'
 import {prettyNumber} from '#/util/pretty-number'
@@ -158,10 +159,7 @@ function PostContent({record}: {record: app.bsky.feed.post.Main | null}) {
           key={counter}
           href={segment.link.uri}
           className="text-brand hover:underline"
-          disableTracking={
-            !segment.link.uri.startsWith('https://bsky.app') &&
-            !segment.link.uri.startsWith('https://go.bsky.app')
-          }>
+          disableTracking={!isWebUrl(segment.link.uri)}>
           {segment.text}
         </Link>,
       )
