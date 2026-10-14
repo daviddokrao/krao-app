@@ -95,6 +95,9 @@ export function useTipRecipientWallet(did: string) {
   })
 }
 
+/** The connected wallet is not one of the account's verified wallets */
+export class UnlinkedTipWalletError extends Error {}
+
 /**
  * Send a tip: transfer the asset from the user's wallet to the recipient's
  * linked wallet, then record it as an net.krao.feed.tip so the indexer can
@@ -122,6 +125,23 @@ export function useSendTipMutation() {
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
       const wallet = await connectEvmWallet()
+      /*
+       * The indexer only credits tips sent from one of the tipper's verified
+       * wallets, so check before any money moves
+       */
+      const me = await queryClient.fetchQuery({
+        queryKey: createChainProfileQueryKey(currentAccount.did),
+        queryFn: () => getChainProfile(currentAccount.did),
+        staleTime: STALE.SECONDS.THIRTY,
+      })
+      const linked = me.wallets.some(
+        w =>
+          w.status === 'verified' &&
+          w.account.startsWith('eip155:') &&
+          w.account.split(':')[2]?.toLowerCase() ===
+            wallet.address.toLowerCase(),
+      )
+      if (!linked) throw new UnlinkedTipWalletError()
       if (wallet.chainId !== TIP_CHAIN_ID) {
         await wallet.switchChain(TIP_CHAIN_ID)
       }

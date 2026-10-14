@@ -17,7 +17,11 @@ import {
 } from '#/features/wallet/evm'
 import {shortAddress} from '#/features/wallet/siwe'
 import {formatUnits, parseUnits, TIP_ASSETS, type TipAsset} from '../assets'
-import {useSendTipMutation, useTipRecipientWallet} from '../queries'
+import {
+  UnlinkedTipWalletError,
+  useSendTipMutation,
+  useTipRecipientWallet,
+} from '../queries'
 
 export type TipTarget = {
   did: string
@@ -70,7 +74,9 @@ function TipDialogInner({
       ? l`No Ethereum wallet was found in this browser.`
       : sendTip.error instanceof WalletRejectedError
         ? l`The request was cancelled in your wallet.`
-        : sendTip.error.message
+        : sendTip.error instanceof UnlinkedTipWalletError
+          ? l`Link this wallet to your account in Settings → Wallets before tipping with it.`
+          : sendTip.error.message
 
   const onSend = () => {
     if (!amount || !recipientWallet.data) return

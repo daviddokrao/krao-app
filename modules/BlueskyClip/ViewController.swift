@@ -85,9 +85,9 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
         return true
       }
       return false
-    case "idx.krao.net":
-      // Short links: https://idx.krao.net/s/<code>
-      if url.pathComponents.count == 3, url.pathComponents[1] == "s" {
+    case "go.krao.net":
+      // Short links (the App Clip's associated domain): https://go.krao.net/<code>
+      if url.pathComponents.count == 2 {
         return true
       }
       return false
