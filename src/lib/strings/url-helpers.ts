@@ -2,7 +2,7 @@ import {type AtIdentifierString, AtUri} from '@atproto/syntax'
 import {parse} from 'psl'
 import TLDs from 'tlds'
 
-import {BSKY_SERVICE} from '#/lib/constants'
+import {DEFAULT_SERVICE} from '#/lib/constants'
 import {expandProfilePath, shortenProfilePath} from '#/lib/routes/shortProfile'
 import {isInvalidHandle} from '#/lib/strings/handles'
 import {startUriToStarterPackUri} from '#/lib/strings/starter-pack'
@@ -17,7 +17,6 @@ export const BSKY_APP_HOST = KRAO_WEB_URL.replace(/\/$/, '')
 const APP_URL_PREFIXES = [
   ...new Set([`${BSKY_APP_HOST}/`, 'https://krao.net/']),
 ]
-export const BSKY_HOSTING_ENDSWITH = '.host.bsky.network'
 const BSKY_TRUSTED_HOSTS = [
   ...new Set(
     ['krao.net', new URL(KRAO_WEB_URL).host, new URL(KRAO_SITE_URL).host].map(
@@ -72,8 +71,8 @@ export function makeRecordUri(
 export function toNiceDomain(url: string): string {
   try {
     const urlp = new URL(url)
-    if (`https://${urlp.host}` === BSKY_SERVICE) {
-      return 'Bluesky Social'
+    if (isKraoHostedUrl(url)) {
+      return 'Krao'
     }
     return urlp.host ? urlp.host : url
   } catch (e) {
@@ -114,8 +113,8 @@ export function toBskyAppUrl(url: string): string {
 export function toNiceHostingUrl(url: string): string {
   try {
     const urlp = new URL(url)
-    if (urlp.host.endsWith(BSKY_HOSTING_ENDSWITH)) {
-      return 'Bluesky'
+    if (isKraoHostedUrl(url)) {
+      return 'Krao'
     }
     return urlp.host
   } catch {
@@ -124,17 +123,12 @@ export function toNiceHostingUrl(url: string): string {
 }
 
 /**
- * Whether the given service URL points at a Bluesky-operated PDS. True when the
- * host is `bsky.social` (the {@link BSKY_SERVICE} host) or ends with
- * `.host.bsky.network`. Returns false if the URL can't be parsed.
+ * Whether the given service URL points at Krao's own PDS (the host of
+ * {@link DEFAULT_SERVICE}). Returns false if the URL can't be parsed.
  */
-export function isBlueskyHostedUrl(url: string): boolean {
+export function isKraoHostedUrl(url: string): boolean {
   try {
-    const {host} = new URL(url)
-    return (
-      host === new URL(BSKY_SERVICE).host ||
-      host.endsWith(BSKY_HOSTING_ENDSWITH)
-    )
+    return new URL(url).host === new URL(DEFAULT_SERVICE).host
   } catch {
     return false
   }
