@@ -145,9 +145,12 @@ export function WalletsSettingsScreen({}: Props) {
               </Admonition.Admonition>
             )}
             {KRAO_DEV_WALLET && (
-              <Text style={[a.text_sm, a.mt_sm, a.italic]}>
-                <Trans>Development test wallet enabled.</Trans>
-              </Text>
+              <Admonition.Admonition type="warning" style={[a.mt_md]}>
+                <Trans>
+                  This is a shared test wallet: its key is public, so anyone can
+                  use it. Do not link it to an account you want to keep.
+                </Trans>
+              </Admonition.Admonition>
             )}
           </SettingsList.Item>
           <SettingsList.Divider />
