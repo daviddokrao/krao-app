@@ -54,21 +54,16 @@ export const JOINED_THIS_WEEK = 560000 // estimate as of 12/18/24
 export const DISCOVER_DEBUG_DIDS: Record<string, true> = {}
 
 const BASE_FEEDBACK_FORM_URL = `${HELP_DESK_URL}/requests/new`
-export function FEEDBACK_FORM_URL({
-  email,
-  handle,
-}: {
+/**
+ * Krao: the account's email and handle are no longer put in the URL (they
+ * would end up in logs and browser history, and the form fields were
+ * Bluesky's help desk's). The arguments stay for upstream callers.
+ */
+export function FEEDBACK_FORM_URL(_account: {
   email?: string
   handle?: string
 }): string {
-  let str = BASE_FEEDBACK_FORM_URL
-  if (email) {
-    str += `?tf_anonymous_requester_email=${encodeURIComponent(email)}`
-    if (handle) {
-      str += `&tf_17205412673421=${encodeURIComponent(handle)}`
-    }
-  }
-  return str
+  return BASE_FEEDBACK_FORM_URL
 }
 
 export const MAX_DISPLAY_NAME = 64

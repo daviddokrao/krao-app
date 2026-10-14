@@ -18,6 +18,7 @@ import {
 import {shortAddress} from '#/features/wallet/siwe'
 import {formatUnits, parseUnits, TIP_ASSETS, type TipAsset} from '../assets'
 import {
+  TipNotRecordedError,
   UnlinkedTipWalletError,
   useSendTipMutation,
   useTipRecipientWallet,
@@ -74,9 +75,11 @@ function TipDialogInner({
       ? l`No Ethereum wallet was found in this browser.`
       : sendTip.error instanceof WalletRejectedError
         ? l`The request was cancelled in your wallet.`
-        : sendTip.error instanceof UnlinkedTipWalletError
-          ? l`Link this wallet to your account in Settings → Wallets before tipping with it.`
-          : sendTip.error.message
+        : sendTip.error instanceof TipNotRecordedError
+          ? l`Your tip was sent, but it could not be saved to your account yet. It will be saved the next time you send a tip.`
+          : sendTip.error instanceof UnlinkedTipWalletError
+            ? l`Link this wallet to your account in Settings → Wallets before tipping with it.`
+            : sendTip.error.message
 
   const onSend = () => {
     if (!amount || !recipientWallet.data) return
@@ -138,7 +141,11 @@ function TipDialogInner({
             {TIP_ASSETS.map(option => (
               <Button
                 key={option.id}
-                label={option.symbol}
+                label={
+                  option.id === asset.id
+                    ? l`${option.symbol}, selected`
+                    : option.symbol
+                }
                 color={option.id === asset.id ? 'primary' : 'secondary'}
                 size="small"
                 onPress={() => {
@@ -155,7 +162,11 @@ function TipDialogInner({
               {asset.presets.map(preset => (
                 <Button
                   key={preset}
-                  label={`${preset} ${asset.symbol}`}
+                  label={
+                    preset === amountText
+                      ? l`${preset} ${asset.symbol}, selected`
+                      : `${preset} ${asset.symbol}`
+                  }
                   color={preset === amountText ? 'primary_subtle' : 'secondary'}
                   size="small"
                   onPress={() => setAmountText(preset)}>

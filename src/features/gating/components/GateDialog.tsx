@@ -29,18 +29,29 @@ type Kind = 'token' | 'nft'
 export function GateDialog({
   control,
   post,
+  replaceRuleUri,
 }: {
   control: Dialog.DialogControlProps
   post: {uri: string; cid: string}
+  /** The post's current gate, which saving replaces */
+  replaceRuleUri?: string
 }) {
   const {t: l} = useLingui()
   return (
     <Dialog.Outer control={control}>
       <Dialog.Handle />
       <Dialog.ScrollableInner
-        label={l`Add token-gated content`}
+        label={
+          replaceRuleUri
+            ? l`Replace token-gated content`
+            : l`Add token-gated content`
+        }
         style={web({maxWidth: 480})}>
-        <GateDialogInner control={control} post={post} />
+        <GateDialogInner
+          control={control}
+          post={post}
+          replaceRuleUri={replaceRuleUri}
+        />
         <Dialog.Close />
       </Dialog.ScrollableInner>
     </Dialog.Outer>
@@ -50,15 +61,18 @@ export function GateDialog({
 function GateDialogInner({
   control,
   post,
+  replaceRuleUri,
 }: {
   control: Dialog.DialogControlProps
   post: {uri: string; cid: string}
+  replaceRuleUri?: string
 }) {
   const t = useTheme()
   const {t: l} = useLingui()
   const createGate = useCreateGateMutation()
   const [text, setText] = useState('')
   const [images, setImages] = useState<PickerImage[]>([])
+  const [alts, setAlts] = useState<Record<string, string>>({})
   const [kind, setKind] = useState<Kind>('token')
   const [asset, setAsset] = useState<TipAsset>(TIP_ASSETS[1])
   const [minAmount, setMinAmount] = useState('10')
@@ -104,11 +118,16 @@ function GateDialogInner({
   const onSave = () => {
     if (!condition) return
     createGate.mutate(
-      {post, text: text.trim(), images, condition},
+      {post, text: text.trim(), images, alts, condition, replaceRuleUri},
       {
         onSuccess: () =>
           control.close(() => {
-            Toast.show(l`Token-gated content added`, {type: 'success'})
+            Toast.show(
+              replaceRuleUri
+                ? l`Token-gated content replaced`
+                : l`Token-gated content added`,
+              {type: 'success'},
+            )
           }),
       },
     )
@@ -118,7 +137,11 @@ function GateDialogInner({
     <View style={[a.gap_lg]}>
       <View style={[a.gap_xs]}>
         <Text style={[a.text_2xl, a.font_bold]}>
-          <Trans>Add token-gated content</Trans>
+          {replaceRuleUri ? (
+            <Trans>Replace token-gated content</Trans>
+          ) : (
+            <Trans>Add token-gated content</Trans>
+          )}
         </Text>
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
@@ -166,6 +189,8 @@ function GateDialogInner({
                     source={{uri: image.path}}
                     style={[a.rounded_sm, {width: 72, height: 72}]}
                     contentFit="cover"
+                    accessibilityLabel={alts[image.path] || l`Image ${i + 1}`}
+                    accessibilityHint=""
                     accessibilityIgnoresInvertColors
                   />
                 )}
@@ -183,6 +208,21 @@ function GateDialogInner({
               </View>
             ))}
           </View>
+        )}
+        {images.map((image, i) =>
+          image.mime.startsWith('video/') ? null : (
+            <TextField.Root key={`alt-${image.path}`}>
+              <TextField.Input
+                label={l`Alt text for image ${i + 1}`}
+                placeholder={l`Describe image ${i + 1} for people who can't see it`}
+                value={alts[image.path] ?? ''}
+                onChangeText={value =>
+                  setAlts(prev => ({...prev, [image.path]: value}))
+                }
+                maxLength={1000}
+              />
+            </TextField.Root>
+          ),
         )}
         {images.length < GATED_IMAGES_MAX && (
           <Button

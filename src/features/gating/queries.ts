@@ -1,4 +1,4 @@
-import {toDatetimeString} from '@atproto/syntax'
+import {AtUri, toDatetimeString} from '@atproto/syntax'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
 import {createBatchLoader} from '#/lib/batchLoader'
@@ -177,6 +177,34 @@ export function useGateRuleQuery(uri: string) {
   })
 }
 
+/**
+ * Remove the token gate from one of the user's posts by deleting its rule
+ * record; the gate service then drops the gated content.
+ */
+export function useRemoveGateMutation() {
+  const {currentAccount} = useSession()
+  const pdsClient = usePdsClient()
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ruleUri}: {ruleUri: string; postUri: string}) => {
+      if (!currentAccount) throw new Error('Not signed in')
+      await pdsClient.delete(net.krao.gate.rule, {
+        repo: currentAccount.did,
+        rkey: new AtUri(ruleUri).rkey,
+      })
+    },
+    onSuccess: (_data, {postUri}) => {
+      // The indexer drops the rule a moment after the record is deleted
+      queryClient.setQueryData(gateRuleQueryKey(postUri), null)
+      setTimeout(() => {
+        void queryClient.invalidateQueries({
+          queryKey: gateRuleQueryKey(postUri),
+        })
+      }, 2000)
+    },
+  })
+}
+
 const gatedContentQueryKey = (uri: string, viewer: string) =>
   createQueryKey('gated-content', {uri, viewer})
 
@@ -203,7 +231,8 @@ export function useGatedContentQuery(uri: string, enabled: boolean) {
 /**
  * Attach token-gated text and images to one of the user's posts: store them
  * on the gate service first, then publish the public net.krao.gate.rule
- * record.
+ * record. With `replaceRuleUri`, the post's existing gate is replaced: its
+ * content is overwritten and its rule record rewritten in place.
  */
 export function useCreateGateMutation() {
   const {currentAccount} = useSession()
@@ -215,34 +244,47 @@ export function useCreateGateMutation() {
       post,
       text,
       images = [],
+      alts = {},
       condition,
+      replaceRuleUri,
     }: {
       post: {uri: string; cid: string}
       text: string
       images?: PickerImage[]
+      /** Alt text by image path */
+      alts?: Record<string, string>
       condition: GateCondition
+      replaceRuleUri?: string
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
       const media: GatedMedia[] = []
       for (const image of images) {
-        media.push(
-          await uploadGatedMedia(
-            image,
-            await getToken('net.krao.gate.uploadMedia'),
-          ),
+        const uploaded = await uploadGatedMedia(
+          image,
+          await getToken('net.krao.gate.uploadMedia'),
         )
+        const alt = alts[image.path]?.trim()
+        media.push(alt ? {...uploaded, alt} : uploaded)
       }
       await gateFetch('net.krao.gate.putContent', {
         token: await getToken(net.krao.gate.putContent.$lxm),
         body: {uri: post.uri, text, media: media.length ? media : undefined},
       })
-      await pdsClient.create(net.krao.gate.rule, {
+      const rule = {
         subject: post as never,
         conditions: [condition] as never,
         match: 'all',
         service: KRAO_GATE_DID as `did:${string}:${string}`,
         createdAt: toDatetimeString(new Date()),
-      })
+      }
+      if (replaceRuleUri) {
+        await pdsClient.put(net.krao.gate.rule, rule, {
+          repo: currentAccount.did,
+          rkey: new AtUri(replaceRuleUri).rkey,
+        })
+      } else {
+        await pdsClient.create(net.krao.gate.rule, rule)
+      }
     },
     onSuccess: (_data, {post}) => {
       for (const delay of [1000, 3000]) {

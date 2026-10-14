@@ -12,6 +12,12 @@ import {createChainProfileQueryKey} from '#/features/wallet/queries'
 import {evmAccountId} from '#/features/wallet/siwe'
 import {net} from '#/lexicons'
 import {erc20TransferData, TIP_CHAIN_ID, type TipAsset} from './assets'
+import {
+  type PendingTipRecord,
+  pendingTipsFor,
+  removePendingTip,
+  savePendingTip,
+} from './pendingTips'
 
 export type TipView = {
   uri: string
@@ -83,6 +89,7 @@ export function useTipTotalsQuery(subject: string) {
  */
 export function useTipRecipientWallet(did: string) {
   return useQuery({
+    enabled: !!did,
     staleTime: STALE.SECONDS.THIRTY,
     queryKey: createChainProfileQueryKey(did),
     queryFn: () => getChainProfile(did),
@@ -97,6 +104,11 @@ export function useTipRecipientWallet(did: string) {
 
 /** The connected wallet is not one of the account's verified wallets */
 export class UnlinkedTipWalletError extends Error {}
+
+/** The transfer went through but its record could not be written yet */
+export class TipNotRecordedError extends Error {}
+
+const RECORD_RETRY_DELAYS_MS = [0, 1000, 3000]
 
 /**
  * Send a tip: transfer the asset from the user's wallet to the recipient's
@@ -124,6 +136,14 @@ export function useSendTipMutation() {
       message?: string
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
+      const writeTip = async (record: PendingTipRecord) => {
+        await pdsClient.create(net.krao.feed.tip, record as never)
+        removePendingTip(record.txHash)
+      }
+      // Tips paid earlier whose record failed to save
+      for (const record of pendingTipsFor(currentAccount.did)) {
+        await writeTip(record).catch(() => {})
+      }
       const wallet = await connectEvmWallet()
       /*
        * The indexer only credits tips sent from one of the tipper's verified
@@ -152,9 +172,9 @@ export function useSendTipMutation() {
           })
         : await wallet.sendTransaction({to: recipientAddress, value: amount})
 
-      await pdsClient.create(net.krao.feed.tip, {
+      const record: PendingTipRecord = {
         recipient: recipientDid as `did:${string}:${string}`,
-        subject: subject as never,
+        subject,
         asset: asset.id,
         amount: amount.toString(),
         txHash,
@@ -162,7 +182,20 @@ export function useSendTipMutation() {
         to: evmAccountId(TIP_CHAIN_ID, recipientAddress),
         message: message || undefined,
         createdAt: toDatetimeString(new Date()),
-      })
+      }
+      // The money has moved: keep the record until it is written
+      savePendingTip(currentAccount.did, record)
+      for (const [i, delay] of RECORD_RETRY_DELAYS_MS.entries()) {
+        await new Promise(resolve => setTimeout(resolve, delay))
+        try {
+          await writeTip(record)
+          return txHash
+        } catch (err) {
+          if (i === RECORD_RETRY_DELAYS_MS.length - 1) {
+            throw new TipNotRecordedError(String(err))
+          }
+        }
+      }
       return txHash
     },
     onSuccess: (_txHash, {subject, recipientDid}) => {

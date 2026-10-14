@@ -2,6 +2,7 @@ import {type ID as PolicyUpdate202508} from '#/components/PolicyUpdateOverlay/up
 import {type SessionRecord} from '#/analytics/identifiers/session'
 import {type Gif} from '#/features/gifPicker/types'
 import {type InviteThemeKey} from '#/features/inviteFriends/themes'
+import {type PendingTipRecord} from '#/features/tips/pendingTips'
 import {type Geolocation} from '#/geolocation/types'
 
 /**
@@ -87,6 +88,10 @@ export type Device = {
     feedOwnerDid?: string
     labelerDid?: string
   }
+  /** Krao: the referral code from the last krao.net/join/<code> link */
+  kraoPendingReferralCode?: {code: string; savedAt: number}
+  /** Krao: tips whose transfer was sent but whose record is not written yet */
+  kraoPendingTips?: {did: string; record: PendingTipRecord}[]
 }
 
 export type Account = {

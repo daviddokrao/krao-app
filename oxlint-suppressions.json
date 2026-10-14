@@ -83,6 +83,14 @@
       "count": 2
     }
   },
+  "plugins/notificationsExtension/withExtensionInfoPlist.js": {
+    "import/no-nodejs-modules": {
+      "count": 2
+    },
+    "typescript/no-unsafe-member-access": {
+      "count": 8
+    }
+  },
   "plugins/shareExtension/withAppEntitlements.js": {
     "typescript/require-await": {
       "count": 1
