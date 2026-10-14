@@ -4,27 +4,31 @@ import {getInviteDisplayUrl, getInviteShareUrl} from './urls'
 
 describe('invite URLs', () => {
   describe('getInviteShareUrl', () => {
-    it('returns the canonical profile URL for a handle', () => {
-      expect(getInviteShareUrl('alice.bsky.social')).toBe(
-        'https://krao.net/profile/alice.bsky.social',
-      )
+    it('returns the short profile URL for a Krao handle', () => {
+      expect(getInviteShareUrl('alice.krao.net')).toBe('https://krao.net/alice')
     })
 
-    it('preserves custom domains', () => {
+    it('keeps the full handle for custom domains', () => {
       expect(getInviteShareUrl('thepope.dev')).toBe(
-        'https://krao.net/profile/thepope.dev',
+        'https://krao.net/thepope.dev',
       )
     })
 
     it('strips a leading @ if present', () => {
-      expect(getInviteShareUrl('@alice.bsky.social')).toBe(
-        'https://krao.net/profile/alice.bsky.social',
+      expect(getInviteShareUrl('@alice.krao.net')).toBe(
+        'https://krao.net/alice',
       )
     })
 
     it('passes the handle through verbatim (handles are API-normalized, like makeProfileLink)', () => {
-      expect(getInviteShareUrl('Alice.Bsky.Social')).toBe(
-        'https://krao.net/profile/Alice.Bsky.Social',
+      expect(getInviteShareUrl('Alice.Example.com')).toBe(
+        'https://krao.net/Alice.Example.com',
+      )
+    })
+
+    it('keeps the long form for a handle that names an app page', () => {
+      expect(getInviteShareUrl('search.krao.net')).toBe(
+        'https://krao.net/profile/search.krao.net',
       )
     })
 
@@ -35,26 +39,16 @@ describe('invite URLs', () => {
   })
 
   describe('getInviteDisplayUrl', () => {
-    it('returns the scheme-stripped canonical profile URL', () => {
-      expect(getInviteDisplayUrl('danielle.bsky.team')).toBe(
-        'krao.net/profile/danielle.bsky.team',
-      )
+    it('returns the scheme-stripped short profile URL', () => {
+      expect(getInviteDisplayUrl('danielle.krao.net')).toBe('krao.net/danielle')
     })
 
-    it('uses the bare handle when there is no dot', () => {
+    it('uses the long form when the handle has no dot', () => {
       expect(getInviteDisplayUrl('alice')).toBe('krao.net/profile/alice')
     })
 
-    it('passes the handle through verbatim (handles are API-normalized, like makeProfileLink)', () => {
-      expect(getInviteDisplayUrl('Danielle.bsky.team')).toBe(
-        'krao.net/profile/Danielle.bsky.team',
-      )
-    })
-
     it('strips a leading @ if present', () => {
-      expect(getInviteDisplayUrl('@alice.bsky.social')).toBe(
-        'krao.net/profile/alice.bsky.social',
-      )
+      expect(getInviteDisplayUrl('@alice.krao.net')).toBe('krao.net/alice')
     })
 
     it('returns empty string for empty handle (EDGE-001)', () => {
@@ -63,8 +57,8 @@ describe('invite URLs', () => {
     })
 
     it('mirrors getInviteShareUrl exactly minus the scheme', () => {
-      expect(getInviteDisplayUrl('alice.bsky.social')).toBe(
-        getInviteShareUrl('alice.bsky.social').replace(/^https:\/\//, ''),
+      expect(getInviteDisplayUrl('alice.example.com')).toBe(
+        getInviteShareUrl('alice.example.com').replace(/^https:\/\//, ''),
       )
     })
   })

@@ -3,6 +3,7 @@ import {parse} from 'psl'
 import TLDs from 'tlds'
 
 import {BSKY_SERVICE} from '#/lib/constants'
+import {expandProfilePath, shortenProfilePath} from '#/lib/routes/shortProfile'
 import {isInvalidHandle} from '#/lib/strings/handles'
 import {startUriToStarterPackUri} from '#/lib/strings/starter-pack'
 import {KRAO_SHORT_LINK_URL, KRAO_SITE_URL, KRAO_WEB_URL} from '#/env'
@@ -100,7 +101,7 @@ export function toShortUrl(url: string): string {
 export function toShareUrl(url: string): string {
   if (!url.startsWith('https')) {
     const urlp = new URL(BSKY_APP_HOST)
-    urlp.pathname = url
+    urlp.pathname = shortenProfilePath(url)
     url = urlp.toString()
   }
   return url
@@ -166,7 +167,7 @@ export function isBskyPostUrl(url: string): boolean {
     try {
       const urlp = new URL(url)
       return /profile\/(?<name>[^/]+)\/post\/(?<rkey>[^/]+)/i.test(
-        urlp.pathname,
+        expandProfilePath(urlp.pathname),
       )
     } catch {}
   }
@@ -178,7 +179,7 @@ export function isBskyCustomFeedUrl(url: string): boolean {
     try {
       const urlp = new URL(url)
       return /profile\/(?<name>[^/]+)\/feed\/(?<rkey>[^/]+)/i.test(
-        urlp.pathname,
+        expandProfilePath(urlp.pathname),
       )
     } catch {}
   }
@@ -190,7 +191,7 @@ export function isBskyListUrl(url: string): boolean {
     try {
       const urlp = new URL(url)
       return /profile\/(?<name>[^/]+)\/lists\/(?<rkey>[^/]+)/i.test(
-        urlp.pathname,
+        expandProfilePath(urlp.pathname),
       )
     } catch {
       console.error('Unexpected error in isBskyListUrl()', url)
@@ -262,7 +263,7 @@ export function convertBskyAppUrlIfNeeded(url: string): string {
         return startUriToStarterPackUri(urlp.pathname)
       }
 
-      return urlp.pathname + urlp.search
+      return expandProfilePath(urlp.pathname) + urlp.search
     } catch (e) {
       console.error('Unexpected error in convertBskyAppUrlIfNeeded()', e)
     }
@@ -386,7 +387,7 @@ export function splitApexDomain(hostname: string): [string, string] {
 
 export function createBskyAppAbsoluteUrl(path: string): string {
   const sanitizedPath = path.replace(BSKY_APP_HOST, '').replace(/^\/+/, '')
-  return `${BSKY_APP_HOST.replace(/\/$/, '')}/${sanitizedPath}`
+  return `${BSKY_APP_HOST.replace(/\/$/, '')}${shortenProfilePath(`/${sanitizedPath}`)}`
 }
 
 /**
