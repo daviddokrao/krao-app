@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {webLinks} from '#/lib/constants'
 import {NotFoundScreen} from '#/view/screens/NotFound'
 import {atoms as a, useTheme} from '#/alf'
 import * as Layout from '#/components/Layout'
@@ -49,7 +50,7 @@ export function ModerationInboxReportDetailsScreen() {
               you’d rather not see it, you can mute or block the account. Read
               our{' '}
               <InlineLinkText
-                to="https://bsky.social/about/support/community-guidelines"
+                to={webLinks.community}
                 label={l`Read our Community Guidelines`}
                 style={[a.text_md]}>
                 Community Guidelines

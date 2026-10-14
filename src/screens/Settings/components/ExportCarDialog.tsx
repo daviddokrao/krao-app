@@ -2,6 +2,7 @@ import {useCallback, useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {webLinks} from '#/lib/constants'
 import {saveBytesToDisk} from '#/lib/media/manip'
 import {logger} from '#/logger'
 import {useChatClient, usePdsClient, useSession} from '#/state/session'
@@ -171,10 +172,10 @@ export function ExportCarDialog({
               This feature is in beta. You can read more about repository
               exports in{' '}
               <InlineLinkText
-                label={l`View blogpost for more details`}
-                to="https://docs.bsky.app/blog/repo-export"
+                label={l`View help article for more details`}
+                to={webLinks.dataExport}
                 style={[a.text_sm]}>
-                this blogpost
+                this help article
               </InlineLinkText>
               .
             </Trans>

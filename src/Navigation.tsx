@@ -142,7 +142,7 @@ import {
 } from '#/components/dialogs/EmailDialog'
 import {useAnalytics} from '#/analytics'
 import {setNavigationMetadata} from '#/analytics/metadata'
-import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB} from '#/env'
+import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB, KRAO_WEB_URL} from '#/env'
 import {HomeScreen} from '#/features/followingV2/home'
 import {InviteScannerScreen} from '#/features/inviteFriends'
 import {router} from '#/routes'
@@ -841,7 +841,7 @@ const LINKING = {
     'bsky://',
     'bluesky://',
     'https://krao.io',
-    'https://bsky.app',
+    ...(KRAO_WEB_URL === 'https://krao.io' ? [] : [KRAO_WEB_URL]),
   ],
 
   getPathFromState(state: State) {

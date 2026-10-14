@@ -12,6 +12,7 @@ import {
   KRAO_GIF_URL,
   KRAO_LABELER,
   KRAO_LINK_PREVIEW_URL,
+  KRAO_SITE_URL,
   KRAO_VIDEO_DID,
   KRAO_VIDEO_URL,
   PUBLIC_API_URL,
@@ -26,7 +27,7 @@ export const BSKY_SERVICE_DID = 'did:web:bsky.social'
 export const PUBLIC_BSKY_SERVICE = PUBLIC_API_URL
 export const DEFAULT_SERVICE = DEFAULT_SERVICE_URL
 const HELP_DESK_LANG = 'en-us'
-export const HELP_DESK_URL = `https://krao.io/help/${HELP_DESK_LANG}`
+export const HELP_DESK_URL = `${KRAO_SITE_URL}/help/${HELP_DESK_LANG}`
 /**
  * Krao's chat service for signed-out reads (eg join link previews), if any.
  * Signed-in chat goes through the PDS to CHAT_PROXY_DID instead.
@@ -35,7 +36,7 @@ export const CHAT_SERVICE = KRAO_CHAT_URL
 /** Krao's post embed service; embedding is off until one runs (KRAO_EMBED_URL) */
 export const EMBED_SERVICE = KRAO_EMBED_URL
 export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`
-export const BSKY_DOWNLOAD_URL = 'https://krao.io/download'
+export const BSKY_DOWNLOAD_URL = `${KRAO_SITE_URL}/download`
 export const STARTER_PACK_DEFAULT_SIZE = 150
 export const STARTER_PACK_MAX_SIZE = 500
 export const CARD_ASPECT_RATIO = 1200 / 630
@@ -259,17 +260,19 @@ export type SupportedMimeTypes = (typeof SUPPORTED_MIME_TYPES)[number]
 
 export const EMOJI_REACTION_LIMIT = 5
 
+/**
+ * Help articles on Krao's website. Krao has no blog posts of its own yet, so
+ * what upstream links to as announcements points at help articles instead.
+ */
 export const urls = {
   website: {
     blog: {
-      findFriendsAnnouncement:
-        'https://bsky.social/about/blog/12-16-2025-find-friends',
-      initialVerificationAnnouncement: `https://bsky.social/about/blog/04-21-2025-verification`,
-      searchTipsAndTricks: 'https://bsky.social/about/blog/05-31-2024-search',
+      findFriendsAnnouncement: `${KRAO_SITE_URL}/support/find-friends`,
+      initialVerificationAnnouncement: `${KRAO_SITE_URL}/support/verification`,
+      searchTipsAndTricks: `${KRAO_SITE_URL}/support/search`,
     },
     support: {
-      findFriendsPrivacyPolicy:
-        'https://bsky.social/about/support/find-friends-privacy-policy',
+      findFriendsPrivacyPolicy: `${KRAO_SITE_URL}/support/find-friends-privacy-policy`,
     },
   },
 }
@@ -331,9 +334,15 @@ export function modProxyService(): Service | undefined {
  */
 export const NOTIF_SERVICE: Service = `${BLUESKY_PROXY_DID}#bsky_notif`
 
+/** Krao's policy and help pages */
 export const webLinks = {
-  tos: `https://krao.io/terms`,
-  privacy: `https://krao.io/privacy`,
-  community: `https://krao.io/community-guidelines`,
-  communityDeprecated: `https://krao.io/community-guidelines`,
+  tos: `${KRAO_SITE_URL}/terms`,
+  privacy: `${KRAO_SITE_URL}/privacy`,
+  copyright: `${KRAO_SITE_URL}/copyright`,
+  community: `${KRAO_SITE_URL}/community-guidelines`,
+  support: `${KRAO_SITE_URL}/support`,
+  faq: `${KRAO_SITE_URL}/support/faq`,
+  customHandle: `${KRAO_SITE_URL}/support/custom-handle`,
+  dataExport: `${KRAO_SITE_URL}/support/data-export`,
+  reportNcii: `${KRAO_SITE_URL}/support/report-ncii`,
 }

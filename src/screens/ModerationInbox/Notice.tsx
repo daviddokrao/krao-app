@@ -3,7 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {countGraphemes} from 'unicode-segmenter/grapheme'
 
-import {MAX_REPORT_REASON_GRAPHEME_LENGTH} from '#/lib/constants'
+import {MAX_REPORT_REASON_GRAPHEME_LENGTH, webLinks} from '#/lib/constants'
 import {NotFoundScreen} from '#/view/screens/NotFound'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
@@ -17,8 +17,7 @@ import {ContentBlock} from './components/ContentBlock'
 import {SubjectPreview} from './components/SubjectPreview'
 import {Timeline} from './components/Timeline'
 
-const ANTI_HARASSMENT =
-  'https://bsky.social/about/support/community-guidelines#:~:text=coordinated%20harassment%20campaigns.-,Anti%2DHarassment,-%3A%20We%20create%20space'
+const ANTI_HARASSMENT = `${webLinks.community}#anti-harassment`
 
 export function ModerationInboxNoticeDetailsScreen() {
   const t = useTheme()
@@ -54,7 +53,7 @@ export function ModerationInboxNoticeDetailsScreen() {
               Bluesky Moderation Service removed a post from Bluesky for
               violating our{' '}
               <InlineLinkText
-                to="https://bsky.social/about/support/community-guidelines"
+                to={webLinks.community}
                 label={l`Read our Community Guidelines`}
                 style={[a.text_md]}>
                 Community Guidelines
@@ -180,7 +179,7 @@ function AppealDialog({control}: {control: Dialog.DialogControlProps}) {
               For more information about our appeals and redress process, please
               see our{' '}
               <InlineLinkText
-                to="https://bsky.social/about/support/tos"
+                to={webLinks.tos}
                 label={l`Read our Terms of Service`}
                 style={[a.text_md]}>
                 Terms of Service

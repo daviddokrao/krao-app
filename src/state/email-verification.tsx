@@ -1,6 +1,6 @@
 import {createContext, useContext, useMemo} from 'react'
 
-import {BSKY_SERVICE} from '#/lib/constants'
+import {DEFAULT_SERVICE} from '#/lib/constants'
 import {getHostnameFromUrl} from '#/lib/strings/url-helpers'
 import {STALE} from '#/state/queries'
 import {useProfileQuery} from '#/state/queries/profile'
@@ -31,10 +31,11 @@ export function Provider({children}: {children: React.ReactNode}) {
     !!profile?.createdAt &&
     Date.parse(profile.createdAt) >= Date.parse('2024-11-18T19:00:00.000Z')
 
+  // Krao's own PDS requires a verified email; other hosts set their own rules
   const isSelfHost =
     currentAccount &&
     getHostnameFromUrl(currentAccount.service) !==
-      getHostnameFromUrl(BSKY_SERVICE)
+      getHostnameFromUrl(DEFAULT_SERVICE)
 
   const needsEmailVerification =
     !isSelfHost &&

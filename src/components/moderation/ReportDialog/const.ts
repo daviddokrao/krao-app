@@ -1,12 +1,13 @@
 import {applicationId} from 'expo-application'
 
+import {webLinks} from '#/lib/constants'
 import {type ParsedReportSubject} from '#/components/moderation/ReportDialog/types'
 import {IS_ANDROID, IS_IOS, IS_WEB} from '#/env'
 import {com, tools} from '#/lexicons'
 
-export const DMCA_LINK = 'https://bsky.social/about/support/copyright'
-export const SUPPORT_PAGE = 'https://bsky.social/about/support'
-export const NCII_FORM = 'https://forms.bsky.app/f/ncii'
+export const DMCA_LINK = webLinks.copyright
+export const SUPPORT_PAGE = webLinks.support
+export const NCII_FORM = webLinks.reportNcii
 
 /**
  * Identifies this client as the source of a report.
