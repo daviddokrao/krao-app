@@ -20,12 +20,16 @@ import {
   useProfileShadow,
 } from '#/state/cache/profile-shadow'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
+import {STALE} from '#/state/queries'
 import {
   precacheConvoQuery,
   useMarkAsReadMutation,
 } from '#/state/queries/messages/conversation'
 import {JOIN_REQUESTS_THRESHOLD} from '#/state/queries/messages/list-join-requests'
-import {unstableCacheProfileView} from '#/state/queries/profile'
+import {
+  unstableCacheProfileView,
+  useProfileQuery,
+} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {TimeElapsed} from '#/view/com/util/TimeElapsed'
 import {PreviewableUserAvatar} from '#/view/com/util/UserAvatar'
@@ -306,6 +310,28 @@ function BaseChatItem({
     isDeletedAccount ||
     (convo.kind === 'group' && convo.details.lockStatus !== 'unlocked')
 
+  /*
+   * A system message can refer to someone who is no longer a member (they left
+   * or were removed), and the convo view only carries current members. Look
+   * that profile up so the preview shows their name, not "Someone".
+   */
+  const lastSystemMessage = bsky.isType(
+    chat.bsky.convo.defs.systemMessageView,
+    convo.view.lastMessage,
+  )
+    ? convo.view.lastMessage
+    : undefined
+  const referredDid = (
+    lastSystemMessage?.data as {member?: {did?: string}} | undefined
+  )?.member?.did
+  const {data: referredProfile} = useProfileQuery({
+    did:
+      referredDid && !convo.view.members.some(m => m.did === referredDid)
+        ? referredDid
+        : undefined,
+    staleTime: STALE.MINUTES.FIVE,
+  })
+
   const {lastMessage, LastMessageIcon, lastMessageSentAt} = useMemo(() => {
     let lastMessage = l`No messages yet`
 
@@ -374,11 +400,20 @@ function BaseChatItem({
         convo.view.lastMessage,
       )
     ) {
-      const info = getSystemMessageInfo(
-        convo.view.lastMessage.data,
-        new Map(convo.view.members.map(m => [m.did, m])),
-        {short: true},
+      const profiles = new Map<string, chat.bsky.actor.defs.ProfileViewBasic>(
+        convo.view.members.map(m => [m.did, m]),
       )
+      if (referredProfile && !profiles.has(referredProfile.did)) {
+        profiles.set(referredProfile.did, {
+          did: referredProfile.did,
+          handle: referredProfile.handle,
+          displayName: referredProfile.displayName,
+          avatar: referredProfile.avatar,
+        })
+      }
+      const info = getSystemMessageInfo(convo.view.lastMessage.data, profiles, {
+        short: true,
+      })
       if (info) {
         lastMessage = i18n._(info.message)
         LastMessageIcon = info.Icon
@@ -397,7 +432,15 @@ function BaseChatItem({
       LastMessageIcon,
       lastMessageSentAt,
     }
-  }, [l, convo, currentAccount?.did, isDeletedAccount, primaryProfile, i18n])
+  }, [
+    l,
+    convo,
+    currentAccount?.did,
+    isDeletedAccount,
+    primaryProfile,
+    i18n,
+    referredProfile,
+  ])
 
   const [showActions, setShowActions] = useState(false)
 
