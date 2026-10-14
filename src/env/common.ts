@@ -170,12 +170,12 @@ export const KRAO_GATE_DID: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.net'
 
 /**
- * Krao's "latest" feed, the app's Discover feed. Its owner may be given by
+ * Krao's "popular" feed, the app's Discover feed. Its owner may be given by
  * handle; the app resolves it to a DID on startup (see resolveKraoServices).
  */
 export const KRAO_DISCOVER_FEED: string =
   process.env.EXPO_PUBLIC_KRAO_DISCOVER_FEED ||
-  'at://krao.net/app.bsky.feed.generator/latest'
+  'at://krao.net/app.bsky.feed.generator/popular'
 
 /**
  * Krao's moderation service (labeler), by DID or handle. It labels content
