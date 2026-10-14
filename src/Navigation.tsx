@@ -146,6 +146,8 @@ import {setNavigationMetadata} from '#/analytics/metadata'
 import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB, KRAO_WEB_URL} from '#/env'
 import {HomeScreen} from '#/features/followingV2/home'
 import {InviteScannerScreen} from '#/features/inviteFriends'
+import {JoinScreen} from '#/features/referral/JoinScreen'
+import {ReferralScreen} from '#/features/referral/ReferralScreen'
 import {router} from '#/routes'
 
 const navigationRef = createNavigationContainerRef<AllNavigatorParams>()
@@ -513,6 +515,19 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => WalletsSettingsScreen}
         options={{
           title: title(msg`Wallets`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="Join"
+        getComponent={() => JoinScreen}
+        options={{title: title(msg`Join Krao`)}}
+      />
+      <Stack.Screen
+        name="ReferralSettings"
+        getComponent={() => ReferralScreen}
+        options={{
+          title: title(msg`Invite friends`),
           requireAuth: true,
         }}
       />

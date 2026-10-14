@@ -47,6 +47,7 @@ import {CircleQuestion_Stroke2_Corner2_Rounded as CircleQuestionIcon} from '#/co
 import {CodeBrackets_Stroke2_Corner2_Rounded as CodeBracketsIcon} from '#/components/icons/CodeBrackets'
 import {Contacts_Stroke2_Corner2_Rounded as ContactsIcon} from '#/components/icons/Contacts'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as DotsHorizontal} from '#/components/icons/DotGrid'
+import {Gift1_Stroke2_Corner0_Rounded as GiftIcon} from '#/components/icons/Gift1'
 import {Earth_Stroke2_Corner2_Rounded as EarthIcon} from '#/components/icons/Globe'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PaintRoller_Stroke2_Corner2_Rounded as PaintRollerIcon} from '#/components/icons/PaintRoller'
@@ -185,6 +186,14 @@ export function SettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={ChainLinkIcon} />
             <SettingsList.ItemText>
               <Trans>Wallets</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem
+            to="/settings/referral"
+            label={l`Invite friends`}>
+            <SettingsList.ItemIcon icon={GiftIcon} />
+            <SettingsList.ItemText>
+              <Trans>Invite friends</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.LinkItem

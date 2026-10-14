@@ -170,6 +170,15 @@ export const KRAO_GATE_DID: string =
   process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.net'
 
 /**
+ * Krao's rewards service (referral codes, points, identity verification) and
+ * the DID it answers to (the audience of the service auth tokens sent to it)
+ */
+export const KRAO_REWARDS_URL: string =
+  process.env.EXPO_PUBLIC_KRAO_REWARDS_URL || 'https://rewards.krao.net'
+export const KRAO_REWARDS_DID: string =
+  process.env.EXPO_PUBLIC_KRAO_REWARDS_DID || 'did:web:rewards.krao.net'
+
+/**
  * Krao's "popular" feed, the app's Discover feed. Its owner may be given by
  * handle; the app resolves it to a DID on startup (see resolveKraoServices).
  */

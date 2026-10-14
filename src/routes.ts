@@ -65,6 +65,8 @@ export const router = new Router<AllNavigatableRoutes>({
   InterestsSettings: '/settings/interests',
   AboutSettings: '/settings/about',
   WalletsSettings: '/settings/wallets',
+  ReferralSettings: '/settings/referral',
+  Join: '/join/:code',
   AppIconSettings: '/settings/app-icon',
   NotificationSettings: '/settings/notifications',
   ActivityNotificationSettings: '/settings/notifications/activity',
