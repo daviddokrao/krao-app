@@ -180,7 +180,7 @@ export const KRAO_REWARDS_DID: string =
 
 /**
  * Krao's "popular" feed, the app's Discover feed. Its owner may be given by
- * handle; the app resolves it to a DID on startup (see resolveKraoServices).
+ * handle; the app resolves it to a DID on startup (see initKraoServices).
  */
 export const KRAO_DISCOVER_FEED: string =
   process.env.EXPO_PUBLIC_KRAO_DISCOVER_FEED ||

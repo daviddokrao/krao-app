@@ -76,6 +76,17 @@ export type Device = {
    */
   policyUpdateDebugOverride?: boolean
   [PolicyUpdate202508]?: boolean
+
+  /**
+   * Krao: DIDs that the configured Discover feed owner and labeler handles
+   * resolved to, so later starts need not wait for the network.
+   */
+  kraoServiceDids?: {
+    /** KRAO_SERVICES_CONFIG when they were resolved */
+    config: string
+    feedOwnerDid?: string
+    labelerDid?: string
+  }
 }
 
 export type Account = {

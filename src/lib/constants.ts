@@ -135,29 +135,53 @@ export const BSKY_FEED_OWNER_DIDS: string[] = []
 
 /**
  * The Discover feed: Krao's "popular" feed (KRAO_DISCOVER_FEED). Holds the
- * DID form once resolveKraoServices() has run at startup, since AppViews
+ * DID form once initKraoServices() has run at startup, since AppViews
  * only know feeds by DID.
  */
 // oxlint-disable-next-line import/no-mutable-exports -- set once at startup
 export let DISCOVER_FEED_URI = KRAO_DISCOVER_FEED
 
 /**
- * DID of Krao's labeler (KRAO_LABELER), set by resolveKraoServices() at
+ * DID of Krao's labeler (KRAO_LABELER), set by initKraoServices() at
  * startup. Empty when none is configured or it did not resolve.
  */
 // oxlint-disable-next-line import/no-mutable-exports -- set once at startup
 export let KRAO_LABELER_DID = ''
 
+/** DIDs of the handles the Discover feed and the labeler are configured with */
+export type KraoServiceDids = {feedOwnerDid?: string; labelerDid?: string}
+
+/** Identifies the configuration that a set of resolved DIDs belongs to */
+export const KRAO_SERVICES_CONFIG = `${KRAO_DISCOVER_FEED} ${KRAO_LABELER}`
+
 /**
  * Resolves the handles that the Discover feed and the labeler may be
- * configured with. Runs before the app renders.
+ * configured with. `complete` is false when a handle did not resolve.
  */
-export async function resolveKraoServices() {
+export async function resolveKraoServiceDids(): Promise<
+  KraoServiceDids & {complete: boolean}
+> {
   const feed = new AtUri(KRAO_DISCOVER_FEED)
+  const feedIsHandle = !feed.host.startsWith('did:')
+  const labelerIsHandle = !!KRAO_LABELER && !KRAO_LABELER.startsWith('did:')
   const [feedOwnerDid, labelerDid] = await Promise.all([
-    resolveHandle(feed.host),
-    resolveHandle(KRAO_LABELER),
+    feedIsHandle ? resolveHandle(feed.host) : undefined,
+    labelerIsHandle ? resolveHandle(KRAO_LABELER) : undefined,
   ])
+  return {
+    feedOwnerDid,
+    labelerDid,
+    complete:
+      (!feedIsHandle || !!feedOwnerDid) && (!labelerIsHandle || !!labelerDid),
+  }
+}
+
+/** Sets DISCOVER_FEED_URI and KRAO_LABELER_DID. Runs before the app renders. */
+export function applyKraoServiceDids({
+  feedOwnerDid,
+  labelerDid,
+}: KraoServiceDids) {
+  const feed = new AtUri(KRAO_DISCOVER_FEED)
   if (feedOwnerDid) {
     DISCOVER_FEED_URI = `at://${feedOwnerDid}/${feed.collection}/${feed.rkey}`
   }
