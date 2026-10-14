@@ -2,6 +2,8 @@ import {toDatetimeString} from '@atproto/syntax'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
 import {createBatchLoader} from '#/lib/batchLoader'
+import {compressIfNeeded} from '#/lib/media/manip'
+import {type PickerImage} from '#/lib/media/picker.shared'
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient, useSession} from '#/state/session'
@@ -29,6 +31,25 @@ export type GateRule = {
   service: string
   hasContent?: boolean
 }
+
+/** Gated media as getContent returns it: a signed URL valid for minutes */
+export type GatedMedia = {
+  url: string
+  mimeType: string
+  alt?: string
+  aspectRatio?: {width: number; height: number}
+}
+
+export type GatedContent = {
+  uri: string
+  text?: string
+  media?: GatedMedia[]
+}
+
+/** The gate service's limit, see net.krao.gate.uploadMedia */
+const GATED_IMAGE_MAX_BYTES = 5 * 1024 * 1024
+/** Most images one post's gated content can hold */
+export const GATED_IMAGES_MAX = 4
 
 export class GateError extends Error {
   constructor(
@@ -71,6 +92,41 @@ async function gateFetch<T>(
     throw new GateError(data.error, data.message ?? `${method} failed`)
   }
   return data as T
+}
+
+/**
+ * Uploads an image to the gate service. It is stored there only, never as a
+ * blob in the user's public repo.
+ */
+async function uploadGatedImage(image: PickerImage, token: string) {
+  const compressed = await compressIfNeeded(image, {
+    maxDimension: 2000,
+    maxSize: GATED_IMAGE_MAX_BYTES - 64 * 1024,
+  })
+  const blob = await (await fetch(compressed.path)).blob()
+  const res = await fetch(
+    new URL('/xrpc/net.krao.gate.uploadMedia', KRAO_GATE_URL).toString(),
+    {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${token}`,
+        'content-type': compressed.mime,
+      },
+      body: blob,
+    },
+  )
+  const data = (await res.json().catch(() => ({}))) as {
+    error?: string
+    message?: string
+    media?: GatedMedia
+  }
+  if (!res.ok || !data.media) {
+    throw new GateError(data.error, data.message ?? 'Image upload failed')
+  }
+  return {
+    ...data.media,
+    aspectRatio: {width: compressed.width, height: compressed.height},
+  }
 }
 
 /**
@@ -127,7 +183,7 @@ export function useGatedContentQuery(uri: string, enabled: boolean) {
     retry: false,
     queryKey: gatedContentQueryKey(uri, currentAccount?.did ?? ''),
     queryFn: async () =>
-      gateFetch<{uri: string; text?: string}>('net.krao.gate.getContent', {
+      gateFetch<GatedContent>('net.krao.gate.getContent', {
         params: {uri},
         token: await getToken(net.krao.gate.getContent.$lxm),
       }),
@@ -135,8 +191,9 @@ export function useGatedContentQuery(uri: string, enabled: boolean) {
 }
 
 /**
- * Attach token-gated text to one of the user's posts: store the text on the
- * gate service first, then publish the public net.krao.gate.rule record.
+ * Attach token-gated text and images to one of the user's posts: store them
+ * on the gate service first, then publish the public net.krao.gate.rule
+ * record.
  */
 export function useCreateGateMutation() {
   const {currentAccount} = useSession()
@@ -147,16 +204,27 @@ export function useCreateGateMutation() {
     mutationFn: async ({
       post,
       text,
+      images = [],
       condition,
     }: {
       post: {uri: string; cid: string}
       text: string
+      images?: PickerImage[]
       condition: GateCondition
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
+      const media: GatedMedia[] = []
+      for (const image of images) {
+        media.push(
+          await uploadGatedImage(
+            image,
+            await getToken('net.krao.gate.uploadMedia'),
+          ),
+        )
+      }
       await gateFetch('net.krao.gate.putContent', {
         token: await getToken(net.krao.gate.putContent.$lxm),
-        body: {uri: post.uri, text},
+        body: {uri: post.uri, text, media: media.length ? media : undefined},
       })
       await pdsClient.create(net.krao.gate.rule, {
         subject: post as never,

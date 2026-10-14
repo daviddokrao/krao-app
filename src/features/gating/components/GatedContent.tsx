@@ -1,4 +1,5 @@
 import {View} from 'react-native'
+import {Image} from 'expo-image'
 import {Trans, useLingui} from '@lingui/react/macro'
 
 import {useSession} from '#/state/session'
@@ -8,7 +9,12 @@ import {InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
 import {useDescribeRule} from '../describe'
-import {GateError, useGatedContentQuery, useGateRuleQuery} from '../queries'
+import {
+  type GatedMedia,
+  GateError,
+  useGatedContentQuery,
+  useGateRuleQuery,
+} from '../queries'
 
 /**
  * The token-gated part of a post. Shows the content to eligible viewers and
@@ -50,10 +56,17 @@ export function GatedContent({uri}: {uri: string}) {
         </Text>
       ) : content.isLoading ? (
         <Loader />
-      ) : content.data?.text ? (
-        <Text style={[a.text_lg, a.leading_snug]} emoji selectable>
-          {content.data.text}
-        </Text>
+      ) : content.data?.text || content.data?.media?.length ? (
+        <>
+          {!!content.data.text && (
+            <Text style={[a.text_lg, a.leading_snug]} emoji selectable>
+              {content.data.text}
+            </Text>
+          )}
+          {content.data.media?.map(media => (
+            <GatedImage key={media.url} media={media} />
+          ))}
+        </>
       ) : notEligible ? (
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
@@ -71,5 +84,27 @@ export function GatedContent({uri}: {uri: string}) {
         </Admonition>
       ) : null}
     </View>
+  )
+}
+
+/**
+ * One gated image. Its URL is signed for this viewer by the gate service and
+ * expires after a few minutes, so it is not cached across sessions.
+ */
+function GatedImage({media}: {media: GatedMedia}) {
+  const {t: l} = useLingui()
+  const ratio = media.aspectRatio
+    ? media.aspectRatio.width / media.aspectRatio.height
+    : 1
+  return (
+    <Image
+      source={{uri: media.url}}
+      style={[a.w_full, a.rounded_sm, {aspectRatio: ratio, maxHeight: 480}]}
+      contentFit="contain"
+      cachePolicy="memory"
+      accessibilityLabel={media.alt || l`Token-gated image`}
+      accessibilityHint=""
+      accessibilityIgnoresInvertColors
+    />
   )
 }
