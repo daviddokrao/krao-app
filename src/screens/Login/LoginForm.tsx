@@ -7,7 +7,7 @@ import {DEFAULT_SERVICE, HITSLOP_10, HITSLOP_20} from '#/lib/constants'
 import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
 import {cleanError, isNetworkError} from '#/lib/strings/errors'
 import {createFullHandle} from '#/lib/strings/handles'
-import {isBlueskyHostedUrl, toNiceHostingUrl} from '#/lib/strings/url-helpers'
+import {isKraoHostedUrl, toNiceHostingUrl} from '#/lib/strings/url-helpers'
 import {logger} from '#/logger'
 import {useSetHasCheckedForStarterPack} from '#/state/preferences/used-starter-packs'
 import {
@@ -242,7 +242,7 @@ export const LoginForm = ({
     }
 
     /*
-     * If detection landed on a non-Bluesky server, confirm before sending the
+     * If detection landed on a server other than Krao's, confirm before sending the
      * password, to guard against typosquatted handles capturing credentials. A
      * manual override is skipped: choosing a server by hand is explicit user
      * consent, so only auto-detected hosts need the guard. An identity the
@@ -255,7 +255,7 @@ export const LoginForm = ({
     const isKnownAccount =
       did != null && accounts.some(account => account.did === did)
     const needsConfirmation =
-      !isBlueskyHostedUrl(service) &&
+      !isKraoHostedUrl(service) &&
       hostingProvider.state.status !== 'overridden' &&
       !isKnownAccount
 
@@ -666,7 +666,7 @@ function HostingProviderIndicator({
         {state.status === 'detected' || state.status === 'overridden' ? (
           <Trans>Hosting provider: {toNiceHostingUrl(state.pdsUrl)}</Trans>
         ) : state.status === 'email' ? (
-          <Trans>Hosting provider: Bluesky</Trans>
+          <Trans>Hosting provider: Krao</Trans>
         ) : (
           <Trans>Hosting provider</Trans>
         )}

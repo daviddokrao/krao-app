@@ -5,6 +5,7 @@ import {useMemo} from 'preact/hooks'
 import {Link} from '#/components/link'
 import {VerificationCheck} from '#/components/verification-check'
 import {Globe} from '#/icons/Globe'
+import {INDEXER_URL} from '#/krao'
 import {CONTENT_LABELS, labelsToInfo} from '#/labels'
 import {getRkey} from '#/util/rkey'
 import {getVerificationState} from '#/util/verification-state'
@@ -536,7 +537,7 @@ function getStarterPackImage(
   starterPack: app.bsky.graph.defs.StarterPackViewBasic,
 ) {
   const rkey = getRkey({uri: starterPack.uri})
-  return `https://ogcard.cdn.bsky.app/start/${starterPack.creator.did}/${rkey}`
+  return `${INDEXER_URL}/ogcard/start/${starterPack.creator.did}/${rkey}`
 }
 
 function getStarterPackHref(

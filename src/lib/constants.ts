@@ -137,7 +137,7 @@ export const TRENDING_DID = 'did:plc:qrz3lhbyuxbeilrc6nekdqme'
 export const TRENDING_HANDLE = 'trending.bsky.app'
 
 /**
- * The Discover feed: Krao's "latest" feed (KRAO_DISCOVER_FEED). Holds the
+ * The Discover feed: Krao's "popular" feed (KRAO_DISCOVER_FEED). Holds the
  * DID form once resolveKraoServices() has run at startup, since AppViews
  * only know feeds by DID.
  */

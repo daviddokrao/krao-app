@@ -1,6 +1,7 @@
 import {RichText} from '@bsky/sdk/richtext'
 import {i18n} from '@lingui/core'
 
+import {DEFAULT_SERVICE} from '#/lib/constants'
 import {parseEmbedPlayerFromUrl} from '#/lib/strings/embed-player'
 import {
   createStarterPackGooglePlayUri,
@@ -235,9 +236,17 @@ describe('toNiceDomain', () => {
     'https://example.com/index.html',
     'https://bsky.app',
     'https://bsky.social',
+    DEFAULT_SERVICE,
     '#123123123',
   ]
-  const outputs = ['example.com', 'bsky.app', 'Bluesky Social', '#123123123']
+  // Krao's own PDS reads as "Krao"; other hosts, Bluesky's included, by host
+  const outputs = [
+    'example.com',
+    'bsky.app',
+    'bsky.social',
+    'Krao',
+    '#123123123',
+  ]
 
   it("displays the url's host in a easily readable manner", () => {
     for (let i = 0; i < inputs.length; i++) {

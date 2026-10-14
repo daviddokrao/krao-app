@@ -19,6 +19,7 @@ import {AnalyticsContext, useAnalyticsBase, utils} from '#/analytics'
 import {IS_WEB} from '#/env'
 import {com} from '#/lexicons'
 import {emitSessionDropped} from '../events'
+import {isAccountGoneError} from './account-gone'
 import {getPublicAppviewClient} from './clients'
 import {createSessionBundleAndCreateAccount} from './create-account'
 import {pickExpiryRescueCandidate} from './expiry-rescue'
@@ -476,6 +477,21 @@ export function Provider({children}: React.PropsWithChildren<{}>) {
         method: 'resumeSession',
         account: redactAccount(account),
       })
+      /*
+       * Stored tokens can outlive their account (it was deleted, or a test
+       * server was reset). They still verify, so the session never expires and
+       * every request fails. Check once in the background and drop the account
+       * if the PDS no longer knows it.
+       */
+      void bundle.pdsClient
+        .call(com.atproto.server.getSession, {})
+        .catch((e: unknown) => {
+          if (!isAccountGoneError(e)) return
+          if (store.getState().currentBundleState.did !== account.did) return
+          store.dispatch({type: 'removed-account', accountDid: account.did})
+          clearAgeAssuranceServerDataForDid({did: account.did})
+          void clearPersistedQueryStorage(account.did)
+        })
       if (isSwitchingAccounts) {
         // reset onboarding flow on switch account
         onboardingDispatch({type: 'skip'})

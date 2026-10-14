@@ -84,7 +84,7 @@ export function InitialVerificationAnnouncement() {
                 },
               ]}
               alt={_(
-                msg`An illustration showing that Bluesky selects trusted verifiers, and trusted verifiers in turn verify individual user accounts.`,
+                msg`An illustration showing that Krao selects trusted verifiers, and trusted verifiers in turn verify individual user accounts.`,
               )}
               useAppleWebpCodec
             />
@@ -135,8 +135,7 @@ export function InitialVerificationAnnouncement() {
             <View style={[a.gap_sm]}>
               <Text style={[a.leading_snug, a.text_md]}>
                 <Trans>
-                  Bluesky will proactively verify notable and authentic
-                  accounts.
+                  Krao will proactively verify notable and authentic accounts.
                 </Trans>
               </Text>
               <Text style={[a.leading_snug, a.text_md]}>

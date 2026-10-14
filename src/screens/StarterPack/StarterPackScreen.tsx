@@ -490,7 +490,7 @@ function Header({
                   a.text_sm,
                   t.atoms.text_contrast_medium,
                 ]}>
-                <Trans comment="Number of users (always at least 25) who have joined Bluesky using a specific Starter Pack">
+                <Trans comment="Number of users (always at least 25) who have joined Krao using a specific Starter Pack">
                   <Plural
                     value={starterPack.joinedAllTimeCount || 0}
                     other="# people have"

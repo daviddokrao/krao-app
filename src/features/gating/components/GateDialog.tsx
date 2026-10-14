@@ -1,21 +1,31 @@
 import {useState} from 'react'
 import {View} from 'react-native'
+import {Image} from 'expo-image'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {openUnifiedPicker} from '#/lib/media/picker'
+import {type PickerImage} from '#/lib/media/picker.shared'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import * as TextField from '#/components/forms/TextField'
+import {Image_Stroke2_Corner2_Rounded as ImageIcon} from '#/components/icons/Image'
+import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
+import {VideoClip_Stroke2_Corner0_Rounded as VideoIcon} from '#/components/icons/VideoClip'
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {parseUnits, TIP_ASSETS, type TipAsset} from '#/features/tips/assets'
-import {type GateCondition, useCreateGateMutation} from '../queries'
+import {
+  type GateCondition,
+  GATED_IMAGES_MAX,
+  useCreateGateMutation,
+} from '../queries'
 
 type Kind = 'token' | 'nft'
 
-/** Lets an author attach token-gated text to one of their posts */
+/** Lets an author attach token-gated text and images to one of their posts */
 export function GateDialog({
   control,
   post,
@@ -48,6 +58,7 @@ function GateDialogInner({
   const {t: l} = useLingui()
   const createGate = useCreateGateMutation()
   const [text, setText] = useState('')
+  const [images, setImages] = useState<PickerImage[]>([])
   const [kind, setKind] = useState<Kind>('token')
   const [asset, setAsset] = useState<TipAsset>(TIP_ASSETS[1])
   const [minAmount, setMinAmount] = useState('10')
@@ -72,12 +83,28 @@ function GateDialogInner({
             tokenId: tokenId.trim() || undefined,
           }
         : null
-  const canSave = !!condition && !!text.trim() && !createGate.isPending
+  const canSave =
+    !!condition && (!!text.trim() || images.length > 0) && !createGate.isPending
+
+  const onAddMedia = async () => {
+    const result = await openUnifiedPicker({
+      selectionCountRemaining: GATED_IMAGES_MAX - images.length,
+    })
+    const picked: PickerImage[] = (result.assets ?? []).map(asset => ({
+      path: asset.uri,
+      mime:
+        asset.mimeType ?? (asset.type === 'video' ? 'video/mp4' : 'image/jpeg'),
+      width: asset.width,
+      height: asset.height,
+      size: asset.fileSize ?? 0,
+    }))
+    setImages(prev => [...prev, ...picked].slice(0, GATED_IMAGES_MAX))
+  }
 
   const onSave = () => {
     if (!condition) return
     createGate.mutate(
-      {post, text: text.trim(), condition},
+      {post, text: text.trim(), images, condition},
       {
         onSuccess: () =>
           control.close(() => {
@@ -95,9 +122,9 @@ function GateDialogInner({
         </Text>
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
-            Your post stays public as a teaser. This extra text is stored on
-            Krao’s gate service, not in your public repo, and is only shown to
-            people whose linked wallets meet the requirement.
+            Your post stays public as a teaser. This extra text and media are
+            stored on Krao’s gate service, not in your public repo, and are only
+            shown to people whose linked wallets meet the requirement.
           </Trans>
         </Text>
       </View>
@@ -116,6 +143,61 @@ function GateDialogInner({
             maxLength={3000}
           />
         </TextField.Root>
+        {images.length > 0 && (
+          <View style={[a.flex_row, a.flex_wrap, a.gap_sm]}>
+            {images.map((image, i) => (
+              <View key={image.path} style={[a.relative]}>
+                {image.mime.startsWith('video/') ? (
+                  <View
+                    style={[
+                      a.rounded_sm,
+                      a.align_center,
+                      a.justify_center,
+                      t.atoms.bg_contrast_50,
+                      {width: 72, height: 72},
+                    ]}>
+                    <VideoIcon
+                      size="lg"
+                      style={[t.atoms.text_contrast_medium]}
+                    />
+                  </View>
+                ) : (
+                  <Image
+                    source={{uri: image.path}}
+                    style={[a.rounded_sm, {width: 72, height: 72}]}
+                    contentFit="cover"
+                    accessibilityIgnoresInvertColors
+                  />
+                )}
+                <Button
+                  label={l`Remove media`}
+                  color="secondary"
+                  size="tiny"
+                  shape="round"
+                  style={[a.absolute, {top: 2, right: 2}]}
+                  onPress={() =>
+                    setImages(prev => prev.filter((_, j) => j !== i))
+                  }>
+                  <ButtonIcon icon={XIcon} />
+                </Button>
+              </View>
+            ))}
+          </View>
+        )}
+        {images.length < GATED_IMAGES_MAX && (
+          <Button
+            testID="gateAddImageButton"
+            label={l`Add a gated image or video`}
+            color="secondary"
+            size="small"
+            style={[a.self_start]}
+            onPress={() => void onAddMedia()}>
+            <ButtonIcon icon={ImageIcon} />
+            <ButtonText>
+              <Trans>Add image or video</Trans>
+            </ButtonText>
+          </Button>
+        )}
       </View>
 
       <View style={[a.gap_sm]}>

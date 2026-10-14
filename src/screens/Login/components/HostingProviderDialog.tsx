@@ -181,8 +181,8 @@ function DialogInner({
               {isEmail ? (
                 <Trans>
                   Your hosting provider can’t be detected from an email address,
-                  so the default Bluesky service will be used. Enter your
-                  username instead, or set your provider manually.
+                  so the default Krao service will be used. Enter your username
+                  instead, or set your provider manually.
                 </Trans>
               ) : (
                 <Trans>

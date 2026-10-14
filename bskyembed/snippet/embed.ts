@@ -15,14 +15,14 @@ const IS_DEV =
 const EMBED_URL =
   IS_DEV && window.BSKY_DEV_EMBED_URL
     ? window.BSKY_DEV_EMBED_URL
-    : 'https://embed.bsky.app'
+    : 'https://embed.krao.net'
 
 window.bluesky = window.bluesky || {
   scan,
 }
 
 /**
- * Listen for messages from the Bluesky embed iframe and adjust the height of
+ * Listen for messages from the Krao embed iframe and adjust the height of
  * the iframe accordingly.
  */
 window.addEventListener('message', event => {
@@ -53,7 +53,7 @@ window.addEventListener('message', event => {
 
 /**
  * Scan the document for all elements with the data-bluesky-aturi attribute,
- * and initialize them as Bluesky embeds.
+ * and initialize them as Krao embeds.
  *
  * @param element Only scan this specific element @default document @optional
  * @returns

@@ -5,10 +5,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: 'rgb(0,106,255)',
-        brandHover: 'rgb(245,249,255)',
-        brandHoverDark: 'rgb(17,24,34)',
-        brandLighten: 'rgb(32,139,254)',
+        brand: 'rgb(14,140,110)', // Krao green #0E8C6E
+        brandHover: 'rgb(240,250,246)',
+        brandHoverDark: 'rgb(16,30,26)',
+        brandLighten: 'rgb(23,168,134)', // #17A886
         textLight: 'rgb(63,82,104)',
         textDimmed: 'rgb(164,179,197)',
         textNeutral: 'rgb(102,123,153)',

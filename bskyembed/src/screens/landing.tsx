@@ -2,7 +2,6 @@ import '../index.css'
 
 import {AtUriString, Client, type HandleString} from '@atproto/lex'
 import {AtUri} from '@atproto/syntax'
-import {api} from '@bsky/sdk'
 import {app, com} from '@bsky/sdk/lexicons'
 import {h, render} from 'preact'
 import {useEffect, useMemo, useRef, useState} from 'preact/hooks'
@@ -15,17 +14,13 @@ import {
 import {Container} from '#/components/container'
 import {Link} from '#/components/link'
 import {Post} from '#/components/post'
+import {APPVIEW_URL, EMBED_URL, HANDLE_DOMAIN, WEB_URL} from '#/krao'
 import {niceDate} from '#/util/nice-date'
 
 import arrowBottom from '../../assets/arrowBottom_stroke2_corner0_rounded.svg'
 import logo from '../../assets/logo.svg'
 
-const DEFAULT_POST =
-  'https://bsky.app/profile/did:plc:vjug55kidv6sye7ykr5faxxn/post/3jzn6g7ixgq2y'
-const DEFAULT_URI =
-  'at://did:plc:vjug55kidv6sye7ykr5faxxn/app.bsky.feed.post/3jzn6g7ixgq2y'
-
-export const EMBED_SERVICE = 'https://embed.bsky.app'
+export const EMBED_SERVICE = EMBED_URL
 export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`
 
 const root = document.getElementById('app')
@@ -33,7 +28,7 @@ if (!root) throw new Error('No root element')
 
 initSystemColorMode({additionalBodyClasses: 'dark:bg-dimmedBgDarken'})
 
-const client = new Client(api.app.urlPublic, {strictResponseProcessing: false})
+const client = new Client(APPVIEW_URL, {strictResponseProcessing: false})
 
 render(<LandingPage />, root)
 
@@ -49,9 +44,10 @@ function LandingPage() {
     void (async () => {
       setError(null)
       setPost(null)
+      if (!uri) return
       setLoading(true)
       try {
-        let atUri = DEFAULT_URI
+        let atUri = uri
 
         if (uri) {
           if (uri.startsWith('at://')) {
@@ -59,16 +55,13 @@ function LandingPage() {
           } else {
             try {
               const urlp = new URL(uri)
-              if (!urlp.hostname.endsWith('bsky.app')) {
+              if (urlp.host !== new URL(WEB_URL).host) {
                 throw new Error('Invalid hostname')
               }
-              const split = urlp.pathname.slice(1).split('/')
-              if (split.length < 4) {
+              const didOrHandle = profileFromPath(urlp.pathname)
+              const rkey = urlp.pathname.split('/').at(-1)
+              if (!didOrHandle || !rkey) {
                 throw new Error('Invalid pathname')
-              }
-              const [profile, didOrHandle, type, rkey] = split
-              if (profile !== 'profile' || type !== 'post') {
-                throw new Error('Invalid profile or type')
               }
 
               let did = didOrHandle
@@ -86,7 +79,7 @@ function LandingPage() {
               atUri = `at://${did}/app.bsky.feed.post/${rkey}`
             } catch (err) {
               console.log(err)
-              throw new Error('Invalid Bluesky URL', {cause: err})
+              throw new Error('Invalid Krao URL', {cause: err})
             }
           }
         }
@@ -111,7 +104,7 @@ function LandingPage() {
         setPost(post)
       } catch (err) {
         console.error(err)
-        setError(err instanceof Error ? err.message : 'Invalid Bluesky URL')
+        setError(err instanceof Error ? err.message : 'Invalid Krao URL')
       } finally {
         setLoading(false)
       }
@@ -121,12 +114,12 @@ function LandingPage() {
   return (
     <main className="w-full min-h-dvh flex flex-col items-center gap-8 py-14 px-4 md:pt-32 dark:text-slate-200">
       <Link
-        href="https://bsky.social/about"
+        href={`${WEB_URL}/`}
         className="transition-transform hover:scale-110">
         <img src={logo} className="h-10" />
       </Link>
 
-      <h1 className="text-4xl font-bold text-center">Embed a Bluesky Post</h1>
+      <h1 className="text-4xl font-bold text-center">Embed a Krao Post</h1>
 
       <div className="flex flex-col w-full max-w-[600px] gap-6">
         <input
@@ -134,7 +127,7 @@ function LandingPage() {
           value={uri}
           onInput={e => setUri(e.currentTarget.value)}
           className="border rounded-lg py-3 px-4 dark:bg-dimmedBg dark:border-slate-500"
-          placeholder={DEFAULT_POST}
+          placeholder={`${WEB_URL}/profile/krao.net/post/…`}
         />
 
         <div className="flex flex-col gap-1.5">
@@ -288,8 +281,25 @@ function Snippet({
   )
 }
 
+/**
+ * The DID or handle in a post URL: `/profile/<did or handle>/post/<rkey>`, or
+ * Krao's short form `/<name>/post/<rkey>` where `name` is a handle without
+ * Krao's handle domain.
+ */
+function profileFromPath(pathname: string): string | null {
+  const split = pathname.slice(1).split('/')
+  if (split.length === 4 && split[0] === 'profile' && split[2] === 'post') {
+    return split[1]
+  }
+  if (split.length === 3 && split[1] === 'post') {
+    const name = decodeURIComponent(split[0])
+    return name.includes('.') ? name : `${name}${HANDLE_DOMAIN}`
+  }
+  return null
+}
+
 function toShareUrl(path: string) {
-  return `https://bsky.app${path}?ref_src=embed`
+  return `${WEB_URL}${path}?ref_src=embed`
 }
 
 /**

@@ -110,7 +110,7 @@ export function DialogInner({
           </Text>
           <Text style={[a.text_md, a.leading_snug]}>
             <Trans>
-              This appeal will be sent to Bluesky's moderation service.
+              This appeal will be sent to Krao's moderation service.
             </Trans>
           </Text>
         </View>
