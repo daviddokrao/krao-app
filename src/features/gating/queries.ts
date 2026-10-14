@@ -100,17 +100,34 @@ async function gateFetch<T>(
  * never as a blob in the user's public repo. Images are compressed to fit;
  * videos (MP4 or WebM) are sent as they are.
  */
+const WEB_SAFE_IMAGES = new Set([
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/webp',
+])
+
 async function uploadGatedMedia(media: PickerImage, token: string) {
   const isVideo = media.mime.startsWith('video/')
   if (isVideo && media.size > GATED_VIDEO_MAX_BYTES) {
     throw new GateError(undefined, 'Gated videos can be at most 50 MB')
   }
+  /*
+   * The gate service takes JPEG, PNG, GIF and WebP only: anything else (eg
+   * an iPhone's HEIC) or a photo of unknown size goes through the resizer,
+   * which writes a JPEG
+   */
+  const needsJpeg =
+    !isVideo && (!WEB_SAFE_IMAGES.has(media.mime) || !media.size)
   const compressed = isVideo
     ? media
-    : await compressIfNeeded(media, {
-        maxDimension: 2000,
-        maxSize: GATED_IMAGE_MAX_BYTES - 64 * 1024,
-      })
+    : await compressIfNeeded(
+        needsJpeg ? {...media, size: Number.MAX_SAFE_INTEGER} : media,
+        {
+          maxDimension: 2000,
+          maxSize: GATED_IMAGE_MAX_BYTES - 64 * 1024,
+        },
+      )
   const blob = await (await fetch(compressed.path)).blob()
   const res = await fetch(
     new URL('/xrpc/net.krao.gate.uploadMedia', KRAO_GATE_URL).toString(),

@@ -31,7 +31,7 @@ export function WalletSignInButton({service}: {service: string}) {
           ? l`This wallet is not linked to an account on this hosting provider. Sign in with your password and link it in Settings → Wallets first.`
           : error instanceof XrpcError && error.error === 'InvalidSignature'
             ? l`The wallet signature could not be verified.`
-            : error.message
+            : l`Something went wrong signing in with your wallet. Please try again.`
 
   return (
     <View style={[a.gap_md, a.pt_md]}>

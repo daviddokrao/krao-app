@@ -11,12 +11,12 @@ import * as Admonition from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import * as Layout from '#/components/Layout'
+import {InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
-import {PointsSection} from '#/features/referral/components/PointsSection'
 import {type LinkedWallet} from '#/features/wallet/api'
 import {NftAvatarSection} from '#/features/wallet/components/NftAvatarSection'
 import {
@@ -58,7 +58,7 @@ export function WalletsSettingsScreen({}: Props) {
       ? l`No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again.`
       : link.error instanceof WalletRejectedError
         ? l`The request was cancelled in your wallet.`
-        : link.error.message
+        : l`Something went wrong linking the wallet. Please try again.`
 
   return (
     <Layout.Screen testID="walletsSettingsScreen">
@@ -139,6 +139,27 @@ export function WalletsSettingsScreen({}: Props) {
                 </Trans>
               </Admonition.Admonition>
             )}
+            {IS_WEB && !KRAO_DEV_WALLET && !hasBrowserWallet() && (
+              <Admonition.Admonition type="tip" style={[a.mt_md]}>
+                <Trans>
+                  New to wallets? A wallet is an app that holds your tokens and
+                  signs for you; Krao never sees its keys. Install one in your
+                  browser, such as{' '}
+                  <InlineLinkText
+                    to="https://metamask.io/download/"
+                    label={l`Get MetaMask`}>
+                    MetaMask
+                  </InlineLinkText>{' '}
+                  or{' '}
+                  <InlineLinkText
+                    to="https://www.coinbase.com/wallet/downloads"
+                    label={l`Get Coinbase Wallet`}>
+                    Coinbase Wallet
+                  </InlineLinkText>
+                  , then come back here.
+                </Trans>
+              </Admonition.Admonition>
+            )}
             {linkError && (
               <Admonition.Admonition type="error" style={[a.mt_md]}>
                 {linkError}
@@ -153,8 +174,6 @@ export function WalletsSettingsScreen({}: Props) {
               </Admonition.Admonition>
             )}
           </SettingsList.Item>
-          <SettingsList.Divider />
-          <PointsSection />
           {data && data.wallets.some(w => w.status === 'verified') && (
             <>
               <SettingsList.Divider />
@@ -192,7 +211,13 @@ function WalletRow({wallet}: {wallet: LinkedWallet}) {
               : {color: t.palette.negative_500},
           ]}>
           {chainName(wallet.account)} ·{' '}
-          {verified ? l`Verified` : l`Invalid signature`}
+          {verified
+            ? l`Verified`
+            : wallet.reason === 'Another account linked this wallet first'
+              ? l`Linked to another account first, so it doesn’t count here`
+              : wallet.reason === 'Too many linked wallets'
+                ? l`Not counted: at most 10 wallets per account`
+                : l`Invalid signature`}
         </Text>
       </View>
       <SettingsList.BadgeButton
@@ -218,4 +243,9 @@ function WalletRow({wallet}: {wallet: LinkedWallet}) {
       />
     </SettingsList.Item>
   )
+}
+
+/** Whether the browser has an injected Ethereum wallet (MetaMask, Rabby...) */
+function hasBrowserWallet() {
+  return !!(globalThis as {ethereum?: unknown}).ethereum
 }

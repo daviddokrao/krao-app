@@ -5,9 +5,12 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
 import {Admonition} from '#/components/Admonition'
+import {Button, ButtonText} from '#/components/Button'
 import {InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
+import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {useChainProfileQuery} from '#/features/wallet/queries'
 import {useDescribeRule} from '../describe'
 import {
   type GatedMedia,
@@ -24,10 +27,16 @@ import {GatedVideo} from './GatedVideo'
 export function GatedContent({uri}: {uri: string}) {
   const t = useTheme()
   const {t: l} = useLingui()
-  const {hasSession} = useSession()
+  const {hasSession, currentAccount} = useSession()
   const describeRule = useDescribeRule()
   const {data: rule} = useGateRuleQuery(uri)
   const content = useGatedContentQuery(uri, !!rule?.hasContent)
+  const {data: myChainProfile} = useChainProfileQuery(
+    rule?.hasContent ? currentAccount?.did : undefined,
+  )
+  const hasWallet = !!myChainProfile?.wallets.some(w => w.status === 'verified')
+  // Wallets are linked from the web for now (no WalletConnect on native)
+  const canLinkHere = IS_WEB || KRAO_DEV_WALLET
 
   if (!rule?.hasContent) return null
 
@@ -48,6 +57,9 @@ export function GatedContent({uri}: {uri: string}) {
         {backgroundColor: t.palette.primary_25},
       ]}>
       <Text
+        // The label leaves the emoji out: screen readers would read it aloud
+        accessibilityLabel={l`Token-gated · holders of ${requirementText}`}
+        accessibilityHint=""
         style={[a.text_sm, a.font_semi_bold, {color: t.palette.primary_700}]}>
         🔒 <Trans>Token-gated · holders of {requirementText}</Trans>
       </Text>
@@ -72,21 +84,53 @@ export function GatedContent({uri}: {uri: string}) {
             ),
           )}
         </>
+      ) : notEligible && !canLinkHere ? (
+        <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
+          {hasWallet ? (
+            <Trans>Your linked wallets don’t meet this requirement yet.</Trans>
+          ) : (
+            <Trans>
+              Link a wallet that meets the requirement from Krao on the web to
+              unlock this content.
+            </Trans>
+          )}
+        </Text>
       ) : notEligible ? (
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
-          <Trans>
-            Your linked wallets don’t meet this requirement yet.{' '}
-            <InlineLinkText
-              to="/settings/wallets"
-              label={l`Manage linked wallets`}>
-              Manage wallets
-            </InlineLinkText>
-          </Trans>
+          {hasWallet ? (
+            <Trans>
+              Your linked wallets don’t meet this requirement yet.{' '}
+              <InlineLinkText
+                to="/settings/wallets"
+                label={l`Manage linked wallets`}>
+                Manage wallets
+              </InlineLinkText>
+            </Trans>
+          ) : (
+            <Trans>
+              <InlineLinkText to="/settings/wallets" label={l`Link a wallet`}>
+                Link a wallet
+              </InlineLinkText>{' '}
+              that meets the requirement to unlock this content.
+            </Trans>
+          )}
         </Text>
       ) : content.error ? (
-        <Admonition type="error">
-          <Trans>Couldn’t load the gated content.</Trans>
-        </Admonition>
+        <View style={[a.gap_sm]}>
+          <Admonition type="error">
+            <Trans>Couldn’t load the gated content.</Trans>
+          </Admonition>
+          <Button
+            label={l`Try again`}
+            color="secondary"
+            size="small"
+            style={[a.self_start]}
+            onPress={() => void content.refetch()}>
+            <ButtonText>
+              <Trans>Try again</Trans>
+            </ButtonText>
+          </Button>
+        </View>
       ) : null}
     </View>
   )

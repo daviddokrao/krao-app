@@ -4,7 +4,11 @@
   "defs": {
     "walletView": {
       "type": "object",
-      "required": ["uri", "account", "status"],
+      "required": [
+        "uri",
+        "account",
+        "status"
+      ],
       "properties": {
         "uri": {
           "type": "string",
@@ -24,6 +28,11 @@
           "type": "ref",
           "ref": "net.krao.chain.defs#verificationStatus"
         },
+        "reason": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Why the wallet does not count, when its status is invalid (for example: another account linked it first)."
+        },
         "createdAt": {
           "type": "string",
           "format": "datetime"
@@ -32,7 +41,11 @@
     },
     "nftAvatarView": {
       "type": "object",
-      "required": ["nft", "wallet", "status"],
+      "required": [
+        "nft",
+        "wallet",
+        "status"
+      ],
       "properties": {
         "nft": {
           "type": "ref",
@@ -65,7 +78,10 @@
     "chainProfileView": {
       "type": "object",
       "description": "Web3 details for an account, shown alongside its regular app.bsky profile.",
-      "required": ["did", "wallets"],
+      "required": [
+        "did",
+        "wallets"
+      ],
       "properties": {
         "did": {
           "type": "string",
@@ -99,7 +115,9 @@
     "badge": {
       "type": "object",
       "description": "A badge computed from verified on-chain activity.",
-      "required": ["id"],
+      "required": [
+        "id"
+      ],
       "properties": {
         "id": {
           "type": "string",

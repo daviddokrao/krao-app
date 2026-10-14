@@ -1,5 +1,5 @@
 import {View} from 'react-native'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 
 import {atoms as a, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
@@ -30,6 +30,7 @@ function TipTotalsLine({
   compact?: boolean
 }) {
   const t = useTheme()
+  const {t: l} = useLingui()
   const totals = allTotals.filter(total => getTipAsset(total.asset))
   if (!totals.length) return null
 
@@ -51,6 +52,9 @@ function TipTotalsLine({
         compact ? a.pt_xs : a.py_xs,
       ]}>
       <Text
+        // The label leaves the emoji out: screen readers would read it aloud
+        accessibilityLabel={l`Tipped ${amounts} (${count})`}
+        accessibilityHint=""
         style={[compact ? a.text_xs : a.text_sm, t.atoms.text_contrast_medium]}>
         💎{' '}
         <Trans>

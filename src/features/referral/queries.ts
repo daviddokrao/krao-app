@@ -31,7 +31,14 @@ export function useRewardsAuth() {
 }
 
 /** A signed-in query of the rewards service */
-function useRewardsQuery<T>(method: string, name: string) {
+function useRewardsQuery<T>(
+  method: string,
+  name: string,
+  opts: {
+    refetchInterval?: (data: T | undefined) => number | false
+    refetchOnWindowFocus?: boolean
+  } = {},
+) {
   const {currentAccount} = useSession()
   const getToken = useRewardsAuth()
   return useQuery({
@@ -40,6 +47,10 @@ function useRewardsQuery<T>(method: string, name: string) {
     queryKey: createQueryKey(name, {did: currentAccount?.did ?? ''}),
     queryFn: async () =>
       rewardsFetch<T>(method, {token: await getToken(method)}),
+    refetchInterval: opts.refetchInterval
+      ? query => opts.refetchInterval!(query.state.data)
+      : undefined,
+    refetchOnWindowFocus: opts.refetchOnWindowFocus,
   })
 }
 
@@ -91,8 +102,15 @@ export function usePointsEntriesQuery() {
   )
 }
 
+/**
+ * Refreshed while a check is under review, and when the user comes back to
+ * the app (eg from the identity provider's page)
+ */
 export function useKycStatusQuery() {
-  return useRewardsQuery<KycState>('net.krao.kyc.getStatus', 'kyc-status')
+  return useRewardsQuery<KycState>('net.krao.kyc.getStatus', 'kyc-status', {
+    refetchInterval: data => (data?.status === 'pending' ? 10_000 : false),
+    refetchOnWindowFocus: true,
+  })
 }
 
 /** Starts identity verification; resolves to the provider's link */
