@@ -32,42 +32,42 @@ describe('linkRequiresWarning', () => {
     ['http://site.pages', 'http://site.pages.dev', true],
     ['http://site.pages.dev', 'site.pages', true],
     ['http://site.pages', 'site.pages.dev', true],
-    ['http://krao.io/profile/bob.test/post/3kbeuduu7m22v', 'my post', false],
-    ['https://krao.io/profile/bob.test/post/3kbeuduu7m22v', 'my post', false],
-    ['http://krao.io/', 'bluesky', false],
-    ['https://krao.io/', 'bluesky', false],
+    ['http://krao.net/profile/bob.test/post/3kbeuduu7m22v', 'my post', false],
+    ['https://krao.net/profile/bob.test/post/3kbeuduu7m22v', 'my post', false],
+    ['http://krao.net/', 'bluesky', false],
+    ['https://krao.net/', 'bluesky', false],
     [
-      'http://krao.io/profile/bob.test/post/3kbeuduu7m22v',
-      'http://krao.io/profile/bob.test/post/3kbeuduu7m22v',
+      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
+      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
       false,
     ],
     [
-      'https://krao.io/profile/bob.test/post/3kbeuduu7m22v',
-      'http://krao.io/profile/bob.test/post/3kbeuduu7m22v',
+      'https://krao.net/profile/bob.test/post/3kbeuduu7m22v',
+      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
       false,
     ],
     [
-      'http://krao.io/',
-      'http://krao.io/profile/bob.test/post/3kbeuduu7m22v',
+      'http://krao.net/',
+      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
       false,
     ],
     [
-      'https://krao.io/',
-      'http://krao.io/profile/bob.test/post/3kbeuduu7m22v',
+      'https://krao.net/',
+      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
       false,
     ],
     [
-      'http://krao.io/profile/bob.test/post/3kbeuduu7m22v',
+      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
       'https://google.com',
       true,
     ],
     [
-      'https://krao.io/profile/bob.test/post/3kbeuduu7m22v',
+      'https://krao.net/profile/bob.test/post/3kbeuduu7m22v',
       'https://google.com',
       true,
     ],
-    ['http://krao.io/', 'https://google.com', true],
-    ['https://krao.io/', 'https://google.com', true],
+    ['http://krao.net/', 'https://google.com', true],
+    ['https://krao.net/', 'https://google.com', true],
 
     // case insensitive
     ['https://Example.com', 'example.com', false],
@@ -78,8 +78,8 @@ describe('linkRequiresWarning', () => {
     ['example.com', 'example.com', true],
     ['/profile', 'Username', false],
     ['#', 'Show More', false],
-    ['https://docs.krao.io', 'https://docs.krao.io', false],
-    ['https://krao.io/compose/intent?text=test', 'Compose a post', false],
+    ['https://docs.krao.net', 'https://docs.krao.net', false],
+    ['https://krao.net/compose/intent?text=test', 'Compose a post', false],
   ]
 
   it.each(cases)(
@@ -154,17 +154,17 @@ describe('isTrustedUrl', () => {
     ['/profile', true],
     ['/profile/', true],
     ['/profile/bob.test', true],
-    ['https://krao.io', true],
-    ['https://krao.io/', true],
-    ['https://krao.io/profile/bob.test', true],
-    ['https://www.krao.io', true],
-    ['https://www.krao.io/', true],
-    ['https://docs.krao.io', true],
+    ['https://krao.net', true],
+    ['https://krao.net/', true],
+    ['https://krao.net/profile/bob.test', true],
+    ['https://www.krao.net', true],
+    ['https://www.krao.net/', true],
+    ['https://docs.krao.net', true],
     ['https://bsky.social', false],
     ['https://bsky.social/blog', false],
     ['https://blueskyweb.xyz', false],
     ['https://blueskyweb.zendesk.com', false],
-    ['http://krao.io', true],
+    ['http://krao.net', true],
     ['http://bsky.social', false],
     ['http://blueskyweb.xyz', false],
     ['http://blueskyweb.zendesk.com', false],
@@ -184,31 +184,31 @@ describe('getChatInviteCodeFromUrl', () => {
   type Case = [string, string | undefined]
 
   const cases: Case[] = [
-    ['https://krao.io/chat/abcdefg', 'abcdefg'],
-    ['https://krao.io/chat/abcdefghij', 'abcdefghij'],
-    // http is not recognized as a krao.io url
-    ['http://krao.io/chat/abcdefg', undefined],
-    ['https://krao.io/chat/abcdefg?utm=foo', 'abcdefg'],
-    ['https://krao.io/chat/abcdefg#section', 'abcdefg'],
+    ['https://krao.net/chat/abcdefg', 'abcdefg'],
+    ['https://krao.net/chat/abcdefghij', 'abcdefghij'],
+    // http is not recognized as a krao.net url
+    ['http://krao.net/chat/abcdefg', undefined],
+    ['https://krao.net/chat/abcdefg?utm=foo', 'abcdefg'],
+    ['https://krao.net/chat/abcdefg#section', 'abcdefg'],
     ['/chat/abcdefg', 'abcdefg'],
     ['/chat/abcdefg?utm=foo', 'abcdefg'],
     ['/chat/abcdefg#section', 'abcdefg'],
 
     // too short
-    ['https://krao.io/chat/abcdef', undefined],
+    ['https://krao.net/chat/abcdef', undefined],
     ['/chat/abcdef', undefined],
     // too long
-    ['https://krao.io/chat/abcdefghijk', undefined],
+    ['https://krao.net/chat/abcdefghijk', undefined],
     ['/chat/abcdefghijk', undefined],
     // invalid characters
-    ['https://krao.io/chat/abc-def', undefined],
+    ['https://krao.net/chat/abc-def', undefined],
     ['/chat/abc def', undefined],
     // trailing path
-    ['https://krao.io/chat/abcdefg/extra', undefined],
+    ['https://krao.net/chat/abcdefg/extra', undefined],
     ['/chat/abcdefg/extra', undefined],
     // wrong path
-    ['https://krao.io/profile/abcdefg', undefined],
-    ['https://krao.io/chat', undefined],
+    ['https://krao.net/profile/abcdefg', undefined],
+    ['https://krao.net/chat', undefined],
     // wrong host
     ['https://example.com/chat/abcdefg', undefined],
     // not a url, not a path

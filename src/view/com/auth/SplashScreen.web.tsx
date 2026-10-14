@@ -165,17 +165,17 @@ function Footer() {
       ]}>
       <InlineLinkText
         label={_(msg`Learn more about Krao`)}
-        to="https://krao.io">
+        to="https://krao.net">
         <Trans>Business</Trans>
       </InlineLinkText>
       <InlineLinkText
         label={_(msg`Read the Krao blog`)}
-        to="https://krao.io/blog">
+        to="https://krao.net/blog">
         <Trans>Blog</Trans>
       </InlineLinkText>
       <InlineLinkText
         label={_(msg`See jobs at Krao`)}
-        to="https://krao.io/jobs">
+        to="https://krao.net/jobs">
         <Trans comment="Link to a page with job openings at Krao">Jobs</Trans>
       </InlineLinkText>
 

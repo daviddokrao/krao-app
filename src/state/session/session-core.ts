@@ -400,7 +400,7 @@ export async function createSessionBundleAndLogin(
 
 /**
  * Build a {@link SessionBundle} from session tokens the server already issued,
- * eg by Krao's `io.krao.server.createWalletSession`.
+ * eg by Krao's `net.krao.server.createWalletSession`.
  */
 export async function createSessionBundleFromSessionData(
   sessionData: SessionData,

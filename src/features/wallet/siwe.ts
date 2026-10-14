@@ -53,7 +53,7 @@ export function formatWalletLinkMessage({
   did: string
 }): string {
   return formatSiweMessage({
-    domain: 'krao.io',
+    domain: 'krao.net',
     address,
     statement: 'Link this wallet to my Krao account.',
     uri: did,

@@ -8,7 +8,7 @@ import {type GateCondition, type GateRule} from './queries'
 export function useDescribeCondition() {
   const {t: l} = useLingui()
   return (condition: GateCondition): string => {
-    if (condition.$type === 'io.krao.gate.defs#tokenBalance') {
+    if (condition.$type === 'net.krao.gate.defs#tokenBalance') {
       const asset = getTipAsset(condition.asset)
       if (!asset) return l`a minimum token balance`
       const amount = formatUnits(condition.minAmount, asset.decimals)

@@ -68,7 +68,7 @@ export default function HashtagScreen({
   }, [author])
 
   const onShare = useCallback(() => {
-    const url = new URL('https://krao.io')
+    const url = new URL('https://krao.net')
     url.pathname = `/hashtag/${decodeURIComponent(tag)}`
     if (author) {
       url.searchParams.set('author', author)

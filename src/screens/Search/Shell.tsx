@@ -499,7 +499,7 @@ export function SearchScreenShell({
   )
 
   const onShareSearch = useCallback(() => {
-    const url = new URL('https://krao.io')
+    const url = new URL('https://krao.net')
     url.pathname = '/search'
     if (query) url.searchParams.set('q', query)
     for (const [key, value] of Object.entries(definedFilterParams(filters))) {

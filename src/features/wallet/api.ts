@@ -46,7 +46,7 @@ export type ResolvedNft = {
   image?: string
 }
 
-/** Output of io.krao.server.createWalletSession (same as createSession) */
+/** Output of net.krao.server.createWalletSession (same as createSession) */
 export type WalletSession = {
   accessJwt: string
   refreshJwt: string
@@ -101,7 +101,7 @@ const loadChainProfile = createBatchLoader<string, ChainProfile>({
   load: async dids => {
     const {profiles} = await xrpc<{profiles: ChainProfile[]}>(
       KRAO_INDEXER_URL,
-      'io.krao.actor.getChainProfiles',
+      'net.krao.actor.getChainProfiles',
       {params: {actors: dids}},
     )
     return new Map(profiles.map(p => [p.did, p]))
@@ -124,7 +124,7 @@ export function resolveNft(params: {
   tokenId: string
   owner?: string
 }) {
-  return xrpc<ResolvedNft>(KRAO_INDEXER_URL, 'io.krao.actor.resolveNft', {
+  return xrpc<ResolvedNft>(KRAO_INDEXER_URL, 'net.krao.actor.resolveNft', {
     params: Object.fromEntries(
       Object.entries(params).filter(([, v]) => v !== undefined),
     ),
@@ -143,7 +143,7 @@ export function nftImageUrl(nft: NftRef): string {
 export function getWalletChallenge(service: string, account: string) {
   return xrpc<{message: string; expiresAt: string}>(
     service,
-    'io.krao.server.getWalletChallenge',
+    'net.krao.server.getWalletChallenge',
     {params: {account}},
   )
 }
@@ -152,7 +152,7 @@ export function createWalletSession(
   service: string,
   body: {account: string; message: string; signature: string},
 ) {
-  return xrpc<WalletSession>(service, 'io.krao.server.createWalletSession', {
+  return xrpc<WalletSession>(service, 'net.krao.server.createWalletSession', {
     body,
   })
 }

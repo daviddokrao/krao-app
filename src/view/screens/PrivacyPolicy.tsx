@@ -30,8 +30,8 @@ export const PrivacyPolicyScreen = (_props: Props) => {
               The Privacy Policy has been moved to{' '}
               <TextLink
                 style={pal.link}
-                href="https://krao.io/privacy"
-                text="krao.io/privacy"
+                href="https://krao.net/privacy"
+                text="krao.net/privacy"
               />
             </Trans>
           </Text>

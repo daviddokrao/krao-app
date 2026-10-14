@@ -13,11 +13,13 @@ export const BSKY_APP_HOST = KRAO_WEB_URL.replace(/\/$/, '')
  * Web hosts whose links open inside the app. Krao is its own network, so
  * bsky.app links point at content Krao does not have and open in the browser.
  */
-const APP_URL_PREFIXES = [...new Set([`${BSKY_APP_HOST}/`, 'https://krao.io/'])]
+const APP_URL_PREFIXES = [
+  ...new Set([`${BSKY_APP_HOST}/`, 'https://krao.net/']),
+]
 export const BSKY_HOSTING_ENDSWITH = '.host.bsky.network'
 const BSKY_TRUSTED_HOSTS = [
   ...new Set(
-    ['krao.io', new URL(KRAO_WEB_URL).host, new URL(KRAO_SITE_URL).host].map(
+    ['krao.net', new URL(KRAO_WEB_URL).host, new URL(KRAO_SITE_URL).host].map(
       host => host.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
     ),
   ),

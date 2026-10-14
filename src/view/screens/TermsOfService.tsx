@@ -29,8 +29,8 @@ export const TermsOfServiceScreen = (_props: Props) => {
             <Trans>The Terms of Service have been moved to</Trans>{' '}
             <TextLink
               style={pal.link}
-              href="https://krao.io/terms"
-              text="krao.io/terms"
+              href="https://krao.net/terms"
+              text="krao.net/terms"
             />
           </Text>
         </View>

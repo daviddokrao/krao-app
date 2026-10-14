@@ -6,7 +6,7 @@ import {
   useProfileUpdateMutation,
 } from '#/state/queries/profile'
 import {usePdsClient, useSession} from '#/state/session'
-import {io} from '#/lexicons'
+import {net} from '#/lexicons'
 import {nftImageUrl, type NftRef} from './api'
 import {createChainProfileQueryKey} from './queries'
 
@@ -14,7 +14,7 @@ import {createChainProfileQueryKey} from './queries'
  * Use an NFT held by one of the user's linked wallets as their profile
  * picture: the image (rendered to PNG by the indexer) becomes the regular
  * app.bsky avatar, so every Bluesky client shows it, and an
- * io.krao.actor.nftAvatar record lets Krao verify and badge it.
+ * net.krao.actor.nftAvatar record lets Krao verify and badge it.
  */
 export function useSetNftAvatarMutation() {
   const {currentAccount} = useSession()
@@ -44,7 +44,7 @@ export function useSetNftAvatarMutation() {
         URL.revokeObjectURL(objectUrl)
       }
       await pdsClient.put(
-        io.krao.actor.nftAvatar,
+        net.krao.actor.nftAvatar,
         {
           nft: {
             chain: nft.chain,
@@ -79,7 +79,7 @@ export function useRemoveNftAvatarMutation() {
   return useMutation({
     mutationFn: async () => {
       if (!currentAccount) throw new Error('Not signed in')
-      await pdsClient.delete(io.krao.actor.nftAvatar, {
+      await pdsClient.delete(net.krao.actor.nftAvatar, {
         repo: currentAccount.did,
         rkey: 'self',
       })

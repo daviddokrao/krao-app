@@ -31,14 +31,14 @@ export function useFilterFieldLabels(): Record<
         message: 'From these people',
         comment: 'Advanced search filter',
       }),
-      label: 'krao.io atproto.com',
+      label: 'krao.net atproto.com',
     },
     mentions: {
       title: l({
         message: 'Mentions of these people',
         comment: 'Advanced search filter',
       }),
-      label: 'krao.io atproto.com',
+      label: 'krao.net atproto.com',
     },
     tags: {
       title: l({
@@ -52,14 +52,14 @@ export function useFilterFieldLabels(): Record<
         message: 'These domains',
         comment: 'Advanced search filter',
       }),
-      label: 'krao.io atproto.com',
+      label: 'krao.net atproto.com',
     },
     urls: {
       title: l({
         message: 'These URLs',
         comment: 'Advanced search filter',
       }),
-      label: 'https://krao.io https://atproto.com',
+      label: 'https://krao.net https://atproto.com',
     },
   }
 }
