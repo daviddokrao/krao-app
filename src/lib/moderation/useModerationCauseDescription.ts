@@ -136,8 +136,8 @@ export function useModerationCauseDescription(
       let sourceDisplayName = labeler?.creator.displayName
       if (!source) {
         if (cause.label.src === KRAO_LABELER_DID) {
-          source = 'moderation.bsky.app'
-          sourceDisplayName = 'Bluesky Moderation Service'
+          source = 'moderation.krao.net'
+          sourceDisplayName = 'Krao Moderation Service'
         } else {
           source = _(msg`an unknown labeler`)
         }

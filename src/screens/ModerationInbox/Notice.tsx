@@ -40,7 +40,7 @@ export function ModerationInboxNoticeDetailsScreen() {
             <Trans>Notice</Trans>
           </Layout.Header.TitleText>
           <Layout.Header.SubtitleText>
-            <Trans>Bluesky Moderation Service</Trans>
+            <Trans>Krao Moderation Service</Trans>
           </Layout.Header.SubtitleText>
         </Layout.Header.Content>
         <Layout.Header.Slot />
@@ -50,8 +50,7 @@ export function ModerationInboxNoticeDetailsScreen() {
         <View style={[a.p_lg, a.gap_lg]}>
           <ActionSummaryText header={l`Your post was removed`}>
             <Trans>
-              Bluesky Moderation Service removed a post from Bluesky for
-              violating our{' '}
+              Krao Moderation Service removed a post from Krao for violating our{' '}
               <InlineLinkText
                 to={webLinks.community}
                 label={l`Read our Community Guidelines`}

@@ -33,7 +33,7 @@ export function AccountStatus({
   const description =
     status === 'atRisk'
       ? l`Your account has repeated violations of our Community Guidelines. Another violation may result in your account being permanently suspended.`
-      : l`Bluesky has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension.`
+      : l`Krao has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension.`
 
   return (
     <>
