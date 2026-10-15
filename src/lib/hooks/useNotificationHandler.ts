@@ -1,11 +1,11 @@
 import {useEffect} from 'react'
 import * as Notifications from 'expo-notifications'
-import {AtUri} from '@atproto/syntax'
 import {useLingui} from '@lingui/react/macro'
 import {CommonActions, useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
 import {useAccountSwitcher} from '#/lib/hooks/useAccountSwitcher'
+import {notificationToURL} from '#/lib/notifications/notificationToURL'
 import {logger as notyLogger} from '#/lib/notifications/util'
 import {type NavigationProp} from '#/lib/routes/types'
 import {useCurrentConvoId} from '#/state/messages/current-convo-id'
@@ -19,6 +19,8 @@ import {useAnalytics} from '#/analytics'
 import {IS_ANDROID, IS_IOS} from '#/env'
 import {resetToTab} from '#/Navigation'
 import {router} from '#/routes'
+
+export {notificationToURL}
 
 export type NotificationReason =
   | 'like'
@@ -38,6 +40,10 @@ export type NotificationReason =
   | 'verified'
   | 'unverified'
   | 'subscribed-post'
+  // From Krao's push service
+  | 'krao-tip'
+  | 'krao-points'
+  | 'krao-kyc'
 
 type ChatNotificationReason = Extract<NotificationReason, `chat-${string}`>
 
@@ -215,6 +221,17 @@ export function useNotificationsHandler() {
         importance: Notifications.AndroidImportance.HIGH,
       },
     )
+    void Notifications.setNotificationChannelAsync(
+      'krao-tip' satisfies NotificationReason,
+      {
+        name: l`Tips`,
+        importance: Notifications.AndroidImportance.HIGH,
+      },
+    )
+    void Notifications.setNotificationChannelAsync('krao-rewards', {
+      name: l`Points and identity verification`,
+      importance: Notifications.AndroidImportance.DEFAULT,
+    })
   }, [l])
 
   useEffect(() => {
@@ -456,50 +473,5 @@ export function getNotificationPayload(
       })
     }
     return null
-  }
-}
-
-export function notificationToURL(payload: NotificationPayload): string | null {
-  switch (payload?.reason) {
-    case 'like':
-    case 'repost':
-    case 'like-via-repost':
-    case 'repost-via-repost': {
-      const urip = new AtUri(payload.subject)
-      if (urip.collection === 'app.bsky.feed.post') {
-        return `/profile/${urip.host}/post/${urip.rkey}`
-      } else {
-        return '/notifications'
-      }
-    }
-    case 'reply':
-    case 'quote':
-    case 'mention':
-    case 'subscribed-post': {
-      const urip = new AtUri(payload.uri)
-      if (urip.collection === 'app.bsky.feed.post') {
-        return `/profile/${urip.host}/post/${urip.rkey}`
-      } else {
-        return '/notifications'
-      }
-    }
-    case 'follow':
-    case 'starterpack-joined': {
-      const urip = new AtUri(payload.uri)
-      return `/profile/${urip.host}`
-    }
-    case 'chat-message':
-    case 'chat-reaction':
-    case 'chat-added-to-group':
-    case 'chat-removed-from-group':
-    case 'chat-join-request-rejected':
-      // should be handled separately
-      return null
-    case 'verified':
-    case 'unverified':
-      return '/notifications'
-    default:
-      // do nothing if we don't know what to do with it
-      return null
   }
 }

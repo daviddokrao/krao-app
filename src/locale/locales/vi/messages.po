@@ -17468,3 +17468,11 @@ msgstr "Tên người dùng và mật khẩu của bạn sẽ được chia sẻ
 #: src/components/verification/VerificationsDialog.tsx:67
 msgid "Your verifications"
 msgstr "Xác minh của bạn"
+
+#: src/lib/hooks/useNotificationHandler.ts
+msgid "Tips"
+msgstr "Tip"
+
+#: src/lib/hooks/useNotificationHandler.ts
+msgid "Points and identity verification"
+msgstr "Điểm và xác minh danh tính"
