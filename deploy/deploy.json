@@ -1,0 +1,10 @@
+{
+  "name": "kraonet",
+  "routes": [
+    { "host": "krao.net", "service": "web", "port": 80 },
+    { "host": "www.krao.net", "service": "web", "port": 80 },
+    { "host": "embed.krao.net", "service": "web", "port": 80 },
+    { "subdomain": "krao", "service": "web", "port": 80 }
+  ],
+  "needs_supabase": false
+}
