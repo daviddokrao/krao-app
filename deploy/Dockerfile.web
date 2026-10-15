@@ -1,0 +1,62 @@
+# Krao sandbox demo: the web app, built like stage 1 of ../Dockerfile and
+# served as static files (no bskyweb Go server).
+FROM ghcr.io/pnpm/pnpm:11 AS build
+
+WORKDIR /app
+ENV DEBIAN_FRONTEND=noninteractive
+ENV CI=1
+ENV pnpm_config_pm_on_fail=download
+ENV NODE_OPTIONS="--max-old-space-size=8192"
+
+COPY . .
+
+# Expo inlines EXPO_PUBLIC_* from .env at export time
+RUN printf '%s\n' \
+  'EXPO_PUBLIC_ENV=production' \
+  "EXPO_PUBLIC_BUNDLE_DATE=$(date -u +%y%m%d%H)" \
+  'EXPO_PUBLIC_DEFAULT_SERVICE=https://pds.krao.net' \
+  'EXPO_PUBLIC_PUBLIC_API=https://api.krao.net' \
+  'EXPO_PUBLIC_BLUESKY_PROXY_DID=did:plc:dw4kbjf5mn7nhenabiqpkyh3' \
+  'EXPO_PUBLIC_KRAO_INDEXER_URL=https://idx.krao.net' \
+  'EXPO_PUBLIC_KRAO_WEB_URL=https://krao.net' \
+  'EXPO_PUBLIC_KRAO_SITE_URL=https://krao.net' \
+  'EXPO_PUBLIC_KRAO_HANDLE_DOMAIN=.test' \
+  'EXPO_PUBLIC_CHAT_PROXY_DID=did:plc:gpiadqebr3yazrys6dw4gvfi' \
+  'EXPO_PUBLIC_KRAO_CHAT_URL=https://chat.krao.net' \
+  'EXPO_PUBLIC_KRAO_GATE_DID=did:web:gate.krao.test' \
+  'EXPO_PUBLIC_KRAO_DISCOVER_FEED=at://krao.test/app.bsky.feed.generator/popular' \
+  'EXPO_PUBLIC_KRAO_LABELER=mod-authority.test' \
+  'EXPO_PUBLIC_KRAO_DEV_WALLET=true' \
+  'EXPO_PUBLIC_KRAO_DEV_RPC_URL=https://rpc.krao.net' \
+  'EXPO_PUBLIC_KRAO_VIDEO_URL=https://video.krao.net' \
+  'EXPO_PUBLIC_KRAO_VIDEO_DID=did:web:video.krao.test' \
+  'EXPO_PUBLIC_KRAO_EMBED_URL=https://embed.krao.net' \
+  'EXPO_PUBLIC_KRAO_REWARDS_URL=https://rewards.krao.net' \
+  'EXPO_PUBLIC_KRAO_REWARDS_DID=did:web:rewards.krao.test' \
+  > .env
+
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm intl:build
+RUN pnpm build-web
+
+# Post embeds (bskyembed, rebranded for Krao), served on embed.krao.net
+FROM ghcr.io/pnpm/pnpm:11 AS embed
+# bskyembed uses the isolated linker, where pnpm links .bin/node to a
+# node_modules/node that does not exist, so bring a real node
+COPY --from=node:24-slim /usr/local/bin/node /usr/local/bin/node
+WORKDIR /embed
+ENV CI=1
+ENV pnpm_config_pm_on_fail=download
+COPY bskyembed/ .
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+ENV VITE_KRAO_APPVIEW_URL=https://api.krao.net \
+  VITE_KRAO_WEB_URL=https://krao.net \
+  VITE_KRAO_EMBED_URL=https://embed.krao.net \
+  VITE_KRAO_INDEXER_URL=https://idx.krao.net \
+  VITE_KRAO_HANDLE_DOMAIN=.test
+RUN pnpm build && pnpm build-snippet
+
+FROM caddy:2-alpine
+COPY deploy/Caddyfile.web /etc/caddy/Caddyfile
+COPY --from=build /app/dist /srv
+COPY --from=embed /embed/dist /srv-embed
