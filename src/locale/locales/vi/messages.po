@@ -18836,3 +18836,542 @@ msgstr "Phiếu của bạn đang được tính."
 #: src/features/poll/components/PostPoll.tsx:175
 msgid "Your vote was not counted."
 msgstr "Phiếu của bạn không được tính."
+
+#. placeholder {0}: data.tips30d.count
+#. placeholder {0}: supporter.tipCount
+#: src/features/creator/components/TopSupporters.tsx:65
+#: src/features/creator/CreatorDashboardScreen.tsx:86
+msgid "{0, plural, one {# tip} other {# tips}}"
+msgstr "{0, plural, other {# tip}}"
+
+#. placeholder {0}: data.members.new30d
+#: src/features/creator/CreatorDashboardScreen.tsx:95
+msgid "{0} new"
+msgstr "{0} mới"
+
+#. placeholder {0}: plan.record.name
+#: src/features/gating/components/GateDialog.tsx:367
+msgid "{0}, {price} USDC"
+msgstr "{0}, {price} USDC"
+
+#. placeholder {0}: plan.record.name
+#: src/features/gating/components/GateDialog.tsx:366
+msgid "{0}, {price} USDC, selected"
+msgstr "{0}, {price} USDC, đã chọn"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:107
+msgid "{change} in 30 days"
+msgstr "{change} trong 30 ngày"
+
+#: src/features/membership/components/PlanCard.tsx:64
+msgid "{memberCount, plural, one {# member} other {# members}}"
+msgstr "{memberCount, plural, other {# thành viên}}"
+
+#: src/features/membership/components/PlanCard.tsx:53
+msgid "{price} USDC per 30 days"
+msgstr "{price} USDC mỗi 30 ngày"
+
+#: src/features/creator/components/TopSupporters.tsx:116
+#: src/features/creator/components/TopSupporters.tsx:125
+msgid "{rank}. {name}, {total} in {tips}"
+msgstr "{rank}. {name}, {total} qua {tips}"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:194
+msgid "@{creatorHandle} hasn’t linked a wallet, so they can’t receive payments right now."
+msgstr "@{creatorHandle} chưa liên kết ví nên hiện chưa nhận được thanh toán."
+
+#: src/features/membership/MembershipOfferScreen.tsx:154
+msgid "@{handle} isn’t offering memberships at the moment."
+msgstr "@{handle} hiện chưa mở gói thành viên nào."
+
+#. placeholder {0}: asset.symbol
+#: src/features/tips/components/ChatTipButton.tsx:73
+msgid "🎁 I sent you a tip of {value} {0}"
+msgstr "🎁 Mình vừa gửi bạn tip {value} {0}"
+
+#: src/features/membership/MembersScreen.tsx:45
+msgid "Active"
+msgstr "Đang hoạt động"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:93
+#: src/features/membership/MembersScreen.tsx:43
+msgid "Active members"
+msgstr "Thành viên đang hoạt động"
+
+#: src/features/membership/MembershipSettingsScreen.tsx:216
+#: src/features/membership/MembershipSettingsScreen.tsx:223
+msgid "Add a plan"
+msgstr "Thêm gói"
+
+#: src/features/creator/components/TopSupporters.tsx:68
+msgid "Anonymous supporter"
+msgstr "Người ủng hộ ẩn danh"
+
+#: src/features/gating/components/GateDialog.tsx:350
+msgid "Any of my plans"
+msgstr "Bất kỳ gói nào của tôi"
+
+#: src/features/gating/components/GateDialog.tsx:350
+msgid "Any of my plans, selected"
+msgstr "Bất kỳ gói nào của tôi, đã chọn"
+
+#: src/features/gating/components/GateDialog.tsx:356
+msgid "Any plan"
+msgstr "Mọi gói"
+
+#: src/features/creator/components/ProfileCreatorSection.tsx:107
+#: src/features/membership/components/PayMembershipDialog.tsx:170
+#: src/features/membership/MembershipOfferScreen.tsx:185
+msgid "Become a member"
+msgstr "Trở thành thành viên"
+
+#: src/features/creator/components/ProfileCreatorSection.tsx:96
+msgid "Become a member of @{handle}"
+msgstr "Trở thành thành viên của @{handle}"
+
+#: src/features/membership/components/PlanDialog.tsx:147
+msgid "Between {PRICE_MIN_USD} and {PRICE_MAX_USD} USDC."
+msgstr "Từ {PRICE_MIN_USD} đến {PRICE_MAX_USD} USDC."
+
+#: src/features/creator/CreatorDashboardScreen.tsx:113
+msgid "Chart"
+msgstr "Biểu đồ"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:302
+msgid "Confirm in your wallet…"
+msgstr "Xác nhận trong ví của bạn…"
+
+#: src/features/membership/components/MemberUntil.tsx:21
+#: src/features/membership/components/PayMembershipDialog.tsx:304
+msgid "Confirming your payment…"
+msgstr "Đang xác nhận thanh toán…"
+
+#: src/features/membership/MembershipSettingsScreen.tsx:158
+msgid "Create a plan to let people support you every month and unlock your members-only posts."
+msgstr "Tạo một gói để mọi người ủng hộ bạn hằng tháng và mở khóa các bài chỉ dành cho thành viên."
+
+#: src/features/creator/CreatorDashboardScreen.tsx:51
+#: src/features/membership/MembershipSettingsScreen.tsx:253
+#: src/features/membership/MembershipSettingsScreen.tsx:256
+#: src/Navigation.tsx:629
+#: src/screens/Settings/Settings.tsx:220
+#: src/screens/Settings/Settings.tsx:223
+msgid "Creator dashboard"
+msgstr "Bảng điều khiển nhà sáng tạo"
+
+#: src/features/membership/components/PlanDialog.tsx:155
+msgid "Description (optional)"
+msgstr "Mô tả (không bắt buộc)"
+
+#. placeholder {0}: plan.record.name
+#: src/features/membership/MembershipSettingsScreen.tsx:178
+msgid "Edit {0}"
+msgstr "Sửa {0}"
+
+#: src/features/membership/components/PlanDialog.tsx:55
+#: src/features/membership/components/PlanDialog.tsx:102
+msgid "Edit plan"
+msgstr "Sửa gói"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:101
+msgid "ended in 30 days"
+msgstr "hết hạn trong 30 ngày"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:99
+#: src/features/membership/MembersScreen.tsx:48
+msgid "Expired members"
+msgstr "Thành viên đã hết hạn"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:105
+msgid "Followers"
+msgstr "Người theo dõi"
+
+#. placeholder {0}: formatUsdc(cheapest.priceUsdc)
+#: src/features/creator/components/ProfileCreatorSection.tsx:80
+msgid "From {0} USDC per 30 days"
+msgstr "Từ {0} USDC mỗi 30 ngày"
+
+#. placeholder {0}: plan.name
+#: src/features/membership/MembershipOfferScreen.tsx:176
+msgid "Join {0}"
+msgstr "Tham gia {0}"
+
+#: src/features/creator/components/ProfileCreatorSection.tsx:95
+msgid "Join @{handle} again"
+msgstr "Tham gia lại @{handle}"
+
+#: src/features/creator/components/ProfileCreatorSection.tsx:105
+#: src/features/membership/MyMembershipsScreen.tsx:186
+#: src/features/membership/MyMembershipsScreen.tsx:198
+msgid "Join again"
+msgstr "Tham gia lại"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:54
+msgid "Last 30 days"
+msgstr "30 ngày qua"
+
+#: src/features/membership/MembershipSettingsScreen.tsx:133
+msgid "Link the wallet you want to be paid in first. Members pay the wallet linked to your account."
+msgstr "Hãy liên kết ví bạn muốn nhận tiền trước. Thành viên sẽ trả vào ví đã liên kết với tài khoản của bạn."
+
+#: src/features/membership/components/PayMembershipDialog.tsx:125
+msgid "Link this wallet to your account in Settings → Wallets before paying with it."
+msgstr "Hãy liên kết ví này với tài khoản trong Cài đặt → Ví trước khi thanh toán bằng ví này."
+
+#: src/features/membership/MembershipOfferScreen.tsx:114
+msgid "Manage your plans"
+msgstr "Quản lý các gói của bạn"
+
+#: src/features/membership/components/MemberUntil.tsx:31
+msgid "Member"
+msgstr "Thành viên"
+
+#: src/features/membership/components/MemberUntil.tsx:35
+msgid "Member until {date}"
+msgstr "Thành viên đến {date}"
+
+#: src/features/membership/components/MemberUntil.tsx:34
+msgid "Member until {date} ({daysLeft, plural, one {# day left} other {# days left}})"
+msgstr "Thành viên đến {date} ({daysLeft, plural, other {còn # ngày}})"
+
+#: src/features/gating/describe.ts:23
+msgid "members of a creator"
+msgstr "thành viên của một nhà sáng tạo"
+
+#: src/features/gating/describe.ts:22
+msgid "members of a specific membership plan"
+msgstr "thành viên của một gói cụ thể"
+
+#: src/features/gating/components/GateDialog.tsx:318
+msgid "Members of my membership"
+msgstr "Thành viên gói của tôi"
+
+#: src/features/gating/components/GateDialog.tsx:317
+msgid "Members of my membership, selected"
+msgstr "Thành viên gói của tôi, đã chọn"
+
+#: src/features/membership/MembersScreen.tsx:120
+msgid "Members whose 30 days ended show up here, so you can invite them back."
+msgstr "Thành viên đã hết 30 ngày sẽ hiện ở đây để bạn mời họ quay lại."
+
+#: src/features/creator/components/ProfileCreatorSection.tsx:76
+#: src/features/membership/MembershipOfferScreen.tsx:71
+#: src/features/membership/MembershipSettingsScreen.tsx:88
+#: src/Navigation.tsx:605
+#: src/screens/Settings/Settings.tsx:204
+#: src/screens/Settings/Settings.tsx:207
+msgid "Membership"
+msgstr "Gói thành viên"
+
+#: src/features/membership/components/MemberUntil.tsx:29
+msgid "Membership ended"
+msgstr "Thành viên đã hết hạn"
+
+#: src/features/membership/components/MemberUntil.tsx:29
+msgid "Membership ended on {date}"
+msgstr "Thành viên đã hết hạn vào {date}"
+
+#. placeholder {0}: route.params.name
+#: src/Navigation.tsx:316
+msgid "Membership of @{0}"
+msgstr "Gói thành viên của @{0}"
+
+#: src/features/membership/MyMembershipsScreen.tsx:48
+#: src/Navigation.tsx:621
+#: src/screens/Settings/Settings.tsx:212
+#: src/screens/Settings/Settings.tsx:215
+msgid "My memberships"
+msgstr "Thành viên của tôi"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:126
+msgid "New members"
+msgstr "Thành viên mới"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:124
+msgid "New members per day"
+msgstr "Thành viên mới mỗi ngày"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:42
+msgid "New members per day, {total} in total"
+msgstr "Thành viên mới mỗi ngày, tổng cộng {total}"
+
+#: src/features/membership/components/PlanDialog.tsx:55
+#: src/features/membership/components/PlanDialog.tsx:102
+msgid "New plan"
+msgstr "Gói mới"
+
+#: src/features/membership/MembersScreen.tsx:103
+msgid "No active members yet"
+msgstr "Chưa có thành viên nào"
+
+#: src/features/membership/MembersScreen.tsx:105
+msgid "No expired memberships"
+msgstr "Chưa có thành viên hết hạn"
+
+#: src/features/membership/MembershipOfferScreen.tsx:146
+msgid "No membership plans right now"
+msgstr "Hiện chưa có gói thành viên nào"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:148
+msgid "No new members in the last 30 days yet."
+msgstr "Chưa có thành viên mới trong 30 ngày qua."
+
+#: src/features/membership/MembershipSettingsScreen.tsx:155
+msgid "No plans yet"
+msgstr "Chưa có gói nào"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:146
+msgid "No tips in the last 30 days yet."
+msgstr "Chưa có tip nào trong 30 ngày qua."
+
+#: src/features/membership/components/PlanCard.tsx:70
+msgid "Not active"
+msgstr "Đang tắt"
+
+#: src/features/membership/MembershipSettingsScreen.tsx:97
+msgid "Offer paid memberships to your followers. Members pay you in USDC on Base, straight from their wallet to yours. Krao never holds the money and takes no fee. A membership lasts {PERIOD_DAYS} days and does not renew by itself yet: members renew when they choose to."
+msgstr "Mở gói thành viên trả phí cho người theo dõi. Thành viên trả USDC trên Base, chuyển thẳng từ ví của họ vào ví của bạn. Krao không giữ tiền và không thu phí. Mỗi gói kéo dài {PERIOD_DAYS} ngày và chưa tự gia hạn: thành viên tự gia hạn khi muốn."
+
+#: src/features/membership/components/PlanDialog.tsx:189
+msgid "One per line. Up to {PLAN_PERKS_MAX} perks of {PERK_MAX} characters each."
+msgstr "Mỗi dòng một quyền lợi. Tối đa {PLAN_PERKS_MAX} quyền lợi, mỗi quyền lợi {PERK_MAX} ký tự."
+
+#: src/features/gating/components/GatedContent.tsx:96
+msgid "Only members can read this. <0>See the membership offer</0>"
+msgstr "Chỉ thành viên mới đọc được nội dung này. <0>Xem gói thành viên</0>"
+
+#: src/features/gating/components/GateDialog.tsx:332
+msgid "Only people with an active paid membership of yours can read this. It closes again for them when their 30 days end."
+msgstr "Chỉ người đang là thành viên trả phí của bạn mới đọc được. Nội dung sẽ đóng lại với họ khi hết 30 ngày."
+
+#: src/features/creator/components/TopSupporters.tsx:126
+msgid "Opens their profile"
+msgstr "Mở trang cá nhân của họ"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:292
+#: src/features/membership/components/PayMembershipDialog.tsx:309
+msgid "Pay {price} USDC"
+msgstr "Trả {price} USDC"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:61
+msgid "Pay for a membership"
+msgstr "Trả phí thành viên"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:201
+msgid "Paying from the mobile app is coming soon. Use Krao on the web for now."
+msgstr "Thanh toán từ ứng dụng di động sắp ra mắt. Tạm thời hãy dùng Krao trên web."
+
+#: src/features/membership/components/MemberUntil.tsx:26
+msgid "Payment not accepted"
+msgstr "Thanh toán không được chấp nhận"
+
+#. placeholder {0}: membership.reason
+#: src/features/membership/components/MemberUntil.tsx:25
+msgid "Payment not accepted: {0}"
+msgstr "Thanh toán không được chấp nhận: {0}"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:157
+msgid "Payment saved. Your membership will show up in a moment."
+msgstr "Đã lưu thanh toán. Gói thành viên sẽ hiện sau ít phút."
+
+#: src/features/membership/components/PayMembershipDialog.tsx:144
+msgid "Payment sent. Your membership will show up in a moment."
+msgstr "Đã gửi thanh toán. Gói thành viên sẽ hiện sau ít phút."
+
+#: src/features/membership/components/PlanDialog.tsx:105
+msgid "People who join pay this price in USDC for each 30 days. People who already joined keep the price they paid until their period ends."
+msgstr "Người tham gia trả mức giá này bằng USDC cho mỗi 30 ngày. Người đã tham gia giữ nguyên mức giá đã trả đến hết kỳ."
+
+#: src/features/membership/components/PlanCard.tsx:60
+msgid "per 30 days"
+msgstr "mỗi 30 ngày"
+
+#: src/features/membership/components/PlanDialog.tsx:171
+msgid "Perks (optional)"
+msgstr "Quyền lợi (không bắt buộc)"
+
+#: src/features/membership/components/PlanDialog.tsx:90
+msgid "Plan created"
+msgstr "Đã tạo gói"
+
+#: src/features/membership/components/PlanDialog.tsx:159
+msgid "Plan description"
+msgstr "Mô tả gói"
+
+#: src/features/membership/components/PlanDialog.tsx:119
+msgid "Plan name"
+msgstr "Tên gói"
+
+#: src/features/membership/components/PlanDialog.tsx:175
+msgid "Plan perks, one per line"
+msgstr "Quyền lợi của gói, mỗi dòng một mục"
+
+#: src/features/membership/components/PlanDialog.tsx:90
+msgid "Plan saved"
+msgstr "Đã lưu gói"
+
+#: src/features/membership/MembershipSettingsScreen.tsx:74
+msgid "Plan turned off"
+msgstr "Đã tắt gói"
+
+#: src/features/membership/MembershipSettingsScreen.tsx:74
+msgid "Plan turned on"
+msgstr "Đã bật gói"
+
+#: src/features/membership/components/PlanDialog.tsx:134
+msgid "Price in USDC"
+msgstr "Giá bằng USDC"
+
+#: src/features/membership/components/PlanDialog.tsx:129
+msgid "Price per 30 days (USDC)"
+msgstr "Giá mỗi 30 ngày (USDC)"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:292
+#: src/features/membership/components/PayMembershipDialog.tsx:307
+msgid "Renew for {price} USDC"
+msgstr "Gia hạn {price} USDC"
+
+#. placeholder {0}: plan.name
+#: src/features/membership/MembershipOfferScreen.tsx:175
+msgid "Renew with {0}"
+msgstr "Gia hạn bằng {0}"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:168
+msgid "Renew your membership"
+msgstr "Gia hạn thành viên"
+
+#: src/features/creator/components/ProfileCreatorSection.tsx:93
+msgid "Renew your membership of @{handle}"
+msgstr "Gia hạn thành viên của @{handle}"
+
+#: src/features/membership/components/PlanDialog.tsx:202
+#: src/features/membership/components/PlanDialog.tsx:209
+msgid "Save plan"
+msgstr "Lưu gói"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:277
+#: src/features/membership/components/PayMembershipDialog.tsx:284
+msgid "Save the payment"
+msgstr "Lưu thanh toán"
+
+#: src/features/gating/components/GatedContent.tsx:100
+msgid "See the membership offer"
+msgstr "Xem gói thành viên"
+
+#: src/features/membership/MembersScreen.tsx:115
+msgid "Share your profile and members-only posts. People who join will show up here."
+msgstr "Hãy chia sẻ trang cá nhân và các bài chỉ dành cho thành viên. Người tham gia sẽ hiện ở đây."
+
+#: src/features/membership/MembershipOfferScreen.tsx:121
+msgid "Sign in to become a member."
+msgstr "Đăng nhập để trở thành thành viên."
+
+#: src/features/membership/components/PayMembershipDialog.tsx:126
+msgid "Something went wrong with the payment. Please try again."
+msgstr "Thanh toán gặp lỗi. Vui lòng thử lại."
+
+#: src/features/membership/MembershipOfferScreen.tsx:80
+msgid "Support @{handle} every month and unlock what they share with members. You pay in USDC on Base, straight from your wallet to theirs. Krao never holds the money and takes no fee. A membership lasts {PERIOD_DAYS} days and does not renew by itself."
+msgstr "Ủng hộ @{handle} hằng tháng và mở khóa nội dung họ chia sẻ cho thành viên. Bạn trả USDC trên Base, chuyển thẳng từ ví của bạn vào ví của họ. Krao không giữ tiền và không thu phí. Mỗi gói kéo dài {PERIOD_DAYS} ngày và không tự gia hạn."
+
+#: src/features/membership/components/PayMembershipDialog.tsx:267
+msgid "The payment could not be saved yet. Please try again."
+msgstr "Chưa lưu được thanh toán. Vui lòng thử lại."
+
+#: src/features/membership/components/PayMembershipDialog.tsx:247
+msgid "This address does not match the wallet Krao has verified for @{creatorHandle}, or another verified wallet looks very similar to it. Do not pay unless you are sure."
+msgstr "Địa chỉ này không khớp với ví Krao đã xác minh của @{creatorHandle}, hoặc có ví đã xác minh khác trông rất giống. Đừng thanh toán nếu bạn chưa chắc chắn."
+
+#: src/features/membership/MembershipOfferScreen.tsx:110
+msgid "This is your own membership offer. <0>Manage your plans</0>"
+msgstr "Đây là gói thành viên của chính bạn. <0>Quản lý các gói</0>"
+
+#: src/features/tips/components/TipDialog.tsx:291
+#: src/features/tips/components/TipDialog.tsx:296
+msgid "Tip anonymously"
+msgstr "Tip ẩn danh"
+
+#: src/features/creator/CreatorDashboardScreen.tsx:117
+msgid "Tips per day"
+msgstr "Tip mỗi ngày"
+
+#. placeholder {0}: formatUsd(total)
+#: src/features/creator/CreatorDashboardScreen.tsx:41
+msgid "Tips per day, {0} in total"
+msgstr "Tip mỗi ngày, tổng cộng {0}"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:213
+msgid "To pay, first link the wallet you will pay from to your account."
+msgstr "Để thanh toán, trước tiên hãy liên kết ví bạn sẽ trả bằng với tài khoản."
+
+#: src/features/creator/components/TopSupporters.tsx:36
+msgid "Top supporters"
+msgstr "Người ủng hộ hàng đầu"
+
+#. placeholder {0}: plan.record.name
+#: src/features/membership/MembershipSettingsScreen.tsx:189
+msgid "Turn off {0}"
+msgstr "Tắt {0}"
+
+#. placeholder {0}: plan.record.name
+#: src/features/membership/MembershipSettingsScreen.tsx:190
+msgid "Turn on {0}"
+msgstr "Bật {0}"
+
+#: src/features/membership/MembershipSettingsScreen.tsx:235
+msgid "Turning a plan off stops new members from joining it. Current members keep their access until their period ends."
+msgstr "Tắt gói sẽ chặn thành viên mới tham gia gói đó. Thành viên hiện tại vẫn giữ quyền truy cập đến hết kỳ."
+
+#: src/features/membership/MyMembershipsScreen.tsx:94
+msgid "When you join a creator’s membership, it shows up here with the date it ends and a button to renew."
+msgstr "Khi bạn tham gia gói thành viên của một nhà sáng tạo, gói sẽ hiện ở đây cùng ngày hết hạn và nút gia hạn."
+
+#: src/features/membership/MembershipSettingsScreen.tsx:65
+msgid "You can have at most {PLANS_MAX} active plans"
+msgstr "Bạn chỉ có thể có tối đa {PLANS_MAX} gói đang bật"
+
+#: src/features/membership/MembershipSettingsScreen.tsx:228
+msgid "You can have at most {PLANS_MAX} active plans. Turn one off to add another."
+msgstr "Bạn chỉ có thể có tối đa {PLANS_MAX} gói đang bật. Hãy tắt một gói để thêm gói khác."
+
+#: src/features/gating/components/GateDialog.tsx:341
+msgid "You have no active membership plan yet. Add one in Settings → Membership first."
+msgstr "Bạn chưa có gói thành viên nào đang bật. Hãy thêm một gói trong Cài đặt → Gói thành viên trước."
+
+#: src/features/membership/components/PayMembershipDialog.tsx:174
+msgid "You pay {price} USDC on Base straight from your wallet to @{creatorHandle}’s. Krao never holds your funds and takes no fee. Access lasts {PERIOD_DAYS} days and does not renew by itself."
+msgstr "Bạn trả {price} USDC trên Base, chuyển thẳng từ ví của bạn vào ví của @{creatorHandle}. Krao không giữ tiền của bạn và không thu phí. Quyền truy cập kéo dài {PERIOD_DAYS} ngày và không tự gia hạn."
+
+#: src/features/membership/MyMembershipsScreen.tsx:86
+msgid "You’re not a member of anyone yet"
+msgstr "Bạn chưa là thành viên của ai"
+
+#: src/features/membership/components/PayMembershipDialog.tsx:143
+msgid "You’re now a member of @{creatorHandle}"
+msgstr "Bạn đã là thành viên của @{creatorHandle}"
+
+#. placeholder {0}: i18n.date(new Date(previousExpiresAt), {dateStyle: 'medium'})
+#: src/features/membership/components/PayMembershipDialog.tsx:257
+msgid "Your current period ends on {0}."
+msgstr "Kỳ hiện tại của bạn kết thúc vào {0}."
+
+#: src/features/membership/MembershipOfferScreen.tsx:95
+msgid "Your last membership"
+msgstr "Gói thành viên gần nhất của bạn"
+
+#: src/features/membership/MembershipOfferScreen.tsx:93
+msgid "Your membership"
+msgstr "Gói thành viên của bạn"
+
+#: src/features/tips/components/TipDialog.tsx:301
+msgid "Your name is hidden from their top supporters. The transfer itself is still public on the blockchain."
+msgstr "Tên bạn được ẩn khỏi danh sách người ủng hộ hàng đầu của họ. Bản thân giao dịch chuyển tiền vẫn công khai trên blockchain."
+
+#: src/features/membership/components/PayMembershipDialog.tsx:123
+msgid "Your payment was sent, but it could not be saved to your account yet. Save it now: you will not be charged again."
+msgstr "Thanh toán đã được gửi nhưng chưa lưu được vào tài khoản của bạn. Hãy lưu ngay bây giờ: bạn sẽ không bị tính phí lần nữa."
+
+#: src/features/membership/components/PayMembershipDialog.tsx:315
+msgid "Your payment was sent. This takes a few seconds while Krao checks it on the blockchain."
+msgstr "Thanh toán đã được gửi. Mất vài giây để Krao kiểm tra trên blockchain."
+
