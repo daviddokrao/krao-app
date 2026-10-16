@@ -886,13 +886,17 @@ msgstr "{joinedAllTimeCount, plural, other {# người dùng}} đã đăng ký!"
 msgid "{label}, Beta"
 msgstr ""
 
-#: src/features/analytics/AnalyticsScreen.tsx:259
+#: src/features/analytics/AnalyticsScreen.tsx:258
 msgid "{label}: {count}"
 msgstr "{label}: {count}"
 
+#: src/features/analytics/AnalyticsScreen.tsx:259
+msgid "{label}: {count}, {share} of sign-ups"
+msgstr "{label}: {count}, {share} số lượt đăng ký"
+
 #: src/features/analytics/AnalyticsScreen.tsx:260
-msgid "{label}: {count}, {share} of sign-ups, {previous} of the step before"
-msgstr "{label}: {count}, {share} số lượt đăng ký, {previous} so với bước trước"
+#~ msgid "{label}: {count}, {share} of sign-ups, {previous} of the step before"
+#~ msgstr "{label}: {count}, {share} số lượt đăng ký, {previous} so với bước trước"
 
 #: src/view/com/composer/videos/SubtitleDialog.tsx:138
 msgid "{MAX_ALT_TEXT, plural, other {Alt text must be less than # characters.}}"
@@ -959,7 +963,7 @@ msgstr "{notificationCount, plural, other {# mục chưa đọc}}"
 msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr "{numMatches, plural, other {Tìm thấy # liên hệ}}"
 
-#: src/features/analytics/AnalyticsScreen.tsx:325
+#: src/features/analytics/AnalyticsScreen.tsx:322
 msgid "{option} weeks"
 msgstr "{option} tuần"
 
@@ -1034,11 +1038,15 @@ msgstr "{requestCount, plural, other {# yêu cầu}}"
 msgid "{requestCount}+ requests"
 msgstr "{requestCount}+ yêu cầu"
 
-#: src/features/analytics/AnalyticsScreen.tsx:289
-msgid "{share} of sign-ups · {previous} of the step before"
-msgstr "{share} số lượt đăng ký · {previous} so với bước trước"
+#: src/features/analytics/AnalyticsScreen.tsx:288
+msgid "{share} of sign-ups"
+msgstr "{share} số lượt đăng ký"
 
-#: src/features/analytics/AnalyticsScreen.tsx:437
+#: src/features/analytics/AnalyticsScreen.tsx:289
+#~ msgid "{share} of sign-ups · {previous} of the step before"
+#~ msgstr "{share} số lượt đăng ký · {previous} so với bước trước"
+
+#: src/features/analytics/AnalyticsScreen.tsx:434
 msgid "{size} sign-ups"
 msgstr "{size} lượt đăng ký"
 
@@ -1063,8 +1071,12 @@ msgid "{title}, selected"
 msgstr "{title}, đã chọn"
 
 #: src/features/onchain/OnchainSection.tsx:412
-msgid "{title}, your profile picture"
-msgstr "{title}, ảnh hồ sơ của bạn"
+msgid "{title}, used as the profile picture"
+msgstr "{title}, đang dùng làm ảnh hồ sơ"
+
+#: src/features/onchain/OnchainSection.tsx:412
+#~ msgid "{title}, your profile picture"
+#~ msgstr "{title}, ảnh hồ sơ của bạn"
 
 #: src/components/verification/VerifierDialog.tsx:62
 msgid "{userName} is a trusted verifier"
@@ -1548,10 +1560,14 @@ msgid "Accounts"
 msgstr "Tài khoản"
 
 #: src/features/analytics/AnalyticsScreen.tsx:225
-msgid "Accounts created in this period, and how many of them reached each step."
-msgstr "Các tài khoản tạo trong khoảng này và số tài khoản đã đạt từng bước."
+msgid "Accounts created in this period, and how many of them reached each step, in any order."
+msgstr "Các tài khoản tạo trong khoảng này và số tài khoản đã đạt từng bước, không theo thứ tự."
 
-#: src/features/analytics/AnalyticsScreen.tsx:331
+#: src/features/analytics/AnalyticsScreen.tsx:225
+#~ msgid "Accounts created in this period, and how many of them reached each step."
+#~ msgstr "Các tài khoản tạo trong khoảng này và số tài khoản đã đạt từng bước."
+
+#: src/features/analytics/AnalyticsScreen.tsx:328
 msgid "Accounts grouped by the week they signed up, and how many were active on day 1, 7 and 30 after. A dash means the day has not come yet."
 msgstr "Tài khoản nhóm theo tuần đăng ký, và số tài khoản còn hoạt động vào ngày thứ 1, 7 và 30 sau đó. Dấu gạch nghĩa là chưa đến ngày đó."
 
@@ -4963,15 +4979,15 @@ msgstr "Bình minh"
 msgid "Day"
 msgstr "Ngày"
 
-#: src/features/analytics/AnalyticsScreen.tsx:358
+#: src/features/analytics/AnalyticsScreen.tsx:355
 msgid "Day 1"
 msgstr "Ngày 1"
 
-#: src/features/analytics/AnalyticsScreen.tsx:360
+#: src/features/analytics/AnalyticsScreen.tsx:357
 msgid "Day 30"
 msgstr "Ngày 30"
 
-#: src/features/analytics/AnalyticsScreen.tsx:359
+#: src/features/analytics/AnalyticsScreen.tsx:356
 msgid "Day 7"
 msgstr "Ngày 7"
 
@@ -8633,7 +8649,7 @@ msgstr "Ngôn ngữ"
 msgid "Larger"
 msgstr "Lớn hơn"
 
-#: src/features/analytics/AnalyticsScreen.tsx:323
+#: src/features/analytics/AnalyticsScreen.tsx:320
 msgid "Last {option} weeks"
 msgstr "{option} tuần gần nhất"
 
@@ -10537,7 +10553,7 @@ msgstr ""
 msgid "No results."
 msgstr "Không có kểt quả nào."
 
-#: src/features/analytics/AnalyticsScreen.tsx:345
+#: src/features/analytics/AnalyticsScreen.tsx:342
 msgid "No sign-ups in this period yet."
 msgstr "Chưa có lượt đăng ký nào trong khoảng này."
 
@@ -10774,7 +10790,7 @@ msgstr "bây giờ"
 msgid "Nudity"
 msgstr "Khỏa thân"
 
-#: src/features/analytics/AnalyticsScreen.tsx:312
+#: src/features/analytics/AnalyticsScreen.tsx:309
 msgid "Number of weeks"
 msgstr "Số tuần"
 
@@ -13537,7 +13553,7 @@ msgstr "Kết quả sẽ hiện khi khảo sát kết thúc."
 msgid "Resync contacts"
 msgstr "Đồng bộ lại danh bạ"
 
-#: src/features/analytics/AnalyticsScreen.tsx:309
+#: src/features/analytics/AnalyticsScreen.tsx:306
 msgid "Retention"
 msgstr "Giữ chân"
 
@@ -18582,7 +18598,7 @@ msgstr ""
 msgid "We've confirmed your age assurance status. You can now close this dialog."
 msgstr ""
 
-#: src/features/analytics/AnalyticsScreen.tsx:372
+#: src/features/analytics/AnalyticsScreen.tsx:369
 msgid "Week"
 msgstr "Tuần"
 
@@ -18590,7 +18606,7 @@ msgstr "Tuần"
 msgid "Week of {week}"
 msgstr "Tuần {week}"
 
-#: src/features/analytics/AnalyticsScreen.tsx:425
+#: src/features/analytics/AnalyticsScreen.tsx:422
 msgid "Week of {week}, {size} sign-ups. {summary}"
 msgstr "Tuần {week}, {size} lượt đăng ký. {summary}"
 

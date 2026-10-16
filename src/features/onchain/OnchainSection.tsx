@@ -409,7 +409,7 @@ function NftCard({nft}: {nft: OnchainNft}) {
   const count = Number(nft.balance)
   const showCount = Number.isFinite(count) && count > 1
   const label = nft.isAvatar
-    ? l`${title}, your profile picture`
+    ? l`${title}, used as the profile picture`
     : showCount
       ? l`${title}, ${count} owned`
       : title
