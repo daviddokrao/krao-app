@@ -13,10 +13,13 @@ import {
 } from '#/lib/constants'
 import {logger as notyLogger} from '#/lib/notifications/util'
 import {isNetworkError} from '#/lib/strings/errors'
+import {sanitizeAppLanguageSetting} from '#/locale/helpers'
+import {useLanguagePrefs} from '#/state/preferences'
 import {type SessionAccount, usePdsClient, useSession} from '#/state/session'
 import {useAgeAssurance} from '#/ageAssurance'
 import {useAnalytics} from '#/analytics'
 import {IS_DEV, IS_NATIVE} from '#/env'
+import {setPushLanguage} from '#/features/push/language'
 import {app} from '#/lexicons'
 
 /**
@@ -47,6 +50,7 @@ async function _registerPushToken({
   token: Notifications.DevicePushToken
   extra?: {
     ageRestricted?: boolean
+    appLanguage?: string
   }
 }) {
   try {
@@ -67,9 +71,30 @@ async function _registerPushToken({
     })
 
     notyLogger.debug(`registerPushToken: success`)
+
+    if (extra.appLanguage) {
+      await _setPushLanguage(client, extra.appLanguage)
+    }
   } catch (error) {
     if (!isNetworkError(error)) {
       notyLogger.warn(`registerPushToken: failed`, {safeMessage: error})
+    }
+  }
+}
+
+/**
+ * @private
+ * Tells Krao which language to write this account's pushes in (the app's
+ * UI language). Separate from registration: a failure here must not look like
+ * a failed registration.
+ */
+async function _setPushLanguage(client: Client, appLanguage: string) {
+  try {
+    await setPushLanguage(client, appLanguage)
+    notyLogger.debug(`setPushLanguage: success`, {appLanguage})
+  } catch (error) {
+    if (!isNetworkError(error)) {
+      notyLogger.warn(`setPushLanguage: failed`, {safeMessage: error})
     }
   }
 }
@@ -90,6 +115,12 @@ const _registerPushTokenDebounced = debounce(_registerPushToken, 100)
 export function useRegisterPushToken() {
   const client = usePdsClient()
   const {currentAccount} = useSession()
+  /*
+   * Part of the callback's identity on purpose: when the user changes the app
+   * language the registration effect below re-runs, which registers the token
+   * again and sends the new language to Krao.
+   */
+  const appLanguage = sanitizeAppLanguageSetting(useLanguagePrefs().appLanguage)
 
   return useCallback(
     ({
@@ -106,10 +137,11 @@ export function useRegisterPushToken() {
         token,
         extra: {
           ageRestricted: isAgeRestricted,
+          appLanguage,
         },
       })
     },
-    [client, currentAccount],
+    [client, currentAccount, appLanguage],
   )
 }
 
