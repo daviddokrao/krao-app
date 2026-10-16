@@ -21,7 +21,14 @@ export type NftHoldingCondition = {
   contract: string
   tokenId?: string
 }
-export type GateCondition = TokenBalanceCondition | NftHoldingCondition
+/** Krao community: satisfied by members of the community (M29) */
+export type CommunityMemberCondition = {
+  $type: 'net.krao.gate.defs#communityMember'
+  /** at:// URI of the net.krao.community.profile record */
+  community: string
+}
+export type GateCondition =
+  TokenBalanceCondition | NftHoldingCondition | CommunityMemberCondition
 
 export type GateRule = {
   uri: string
