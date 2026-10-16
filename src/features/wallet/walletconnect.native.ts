@@ -40,6 +40,8 @@ function getWcProvider(): Promise<WcProvider> {
       projectId: WALLETCONNECT_PROJECT_ID,
       chains: [REQUIRED_CHAIN],
       showQrModal: false,
+      // No usage events to WalletConnect's analytics endpoint; only the relay
+      telemetryEnabled: false,
       metadata: {
         name: 'Krao',
         description: 'Krao Network',
