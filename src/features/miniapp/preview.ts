@@ -145,7 +145,61 @@ export type ChangeLine = {
   counterparty?: string
 }
 
-function shortAddress(address: string) {
+const ERC20_TRANSFER_SELECTOR = '0xa9059cbb'
+
+/**
+ * The recipient and amount of an ERC-20 `transfer(address,uint256)` call,
+ * read from the calldata the wallet will sign (not from the simulation), or
+ * undefined for any other call. A token transfer is sent to the token's
+ * contract, so without this the preview would show the contract as "To".
+ */
+export function decodeErc20Transfer(
+  data: string | undefined,
+): {recipient: string; amount: string} | undefined {
+  if (!data || data.length !== 2 + 8 + 64 * 2) return undefined
+  if (data.slice(0, 10).toLowerCase() !== ERC20_TRANSFER_SELECTOR) {
+    return undefined
+  }
+  const addressWord = data.slice(10, 74)
+  const amountWord = data.slice(74)
+  if (
+    !/^[0-9a-fA-F]{64}$/.test(addressWord) ||
+    !/^[0-9a-fA-F]{64}$/.test(amountWord)
+  ) {
+    return undefined
+  }
+  // An address is the low 20 bytes: dirty high bytes are not a plain transfer
+  if (!/^0{24}$/.test(addressWord.slice(0, 24))) return undefined
+  return {
+    recipient: `0x${addressWord.slice(24).toLowerCase()}`,
+    amount: BigInt(`0x${amountWord}`).toString(),
+  }
+}
+
+/** The token contract a transfer goes through, and who really receives it */
+export type TransactionParties = {
+  /** Who receives the value: the recipient of a token transfer, else `to` */
+  recipient: string
+  /** Set for a token transfer: the contract the call is sent to */
+  tokenContract?: string
+  /** Token amount in base units, for a token transfer */
+  tokenAmount?: string
+}
+
+export function transactionParties(request: {
+  to: string
+  data?: string
+}): TransactionParties {
+  const transfer = decodeErc20Transfer(request.data)
+  if (!transfer) return {recipient: request.to}
+  return {
+    recipient: transfer.recipient,
+    tokenContract: request.to,
+    tokenAmount: transfer.amount,
+  }
+}
+
+export function shortAddress(address: string) {
   return address.length > 12
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
     : address

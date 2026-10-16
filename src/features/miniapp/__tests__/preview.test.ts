@@ -2,10 +2,12 @@ import {describe, expect, it} from '@jest/globals'
 
 import {
   type BalanceChange,
+  decodeErc20Transfer,
   describeApproval,
   describeChange,
   evaluatePreview,
   sortWarnings,
+  transactionParties,
 } from '../preview'
 
 const warn = (code: string, severity: 'info' | 'warning' | 'danger') => ({
@@ -235,5 +237,45 @@ describe('describeApproval', () => {
         unlimited: true,
       }).asset,
     ).toBe('0x1234...cdef')
+  })
+})
+
+describe('token transfers', () => {
+  const USDC = '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913'
+  const CREATOR = '0x1111111111111111111111111111111111111111'
+  const data =
+    '0xa9059cbb' +
+    CREATOR.slice(2).padStart(64, '0') +
+    (5_000_000).toString(16).padStart(64, '0')
+
+  it('reads the real recipient and amount of an ERC-20 transfer', () => {
+    expect(decodeErc20Transfer(data)).toEqual({
+      recipient: CREATOR,
+      amount: '5000000',
+    })
+    expect(transactionParties({to: USDC, data})).toEqual({
+      recipient: CREATOR,
+      tokenContract: USDC,
+      tokenAmount: '5000000',
+    })
+  })
+
+  it('keeps `to` as the recipient of anything else', () => {
+    expect(transactionParties({to: CREATOR})).toEqual({recipient: CREATOR})
+    // approve(address,uint256) has the same shape and another selector
+    const approve = '0x095ea7b3' + data.slice(10)
+    expect(transactionParties({to: USDC, data: approve})).toEqual({
+      recipient: USDC,
+    })
+  })
+
+  it('refuses calldata that is not a clean transfer', () => {
+    expect(decodeErc20Transfer(undefined)).toBeUndefined()
+    expect(decodeErc20Transfer(data + '00')).toBeUndefined()
+    expect(decodeErc20Transfer(data.slice(0, -2))).toBeUndefined()
+    // Dirty high bytes in the address word
+    const dirty = '0xa9059cbb' + 'ff' + data.slice(12)
+    expect(decodeErc20Transfer(dirty)).toBeUndefined()
+    expect(decodeErc20Transfer('0xa9059cbb' + 'zz'.repeat(64))).toBeUndefined()
   })
 })

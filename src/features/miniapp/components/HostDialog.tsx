@@ -27,6 +27,11 @@ export function useHostDialog() {
   const [view, setView] = useState<HostView>()
   const settle = useRef<(value: unknown) => void>(undefined)
   const decline = useRef<unknown>(undefined)
+  /*
+   * Each question gets a fresh panel: a "I understand the risk" tick given
+   * for one transaction must never carry over to the next.
+   */
+  const [seq, setSeq] = useState(0)
 
   const ask = <T,>(next: HostView, declined: T) =>
     new Promise<T>(resolve => {
@@ -35,6 +40,7 @@ export function useHostDialog() {
       settle.current = resolve as (value: unknown) => void
       decline.current = declined
       setView(next)
+      setSeq(n => n + 1)
       control.open()
     })
 
@@ -75,13 +81,18 @@ export function useHostDialog() {
           style={web({maxWidth: 450})}>
           {view?.type === 'wallet' && (
             <WalletChooser
+              key={seq}
               appName={view.appName}
               addresses={view.addresses}
               onAnswer={answer}
             />
           )}
           {view?.type === 'preview' && (
-            <TxPreviewPanel request={view.request} onDecision={answer} />
+            <TxPreviewPanel
+              key={seq}
+              request={view.request}
+              onDecision={answer}
+            />
           )}
           <Dialog.Close />
         </Dialog.ScrollableInner>

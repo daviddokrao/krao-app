@@ -20,7 +20,9 @@ import {
   type InspectResult,
   type PreviewRequest,
   type PreviewWarning,
+  shortAddress,
   sortWarnings,
+  transactionParties,
 } from '../preview'
 import {useSimulationQuery} from '../queries'
 
@@ -229,7 +231,7 @@ function RequestDetails({request}: {request: PreviewRequest}) {
           <Text
             testID="txPreviewPayload"
             selectable
-            numberOfLines={12}
+            // In full: a cut-off message could hide what is really signed
             style={[a.text_sm, a.leading_snug]}>
             {request.payload}
           </Text>
@@ -241,14 +243,29 @@ function RequestDetails({request}: {request: PreviewRequest}) {
     request.value && /^[0-9]+$/.test(request.value)
       ? formatUnits(request.value, 18)
       : undefined
+  // A token transfer is a call to the token: show who gets the tokens
+  const parties = transactionParties(request)
   return (
     <View style={[a.gap_sm]}>
       <View style={[a.gap_xs]}>
         <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
           <Trans>To</Trans>
         </Text>
-        <AddressDisplay address={request.to} />
+        <View testID="txPreviewRecipient">
+          <AddressDisplay
+            address={parties.recipient}
+            style={[a.text_md, a.font_semi_bold]}
+          />
+        </View>
       </View>
+      {parties.tokenContract && (
+        <View testID="txPreviewTokenContract" style={[a.gap_2xs]}>
+          <Text style={[a.text_xs, t.atoms.text_contrast_medium]}>
+            <Trans>Token contract</Trans>
+          </Text>
+          <AddressDisplay address={parties.tokenContract} style={[a.text_xs]} />
+        </View>
+      )}
       {value && value !== '0' && (
         <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
           <Trans>
@@ -257,7 +274,7 @@ function RequestDetails({request}: {request: PreviewRequest}) {
           </Trans>
         </Text>
       )}
-      {!!request.data && (
+      {!!request.data && !parties.tokenContract && (
         <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
           <Trans>It also calls a contract.</Trans>
         </Text>
@@ -314,21 +331,31 @@ function ChangeList({
         )}
       </Text>
       {changes.map((c, i) => (
-        <Text
-          key={i}
-          style={[
-            a.text_lg,
-            a.font_bold,
-            {
-              color:
-                direction === 'out'
-                  ? t.palette.negative_500
-                  : t.palette.positive_600,
-            },
-          ]}>
-          {direction === 'out' ? '- ' : '+ '}
-          {c.amount ?? c.raw ?? ''} {c.asset}
-        </Text>
+        <View key={i} style={[a.gap_2xs]}>
+          <Text
+            style={[
+              a.text_lg,
+              a.font_bold,
+              {
+                color:
+                  direction === 'out'
+                    ? t.palette.negative_500
+                    : t.palette.positive_600,
+              },
+            ]}>
+            {direction === 'out' ? '- ' : '+ '}
+            {c.amount ?? c.raw ?? ''} {c.asset}
+          </Text>
+          {c.counterparty && (
+            <Text style={[a.text_xs, t.atoms.text_contrast_medium]}>
+              {direction === 'out' ? (
+                <Trans>to {shortAddress(c.counterparty)}</Trans>
+              ) : (
+                <Trans>from {shortAddress(c.counterparty)}</Trans>
+              )}
+            </Text>
+          )}
+        </View>
       ))}
     </View>
   )

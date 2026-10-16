@@ -14,7 +14,12 @@ import {type PreviewRequest} from './preview'
  * waiting, the request is answered "no", so nothing is left half-done.
  */
 export function useTxApproval() {
-  const [pending, setPending] = useState<{request: PreviewRequest}>()
+  const [pending, setPending] = useState<{
+    request: PreviewRequest
+    /** A new panel per request, so nothing ticked for one carries over */
+    seq: number
+  }>()
+  const seq = useRef(0)
   const resolver = useRef<(approved: boolean) => void>(undefined)
 
   useEffect(
@@ -30,7 +35,8 @@ export function useTxApproval() {
       // Only one at a time: an earlier one that is still waiting is cancelled
       resolver.current?.(false)
       resolver.current = resolve
-      setPending({request})
+      seq.current += 1
+      setPending({request, seq: seq.current})
     })
 
   const decide = (approved: boolean) => {
@@ -43,7 +49,11 @@ export function useTxApproval() {
   return {
     approve,
     panel: pending ? (
-      <TxPreviewPanel request={pending.request} onDecision={decide} />
+      <TxPreviewPanel
+        key={pending.seq}
+        request={pending.request}
+        onDecision={decide}
+      />
     ) : null,
   }
 }
