@@ -33,8 +33,14 @@ export function CreatorDashboardScreen({}: Props) {
   const values = daily.map(d =>
     series === 'tips' ? Number(d.tipsUsd) : d.newMembers,
   )
+  /*
+   * Days are UTC days ("2026-10-16" is UTC midnight): shown in local time,
+   * they would read as the day before west of UTC
+   */
   const dayLabel = (date: string | undefined) =>
-    date ? i18n.date(new Date(date), {dateStyle: 'medium'}) : ''
+    date
+      ? i18n.date(new Date(date), {dateStyle: 'medium', timeZone: 'UTC'})
+      : ''
   const total = values.reduce((sum, v) => sum + (Number.isFinite(v) ? v : 0), 0)
   const chartLabel =
     series === 'tips'

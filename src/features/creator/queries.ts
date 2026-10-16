@@ -23,16 +23,19 @@ export type Supporter = {
   /** Missing when the supporter chose to be anonymous */
   did?: string
   anonymous: boolean
-  /** Dollars; a string or a number depending on the indexer */
-  totalUsd: number | string
+  /** US dollars with 2 decimals, eg "12.50" */
+  totalUsd: string
+  /** Verified tips and membership payments counted */
   tipCount: number
 }
 
+/** net.krao.creator.getStats; dollar amounts have 2 decimals ("12.50") */
 export type CreatorStats = {
-  tips30d: {count: number; totalUsd: number | string}
+  tips30d: {count: number; totalUsd: string}
   members: {active: number; new30d: number; expired30d: number}
   followers: {now: number; change30d?: number}
-  daily: {date: string; tipsUsd: number | string; newMembers: number}[]
+  /** The last 30 UTC days, oldest first; `date` is YYYY-MM-DD */
+  daily: {date: string; tipsUsd: string; newMembers: number}[]
 }
 
 /** The accounts that tipped an account the most, highest first */
