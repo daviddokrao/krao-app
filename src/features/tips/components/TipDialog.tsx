@@ -13,13 +13,14 @@ import * as TextField from '#/components/forms/TextField'
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
-import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {IS_WEB} from '#/env'
 import {AddressDisplay} from '#/features/safety/components/AddressDisplay'
 import {useExpectedAddressQuery} from '#/features/safety/queries'
 import {
   WalletRejectedError,
   WalletUnavailableError,
 } from '#/features/wallet/evm'
+import {CAN_CONNECT_WALLET} from '#/features/wallet/mode'
 import {useChainProfileQuery} from '#/features/wallet/queries'
 import {formatUnits, parseUnits, TIP_ASSETS, type TipAsset} from '../assets'
 import {
@@ -93,12 +94,14 @@ function TipDialogInner({
   const [amountText, setAmountText] = useState(TIP_ASSETS[0].presets[1])
   const [message, setMessage] = useState('')
   const amount = parseUnits(amountText, asset.decimals)
-  const canConnect = IS_WEB || KRAO_DEV_WALLET
+  const canConnect = CAN_CONNECT_WALLET
 
   const errorMessage = !sendTip.error
     ? null
     : sendTip.error instanceof WalletUnavailableError
-      ? l`No Ethereum wallet was found in this browser.`
+      ? IS_WEB
+        ? l`No Ethereum wallet was found in this browser.`
+        : l`No wallet app was found on this phone.`
       : sendTip.error instanceof WalletRejectedError
         ? l`The request was cancelled in your wallet.`
         : sendTip.error instanceof TipNotRecordedError

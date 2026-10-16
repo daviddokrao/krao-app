@@ -23,6 +23,7 @@ import {
   WalletRejectedError,
   WalletUnavailableError,
 } from '#/features/wallet/evm'
+import {CAN_CONNECT_WALLET} from '#/features/wallet/mode'
 import {
   useChainProfileQuery,
   useLinkWalletMutation,
@@ -50,12 +51,14 @@ export function WalletsSettingsScreen({}: Props) {
   const {currentAccount} = useSession()
   const {data, isLoading, isError} = useChainProfileQuery(currentAccount?.did)
   const link = useLinkWalletMutation()
-  const canConnect = IS_WEB || KRAO_DEV_WALLET
+  const canConnect = CAN_CONNECT_WALLET
 
   const linkError = !link.error
     ? null
     : link.error instanceof WalletUnavailableError
-      ? l`No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again.`
+      ? IS_WEB
+        ? l`No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again.`
+        : l`No wallet app was found on this phone. Install one such as MetaMask, Trust Wallet or Coinbase Wallet, then try again.`
       : link.error instanceof WalletRejectedError
         ? l`The request was cancelled in your wallet.`
         : l`Something went wrong linking the wallet. Please try again.`
@@ -157,6 +160,27 @@ export function WalletsSettingsScreen({}: Props) {
                     Coinbase Wallet
                   </InlineLinkText>
                   , then come back here.
+                </Trans>
+              </Admonition.Admonition>
+            )}
+            {!IS_WEB && canConnect && !KRAO_DEV_WALLET && (
+              <Admonition.Admonition type="tip" style={[a.mt_md]}>
+                <Trans>
+                  New to wallets? A wallet is an app that holds your tokens and
+                  signs for you; Krao never sees its keys. Install one on this
+                  phone, such as{' '}
+                  <InlineLinkText
+                    to="https://metamask.io/download/"
+                    label={l`Get MetaMask`}>
+                    MetaMask
+                  </InlineLinkText>{' '}
+                  or{' '}
+                  <InlineLinkText
+                    to="https://www.coinbase.com/wallet/downloads"
+                    label={l`Get Coinbase Wallet`}>
+                    Coinbase Wallet
+                  </InlineLinkText>
+                  , then come back here and tap Link a wallet.
                 </Trans>
               </Admonition.Admonition>
             )}

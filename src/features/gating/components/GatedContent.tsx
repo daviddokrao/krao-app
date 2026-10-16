@@ -9,7 +9,7 @@ import {Button, ButtonText} from '#/components/Button'
 import {InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
-import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {CAN_CONNECT_WALLET} from '#/features/wallet/mode'
 import {useChainProfileQuery} from '#/features/wallet/queries'
 import {useDescribeRule} from '../describe'
 import {
@@ -35,8 +35,8 @@ export function GatedContent({uri}: {uri: string}) {
     rule?.hasContent ? currentAccount?.did : undefined,
   )
   const hasWallet = !!myChainProfile?.wallets.some(w => w.status === 'verified')
-  // Wallets are linked from the web for now (no WalletConnect on native)
-  const canLinkHere = IS_WEB || KRAO_DEV_WALLET
+  // Native needs WalletConnect (a project ID) to reach a wallet app
+  const canLinkHere = CAN_CONNECT_WALLET
 
   if (!rule?.hasContent) return null
 

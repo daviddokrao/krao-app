@@ -96,7 +96,7 @@ export function useLinkWalletMutation() {
   return useMutation({
     mutationFn: async ({label}: {label?: string} = {}) => {
       if (!currentAccount) throw new Error('Not signed in')
-      const wallet = await connectEvmWallet()
+      const wallet = await connectEvmWallet({fresh: true})
       const message = formatWalletLinkMessage({
         address: wallet.address,
         chainId: wallet.chainId,

@@ -201,6 +201,14 @@ export const KRAO_DEV_WALLET: boolean =
   process.env.EXPO_PUBLIC_KRAO_DEV_WALLET === 'true'
 
 /**
+ * WalletConnect (Reown) Cloud project ID. On native it connects wallet apps
+ * (link a wallet, tip, open gated posts); native wallets stay off when unset.
+ * Web uses the browser's own wallet and does not need it.
+ */
+export const WALLETCONNECT_PROJECT_ID: string =
+  process.env.EXPO_PUBLIC_WALLETCONNECT_PROJECT_ID || ''
+
+/**
  * JSON-RPC of the local dev chain (Anvil) that the dev wallet sends
  * transactions through.
  */
