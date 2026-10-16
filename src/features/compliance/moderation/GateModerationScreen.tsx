@@ -31,6 +31,7 @@ import {
   useIsGateModeratorQuery,
   useModerationContentMutation,
 } from './queries'
+import {buildReadReason, READ_REASONS, type ReadReason} from './reason'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'GateModeration'>
 
@@ -84,10 +85,17 @@ function ContentViewer() {
   const read = useModerationContentMutation()
   const queryClient = useQueryClient()
   const [post, setPost] = useState('')
-  const [reason, setReason] = useState('')
+  const [category, setCategory] = useState<ReadReason>()
+  const [reportId, setReportId] = useState('')
   const [error, setError] = useState('')
   const [content, setContent] = useState<ModeratedContent>()
   const [busy, setBusy] = useState(false)
+  const reasonLabels: Record<ReadReason, string> = {
+    report: l`User report`,
+    legal: l`Legal request`,
+    appeal: l`Appeal`,
+    other: l`Other`,
+  }
 
   const onView = async () => {
     setError('')
@@ -97,8 +105,15 @@ function ContentViewer() {
       setError(l`Enter a post link or an AT URI (at://…/app.bsky.feed.post/…).`)
       return
     }
-    if (!reason.trim()) {
-      setError(l`Say why you are reading it (for example a report id).`)
+    if (!category) {
+      setError(l`Choose why you are reading it.`)
+      return
+    }
+    const reason = buildReadReason(category, reportId)
+    if (!reason) {
+      setError(
+        l`A report id can only have letters, numbers, dashes and underscores.`,
+      )
       return
     }
     setBusy(true)
@@ -107,7 +122,7 @@ function ContentViewer() {
         'uri' in ref
           ? ref.uri
           : `at://${await resolve(ref.name)}/app.bsky.feed.post/${ref.rkey}`
-      const result = await read.mutateAsync({uri, reason: reason.trim()})
+      const result = await read.mutateAsync({uri, reason})
       setContent(result)
     } catch (err) {
       if (err instanceof ServiceError && err.status === 403) {
@@ -130,8 +145,8 @@ function ContentViewer() {
     <View style={[a.gap_md]}>
       <Admonition.Admonition type="info">
         <Trans>
-          Every read is logged with your account and your reason. Do not share
-          what you see outside the report.
+          Every read is logged with your account and the reason you choose. Do
+          not share what you see outside the report.
         </Trans>
       </Admonition.Admonition>
       <View>
@@ -150,17 +165,37 @@ function ContentViewer() {
           />
         </TextField.Root>
       </View>
-      <View>
+      <View style={[a.gap_sm]}>
         <TextField.LabelText>
           <Trans>Reason (required)</Trans>
         </TextField.LabelText>
+        <View style={[a.flex_row, a.flex_wrap, a.gap_sm]}>
+          {READ_REASONS.map(option => (
+            <Button
+              key={option}
+              testID={`gateModerationReason-${option}`}
+              label={
+                option === category
+                  ? l`${reasonLabels[option]}, selected`
+                  : reasonLabels[option]
+              }
+              color={option === category ? 'primary' : 'secondary'}
+              size="small"
+              onPress={() => setCategory(option)}>
+              <ButtonText>{reasonLabels[option]}</ButtonText>
+            </Button>
+          ))}
+        </View>
         <TextField.Root>
           <TextField.Input
-            testID="gateModerationReason"
-            label={l`Reason for reading the content`}
-            value={reason}
-            onChangeText={setReason}
-            maxLength={500}
+            testID="gateModerationReportId"
+            label={l`Report id (optional)`}
+            placeholder={l`Report id (optional)`}
+            value={reportId}
+            onChangeText={setReportId}
+            autoCapitalize="none"
+            autoCorrect={false}
+            maxLength={40}
           />
         </TextField.Root>
       </View>

@@ -58,14 +58,41 @@ export function useVerifyPhoneCodeMutation() {
       markPhoneVerified()
       if (currentAccount) {
         queryClient.setQueryData(phoneStatusKey(currentAccount.did), status)
+        // A verified number can make the "real person" badge available
+        void queryClient.invalidateQueries({
+          queryKey: createQueryKey('badge-visibility', {
+            did: currentAccount.did,
+          }),
+        })
+        void queryClient.invalidateQueries({
+          queryKey: createQueryKey('human-badge', {did: currentAccount.did}),
+        })
       }
     },
   })
 }
 
-/** Records the consent given at sign-up */
+export type ConsentRecord = {
+  version: string
+  items: string[]
+  createdAt: string
+}
+
+const consentKey = (did: string) => createQueryKey('consent', {did})
+
+/** The consent records of the viewer's account */
+export function useConsentQuery() {
+  return useRewardsQuery<{consents: ConsentRecord[]}>(
+    'net.krao.account.getConsent',
+    'consent',
+  )
+}
+
+/** Records the consent given at sign-up, or later in ConsentGate */
 export function useRecordConsentMutation() {
   const getToken = useRewardsAuth()
+  const queryClient = useQueryClient()
+  const {currentAccount} = useSession()
   return useMutation({
     mutationFn: async ({
       version,
@@ -79,6 +106,13 @@ export function useRecordConsentMutation() {
         body: {version, items},
         token: await getToken(method),
       })
+    },
+    onSuccess: async () => {
+      if (currentAccount) {
+        await queryClient.invalidateQueries({
+          queryKey: consentKey(currentAccount.did),
+        })
+      }
     },
   })
 }

@@ -32,6 +32,7 @@ function createChannel<T>() {
 
 const unsafeLinks = createChannel<UnsafeLinkRequest>()
 const secrets = createChannel<SecretKind[]>()
+const restoredMessages = createChannel<{convoId: string; text: string}>()
 
 /** Asks the user whether to open a link that is on the scam list */
 export const showUnsafeLinkWarning = unsafeLinks.emit
@@ -40,3 +41,10 @@ export const onUnsafeLinkWarning = unsafeLinks.listen
 /** Tells the user a message holds a seed phrase or private key */
 export const showSecretWarning = secrets.emit
 export const onSecretWarning = secrets.listen
+
+/**
+ * Gives a message the chat service refused back to the conversation's input,
+ * so the user can edit it instead of retyping it
+ */
+export const restoreMessageText = restoredMessages.emit
+export const onRestoreMessageText = restoredMessages.listen

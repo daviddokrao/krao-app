@@ -17,7 +17,7 @@ export function UnsafeLinkNotice({url}: {url: string}) {
   return (
     <View
       testID="unsafeLinkNotice"
-      style={[a.flex_row, a.align_center, a.gap_xs, a.pb_sm]}>
+      style={[a.flex_row, a.align_center, a.gap_xs, a.pt_sm]}>
       <WarningIcon fill={t.palette.negative_500} size="sm" />
       <Text
         style={[

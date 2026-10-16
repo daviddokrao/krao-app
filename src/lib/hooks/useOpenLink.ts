@@ -17,7 +17,7 @@ import {useDialogContext} from '#/components/Dialog'
 import {useGlobalDialogsControlContext} from '#/components/dialogs/Context'
 import {useAnalytics} from '#/analytics'
 import {IS_NATIVE} from '#/env'
-import {openLinkIfSafe} from '#/features/safety/guard'
+import {openLinkIfSafe, showAfterClosing} from '#/features/safety/guard'
 
 export function useOpenLink() {
   const ax = useAnalytics()
@@ -27,7 +27,12 @@ export function useOpenLink() {
   const {inAppBrowserConsentControl} = useGlobalDialogsControlContext()
 
   const openLinkUnchecked = useCallback(
-    (url: string, override?: boolean, shouldProxy?: boolean) => {
+    (
+      url: string,
+      override?: boolean,
+      shouldProxy?: boolean,
+      tab?: Window | null,
+    ) => {
       if (isBskyRSSUrl(url) && isRelativeUrl(url)) {
         url = createBskyAppAbsoluteUrl(url)
       }
@@ -72,6 +77,11 @@ export function useOpenLink() {
           return
         }
       }
+      if (tab) {
+        // Krao: the tab opened ahead while the link was checked (web)
+        tab.location.href = url
+        return
+      }
       void Linking.openURL(url)
     },
     [ax, enabled, inAppBrowserConsentControl, t, dialogContext],
@@ -82,14 +92,9 @@ export function useOpenLink() {
     (url: string, override?: boolean, shouldProxy?: boolean) => {
       openLinkIfSafe(
         url,
-        () => openLinkUnchecked(url, override, shouldProxy),
-        show => {
-          if (dialogContext.isWithinDialog) {
-            dialogContext.close(show)
-          } else {
-            show()
-          }
-        },
+        tab => openLinkUnchecked(url, override, shouldProxy, tab),
+        show => showAfterClosing(dialogContext, show),
+        {aheadTab: true},
       )
     },
     [openLinkUnchecked, dialogContext],

@@ -421,7 +421,9 @@ msgid "{0}, a list by {1}"
 msgstr ""
 
 #. placeholder {0}: option.symbol
-#: src/features/gating/components/GateDialog.tsx:295
+#. placeholder {0}: reasonLabels[option]
+#: src/features/compliance/moderation/GateModerationScreen.tsx:179
+#: src/features/gating/components/GateDialog.tsx:307
 #: src/features/tips/components/TipDialog.tsx:198
 msgid "{0}, selected"
 msgstr "{0}, đang chọn"
@@ -1119,10 +1121,10 @@ msgstr ""
 
 #: src/components/contacts/screens/VerifyNumber.tsx:100
 #: src/components/contacts/screens/VerifyNumber.tsx:159
-#: src/components/dms/dialogs/NewChatDialog.tsx:54
-#: src/components/dms/dialogs/NewChatDialog.tsx:89
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:69
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:105
+#: src/components/dms/dialogs/NewChatDialog.tsx:58
+#: src/components/dms/dialogs/NewChatDialog.tsx:94
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:73
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:110
 #: src/components/dms/LeaveConvoPrompt.tsx:39
 #: src/components/moderation/BlockDialog.tsx:281
 #: src/components/moderation/BlockDialog.tsx:310
@@ -1142,6 +1144,10 @@ msgstr "Một dạng xác thực hoàn toàn mới"
 #: src/components/dms/MessageItem.tsx:841
 msgid "A reply to a message sent before you joined"
 msgstr "Một phản hồi cho tin nhắn được gửi trước khi bạn tham gia"
+
+#: src/features/compliance/moderation/GateModerationScreen.tsx:115
+msgid "A report id can only have letters, numbers, dashes and underscores."
+msgstr "Mã báo cáo chỉ được có chữ cái, chữ số, dấu gạch ngang và gạch dưới."
 
 #. Contains a post that originally appeared in English. Consider translating the post text if it makes sense in your language, and noting that the post was translated from English.
 #: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:147
@@ -1167,8 +1173,8 @@ msgstr ""
 msgid "A screenshot of the post composer with a new button next to the post button that says \"Drafts\", with a rainbow firework effect. Below, the text in the composer reads \"Hey, did you hear the news? Krao has drafts now!!!\"."
 msgstr "Ảnh chụp màn hình trình soạn bài đăng với một nút mới cạnh nút đăng có chữ \"Bản nháp\", kèm hiệu ứng pháo hoa cầu vồng. Bên dưới, văn bản trong trình soạn ghi \"Này, bạn nghe tin chưa? Krao có bản nháp rồi!!!\"."
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:102
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:118
+#: src/components/dms/dialogs/NewChatDialog.tsx:107
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:123
 msgid "A selected recipient is not followed by the sender."
 msgstr "Người gửi không theo dõi một trong những người nhận đã chọn."
 
@@ -1238,7 +1244,7 @@ msgstr "Tài khoản"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:459
 #: src/screens/Messages/components/RequestButtons.tsx:104
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:122
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:125
 #: src/view/com/profile/ProfileMenu.tsx:211
 msgctxt "toast"
 msgid "Account blocked"
@@ -1285,7 +1291,7 @@ msgstr "Tùy chọn tài khoản"
 msgid "Account removed from quick access"
 msgstr "Tài khoản đã bị xóa khỏi truy cập nhanh"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:109
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:112
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:89
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:307
 #: src/view/com/profile/ProfileMenu.tsx:198
@@ -1354,7 +1360,7 @@ msgstr "Thêm cảnh báo nội dung"
 #~ msgid "Add a gated image"
 #~ msgstr "Thêm ảnh có giới hạn"
 
-#: src/features/gating/components/GateDialog.tsx:247
+#: src/features/gating/components/GateDialog.tsx:259
 msgid "Add a gated image or video"
 msgstr "Thêm ảnh hoặc video giới hạn theo token"
 
@@ -1393,11 +1399,11 @@ msgstr "Thêm văn bản thay thế (không bắt buộc)"
 msgid "Add another account"
 msgstr "Thêm tài khoản khác"
 
-#: src/view/com/composer/Composer.tsx:1644
+#: src/view/com/composer/Composer.tsx:1672
 msgid "Add another post"
 msgstr "Thêm bài"
 
-#: src/view/com/composer/Composer.tsx:2317
+#: src/view/com/composer/Composer.tsx:2345
 msgid "Add another post to thread"
 msgstr ""
 
@@ -1427,8 +1433,8 @@ msgstr "Thêm emoji để bày tỏ cảm xúc"
 msgid "Add filter"
 msgstr ""
 
-#: src/features/gating/components/GateDialog.tsx:357
-#: src/features/gating/components/GateDialog.tsx:364
+#: src/features/gating/components/GateDialog.tsx:378
+#: src/features/gating/components/GateDialog.tsx:385
 msgid "Add gated content"
 msgstr "Thêm nội dung có giới hạn"
 
@@ -1440,7 +1446,7 @@ msgstr "Thêm thành viên vào nhóm chat"
 msgid "Add image"
 msgstr "Thêm ảnh"
 
-#: src/features/gating/components/GateDialog.tsx:254
+#: src/features/gating/components/GateDialog.tsx:266
 msgid "Add image or video"
 msgstr "Thêm ảnh hoặc video"
 
@@ -1529,8 +1535,8 @@ msgstr ""
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:569
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:575
-#: src/features/gating/components/GateDialog.tsx:48
-#: src/features/gating/components/GateDialog.tsx:160
+#: src/features/gating/components/GateDialog.tsx:49
+#: src/features/gating/components/GateDialog.tsx:168
 msgid "Add token-gated content"
 msgstr "Thêm nội dung giới hạn theo token"
 
@@ -1580,7 +1586,7 @@ msgid "Adjust points"
 msgstr "Điều chỉnh điểm"
 
 #: src/screens/Messages/ConversationSettings/Member.tsx:94
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:155
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:158
 msgid "Admin"
 msgstr "Quản trị viên"
 
@@ -1645,6 +1651,11 @@ msgstr ""
 #: src/ageAssurance/components/NoAccessScreen.tsx:456
 msgid "Age assurance only takes a few minutes."
 msgstr ""
+
+#: src/features/compliance/components/ConsentGate.tsx:99
+#: src/features/compliance/components/ConsentGate.tsx:106
+msgid "Agree and continue"
+msgstr "Đồng ý và tiếp tục"
 
 #: src/components/dialogs/EmailDialog/screens/Update.tsx:220
 msgid "alice@example.com"
@@ -1793,7 +1804,7 @@ msgid "Alt text describes images for blind and low-vision users, and helps give 
 msgstr "Văn bản thay thế mô tả hình ảnh cho người khiếm thị hoặc thị lực yếu, giúp bổ sung ngữ cảnh."
 
 #. placeholder {0}: i + 1
-#: src/features/gating/components/GateDialog.tsx:233
+#: src/features/gating/components/GateDialog.tsx:244
 msgid "Alt text for image {0}"
 msgstr "Mô tả thay thế cho ảnh {0}"
 
@@ -1932,13 +1943,13 @@ msgstr "Liên kết mời cho phép mọi người tham gia nhóm chat này mà 
 msgid "An issue not included in these options"
 msgstr "Vấn đề không nằm trong các tùy chọn này"
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:52
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:67
+#: src/components/dms/dialogs/NewChatDialog.tsx:56
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:71
 msgid "An issue occurred starting the chat, please try again."
 msgstr "Đã xảy ra sự cố khi bắt đầu cuộc trò chuyện, vui lòng thử lại."
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:87
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:103
+#: src/components/dms/dialogs/NewChatDialog.tsx:92
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:108
 msgid "An issue occurred starting the group chat, please try again."
 msgstr "Đã xảy ra sự cố khi bắt đầu nhóm chat, vui lòng thử lại."
 
@@ -2095,6 +2106,7 @@ msgstr "Mật khẩu ứng dụng"
 #: src/components/moderation/LabelsOnMeDialog.tsx:169
 #: src/components/moderation/LabelsOnMeDialog.tsx:172
 #: src/components/moderation/ModerationDetailsDialog.tsx:223
+#: src/features/compliance/moderation/GateModerationScreen.tsx:96
 #: src/screens/ModerationInbox/Notice.tsx:164
 msgid "Appeal"
 msgstr "Kháng nghị"
@@ -2272,7 +2284,7 @@ msgstr "Bạn có chắc chắn muốn xóa khỏi bảng tin của bạn không
 msgid "Are you sure you want to rescind your request to join {0}?"
 msgstr "Bạn có chắc muốn thu hồi yêu cầu tham gia {0}?"
 
-#: src/view/com/composer/Composer.tsx:1782
+#: src/view/com/composer/Composer.tsx:1810
 msgid "Are you sure you'd like to discard this post?"
 msgstr "Bạn có chắc chắn muốn hủy bỏ bài đăng này không?"
 
@@ -2467,16 +2479,20 @@ msgstr "Trước khi chấp nhận yêu cầu trò chuyện này, bạn phải x
 msgid "Before you can get notifications for {name}'s posts, you must first verify your email."
 msgstr ""
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:148
-#: src/components/dms/MessageProfileButton.tsx:60
+#: src/components/dms/dialogs/NewChatDialog.tsx:153
+#: src/components/dms/MessageProfileButton.tsx:63
 #: src/screens/Messages/ChatList.tsx:168
 #: src/screens/Messages/ChatList.tsx:186
 #: src/screens/Messages/ChatList.tsx:287
 #: src/screens/Messages/ChatList.tsx:543
 #: src/screens/Messages/Conversation.tsx:206
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:99
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:102
 msgid "Before you can message another user, you must first verify your email."
 msgstr "Trước khi nhắn tin cho người dùng khác, bạn phải xác minh email của mình."
+
+#: src/features/compliance/components/ConsentGate.tsx:76
+msgid "Before you continue"
+msgstr "Trước khi tiếp tục"
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:328
 msgid "Begin"
@@ -2532,12 +2548,12 @@ msgstr "Ngày sinh"
 #: src/components/moderation/BlockDialog.tsx:184
 #: src/components/moderation/BlockDialog.tsx:190
 #: src/components/moderation/BlockDialog.tsx:210
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:230
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:196
 msgid "Block"
 msgstr "Chặn"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:216
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:219
 msgid "Block {displayName}"
 msgstr "Chặn {displayName}"
 
@@ -2936,8 +2952,8 @@ msgstr "Mã chiến dịch (tuỳ chọn, cho luật theo chiến dịch)"
 #: src/screens/Settings/Settings.tsx:328
 #: src/screens/Takendown.tsx:103
 #: src/screens/Takendown.tsx:106
-#: src/view/com/composer/Composer.tsx:1860
-#: src/view/com/composer/Composer.tsx:1870
+#: src/view/com/composer/Composer.tsx:1888
+#: src/view/com/composer/Composer.tsx:1898
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:44
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:53
 #: src/view/shell/desktop/LeftNav.tsx:232
@@ -3137,8 +3153,8 @@ msgstr "Tùy chọn trò chuyện"
 msgid "Chat owners cannot leave a group chat."
 msgstr ""
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:67
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:82
+#: src/components/dms/dialogs/NewChatDialog.tsx:71
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:86
 msgid "Chat recipient is not followed by the sender."
 msgstr "Người gửi không theo dõi người nhận cuộc trò chuyện."
 
@@ -3285,6 +3301,10 @@ msgstr "Chọn ai có thể tham gia nhóm chat này và bằng cách nào."
 #: src/components/contacts/components/InviteInfo.tsx:57
 msgid "Choose who to invite"
 msgstr ""
+
+#: src/features/compliance/moderation/GateModerationScreen.tsx:109
+msgid "Choose why you are reading it."
+msgstr "Hãy chọn lý do bạn xem nội dung này."
 
 #: src/components/dialogs/ServerInput.tsx:135
 #: src/screens/Login/components/HostingProviderDialog.tsx:155
@@ -3436,8 +3456,8 @@ msgstr "Nhấn để thử lại tin nhắn không thành công"
 #: src/components/verification/VerifierDialog.tsx:147
 #: src/components/WhoCanReply.tsx:218
 #: src/components/WhoCanReply.tsx:225
-#: src/features/compliance/ComplianceHost.tsx:127
-#: src/features/compliance/ComplianceHost.tsx:132
+#: src/features/compliance/ComplianceHost.tsx:129
+#: src/features/compliance/ComplianceHost.tsx:134
 #: src/features/gifPicker/components/GifPickerErrorBoundary.tsx:45
 #: src/features/liveNow/components/EditLiveDialog.tsx:212
 #: src/features/liveNow/components/EditLiveDialog.tsx:218
@@ -3521,7 +3541,7 @@ msgstr ""
 msgid "Closes password update alert"
 msgstr "Đóng cảnh báo cập nhật mật khẩu"
 
-#: src/view/com/composer/Composer.tsx:1868
+#: src/view/com/composer/Composer.tsx:1896
 msgid "Closes post composer and discards post draft"
 msgstr "Đóng trình soạn bài đăng và huỷ bỏ nháp"
 
@@ -3597,7 +3617,7 @@ msgid "Compose new post"
 msgstr "Soạn bài đăng mới"
 
 #. placeholder {0}: MAX_GRAPHEME_LENGTH || 0
-#: src/view/com/composer/Composer.tsx:1744
+#: src/view/com/composer/Composer.tsx:1772
 msgid "Compose posts up to {0, plural, other {# characters}} in length"
 msgstr "Soạn bài đăng với độ dài tối đa {0, plural, other {# kí tự}}"
 
@@ -3605,11 +3625,11 @@ msgstr "Soạn bài đăng với độ dài tối đa {0, plural, other {# kí t
 msgid "Compose reply"
 msgstr "Soạn trả lời"
 
-#: src/view/com/composer/Composer.tsx:2703
+#: src/view/com/composer/Composer.tsx:2744
 msgid "Compressing GIF..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2705
+#: src/view/com/composer/Composer.tsx:2746
 msgid "Compressing video..."
 msgstr "Đang nén video..."
 
@@ -4037,7 +4057,7 @@ msgstr "Không thể tải danh sách"
 msgid "Could not load profile"
 msgstr "Không thể tải hồ sơ"
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:249
+#: src/features/compliance/moderation/GateModerationScreen.tsx:284
 msgid "Could not load the access log."
 msgstr "Không thể tải nhật ký truy cập."
 
@@ -4073,11 +4093,11 @@ msgstr "Không tra được NFT này. Hãy kiểm tra địa chỉ hợp đồng
 msgid "Could not mute chat"
 msgstr "Không thể tắt thông báo chat"
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:62
+#: src/features/compliance/moderation/GateModerationScreen.tsx:63
 msgid "Could not reach the gate service."
 msgstr "Không kết nối được dịch vụ gate."
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:120
+#: src/features/compliance/moderation/GateModerationScreen.tsx:135
 msgid "Could not read the post. Check the link and try again."
 msgstr "Không đọc được bài viết. Hãy kiểm tra liên kết và thử lại."
 
@@ -4097,6 +4117,10 @@ msgstr "Không thể lưu thay đổi: {0}"
 #: src/features/referral/admin/components/KycTab.tsx:240
 msgid "Could not save the review."
 msgstr "Không thể lưu kết quả duyệt."
+
+#: src/features/compliance/components/ConsentGate.tsx:94
+msgid "Could not save your answer. Please try again."
+msgstr "Không lưu được lựa chọn của bạn. Hãy thử lại."
 
 #: src/features/compliance/components/usePhoneErrorMessage.ts:31
 msgid "Could not send the code. Check your connection and try again."
@@ -4465,7 +4489,7 @@ msgstr "Xóa tài khoản của tôi"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:881
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:883
-#: src/view/com/composer/Composer.tsx:1756
+#: src/view/com/composer/Composer.tsx:1784
 msgid "Delete post"
 msgstr "Xóa bài đăng"
 
@@ -4508,7 +4532,7 @@ msgid "Deleted list"
 msgstr ""
 
 #. placeholder {0}: i + 1
-#: src/features/gating/components/GateDialog.tsx:234
+#: src/features/gating/components/GateDialog.tsx:245
 msgid "Describe image {0} for people who can't see it"
 msgstr "Mô tả ảnh {0} cho người không xem được ảnh"
 
@@ -4630,9 +4654,9 @@ msgstr "Đã tắt"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:102
 #: src/screens/Profile/Header/EditProfileDialog.tsx:79
-#: src/view/com/composer/Composer.tsx:1534
-#: src/view/com/composer/Composer.tsx:1579
-#: src/view/com/composer/Composer.tsx:1789
+#: src/view/com/composer/Composer.tsx:1562
+#: src/view/com/composer/Composer.tsx:1607
+#: src/view/com/composer/Composer.tsx:1817
 #: src/view/com/composer/drafts/DraftItem.tsx:243
 #: src/view/com/composer/drafts/DraftsButton.tsx:128
 msgid "Discard"
@@ -4643,14 +4667,14 @@ msgstr "Hủy bỏ"
 msgid "Discard changes?"
 msgstr "Hủy thay đổi?"
 
-#: src/view/com/composer/Composer.tsx:1532
+#: src/view/com/composer/Composer.tsx:1560
 #: src/view/com/composer/drafts/DraftItem.tsx:240
 #: src/view/com/composer/drafts/DraftsButton.tsx:94
 msgid "Discard draft?"
 msgstr "Hủy bản nháp?"
 
-#: src/view/com/composer/Composer.tsx:1549
-#: src/view/com/composer/Composer.tsx:1781
+#: src/view/com/composer/Composer.tsx:1577
+#: src/view/com/composer/Composer.tsx:1809
 msgid "Discard post?"
 msgstr "Hủy bài đăng?"
 
@@ -4688,7 +4712,7 @@ msgstr "Bỏ qua"
 msgid "Dismiss banner"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2645
+#: src/view/com/composer/Composer.tsx:2676
 msgid "Dismiss error"
 msgstr "Bỏ qua lỗi "
 
@@ -5223,7 +5247,7 @@ msgstr ""
 msgid "Enter a password"
 msgstr "Nhập mật khẩu"
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:97
+#: src/features/compliance/moderation/GateModerationScreen.tsx:105
 msgid "Enter a post link or an AT URI (at://…/app.bsky.feed.post/…)."
 msgstr "Nhập liên kết bài viết hoặc AT URI (at://…/app.bsky.feed.post/…)."
 
@@ -5288,7 +5312,7 @@ msgstr "Mở toàn màn hình"
 msgid "Entertainment"
 msgstr "Giải trí"
 
-#: src/view/com/composer/Composer.tsx:2723
+#: src/view/com/composer/Composer.tsx:2764
 #: src/view/com/util/error/ErrorScreen.tsx:40
 msgid "Error"
 msgstr "Lỗi"
@@ -5323,9 +5347,13 @@ msgstr "Nhận được lỗi phản hồi captcha."
 msgid "Error: {error}"
 msgstr "Lỗi: {error}"
 
+#: src/features/compliance/moderation/GateModerationScreen.tsx:147
+msgid "Every read is logged with your account and the reason you choose. Do not share what you see outside the report."
+msgstr "Mỗi lần xem đều được ghi lại cùng tài khoản của bạn và lý do bạn chọn. Đừng chia sẻ những gì bạn thấy ra ngoài báo cáo."
+
 #: src/features/compliance/moderation/GateModerationScreen.tsx:132
-msgid "Every read is logged with your account and your reason. Do not share what you see outside the report."
-msgstr "Mỗi lần đọc đều được ghi nhật ký cùng tài khoản và lý do của bạn. Không chia sẻ những gì bạn thấy ra ngoài báo cáo."
+#~ msgid "Every read is logged with your account and your reason. Do not share what you see outside the report."
+#~ msgstr "Mỗi lần đọc đều được ghi nhật ký cùng tài khoản và lý do của bạn. Không chia sẻ những gì bạn thấy ra ngoài báo cáo."
 
 #: src/components/WhoCanReply.tsx:72
 msgid "Everybody can reply"
@@ -5538,8 +5566,8 @@ msgstr "Không thể sao chép liên kết"
 msgid "Failed to create app password. Please try again."
 msgstr "Không tạo được mật khẩu ứng dụng. Vui lòng thử lại."
 
-#: src/components/dms/MessageProfileButton.tsx:38
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:66
+#: src/components/dms/MessageProfileButton.tsx:41
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:69
 msgid "Failed to create conversation"
 msgstr "Tạo cuộc trò chuyện không thành công"
 
@@ -5724,7 +5752,7 @@ msgid "Failed to remove from Starter Pack"
 msgstr ""
 
 #: src/screens/Messages/ConversationSettings/Member.tsx:56
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:76
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:79
 msgid "Failed to remove group chat member"
 msgstr "Không thể xóa thành viên khỏi nhóm chat"
 
@@ -5741,7 +5769,7 @@ msgstr "Không thể thu hồi yêu cầu của bạn. Vui lòng thử lại."
 msgid "Failed to resolve location. Please try again."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:749
+#: src/view/com/composer/Composer.tsx:750
 msgid "Failed to save draft"
 msgstr "Không lưu được bản nháp"
 
@@ -6349,16 +6377,16 @@ msgstr "Từ <0/>"
 msgid "From these people"
 msgstr ""
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:57
+#: src/features/compliance/moderation/GateModerationScreen.tsx:58
 msgid "Gate moderation"
 msgstr "Kiểm duyệt nội dung gate"
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:220
+#: src/features/compliance/moderation/GateModerationScreen.tsx:255
 msgid "Gated image"
 msgstr "Ảnh giới hạn"
 
-#: src/features/gating/components/GateDialog.tsx:174
-#: src/features/gating/components/GateDialog.tsx:178
+#: src/features/gating/components/GateDialog.tsx:182
+#: src/features/gating/components/GateDialog.tsx:186
 msgid "Gated text"
 msgstr "Văn bản có giới hạn"
 
@@ -6515,7 +6543,7 @@ msgstr "Bắt đầu"
 msgid "GIF"
 msgstr "GIF"
 
-#: src/view/com/composer/Composer.tsx:2728
+#: src/view/com/composer/Composer.tsx:2769
 msgid "GIF uploaded"
 msgstr ""
 
@@ -6624,7 +6652,7 @@ msgstr "Tiếp theo"
 
 #: src/components/dms/ConvoMenu.tsx:262
 #: src/screens/Messages/components/MessagesListInfoPanel.tsx:102
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:194
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:197
 #: src/view/shell/desktop/LeftNav.tsx:340
 #: src/view/shell/desktop/LeftNav.tsx:346
 msgid "Go to profile"
@@ -7208,7 +7236,7 @@ msgstr "Ảnh"
 #. placeholder {0}: i + 1
 #. placeholder {0}: index + 1
 #: src/components/images/Gallery/index.tsx:459
-#: src/features/gating/components/GateDialog.tsx:209
+#: src/features/gating/components/GateDialog.tsx:220
 msgid "Image {0}"
 msgstr "Ảnh {0}"
 
@@ -7473,7 +7501,7 @@ msgstr "Mời {name} tham gia Krao"
 #~ msgid "Invite code"
 #~ msgstr "Mã mời"
 
-#: src/screens/Signup/state.ts:390
+#: src/screens/Signup/state.ts:391
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Không chấp nhận mã mời. Hãy kiểm tra bạn đã nhập đúng chưa và thử lại."
 
@@ -7544,7 +7572,7 @@ msgstr ""
 msgid "Invite your friends to follow your favorite feeds and people"
 msgstr "Mời bạn bè theo dõi bảng tin và người bạn yêu thích"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:155
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:158
 msgid "Invited"
 msgstr "Đã được mời"
 
@@ -7575,7 +7603,7 @@ msgid "It's just you right now! Add more people to your starter pack by searchin
 msgstr "Chỉ mới có bạn thôi! Thêm người khác vào gói khởi đầu của bạn bằng cách tìm kiếm ở trên."
 
 #. placeholder {0}: videoState.jobId
-#: src/view/com/composer/Composer.tsx:2664
+#: src/view/com/composer/Composer.tsx:2705
 msgid "Job ID: {0}"
 msgstr "ID công việc: {0}"
 
@@ -7623,8 +7651,8 @@ msgstr "Tham gia trò chuyện"
 msgid "Journalism"
 msgstr "Báo chí"
 
-#: src/view/com/composer/Composer.tsx:1577
-#: src/view/com/composer/Composer.tsx:1592
+#: src/view/com/composer/Composer.tsx:1605
+#: src/view/com/composer/Composer.tsx:1620
 #: src/view/com/composer/drafts/DraftsButton.tsx:126
 msgid "Keep editing"
 msgstr ""
@@ -7647,7 +7675,7 @@ msgstr "Loại mã"
 msgid "Krao"
 msgstr "Krao"
 
-#: src/features/compliance/ComplianceHost.tsx:102
+#: src/features/compliance/ComplianceHost.tsx:104
 msgid "Krao asks every account to verify a phone number before posting or sending messages, as Vietnamese law requires."
 msgstr "Theo quy định của pháp luật Việt Nam, Krao yêu cầu mọi tài khoản xác thực số điện thoại trước khi đăng bài hoặc nhắn tin."
 
@@ -7726,7 +7754,7 @@ msgstr "Dịch vụ kiểm duyệt Krao"
 msgid "Krao Moderation Service removed a post from Krao for violating our <0>Community Guidelines</0>."
 msgstr "Dịch vụ kiểm duyệt Krao đã gỡ một bài đăng khỏi Krao do vi phạm <0>Nguyên tắc cộng đồng</0> của chúng tôi."
 
-#: src/features/compliance/ComplianceHost.tsx:96
+#: src/features/compliance/ComplianceHost.tsx:98
 msgid "Krao needs a verified phone number before you can post or send messages. You can do it now, or later in Settings under Account and Phone number."
 msgstr "Krao cần số điện thoại đã xác thực trước khi bạn đăng bài hoặc nhắn tin. Bạn có thể làm ngay bây giờ, hoặc sau trong Cài đặt, mục Tài khoản, Số điện thoại."
 
@@ -7749,6 +7777,10 @@ msgstr "Krao lưu danh bạ của bạn dưới dạng dữ liệu được mã 
 #: src/screens/Takendown.tsx:214
 msgid "Krao Terms of Service"
 msgstr "Điều khoản dịch vụ của Krao"
+
+#: src/features/compliance/components/ConsentGate.tsx:79
+msgid "Krao updated its terms and how it handles your data. To keep using Krao, please read and agree to them."
+msgstr "Krao đã cập nhật điều khoản và cách xử lý dữ liệu của bạn. Để tiếp tục dùng Krao, hãy đọc và đồng ý với các nội dung đó."
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:338
 msgid "Krao will choose a set of recommended accounts from people in your network."
@@ -8015,6 +8047,10 @@ msgstr ""
 #: src/screens/SignupQueued.tsx:164
 msgid "left to go."
 msgstr "còn lại."
+
+#: src/features/compliance/moderation/GateModerationScreen.tsx:95
+msgid "Legal request"
+msgstr "Yêu cầu pháp lý"
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:352
 msgid "Let me choose"
@@ -8338,7 +8374,7 @@ msgstr "Tải bài đăng mới"
 msgid "Load new posts from the people you follow"
 msgstr ""
 
-#: src/screens/Messages/components/MessageComposer.tsx:273
+#: src/screens/Messages/components/MessageComposer.tsx:287
 msgctxt "placeholder"
 msgid "Loading chat…"
 msgstr "Đang tải cuộc trò chuyện…"
@@ -8580,12 +8616,12 @@ msgstr "Trình đơn"
 msgid "Message"
 msgstr "Tin nhắn"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:203
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:206
 msgctxt "action"
 msgid "Message"
 msgstr "Tin nhắn"
 
-#: src/screens/Messages/components/MessageComposer.tsx:274
+#: src/screens/Messages/components/MessageComposer.tsx:288
 msgctxt "description"
 msgid "Message"
 msgstr "Tin nhắn"
@@ -8595,11 +8631,11 @@ msgid "Message (optional)"
 msgstr "Tin nhắn (tùy chọn)"
 
 #. placeholder {0}: profile.handle
-#: src/components/dms/MessageProfileButton.tsx:99
+#: src/components/dms/MessageProfileButton.tsx:102
 msgid "Message {0}"
 msgstr "Tin nhắn {0}"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:199
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:202
 msgid "Message {displayName}"
 msgstr "Nhắn tin cho {displayName}"
 
@@ -8628,11 +8664,11 @@ msgstr "Tin nhắn từ @{0}: {1}"
 msgid "Message from server: {0}"
 msgstr "Tin nhắn từ máy chủ: {0}"
 
-#: src/screens/Messages/components/MessageComposer.tsx:270
+#: src/screens/Messages/components/MessageComposer.tsx:284
 msgid "Message input field"
 msgstr "Trường nhập tin nhắn"
 
-#: src/screens/Messages/components/MessageComposer.tsx:128
+#: src/screens/Messages/components/MessageComposer.tsx:142
 msgid "Message is too long ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 msgstr "Tin nhắn quá dài ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 
@@ -8657,12 +8693,12 @@ msgctxt "Name of app icon variant"
 msgid "Midnight"
 msgstr "Nửa đêm"
 
-#: src/features/gating/components/GateDialog.tsx:312
+#: src/features/gating/components/GateDialog.tsx:324
 msgid "Minimum balance"
 msgstr "Số dư tối thiểu"
 
 #. placeholder {0}: asset.symbol
-#: src/features/gating/components/GateDialog.tsx:308
+#: src/features/gating/components/GateDialog.tsx:320
 msgid "Minimum balance ({0} on Base)"
 msgstr "Số dư tối thiểu ({0} trên Base)"
 
@@ -9007,8 +9043,8 @@ msgstr ""
 msgid "New {postsCount, plural, one {post} other {posts}} from {firstAuthorName}"
 msgstr ""
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:162
-#: src/components/dms/dialogs/NewChatDialog.tsx:177
+#: src/components/dms/dialogs/NewChatDialog.tsx:167
+#: src/components/dms/dialogs/NewChatDialog.tsx:182
 #: src/screens/Messages/ChatList.tsx:231
 #: src/screens/Messages/ChatList.tsx:232
 #: src/screens/Messages/ChatList.tsx:455
@@ -9198,20 +9234,20 @@ msgstr "NFT"
 msgid "NFT avatar"
 msgstr "Ảnh đại diện NFT"
 
-#: src/features/gating/components/GateDialog.tsx:326
+#: src/features/gating/components/GateDialog.tsx:338
 msgid "NFT contract"
 msgstr "Hợp đồng NFT"
 
-#: src/features/gating/components/GateDialog.tsx:322
+#: src/features/gating/components/GateDialog.tsx:334
 msgid "NFT contract on Base"
 msgstr "Hợp đồng NFT trên Base"
 
-#: src/features/gating/components/GateDialog.tsx:277
-#: src/features/gating/components/GateDialog.tsx:282
+#: src/features/gating/components/GateDialog.tsx:289
+#: src/features/gating/components/GateDialog.tsx:294
 msgid "NFT holders"
 msgstr "Người nắm giữ NFT"
 
-#: src/features/gating/components/GateDialog.tsx:277
+#: src/features/gating/components/GateDialog.tsx:289
 msgid "NFT holders, selected"
 msgstr "Người giữ NFT, đang chọn"
 
@@ -9563,8 +9599,8 @@ msgstr ""
 msgid "Not Found"
 msgstr "Không tìm thấy"
 
-#: src/features/compliance/ComplianceHost.tsx:140
-#: src/features/compliance/ComplianceHost.tsx:145
+#: src/features/compliance/ComplianceHost.tsx:142
+#: src/features/compliance/ComplianceHost.tsx:147
 msgid "Not now"
 msgstr "Để sau"
 
@@ -9746,21 +9782,21 @@ msgstr "trên<0><1/><2><3/></2></0>"
 msgid "Onboarding reset"
 msgstr "Đặt lại quá trình hướng dẫn"
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:108
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:124
+#: src/components/dms/dialogs/NewChatDialog.tsx:113
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:129
 msgid "One of the selected recipients does not allow group chats."
 msgstr "Một trong những người nhận đã chọn không cho phép nhóm chat."
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:96
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:112
+#: src/components/dms/dialogs/NewChatDialog.tsx:101
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:117
 msgid "One of the selected recipients has blocked you and cannot be messaged."
 msgstr "Một trong những người nhận đã chọn đã chặn bạn nên không thể nhắn tin."
 
-#: src/view/com/composer/Composer.tsx:957
+#: src/view/com/composer/Composer.tsx:968
 msgid "One or more GIFs is missing alt text."
 msgstr "Một hoặc nhiều GIF thiếu văn bản thay thế."
 
-#: src/view/com/composer/Composer.tsx:954
+#: src/view/com/composer/Composer.tsx:965
 msgid "One or more images is missing alt text."
 msgstr "Một hoặc nhiều hình ảnh thiếu văn bản thay thế."
 
@@ -9772,11 +9808,11 @@ msgstr ""
 msgid "One or more of your selected files are too large. Maximum size is {VIDEO_MAX_SIZE_MB} MB."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:760
+#: src/view/com/composer/Composer.tsx:761
 msgid "One or more posts are too long to save as a draft. {MAX_DRAFT_GRAPHEME_LENGTH, plural, one {The maximum number of characters is # character.} other {The maximum number of characters is # characters.}}"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:964
+#: src/view/com/composer/Composer.tsx:975
 msgid "One or more videos is missing alt text."
 msgstr "Một hoặc nhiều video thiếu văn bản thay thế"
 
@@ -9789,7 +9825,7 @@ msgstr "Chỉ {0} có thể trả lời"
 #. placeholder {0}: result.accepted.length
 #. placeholder {1}: next.length
 #. placeholder {2}: next.length
-#: src/view/com/composer/Composer.tsx:241
+#: src/view/com/composer/Composer.tsx:240
 msgid "Only {0} of {1} {2, plural, one {image} other {images}} added; limit is {MAX_GALLERY_IMAGES}"
 msgstr ""
 
@@ -9896,7 +9932,7 @@ msgstr ""
 msgid "Open chat"
 msgstr "Mở cuộc trò chuyện"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:142
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:145
 msgid "Open chat member options for {displayName}"
 msgstr "Mở tùy chọn thành viên nhóm chat cho {displayName}"
 
@@ -9913,8 +9949,8 @@ msgstr ""
 msgid "Open drawer menu"
 msgstr "Mở trình đơn"
 
-#: src/screens/Messages/components/MessageComposer.tsx:232
-#: src/view/com/composer/Composer.tsx:2294
+#: src/screens/Messages/components/MessageComposer.tsx:246
+#: src/view/com/composer/Composer.tsx:2322
 msgid "Open emoji picker"
 msgstr "Mở trình chọn biểu tượng cảm xúc"
 
@@ -10226,6 +10262,7 @@ msgstr "Trạng thái OTA: Không có cập nhật"
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:240
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:244
+#: src/features/compliance/moderation/GateModerationScreen.tsx:97
 #: src/features/referral/admin/components/KycTab.tsx:224
 #: src/view/com/composer/labels/LabelsBtn.tsx:181
 msgid "Other"
@@ -10770,7 +10807,7 @@ msgstr "Chính trị"
 msgid "Porn"
 msgstr "Hình ảnh khiêu dâm"
 
-#: src/view/com/composer/Composer.tsx:1934
+#: src/view/com/composer/Composer.tsx:1962
 msgctxt "action"
 msgid "Post"
 msgstr "Đăng"
@@ -10796,12 +10833,12 @@ msgstr ""
 msgid "Post a video"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1932
+#: src/view/com/composer/Composer.tsx:1960
 msgctxt "action"
 msgid "Post All"
 msgstr "Đăng tất cả"
 
-#: src/view/com/composer/Composer.tsx:1591
+#: src/view/com/composer/Composer.tsx:1619
 msgid "Post anyway"
 msgstr ""
 
@@ -10879,8 +10916,8 @@ msgstr ""
 msgid "Post link"
 msgstr "Liên kết bài đăng"
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:139
-#: src/features/compliance/moderation/GateModerationScreen.tsx:144
+#: src/features/compliance/moderation/GateModerationScreen.tsx:154
+#: src/features/compliance/moderation/GateModerationScreen.tsx:159
 msgid "Post link or AT URI"
 msgstr "Liên kết bài viết hoặc AT URI"
 
@@ -11021,11 +11058,11 @@ msgstr "Chính sách bảo mật"
 msgid "Privacy violation of a minor"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2717
+#: src/view/com/composer/Composer.tsx:2758
 msgid "Processing GIF..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2719
+#: src/view/com/composer/Composer.tsx:2760
 msgid "Processing video..."
 msgstr "Đang xử lý video..."
 
@@ -11080,22 +11117,22 @@ msgid "Public, sharable lists of users to mute or block in bulk."
 msgstr "Danh sách công khai, chia sẻ được của người dùng để cho việc ẩn hoặc chặn hàng loạt."
 
 #. Accessibility label for button to publish a single post
-#: src/view/com/composer/Composer.tsx:1918
+#: src/view/com/composer/Composer.tsx:1946
 msgid "Publish post"
 msgstr "Đăng bài"
 
 #. Accessibility label for button to publish multiple posts in a thread
-#: src/view/com/composer/Composer.tsx:1913
+#: src/view/com/composer/Composer.tsx:1941
 msgid "Publish posts"
 msgstr "Đăng bài"
 
 #. Accessibility label for button to publish multiple replies in a thread
-#: src/view/com/composer/Composer.tsx:1902
+#: src/view/com/composer/Composer.tsx:1930
 msgid "Publish replies"
 msgstr "Đăng trả lời"
 
 #. Accessibility label for button to publish a single reply
-#: src/view/com/composer/Composer.tsx:1907
+#: src/view/com/composer/Composer.tsx:1935
 msgid "Publish reply"
 msgstr "Đăng trả lời"
 
@@ -11288,7 +11325,7 @@ msgstr "Người thật"
 msgid "Reason"
 msgstr "Lý do"
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:155
+#: src/features/compliance/moderation/GateModerationScreen.tsx:170
 msgid "Reason (required)"
 msgstr "Lý do (bắt buộc)"
 
@@ -11300,8 +11337,8 @@ msgid "Reason for appeal"
 msgstr "Lý do khiếu nại"
 
 #: src/features/compliance/moderation/GateModerationScreen.tsx:160
-msgid "Reason for reading the content"
-msgstr "Lý do đọc nội dung"
+#~ msgid "Reason for reading the content"
+#~ msgstr "Lý do đọc nội dung"
 
 #: src/screens/ModerationInbox/Report.tsx:67
 msgid "Reason:"
@@ -11415,7 +11452,7 @@ msgid "Remove {displayName} from Starter Pack"
 msgstr ""
 
 #: src/screens/Messages/ConversationSettings/Member.tsx:157
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:234
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:237
 msgid "Remove {displayName} from this group chat"
 msgstr "Xóa {displayName} khỏi nhóm chat này"
 
@@ -11476,7 +11513,7 @@ msgstr "Xóa bảng tin?"
 msgid "Remove filter"
 msgstr ""
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:238
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:241
 msgid "Remove from chat"
 msgstr "Xóa khỏi cuộc trò chuyện"
 
@@ -11515,7 +11552,7 @@ msgstr "Xóa hình"
 msgid "Remove live status"
 msgstr "Xóa trạng thái trực tiếp"
 
-#: src/features/gating/components/GateDialog.tsx:215
+#: src/features/gating/components/GateDialog.tsx:226
 msgid "Remove media"
 msgstr "Gỡ tệp"
 
@@ -11637,8 +11674,8 @@ msgstr ""
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:568
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:574
-#: src/features/gating/components/GateDialog.tsx:47
-#: src/features/gating/components/GateDialog.tsx:158
+#: src/features/gating/components/GateDialog.tsx:48
+#: src/features/gating/components/GateDialog.tsx:166
 msgid "Replace token-gated content"
 msgstr "Thay nội dung giới hạn theo token"
 
@@ -11702,7 +11739,7 @@ msgstr "Trả lời cho bài đăng này đã bị tắt."
 msgid "Reply"
 msgstr "Trả lời"
 
-#: src/view/com/composer/Composer.tsx:1930
+#: src/view/com/composer/Composer.tsx:1958
 msgctxt "action"
 msgid "Reply"
 msgstr "Trả lời"
@@ -11771,6 +11808,11 @@ msgstr "Hộp thoại báo cáo"
 #: src/screens/CustomFeed/components/CustomFeedHeader.tsx:607
 msgid "Report feed"
 msgstr "Báo cáo bảng tin"
+
+#: src/features/compliance/moderation/GateModerationScreen.tsx:192
+#: src/features/compliance/moderation/GateModerationScreen.tsx:193
+msgid "Report id (optional)"
+msgstr "Mã báo cáo (không bắt buộc)"
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:235
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:238
@@ -12185,22 +12227,22 @@ msgstr "Lưu ngày sinh"
 #: src/screens/SavedFeeds.tsx:124
 #: src/screens/SavedFeeds.tsx:311
 #: src/screens/SavedFeeds.tsx:315
-#: src/view/com/composer/Composer.tsx:1572
+#: src/view/com/composer/Composer.tsx:1600
 #: src/view/com/composer/drafts/DraftsButton.tsx:121
 msgid "Save changes"
 msgstr "Lưu thay đổi"
 
-#: src/view/com/composer/Composer.tsx:1544
+#: src/view/com/composer/Composer.tsx:1572
 #: src/view/com/composer/drafts/DraftsButton.tsx:89
 msgid "Save changes?"
 msgstr "Lưu thay đổi?"
 
-#: src/view/com/composer/Composer.tsx:1572
+#: src/view/com/composer/Composer.tsx:1600
 #: src/view/com/composer/drafts/DraftsButton.tsx:121
 msgid "Save draft"
 msgstr "Lưu bản nháp"
 
-#: src/view/com/composer/Composer.tsx:1546
+#: src/view/com/composer/Composer.tsx:1574
 #: src/view/com/composer/drafts/DraftsButton.tsx:91
 msgid "Save draft?"
 msgstr "Lưu bản nháp?"
@@ -12283,8 +12325,8 @@ msgid "Say hi to someone"
 msgstr "Chào ai đó"
 
 #: src/features/compliance/moderation/GateModerationScreen.tsx:101
-msgid "Say why you are reading it (for example a report id)."
-msgstr "Hãy nêu lý do đọc (ví dụ mã báo cáo)."
+#~ msgid "Say why you are reading it (for example a report id)."
+#~ msgstr "Hãy nêu lý do đọc (ví dụ mã báo cáo)."
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:44
 msgid "Scam"
@@ -12738,7 +12780,7 @@ msgstr "Gửi báo cáo lỗi"
 msgid "Send feedback"
 msgstr "Gửi phản hồi"
 
-#: src/screens/Messages/components/MessageComposer.tsx:343
+#: src/screens/Messages/components/MessageComposer.tsx:357
 msgid "Send message"
 msgstr "Gửi tin nhắn"
 
@@ -12746,8 +12788,8 @@ msgstr "Gửi tin nhắn"
 msgid "Send post to {name}"
 msgstr ""
 
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:160
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:169
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:165
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:174
 msgid "Send post to..."
 msgstr "Gửi bài đăng đến..."
 
@@ -12914,7 +12956,7 @@ msgstr "Hành vi gợi dục hoặc khỏa thân khiêu dâm."
 msgid "Sexually Suggestive"
 msgstr "Khiêu dâm"
 
-#: src/components/Link.tsx:428
+#: src/components/Link.tsx:433
 #: src/components/MediaPreview.tsx:243
 #: src/components/Post/Embed/ImageContextMenu.tsx:74
 #: src/components/StarterPack/QrCodeDialog.tsx:196
@@ -13283,6 +13325,8 @@ msgid "Sign in with wallet"
 msgstr "Đăng nhập bằng ví"
 
 #: src/ageAssurance/components/DataUnavailableScreen.tsx:22
+#: src/features/compliance/components/ConsentGate.tsx:110
+#: src/features/compliance/components/ConsentGate.tsx:115
 #: src/screens/Settings/Settings.tsx:293
 #: src/screens/Settings/Settings.tsx:295
 #: src/screens/Settings/Settings.tsx:327
@@ -13345,7 +13389,7 @@ msgstr "Bỏ qua"
 msgid "Skip contact sharing and continue to the app"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1589
+#: src/view/com/composer/Composer.tsx:1617
 msgid "Skip empty posts?"
 msgstr ""
 
@@ -13464,7 +13508,7 @@ msgstr "Có gì đó không đúng"
 msgid "Something went wrong linking the wallet. Please try again."
 msgstr "Đã có lỗi khi liên kết ví. Vui lòng thử lại."
 
-#: src/features/gating/components/GateDialog.tsx:88
+#: src/features/gating/components/GateDialog.tsx:89
 msgid "Something went wrong saving the gated content. Please try again."
 msgstr "Đã có lỗi khi lưu nội dung giới hạn theo token. Vui lòng thử lại."
 
@@ -13561,7 +13605,7 @@ msgstr ""
 msgid "Start a group chat"
 msgstr ""
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:185
+#: src/components/dms/dialogs/NewChatDialog.tsx:190
 msgid "Start a new chat"
 msgstr "Bắt đầu cuộc trò chuyện mới"
 
@@ -13809,13 +13853,13 @@ msgstr ""
 msgid "Supported · {0}"
 msgstr "Được hỗ trợ · {0}"
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:93
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:109
+#: src/components/dms/dialogs/NewChatDialog.tsx:98
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:114
 msgid "Suspended accounts cannot participate in a group chat."
 msgstr "Tài khoản bị đình chỉ không thể tham gia nhóm chat."
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:58
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:73
+#: src/components/dms/dialogs/NewChatDialog.tsx:62
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:77
 msgid "Suspended accounts cannot participate in chat."
 msgstr "Tài khoản bị đình chỉ không thể tham gia trò chuyện."
 
@@ -14381,8 +14425,8 @@ msgstr "Có vấn đề cập nhật bảng tin của bạn, vui lòng kiểm tr
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:486
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:505
 #: src/screens/Messages/ConversationSettings/Member.tsx:71
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:114
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:127
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:117
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:130
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:117
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:130
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:94
@@ -14660,7 +14704,7 @@ msgstr "Bảng tin này đang trống."
 msgid "This feed is no longer online. We are showing <0>Discover</0> instead."
 msgstr "Bảng tin này không còn trực tuyến. Chúng tôi đang hiển thị <0>Khám phá</0> thay thế."
 
-#: src/features/gating/components/GateDialog.tsx:83
+#: src/features/gating/components/GateDialog.tsx:84
 msgid "This file is too large. Images can be up to 5 MB and videos up to 50 MB."
 msgstr "Tệp quá lớn. Ảnh tối đa 5 MB, video tối đa 50 MB."
 
@@ -14807,13 +14851,17 @@ msgstr "Bài đăng này tự nhận được tạo vào <0>{0}</0>, nhưng Krao
 msgid "This post has an unknown type of threadgate on it. Your app may be out of date."
 msgstr "Bài đăng này có loại threadgate không xác định. Ứng dụng của bạn có thể đã lỗi thời."
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:116
+#: src/features/compliance/moderation/GateModerationScreen.tsx:131
 msgid "This post has no gated content."
 msgstr "Bài viết này không có nội dung giới hạn."
 
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:155
 msgid "This post is only visible to logged-in users."
 msgstr ""
+
+#: src/view/com/composer/Composer.tsx:1061
+msgid "This post looks like it has a seed phrase or private key. Anyone who has it can take all your funds. Remove it before posting."
+msgstr "Bài viết này có vẻ chứa seed phrase hoặc khóa riêng. Ai có chúng đều có thể lấy hết tiền của bạn. Hãy xóa trước khi đăng."
 
 #: src/screens/Bookmarks.tsx:249
 msgid "This post was deleted by its author"
@@ -14823,7 +14871,7 @@ msgstr ""
 msgid "This post will be hidden from feeds and threads. This cannot be undone."
 msgstr "Bài đăng này sẽ bị ẩn khỏi bảng tin và thảo luận. Hành động này không thể hoàn tác."
 
-#: src/view/com/composer/Composer.tsx:1158
+#: src/view/com/composer/Composer.tsx:1175
 msgid "This post's author has disabled quote posts."
 msgstr "Tác giả bài đăng này đã tắt chức năng trích dẫn bài đăng."
 
@@ -14862,6 +14910,10 @@ msgstr ""
 msgid "This site is on a scam list"
 msgstr "Trang này nằm trong danh sách lừa đảo"
 
+#: src/features/gating/components/GateDialog.tsx:363
+msgid "This text looks like it has a seed phrase or private key. Anyone who has it can take all your funds, gated or not. Remove it first."
+msgstr "Nội dung này có vẻ chứa seed phrase hoặc khóa riêng. Ai có chúng đều có thể lấy hết tiền của bạn, dù có khóa nội dung hay không. Hãy xóa trước."
+
 #: src/components/verification/VerificationCreatePrompt.tsx:94
 msgid "This user does not have a display name, and therefore cannot be verified."
 msgstr "Người dùng này không có tên hiển thị, vì vậy không thể được xác minh."
@@ -14870,8 +14922,8 @@ msgstr "Người dùng này không có tên hiển thị, vì vậy không thể
 msgid "This user doesn't have any followers."
 msgstr "Người dùng này không có người nào theo dõi."
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:61
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:76
+#: src/components/dms/dialogs/NewChatDialog.tsx:65
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:80
 msgid "This user has blocked you and cannot be messaged."
 msgstr "Người dùng này đã chặn bạn nên không thể nhắn tin."
 
@@ -14880,8 +14932,8 @@ msgstr "Người dùng này đã chặn bạn nên không thể nhắn tin."
 msgid "This user has blocked you. You cannot view their content."
 msgstr "Người dùng này đã chặn bạn. Bạn không thể thấy nội dung của họ."
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:64
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:79
+#: src/components/dms/dialogs/NewChatDialog.tsx:68
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:83
 msgid "This user has disabled chat and cannot be messaged."
 msgstr "Người dùng này đã tắt trò chuyện nên không thể nhắn tin."
 
@@ -15070,12 +15122,12 @@ msgstr "Bật/tắt tiếng"
 msgid "Token {0}"
 msgstr "Token {0}"
 
-#: src/features/gating/components/GateDialog.tsx:267
-#: src/features/gating/components/GateDialog.tsx:273
+#: src/features/gating/components/GateDialog.tsx:279
+#: src/features/gating/components/GateDialog.tsx:285
 msgid "Token balance"
 msgstr "Số dư token"
 
-#: src/features/gating/components/GateDialog.tsx:267
+#: src/features/gating/components/GateDialog.tsx:279
 msgid "Token balance, selected"
 msgstr "Số dư token, đang chọn"
 
@@ -15083,13 +15135,13 @@ msgstr "Số dư token, đang chọn"
 msgid "Token gate removed"
 msgstr "Đã gỡ giới hạn theo token"
 
-#: src/features/gating/components/GateDialog.tsx:339
+#: src/features/gating/components/GateDialog.tsx:351
 #: src/features/wallet/components/NftAvatarSection.tsx:134
 #: src/features/wallet/components/NftAvatarSection.tsx:138
 msgid "Token ID"
 msgstr "ID token"
 
-#: src/features/gating/components/GateDialog.tsx:335
+#: src/features/gating/components/GateDialog.tsx:347
 msgid "Token ID (optional, any token if empty)"
 msgstr "ID token (tùy chọn, để trống là bất kỳ token nào)"
 
@@ -15104,11 +15156,11 @@ msgstr "Giới hạn theo token · người nắm giữ {0}"
 msgid "Token-gated · holders of {requirementText}"
 msgstr "Giới hạn theo token · người nắm giữ {requirementText}"
 
-#: src/features/gating/components/GateDialog.tsx:145
+#: src/features/gating/components/GateDialog.tsx:153
 msgid "Token-gated content added"
 msgstr "Đã thêm nội dung giới hạn theo token"
 
-#: src/features/gating/components/GateDialog.tsx:144
+#: src/features/gating/components/GateDialog.tsx:152
 msgid "Token-gated content replaced"
 msgstr "Đã thay nội dung giới hạn theo token"
 
@@ -15129,7 +15181,7 @@ msgstr ""
 msgid "Too many contacts - you've exceeded the number of contacts you can import to find your friends"
 msgstr ""
 
-#: src/features/gating/components/GateDialog.tsx:80
+#: src/features/gating/components/GateDialog.tsx:81
 msgid "Too many requests. Please wait a minute and try again."
 msgstr "Quá nhiều yêu cầu. Vui lòng đợi một phút rồi thử lại."
 
@@ -15328,13 +15380,13 @@ msgstr "Không thể xóa"
 msgid "Unable to fetch join requests."
 msgstr "Không thể tải các yêu cầu tham gia."
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:105
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:121
+#: src/components/dms/dialogs/NewChatDialog.tsx:110
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:126
 msgid "Unable to find a selected recipient."
 msgstr "Không tìm thấy một trong những người nhận đã chọn."
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:70
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:85
+#: src/components/dms/dialogs/NewChatDialog.tsx:74
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:89
 msgid "Unable to find the selected recipient."
 msgstr "Không tìm thấy người nhận đã chọn."
 
@@ -15368,7 +15420,7 @@ msgstr ""
 #: src/components/moderation/BlockDialog.tsx:184
 #: src/components/moderation/BlockDialog.tsx:188
 #: src/components/moderation/BlockDialog.tsx:210
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:227
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:230
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:196
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:377
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:443
@@ -15382,7 +15434,7 @@ msgctxt "action"
 msgid "Unblock"
 msgstr "Bỏ chặn"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:215
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:218
 msgid "Unblock {displayName}"
 msgstr "Bỏ chặn {displayName}"
 
@@ -15650,7 +15702,7 @@ msgstr "Đã bỏ đăng ký danh sách"
 msgid "Unsupported clipboard content"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1681
+#: src/view/com/composer/Composer.tsx:1709
 msgid "Unsupported video type: {mimeType}"
 msgstr ""
 
@@ -15743,7 +15795,7 @@ msgstr "Tải lên từ Files"
 msgid "Upload from Library"
 msgstr "Tải lên từ Thư viện"
 
-#: src/view/com/composer/Composer.tsx:2710
+#: src/view/com/composer/Composer.tsx:2751
 msgid "Uploading GIF..."
 msgstr ""
 
@@ -15757,7 +15809,7 @@ msgstr "Đang tải lên hình..."
 msgid "Uploading link thumbnail..."
 msgstr "Đang tải lên hình cho liên kết..."
 
-#: src/view/com/composer/Composer.tsx:2712
+#: src/view/com/composer/Composer.tsx:2753
 msgid "Uploading video..."
 msgstr "Đang tải lên video..."
 
@@ -15769,7 +15821,7 @@ msgstr "Dùng số khác"
 msgid "Use a different phone number"
 msgstr "Dùng số điện thoại khác"
 
-#: src/features/gating/components/GateDialog.tsx:86
+#: src/features/gating/components/GateDialog.tsx:87
 msgid "Use a JPEG, PNG, GIF or WebP image, or an MP4 or WebM video."
 msgstr "Hãy dùng ảnh JPEG, PNG, GIF hoặc WebP, hoặc video MP4 hay WebM."
 
@@ -15892,6 +15944,10 @@ msgstr "Đã tạo danh sách người dùng"
 msgctxt "toast"
 msgid "User list updated"
 msgstr "Đã cập nhật danh sách người dùng"
+
+#: src/features/compliance/moderation/GateModerationScreen.tsx:94
+msgid "User report"
+msgstr "Báo cáo của người dùng"
 
 #: src/screens/Signup/StepHandle/index.tsx:258
 msgid "Username cannot be longer than {MAX_SERVICE_HANDLE_LENGTH, plural, other {# characters}}"
@@ -16029,8 +16085,9 @@ msgstr ""
 
 #: src/components/contacts/screens/PhoneInput.tsx:175
 #: src/components/contacts/screens/VerifyNumber.tsx:220
+#: src/view/com/composer/Composer.tsx:1491
 msgid "Verify phone number"
-msgstr ""
+msgstr "Xác thực số điện thoại"
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:547
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:569
@@ -16056,7 +16113,7 @@ msgstr "Xác minh email của bạn"
 msgid "Verify your identity"
 msgstr "Xác minh danh tính"
 
-#: src/features/compliance/ComplianceHost.tsx:85
+#: src/features/compliance/ComplianceHost.tsx:87
 msgid "Verify your phone number"
 msgstr "Xác thực số điện thoại của bạn"
 
@@ -16065,8 +16122,16 @@ msgid "Verify your phone number to earn the badge. It shows on your profile once
 msgstr "Hãy xác thực số điện thoại để nhận huy hiệu. Huy hiệu sẽ hiện trên hồ sơ của bạn khi bạn đủ điều kiện."
 
 #: src/view/com/composer/Composer.tsx:1161
-msgid "Verify your phone number to post."
-msgstr "Hãy xác thực số điện thoại để đăng bài."
+#~ msgid "Verify your phone number to post."
+#~ msgstr "Hãy xác thực số điện thoại để đăng bài."
+
+#: src/view/com/composer/Composer.tsx:1178
+msgid "Verify your phone number to post. Your post will be saved as a draft."
+msgstr "Hãy xác thực số điện thoại để đăng bài. Bài của bạn sẽ được lưu thành bản nháp."
+
+#: src/features/compliance/toast.ts:16
+msgid "Verify your phone number to send messages. You can do it in Settings, under Account and Phone number."
+msgstr "Hãy xác thực số điện thoại để gửi tin nhắn. Bạn có thể làm trong Cài đặt, mục Tài khoản và Số điện thoại."
 
 #: src/ageAssurance/components/RedirectOverlay.tsx:296
 #: src/components/ageAssurance/AgeAssuranceRedirectDialog.tsx:209
@@ -16137,11 +16202,11 @@ msgstr "Không tìm thấy video."
 msgid "Video settings"
 msgstr "Cài đặt video"
 
-#: src/view/com/composer/Composer.tsx:2730
+#: src/view/com/composer/Composer.tsx:2771
 msgid "Video uploaded"
 msgstr "Đã tải lên video"
 
-#: src/view/com/composer/Composer.tsx:403
+#: src/view/com/composer/Composer.tsx:404
 msgid "Video uploads aren’t available yet."
 msgstr ""
 
@@ -16154,8 +16219,8 @@ msgstr "Video: {0}"
 msgid "Videos"
 msgstr "Video"
 
-#: src/view/com/composer/Composer.tsx:462
-#: src/view/com/composer/Composer.tsx:594
+#: src/view/com/composer/Composer.tsx:463
+#: src/view/com/composer/Composer.tsx:595
 #: src/view/com/composer/SelectMediaButton.tsx:446
 msgid "Videos must be 10 minutes or less."
 msgstr ""
@@ -16164,7 +16229,7 @@ msgstr ""
 msgid "Vietnamese numbers can be written 0912345678 or +84912345678."
 msgstr "Số Việt Nam có thể viết 0912345678 hoặc +84912345678."
 
-#: src/view/com/composer/Composer.tsx:1269
+#: src/view/com/composer/Composer.tsx:1286
 msgctxt "Action to view the post the user just created"
 msgid "View"
 msgstr ""
@@ -16196,7 +16261,7 @@ msgid "View {0}’s profile"
 msgstr ""
 
 #: src/components/dms/MessagesListHeader.tsx:111
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:188
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:191
 msgid "View {displayName}’s profile"
 msgstr "Xem hồ sơ của {displayName}"
 
@@ -16226,9 +16291,9 @@ msgstr "Xem chi tiết"
 msgid "View full thread"
 msgstr "Xem toàn bộ thảo luận"
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:51
-#: src/features/compliance/moderation/GateModerationScreen.tsx:172
-#: src/features/compliance/moderation/GateModerationScreen.tsx:179
+#: src/features/compliance/moderation/GateModerationScreen.tsx:52
+#: src/features/compliance/moderation/GateModerationScreen.tsx:207
+#: src/features/compliance/moderation/GateModerationScreen.tsx:214
 #: src/features/referral/ReferralScreen.tsx:181
 #: src/features/referral/ReferralScreen.tsx:184
 #: src/Navigation.tsx:541
@@ -16270,7 +16335,7 @@ msgstr "Xem thêm"
 msgid "View more trending videos"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1264
+#: src/view/com/composer/Composer.tsx:1281
 msgid "View post"
 msgstr ""
 
@@ -16657,7 +16722,7 @@ msgstr ""
 msgid "We're sorry, you cannot access this screen at this time."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1156
+#: src/view/com/composer/Composer.tsx:1173
 msgid "We're sorry! The post you are replying to has been deleted."
 msgstr "Xin lỗi! Bài đăng bạn đang trả lời đã bị xóa."
 
@@ -16725,7 +16790,7 @@ msgid "what’s up"
 msgstr ""
 
 #: src/view/com/auth/SplashScreen.web.tsx:98
-#: src/view/com/composer/Composer.tsx:1645
+#: src/view/com/composer/Composer.tsx:1673
 #: src/view/com/feeds/ComposerPrompt.tsx:206
 msgid "What's up?"
 msgstr "Có gì mới?"
@@ -16747,7 +16812,7 @@ msgstr "Ai có thể tham gia nhóm chat này và bằng cách nào"
 msgid "Who can reply"
 msgstr "Ai có thể trả lời"
 
-#: src/features/gating/components/GateDialog.tsx:262
+#: src/features/gating/components/GateDialog.tsx:274
 msgid "Who can unlock it"
 msgstr "Ai có thể mở khóa"
 
@@ -16755,7 +16820,7 @@ msgstr "Ai có thể mở khóa"
 msgid "Who can verify?"
 msgstr "Ai có thể xác minh?"
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:243
+#: src/features/compliance/moderation/GateModerationScreen.tsx:278
 msgid "Who read gated content"
 msgstr "Ai đã đọc nội dung gate"
 
@@ -16819,7 +16884,7 @@ msgstr "Bạn có muốn chặn người dùng này và/hoặc rời cuộc trò
 msgid "Would you like to save this as a draft before viewing your drafts?"
 msgstr "Bạn có muốn lưu bài này thành bản nháp trước khi xem các bản nháp không?"
 
-#: src/view/com/composer/Composer.tsx:1560
+#: src/view/com/composer/Composer.tsx:1588
 msgid "Would you like to save this as a draft to edit later?"
 msgstr "Bạn có muốn lưu bài này thành bản nháp để sửa sau không?"
 
@@ -16828,12 +16893,12 @@ msgstr "Bạn có muốn lưu bài này thành bản nháp để sửa sau khôn
 msgid "Write a post"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1743
+#: src/view/com/composer/Composer.tsx:1771
 msgid "Write post"
 msgstr "Soạn bài đăng"
 
 #: src/screens/PostThread/components/ThreadComposePrompt.tsx:91
-#: src/view/com/composer/Composer.tsx:1643
+#: src/view/com/composer/Composer.tsx:1671
 msgid "Write your reply"
 msgstr "Soạn trả lời"
 
@@ -17032,11 +17097,11 @@ msgid "You can now sign in with your new password."
 msgstr "Bạn có thể đăng nhập bằng mật khẩu mới của mình."
 
 #. Toast shown when the user tries to add more images but the post gallery is already at the cap
-#: src/view/com/composer/Composer.tsx:228
+#: src/view/com/composer/Composer.tsx:227
 msgid "You can only add up to {MAX_GALLERY_IMAGES, plural, other {# images}} per post"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1565
+#: src/view/com/composer/Composer.tsx:1593
 msgid "You can only save drafts up to 1000 characters."
 msgstr "Bản nháp chỉ lưu được tối đa 1000 ký tự."
 
@@ -17075,8 +17140,8 @@ msgstr "Bạn có thể cập nhật lại sau trong phần cài đặt."
 msgid "You cannot add more than {EMOJI_REACTION_LIMIT, plural, one {# emoji reaction} other {# emoji reactions}}"
 msgstr "Bạn không thể thêm quá {EMOJI_REACTION_LIMIT, plural, other {# biểu cảm emoji}}"
 
-#: src/components/dms/dialogs/NewChatDialog.tsx:99
-#: src/components/dms/dialogs/ShareViaChatDialog.tsx:115
+#: src/components/dms/dialogs/NewChatDialog.tsx:104
+#: src/components/dms/dialogs/ShareViaChatDialog.tsx:120
 msgid "You cannot create a group chat yet."
 msgstr "Bạn chưa thể tạo nhóm chat."
 
@@ -17089,8 +17154,8 @@ msgstr "Bạn không thể tự duyệt tài khoản của mình."
 msgid "You cannot update your birthdate while using an app password. Please sign in with your main password to update your birthdate."
 msgstr ""
 
-#: src/features/compliance/moderation/GateModerationScreen.tsx:66
-#: src/features/compliance/moderation/GateModerationScreen.tsx:114
+#: src/features/compliance/moderation/GateModerationScreen.tsx:67
+#: src/features/compliance/moderation/GateModerationScreen.tsx:129
 msgid "You do not have permission to view gated content."
 msgstr "Bạn không có quyền xem nội dung gate."
 
@@ -17194,7 +17259,7 @@ msgstr ""
 msgid "You have temporarily reached the limit for video uploads. Please try again later."
 msgstr "Bạn đã tạm thời đạt giới hạn tải lên video. Vui lòng thử lại sau."
 
-#: src/view/com/composer/Composer.tsx:1555
+#: src/view/com/composer/Composer.tsx:1583
 msgid "You have unsaved changes to this draft, would you like to save them?"
 msgstr "Bản nháp này có thay đổi chưa lưu, bạn có muốn lưu không?"
 
@@ -17304,11 +17369,11 @@ msgstr ""
 msgid "You need to verify your email address before you can enable email 2FA."
 msgstr "Bạn cần phải xác thực địa chỉ email trước khi mở xác thực hai lớp qua email."
 
-#: src/features/compliance/ComplianceHost.tsx:82
+#: src/features/compliance/ComplianceHost.tsx:84
 msgid "You need to verify your phone number to post"
 msgstr "Bạn cần xác thực số điện thoại để đăng bài"
 
-#: src/features/compliance/ComplianceHost.tsx:84
+#: src/features/compliance/ComplianceHost.tsx:86
 msgid "You need to verify your phone number to send messages"
 msgstr "Bạn cần xác thực số điện thoại để nhắn tin"
 
@@ -17325,7 +17390,7 @@ msgstr "Bạn đã vô hiệu hóa @{0} trước đây."
 msgid "You probably want to restart the app now."
 msgstr "Bạn có thể cần phải khởi động lại ứng ngay bây giờ."
 
-#: src/features/gating/components/GateDialog.tsx:77
+#: src/features/gating/components/GateDialog.tsx:78
 msgid "You reached today’s limit for gated uploads. Try again tomorrow."
 msgstr "Bạn đã đạt giới hạn tải lên nội dung giới hạn theo token của hôm nay. Hãy thử lại vào ngày mai."
 
@@ -17361,7 +17426,7 @@ msgstr "Bạn đã tự trả lời"
 msgid "You requested to join"
 msgstr "Bạn đã yêu cầu tham gia"
 
-#: src/features/compliance/ComplianceHost.tsx:120
+#: src/features/compliance/ComplianceHost.tsx:122
 msgid "You verified your phone number a moment ago. Wait a few seconds and try again."
 msgstr "Bạn vừa xác thực số điện thoại. Hãy đợi vài giây rồi thử lại."
 
@@ -17490,7 +17555,7 @@ msgstr ""
 msgid "You've reached the end of your feed! Find some more accounts to follow."
 msgstr "Bạn đã đến cuối bảng tin! Hãy tìm thêm một số tài khoản để theo dõi."
 
-#: src/view/com/composer/Composer.tsx:747
+#: src/view/com/composer/Composer.tsx:748
 msgid "You've reached the maximum number of drafts"
 msgstr ""
 
@@ -17741,7 +17806,7 @@ msgstr "Mật khẩu của bạn đã được đổi thành công! Vui lòng d�
 msgid "Your password must be at least 8 characters long."
 msgstr "Mật khẩu của bạn phải có ít nhất 8 ký tự."
 
-#: src/features/compliance/ComplianceHost.tsx:115
+#: src/features/compliance/ComplianceHost.tsx:117
 msgid "Your phone number is verified. You can try again now. If it still fails, wait a few seconds and try again."
 msgstr "Số điện thoại của bạn đã được xác thực. Bạn có thể thử lại ngay. Nếu vẫn lỗi, hãy đợi vài giây rồi thử lại."
 
@@ -17749,7 +17814,7 @@ msgstr "Số điện thoại của bạn đã được xác thực. Bạn có th
 msgid "Your post"
 msgstr ""
 
-#: src/features/gating/components/GateDialog.tsx:164
+#: src/features/gating/components/GateDialog.tsx:172
 msgid "Your post stays public as a teaser. This extra text and media are stored on Krao’s gate service, not in your public repo, and are only shown to people whose linked wallets meet the requirement."
 msgstr "Bài viết vẫn công khai như phần giới thiệu. Văn bản và tệp thêm này được lưu ở dịch vụ gate của Krao, không nằm trong repo công khai của bạn, và chỉ hiện với người có ví liên kết đáp ứng điều kiện."
 
@@ -17766,11 +17831,11 @@ msgctxt "moderation-report-action"
 msgid "Your post was removed"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1260
+#: src/view/com/composer/Composer.tsx:1277
 msgid "Your post was sent"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1257
+#: src/view/com/composer/Composer.tsx:1274
 msgid "Your posts were sent"
 msgstr ""
 
@@ -17799,7 +17864,7 @@ msgstr "Hồ sơ, bài đăng, bảng tin và danh sách của bạn sẽ không
 msgid "Your referral code"
 msgstr "Mã giới thiệu của bạn"
 
-#: src/view/com/composer/Composer.tsx:1259
+#: src/view/com/composer/Composer.tsx:1276
 msgid "Your reply was sent"
 msgstr ""
 
@@ -17826,7 +17891,7 @@ msgstr ""
 msgid "Your selected interests help us serve you content you care about."
 msgstr "Mục quan tâm mà bạn chọn giúp chúng tôi đưa nội dung mà bạn quan tâm đến."
 
-#: src/view/com/composer/Composer.tsx:1590
+#: src/view/com/composer/Composer.tsx:1618
 msgid "Your thread has empty posts that will be skipped. The remaining posts will be published as a thread."
 msgstr ""
 

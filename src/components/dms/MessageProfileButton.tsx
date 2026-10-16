@@ -15,6 +15,7 @@ import {canBeMessaged} from '#/components/dms/util'
 import {Message_Stroke2_Corner0_Rounded as Message} from '#/components/icons/Message'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
+import {useChatPhoneRequiredToast} from '#/features/compliance/toast'
 import {type app} from '#/lexicons'
 
 export function MessageProfileButton({
@@ -29,12 +30,14 @@ export function MessageProfileButton({
   const requireEmailVerification = useRequireEmailVerification()
 
   const {data: convoAvailability} = useGetConvoAvailabilityQuery(profile.did)
+  const showPhoneRequired = useChatPhoneRequiredToast()
   const {mutate: initiateConvo} = useGetConvoForMembers({
     onSuccess: ({convo}) => {
       ax.metric('chat:open', {logContext: 'ProfileHeader'})
       navigation.navigate('MessagesConversation', {conversation: convo.id})
     },
-    onError: () => {
+    onError: error => {
+      if (showPhoneRequired(error)) return
       Toast.show(_(msg`Failed to create conversation`))
     },
   })

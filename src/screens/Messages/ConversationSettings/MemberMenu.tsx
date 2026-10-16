@@ -26,6 +26,7 @@ import {BlockDialog} from '#/components/moderation/BlockDialog'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
+import {useChatPhoneRequiredToast} from '#/features/compliance/toast'
 import type * as bsky from '#/types/bsky'
 import {RemoveMemberPrompt} from './prompts'
 import {StatusBadge} from './StatusBadge'
@@ -57,12 +58,14 @@ export function MemberMenu({
   const {data: convoAvailability} = useGetConvoAvailabilityQuery(profile.did, {
     enabled: menuDidOpen,
   })
+  const showPhoneRequired = useChatPhoneRequiredToast()
   const {mutate: initiateConvo} = useGetConvoForMembers({
     onSuccess: ({convo}) => {
       ax.metric('chat:open', {logContext: 'ConvoSettings'})
       navigation.navigate('MessagesConversation', {conversation: convo.id})
     },
-    onError: () => {
+    onError: error => {
+      if (showPhoneRequired(error)) return
       Toast.show(l`Failed to create conversation`, {type: 'error'})
     },
   })

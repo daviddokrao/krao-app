@@ -3,7 +3,6 @@ import {useMutation, useQueryClient} from '@tanstack/react-query'
 
 import {logger} from '#/logger'
 import {useChatClient} from '#/state/session'
-import {openPhoneVerification} from '#/features/compliance/events'
 import {isPhoneVerificationRequired} from '#/features/compliance/phone'
 import {chat} from '#/lexicons'
 import {precacheConvoQuery} from './conversation'
@@ -31,12 +30,8 @@ export function useCreateGroupChat({
       onSuccess?.(data)
     },
     onError: error => {
-      // Krao: chat needs a verified phone number; the dialog says so
-      if (isPhoneVerificationRequired(error)) {
-        openPhoneVerification('chat')
-        return
-      }
-      logger.error(error)
+      // Krao: a missing phone number is expected, and the caller says so
+      if (!isPhoneVerificationRequired(error)) logger.error(error)
       onError?.(error)
     },
   })

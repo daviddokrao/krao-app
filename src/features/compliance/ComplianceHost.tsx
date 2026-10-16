@@ -9,6 +9,7 @@ import {Button, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import {Text} from '#/components/Typography'
 import {SafetyHost} from '../safety/SafetyHost'
+import {ConsentGate} from './components/ConsentGate'
 import {PhoneVerifyForm} from './components/PhoneVerifyForm'
 import {clearPendingConsent, getPendingConsent} from './consent'
 import {
@@ -30,6 +31,7 @@ export function ComplianceHost() {
     <>
       <PhoneRequiredDialog />
       <AfterSignup />
+      <ConsentGate />
       <SafetyHost />
     </>
   )
@@ -156,9 +158,13 @@ function PhoneRequiredInner({
  * Right after sign-up: records the consent given in the form (the account did
  * not exist yet), then gently asks for a phone number if there is none.
  */
+/** Accounts whose sign-up consent is being recorded (effects can run twice) */
+const recordingConsent = new Set<string>()
+
 function AfterSignup() {
   const {currentAccount} = useSession()
   const did = currentAccount?.did
+  const handle = currentAccount?.handle
   const {mutate: recordConsent} = useRecordConsentMutation()
   const status = usePhoneStatusQuery()
   const signedUp = useRef(false)
@@ -167,18 +173,21 @@ function AfterSignup() {
 
   useEffect(() => {
     if (!did || handledDid.current === did) return
-    const pending = getPendingConsent()
-    if (!pending) return
+    // Only for the account that was created with that consent
+    const pending = getPendingConsent(handle)
+    if (!pending || recordingConsent.has(did)) return
     handledDid.current = did
     signedUp.current = true
+    recordingConsent.add(did)
     recordConsent(pending, {
       onSuccess: () => clearPendingConsent(),
       onError: err => {
         // Stays pending: recorded the next time the app opens
         logger.warn('Could not record consent', {safeMessage: err})
       },
+      onSettled: () => recordingConsent.delete(did),
     })
-  }, [did, recordConsent])
+  }, [did, handle, recordConsent])
 
   useEffect(() => {
     if (!signedUp.current || prompted.current || !status.data) return

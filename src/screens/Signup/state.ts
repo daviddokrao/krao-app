@@ -351,12 +351,13 @@ export function useSubmitSignup() {
       const verificationCode = state.pendingSubmit?.verificationCode
       try {
         // Recorded for the new account once it is signed in (ComplianceHost)
-        setPendingConsent()
+        const handle = createFullHandle(state.handle, state.userDomain)
+        setPendingConsent(handle)
         await createAccount(
           {
             service: state.serviceUrl,
             email: state.email,
-            handle: createFullHandle(state.handle, state.userDomain),
+            handle,
             password: state.password,
             birthDate: dateOfBirth,
             inviteCode: state.inviteCode.trim(),

@@ -161,9 +161,7 @@ export const ExternalEmbed = ({
             <View style={[a.px_md]}>
               <Divider />
               {/* Krao: the site is on the scam list */}
-              <View style={[a.pt_sm]}>
-                <UnsafeLinkNotice url={link.uri} />
-              </View>
+              <UnsafeLinkNotice url={link.uri} />
               <View
                 style={[
                   a.flex_row,

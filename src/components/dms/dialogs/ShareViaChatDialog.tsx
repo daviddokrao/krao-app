@@ -11,6 +11,7 @@ import {SearchablePeopleList} from '#/components/dialogs/SearchablePeopleList'
 import {InitiateChatFlow} from '#/components/dms/InitiateChatFlow'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
+import {useChatPhoneRequiredToast} from '#/features/compliance/toast'
 import {chat} from '#/lexicons'
 
 export function SendViaChatDialog({
@@ -53,6 +54,8 @@ function SendViaChatDialogInner({
 
   const isGroupChatEnabled = !ax.features.enabled(ax.features.GroupChatsDisable)
 
+  const showPhoneRequired = useChatPhoneRequiredToast()
+
   const {mutate: createChat} = useGetConvoForMembers({
     onSuccess: data => {
       onSelectChat(data.convo.id)
@@ -63,6 +66,7 @@ function SendViaChatDialogInner({
       ax.metric('chat:open', {logContext: 'SendViaChatDialog'})
     },
     onError: error => {
+      if (showPhoneRequired(error)) return
       logger.error('Failed to share post to chat', {safeMessage: error})
       let errorMessage = l`An issue occurred starting the chat, please try again.`
       if (isNetworkError(error)) {
@@ -99,6 +103,7 @@ function SendViaChatDialogInner({
       ax.metric('groupchat:create', {logContext: 'SendViaChatDialog'})
     },
     onError: error => {
+      if (showPhoneRequired(error)) return
       logger.error('Failed to share post to group chat', {safeMessage: error})
       let errorMessage = l`An issue occurred starting the group chat, please try again.`
       if (isNetworkError(error)) {

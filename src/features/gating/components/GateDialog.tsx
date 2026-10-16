@@ -16,6 +16,7 @@ import {VideoClip_Stroke2_Corner0_Rounded as VideoIcon} from '#/components/icons
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
+import {containsSecret} from '#/features/safety/guard'
 import {parseUnits, TIP_ASSETS, type TipAsset} from '#/features/tips/assets'
 import {
   type GateCondition,
@@ -88,6 +89,8 @@ function GateDialogInner({
     return l`Something went wrong saving the gated content. Please try again.`
   }
   const [text, setText] = useState('')
+  // Krao: the text (or an alt text) holds a seed phrase or private key
+  const [hasSecret, setHasSecret] = useState(false)
   const [images, setImages] = useState<PickerImage[]>([])
   const [alts, setAlts] = useState<Record<string, string>>({})
   const [kind, setKind] = useState<Kind>('token')
@@ -134,6 +137,11 @@ function GateDialogInner({
 
   const onSave = () => {
     if (!condition) return
+    // Said inline: a dialog from the shell cannot open over this one on iOS
+    if (containsSecret(text, ...Object.values(alts))) {
+      setHasSecret(true)
+      return
+    }
     createGate.mutate(
       {post, text: text.trim(), images, alts, condition, replaceRuleUri},
       {
@@ -177,7 +185,10 @@ function GateDialogInner({
           <TextField.Input
             label={l`Gated text`}
             value={text}
-            onChangeText={setText}
+            onChangeText={value => {
+              setText(value)
+              setHasSecret(false)
+            }}
             multiline
             numberOfLines={4}
             maxLength={3000}
@@ -233,9 +244,10 @@ function GateDialogInner({
                 label={l`Alt text for image ${i + 1}`}
                 placeholder={l`Describe image ${i + 1} for people who can't see it`}
                 value={alts[image.path] ?? ''}
-                onChangeText={value =>
+                onChangeText={value => {
                   setAlts(prev => ({...prev, [image.path]: value}))
-                }
+                  setHasSecret(false)
+                }}
                 maxLength={1000}
               />
             </TextField.Root>
@@ -345,6 +357,15 @@ function GateDialogInner({
           </>
         )}
       </View>
+
+      {hasSecret && (
+        <Admonition type="error">
+          <Trans>
+            This text looks like it has a seed phrase or private key. Anyone who
+            has it can take all your funds, gated or not. Remove it first.
+          </Trans>
+        </Admonition>
+      )}
 
       {createGate.error && (
         <Admonition type="error">

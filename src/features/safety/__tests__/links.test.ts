@@ -1,7 +1,7 @@
 import {afterEach, beforeEach, describe, expect, it, jest} from '@jest/globals'
 
 import {showUnsafeLinkWarning} from '../events'
-import {openLinkIfSafe} from '../guard'
+import {clearConfirmedLinks, openLinkIfSafe} from '../guard'
 import {
   clearLinkSafetyCache,
   getCachedLinkSafety,
@@ -48,6 +48,7 @@ function mockOffline() {
 
 beforeEach(() => {
   clearLinkSafetyCache()
+  clearConfirmedLinks()
   jest.mocked(showUnsafeLinkWarning).mockClear()
 })
 
@@ -171,5 +172,19 @@ describe('openLinkIfSafe', () => {
     openLinkIfSafe(UNSAFE, open)
     expect(showUnsafeLinkWarning).toHaveBeenCalledTimes(1)
     expect(open).not.toHaveBeenCalled()
+  })
+
+  it('does not ask again about a link the user chose to open anyway', async () => {
+    mockFetch()
+    const open = jest.fn()
+    openLinkIfSafe(UNSAFE, open)
+    await settle()
+    jest.mocked(showUnsafeLinkWarning).mock.calls[0][0].proceed()
+    expect(open).toHaveBeenCalledTimes(1)
+
+    // Opened again later (eg from a "leaving Krao" dialog's close callback)
+    openLinkIfSafe(UNSAFE, open)
+    expect(open).toHaveBeenCalledTimes(2)
+    expect(showUnsafeLinkWarning).toHaveBeenCalledTimes(1)
   })
 })

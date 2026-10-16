@@ -1,7 +1,12 @@
-import {beforeEach, describe, expect, it, jest} from '@jest/globals'
+import {afterEach, beforeEach, describe, expect, it, jest} from '@jest/globals'
 
 import {showSecretWarning} from '../events'
-import {blockIfSecret, isSensitiveSecretError} from '../guard'
+import {
+  blockIfSecret,
+  containsSecret,
+  isSensitiveSecretError,
+  showAfterClosing,
+} from '../guard'
 
 jest.mock('../events', () => ({
   showUnsafeLinkWarning: jest.fn(),
@@ -42,5 +47,48 @@ describe('isSensitiveSecretError', () => {
     expect(isSensitiveSecretError({error: 'InvalidRequest'})).toBe(false)
     expect(isSensitiveSecretError(new Error('x'))).toBe(false)
     expect(isSensitiveSecretError(undefined)).toBe(false)
+  })
+})
+
+describe('containsSecret', () => {
+  it('says so without opening a dialog (for callers inside a sheet)', () => {
+    expect(containsSecret(PHRASE)).toBe(true)
+    expect(containsSecret('gm', `private key: ${KEY}`)).toBe(true)
+    expect(containsSecret('gm', 'tx 0x' + KEY)).toBe(false)
+    expect(showSecretWarning).not.toHaveBeenCalled()
+  })
+})
+
+describe('showAfterClosing', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+  })
+  afterEach(() => {
+    jest.useRealTimers()
+  })
+
+  it('shows at once when not inside a dialog', () => {
+    const show = jest.fn()
+    const close = jest.fn()
+    showAfterClosing({isWithinDialog: false, close}, show)
+    expect(show).toHaveBeenCalledTimes(1)
+    expect(close).not.toHaveBeenCalled()
+  })
+
+  it('shows once the dialog it is in has closed', () => {
+    const show = jest.fn()
+    const close = jest.fn((cb?: () => void) => cb?.())
+    showAfterClosing({isWithinDialog: true, close}, show)
+    jest.advanceTimersByTime(2000)
+    expect(show).toHaveBeenCalledTimes(1)
+  })
+
+  it('still shows when the dialog was already closed and never calls back', () => {
+    const show = jest.fn()
+    const close = jest.fn()
+    showAfterClosing({isWithinDialog: true, close}, show)
+    expect(show).not.toHaveBeenCalled()
+    jest.advanceTimersByTime(2000)
+    expect(show).toHaveBeenCalledTimes(1)
   })
 })

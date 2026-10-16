@@ -43,7 +43,7 @@ import {
 import {IS_NATIVE} from '#/env'
 import {openPhoneVerification} from '#/features/compliance/events'
 import {isPhoneVerificationRequired} from '#/features/compliance/phone'
-import {showSecretWarning} from '#/features/safety/events'
+import {restoreMessageText, showSecretWarning} from '#/features/safety/events'
 import {isSensitiveSecretError} from '#/features/safety/guard'
 import {type app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
@@ -1184,9 +1184,41 @@ export class Convo {
       await this.processPendingMessages()
     } catch (err) {
       const e = err as Error
+      if (this.rejectPendingMessages([pendingMessage], e)) {
+        // The rest of the queue goes on
+        await this.processPendingMessages()
+        return
+      }
       this.handleSendMessageFailure(e)
       this.isProcessingPendingMessages = false
     }
+  }
+
+  /*
+   * Krao: the chat service refuses a message from an account with no verified
+   * phone number, and one that holds a seed phrase or private key. Sending
+   * it again can never work, so it leaves the queue (else it would block the
+   * convo, or be resent on its own), its text goes back to the input, and
+   * the user is told why.
+   */
+  private rejectPendingMessages(
+    rejected: {id: string; message: chat.bsky.convo.defs.MessageInput}[],
+    e: Error,
+  ): boolean {
+    const secret = isSensitiveSecretError(e)
+    if (!secret && !isPhoneVerificationRequired(e)) return false
+    for (const {id, message} of rejected) {
+      this.pendingMessages.delete(id)
+      restoreMessageText({convoId: this.convoId, text: message.text})
+    }
+    this.pendingMessageFailure = null
+    this.commit()
+    if (secret) {
+      showSecretWarning(['seedPhrase', 'privateKey'])
+    } else {
+      openPhoneVerification('chat')
+    }
+    return true
   }
 
   /*
@@ -1202,15 +1234,6 @@ export class Convo {
         this.pendingMessageFailure = 'recoverable'
       } else {
         this.pendingMessageFailure = 'unrecoverable'
-
-        // Krao: chat needs a verified phone number
-        if (isPhoneVerificationRequired(e)) {
-          openPhoneVerification('chat')
-        }
-        // Krao: the chat service refuses seed phrases and private keys
-        if (isSensitiveSecretError(e)) {
-          showSecretWarning(['seedPhrase', 'privateKey'])
-        }
 
         switch (e.message) {
           case 'block between recipient and sender':
@@ -1299,6 +1322,7 @@ export class Convo {
       logger.debug(`sent ${this.pendingMessages.size} pending messages`, {})
     } catch (err) {
       const e = err as Error
+      if (this.rejectPendingMessages(messageArray, e)) return
       this.handleSendMessageFailure(e)
     }
   }

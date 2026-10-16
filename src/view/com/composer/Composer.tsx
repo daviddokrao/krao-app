@@ -145,10 +145,9 @@ import {
   IS_WEB_SAFARI,
   KRAO_GIF_SEARCH,
 } from '#/env'
-import {openPhoneVerification} from '#/features/compliance/events'
 import {isPhoneVerificationRequired} from '#/features/compliance/phone'
 import {type Gif} from '#/features/gifPicker/types'
-import {blockIfSecret} from '#/features/safety/guard'
+import {containsSecret} from '#/features/safety/guard'
 import {app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 import {
@@ -303,6 +302,8 @@ export const ComposePost = ({
   const [isPublishing, setIsPublishing] = useState(false)
   const [publishingStage, setPublishingStage] = useState('')
   const [error, setError] = useState('')
+  // Krao: the error is "verify your phone number", with a way to do it
+  const [phoneRequired, setPhoneRequired] = useState(false)
 
   /**
    * Track when a draft was created so we can measure draft age in metrics.
@@ -854,6 +855,16 @@ export const ComposePost = ({
     onClose()
   }, [thread.posts, ax, onClose])
 
+  // Krao: posting needs a verified phone number. The composer closes before
+  // the phone screen opens (a dialog cannot open over it on iOS); the post is
+  // kept as a draft.
+  const onVerifyPhone = async () => {
+    const {success} = await saveCurrentDraft()
+    if (!success) return
+    onClose()
+    navigation.navigate('PhoneSettings')
+  }
+
   // Check if composer is empty (no content to save)
   const isComposerEmpty = useMemo(() => {
     // Has multiple posts means it's not empty
@@ -1040,10 +1051,15 @@ export const ComposePost = ({
 
     const {type: emptyType, filteredThread} = getFilteredThread()
 
-    // Krao: never post a seed phrase or private key
+    // Krao: never post a seed phrase or private key. Said inline: a dialog
+    // from the shell cannot open over the composer on iOS.
     if (
-      blockIfSecret(...filteredThread.posts.map(post => post.richtext.text))
+      containsSecret(...filteredThread.posts.map(post => post.richtext.text))
     ) {
+      setPhoneRequired(false)
+      setError(
+        l`This post looks like it has a seed phrase or private key. Anyone who has it can take all your funds. Remove it before posting.`,
+      )
       return
     }
 
@@ -1066,6 +1082,7 @@ export const ComposePost = ({
 
     skipEmptyConfirmedRef.current = false
     setError('')
+    setPhoneRequired(false)
     setIsPublishing(true)
 
     let postUri: string | undefined
@@ -1158,8 +1175,8 @@ export const ComposePost = ({
         err = l`This post's author has disabled quote posts.`
       } else if (isPhoneVerificationRequired(e)) {
         // Krao: posting needs a verified phone number
-        err = l`Verify your phone number to post.`
-        openPhoneVerification('post')
+        err = l`Verify your phone number to post. Your post will be saved as a draft.`
+        setPhoneRequired(true)
       }
       setError(err)
       setIsPublishing(false)
@@ -1468,8 +1485,19 @@ export const ComposePost = ({
             {missingAltError && <AltTextReminder error={missingAltError} />}
             <ErrorBanner
               error={error}
+              action={
+                phoneRequired
+                  ? {
+                      label: l`Verify phone number`,
+                      onPress: () => void onVerifyPhone(),
+                    }
+                  : undefined
+              }
               videoState={erroredVideo}
-              clearError={() => setError('')}
+              clearError={() => {
+                setError('')
+                setPhoneRequired(false)
+              }}
               clearVideo={
                 erroredVideoPostId
                   ? () => clearVideo(erroredVideoPostId)
@@ -2597,11 +2625,14 @@ const styles = StyleSheet.create({
 
 function ErrorBanner({
   error: standardError,
+  action,
   videoState,
   clearError,
   clearVideo,
 }: {
   error: string
+  /** Krao: what the user can do about the error */
+  action?: {label: string; onPress: () => void}
   videoState: VideoState | NoVideoState
   clearError: () => void
   clearVideo: () => void
@@ -2652,6 +2683,16 @@ function ErrorBanner({
             <ButtonIcon icon={XIcon} />
           </Button>
         </View>
+        {standardError && action && (
+          <Button
+            label={action.label}
+            size="small"
+            color="primary"
+            style={[a.self_start, {marginLeft: 28}]}
+            onPress={action.onPress}>
+            <ButtonText>{action.label}</ButtonText>
+          </Button>
+        )}
         {videoError && videoState.jobId && (
           <Text
             style={[
