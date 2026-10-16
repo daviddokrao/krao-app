@@ -1,36 +1,49 @@
-import {formatRank, formatWeekRange, lastDayOfPeriod} from '../format'
+import {
+  formatRank,
+  formatWeekRange,
+  lastMomentOfPeriod,
+  LEADERBOARD_TIME_ZONE,
+} from '../format'
 
-const fmt = (d: Date, part: 'short' | 'long') =>
-  part === 'short'
-    ? `${d.getUTCMonth() + 1}/${d.getUTCDate()}`
-    : `${d.getUTCMonth() + 1}/${d.getUTCDate()}/${d.getUTCFullYear()}`
+/** Formats like i18n.date would, in English */
+const fmt = (d: Date, options: Intl.DateTimeFormatOptions) =>
+  new Intl.DateTimeFormat('en-US', options).format(d)
+
+/** The week of Fri Oct 16 2026 as the backend reports it (Sun 17:00 UTC) */
+const WEEK = {
+  start: '2026-10-11T17:00:00.000Z',
+  end: '2026-10-18T17:00:00.000Z',
+}
 
 describe('formatWeekRange', () => {
-  it('shows the last day, not the start of the next week', () => {
-    expect(
-      formatWeekRange(
-        {start: '2026-10-12T00:00:00.000Z', end: '2026-10-19T00:00:00.000Z'},
-        fmt,
-      ),
-    ).toBe('10/12 - 10/18/2026')
+  const tz = process.env.TZ
+  afterEach(() => {
+    process.env.TZ = tz
   })
 
-  it('keeps an end that is not on a day boundary', () => {
-    expect(
-      formatWeekRange(
-        {start: '2026-10-12T00:00:00.000Z', end: '2026-10-18T12:00:00.000Z'},
-        fmt,
-      ),
-    ).toBe('10/12 - 10/18/2026')
+  it('shows Monday to Sunday in Vietnam, not in the device zone', () => {
+    process.env.TZ = 'Asia/Dubai'
+    expect(formatWeekRange(WEEK, fmt)).toBe('Oct 12 - Oct 18, 2026')
+    process.env.TZ = 'America/Los_Angeles'
+    expect(formatWeekRange(WEEK, fmt)).toBe('Oct 12 - Oct 18, 2026')
+  })
+
+  it('formats every date in Asia/Ho_Chi_Minh', () => {
+    const zones: (string | undefined)[] = []
+    formatWeekRange(WEEK, (d, options) => {
+      zones.push(options.timeZone)
+      return fmt(d, options)
+    })
+    expect(zones).toEqual([LEADERBOARD_TIME_ZONE, LEADERBOARD_TIME_ZONE])
   })
 
   it('handles a period that crosses a year', () => {
     expect(
       formatWeekRange(
-        {start: '2026-12-28T00:00:00.000Z', end: '2027-01-04T00:00:00.000Z'},
+        {start: '2026-12-27T17:00:00.000Z', end: '2027-01-03T17:00:00.000Z'},
         fmt,
       ),
-    ).toBe('12/28 - 1/3/2027')
+    ).toBe('Dec 28 - Jan 3, 2027')
   })
 
   it('returns undefined for bad dates', () => {
@@ -38,14 +51,11 @@ describe('formatWeekRange', () => {
   })
 
   it('does not go backwards', () => {
-    const end = new Date('2026-10-12T00:00:00.000Z')
-    expect(lastDayOfPeriod(end).getTime()).toBe(end.getTime() - 1)
-    expect(
-      formatWeekRange(
-        {start: '2026-10-12T00:00:00.000Z', end: '2026-10-12T00:00:00.000Z'},
-        fmt,
-      ),
-    ).toBe('10/12/2026')
+    const end = new Date(WEEK.start)
+    expect(lastMomentOfPeriod(end).getTime()).toBe(end.getTime() - 1)
+    expect(formatWeekRange({start: WEEK.start, end: WEEK.start}, fmt)).toBe(
+      'Oct 12, 2026',
+    )
   })
 })
 

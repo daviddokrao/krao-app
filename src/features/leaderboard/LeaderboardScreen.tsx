@@ -40,14 +40,7 @@ export function LeaderboardScreen({}: Props) {
   const optedIn = data?.viewer?.optedIn ?? false
 
   const week = data
-    ? formatWeekRange(data.period, (d, part) =>
-        i18n.date(
-          d,
-          part === 'long'
-            ? {dateStyle: 'medium', timeZone: 'UTC'}
-            : {month: 'short', day: 'numeric', timeZone: 'UTC'},
-        ),
-      )
+    ? formatWeekRange(data.period, (d, options) => i18n.date(d, options))
     : undefined
 
   const batches: LeaderboardEntry[][] = []
@@ -238,8 +231,9 @@ function LeaderboardPage({
   const byDid = new Map(profiles?.profiles.map(p => [p.did, p]))
   return entries.map(entry => {
     const profile = byDid.get(entry.did as `did:${string}:${string}`)
+    const displayName = profile?.displayName?.trim()
     const name = profile
-      ? profile.displayName || sanitizeHandle(profile.handle, '@')
+      ? displayName || sanitizeHandle(profile.handle, '@')
       : entry.did
     const isViewer = entry.did === viewerDid
     const content = (
@@ -262,7 +256,8 @@ function LeaderboardPage({
             {name}
             {isViewer ? ` (${l`you`})` : ''}
           </Text>
-          {profile && (
+          {/* The handle is the name line when there is no display name */}
+          {profile && displayName && (
             <Text
               style={[a.text_sm, t.atoms.text_contrast_medium]}
               numberOfLines={1}>
