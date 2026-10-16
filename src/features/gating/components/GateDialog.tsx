@@ -5,6 +5,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 
 import {openUnifiedPicker} from '#/lib/media/picker'
 import {type PickerImage} from '#/lib/media/picker.shared'
+import {useSession} from '#/state/session'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
@@ -16,6 +17,8 @@ import {VideoClip_Stroke2_Corner0_Rounded as VideoIcon} from '#/components/icons
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
+import {formatUsdc} from '#/features/membership/logic'
+import {useOwnPlansQuery} from '#/features/membership/queries'
 import {containsSecret} from '#/features/safety/guard'
 import {parseUnits, TIP_ASSETS, type TipAsset} from '#/features/tips/assets'
 import {
@@ -25,7 +28,7 @@ import {
   useCreateGateMutation,
 } from '../queries'
 
-type Kind = 'token' | 'nft'
+type Kind = 'token' | 'nft' | 'membership'
 
 /** Lets an author attach token-gated text and images to one of their posts */
 export function GateDialog({
@@ -72,6 +75,9 @@ function GateDialogInner({
   const t = useTheme()
   const {t: l} = useLingui()
   const createGate = useCreateGateMutation()
+  const {currentAccount} = useSession()
+  const ownPlans = useOwnPlansQuery()
+  const activePlans = (ownPlans.data ?? []).filter(p => p.record.active)
   const gateErrorMessage = (err: Error) => {
     const code = err instanceof GateError ? err.error : undefined
     if (code === 'UploadLimitExceeded') {
@@ -98,25 +104,35 @@ function GateDialogInner({
   const [minAmount, setMinAmount] = useState('10')
   const [contract, setContract] = useState('')
   const [tokenId, setTokenId] = useState('')
+  // A specific plan of the author's membership, or any of them
+  const [planUri, setPlanUri] = useState<string | undefined>()
 
   const minUnits = parseUnits(minAmount, asset.decimals)
   const condition: GateCondition | null =
-    kind === 'token'
-      ? minUnits
+    kind === 'membership'
+      ? currentAccount && activePlans.length > 0
         ? {
-            $type: 'net.krao.gate.defs#tokenBalance',
-            asset: asset.id,
-            minAmount: minUnits.toString(),
+            $type: 'net.krao.gate.defs#membership',
+            creator: currentAccount.did,
+            plan: planUri,
           }
         : null
-      : /^0x[0-9a-fA-F]{40}$/.test(contract.trim())
-        ? {
-            $type: 'net.krao.gate.defs#nftHolding',
-            chain: 'eip155:8453',
-            contract: contract.trim(),
-            tokenId: tokenId.trim() || undefined,
-          }
-        : null
+      : kind === 'token'
+        ? minUnits
+          ? {
+              $type: 'net.krao.gate.defs#tokenBalance',
+              asset: asset.id,
+              minAmount: minUnits.toString(),
+            }
+          : null
+        : /^0x[0-9a-fA-F]{40}$/.test(contract.trim())
+          ? {
+              $type: 'net.krao.gate.defs#nftHolding',
+              chain: 'eip155:8453',
+              contract: contract.trim(),
+              tokenId: tokenId.trim() || undefined,
+            }
+          : null
   const canSave =
     !!condition && (!!text.trim() || images.length > 0) && !createGate.isPending
 
@@ -294,9 +310,75 @@ function GateDialogInner({
               <Trans>NFT holders</Trans>
             </ButtonText>
           </Button>
+          <Button
+            testID="gateMembershipKind"
+            label={
+              kind === 'membership'
+                ? l`Members of my membership, selected`
+                : l`Members of my membership`
+            }
+            color={kind === 'membership' ? 'primary' : 'secondary'}
+            size="small"
+            onPress={() => setKind('membership')}>
+            <ButtonText>
+              <Trans>Members</Trans>
+            </ButtonText>
+          </Button>
         </View>
 
-        {kind === 'token' ? (
+        {kind === 'membership' ? (
+          <>
+            <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
+              <Trans>
+                Only people with an active paid membership of yours can read
+                this. It closes again for them when their 30 days end.
+              </Trans>
+            </Text>
+            {ownPlans.isLoading ? (
+              <Loader />
+            ) : activePlans.length === 0 ? (
+              <Admonition type="info">
+                <Trans>
+                  You have no active membership plan yet. Add one in Settings →
+                  Membership first.
+                </Trans>
+              </Admonition>
+            ) : (
+              <View style={[a.flex_row, a.flex_wrap, a.gap_sm]}>
+                <Button
+                  label={
+                    !planUri ? l`Any of my plans, selected` : l`Any of my plans`
+                  }
+                  color={!planUri ? 'primary_subtle' : 'secondary'}
+                  size="small"
+                  onPress={() => setPlanUri(undefined)}>
+                  <ButtonText>
+                    <Trans>Any plan</Trans>
+                  </ButtonText>
+                </Button>
+                {activePlans.map(plan => {
+                  const price = formatUsdc(plan.record.priceUsdc)
+                  return (
+                    <Button
+                      key={plan.uri}
+                      label={
+                        planUri === plan.uri
+                          ? l`${plan.record.name}, ${price} USDC, selected`
+                          : l`${plan.record.name}, ${price} USDC`
+                      }
+                      color={
+                        planUri === plan.uri ? 'primary_subtle' : 'secondary'
+                      }
+                      size="small"
+                      onPress={() => setPlanUri(plan.uri)}>
+                      <ButtonText>{plan.record.name}</ButtonText>
+                    </Button>
+                  )
+                })}
+              </View>
+            )}
+          </>
+        ) : kind === 'token' ? (
           <>
             <View style={[a.flex_row, a.gap_sm]}>
               {TIP_ASSETS.map(option => (

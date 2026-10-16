@@ -468,6 +468,8 @@ export function useSubscribeMutation() {
     },
     onSettled: () => {
       void invalidate()
+      // Members-only posts the viewer could not open before
+      void queryClient.invalidateQueries({queryKey: ['gated-content']})
     },
   })
 }

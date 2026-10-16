@@ -17,6 +17,11 @@ export function useDescribeCondition() {
     if (condition.$type === 'net.krao.gate.defs#communityMember') {
       return l`membership of a Krao community`
     }
+    if (condition.$type === 'net.krao.gate.defs#membership') {
+      return condition.plan
+        ? l`members of a specific membership plan`
+        : l`members of a creator`
+    }
     const collection = shortAddress(condition.contract)
     return condition.tokenId
       ? l`a specific NFT from ${collection}`
@@ -47,12 +52,23 @@ export function getMembershipOnlyCommunity(rule: GateRule): string | undefined {
   }
 }
 
+/** The creator a gate that only asks for their membership points to */
+export function getMembershipOnlyCreator(rule: GateRule): string | undefined {
+  const first = rule.conditions[0]
+  if (
+    first?.$type === 'net.krao.gate.defs#membership' &&
+    rule.conditions.every(c => c.$type === first.$type)
+  ) {
+    return first.creator
+  }
+}
+
 /** Returns a formatter for the heading shown on gated content and badges */
 export function useGateHeading() {
   const {t: l} = useLingui()
   const describeRule = useDescribeRule()
   return (rule: GateRule): string =>
-    getMembershipOnlyCommunity(rule)
+    getMembershipOnlyCommunity(rule) || getMembershipOnlyCreator(rule)
       ? l`Members only`
       : l`Token-gated · holders of ${describeRule(rule)}`
 }

@@ -12,7 +12,11 @@ import {Text} from '#/components/Typography'
 import {communityPath} from '#/features/community/logic'
 import {CAN_CONNECT_WALLET} from '#/features/wallet/mode'
 import {useChainProfileQuery} from '#/features/wallet/queries'
-import {getMembershipOnlyCommunity, useGateHeading} from '../describe'
+import {
+  getMembershipOnlyCommunity,
+  getMembershipOnlyCreator,
+  useGateHeading,
+} from '../describe'
 import {
   type GatedMedia,
   GateError,
@@ -43,6 +47,7 @@ export function GatedContent({uri}: {uri: string}) {
 
   const heading = gateHeading(rule)
   const communityUri = getMembershipOnlyCommunity(rule)
+  const creatorDid = getMembershipOnlyCreator(rule)
   const notEligible =
     content.error instanceof GateError && content.error.error === 'NotEligible'
 
@@ -86,6 +91,17 @@ export function GatedContent({uri}: {uri: string}) {
             ),
           )}
         </>
+      ) : notEligible && creatorDid ? (
+        <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
+          <Trans>
+            Only members can read this.{' '}
+            <InlineLinkText
+              to={`/profile/${creatorDid}/membership`}
+              label={l`See the membership offer`}>
+              See the membership offer
+            </InlineLinkText>
+          </Trans>
+        </Text>
       ) : notEligible && communityUri ? (
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>

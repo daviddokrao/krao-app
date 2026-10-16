@@ -27,8 +27,19 @@ export type CommunityMemberCondition = {
   /** at:// URI of the net.krao.community.profile record */
   community: string
 }
+/** Krao: satisfied by paying members of a creator (any plan, or one) */
+export type MembershipCondition = {
+  $type: 'net.krao.gate.defs#membership'
+  /** DID of the creator */
+  creator: string
+  /** at:// URI of one net.krao.membership.plan; any plan when missing */
+  plan?: string
+}
 export type GateCondition =
-  TokenBalanceCondition | NftHoldingCondition | CommunityMemberCondition
+  | TokenBalanceCondition
+  | NftHoldingCondition
+  | CommunityMemberCondition
+  | MembershipCondition
 
 export type GateRule = {
   uri: string
