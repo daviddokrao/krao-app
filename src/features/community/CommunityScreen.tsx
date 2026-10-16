@@ -584,7 +584,7 @@ function MemberRow({
   const {t: l} = useLingui()
   const {currentAccount} = useSession()
   const moderationOpts = useModerationOpts()
-  const {data: profile} = useProfileQuery({did: member.did})
+  const profile = member.profile
   const moderation = useModerationMutations()
   const viewerIsOwner = isOwner(community.viewer)
   const viewerIsMod = canModerate(community.viewer)

@@ -28,7 +28,10 @@ import {
 } from './logic'
 
 export type CommunityView = net.krao.community.defs.CommunityView
-export type MemberView = net.krao.community.defs.MemberView
+export type MemberView = net.krao.community.defs.MemberView & {
+  /** Filled in from the appview, one request per 25 members */
+  profile?: app.bsky.actor.defs.ProfileViewDetailed
+}
 
 const COMMUNITY_KEY_ROOT = 'krao-community'
 
@@ -117,7 +120,31 @@ export function useMyCommunitiesQuery() {
   })
 }
 
+/** Adds each member's profile, fetched in batches rather than one by one */
+async function withProfiles(
+  client: Client,
+  page: {members: MemberView[]; cursor?: string},
+) {
+  const dids = page.members.map(m => m.did)
+  const byDid = new Map<string, app.bsky.actor.defs.ProfileViewDetailed>()
+  for (let i = 0; i < dids.length; i += 25) {
+    try {
+      const res = await client.call(app.bsky.actor.getProfiles, {
+        actors: dids.slice(i, i + 25),
+      })
+      for (const profile of res.profiles) byDid.set(profile.did, profile)
+    } catch {
+      // Members without a profile show their DID
+    }
+  }
+  return {
+    ...page,
+    members: page.members.map(m => ({...m, profile: byDid.get(m.did)})),
+  }
+}
+
 export function useMembersQuery(uri: string | undefined) {
+  const client = useAppviewClient()
   return useInfiniteQuery({
     enabled: !!uri,
     staleTime: STALE.SECONDS.THIRTY,
@@ -127,9 +154,12 @@ export function useMembersQuery(uri: string | undefined) {
     }),
     initialPageParam: undefined as string | undefined,
     queryFn: async ({pageParam}) =>
-      indexerFetch<{members: MemberView[]; cursor?: string}>(
-        net.krao.community.getMembers.$lxm,
-        {params: {community: uri, limit: 50, cursor: pageParam}},
+      withProfiles(
+        client,
+        await indexerFetch<{members: MemberView[]; cursor?: string}>(
+          net.krao.community.getMembers.$lxm,
+          {params: {community: uri, limit: 50, cursor: pageParam}},
+        ),
       ),
     getNextPageParam: nextCursor,
   })
@@ -138,6 +168,7 @@ export function useMembersQuery(uri: string | undefined) {
 /** Accounts waiting for approval; the indexer refuses anyone but staff */
 export function usePendingMembersQuery(uri: string, enabled: boolean) {
   const {currentAccount} = useSession()
+  const client = useAppviewClient()
   const getToken = useIndexerAuth()
   return useInfiniteQuery({
     enabled: enabled && !!currentAccount,
@@ -150,10 +181,13 @@ export function usePendingMembersQuery(uri: string, enabled: boolean) {
     initialPageParam: undefined as string | undefined,
     queryFn: async ({pageParam}) => {
       const method = net.krao.community.getPendingMembers.$lxm
-      return indexerFetch<{members: MemberView[]; cursor?: string}>(method, {
-        params: {community: uri, limit: 50, cursor: pageParam},
-        token: await getToken(method),
-      })
+      return withProfiles(
+        client,
+        await indexerFetch<{members: MemberView[]; cursor?: string}>(method, {
+          params: {community: uri, limit: 50, cursor: pageParam},
+          token: await getToken(method),
+        }),
+      )
     },
     getNextPageParam: nextCursor,
     retry: false,
