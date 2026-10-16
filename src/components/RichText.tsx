@@ -11,6 +11,8 @@ import {ProfileHoverCard} from '#/components/ProfileHoverCard'
 import {RichTextTag} from '#/components/RichTextTag'
 import {Text, type TextProps} from '#/components/Typography'
 import {IS_NATIVE} from '#/env'
+import {CashtagText} from '#/features/token/components/CashtagText'
+import {hasCashtag} from '#/features/token/logic'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 
@@ -85,6 +87,7 @@ export function RichText({
   }, [value])
 
   const {text, facets} = richText
+  const cashtags = !disableLinks && hasCashtag(text)
   const plainStyles: StyleProp<TextStyle> = [
     style,
     IS_NATIVE && isRTLText(text) ? {textAlign: 'right'} : null,
@@ -95,7 +98,7 @@ export function RichText({
       : null
   const interactiveStyles = [plainStyles, interactiveStyle]
 
-  if (!facets?.length) {
+  if (!facets?.length && !cashtags) {
     if (isOnlyEmoji(text)) {
       const flattenedStyle = flatten(style)
       const fontSize =
@@ -194,6 +197,14 @@ export function RichText({
           tag={tag.tag}
           textStyle={interactiveStyles}
           authorHandle={authorHandle}
+        />,
+      )
+    } else if (cashtags && hasCashtag(segment.text)) {
+      els.push(
+        <CashtagText
+          key={key}
+          text={segment.text}
+          linkStyle={interactiveStyles}
         />,
       )
     } else {

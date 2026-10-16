@@ -248,6 +248,10 @@ msgstr ""
 msgid "{0, plural, one {post} other {posts}}"
 msgstr "{0, plural, other {bài đăng}}"
 
+#: src/features/token/TokenScreen.tsx:213
+msgid "7D"
+msgstr "7 ngày"
+
 #. Number of users (always at least 25) who have joined Bluesky using a specific Starter Pack
 #: src/screens/StarterPack/StarterPackScreen.tsx:492
 #~ msgid "{0, plural, other {# people have}} joined Bluesky via this Starter Pack!"
@@ -1127,6 +1131,10 @@ msgstr "1 ngày"
 msgid "1 hour"
 msgstr "1 giờ"
 
+#: src/features/token/TokenScreen.tsx:208
+msgid "1D"
+msgstr "1 ngày"
+
 #: src/components/dialogs/MutedWords.tsx:204
 #: src/components/dialogs/MutedWords.tsx:553
 #: src/components/dialogs/MutedWords.tsx:556
@@ -1146,6 +1154,10 @@ msgstr "3 ngày"
 #: src/components/dialogs/MutedWords.tsx:570
 #: src/features/poll/components/PollEditorDialog.tsx:58
 msgid "30 days"
+msgstr "30 ngày"
+
+#: src/features/token/TokenScreen.tsx:218
+msgid "30D"
 msgstr "30 ngày"
 
 #: src/features/compliance/components/PhoneVerifyForm.tsx:202
@@ -3300,6 +3312,10 @@ msgstr ""
 #: src/components/OTAChannelNotice.tsx:207
 msgid "Channel"
 msgstr ""
+
+#: src/features/token/TokenScreen.tsx:202
+msgid "Chart period"
+msgstr "Khoảng thời gian của biểu đồ"
 
 #: src/lib/hooks/useNotificationHandler.ts:139
 #: src/Navigation.tsx:617
@@ -7367,6 +7383,10 @@ msgstr "Ẩn biểu ngữ quảng bá mời bạn bè"
 msgid "Hides these first steps for good"
 msgstr "Ẩn các bước đầu tiên này vĩnh viễn"
 
+#: src/features/token/components/PriceChart.tsx:95
+msgid "High {high}"
+msgstr "Cao nhất {high}"
+
 #: src/components/dialogs/BirthDateSettings.tsx:76
 msgid "Hmm, it looks like you're signed in with an <0>App Password</0>. To set your birthdate, you'll need to sign in with your main account password, or ask whomever controls this account to do so."
 msgstr ""
@@ -8854,6 +8874,10 @@ msgstr "Có vẻ như bạn đang thiếu bảng tin theo dõi. <0>Nhấn vào �
 msgid "Love GIFs"
 msgstr "Yêu GIF"
 
+#: src/features/token/components/PriceChart.tsx:92
+msgid "Low {low}"
+msgstr "Thấp nhất {low}"
+
 #: src/features/community/CommunityEditScreen.tsx:247
 msgid "Lowercase letters, numbers and dashes. It can’t be changed later."
 msgstr "Chữ thường, số và dấu gạch ngang. Không thể đổi sau này."
@@ -9912,6 +9936,10 @@ msgstr "Chưa có bài viết nào ở đây"
 msgid "No posts yet"
 msgstr ""
 
+#: src/features/token/TokenScreen.tsx:192
+msgid "No price yet"
+msgstr "Chưa có giá"
+
 #: src/view/com/post-thread/PostQuotes.tsx:140
 msgid "No quotes yet"
 msgstr "Chưa có trích dẫn nào"
@@ -10064,6 +10092,14 @@ msgstr "Không khả dụng trên nền tảng này."
 #: src/screens/Settings/WalletsSettings.tsx:243
 msgid "Not counted: at most 10 wallets per account"
 msgstr "Không được tính: mỗi tài khoản tối đa 10 ví"
+
+#: src/features/token/components/PriceChart.tsx:85
+msgid "Not enough price data for this period yet."
+msgstr "Chưa đủ dữ liệu giá cho khoảng thời gian này."
+
+#: src/features/token/TokenScreen.tsx:228
+msgid "Not financial advice. Prices come from on-chain pools and may be delayed."
+msgstr "Không phải lời khuyên tài chính. Giá lấy từ các pool on-chain và có thể bị trễ."
 
 #: src/components/KnownFollowers.tsx:253
 msgid "Not followed by anyone you’re following"
@@ -11579,6 +11615,14 @@ msgstr "Bài đăng có thể bị ẩn dựa trên văn bản, thẻ, hoặc c�
 msgid "Posts hidden"
 msgstr "Bài đăng đã ẩn"
 
+#: src/features/token/TokenScreen.tsx:98
+msgid "Posts mentioning ${symbol}"
+msgstr "Bài viết nhắc đến ${symbol}"
+
+#: src/features/token/TokenScreen.tsx:143
+msgid "Posts that mention ${symbol} will show up here."
+msgstr "Các bài viết nhắc đến ${symbol} sẽ hiện ở đây."
+
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:214
 msgid "Posts, Replies"
 msgstr "Bài đăng, Trả lời"
@@ -11622,6 +11666,10 @@ msgstr "Xem trước NFT"
 #: src/components/Lightbox/Lightbox.web.tsx:198
 msgid "Previous image"
 msgstr "Hình trước"
+
+#: src/features/token/components/PriceChart.tsx:72
+msgid "Price chart: from {from} to {to}, low {low}, high {high}"
+msgstr "Biểu đồ giá: từ {from} đến {to}, thấp nhất {low}, cao nhất {high}"
 
 #: src/screens/Settings/LanguageSettings.tsx:141
 #: src/screens/Settings/LanguageSettings.tsx:157
@@ -15649,6 +15697,10 @@ msgstr "Nội dung này có vẻ chứa cụm từ khôi phục hoặc khóa ri�
 msgid "this token"
 msgstr "token này"
 
+#: src/features/token/TokenScreen.tsx:55
+msgid "This token isn’t listed on Krao."
+msgstr "Token này chưa có trên Krao."
+
 #: src/components/verification/VerificationCreatePrompt.tsx:94
 msgid "This user does not have a display name, and therefore cannot be verified."
 msgstr "Người dùng này không có tên hiển thị, vì vậy không thể được xác minh."
@@ -15851,6 +15903,11 @@ msgstr "Bật/tắt nội dung 18+"
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoEmbedInnerNative.tsx:212
 msgid "Toggles the sound"
 msgstr "Bật/tắt tiếng"
+
+#: src/features/token/components/TokenSearchRow.tsx:41
+#: src/Navigation.tsx:612
+msgid "Token"
+msgstr "Token"
 
 #. placeholder {0}: lookup.data.nft.tokenId
 #: src/features/wallet/components/NftAvatarSection.tsx:174
@@ -17145,6 +17202,14 @@ msgstr "Xem dịch vụ gắn nhãn bởi @{0}"
 #: src/components/verification/VerificationCheckButton.tsx:103
 msgid "View this user's verifications"
 msgstr "Xem xác minh của người dùng này"
+
+#: src/features/token/components/CashtagText.tsx:33
+msgid "View token {symbol}"
+msgstr "Xem token {symbol}"
+
+#: src/features/token/components/TokenSearchRow.tsx:30
+msgid "View token {symbol}, {name}"
+msgstr "Xem token {symbol}, {name}"
 
 #: src/screens/CustomFeed/components/CustomFeedHeader.tsx:541
 msgid "View users who like this feed"
