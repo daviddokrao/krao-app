@@ -37,12 +37,20 @@ export type BadgeId =
   /** Krao: a real person (verified phone or identity), when they show it */
   | 'human'
 
+/** A Basename or ENS name that points to a wallet verified for the account */
+export type PrimaryName = {
+  name: string
+  source: 'basename' | 'ens'
+  address: string
+}
+
 export type ChainProfile = {
   did: string
   wallets: LinkedWallet[]
   nftAvatar?: NftAvatar
   tipsReceivedCount?: number
   badges?: {id: string; count?: number}[]
+  primaryName?: PrimaryName
 }
 
 export type ResolvedNft = {
