@@ -10,6 +10,8 @@ export type LinkedWallet = {
   status: WalletStatus
   /** Why an invalid wallet does not count (from the indexer, in English) */
   reason?: string
+  /** False when the owner hid this wallet's Basename/ENS name */
+  showPrimaryName?: boolean
   createdAt?: string
 }
 

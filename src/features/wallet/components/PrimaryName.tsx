@@ -11,9 +11,6 @@ import {type PrimaryName as PrimaryNameData} from '../api'
 import {displayPrimaryName, shortAddress} from '../primaryName'
 import {useChainProfileQuery} from '../queries'
 
-// TODO(32.3): a "Show my Basename/ENS on my profile" setting, once the
-// backend reports and accepts a `showPrimaryName` flag.
-
 /**
  * A verified Basename or ENS name under the handle. The wallet it points to
  * is linked to the account, so the name is the account's own. Press for what

@@ -19564,3 +19564,39 @@ msgstr "Phiếu của bạn đang được tính."
 #: src/features/poll/components/PostPoll.tsx:183
 msgid "Your vote was not counted."
 msgstr "Phiếu của bạn không được tính."
+
+#: src/features/referral/components/PointsSection.tsx:58
+msgid "Points are pending until you verify your identity. Points from referrals also wait for the other person to verify theirs."
+msgstr "Điểm ở trạng thái chờ cho đến khi bạn xác minh danh tính. Điểm từ giới thiệu còn chờ người kia xác minh danh tính của họ."
+
+#: src/features/referral/components/PointsHistory.tsx:19
+msgid "Someone you invited linked a wallet"
+msgstr "Người bạn mời đã liên kết ví"
+
+#: src/features/referral/components/PointsHistory.tsx:21
+msgid "Someone you invited posted for the first time"
+msgstr "Người bạn mời đã đăng bài lần đầu"
+
+#: src/features/referral/admin/components/RulesTab.tsx:139
+msgid "on the first linked wallet"
+msgstr "khi liên kết ví đầu tiên"
+
+#: src/features/referral/admin/components/RulesTab.tsx:141
+msgid "on the first post"
+msgstr "khi đăng bài đầu tiên"
+
+#: src/screens/Settings/WalletsSettings.tsx:286
+msgid "Show my Basename or ENS name on my profile"
+msgstr "Hiện Basename hoặc tên ENS của tôi trên hồ sơ"
+
+#: src/screens/Settings/WalletsSettings.tsx:293
+msgid "Could not change this setting."
+msgstr "Không đổi được cài đặt này."
+
+#: src/screens/Settings/WalletsSettings.tsx:306
+msgid "{name} points to a wallet linked to your account, so it can be shown under your handle."
+msgstr "{name} trỏ tới một ví đã liên kết với tài khoản của bạn, nên có thể hiện dưới handle của bạn."
+
+#: src/screens/Settings/WalletsSettings.tsx:311
+msgid "A name that points to a wallet linked to your account can be shown under your handle."
+msgstr "Tên trỏ tới một ví đã liên kết với tài khoản của bạn có thể hiện dưới handle của bạn."
