@@ -60,10 +60,15 @@ export function MiniAppFrame({
       },
       send: (message, targetOrigin) => {
         const data = JSON.stringify(message)
+        const target = JSON.stringify(targetOrigin)
+        /*
+         * Like postMessage's targetOrigin on the web: the reply is only
+         * delivered while the page shown is still on the manifest origin.
+         */
         webViewRef.current?.injectJavaScript(
-          `window.dispatchEvent(new MessageEvent('message', {data: ${JSON.stringify(
+          `if (window.location.origin === ${target}) {window.dispatchEvent(new MessageEvent('message', {data: ${JSON.stringify(
             data,
-          )}, origin: ${JSON.stringify(targetOrigin)}}));true;`,
+          )}, origin: ${target}}));}true;`,
         )
       },
     })

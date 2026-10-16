@@ -64,7 +64,19 @@ export function MiniAppFrame({
       referrerPolicy="no-referrer"
       allow=""
       data-testid="miniAppFrame"
-      style={{flex: 1, width: '100%', height: '100%', border: 0}}
+      /*
+       * Fills its container (relative, clipped, under the runner's header)
+       * and nothing else: never the viewport.
+       */
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        display: 'block',
+        width: '100%',
+        height: '100%',
+        border: 0,
+      }}
     />
   )
 }

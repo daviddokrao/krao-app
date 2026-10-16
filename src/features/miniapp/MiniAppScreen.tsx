@@ -9,7 +9,7 @@ import {
   type NavigationProp,
 } from '#/lib/routes/types'
 import {useSession} from '#/state/session'
-import {atoms as a, useTheme} from '#/alf'
+import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -20,13 +20,14 @@ import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
 import * as Menu from '#/components/Menu'
 import {Text} from '#/components/Typography'
-import {IS_WEB, KRAO_WEB_URL} from '#/env'
+import {IS_WEB} from '#/env'
 import {effectivePermissions} from './bridge'
 import {MiniAppFrame} from './components/MiniAppFrame'
 import {MiniAppIcon} from './components/MiniAppIcon'
 import {ReportMiniAppDialog} from './components/ReportMiniAppDialog'
 import {usePermissionText, useStatusText} from './components/text'
 import {getGrant, saveGrant} from './grants'
+import {hostOrigins} from './hostOrigins'
 import {
   canRunApp,
   isSameOriginAsHost,
@@ -40,20 +41,6 @@ import {useMiniAppQuery} from './queries'
 import {useMiniAppHandlers} from './useMiniAppHandlers'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'MiniApp'>
-
-/** The origins of Krao's own web app: no Mini App may run on any of them */
-function hostOrigins(): string[] {
-  const origins: string[] = []
-  try {
-    origins.push(new URL(KRAO_WEB_URL).origin)
-  } catch {
-    // An unusable setting adds nothing
-  }
-  if (IS_WEB && typeof window !== 'undefined') {
-    origins.push(window.location.origin)
-  }
-  return origins
-}
 
 function useCloseMiniApp() {
   const navigation = useNavigation<NavigationProp>()
@@ -213,71 +200,92 @@ function Runner({
 
   return (
     <>
-      <Layout.Header.Outer>
-        <Layout.Header.Slot>
-          <Button
-            testID="miniAppCloseButton"
-            label={l`Close Mini App`}
-            size="small"
-            variant="ghost"
-            color="secondary"
-            shape="round"
-            onPress={onClose}>
-            <ButtonIcon icon={CloseIcon} size="lg" />
-          </Button>
-        </Layout.Header.Slot>
-        <Layout.Header.Content align="left">
-          <Layout.Header.TitleText>{app.name}</Layout.Header.TitleText>
-          <Text
-            testID="miniAppOrigin"
-            numberOfLines={1}
-            style={[a.text_xs, t.atoms.text_contrast_medium]}>
-            {origin}
-          </Text>
-        </Layout.Header.Content>
-        <Layout.Header.Slot>
-          <Menu.Root>
-            <Menu.Trigger label={l`Mini App options`}>
-              {({props}) => (
-                <Button
-                  testID="miniAppMenuButton"
-                  label={props.accessibilityLabel}
-                  {...props}
-                  size="small"
-                  color="secondary"
-                  shape="round"
-                  variant="ghost"
-                  style={[a.bg_transparent]}>
-                  <ButtonIcon icon={DotsIcon} size="md" />
-                </Button>
-              )}
-            </Menu.Trigger>
-            <Menu.Outer>
-              <Menu.Group>
-                <Menu.Item
-                  testID="miniAppReportMenuItem"
-                  destructive
-                  label={l`Report Mini App`}
-                  onPress={reportControl.open}>
-                  <Menu.ItemIcon icon={FlagIcon} />
-                  <Menu.ItemText>
-                    <Trans>Report Mini App</Trans>
-                  </Menu.ItemText>
-                </Menu.Item>
-              </Menu.Group>
-            </Menu.Outer>
-          </Menu.Root>
-        </Layout.Header.Slot>
-      </Layout.Header.Outer>
-      <View style={[a.flex_1]}>
-        <MiniAppFrame
-          url={app.url}
-          origin={origin}
-          title={app.name}
-          isApproved={() => true}
-          permissions={() => permissions}
-          handlers={handlers}
-        />
+      {/*
+       * On the web the runner takes exactly one viewport and never scrolls
+       * the page, so the frame gets the space under the header and no more.
+       */}
+      <View
+        style={[
+          IS_WEB ? web({height: '100dvh', flexShrink: 0}) : a.flex_1,
+          a.overflow_hidden,
+        ]}>
+        <Layout.Header.Outer>
+          <Layout.Header.Slot>
+            <Button
+              testID="miniAppCloseButton"
+              label={l`Close Mini App`}
+              size="small"
+              variant="ghost"
+              color="secondary"
+              shape="round"
+              onPress={onClose}>
+              <ButtonIcon icon={CloseIcon} size="lg" />
+            </Button>
+          </Layout.Header.Slot>
+          <Layout.Header.Content align="left">
+            <Layout.Header.TitleText>{app.name}</Layout.Header.TitleText>
+            <Text
+              testID="miniAppOrigin"
+              numberOfLines={1}
+              style={[a.text_xs, t.atoms.text_contrast_medium]}>
+              {origin}
+            </Text>
+          </Layout.Header.Content>
+          <Layout.Header.Slot>
+            <Menu.Root>
+              <Menu.Trigger label={l`Mini App options`}>
+                {({props}) => (
+                  <Button
+                    testID="miniAppMenuButton"
+                    label={props.accessibilityLabel}
+                    {...props}
+                    size="small"
+                    color="secondary"
+                    shape="round"
+                    variant="ghost"
+                    style={[a.bg_transparent]}>
+                    <ButtonIcon icon={DotsIcon} size="md" />
+                  </Button>
+                )}
+              </Menu.Trigger>
+              <Menu.Outer>
+                <Menu.Group>
+                  <Menu.Item
+                    testID="miniAppReportMenuItem"
+                    destructive
+                    label={l`Report Mini App`}
+                    onPress={reportControl.open}>
+                    <Menu.ItemIcon icon={FlagIcon} />
+                    <Menu.ItemText>
+                      <Trans>Report Mini App</Trans>
+                    </Menu.ItemText>
+                  </Menu.Item>
+                </Menu.Group>
+              </Menu.Outer>
+            </Menu.Root>
+          </Layout.Header.Slot>
+        </Layout.Header.Outer>
+        {/*
+         * The frame lives in the center column under the header, in normal
+         * layout flow, and is clipped to it: the Mini App can never draw over
+         * or under Krao's own navigation, header or buttons.
+         */}
+        <Layout.Center
+          testID="miniAppFrameContainer"
+          style={[
+            a.flex_1,
+            a.overflow_hidden,
+            web({minHeight: 0, position: 'relative', isolation: 'isolate'}),
+          ]}>
+          <MiniAppFrame
+            url={app.url}
+            origin={origin}
+            title={app.name}
+            isApproved={() => true}
+            permissions={() => permissions}
+            handlers={handlers}
+          />
+        </Layout.Center>
       </View>
       {dialog}
       <ReportMiniAppDialog control={reportControl} app={app} />
