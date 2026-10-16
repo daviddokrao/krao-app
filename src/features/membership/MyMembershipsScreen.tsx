@@ -27,6 +27,7 @@ import {
   type MembershipView,
   useCreatorProfiles,
   useMyMembershipsQuery,
+  usePlansQuery,
 } from './queries'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'MyMemberships'>
@@ -137,8 +138,9 @@ function MembershipRow({
   const {t: l} = useLingui()
   const navigation = useNavigation<NavigationProp>()
   const moderationOpts = useModerationOpts()
-  const planName =
-    typeof membership.plan === 'string' ? undefined : membership.plan.name
+  // Only active plans are listed: a closed plan shows no name
+  const plans = usePlansQuery(membership.creator)
+  const planName = plans.data?.find(p => p.uri === membership.plan)?.name
   const info = describeExpiry(membership.expiresAt, new Date())
   const canRenew = membership.status !== 'pending'
   return (

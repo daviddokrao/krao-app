@@ -19,7 +19,11 @@ import * as ProfileCard from '#/components/ProfileCard'
 import {Text} from '#/components/Typography'
 import {flattenPages} from '#/features/community/queries'
 import {MemberUntil} from './components/MemberUntil'
-import {type MembershipWithProfile, useMembersQuery} from './queries'
+import {
+  type MembershipWithProfile,
+  useMembersQuery,
+  useOwnPlansQuery,
+} from './queries'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'MembershipMembers'>
 
@@ -160,9 +164,9 @@ function MemberRow({
 }) {
   const t = useTheme()
   const moderationOpts = useModerationOpts()
+  const ownPlans = useOwnPlansQuery()
   const profile = member.profile
-  const planName =
-    typeof member.plan === 'string' ? undefined : member.plan.name
+  const planName = ownPlans.data?.find(p => p.uri === member.plan)?.record.name
   return (
     <View
       style={[

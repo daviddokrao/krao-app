@@ -38,7 +38,7 @@ export function MembershipOfferScreen({route}: Props) {
   const {data: did} = useResolveDidQuery(name)
   const {data: profile} = useProfileQuery({did})
   const plansQuery = usePlansQuery(did)
-  const status = useMembershipStatusQuery(did)
+  const status = useMembershipStatusQuery(did, {pollWhilePending: true})
   const dialog = useDialogControl()
   const [selected, setSelected] = useState<PlanView | undefined>()
   const [openCount, setOpenCount] = useState(0)
@@ -51,10 +51,13 @@ export function MembershipOfferScreen({route}: Props) {
   const membership = status.data ?? undefined
   const isMember = isMembershipActive(membership, new Date())
   const isSelf = !!did && did === currentAccount?.did
-  const currentPlanUri =
-    typeof membership?.plan === 'string'
-      ? membership.plan
-      : membership?.plan.uri
+  const currentPlanUri = membership?.plan
+  // Only active plans are listed: an older plan shows no name
+  const currentPlan = (plansQuery.data ?? []).find(
+    p => p.uri === currentPlanUri,
+  )
+  // A payment is being checked: paying again now would charge twice
+  const paymentPending = membership?.status === 'pending'
 
   const choose = (plan: PlanView) => {
     setSelected(plan)
@@ -96,10 +99,9 @@ export function MembershipOfferScreen({route}: Props) {
                 )}
               </Text>
               <MemberUntil membership={membership} />
-              {typeof membership.plan !== 'string' && (
-                <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
-                  {membership.plan.name} ·{' '}
-                  {formatUsdc(membership.plan.priceUsdc)} USDC
+              {currentPlan && (
+                <Text emoji style={[a.text_sm, t.atoms.text_contrast_medium]}>
+                  {currentPlan.name} · {formatUsdc(currentPlan.priceUsdc)} USDC
                 </Text>
               )}
             </View>
@@ -140,6 +142,13 @@ export function MembershipOfferScreen({route}: Props) {
                 </ButtonText>
               </Button>
             </View>
+          ) : paymentPending ? (
+            <Admonition type="info">
+              <Trans>
+                Your payment is being checked. This page updates once it is
+                confirmed.
+              </Trans>
+            </Admonition>
           ) : plans.length === 0 ? (
             <View style={[a.gap_xs, a.py_xl]}>
               <Text style={[a.text_lg, a.font_semi_bold, a.text_center]}>

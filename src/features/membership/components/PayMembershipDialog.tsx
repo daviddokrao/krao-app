@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
+import {useIsMutating} from '@tanstack/react-query'
 
 import {type NavigationProp} from '#/lib/routes/types'
 import {useSession} from '#/state/session'
@@ -28,7 +29,9 @@ import {useChainProfileQuery} from '#/features/wallet/queries'
 import {formatUsdc, PERIOD_DAYS} from '../logic'
 import {
   PaymentNotRecordedError,
+  PlanChangedError,
   type PlanView,
+  SUBSCRIBE_MUTATION_KEY,
   useSavePendingPaymentsMutation,
   useSubscribeMutation,
 } from '../queries'
@@ -107,6 +110,12 @@ function PayInner({
       addressCheck.data.lookalikes.length > 0)
   const subscribe = useSubscribeMutation()
   const savePending = useSavePendingPaymentsMutation()
+  /*
+   * A payment started in an earlier opening of this dialog (closed while it
+   * ran) is still going: paying again here could charge twice
+   */
+  const running = useIsMutating({mutationKey: SUBSCRIBE_MUTATION_KEY})
+  const otherRunning = running > (subscribe.isPending ? 1 : 0)
   const [phase, setPhase] = useState<'paying' | 'confirming'>('paying')
   const price = formatUsdc(plan.priceUsdc)
   const renewing = !!previousExpiresAt
@@ -121,12 +130,14 @@ function PayInner({
         ? l`The request was cancelled in your wallet.`
         : subscribe.error instanceof PaymentNotRecordedError
           ? l`Your payment was sent, but it could not be saved to your account yet. Save it now: you will not be charged again.`
-          : subscribe.error instanceof UnlinkedTipWalletError
-            ? l`Link this wallet to your account in Settings → Wallets before paying with it.`
-            : l`Something went wrong with the payment. Please try again.`
+          : subscribe.error instanceof PlanChangedError
+            ? l`This plan was changed or closed by @${creatorHandle}. Nothing was paid. Go back and check the plan again.`
+            : subscribe.error instanceof UnlinkedTipWalletError
+              ? l`Link this wallet to your account in Settings → Wallets before paying with it.`
+              : l`Something went wrong with the payment. Please try again.`
 
   const onPay = () => {
-    if (!creatorWallet.data) return
+    if (!creatorWallet.data || otherRunning) return
     setPhase('paying')
     subscribe.mutate(
       {
@@ -270,6 +281,15 @@ function PayInner({
             </Admonition>
           )}
 
+          {otherRunning && (
+            <Admonition type="info">
+              <Trans>
+                A payment you started is still being sent or checked. Wait for
+                it to finish before paying again.
+              </Trans>
+            </Admonition>
+          )}
+
           {subscribe.error instanceof PaymentNotRecordedError ? (
             // The money already moved: only the record is left to save
             <Button
@@ -293,7 +313,11 @@ function PayInner({
                 }
                 color="primary"
                 size="large"
-                disabled={subscribe.isPending}
+                disabled={
+                  subscribe.isPending ||
+                  otherRunning ||
+                  subscribe.error instanceof PlanChangedError
+                }
                 onPress={onPay}>
                 {subscribe.isPending && <ButtonIcon icon={Loader} />}
                 <ButtonText>

@@ -54,8 +54,8 @@ export type PlanView = {
 export type MembershipView = {
   creator: string
   member: string
-  /** The plan, in full or as its URI */
-  plan: PlanView | string
+  /** at:// URI of the plan (see net.krao.membership.defs#membershipView) */
+  plan: string
   status: MembershipStatus
   since: string
   expiresAt?: string
@@ -249,7 +249,11 @@ export function useSetPlanActiveMutation() {
 /** The viewer's membership of one creator, if any */
 export function useMembershipStatusQuery(
   creator: string | undefined,
-  options: {refetchInterval?: number | false} = {},
+  options: {
+    refetchInterval?: number | false
+    /** Refetch every few seconds while a payment is being checked */
+    pollWhilePending?: boolean
+  } = {},
 ) {
   const {currentAccount} = useSession()
   const getToken = useIndexerAuth()
@@ -268,7 +272,9 @@ export function useMembershipStatusQuery(
       })
       return res.membership ?? null
     },
-    refetchInterval: options.refetchInterval,
+    refetchInterval: options.pollWhilePending
+      ? query => (query.state.data?.status === 'pending' ? 5000 : false)
+      : options.refetchInterval,
   })
 }
 
@@ -342,6 +348,12 @@ export function useCreatorProfiles(memberships: MembershipView[]) {
 /** The payment failed after the money moved: only the record is left */
 export class PaymentNotRecordedError extends Error {}
 
+/** The plan changed or closed since it was shown: nothing was paid */
+export class PlanChangedError extends Error {}
+
+/** Identifies the payment mutation, so a second dialog can see one running */
+export const SUBSCRIBE_MUTATION_KEY = [KEY_ROOT, 'subscribe']
+
 const RECORD_RETRY_DELAYS_MS = [0, 1000, 3000]
 /** How long to wait for the indexer to verify the transfer */
 const VERIFY_POLL_MS = 2000
@@ -394,6 +406,7 @@ export function useSubscribeMutation() {
   const getToken = useIndexerAuth()
   const invalidate = useInvalidateMembership()
   return useMutation({
+    mutationKey: SUBSCRIBE_MUTATION_KEY,
     mutationFn: async ({
       plan,
       creatorAddress,
@@ -409,8 +422,38 @@ export function useSubscribeMutation() {
       if (!currentAccount) throw new Error('Not signed in')
       const did = currentAccount.did
       // Payments made earlier whose record failed to save
+      let unsavedHere = false
+      let savedHere = false
       for (const {rkey, record} of pendingPaymentsFor(did)) {
-        await writePendingPayment(pdsClient, did, rkey, record).catch(() => {})
+        const saved = await writePendingPayment(pdsClient, did, rkey, record)
+          .then(() => true)
+          .catch(() => false)
+        if (record.creator === plan.creator) {
+          if (saved) savedHere = true
+          else unsavedHere = true
+        }
+      }
+      /*
+       * A payment to this creator was already sent from this device: never
+       * charge again. Its record is saved now, or still has to be.
+       */
+      if (unsavedHere) {
+        throw new PaymentNotRecordedError('Earlier payment not recorded')
+      }
+      if (savedHere) return {txHash: undefined, confirmed: false}
+
+      // Pay only what was shown: the indexer checks against the current plan
+      const current = await indexerFetch<{plans: PlanView[]}>(GETPLANS, {
+        params: {creator: plan.creator},
+      })
+      const fresh = current.plans.find(p => p.uri === plan.uri)
+      if (
+        !fresh ||
+        !fresh.active ||
+        fresh.cid !== plan.cid ||
+        fresh.priceUsdc !== plan.priceUsdc
+      ) {
+        throw new PlanChangedError()
       }
       onPhase?.('paying')
       const {txHash} = await transferFromLinkedWallet({
