@@ -46,7 +46,15 @@ function PollBody({poll, postCid}: {poll: PollView; postCid?: string}) {
   const mode = poll.mode as PollMode
   const now = new Date()
   const ended = poll.ended || isPollEnded(poll.endsAt, now)
-  const voted = poll.viewer
+  /*
+   * Until the indexer has read a vote just cast, a refetch comes back without
+   * it; keep showing it as pending so the viewer is not offered a second vote
+   */
+  const voted =
+    poll.viewer ??
+    (vote.isSuccess && vote.variables
+      ? {uri: vote.data, option: vote.variables.option, status: 'pending'}
+      : undefined)
   const showResults = poll.resultsVisible
   const {data: chain} = useChainProfileQuery(
     mode === 'token' && hasSession && !ended && !voted

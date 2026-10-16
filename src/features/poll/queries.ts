@@ -94,20 +94,19 @@ export function useVoteMutation() {
         // The indexer matches votes by the poll's uri, not its cid
       }
       if (!cid) throw new Error('Could not find the poll')
-      await pdsClient.create(net.krao.poll.vote, {
+      const res = await pdsClient.create(net.krao.poll.vote, {
         poll: {uri: poll.uri, cid},
         option,
         createdAt: toDatetimeString(new Date()),
       })
+      return res.uri
     },
-    onSuccess: (_data, {poll, option}) => {
+    onSuccess: (voteUri, {poll, option}) => {
       if (!currentAccount) return
       const key = pollKey(poll.post, currentAccount.did)
       // Until the indexer has read the vote, it shows as being counted
       queryClient.setQueryData<PollView | null>(key, old =>
-        old
-          ? {...old, viewer: {uri: poll.uri, option, status: 'pending'}}
-          : old,
+        old ? {...old, viewer: {uri: voteUri, option, status: 'pending'}} : old,
       )
       for (const delay of [1500, 4000, 10000]) {
         setTimeout(() => {
