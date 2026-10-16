@@ -6,6 +6,7 @@ import {
   formatPercent,
   formatUsd,
   hasCashtag,
+  normalizeSymbol,
   parseCashtagQuery,
   safeLogoUri,
   splitCashtags,
@@ -76,6 +77,17 @@ describe('splitCashtags', () => {
       {text: 'x$ETH $ETHER'},
     ])
   })
+
+  it('treats accented letters as letters, like the indexer', () => {
+    expect(splitCashtags('é$ETH $ETHé &$ETH', known('ETH'))).toEqual([
+      {text: 'é$ETH $ETHé &$ETH'},
+    ])
+    expect(splitCashtags('mua $ETH.', known('ETH'))).toEqual([
+      {text: 'mua '},
+      {text: '$ETH', symbol: 'ETH'},
+      {text: '.'},
+    ])
+  })
 })
 
 describe('parseCashtagQuery', () => {
@@ -95,6 +107,11 @@ describe('parseCashtagQuery', () => {
 describe('tokenPath', () => {
   it('upper-cases and encodes', () => {
     expect(tokenPath('eth')).toBe('/token/ETH')
+  })
+
+  it('drops a leading $, as the indexer does', () => {
+    expect(tokenPath('$eth')).toBe('/token/ETH')
+    expect(normalizeSymbol(' $cbBTC ')).toBe('CBBTC')
   })
 })
 
@@ -140,8 +157,9 @@ describe('formatPercent and changeDirection', () => {
 })
 
 describe('safeLogoUri', () => {
-  it('allows only http(s)', () => {
+  it('allows only https', () => {
     expect(safeLogoUri('https://x.test/a.png')).toBe('https://x.test/a.png')
+    expect(safeLogoUri('http://x.test/a.png')).toBeUndefined()
     expect(safeLogoUri('javascript:alert(1)')).toBeUndefined()
     expect(safeLogoUri(undefined)).toBeUndefined()
   })

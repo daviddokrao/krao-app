@@ -3,9 +3,13 @@
  * as facets, and only the symbols in the indexer's token catalog become links.
  */
 
-/** `$` followed by 2-10 letters or digits, the first one a letter */
+/**
+ * `$` followed by 2-10 letters or digits, the first one a letter. The
+ * boundaries match the indexer's (any letter or digit, so `é$ETH` and `$ETHé`
+ * are not cashtags), so a linked cashtag is one the token's feed lists.
+ */
 const CASHTAG =
-  /(^|[^A-Za-z0-9_$])\$([A-Za-z][A-Za-z0-9]{1,9})(?![A-Za-z0-9_])/g
+  /(^|[^\p{L}\p{N}_$&])\$([A-Za-z][A-Za-z0-9]{1,9})(?![\p{L}\p{N}_])/gu
 
 export type TextPart = {text: string; symbol?: undefined} | CashtagPart
 export type CashtagPart = {
@@ -15,8 +19,9 @@ export type CashtagPart = {
   symbol: string
 }
 
+/** Upper case, without a leading `$` (a `/token/$eth` URL works too) */
 export function normalizeSymbol(symbol: string): string {
-  return symbol.toUpperCase()
+  return symbol.trim().replace(/^\$/, '').toUpperCase()
 }
 
 export function hasCashtag(text: string): boolean {
@@ -112,9 +117,9 @@ export function formatPercent(
   return `${rounded > 0 ? '+' : rounded < 0 ? '-' : ''}${text}%`
 }
 
-/** Only web URLs are shown as a logo */
+/** Only https URLs are shown as a logo, as the indexer only accepts those */
 export function safeLogoUri(logo: string | undefined): string | undefined {
-  return logo && /^https?:\/\//i.test(logo) ? logo : undefined
+  return logo && /^https:\/\/\S+$/i.test(logo) ? logo : undefined
 }
 
 export type PricePoint = {t: number | string; priceUsd: string | number}
