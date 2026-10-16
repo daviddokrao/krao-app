@@ -346,6 +346,12 @@ msgstr "{0} đã rời nhóm"
 msgid "{0} of {1}"
 msgstr "{0} trên {1}"
 
+#. placeholder {0}: done.length
+#. placeholder {1}: CHECKLIST_STEPS.length
+#: src/features/checklist/NewUserChecklist.tsx:153
+msgid "{0} of {1} done"
+msgstr "Đã xong {0}/{1} bước"
+
 #. placeholder {0}: code.uses
 #. placeholder {1}: code.maxUses
 #: src/features/referral/admin/components/CodesTab.tsx:215
@@ -424,7 +430,7 @@ msgstr ""
 #. placeholder {0}: reasonLabels[option]
 #: src/features/compliance/moderation/GateModerationScreen.tsx:179
 #: src/features/gating/components/GateDialog.tsx:307
-#: src/features/tips/components/TipDialog.tsx:198
+#: src/features/tips/components/TipDialog.tsx:201
 msgid "{0}, selected"
 msgstr "{0}, đang chọn"
 
@@ -808,7 +814,7 @@ msgstr ""
 msgid "{MAX_DISPLAY_NAME, plural, other {Display name is too long. The maximum number of characters is #.}}"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:427
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:428
 msgid "{MAX_HIDDEN_REPLIES, plural, other {You can hide a maximum of # replies.}}"
 msgstr ""
 
@@ -848,7 +854,7 @@ msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr "{numMatches, plural, other {Tìm thấy # liên hệ}}"
 
 #. placeholder {0}: asset.symbol
-#: src/features/tips/components/TipDialog.tsx:219
+#: src/features/tips/components/TipDialog.tsx:222
 msgid "{preset} {0}, selected"
 msgstr "{preset} {0}, đang chọn"
 
@@ -927,7 +933,7 @@ msgid "{voided} voided, {reversed} reversed"
 msgstr "Đã huỷ {voided}, đã trừ lại {reversed}"
 
 #. placeholder {0}: target.handle
-#: src/features/tips/components/TipDialog.tsx:152
+#: src/features/tips/components/TipDialog.tsx:155
 msgid "@{0} hasn’t linked a wallet yet, so they can’t receive tips."
 msgstr "@{0} chưa liên kết ví nên không thể nhận tiền tip."
 
@@ -1141,6 +1147,10 @@ msgstr ""
 msgid "A new form of verification"
 msgstr "Một dạng xác thực hoàn toàn mới"
 
+#: src/features/checklist/NewUserChecklist.tsx:97
+msgid "A photo helps people recognise you."
+msgstr "Ảnh đại diện giúp mọi người nhận ra bạn."
+
 #: src/components/dms/MessageItem.tsx:841
 msgid "A reply to a message sent before you joined"
 msgstr "Một phản hồi cho tin nhắn được gửi trước khi bạn tham gia"
@@ -1181,6 +1191,18 @@ msgstr "Người gửi không theo dõi một trong những người nhận đã
 #: src/features/gating/describe.ts:19
 msgid "a specific NFT from {collection}"
 msgstr "một NFT cụ thể từ {collection}"
+
+#: src/features/checklist/NewUserChecklist.tsx:86
+msgid "A wallet is a free app or browser extension that holds your tokens and signs for you. Krao never sees its keys. Install one such as MetaMask, then link it, or link one you already have."
+msgstr "Ví là ứng dụng hoặc tiện ích trình duyệt miễn phí, giữ token và ký thay bạn. Krao không bao giờ thấy khoá của ví. Hãy cài một ví như MetaMask rồi liên kết, hoặc liên kết ví bạn đã có."
+
+#: src/features/checklist/NewUserChecklist.tsx:88
+msgid "A wallet is a free app that holds your tokens and signs for you. Krao never sees its keys. Install one on this phone such as MetaMask, then link it, or link one you already have."
+msgstr "Ví là ứng dụng miễn phí, giữ token và ký thay bạn. Krao không bao giờ thấy khoá của ví. Hãy cài một ví như MetaMask trên điện thoại này rồi liên kết, hoặc liên kết ví bạn đã có."
+
+#: src/features/checklist/NewUserChecklist.tsx:89
+msgid "A wallet is a free app that holds your tokens and signs for you. Krao never sees its keys. Install one such as MetaMask or Coinbase Wallet and link it from Krao on the web; linking in the mobile app is coming soon."
+msgstr "Ví là ứng dụng miễn phí, giữ token và ký thay bạn. Krao không bao giờ thấy khoá của ví. Hãy cài một ví như MetaMask hoặc Coinbase Wallet rồi liên kết từ Krao trên web; liên kết trong ứng dụng di động sắp ra mắt."
 
 #: src/Navigation.tsx:565
 #: src/screens/Settings/AboutSettings.tsx:85
@@ -1242,7 +1264,7 @@ msgstr "Cài đặt trợ năng"
 msgid "Account"
 msgstr "Tài khoản"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:459
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:460
 #: src/screens/Messages/components/RequestButtons.tsx:104
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:125
 #: src/view/com/profile/ProfileMenu.tsx:211
@@ -1268,7 +1290,7 @@ msgctxt "moderation-inbox-setting"
 msgid "Account labeling notifications"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:500
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:501
 #: src/view/com/profile/ProfileMenu.tsx:147
 msgctxt "toast"
 msgid "Account muted"
@@ -1304,7 +1326,7 @@ msgctxt "toast"
 msgid "Account unfollowed"
 msgstr "Tài khoản đã bị bỏ theo dõi"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:481
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:482
 #: src/view/com/profile/ProfileMenu.tsx:134
 msgctxt "toast"
 msgid "Account unmuted"
@@ -1363,6 +1385,10 @@ msgstr "Thêm cảnh báo nội dung"
 #: src/features/gating/components/GateDialog.tsx:259
 msgid "Add a gated image or video"
 msgstr "Thêm ảnh hoặc video giới hạn theo token"
+
+#: src/features/checklist/NewUserChecklist.tsx:96
+msgid "Add a profile photo"
+msgstr "Thêm ảnh đại diện"
 
 #: src/features/liveNow/components/GoLiveDialog.tsx:118
 msgid "Add a temporary live status to your profile. When someone clicks on your avatar, they’ll see information about your live event."
@@ -1533,8 +1559,8 @@ msgstr "Thêm vào bài đã lưu"
 msgid "Add to Starter Packs"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:569
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:575
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:570
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:576
 #: src/features/gating/components/GateDialog.tsx:49
 #: src/features/gating/components/GateDialog.tsx:168
 msgid "Add token-gated content"
@@ -1814,12 +1840,12 @@ msgstr "Mô tả thay thế cho ảnh {0}"
 msgid "Alt text will be truncated. {MAX_ALT_TEXT, plural, other {Limit: {0} characters.}}"
 msgstr "Văn bản thay thế sẽ bị cắt ngắn. {MAX_ALT_TEXT, plural, other {Giới hạn: {0} kí tự.}}"
 
-#: src/features/tips/components/TipDialog.tsx:236
+#: src/features/tips/components/TipDialog.tsx:239
 msgid "Amount"
 msgstr "Số lượng"
 
 #. placeholder {0}: asset.symbol
-#: src/features/tips/components/TipDialog.tsx:232
+#: src/features/tips/components/TipDialog.tsx:235
 msgid "Amount ({0})"
 msgstr "Số lượng ({0})"
 
@@ -2322,8 +2348,8 @@ msgstr "Yêu cầu ứng dụng và trang web không hiển thị tài khoản c
 msgid "Ask apps to hide my posts from algorithmic recommendations"
 msgstr "Yêu cầu ứng dụng ẩn bài đăng của tôi khỏi các đề xuất theo thuật toán"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:692
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:694
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:693
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:695
 msgid "Assign topic for algo"
 msgstr ""
 
@@ -2559,8 +2585,8 @@ msgstr "Chặn {displayName}"
 
 #: src/components/dms/ConvoMenu.tsx:284
 #: src/components/dms/ConvoMenu.tsx:288
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:841
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:843
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:842
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:844
 #: src/screens/Messages/components/RequestButtons.tsx:154
 #: src/screens/Messages/components/RequestButtons.tsx:156
 #: src/view/com/profile/ProfileMenu.tsx:495
@@ -3226,7 +3252,7 @@ msgstr ""
 msgid "Check my status"
 msgstr "Kiểm tra trạng thái của tôi"
 
-#: src/features/tips/components/TipDialog.tsx:266
+#: src/features/tips/components/TipDialog.tsx:269
 msgid "Check the first 6 and last 4 characters (in color) against your own records."
 msgstr "Hãy đối chiếu 6 ký tự đầu và 4 ký tự cuối (tô màu) với thông tin bạn đã có."
 
@@ -3521,6 +3547,10 @@ msgstr "Đóng bảng chọn"
 msgid "Close scanner"
 msgstr "Đóng trình quét"
 
+#: src/features/checklist/NewUserChecklist.tsx:160
+msgid "Close the checklist"
+msgstr "Đóng danh sách việc cần làm"
+
 #: src/screens/Messages/components/RequestStatus.tsx:83
 msgid "Close the incoming requests banner"
 msgstr "Đóng biểu ngữ yêu cầu đến"
@@ -3676,7 +3706,7 @@ msgstr "Đang kết nối…"
 msgid "Connection issue"
 msgstr ""
 
-#: src/screens/Settings/WalletsSettings.tsx:115
+#: src/screens/Settings/WalletsSettings.tsx:118
 msgid "Connects a wallet and asks it to sign a link message"
 msgstr "Kết nối ví và yêu cầu ví ký thông điệp liên kết"
 
@@ -3849,7 +3879,7 @@ msgstr ""
 #: src/components/dms/ChatInvite/Root.tsx:100
 #: src/components/dms/MessageContextMenu.tsx:96
 #: src/components/PostControls/DiscoverDebug.tsx:36
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:305
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:306
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:75
 #: src/lib/sharing.ts:24
 #: src/lib/sharing.ts:42
@@ -3950,8 +3980,8 @@ msgstr "Sao chép văn bản tin nhắn"
 msgid "Copy post at:// URI"
 msgstr "Sao chép URI at:// của bài đăng"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:647
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:649
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:648
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:650
 msgid "Copy post text"
 msgstr "Sao chép văn bản bài đăng"
 
@@ -4069,7 +4099,7 @@ msgstr "Không thể tải nhật ký."
 msgid "Could not load the rules."
 msgstr "Không thể tải các luật thưởng."
 
-#: src/screens/Settings/WalletsSettings.tsx:94
+#: src/screens/Settings/WalletsSettings.tsx:97
 msgid "Could not load your linked wallets."
 msgstr "Không thể tải các ví đã liên kết của bạn."
 
@@ -4105,7 +4135,7 @@ msgstr "Không đọc được bài viết. Hãy kiểm tra liên kết và th�
 msgid "Could not remove member."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:202
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:203
 msgid "Could not remove the token gate"
 msgstr "Không gỡ được giới hạn theo token"
 
@@ -4138,7 +4168,7 @@ msgstr "Không thể chia sẻ - vui lòng thử lại"
 msgid "Could not start identity verification."
 msgstr "Không thể bắt đầu xác minh danh tính."
 
-#: src/screens/Settings/WalletsSettings.tsx:239
+#: src/screens/Settings/WalletsSettings.tsx:263
 msgid "Could not unlink the wallet"
 msgstr "Không thể hủy liên kết ví"
 
@@ -4173,7 +4203,7 @@ msgstr "Không thể tải thêm bài đăng. Hãy thử lại"
 msgid "Couldn’t load the gated content."
 msgstr "Không thể tải nội dung có giới hạn."
 
-#: src/features/tips/components/TipDialog.tsx:166
+#: src/features/tips/components/TipDialog.tsx:169
 msgid "Couldn’t load your wallets. Please try again later."
 msgstr "Không tải được danh sách ví của bạn. Vui lòng thử lại sau."
 
@@ -4417,7 +4447,7 @@ msgid "Default icons"
 msgstr "Biểu tượng mặc định"
 
 #: src/components/dms/MessageOverlays.tsx:184
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:920
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:921
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:320
 #: src/screens/Settings/AppPasswords.tsx:214
 #: src/screens/StarterPack/StarterPackScreen.tsx:629
@@ -4487,8 +4517,8 @@ msgstr "Xóa tin nhắn cho tôi"
 msgid "Delete my account"
 msgstr "Xóa tài khoản của tôi"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:881
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:883
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:882
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:884
 #: src/view/com/composer/Composer.tsx:1784
 msgid "Delete post"
 msgstr "Xóa bài đăng"
@@ -4506,7 +4536,7 @@ msgstr ""
 msgid "Delete this list?"
 msgstr "Xóa danh sách này?"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:917
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:918
 msgid "Delete this post?"
 msgstr "Xóa bài đăng này?"
 
@@ -4552,12 +4582,12 @@ msgstr ""
 msgid "Descriptive alt text"
 msgstr "Văn bản thay thế mô tả"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:785
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:795
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:786
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:796
 msgid "Detach quote"
 msgstr "Gỡ trích dẫn"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:953
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:954
 msgid "Detach quote post?"
 msgstr "Gỡ trích dẫn bài đăng?"
 
@@ -4995,8 +5025,8 @@ msgstr "Sửa tên nhóm"
 msgid "Edit image"
 msgstr "Chỉnh sửa hình ảnh"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:862
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:875
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:863
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:876
 msgid "Edit interaction settings"
 msgstr "Chỉnh sửa cài đặt tương tác"
 
@@ -5256,7 +5286,7 @@ msgstr "Nhập liên kết bài viết hoặc AT URI (at://…/app.bsky.feed.pos
 msgid "Enter a word or tag"
 msgstr "Nhập từ hoặc thẻ"
 
-#: src/features/tips/components/TipDialog.tsx:325
+#: src/features/tips/components/TipDialog.tsx:328
 msgid "Enter an amount"
 msgstr "Nhập số lượng"
 
@@ -5590,7 +5620,7 @@ msgstr "Xóa đoạn chat không thành công"
 msgid "Failed to delete message"
 msgstr "Không xóa được tin nhắn"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:252
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:253
 msgid "Failed to delete post, please try again"
 msgstr "Không xóa được bài đăng, vui lòng thử lại"
 
@@ -5807,7 +5837,7 @@ msgstr ""
 msgid "Failed to submit appeal, please try again."
 msgstr "Không gởi được kháng nghị, vui lòng thử lại."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:284
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:285
 msgid "Failed to toggle thread mute, please try again"
 msgstr "Không thay đổi được chế độ im lặng thảo luận, vui lòng thử lại"
 
@@ -5905,8 +5935,8 @@ msgstr ""
 msgid "Feedback"
 msgstr "Phản hồi"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:340
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:363
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:341
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:364
 msgctxt "toast"
 msgid "Feedback sent to feed operator"
 msgstr ""
@@ -6007,6 +6037,10 @@ msgstr "Cuối cùng cũng có! Lưu lại những bài đăng quan trọng vớ
 #: src/lib/interests.ts:60
 msgid "Finance"
 msgstr ""
+
+#: src/features/checklist/NewUserChecklist.tsx:107
+msgid "Find accounts"
+msgstr "Tìm tài khoản"
 
 #: src/view/com/posts/CustomFeedEmptyState.tsx:69
 #: src/view/com/posts/CustomFeedEmptyState.tsx:74
@@ -6125,6 +6159,10 @@ msgstr "Theo dõi {0}"
 #: src/screens/Messages/ConversationSettings/Member.tsx:167
 msgid "Follow {displayName}"
 msgstr "Theo dõi {displayName}"
+
+#: src/features/checklist/NewUserChecklist.tsx:104
+msgid "Follow {FOLLOW_TARGET} accounts"
+msgstr "Theo dõi {FOLLOW_TARGET} tài khoản"
 
 #: src/screens/VideoFeed/index.tsx:985
 msgid "Follow {handle}"
@@ -6431,7 +6469,8 @@ msgstr ""
 msgid "Germ DM reconnected"
 msgstr ""
 
-#: src/screens/Settings/WalletsSettings.tsx:156
+#: src/screens/Settings/WalletsSettings.tsx:159
+#: src/screens/Settings/WalletsSettings.tsx:180
 msgid "Get Coinbase Wallet"
 msgstr "Tải Coinbase Wallet"
 
@@ -6443,7 +6482,8 @@ msgstr "Truy cập sớm các tính năng thử nghiệm mà chúng tôi đang k
 msgid "Get help"
 msgstr "Trợ giúp"
 
-#: src/screens/Settings/WalletsSettings.tsx:150
+#: src/screens/Settings/WalletsSettings.tsx:153
+#: src/screens/Settings/WalletsSettings.tsx:174
 msgid "Get MetaMask"
 msgstr "Tải MetaMask"
 
@@ -6537,6 +6577,10 @@ msgstr ""
 #: src/screens/Messages/components/InviteLinkDialog.tsx:224
 msgid "Get started"
 msgstr "Bắt đầu"
+
+#: src/features/checklist/NewUserChecklist.tsx:148
+msgid "Get started on Krao"
+msgstr "Bắt đầu với Krao"
 
 #: src/components/MediaPreview.tsx:188
 #: src/components/Post/Embed/VideoEmbed/GifPresentationControls.tsx:93
@@ -6920,7 +6964,7 @@ msgstr "Danh sách ẩn"
 #: src/components/moderation/ContentHider.tsx:208
 #: src/components/moderation/LabelPreference.tsx:141
 #: src/components/moderation/PostHider.tsx:137
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:928
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:929
 #: src/lib/moderation/useLabelBehaviorDescription.ts:18
 #: src/lib/moderation/useLabelBehaviorDescription.ts:23
 #: src/lib/moderation/useLabelBehaviorDescription.ts:28
@@ -6949,8 +6993,8 @@ msgstr ""
 msgid "Hide password"
 msgstr "Ẩn mật khẩu"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:745
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:748
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:746
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:749
 msgid "Hide post for me"
 msgstr "Ẩn bài đăng cho tôi"
 
@@ -6959,13 +7003,13 @@ msgstr "Ẩn bài đăng cho tôi"
 msgid "Hide QR code"
 msgstr "Ẩn mã QR"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:759
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:769
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:760
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:770
 msgid "Hide reply for everyone"
 msgstr "Ẩn trả lời cho tất cả mọi người"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:745
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:748
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:746
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:749
 msgid "Hide reply for me"
 msgstr "Ẩn trả lời cho tôi"
 
@@ -6978,19 +7022,19 @@ msgstr ""
 msgid "Hide this card"
 msgstr "Ẩn thẻ này"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:925
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:926
 msgid "Hide this post?"
 msgstr "Ẩn bài đăng này?"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:925
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:960
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:926
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:961
 msgid "Hide this reply?"
 msgstr "Ẩn trả lời này?"
 
 #: src/components/Post/Translated/index.tsx:213
 #: src/components/Post/Translated/index.tsx:347
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:622
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:624
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:623
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:625
 msgid "Hide translation"
 msgstr ""
 
@@ -7019,6 +7063,10 @@ msgstr "Ẩn nội dung"
 #: src/features/inviteFriends/components/FollowersPromoBanner.tsx:87
 msgid "Hides the invite friends promo banner"
 msgstr "Ẩn biểu ngữ quảng bá mời bạn bè"
+
+#: src/features/checklist/NewUserChecklist.tsx:161
+msgid "Hides these first steps for good"
+msgstr "Ẩn các bước đầu tiên này vĩnh viễn"
 
 #: src/components/dialogs/BirthDateSettings.tsx:76
 msgid "Hmm, it looks like you're signed in with an <0>App Password</0>. To set your birthdate, you'll need to sign in with your main account password, or ask whomever controls this account to do so."
@@ -7204,7 +7252,7 @@ msgstr "Nếu bạn có tên miền riêng, bạn có thể sử dụng nó làm
 msgid "If you need to update your email, <0>click here</0>."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:918
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:919
 msgid "If you remove this post, you won't be able to recover it."
 msgstr "Bài đăng không thể được khôi phục sau khi đã bị xóa."
 
@@ -7458,7 +7506,7 @@ msgstr ""
 msgid "Invalid handle. Please try a different one."
 msgstr "Tên người dùng không hợp lệ. Vui lòng thử tên khác."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:433
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:434
 msgctxt "toast"
 msgid "Invalid interaction settings."
 msgstr ""
@@ -7477,7 +7525,7 @@ msgstr "Tiêu đề báo cáo không hợp lệ"
 msgid "Invalid rescind request."
 msgstr "Yêu cầu thu hồi không hợp lệ."
 
-#: src/screens/Settings/WalletsSettings.tsx:220
+#: src/screens/Settings/WalletsSettings.tsx:244
 msgid "Invalid signature"
 msgstr "Chữ ký không hợp lệ"
 
@@ -7810,8 +7858,8 @@ msgstr ""
 msgid "KYC"
 msgstr "KYC"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:700
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:702
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:701
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:703
 msgid "Label reply for algo"
 msgstr ""
 
@@ -8173,10 +8221,10 @@ msgid "Linear"
 msgstr "Ngang hàng"
 
 #: src/features/gating/components/GatedContent.tsx:111
-#: src/features/tips/components/TipDialog.tsx:177
-#: src/features/tips/components/TipDialog.tsx:186
-#: src/screens/Settings/WalletsSettings.tsx:114
-#: src/screens/Settings/WalletsSettings.tsx:131
+#: src/features/tips/components/TipDialog.tsx:180
+#: src/features/tips/components/TipDialog.tsx:189
+#: src/screens/Settings/WalletsSettings.tsx:117
+#: src/screens/Settings/WalletsSettings.tsx:134
 msgid "Link a wallet"
 msgstr "Liên kết ví"
 
@@ -8184,7 +8232,7 @@ msgstr "Liên kết ví"
 msgid "Link a wallet that meets the requirement from Krao on the web to unlock this content."
 msgstr "Hãy liên kết một ví đáp ứng điều kiện trên Krao bản web để mở khoá nội dung này."
 
-#: src/screens/Settings/WalletsSettings.tsx:78
+#: src/screens/Settings/WalletsSettings.tsx:81
 msgid "Link a wallet to show it on your profile and to sign in with it. Your wallet signs a message that names your account, so anyone can verify the link. Krao never asks for your keys or moves your funds."
 msgstr "Liên kết ví để hiển thị trên hồ sơ và đăng nhập bằng ví. Ví của bạn ký một thông điệp nêu tên tài khoản của bạn, để mọi người có thể xác minh liên kết. Krao không bao giờ hỏi khóa của bạn hay di chuyển tiền của bạn."
 
@@ -8192,15 +8240,19 @@ msgstr "Liên kết ví để hiển thị trên hồ sơ và đăng nhập bằ
 msgid "Link copied to clipboard"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:107
+#: src/features/checklist/NewUserChecklist.tsx:120
+msgid "Link or create a wallet"
+msgstr "Liên kết hoặc tạo ví"
+
+#: src/features/tips/components/TipDialog.tsx:110
 msgid "Link this wallet to your account in Settings → Wallets before tipping with it."
 msgstr "Hãy liên kết ví này với tài khoản trong Cài đặt → Ví trước khi dùng nó để tip."
 
-#: src/screens/Settings/WalletsSettings.tsx:217
+#: src/screens/Settings/WalletsSettings.tsx:241
 msgid "Linked to another account first, so it doesn’t count here"
 msgstr "Đã được liên kết với tài khoản khác trước, nên không được tính ở đây"
 
-#: src/screens/Settings/WalletsSettings.tsx:136
+#: src/screens/Settings/WalletsSettings.tsx:139
 msgid "Linking wallets in the mobile app is coming soon. For now, link your wallet from Krao on the web."
 msgstr "Tính năng liên kết ví trên ứng dụng di động sắp ra mắt. Hiện tại, hãy liên kết ví từ Krao trên web."
 
@@ -8612,7 +8664,7 @@ msgstr ""
 msgid "Menu"
 msgstr "Trình đơn"
 
-#: src/features/tips/components/TipDialog.tsx:250
+#: src/features/tips/components/TipDialog.tsx:253
 msgid "Message"
 msgstr "Tin nhắn"
 
@@ -8626,7 +8678,7 @@ msgctxt "description"
 msgid "Message"
 msgstr "Tin nhắn"
 
-#: src/features/tips/components/TipDialog.tsx:246
+#: src/features/tips/components/TipDialog.tsx:249
 msgid "Message (optional)"
 msgstr "Tin nhắn (tùy chọn)"
 
@@ -8858,8 +8910,8 @@ msgstr "Tắt tiếng"
 msgid "Mute {0}"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:824
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:830
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:825
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:831
 #: src/view/com/profile/ProfileMenu.tsx:471
 #: src/view/com/profile/ProfileMenu.tsx:478
 msgid "Mute account"
@@ -8915,13 +8967,13 @@ msgstr "Chỉ ẩn từ này trong thẻ"
 msgid "Mute this word until you unmute it"
 msgstr "Ẩn từ này cho đến khi bạn bật lại"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:715
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:718
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:716
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:719
 msgid "Mute thread"
 msgstr "Tắt thông báo thảo luận"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:728
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:730
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:729
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:731
 msgid "Mute words & tags"
 msgstr "Ẩn từ & thẻ"
 
@@ -9182,9 +9234,13 @@ msgstr ""
 msgid "New to Krao? <0>Sign up</0>"
 msgstr "Mới biết đến Krao? <0>Đăng ký</0>"
 
-#: src/screens/Settings/WalletsSettings.tsx:144
+#: src/screens/Settings/WalletsSettings.tsx:147
 msgid "New to wallets? A wallet is an app that holds your tokens and signs for you; Krao never sees its keys. Install one in your browser, such as <0>MetaMask</0> or <1>Coinbase Wallet</1>, then come back here."
 msgstr "Mới dùng ví? Ví là ứng dụng giữ token và ký thay bạn; Krao không bao giờ thấy khoá của ví. Hãy cài một ví vào trình duyệt, ví dụ <0>MetaMask</0> hoặc <1>Coinbase Wallet</1>, rồi quay lại đây."
+
+#: src/screens/Settings/WalletsSettings.tsx:168
+msgid "New to wallets? A wallet is an app that holds your tokens and signs for you; Krao never sees its keys. Install one on this phone, such as <0>MetaMask</0> or <1>Coinbase Wallet</1>, then come back here and tap Link a wallet."
+msgstr "Mới dùng ví? Ví là ứng dụng giữ token và ký thay bạn; Krao không bao giờ thấy khoá của ví. Hãy cài một ví trên điện thoại này, ví dụ <0>MetaMask</0> hoặc <1>Coinbase Wallet</1>, rồi quay lại đây và bấm Liên kết ví."
 
 #: src/components/dialogs/NewskieDialog/index.tsx:100
 msgid "New user info dialog"
@@ -9318,12 +9374,12 @@ msgstr "Không có bảng DNS"
 msgid "No drafts yet"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:101
+#: src/features/tips/components/TipDialog.tsx:103
 msgid "No Ethereum wallet was found in this browser."
 msgstr "Không tìm thấy ví Ethereum nào trong trình duyệt này."
 
-#: src/features/wallet/components/WalletSignInButton.tsx:27
-#: src/screens/Settings/WalletsSettings.tsx:58
+#: src/features/wallet/components/WalletSignInButton.tsx:30
+#: src/screens/Settings/WalletsSettings.tsx:60
 msgid "No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again."
 msgstr "Không tìm thấy ví Ethereum nào trong trình duyệt này. Hãy cài tiện ích mở rộng ví như MetaMask rồi thử lại."
 
@@ -9526,7 +9582,16 @@ msgstr ""
 msgid "No video posts yet"
 msgstr ""
 
-#: src/screens/Settings/WalletsSettings.tsx:104
+#: src/features/tips/components/TipDialog.tsx:104
+msgid "No wallet app was found on this phone."
+msgstr "Không tìm thấy ứng dụng ví nào trên điện thoại này."
+
+#: src/features/wallet/components/WalletSignInButton.tsx:31
+#: src/screens/Settings/WalletsSettings.tsx:61
+msgid "No wallet app was found on this phone. Install one such as MetaMask, Trust Wallet or Coinbase Wallet, then try again."
+msgstr "Không tìm thấy ứng dụng ví nào trên điện thoại này. Hãy cài một ví như MetaMask, Trust Wallet hoặc Coinbase Wallet rồi thử lại."
+
+#: src/screens/Settings/WalletsSettings.tsx:107
 msgid "No wallets linked yet."
 msgstr "Chưa liên kết ví nào."
 
@@ -9586,7 +9651,7 @@ msgstr "Không khả dụng trên nền tảng này"
 msgid "Not available on this platform."
 msgstr "Không khả dụng trên nền tảng này."
 
-#: src/screens/Settings/WalletsSettings.tsx:219
+#: src/screens/Settings/WalletsSettings.tsx:243
 msgid "Not counted: at most 10 wallets per account"
 msgstr "Không được tính: mỗi tài khoản tối đa 10 ví"
 
@@ -9981,8 +10046,8 @@ msgstr ""
 msgid "Open group chat settings"
 msgstr "Mở cài đặt nhóm chat"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:632
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:638
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:633
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:639
 msgid "Open in Google Translate"
 msgstr ""
 
@@ -10052,6 +10117,14 @@ msgstr "Mở log hệ thống"
 #: src/components/intents/GroupChatJoinDialog.tsx:452
 msgid "Open this group chat"
 msgstr ""
+
+#: src/features/checklist/NewUserChecklist.tsx:123
+msgid "Open wallets"
+msgstr "Mở ví"
+
+#: src/features/checklist/NewUserChecklist.tsx:99
+msgid "Open your profile"
+msgstr "Mở hồ sơ của bạn"
 
 #: src/view/shell/desktop/Feeds.tsx:185
 msgid "Opens {displayName} feed"
@@ -10515,8 +10588,8 @@ msgstr "Ghim vào trang chủ"
 msgid "Pin to Home"
 msgstr "Ghim vào trang chủ"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:591
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:596
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:592
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:597
 msgid "Pin to your profile"
 msgstr "Ghim vào hồ sơ của bạn"
 
@@ -10863,7 +10936,7 @@ msgstr "Đăng bởi @{0}"
 msgid "Post created"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:232
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:233
 msgctxt "toast"
 msgid "Post deleted"
 msgstr "Đã xóa bài đăng"
@@ -11177,11 +11250,11 @@ msgstr "Đã lưu mã QR vào camera roll!"
 msgid "Quote post"
 msgstr "Trích dẫn bài đăng"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:383
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:384
 msgid "Quote post was re-attached"
 msgstr "Bài đăng trích dẫn đã được đính kèm lại"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:382
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:383
 msgid "Quote post was successfully detached"
 msgstr "Bài đăng trích dẫn đã được gỡ thành công"
 
@@ -11211,8 +11284,8 @@ msgstr "Vượt quá giới hạn - bạn đã thử thay đổi tên người d
 msgid "Rate limit exceeded. Please try again later."
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:784
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:794
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:785
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:795
 msgid "Re-attach quote"
 msgstr "Đính kèm lại trích dẫn"
 
@@ -11429,7 +11502,7 @@ msgstr "Tải lại hội thoại"
 #: src/components/dialogs/StarterPackDialog.tsx:364
 #: src/components/dialogs/StarterPackDialog.tsx:374
 #: src/components/FeedCard.tsx:404
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:912
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:913
 #: src/components/StarterPack/Main/ProfilesList.tsx:207
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:110
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:117
@@ -11583,7 +11656,7 @@ msgstr "Xóa lượt đăng lại"
 msgid "Remove suggestion"
 msgstr "Xóa gợi ý"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:909
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:910
 msgid "Remove the token gate?"
 msgstr "Gỡ giới hạn theo token?"
 
@@ -11591,8 +11664,8 @@ msgstr "Gỡ giới hạn theo token?"
 msgid "Remove this feed from your saved feeds"
 msgstr "Xóa bảng tin này khỏi bảng tin đã lưu của bạn"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:582
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:584
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:583
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:585
 msgid "Remove token gate"
 msgstr "Gỡ giới hạn theo token"
 
@@ -11672,8 +11745,8 @@ msgstr ""
 msgid "Renew mute word"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:568
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:574
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:569
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:575
 #: src/features/gating/components/GateDialog.tsx:48
 #: src/features/gating/components/GateDialog.tsx:166
 msgid "Replace token-gated content"
@@ -11772,12 +11845,12 @@ msgstr "Sắp xếp trả lời"
 msgid "Reply to {handle}"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:421
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:422
 msgctxt "toast"
 msgid "Reply visibility updated"
 msgstr "Đã cập nhật trạng thái hiển thị trả lời"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:420
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:421
 msgid "Reply was successfully hidden"
 msgstr "Ẩn thành công trả lời"
 
@@ -11823,8 +11896,8 @@ msgstr "Báo cáo danh sách"
 msgid "Report message"
 msgstr "Báo cáo tin nhắn"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:850
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:852
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:851
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:853
 msgid "Report post"
 msgstr "Báo cáo bài đăng"
 
@@ -12313,6 +12386,10 @@ msgstr "Bài đã lưu"
 msgid "Saved to your feeds"
 msgstr "Đã lưu vào bảng tin của bạn"
 
+#: src/features/checklist/NewUserChecklist.tsx:113
+msgid "Say hello to the community."
+msgstr "Hãy chào cộng đồng."
+
 #: src/components/dialogs/NewskieDialog/index.tsx:119
 #: src/view/com/notifications/NotificationFeedItem.tsx:937
 #: src/view/com/notifications/NotificationFeedItem.tsx:945
@@ -12737,13 +12814,13 @@ msgstr ""
 
 #. placeholder {0}: formatUnits(amount, asset.decimals)
 #. placeholder {1}: asset.symbol
-#: src/features/tips/components/TipDialog.tsx:321
+#: src/features/tips/components/TipDialog.tsx:324
 msgid "Send {0} {1}"
 msgstr "Gửi {0} {1}"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:550
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:552
-#: src/features/tips/components/TipDialog.tsx:52
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:551
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:553
+#: src/features/tips/components/TipDialog.tsx:53
 msgid "Send a tip"
 msgstr "Gửi tip"
 
@@ -12806,7 +12883,7 @@ msgstr "Gửi lại mã"
 msgid "Send the message from your phone"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:313
+#: src/features/tips/components/TipDialog.tsx:316
 msgid "Send tip"
 msgstr "Gửi tip"
 
@@ -12823,7 +12900,11 @@ msgstr "Gửi email xác minh"
 msgid "Send via chat"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:159
+#: src/features/checklist/NewUserChecklist.tsx:128
+msgid "Send your first tip"
+msgstr "Gửi tip đầu tiên"
+
+#: src/features/tips/components/TipDialog.tsx:162
 msgid "Sending tips from the mobile app is coming soon. Use Krao on the web for now."
 msgstr "Tính năng gửi tip từ ứng dụng di động sắp ra mắt. Hiện tại hãy dùng Krao trên web."
 
@@ -12832,7 +12913,7 @@ msgstr "Tính năng gửi tip từ ứng dụng di động sắp ra mắt. Hiệ
 msgid "Sent at {0}"
 msgstr "Đã gửi lúc {0}"
 
-#: src/features/tips/components/TipDialog.tsx:141
+#: src/features/tips/components/TipDialog.tsx:144
 msgid "Sent on Base straight from your wallet to theirs. Krao never holds your funds."
 msgstr "Gửi trên Base trực tiếp từ ví của bạn đến ví của họ. Krao không bao giờ giữ tiền của bạn."
 
@@ -13132,8 +13213,8 @@ msgstr "Hiện tùy chọn tùy chỉnh"
 msgid "Show group chat updates"
 msgstr "Hiển thị cập nhật nhóm chat"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:678
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:680
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:679
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:681
 msgid "Show less like this"
 msgstr "Hiển thị ít bài như thế này hơn"
 
@@ -13150,8 +13231,8 @@ msgstr ""
 msgid "Show more"
 msgstr "Xem thêm"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:670
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:672
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:671
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:673
 msgid "Show more like this"
 msgstr "Hiển thị nhiều bài như thế này hơn"
 
@@ -13191,8 +13272,8 @@ msgstr "Hiển thị trả lời"
 msgid "Show replies as"
 msgstr "Hiển thị trả lời dưới dạng"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:758
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:768
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:759
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:769
 msgid "Show reply for everyone"
 msgstr "Hiển thị trả lời cho tất cả mọi người"
 
@@ -13314,13 +13395,13 @@ msgstr "Đăng nhập Krao hoặc tạo tài khoản mới"
 msgid "Sign in to request access to this group chat."
 msgstr "Đăng nhập để yêu cầu quyền truy cập nhóm chat này."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:656
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:658
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:657
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:659
 msgid "Sign in to view post"
 msgstr ""
 
-#: src/features/wallet/components/WalletSignInButton.tsx:40
-#: src/features/wallet/components/WalletSignInButton.tsx:51
+#: src/features/wallet/components/WalletSignInButton.tsx:44
+#: src/features/wallet/components/WalletSignInButton.tsx:55
 msgid "Sign in with wallet"
 msgstr "Đăng nhập bằng ví"
 
@@ -13363,7 +13444,7 @@ msgstr "Yêu cầu đăng nhập"
 msgid "Signed in as @{0}"
 msgstr "Đăng nhâp bằng @{0}"
 
-#: src/features/wallet/components/WalletSignInButton.tsx:41
+#: src/features/wallet/components/WalletSignInButton.tsx:45
 msgid "Signs in by signing a message with a wallet linked to your account"
 msgstr "Đăng nhập bằng cách ký một thông điệp với ví đã liên kết với tài khoản của bạn"
 
@@ -13504,7 +13585,7 @@ msgstr "Có điều gì đó không đúng với dữ liệu bạn đang cố g�
 msgid "Something went wrong"
 msgstr "Có gì đó không đúng"
 
-#: src/screens/Settings/WalletsSettings.tsx:61
+#: src/screens/Settings/WalletsSettings.tsx:64
 msgid "Something went wrong linking the wallet. Please try again."
 msgstr "Đã có lỗi khi liên kết ví. Vui lòng thử lại."
 
@@ -13512,11 +13593,11 @@ msgstr "Đã có lỗi khi liên kết ví. Vui lòng thử lại."
 msgid "Something went wrong saving the gated content. Please try again."
 msgstr "Đã có lỗi khi lưu nội dung giới hạn theo token. Vui lòng thử lại."
 
-#: src/features/tips/components/TipDialog.tsx:108
+#: src/features/tips/components/TipDialog.tsx:111
 msgid "Something went wrong sending the tip. Please try again."
 msgstr "Đã có lỗi khi gửi tip. Vui lòng thử lại."
 
-#: src/features/wallet/components/WalletSignInButton.tsx:34
+#: src/features/wallet/components/WalletSignInButton.tsx:38
 msgid "Something went wrong signing in with your wallet. Please try again."
 msgstr "Đã có lỗi khi đăng nhập bằng ví. Vui lòng thử lại."
 
@@ -14077,6 +14158,10 @@ msgstr "Văn bản & thẻ"
 msgid "Text input field"
 msgstr "Trường nhập văn bản"
 
+#: src/features/checklist/NewUserChecklist.tsx:129
+msgid "Thank someone for a post with a small tip. It needs a linked wallet, and the person you tip needs one too."
+msgstr "Cảm ơn ai đó vì một bài viết bằng một khoản tip nhỏ. Bạn cần có ví đã liên kết, và người nhận tip cũng cần có ví."
+
 #: src/view/com/posts/ShowLessFollowup.tsx:39
 msgid "Thank you for your feedback! It has been sent to the feed operator."
 msgstr ""
@@ -14203,7 +14288,7 @@ msgstr "Các dịch vụ sau được bật cho tài khoản của bạn: {allow
 msgid "The following settings will be used as your defaults when creating new posts. You can edit these for a specific post from the composer."
 msgstr "Các cài đặt sau sẽ được sử dụng làm mặc định khi bạn tạo bài đăng mới. Bạn có thể chỉnh sửa chúng cho từng bài đăng cụ thể từ trình soạn thảo."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:910
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:911
 msgid "The gated text and media will be deleted. The post itself stays."
 msgstr "Văn bản và tệp giới hạn theo token sẽ bị xoá. Bài viết vẫn giữ nguyên."
 
@@ -14264,9 +14349,9 @@ msgstr "người mời"
 #~ msgid "the referrer’s referrer"
 #~ msgstr "người mời của người mời"
 
-#: src/features/tips/components/TipDialog.tsx:103
-#: src/features/wallet/components/WalletSignInButton.tsx:29
-#: src/screens/Settings/WalletsSettings.tsx:60
+#: src/features/tips/components/TipDialog.tsx:106
+#: src/features/wallet/components/WalletSignInButton.tsx:33
+#: src/screens/Settings/WalletsSettings.tsx:63
 msgid "The request was cancelled in your wallet."
 msgstr "Yêu cầu đã bị hủy trong ví của bạn."
 
@@ -14316,7 +14401,7 @@ msgstr "Biểu mẫu hỗ trợ đã được chuyển đi. Nếu bạn cần gi
 msgid "The Terms of Service have been moved to"
 msgstr "Điều khoản dịch vụ đã được chuyển đến"
 
-#: src/features/tips/components/TipDialog.tsx:285
+#: src/features/tips/components/TipDialog.tsx:288
 msgid "The tip could not be saved yet. Please try again."
 msgstr "Chưa lưu được tip. Vui lòng thử lại."
 
@@ -14338,7 +14423,7 @@ msgstr ""
 msgid "The video could not be uploaded to your hosting provider. Please try again."
 msgstr ""
 
-#: src/features/wallet/components/WalletSignInButton.tsx:33
+#: src/features/wallet/components/WalletSignInButton.tsx:37
 msgid "The wallet signature could not be verified."
 msgstr "Không thể xác minh chữ ký của ví."
 
@@ -14387,9 +14472,9 @@ msgstr "Có vấn đề khi kết nối với máy chủ, vui lòng kiểm tra k
 msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "Có vấn đề khi tải thông báo. Nhấn vào đây để thử lại."
 
-#: src/features/followingV2/home/PostFeed.tsx:1101
+#: src/features/followingV2/home/PostFeed.tsx:1102
 #: src/screens/Search/Explore.tsx:1052
-#: src/view/com/posts/PostFeed.tsx:825
+#: src/view/com/posts/PostFeed.tsx:826
 msgid "There was an issue fetching posts. Tap here to try again."
 msgstr "Có vấn đề khi tải bài đăng. Nhấn vào đây để thử lại."
 
@@ -14421,9 +14506,9 @@ msgid "There was an issue updating your feeds, please check your internet connec
 msgstr "Có vấn đề cập nhật bảng tin của bạn, vui lòng kiểm tra kết nối mạng của bạn và thử lại."
 
 #. placeholder {0}: e.toString()
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:464
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:486
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:505
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:465
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:487
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:506
 #: src/screens/Messages/ConversationSettings/Member.tsx:71
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:117
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:130
@@ -14532,7 +14617,7 @@ msgid "This action can be undone at any time."
 msgstr "Hành động này có thể được hoàn tác bất kì lúc nào."
 
 #. placeholder {0}: target.handle
-#: src/features/tips/components/TipDialog.tsx:274
+#: src/features/tips/components/TipDialog.tsx:277
 msgid "This address does not match the wallet Krao has verified for @{0}, or another verified wallet looks very similar to it. Do not send a tip unless you are sure."
 msgstr "Địa chỉ này không khớp với ví Krao đã xác minh của @{0}, hoặc có một ví đã xác minh khác trông rất giống. Đừng gửi tip nếu bạn chưa chắc chắn."
 
@@ -14732,7 +14817,7 @@ msgstr ""
 msgid "This invite link is invalid"
 msgstr ""
 
-#: src/screens/Settings/WalletsSettings.tsx:170
+#: src/screens/Settings/WalletsSettings.tsx:194
 msgid "This is a shared test wallet: its key is public, so anyone can use it. Do not link it to an account you want to keep."
 msgstr "Đây là ví thử nghiệm dùng chung: khoá của nó công khai nên ai cũng dùng được. Đừng liên kết nó với tài khoản bạn muốn giữ."
 
@@ -14867,7 +14952,7 @@ msgstr "Bài viết này có vẻ chứa seed phrase hoặc khóa riêng. Ai có
 msgid "This post was deleted by its author"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:926
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:927
 msgid "This post will be hidden from feeds and threads. This cannot be undone."
 msgstr "Bài đăng này sẽ bị ẩn khỏi bảng tin và thảo luận. Hành động này không thể hoàn tác."
 
@@ -14879,7 +14964,7 @@ msgstr "Tác giả bài đăng này đã tắt chức năng trích dẫn bài đ
 msgid "This profile is only visible to logged-in users. It won't be visible to people who aren't signed in."
 msgstr "Chỉ những người dùng đã đăng nhập mới xem được hồ sơ người dùng này. Người chưa đăng nhập sẽ không thể xem được."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:961
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:962
 msgid "This reply will be sorted into a hidden section at the bottom of your thread and will mute notifications for subsequent replies - both for yourself and others."
 msgstr "Trả lời này sẽ được sắp xếp vào mục ẩn ở cuối thảo luận của bạn và sẽ tắt thông báo cho các trả lời tiếp theo - cho cả bạn và người khác."
 
@@ -14967,7 +15052,7 @@ msgstr ""
 msgid "This video can’t be previewed in your browser. It will still be uploaded."
 msgstr ""
 
-#: src/features/wallet/components/WalletSignInButton.tsx:31
+#: src/features/wallet/components/WalletSignInButton.tsx:35
 msgid "This wallet is not linked to an account on this hosting provider. Sign in with your password and link it in Settings → Wallets first."
 msgstr "Ví này chưa được liên kết với tài khoản nào trên nhà cung cấp lưu trữ này. Hãy đăng nhập bằng mật khẩu và liên kết ví trong Cài đặt → Ví trước."
 
@@ -14993,7 +15078,7 @@ msgstr "Thao tác này sẽ xóa vĩnh viễn tài khoản Krao <0>{currentHandl
 msgid "This will remove @{0} from the quick access list."
 msgstr "Tác vụ này sẽ xóa @{0} khỏi danh sách truy cập nhanh."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:954
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:955
 msgid "This will remove your post from this quote post for all users, and replace it with a placeholder."
 msgstr "Tác vụ này sẽ xóa bài đăng của bạn khỏi bài đăng trích dẫn này cho tất cả người dùng, và thay thế nó bằng một chỗ trống."
 
@@ -15034,17 +15119,17 @@ msgid "Timeline"
 msgstr ""
 
 #. placeholder {0}: target.handle
-#: src/features/tips/components/TipDialog.tsx:138
+#: src/features/tips/components/TipDialog.tsx:141
 msgid "Tip @{0}"
 msgstr "Tip cho @{0}"
 
-#: src/features/tips/components/TipDialog.tsx:301
+#: src/features/tips/components/TipDialog.tsx:304
 msgid "Tip saved"
 msgstr "Đã lưu tip"
 
 #. placeholder {0}: formatUnits(amount, asset.decimals)
 #. placeholder {1}: asset.symbol
-#: src/features/tips/components/TipDialog.tsx:125
+#: src/features/tips/components/TipDialog.tsx:128
 msgid "Tip sent: {0} {1}"
 msgstr "Đã gửi tip: {0} {1}"
 
@@ -15089,11 +15174,11 @@ msgstr ""
 msgid "To log out, <0>click here</0>. Or if you’d prefer, you can <1>delete your account</1>."
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:171
+#: src/features/tips/components/TipDialog.tsx:174
 msgid "To send tips, first link the wallet you will pay from to your account."
 msgstr "Để gửi tip, trước hết hãy liên kết ví mà bạn sẽ dùng để trả với tài khoản của bạn."
 
-#: src/features/tips/components/TipDialog.tsx:260
+#: src/features/tips/components/TipDialog.tsx:263
 msgid "To wallet"
 msgstr "Đến ví"
 
@@ -15131,7 +15216,7 @@ msgstr "Số dư token"
 msgid "Token balance, selected"
 msgstr "Số dư token, đang chọn"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:200
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:201
 msgid "Token gate removed"
 msgstr "Đã gỡ giới hạn theo token"
 
@@ -15211,8 +15296,8 @@ msgstr "Chủ đề"
 #: src/components/dms/MessageContextMenu.tsx:193
 #: src/components/Post/Translated/index.tsx:147
 #: src/components/Post/Translated/index.tsx:154
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:633
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:639
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:634
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:640
 msgid "Translate"
 msgstr "Dịch"
 
@@ -15224,8 +15309,8 @@ msgstr ""
 msgid "Translating"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:614
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:616
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:615
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:617
 msgid "Translating…"
 msgstr ""
 
@@ -15309,8 +15394,8 @@ msgstr ""
 msgid "Try it"
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:293
-#: src/features/tips/components/TipDialog.tsx:307
+#: src/features/tips/components/TipDialog.tsx:296
+#: src/features/tips/components/TipDialog.tsx:310
 msgid "Try saving the tip again"
 msgstr "Thử lưu tip lại"
 
@@ -15568,12 +15653,12 @@ msgstr "Bỏ thích"
 msgid "Unlike ({0, plural, one {# like} other {# likes}})"
 msgstr "Bỏ thích ({0, plural, other {# lượt thích}})"
 
-#: src/screens/Settings/WalletsSettings.tsx:224
-#: src/screens/Settings/WalletsSettings.tsx:231
+#: src/screens/Settings/WalletsSettings.tsx:248
+#: src/screens/Settings/WalletsSettings.tsx:255
 msgid "Unlink"
 msgstr "Hủy liên kết"
 
-#: src/screens/Settings/WalletsSettings.tsx:229
+#: src/screens/Settings/WalletsSettings.tsx:253
 msgid "Unlink this wallet?"
 msgstr "Hủy liên kết ví này?"
 
@@ -15602,8 +15687,8 @@ msgstr "Bỏ ẩn"
 msgid "Unmute {0}"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:823
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:829
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:824
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:830
 #: src/view/com/profile/ProfileMenu.tsx:470
 #: src/view/com/profile/ProfileMenu.tsx:476
 msgid "Unmute account"
@@ -15622,8 +15707,8 @@ msgstr "Bỏ ẩn danh sách"
 msgid "Unmute this group chat"
 msgstr "Bật tiếng nhóm chat này"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:715
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:718
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:716
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:719
 msgid "Unmute thread"
 msgstr "Bật lại thông báo cho thảo luận"
 
@@ -15648,8 +15733,8 @@ msgstr "Bỏ ghim bảng tin"
 msgid "Unpin from home"
 msgstr "Bỏ ghim khỏi trang chủ"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:591
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:596
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:592
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:597
 msgid "Unpin from profile"
 msgstr "Bỏ ghim khỏi hồ sơ"
 
@@ -15758,12 +15843,12 @@ msgstr ""
 msgid "Update your location"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:388
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:389
 msgctxt "toast"
 msgid "Updating quote attachment failed"
 msgstr "Không thể cập nhật tệp đính kèm trong trích dẫn"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:437
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:438
 msgctxt "toast"
 msgid "Updating reply visibility failed"
 msgstr "Không thể cập nhật trạng thái hiển thị của trả lời"
@@ -16016,7 +16101,7 @@ msgstr "Xác minh trên Krao hoạt động khác với các nền tảng khác.
 #: src/features/referral/components/PointsSection.tsx:83
 #: src/features/referral/ReferralScreen.tsx:266
 #: src/screens/Settings/AccountSettings.tsx:181
-#: src/screens/Settings/WalletsSettings.tsx:215
+#: src/screens/Settings/WalletsSettings.tsx:239
 msgid "Verified"
 msgstr "Đã xác minh"
 
@@ -16467,18 +16552,18 @@ msgstr "Ẩm lượng"
 msgid "waiting for a second reviewer"
 msgstr "chờ người duyệt thứ hai"
 
-#: src/screens/Settings/WalletsSettings.tsx:125
+#: src/screens/Settings/WalletsSettings.tsx:128
 msgid "Wallet linked"
 msgstr "Đã liên kết ví"
 
-#: src/screens/Settings/WalletsSettings.tsx:237
+#: src/screens/Settings/WalletsSettings.tsx:261
 msgid "Wallet unlinked"
 msgstr "Đã hủy liên kết ví"
 
 #: src/Navigation.tsx:520
 #: src/screens/Settings/Settings.tsx:185
 #: src/screens/Settings/Settings.tsx:188
-#: src/screens/Settings/WalletsSettings.tsx:69
+#: src/screens/Settings/WalletsSettings.tsx:72
 msgid "Wallets"
 msgstr "Ví"
 
@@ -16888,14 +16973,19 @@ msgstr "Bạn có muốn lưu bài này thành bản nháp trước khi xem các
 msgid "Would you like to save this as a draft to edit later?"
 msgstr "Bạn có muốn lưu bài này thành bản nháp để sửa sau không?"
 
+#: src/features/checklist/NewUserChecklist.tsx:115
 #: src/view/screens/Profile.tsx:446
 #: src/view/screens/Profile.tsx:447
 msgid "Write a post"
-msgstr ""
+msgstr "Viết bài"
 
 #: src/view/com/composer/Composer.tsx:1771
 msgid "Write post"
 msgstr "Soạn bài đăng"
+
+#: src/features/checklist/NewUserChecklist.tsx:112
+msgid "Write your first post"
+msgstr "Viết bài đầu tiên"
 
 #: src/screens/PostThread/components/ThreadComposePrompt.tsx:91
 #: src/view/com/composer/Composer.tsx:1671
@@ -16945,11 +17035,11 @@ msgstr "Có, xóa tài khoản của tôi"
 msgid "Yes, delete this Starter Pack"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:956
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:957
 msgid "Yes, detach"
 msgstr "Có, gỡ bỏ"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:963
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:964
 msgid "Yes, hide"
 msgstr "Có, ẩn"
 
@@ -17445,7 +17535,7 @@ msgstr "Bạn sẽ đăng xuất khỏi tất cả tài khoản của mình."
 msgid "You will no longer appear in this Starter Pack. The creator will be able to see that you've opted out and remove you if they wish."
 msgstr ""
 
-#: src/screens/Settings/WalletsSettings.tsx:230
+#: src/screens/Settings/WalletsSettings.tsx:254
 msgid "You will no longer be able to sign in with it, and it will be removed from your profile."
 msgstr "Bạn sẽ không thể đăng nhập bằng ví này nữa và ví sẽ bị gỡ khỏi hồ sơ của bạn."
 
@@ -17454,11 +17544,11 @@ msgstr "Bạn sẽ không thể đăng nhập bằng ví này nữa và ví sẽ
 msgid "You will no longer receive notifications for {0}"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:278
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:279
 msgid "You will no longer receive notifications for this thread"
 msgstr "Bạn sẽ không còn nhận thông báo cho thảo luận này"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:269
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:270
 msgid "You will now receive notifications for this thread"
 msgstr "Bạn sẽ bắt đầu nhận thông báo cho thảo luận này"
 
@@ -17720,6 +17810,10 @@ msgstr "Lượt thích đầu của bạn!"
 msgid "Your followers"
 msgstr "Người theo dõi bạn"
 
+#: src/features/checklist/NewUserChecklist.tsx:105
+msgid "Your Following feed fills up with posts from the people you follow."
+msgstr "Bảng tin Đang theo dõi sẽ đầy bài viết từ những người bạn theo dõi."
+
 #: src/view/com/posts/FollowingEmptyState.tsx:41
 msgid "Your following feed is empty! Follow more users to see what's happening."
 msgstr "Bảng tin theo dõi còn trống! Hãy theo dõi thêm người dùng để biết có gì đang diễn ra."
@@ -17895,7 +17989,7 @@ msgstr "Mục quan tâm mà bạn chọn giúp chúng tôi đưa nội dung mà 
 msgid "Your thread has empty posts that will be skipped. The remaining posts will be published as a thread."
 msgstr ""
 
-#: src/features/tips/components/TipDialog.tsx:105
+#: src/features/tips/components/TipDialog.tsx:108
 msgid "Your tip was sent, but it could not be saved to your account yet. It will be saved the next time you send a tip."
 msgstr "Tip đã được gửi nhưng chưa lưu được vào tài khoản. Tip sẽ được lưu vào lần bạn gửi tip tiếp theo."
 
