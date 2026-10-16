@@ -43,6 +43,13 @@ export type MemberView = net.krao.community.defs.MemberView & {
 
 const COMMUNITY_KEY_ROOT = 'krao-community'
 
+/**
+ * Feed generators this app session has written, by community uri. The
+ * indexer sees a new generator only a moment later; until then the community
+ * page uses this so it shows the pin button, not "turn on" again.
+ */
+const createdFeeds = new Map<string, NonNullable<CommunityView['feed']>>()
+
 /** A token for the indexer, scoped to one method */
 function useIndexerAuth() {
   const getToken = useRewardsAuth()
@@ -72,7 +79,12 @@ export function useCommunityQuery(uri: string | undefined) {
         params: {uri},
         token: currentAccount ? await getToken(method) : undefined,
       })
-      return {...res.community, feedGeneratorDid: res.feedGeneratorDid}
+      return {
+        ...res.community,
+        // A generator written a moment ago may not be indexed yet
+        feed: res.community.feed ?? createdFeeds.get(res.community.uri),
+        feedGeneratorDid: res.feedGeneratorDid,
+      }
     },
     /*
      * A community opened right after it was created may not be indexed yet,
@@ -372,6 +384,7 @@ export function useSaveCommunityMutation() {
         slug: draft.slug,
         name: fields.name,
         getToken,
+        onCreated: () => void invalidate(),
       })
       return uri
     },
@@ -396,6 +409,7 @@ async function createFeedWhenIndexed({
   slug,
   name,
   getToken,
+  onCreated,
 }: {
   pdsClient: Pds
   did: string
@@ -403,23 +417,29 @@ async function createFeedWhenIndexed({
   slug: string
   name: string
   getToken: (lxm: string) => Promise<string>
+  /** Refreshes the community so its page shows the pin button */
+  onCreated: () => void
 }) {
   const method = net.krao.community.getCommunity.$lxm
   for (let attempt = 0; attempt < 8; attempt++) {
     await sleep(1500)
+    // The owner turned the feed on from the community page meanwhile
+    if (createdFeeds.has(uri)) return
     try {
       const res = await indexerFetch<{feedGeneratorDid?: string}>(method, {
         params: {uri},
         token: await getToken(method),
       })
       if (!res.feedGeneratorDid) return
-      await createCommunityFeed({
+      const feed = await createCommunityFeed({
         pdsClient,
         did,
         slug,
         name,
         feedGeneratorDid: res.feedGeneratorDid,
       })
+      createdFeeds.set(uri, feed)
+      onCreated()
       return
     } catch (e) {
       if ((e as {error?: string})?.error !== 'NotFound') {
@@ -430,6 +450,13 @@ async function createFeedWhenIndexed({
   }
 }
 
+/**
+ * Writes the community's generator record and returns its uri. putRecord, not
+ * createRecord: the record key is fixed (`community-<slug>`), so a second
+ * write (the owner pressing "turn on" while the automatic one is still under
+ * way, or a generator left from an earlier community with the same slug)
+ * updates the record rather than failing.
+ */
 async function createCommunityFeed({
   pdsClient,
   did,
@@ -445,7 +472,7 @@ async function createCommunityFeed({
   description?: string
   feedGeneratorDid: string
 }) {
-  await pdsClient.call(com.atproto.repo.createRecord, {
+  const res = await pdsClient.call(com.atproto.repo.putRecord, {
     repo: did as DidString,
     collection: 'app.bsky.feed.generator',
     rkey: communityFeedRkey(slug),
@@ -456,6 +483,7 @@ async function createCommunityFeed({
       createdAt: now(),
     }),
   })
+  return res.uri
 }
 
 /** The owner turns on the community's feed (a generator record in their repo) */
@@ -475,7 +503,7 @@ export function useEnableCommunityFeedMutation() {
       if (!community.feedGeneratorDid) {
         throw new Error('The community feed is not available yet')
       }
-      await createCommunityFeed({
+      const feed = await createCommunityFeed({
         pdsClient,
         did: currentAccount.did,
         slug: community.slug,
@@ -483,6 +511,7 @@ export function useEnableCommunityFeedMutation() {
         description,
         feedGeneratorDid: community.feedGeneratorDid,
       })
+      createdFeeds.set(community.uri, feed)
     },
     onSuccess: async () => {
       /*
