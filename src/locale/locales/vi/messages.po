@@ -18,11 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/src/locale/locales/en/messages.po\n"
 "X-Crowdin-File-ID: 11\n"
 
-#: src/features/gating/describe.ts:32
+#: src/features/gating/describe.ts:35
 msgid " and "
 msgstr " và "
 
-#: src/features/gating/describe.ts:31
+#: src/features/gating/describe.ts:34
 msgid " or "
 msgstr " hoặc "
 
@@ -97,6 +97,11 @@ msgstr "(bài đăng được trích dẫn)"
 msgid "{0, plural, one {# account label} other {# account labels}}"
 msgstr ""
 
+#. placeholder {0}: left.value
+#: src/features/poll/components/PostPoll.tsx:208
+msgid "{0, plural, one {# day left} other {# days left}}"
+msgstr "{0, plural, other {Còn # ngày}}"
+
 #. placeholder {0}: diff.value
 #: src/lib/hooks/useTimeAgo.ts:169
 msgid "{0, plural, one {# day} other {# days}}"
@@ -116,6 +121,11 @@ msgstr "{0, plural, other {# đang theo dõi}}"
 #: src/components/contacts/screens/ViewMatches.tsx:276
 msgid "{0, plural, one {# friend found!} other {# friends found!}}"
 msgstr ""
+
+#. placeholder {0}: left.value
+#: src/features/poll/components/PostPoll.tsx:210
+msgid "{0, plural, one {# hour left} other {# hours left}}"
+msgstr "{0, plural, other {Còn # giờ}}"
 
 #. placeholder {0}: 72
 #. placeholder {0}: diff.value
@@ -144,6 +154,11 @@ msgstr "{0, plural, other {# lượt thích}}"
 #: src/components/dms/InitiateChatFlow.tsx:1038
 msgid "{0, plural, one {# member} other {# members}}"
 msgstr "{0, plural, other {# thành viên}}"
+
+#. placeholder {0}: left.value
+#: src/features/poll/components/PostPoll.tsx:212
+msgid "{0, plural, one {# minute left} other {# minutes left}}"
+msgstr "{0, plural, other {Còn # phút}}"
 
 #. placeholder {0}: diff.value
 #: src/lib/hooks/useTimeAgo.ts:149
@@ -185,9 +200,14 @@ msgstr "{0, plural, other {# giây}}"
 #. placeholder {0}: numUnreadNotifications ?? 0
 #: src/view/shell/bottom-bar/BottomBar.tsx:255
 #: src/view/shell/bottom-bar/BottomBar.tsx:287
-#: src/view/shell/Drawer.tsx:598
+#: src/view/shell/Drawer.tsx:607
 msgid "{0, plural, one {# unread item} other {# unread items}}"
 msgstr "{0, plural, other {# mục chưa đọc}}"
+
+#. placeholder {0}: poll.totalVotes
+#: src/features/poll/components/PostPoll.tsx:198
+msgid "{0, plural, one {# vote} other {# votes}}"
+msgstr "{0, plural, other {# phiếu}}"
 
 #. How long it takes to read an article, in minutes. Displayed in a short form, e.g. "5m" for 5 minutes.
 #. placeholder {0}: view.readingTime
@@ -348,7 +368,7 @@ msgstr "{0} trên {1}"
 
 #. placeholder {0}: done.length
 #. placeholder {1}: CHECKLIST_STEPS.length
-#: src/features/checklist/NewUserChecklist.tsx:153
+#: src/features/checklist/NewUserChecklist.tsx:174
 msgid "{0} of {1} done"
 msgstr "Đã xong {0}/{1} bước"
 
@@ -426,10 +446,20 @@ msgstr ""
 msgid "{0}, a list by {1}"
 msgstr ""
 
+#. placeholder {0}: community.name
+#: src/features/community/components/CommunityCard.tsx:86
+msgid "{0}, community"
+msgstr "{0}, cộng đồng"
+
+#. placeholder {0}: asset.symbol
+#. placeholder {0}: durationLabel(hours)
 #. placeholder {0}: option.symbol
-#. placeholder {0}: reasonLabels[option]
+#: src/features/community/CommunityEditScreen.tsx:462
 #: src/features/compliance/moderation/GateModerationScreen.tsx:179
 #: src/features/gating/components/GateDialog.tsx:307
+#: src/features/poll/components/PollEditorDialog.tsx:212
+#: src/features/poll/components/PollEditorDialog.tsx:252
+#: src/features/poll/components/PostPoll.tsx:114
 #: src/features/tips/components/TipDialog.tsx:201
 msgid "{0}, selected"
 msgstr "{0}, đang chọn"
@@ -523,6 +553,10 @@ msgstr "{count, plural, =0 {Không có yêu cầu tham gia} other {# yêu cầu 
 msgid "{count, plural, one {# chat update} other {# chat updates}}"
 msgstr "{count, plural, other {# cập nhật cuộc trò chuyện}}"
 
+#: src/features/community/components/CommunityCard.tsx:61
+msgid "{count, plural, one {# member} other {# members}}"
+msgstr "{count, plural, other {# thành viên}}"
+
 #: src/screens/Messages/components/RequestStatus.tsx:74
 msgid "{count, plural, one {# new join request} other {# new join requests}}"
 msgstr "{count, plural, other {# yêu cầu tham gia mới}}"
@@ -535,7 +569,7 @@ msgstr "{count, plural, other {# người đã tham gia}} · {verified} đã xá
 msgid "{count, plural, one {# request} other {# requests}}"
 msgstr "{count, plural, other {# yêu cầu}}"
 
-#: src/view/shell/desktop/LeftNav.tsx:491
+#: src/view/shell/desktop/LeftNav.tsx:492
 msgid "{count, plural, one {# unread item} other {# unread items}}"
 msgstr "{count, plural, other {# mục chưa đọc}}"
 
@@ -797,8 +831,8 @@ msgstr "{JOIN_REQUESTS_THRESHOLD}+ yêu cầu tham gia mới"
 msgid "{joinedAllTimeCount, plural, other {# users have}} joined!"
 msgstr "{joinedAllTimeCount, plural, other {# người dùng}} đã đăng ký!"
 
-#: src/view/shell/desktop/LeftNav.tsx:414
-#: src/view/shell/Drawer.tsx:723
+#: src/view/shell/desktop/LeftNav.tsx:415
+#: src/view/shell/Drawer.tsx:750
 msgid "{label}, Beta"
 msgstr ""
 
@@ -915,6 +949,22 @@ msgstr "{requestCount, plural, other {# yêu cầu}}"
 msgid "{requestCount}+ requests"
 msgstr "{requestCount}+ yêu cầu"
 
+#: src/features/poll/components/PostPoll.tsx:255
+msgid "{text}, {percent} percent"
+msgstr "{text}, {percent} phần trăm"
+
+#: src/features/poll/components/PostPoll.tsx:254
+msgid "{text}, {percent} percent, your vote"
+msgstr "{text}, {percent} phần trăm, phiếu của bạn"
+
+#: src/features/poll/components/PostPoll.tsx:251
+msgid "{text}, your vote"
+msgstr "{text}, phiếu của bạn"
+
+#: src/features/community/components/Choice.tsx:30
+msgid "{title}, selected"
+msgstr "{title}, đã chọn"
+
 #: src/components/verification/VerifierDialog.tsx:62
 msgid "{userName} is a trusted verifier"
 msgstr "{userName} là người xác minh đáng tin cậy"
@@ -972,34 +1022,34 @@ msgstr ""
 
 #. placeholder {0}: formatCount(i18n, profile?.followersCount ?? 0)
 #. placeholder {1}: profile?.followersCount || 0
-#: src/view/shell/Drawer.tsx:157
+#: src/view/shell/Drawer.tsx:158
 msgid "<0>{0}</0> {1, plural, one {follower} other {followers}}"
 msgstr "<0>{0}</0> {1, plural, other {người theo dõi}}"
 
 #. placeholder {0}: formatCount(i18n, profile?.followsCount ?? 0)
 #. placeholder {1}: profile?.followsCount || 0
-#: src/view/shell/Drawer.tsx:168
+#: src/view/shell/Drawer.tsx:169
 msgid "<0>{0}</0> {1, plural, one {following} other {following}}"
 msgstr "<0>{0}</0> {1, plural, other {đang theo dõi}}"
 
 #. Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.quoteCount)
 #. placeholder {1}: post.quoteCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:491
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:493
 msgid "<0>{0}</0> {1, plural, one {quote} other {quotes}}"
 msgstr "<0>{0}</0> {1, plural, other {trích dẫn}}"
 
 #. Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.repostCount)
 #. placeholder {1}: post.repostCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:470
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:472
 msgid "<0>{0}</0> {1, plural, one {repost} other {reposts}}"
 msgstr "<0>{0}</0> {1, plural, other {lượt đăng lại}}"
 
 #. Save count display, the <0> tags enclose the number of saves in bold (will never be 0)
 #. placeholder {0}: formatPostStatCount(post.bookmarkCount)
 #. placeholder {1}: post.bookmarkCount
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:510
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:512
 msgid "<0>{0}</0> {1, plural, one {save} other {saves}}"
 msgstr "<0>{0}</0> {1, plural, other {lượt lưu}}"
 
@@ -1036,7 +1086,7 @@ msgstr "<0>{displayName}</0><1/><2> đã thêm bạn</2>"
 msgid "<0>Community Guidelines: Harassment</0>"
 msgstr ""
 
-#: src/features/gating/components/GatedContent.tsx:110
+#: src/features/gating/components/GatedContent.tsx:123
 msgid "<0>Link a wallet</0> that meets the requirement to unlock this content."
 msgstr "<0>Liên kết một ví</0> đáp ứng điều kiện để mở khoá nội dung này."
 
@@ -1069,6 +1119,14 @@ msgstr "≥ {amount} {0} trên Base"
 msgid "⚠Invalid Handle"
 msgstr "⚠Tên người dùng không hợp lệ"
 
+#: src/features/poll/components/PollEditorDialog.tsx:55
+msgid "1 day"
+msgstr "1 ngày"
+
+#: src/features/poll/components/PollEditorDialog.tsx:54
+msgid "1 hour"
+msgstr "1 giờ"
+
 #: src/components/dialogs/MutedWords.tsx:204
 #: src/components/dialogs/MutedWords.tsx:553
 #: src/components/dialogs/MutedWords.tsx:556
@@ -1079,9 +1137,14 @@ msgstr "24 giờ"
 msgid "2FA Confirmation"
 msgstr "Xác nhận 2FA"
 
+#: src/features/poll/components/PollEditorDialog.tsx:56
+msgid "3 days"
+msgstr "3 ngày"
+
 #: src/components/dialogs/MutedWords.tsx:243
 #: src/components/dialogs/MutedWords.tsx:567
 #: src/components/dialogs/MutedWords.tsx:570
+#: src/features/poll/components/PollEditorDialog.tsx:58
 msgid "30 days"
 msgstr "30 ngày"
 
@@ -1092,6 +1155,7 @@ msgstr "Mã gồm 6 số"
 #: src/components/dialogs/MutedWords.tsx:228
 #: src/components/dialogs/MutedWords.tsx:560
 #: src/components/dialogs/MutedWords.tsx:563
+#: src/features/poll/components/PollEditorDialog.tsx:57
 msgid "7 days"
 msgstr "7 ngày"
 
@@ -1147,7 +1211,7 @@ msgstr ""
 msgid "A new form of verification"
 msgstr "Một dạng xác thực hoàn toàn mới"
 
-#: src/features/checklist/NewUserChecklist.tsx:97
+#: src/features/checklist/NewUserChecklist.tsx:118
 msgid "A photo helps people recognise you."
 msgstr "Ảnh đại diện giúp mọi người nhận ra bạn."
 
@@ -1188,23 +1252,23 @@ msgstr "Ảnh chụp màn hình trình soạn bài đăng với một nút mới
 msgid "A selected recipient is not followed by the sender."
 msgstr "Người gửi không theo dõi một trong những người nhận đã chọn."
 
-#: src/features/gating/describe.ts:19
+#: src/features/gating/describe.ts:22
 msgid "a specific NFT from {collection}"
 msgstr "một NFT cụ thể từ {collection}"
 
-#: src/features/checklist/NewUserChecklist.tsx:86
+#: src/features/checklist/NewUserChecklist.tsx:107
 msgid "A wallet is a free app or browser extension that holds your tokens and signs for you. Krao never sees its keys. Install one such as MetaMask, then link it, or link one you already have."
 msgstr "Ví là ứng dụng hoặc tiện ích trình duyệt miễn phí, giữ token và ký thay bạn. Krao không bao giờ thấy khoá của ví. Hãy cài một ví như MetaMask rồi liên kết, hoặc liên kết ví bạn đã có."
 
-#: src/features/checklist/NewUserChecklist.tsx:88
+#: src/features/checklist/NewUserChecklist.tsx:109
 msgid "A wallet is a free app that holds your tokens and signs for you. Krao never sees its keys. Install one on this phone such as MetaMask, then link it, or link one you already have."
 msgstr "Ví là ứng dụng miễn phí, giữ token và ký thay bạn. Krao không bao giờ thấy khoá của ví. Hãy cài một ví như MetaMask trên điện thoại này rồi liên kết, hoặc liên kết ví bạn đã có."
 
-#: src/features/checklist/NewUserChecklist.tsx:89
+#: src/features/checklist/NewUserChecklist.tsx:110
 msgid "A wallet is a free app that holds your tokens and signs for you. Krao never sees its keys. Install one such as MetaMask or Coinbase Wallet and link it from Krao on the web; linking in the mobile app is coming soon."
 msgstr "Ví là ứng dụng miễn phí, giữ token và ký thay bạn. Krao không bao giờ thấy khoá của ví. Hãy cài một ví như MetaMask hoặc Coinbase Wallet rồi liên kết từ Krao trên web; liên kết trong ứng dụng di động sắp ra mắt."
 
-#: src/Navigation.tsx:565
+#: src/Navigation.tsx:591
 #: src/screens/Settings/AboutSettings.tsx:85
 #: src/screens/Settings/Settings.tsx:283
 #: src/screens/Settings/Settings.tsx:286
@@ -1253,11 +1317,11 @@ msgstr ""
 msgid "Accessibility"
 msgstr "Trợ năng"
 
-#: src/Navigation.tsx:427
+#: src/Navigation.tsx:453
 msgid "Accessibility Settings"
 msgstr "Cài đặt trợ năng"
 
-#: src/Navigation.tsx:443
+#: src/Navigation.tsx:469
 #: src/screens/Settings/AccountSettings.tsx:61
 #: src/screens/Settings/Settings.tsx:179
 #: src/screens/Settings/Settings.tsx:182
@@ -1350,7 +1414,7 @@ msgstr ""
 msgid "Activity from others"
 msgstr "Hoạt động từ người khác"
 
-#: src/Navigation.tsx:496
+#: src/Navigation.tsx:522
 msgid "Activity notifications"
 msgstr ""
 
@@ -1386,7 +1450,12 @@ msgstr "Thêm cảnh báo nội dung"
 msgid "Add a gated image or video"
 msgstr "Thêm ảnh hoặc video giới hạn theo token"
 
-#: src/features/checklist/NewUserChecklist.tsx:96
+#: src/features/community/composer/KraoComposerPills.tsx:32
+#: src/features/poll/components/PollEditorDialog.tsx:124
+msgid "Add a poll"
+msgstr "Thêm khảo sát"
+
+#: src/features/checklist/NewUserChecklist.tsx:117
 msgid "Add a profile photo"
 msgstr "Thêm ảnh đại diện"
 
@@ -1418,18 +1487,22 @@ msgstr "Thêm văn bản thay thế"
 msgid "Add alt text (optional)"
 msgstr "Thêm văn bản thay thế (không bắt buộc)"
 
+#: src/features/poll/components/PollEditorDialog.tsx:187
+msgid "Add an option"
+msgstr "Thêm một lựa chọn"
+
 #: src/screens/Settings/Settings.tsx:612
 #: src/screens/Settings/Settings.tsx:615
-#: src/view/shell/desktop/LeftNav.tsx:280
-#: src/view/shell/desktop/LeftNav.tsx:283
+#: src/view/shell/desktop/LeftNav.tsx:281
+#: src/view/shell/desktop/LeftNav.tsx:284
 msgid "Add another account"
 msgstr "Thêm tài khoản khác"
 
-#: src/view/com/composer/Composer.tsx:1672
+#: src/view/com/composer/Composer.tsx:1682
 msgid "Add another post"
 msgstr "Thêm bài"
 
-#: src/view/com/composer/Composer.tsx:2345
+#: src/view/com/composer/Composer.tsx:2359
 msgid "Add another post to thread"
 msgstr ""
 
@@ -1505,6 +1578,10 @@ msgstr "Thêm từ ẩn với những thiết lập hiện tại"
 msgid "Add muted words and tags"
 msgstr "Thêm từ cấm và thẻ"
 
+#: src/features/poll/components/PollEditorDialog.tsx:196
+msgid "Add option"
+msgstr "Thêm lựa chọn"
+
 #: src/screens/Messages/components/MessagesListGroupInfoPanel.tsx:133
 #: src/screens/Messages/components/MessagesListGroupInfoPanel.tsx:172
 #: src/screens/ProfileList/AboutSection.tsx:72
@@ -1528,9 +1605,18 @@ msgstr "Thêm bày tỏ cảm xúc"
 msgid "Add recommended feeds"
 msgstr "Thêm bảng tin được đề xuất"
 
+#: src/features/community/CommunityEditScreen.tsx:498
+#: src/features/community/CommunityEditScreen.tsx:506
+msgid "Add requirement"
+msgstr "Thêm điều kiện"
+
 #: src/screens/StarterPack/Wizard/index.tsx:538
 msgid "Add some feeds to your Starter Pack!"
 msgstr ""
+
+#: src/features/community/composer/CommunityPickerDialog.tsx:110
+msgid "Add text only members can read"
+msgstr "Thêm nội dung chỉ thành viên đọc được"
 
 #: src/screens/Feeds/NoFollowingFeed.tsx:40
 msgid "Add the default feed of only people you follow"
@@ -1570,6 +1656,10 @@ msgstr "Thêm nội dung giới hạn theo token"
 msgid "Add user to list"
 msgstr "Thêm tài khoản vào danh sách"
 
+#: src/features/community/CommunityEditScreen.tsx:198
+msgid "Add what people must hold, up to {CONDITIONS_MAX} requirements."
+msgstr "Thêm thứ mà mọi người phải nắm giữ, tối đa {CONDITIONS_MAX} điều kiện."
+
 #: src/ageAssurance/components/NoAccessScreen.tsx:301
 msgid "Add your birthdate"
 msgstr ""
@@ -1604,6 +1694,10 @@ msgstr ""
 #: src/components/moderation/ReportDialog/index.tsx:623
 msgid "Additional details (limit 300 characters)"
 msgstr "Thông tin chi tiết thêm (tối đa 300 kí tự)"
+
+#: src/features/community/CommunityEditScreen.tsx:228
+msgid "Address"
+msgstr "Địa chỉ"
 
 #: src/features/referral/admin/components/PointsTab.tsx:84
 #: src/features/referral/admin/components/PointsTab.tsx:108
@@ -1723,6 +1817,15 @@ msgstr "Mọi ngôn ngữ"
 #: src/screens/Settings/LanguageSettings.tsx:189
 msgid "All languages will be shown in your feeds."
 msgstr "Tất cả ngôn ngữ sẽ được hiển thị trong bảng tin của bạn."
+
+#: src/features/community/CommunityEditScreen.tsx:411
+#: src/features/community/CommunityEditScreen.tsx:416
+msgid "All of them"
+msgstr "Tất cả"
+
+#: src/features/community/CommunityEditScreen.tsx:411
+msgid "All of them, selected"
+msgstr "Tất cả, đã chọn"
 
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:245
 msgid "All of these words"
@@ -2046,9 +2149,18 @@ msgstr "Lượt duyệt thứ hai phải do một người duyệt khác thực 
 msgid "Any date"
 msgstr ""
 
-#: src/features/gating/describe.ts:20
+#: src/features/gating/describe.ts:23
 msgid "any NFT from {collection}"
 msgstr "bất kỳ NFT nào từ {collection}"
+
+#: src/features/community/CommunityEditScreen.tsx:420
+#: src/features/community/CommunityEditScreen.tsx:425
+msgid "Any one"
+msgstr "Một trong số đó"
+
+#: src/features/community/CommunityEditScreen.tsx:420
+msgid "Any one, selected"
+msgstr "Một trong số đó, đã chọn"
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:459
 msgid "Anyone"
@@ -2066,6 +2178,10 @@ msgstr ""
 #: src/screens/Messages/components/InviteLinkDialog.tsx:152
 msgid "Anyone can join instantly"
 msgstr "Bất kỳ ai cũng có thể tham gia ngay"
+
+#: src/features/community/components/accessText.ts:32
+msgid "Anyone can join."
+msgstr "Ai cũng có thể tham gia."
 
 #: src/screens/Messages/components/InviteLinkDialog.tsx:156
 #: src/screens/Messages/components/InviteLinkDialog.tsx:157
@@ -2086,7 +2202,7 @@ msgstr "Bất kỳ ai có liên kết này sẽ không thể tham gia hoặc yê
 msgid "Anyone who has your seed phrase or private key can take all your funds. Krao will never ask for them, and nobody else should. It was not sent: remove it from the text and try again."
 msgstr "Ai có seed phrase hoặc khóa riêng của bạn đều có thể lấy hết tiền của bạn. Krao không bao giờ xin những thứ này, và không ai khác nên xin. Tin nhắn chưa được gửi: hãy xóa chúng khỏi nội dung rồi thử lại."
 
-#: src/Navigation.tsx:573
+#: src/Navigation.tsx:599
 #: src/screens/Settings/AppIconSettings/index.tsx:65
 #: src/screens/Settings/AppIconSettings/SettingsListItem.tsx:19
 #: src/screens/Settings/AppIconSettings/SettingsListItem.tsx:24
@@ -2124,7 +2240,7 @@ msgstr "Mật khẩu ứng dụng phải dài tối thiểu 4 ký tự"
 msgid "App passwords"
 msgstr "Mật khẩu ứng dụng"
 
-#: src/Navigation.tsx:395
+#: src/Navigation.tsx:421
 #: src/screens/Settings/AppPasswords.tsx:52
 msgid "App Passwords"
 msgstr "Mật khẩu ứng dụng"
@@ -2192,7 +2308,7 @@ msgstr "Kháng nghị quyết định này"
 msgid "Appeal this label"
 msgstr ""
 
-#: src/Navigation.tsx:435
+#: src/Navigation.tsx:461
 #: src/screens/Settings/AppearanceSettings.tsx:71
 #: src/screens/Settings/Settings.tsx:245
 #: src/screens/Settings/Settings.tsx:248
@@ -2217,14 +2333,24 @@ msgstr "Áp dụng Pull Request"
 msgid "Apply update from this channel"
 msgstr ""
 
+#: src/features/community/components/accessText.ts:12
+#: src/features/community/components/accessText.ts:13
+msgid "Approval needed"
+msgstr "Cần được duyệt"
+
 #: src/features/referral/admin/components/KycTab.tsx:251
 msgid "Approval saved. A second reviewer must approve too."
 msgstr "Đã lưu lượt duyệt. Cần thêm một người duyệt nữa."
 
+#: src/features/community/CommunityScreen.tsx:666
 #: src/features/referral/admin/components/KycTab.tsx:280
 #: src/features/referral/admin/components/KycTab.tsx:283
 msgid "Approve"
 msgstr "Duyệt"
+
+#: src/features/community/CommunityScreen.tsx:653
+msgid "Approve {label}"
+msgstr "Duyệt {label}"
 
 #: src/features/referral/admin/components/KycTab.tsx:345
 msgid "Approve identity"
@@ -2239,12 +2365,12 @@ msgid "Approved at once and logged. Use a negative number to remove points."
 msgstr "Được duyệt ngay và ghi nhật ký. Nhập số âm để trừ điểm."
 
 #. placeholder {0}: niceDate(i18n, createdAt, 'medium')
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:633
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:635
 msgid "Archived from {0}"
 msgstr "Lưu trữ từ {0}"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:604
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:642
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:606
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:644
 msgid "Archived post"
 msgstr "Bài đăng lưu trữ"
 
@@ -2310,7 +2436,7 @@ msgstr "Bạn có chắc chắn muốn xóa khỏi bảng tin của bạn không
 msgid "Are you sure you want to rescind your request to join {0}?"
 msgstr "Bạn có chắc muốn thu hồi yêu cầu tham gia {0}?"
 
-#: src/view/com/composer/Composer.tsx:1810
+#: src/view/com/composer/Composer.tsx:1820
 msgid "Are you sure you'd like to discard this post?"
 msgstr "Bạn có chắc chắn muốn hủy bỏ bài đăng này không?"
 
@@ -2348,6 +2474,20 @@ msgstr "Yêu cầu ứng dụng và trang web không hiển thị tài khoản c
 msgid "Ask apps to hide my posts from algorithmic recommendations"
 msgstr "Yêu cầu ứng dụng ẩn bài đăng của tôi khỏi các đề xuất theo thuật toán"
 
+#: src/features/poll/components/PollEditorDialog.tsx:141
+msgid "Ask something, or let your post be the question"
+msgstr "Đặt câu hỏi, hoặc để chính bài viết là câu hỏi"
+
+#: src/features/community/CommunityScreen.tsx:376
+#: src/features/community/CommunityScreen.tsx:385
+#: src/features/community/CommunityScreen.tsx:483
+msgid "Ask to join"
+msgstr "Xin tham gia"
+
+#: src/features/community/CommunityScreen.tsx:477
+msgid "Ask to join?"
+msgstr "Xin tham gia?"
+
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:693
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:695
 msgid "Assign topic for algo"
@@ -2361,10 +2501,10 @@ msgstr "Ít nhất 8 ký tự"
 msgid "AT Protocol FAQ"
 msgstr "Câu hỏi thường gặp về AT Protocol"
 
-#: src/Navigation.tsx:186
+#: src/Navigation.tsx:192
 #: src/screens/Atmosphere.tsx:31
-#: src/view/shell/desktop/LeftNav.tsx:714
-#: src/view/shell/Drawer.tsx:515
+#: src/view/shell/desktop/LeftNav.tsx:715
+#: src/view/shell/Drawer.tsx:524
 msgid "Atmosphere"
 msgstr ""
 
@@ -2393,7 +2533,7 @@ msgstr "Tự động"
 msgid "Automation label"
 msgstr "Nhãn tự động hóa"
 
-#: src/Navigation.tsx:459
+#: src/Navigation.tsx:485
 #: src/screens/Settings/AutomationLabelSettings.tsx:104
 msgid "Automation Label"
 msgstr "Nhãn tự động hóa"
@@ -2453,9 +2593,28 @@ msgstr "Trở lại"
 msgid "Back to Chats"
 msgstr "Trở lại Chats"
 
+#: src/features/community/CommunityScreen.tsx:287
+#: src/features/community/CommunityScreen.tsx:716
+msgid "Ban"
+msgstr "Cấm"
+
+#. placeholder {0}: banTarget?.label ?? ''
+#: src/features/community/CommunityScreen.tsx:285
+msgid "Ban {0}?"
+msgstr "Cấm {0}?"
+
+#: src/features/community/CommunityScreen.tsx:711
+msgid "Ban {label}"
+msgstr "Cấm {label}"
+
 #: src/screens/ModerationInbox/index.tsx:217
 msgid "Ban evasion – {duration}, now expired"
 msgstr ""
+
+#. placeholder {0}: banTarget.label
+#: src/features/community/CommunityScreen.tsx:295
+msgid "Banned {0}"
+msgstr "Đã cấm {0}"
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:218
 msgid "Banned activities or security violations"
@@ -2480,6 +2639,10 @@ msgstr ""
 #: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:242
 msgid "Based on your network, we think you're in <0>{region}</0>. This estimate may be inaccurate if you're using a VPN."
 msgstr ""
+
+#: src/features/community/CommunitiesScreen.tsx:215
+msgid "Be the first: start a community around what you care about."
+msgstr "Hãy là người đầu tiên: lập cộng đồng quanh điều bạn quan tâm."
 
 #: src/view/screens/Lists.tsx:35
 #: src/view/screens/ModerationModlists.tsx:35
@@ -2540,7 +2703,7 @@ msgstr ""
 msgid "Beta Feature"
 msgstr ""
 
-#: src/Navigation.tsx:451
+#: src/Navigation.tsx:477
 #: src/screens/Settings/BetaFeaturesSettings.tsx:116
 #: src/screens/Settings/Settings.tsx:267
 #: src/screens/Settings/Settings.tsx:270
@@ -2655,7 +2818,7 @@ msgstr "Đã bị chặn"
 msgid "Blocked accounts"
 msgstr "Tài khoản đã bị chặn"
 
-#: src/Navigation.tsx:231
+#: src/Navigation.tsx:257
 #: src/view/screens/ModerationBlockedAccounts.tsx:95
 msgid "Blocked Accounts"
 msgstr "Tài khoản đã bị chặn"
@@ -2853,10 +3016,11 @@ msgstr ""
 
 #. The owner (creator) of a group chat.
 #. placeholder {0}: createSanitizedDisplayName( joinLinkPreview.owner, true, moderateProfile( joinLinkPreview.owner, moderationOpts, ).ui('displayName'), )
+#. placeholder {0}: sanitizeHandle(data.handle, '@')
 #. placeholder {0}: sanitizeHandle(handle, '@')
-#. placeholder {0}: sanitizeHandle(item.feed.creator.handle, '@')
 #: src/components/LabelingServiceCard/index.tsx:62
 #: src/components/moderation/ReportDialog/index.tsx:1092
+#: src/features/community/CommunityScreen.tsx:496
 #: src/screens/Messages/JoinRequest.tsx:185
 #: src/screens/Search/components/StarterPackCard.tsx:114
 #: src/screens/Search/Explore.tsx:996
@@ -2928,6 +3092,11 @@ msgstr "chiến dịch {0}"
 msgid "Campaign id (optional, for campaign rules)"
 msgstr "Mã chiến dịch (tuỳ chọn, cho luật theo chiến dịch)"
 
+#: src/features/community/CommunityScreen.tsx:393
+#: src/features/community/CommunityScreen.tsx:398
+msgid "Can’t join yet"
+msgstr "Chưa thể tham gia"
+
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:210
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:134
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:140
@@ -2978,11 +3147,11 @@ msgstr "Mã chiến dịch (tuỳ chọn, cho luật theo chiến dịch)"
 #: src/screens/Settings/Settings.tsx:328
 #: src/screens/Takendown.tsx:103
 #: src/screens/Takendown.tsx:106
-#: src/view/com/composer/Composer.tsx:1888
 #: src/view/com/composer/Composer.tsx:1898
+#: src/view/com/composer/Composer.tsx:1908
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:44
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:53
-#: src/view/shell/desktop/LeftNav.tsx:232
+#: src/view/shell/desktop/LeftNav.tsx:233
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
@@ -3001,6 +3170,11 @@ msgstr "Hủy kích hoạt lại và đăng xuất"
 #: src/screens/Messages/components/MessageInputReply.tsx:83
 msgid "Cancel reply"
 msgstr "Hủy trả lời"
+
+#: src/features/community/CommunityScreen.tsx:405
+#: src/features/community/CommunityScreen.tsx:414
+msgid "Cancel request"
+msgstr "Hủy yêu cầu"
 
 #: src/screens/Search/Shell.tsx:592
 msgid "Cancel search"
@@ -3033,6 +3207,10 @@ msgstr ""
 #: src/components/RichTextTag.tsx:53
 msgid "Cashtag {tag}"
 msgstr ""
+
+#: src/features/poll/components/PostPoll.tsx:218
+msgid "Cast your vote?"
+msgstr "Bỏ phiếu?"
 
 #. Advanced search: Example of an “all of these words” search. Paired with “cows pigs”.
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:250
@@ -3124,10 +3302,10 @@ msgid "Channel"
 msgstr ""
 
 #: src/lib/hooks/useNotificationHandler.ts:139
-#: src/Navigation.tsx:591
+#: src/Navigation.tsx:617
 #: src/view/shell/bottom-bar/BottomBar.tsx:246
-#: src/view/shell/desktop/LeftNav.tsx:726
-#: src/view/shell/Drawer.tsx:567
+#: src/view/shell/desktop/LeftNav.tsx:727
+#: src/view/shell/Drawer.tsx:576
 msgid "Chat"
 msgstr "Chat"
 
@@ -3184,7 +3362,7 @@ msgstr ""
 msgid "Chat recipient is not followed by the sender."
 msgstr "Người gửi không theo dõi người nhận cuộc trò chuyện."
 
-#: src/Navigation.tsx:611
+#: src/Navigation.tsx:637
 msgid "Chat request inbox"
 msgstr "Hộp thư yêu cầu trò chuyện"
 
@@ -3194,7 +3372,7 @@ msgid "Chat requests"
 msgstr "Yêu cầu trò chuyện"
 
 #: src/components/dms/ConvoMenu.tsx:88
-#: src/Navigation.tsx:606
+#: src/Navigation.tsx:632
 #: src/screens/Messages/ChatList.tsx:97
 #: src/screens/Messages/ChatList.tsx:101
 #: src/screens/Messages/ChatList.tsx:671
@@ -3263,6 +3441,10 @@ msgstr "Kiểm tra email của bạn để tìm mã đăng nhập và nhập nó
 #: src/features/wallet/components/NftAvatarSection.tsx:96
 msgid "Checking ownership…"
 msgstr "Đang kiểm tra quyền sở hữu…"
+
+#: src/features/community/components/accessText.ts:54
+msgid "Checking whether you qualify. This takes a moment."
+msgstr "Đang kiểm tra bạn có đủ điều kiện không. Việc này mất một lát."
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:163
 msgid "Child safety"
@@ -3547,7 +3729,7 @@ msgstr "Đóng bảng chọn"
 msgid "Close scanner"
 msgstr "Đóng trình quét"
 
-#: src/features/checklist/NewUserChecklist.tsx:160
+#: src/features/checklist/NewUserChecklist.tsx:181
 msgid "Close the checklist"
 msgstr "Đóng danh sách việc cần làm"
 
@@ -3571,7 +3753,7 @@ msgstr ""
 msgid "Closes password update alert"
 msgstr "Đóng cảnh báo cập nhật mật khẩu"
 
-#: src/view/com/composer/Composer.tsx:1896
+#: src/view/com/composer/Composer.tsx:1906
 msgid "Closes post composer and discards post draft"
 msgstr "Đóng trình soạn bài đăng và huỷ bỏ nháp"
 
@@ -3622,8 +3804,29 @@ msgstr "Hài kịch"
 msgid "Comics"
 msgstr "Truyện tranh"
 
+#: src/features/community/CommunitiesScreen.tsx:57
+#: src/features/community/CommunitiesScreen.tsx:113
+#: src/Navigation.tsx:202
+#: src/view/shell/desktop/LeftNav.tsx:761
+#: src/view/shell/Drawer.tsx:671
+msgid "Communities"
+msgstr "Cộng đồng"
+
+#: src/features/community/CommunityScreen.tsx:75
+#: src/Navigation.tsx:212
+msgid "Community"
+msgstr "Cộng đồng"
+
+#: src/features/community/CommunityEditScreen.tsx:233
+msgid "Community address"
+msgstr "Địa chỉ cộng đồng"
+
+#: src/features/community/CommunityEditScreen.tsx:177
+msgid "Community created"
+msgstr "Đã tạo cộng đồng"
+
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:47
-#: src/Navigation.tsx:385
+#: src/Navigation.tsx:411
 #: src/view/screens/CommunityGuidelines.tsx:29
 msgid "Community Guidelines"
 msgstr "Quy tắc cộng đồng"
@@ -3631,6 +3834,22 @@ msgstr "Quy tắc cộng đồng"
 #: src/screens/ModerationInbox/Notice.tsx:75
 msgid "Community Guidelines: Harassment"
 msgstr ""
+
+#: src/features/community/CommunityEditScreen.tsx:213
+msgid "Community name"
+msgstr "Tên cộng đồng"
+
+#: src/features/community/CommunityEditScreen.tsx:263
+msgid "Community rules"
+msgstr "Nội quy cộng đồng"
+
+#: src/features/community/CommunityEditScreen.tsx:177
+msgid "Community saved"
+msgstr "Đã lưu cộng đồng"
+
+#: src/features/community/CommunityScreen.tsx:183
+msgid "Community sections"
+msgstr "Các phần của cộng đồng"
 
 #: src/screens/Onboarding/StepFinished/index.tsx:332
 msgid "Complete onboarding and start using your account"
@@ -3642,12 +3861,12 @@ msgstr "Hoàn thành thử thách"
 
 #: src/lib/hotkeys/index.tsx:66
 #: src/view/com/feeds/ComposerPrompt.tsx:161
-#: src/view/shell/desktop/LeftNav.tsx:596
+#: src/view/shell/desktop/LeftNav.tsx:597
 msgid "Compose new post"
 msgstr "Soạn bài đăng mới"
 
 #. placeholder {0}: MAX_GRAPHEME_LENGTH || 0
-#: src/view/com/composer/Composer.tsx:1772
+#: src/view/com/composer/Composer.tsx:1782
 msgid "Compose posts up to {0, plural, other {# characters}} in length"
 msgstr "Soạn bài đăng với độ dài tối đa {0, plural, other {# kí tự}}"
 
@@ -3655,11 +3874,11 @@ msgstr "Soạn bài đăng với độ dài tối đa {0, plural, other {# kí t
 msgid "Compose reply"
 msgstr "Soạn trả lời"
 
-#: src/view/com/composer/Composer.tsx:2744
+#: src/view/com/composer/Composer.tsx:2758
 msgid "Compressing GIF..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2746
+#: src/view/com/composer/Composer.tsx:2760
 msgid "Compressing video..."
 msgstr "Đang nén video..."
 
@@ -3752,7 +3971,7 @@ msgstr "Nội dung & phương tiện"
 msgid "Content and media"
 msgstr "Nội dung và phương tiện"
 
-#: src/Navigation.tsx:504
+#: src/Navigation.tsx:530
 msgid "Content and Media"
 msgstr "Nội dung và phương tiện"
 
@@ -3999,7 +4218,7 @@ msgstr "Sao chép giá trị bản ghi TXT"
 
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:42
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:109
-#: src/Navigation.tsx:390
+#: src/Navigation.tsx:416
 #: src/view/screens/CopyrightPolicy.tsx:26
 msgid "Copyright Policy"
 msgstr "Chính sách bản quyền"
@@ -4027,6 +4246,10 @@ msgstr ""
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:138
 msgid "Could not copy – please try again"
 msgstr "Không thể sao chép - vui lòng thử lại"
+
+#: src/features/community/CommunityEditScreen.tsx:330
+msgid "Could not create the community. The address may already be taken."
+msgstr "Không tạo được cộng đồng. Địa chỉ có thể đã có người dùng."
 
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:94
 msgid "Could not download – please try again"
@@ -4098,6 +4321,10 @@ msgstr "Không thể tải nhật ký."
 #: src/features/referral/admin/components/RulesTab.tsx:29
 msgid "Could not load the rules."
 msgstr "Không thể tải các luật thưởng."
+
+#: src/features/community/composer/CommunityPickerDialog.tsx:70
+msgid "Could not load your communities."
+msgstr "Không tải được các cộng đồng của bạn."
 
 #: src/screens/Settings/WalletsSettings.tsx:97
 msgid "Could not load your linked wallets."
@@ -4199,7 +4426,7 @@ msgstr "Không thể tải GIF"
 msgid "Couldn’t load more posts. Try again"
 msgstr "Không thể tải thêm bài đăng. Hãy thử lại"
 
-#: src/features/gating/components/GatedContent.tsx:121
+#: src/features/gating/components/GatedContent.tsx:134
 msgid "Couldn’t load the gated content."
 msgstr "Không thể tải nội dung có giới hạn."
 
@@ -4222,8 +4449,17 @@ msgstr ""
 #: src/components/dialogs/StarterPackDialog.tsx:204
 #: src/components/dms/InitiateChatFlow.tsx:607
 #: src/components/StarterPack/ProfileStarterPacks.tsx:328
+#: src/features/community/CommunitiesScreen.tsx:126
 msgid "Create"
 msgstr "Tạo"
+
+#: src/features/community/CommunitiesScreen.tsx:120
+#: src/features/community/CommunitiesScreen.tsx:222
+#: src/features/community/CommunitiesScreen.tsx:228
+#: src/features/community/CommunityEditScreen.tsx:68
+#: src/Navigation.tsx:207
+msgid "Create a community"
+msgstr "Tạo cộng đồng"
 
 #: src/view/com/lists/ProfileLists.tsx:166
 #: src/view/com/lists/ProfileLists.tsx:167
@@ -4240,7 +4476,7 @@ msgstr ""
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:206
 #: src/components/StarterPack/ProfileStarterPacks.tsx:315
-#: src/Navigation.tsx:642
+#: src/Navigation.tsx:668
 #: src/view/screens/Profile.tsx:575
 #: src/view/screens/Profile.tsx:576
 msgid "Create a Starter Pack"
@@ -4289,6 +4525,10 @@ msgstr "Tạo thêm"
 #: src/features/referral/admin/components/CodesTab.tsx:177
 msgid "Create code"
 msgstr "Tạo mã"
+
+#: src/features/community/CommunityEditScreen.tsx:74
+msgid "Create community"
+msgstr "Tạo cộng đồng"
 
 #: src/components/dms/InitiateChatFlow.tsx:606
 msgid "Create group chat"
@@ -4519,7 +4759,7 @@ msgstr "Xóa tài khoản của tôi"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:882
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:884
-#: src/view/com/composer/Composer.tsx:1784
+#: src/view/com/composer/Composer.tsx:1794
 msgid "Delete post"
 msgstr "Xóa bài đăng"
 
@@ -4684,9 +4924,9 @@ msgstr "Đã tắt"
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:102
 #: src/screens/Profile/Header/EditProfileDialog.tsx:79
-#: src/view/com/composer/Composer.tsx:1562
-#: src/view/com/composer/Composer.tsx:1607
-#: src/view/com/composer/Composer.tsx:1817
+#: src/view/com/composer/Composer.tsx:1572
+#: src/view/com/composer/Composer.tsx:1617
+#: src/view/com/composer/Composer.tsx:1827
 #: src/view/com/composer/drafts/DraftItem.tsx:243
 #: src/view/com/composer/drafts/DraftsButton.tsx:128
 msgid "Discard"
@@ -4697,14 +4937,14 @@ msgstr "Hủy bỏ"
 msgid "Discard changes?"
 msgstr "Hủy thay đổi?"
 
-#: src/view/com/composer/Composer.tsx:1560
+#: src/view/com/composer/Composer.tsx:1570
 #: src/view/com/composer/drafts/DraftItem.tsx:240
 #: src/view/com/composer/drafts/DraftsButton.tsx:94
 msgid "Discard draft?"
 msgstr "Hủy bản nháp?"
 
-#: src/view/com/composer/Composer.tsx:1577
-#: src/view/com/composer/Composer.tsx:1809
+#: src/view/com/composer/Composer.tsx:1587
+#: src/view/com/composer/Composer.tsx:1819
 msgid "Discard post?"
 msgstr "Hủy bài đăng?"
 
@@ -4713,10 +4953,15 @@ msgstr "Hủy bài đăng?"
 msgid "Disconnect Germ DM"
 msgstr ""
 
+#: src/features/community/CommunitiesScreen.tsx:66
+#: src/features/community/CommunitiesScreen.tsx:68
+msgid "Discover"
+msgstr "Khám phá"
+
 #: src/lib/strings/feed-names.ts:16
 msgctxt "feed-name"
 msgid "Discover"
-msgstr ""
+msgstr "Khám phá"
 
 #: src/screens/Search/Explore.tsx:457
 msgid "Discover feeds"
@@ -4742,7 +4987,7 @@ msgstr "Bỏ qua"
 msgid "Dismiss banner"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2676
+#: src/view/com/composer/Composer.tsx:2690
 msgid "Dismiss error"
 msgstr "Bỏ qua lỗi "
 
@@ -4839,6 +5084,8 @@ msgstr "Đừng lo! Mọi tin nhắn và cài đặt hiện có vẫn được l
 #: src/components/dms/AfterReportDialog.tsx:145
 #: src/components/forms/DateField/index.tsx:136
 #: src/components/forms/DateField/index.tsx:153
+#: src/features/community/composer/CommunityPickerDialog.tsx:146
+#: src/features/community/composer/CommunityPickerDialog.tsx:151
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:164
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:170
 #: src/lib/media/picker.tsx:37
@@ -4986,10 +5233,23 @@ msgstr "vd: người đăng bài đều đặn"
 msgid "e.g. Users that repeatedly reply with ads."
 msgstr ""
 
+#: src/features/poll/components/PollEditorDialog.tsx:40
+msgid "Each vote counts as the voter’s balance at the time the poll starts. Shows results only, no money moves."
+msgstr "Mỗi phiếu được tính bằng số dư của người bỏ phiếu lúc khảo sát bắt đầu. Chỉ hiển thị kết quả, không có tiền chuyển đi."
+
+#: src/features/poll/components/PollEditorDialog.tsx:275
+msgid "Each vote is a public record. It can reveal that the voter holds this token in a linked wallet."
+msgstr "Mỗi phiếu là một bản ghi công khai. Nó có thể cho thấy người bỏ phiếu đang nắm giữ token này trong ví đã liên kết."
+
+#: src/features/poll/components/PollEditorDialog.tsx:270
+msgid "Each vote is a public record. It shows that the voter’s account is verified."
+msgstr "Mỗi phiếu là một bản ghi công khai. Nó cho thấy tài khoản của người bỏ phiếu đã được xác thực."
+
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:198
 msgid "Eating disorders"
 msgstr ""
 
+#: src/features/community/CommunityScreen.tsx:90
 #: src/screens/Messages/components/EditTextButton.tsx:52
 #: src/screens/Settings/AccountSettings.tsx:155
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:250
@@ -5009,6 +5269,12 @@ msgstr "Chỉnh sửa"
 #: src/view/com/util/UserBanner.tsx:132
 msgid "Edit avatar"
 msgstr "Chỉnh sửa hình đại diện"
+
+#: src/features/community/CommunityEditScreen.tsx:93
+#: src/features/community/CommunityScreen.tsx:82
+#: src/Navigation.tsx:217
+msgid "Edit community"
+msgstr "Sửa cộng đồng"
 
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:113
 msgid "Edit Feeds"
@@ -5062,7 +5328,7 @@ msgstr ""
 msgid "Edit moderation list"
 msgstr ""
 
-#: src/Navigation.tsx:400
+#: src/Navigation.tsx:426
 #: src/view/screens/Feeds.tsx:512
 msgid "Edit My Feeds"
 msgstr "Chỉnh sửa bảng tin của tôi"
@@ -5119,7 +5385,7 @@ msgstr ""
 msgid "Edit who can reply"
 msgstr "Chỉnh sửa ai có thể trả lời"
 
-#: src/Navigation.tsx:647
+#: src/Navigation.tsx:673
 msgid "Edit your Starter Pack"
 msgstr ""
 
@@ -5342,7 +5608,7 @@ msgstr "Mở toàn màn hình"
 msgid "Entertainment"
 msgstr "Giải trí"
 
-#: src/view/com/composer/Composer.tsx:2764
+#: src/view/com/composer/Composer.tsx:2778
 #: src/view/com/util/error/ErrorScreen.tsx:40
 msgid "Error"
 msgstr "Lỗi"
@@ -5376,6 +5642,10 @@ msgstr "Nhận được lỗi phản hồi captcha."
 #: src/screens/Search/SearchResults.tsx:192
 msgid "Error: {error}"
 msgstr "Lỗi: {error}"
+
+#: src/features/poll/components/PollEditorDialog.tsx:45
+msgid "Every account counts once."
+msgstr "Mỗi tài khoản được tính một lần."
 
 #: src/features/compliance/moderation/GateModerationScreen.tsx:147
 msgid "Every read is logged with your account and the reason you choose. Do not share what you see outside the report."
@@ -5460,7 +5730,7 @@ msgstr ""
 msgid "Expands or collapses post text"
 msgstr "Mở rộng hoặc thu gọn nội dung bài đăng"
 
-#: src/lib/api/index.ts:504
+#: src/lib/api/index.ts:519
 msgid "Expected uri to resolve to a record"
 msgstr "Dự kiến uri sẽ phân giải thành một bản ghi"
 
@@ -5503,11 +5773,11 @@ msgstr "Phương tiện phản cảm hoặc có khả năng phản cảm."
 msgid "Explicit sexual images."
 msgstr "Hình ảnh khiêu dâm."
 
-#: src/Navigation.tsx:851
+#: src/Navigation.tsx:877
 #: src/screens/Atmosphere.tsx:43
 #: src/screens/Search/Shell.tsx:549
-#: src/view/shell/desktop/LeftNav.tsx:692
-#: src/view/shell/Drawer.tsx:494
+#: src/view/shell/desktop/LeftNav.tsx:693
+#: src/view/shell/Drawer.tsx:503
 msgid "Explore"
 msgstr "Khám phá"
 
@@ -5546,7 +5816,7 @@ msgstr "Phương tiện ngoại vi"
 msgid "External media may allow websites to collect information about you and your device. No information is sent or requested until you press the \"play\" button."
 msgstr "Phương tiện ngoại vi có thể cho phép trang web thu thập thông tin về bạn và thiết bị của bạn. Thông tin không được gởi đi hoặc yêu cầu cho đến khi bạn nhấn nút \"phát\"."
 
-#: src/Navigation.tsx:419
+#: src/Navigation.tsx:445
 #: src/screens/Settings/ExternalMediaPreferences.tsx:35
 msgid "External Media Preferences"
 msgstr "Tùy chỉnh phương tiện ngoại vi"
@@ -5799,7 +6069,7 @@ msgstr "Không thể thu hồi yêu cầu của bạn. Vui lòng thử lại."
 msgid "Failed to resolve location. Please try again."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:750
+#: src/view/com/composer/Composer.tsx:754
 msgid "Failed to save draft"
 msgstr "Không lưu được bản nháp"
 
@@ -5896,7 +6166,7 @@ msgstr ""
 msgid "False information about elections"
 msgstr ""
 
-#: src/Navigation.tsx:330
+#: src/Navigation.tsx:356
 msgid "Feed"
 msgstr "Bảng tin"
 
@@ -5931,7 +6201,7 @@ msgstr ""
 
 #: src/view/shell/desktop/RightNav.tsx:109
 #: src/view/shell/desktop/RightNav.tsx:110
-#: src/view/shell/Drawer.tsx:447
+#: src/view/shell/Drawer.tsx:456
 msgid "Feedback"
 msgstr "Phản hồi"
 
@@ -5941,15 +6211,15 @@ msgctxt "toast"
 msgid "Feedback sent to feed operator"
 msgstr ""
 
-#: src/Navigation.tsx:627
+#: src/Navigation.tsx:653
 #: src/screens/SavedFeeds.tsx:112
 #: src/screens/SavedFeeds.tsx:303
 #: src/screens/Search/SearchResults.tsx:108
 #: src/screens/StarterPack/StarterPackScreen.tsx:193
 #: src/view/screens/Feeds.tsx:505
 #: src/view/screens/Profile.tsx:240
-#: src/view/shell/desktop/LeftNav.tsx:740
-#: src/view/shell/Drawer.tsx:629
+#: src/view/shell/desktop/LeftNav.tsx:741
+#: src/view/shell/Drawer.tsx:638
 msgid "Feeds"
 msgstr "Bảng tin"
 
@@ -6022,6 +6292,10 @@ msgctxt "search"
 msgid "Filters"
 msgstr ""
 
+#: src/features/poll/components/PostPoll.tsx:206
+msgid "Final results"
+msgstr "Kết quả cuối cùng"
+
 #: src/screens/Onboarding/StepFinished/index.tsx:338
 msgid "Finalizing"
 msgstr "Đang hoàn tất"
@@ -6038,7 +6312,7 @@ msgstr "Cuối cùng cũng có! Lưu lại những bài đăng quan trọng vớ
 msgid "Finance"
 msgstr ""
 
-#: src/features/checklist/NewUserChecklist.tsx:107
+#: src/features/checklist/NewUserChecklist.tsx:128
 msgid "Find accounts"
 msgstr "Tìm tài khoản"
 
@@ -6058,8 +6332,8 @@ msgstr "Tìm tài khoản đề theo dõi"
 msgid "Find and invite friends"
 msgstr "Tìm và mời bạn bè"
 
-#: src/Navigation.tsx:483
-#: src/Navigation.tsx:669
+#: src/Navigation.tsx:509
+#: src/Navigation.tsx:695
 msgid "Find Contacts"
 msgstr ""
 
@@ -6160,7 +6434,7 @@ msgstr "Theo dõi {0}"
 msgid "Follow {displayName}"
 msgstr "Theo dõi {displayName}"
 
-#: src/features/checklist/NewUserChecklist.tsx:104
+#: src/features/checklist/NewUserChecklist.tsx:125
 msgid "Follow {FOLLOW_TARGET} accounts"
 msgstr "Theo dõi {FOLLOW_TARGET} tài khoản"
 
@@ -6247,7 +6521,7 @@ msgid "Followers can join"
 msgstr ""
 
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:284
+#: src/Navigation.tsx:310
 msgid "Followers of @{0} that you know"
 msgstr "Người đang theo dõi @{0} mà bạn biết"
 
@@ -6298,7 +6572,7 @@ msgstr "Đang theo dõi {handle}"
 msgid "Following feed preferences"
 msgstr "Cài đặt bảng tin Đang theo dõi"
 
-#: src/Navigation.tsx:406
+#: src/Navigation.tsx:432
 #: src/screens/Settings/FollowingFeedPreferences.tsx:57
 msgid "Following Feed Preferences"
 msgstr "Cài đặt bảng tin Đang theo dõi"
@@ -6478,7 +6752,7 @@ msgstr "Tải Coinbase Wallet"
 msgid "Get early access to experimental features we’re testing."
 msgstr "Truy cập sớm các tính năng thử nghiệm mà chúng tôi đang kiểm tra."
 
-#: src/view/shell/Drawer.tsx:451
+#: src/view/shell/Drawer.tsx:460
 msgid "Get help"
 msgstr "Trợ giúp"
 
@@ -6578,7 +6852,7 @@ msgstr ""
 msgid "Get started"
 msgstr "Bắt đầu"
 
-#: src/features/checklist/NewUserChecklist.tsx:148
+#: src/features/checklist/NewUserChecklist.tsx:169
 msgid "Get started on Krao"
 msgstr "Bắt đầu với Krao"
 
@@ -6587,9 +6861,13 @@ msgstr "Bắt đầu với Krao"
 msgid "GIF"
 msgstr "GIF"
 
-#: src/view/com/composer/Composer.tsx:2769
+#: src/view/com/composer/Composer.tsx:2783
 msgid "GIF uploaded"
 msgstr ""
+
+#: src/features/community/CommunityEditScreen.tsx:192
+msgid "Give your community a name (up to {NAME_MAX} characters)."
+msgstr "Đặt tên cho cộng đồng (tối đa {NAME_MAX} ký tự)."
 
 #: src/screens/Onboarding/StepProfile/index.tsx:257
 msgid "Give your profile a face"
@@ -6697,8 +6975,8 @@ msgstr "Tiếp theo"
 #: src/components/dms/ConvoMenu.tsx:262
 #: src/screens/Messages/components/MessagesListInfoPanel.tsx:102
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:197
-#: src/view/shell/desktop/LeftNav.tsx:340
-#: src/view/shell/desktop/LeftNav.tsx:346
+#: src/view/shell/desktop/LeftNav.tsx:341
+#: src/view/shell/desktop/LeftNav.tsx:347
 msgid "Go to profile"
 msgstr "Đến hồ sơ"
 
@@ -6760,6 +7038,14 @@ msgstr "Nhóm chat"
 msgid "Group chat invite link dialog"
 msgstr "Hộp thoại liên kết mời nhóm chat"
 
+#: src/features/community/CommunityEditScreen.tsx:311
+msgid "Group chat link"
+msgstr "Liên kết nhóm chat"
+
+#: src/features/community/CommunityEditScreen.tsx:305
+msgid "Group chat link (optional)"
+msgstr "Liên kết nhóm chat (không bắt buộc)"
+
 #: src/screens/Messages/ConversationSettings/index.tsx:414
 msgctxt "toast"
 msgid "Group chat locked"
@@ -6775,7 +7061,7 @@ msgctxt "toast"
 msgid "Group chat name updated"
 msgstr "Đã cập nhật tên nhóm chat"
 
-#: src/Navigation.tsx:596
+#: src/Navigation.tsx:622
 #: src/screens/Messages/ConversationSettings/index.tsx:110
 msgid "Group chat settings"
 msgstr "Cài đặt nhóm chat"
@@ -6885,7 +7171,7 @@ msgstr ""
 msgid "Harming or endangering minors"
 msgstr ""
 
-#: src/Navigation.tsx:580
+#: src/Navigation.tsx:606
 msgid "Hashtag"
 msgstr "Hashtag"
 
@@ -6922,7 +7208,7 @@ msgstr "Krao lưu giữ trong 7 ngày để ngăn chặn lạm dụng, sau đó 
 #: src/screens/Settings/Settings.tsx:279
 #: src/view/shell/desktop/RightNav.tsx:130
 #: src/view/shell/desktop/RightNav.tsx:133
-#: src/view/shell/Drawer.tsx:460
+#: src/view/shell/Drawer.tsx:469
 msgid "Help"
 msgstr "Giúp đỡ"
 
@@ -6981,6 +7267,10 @@ msgstr "Ẩn"
 msgid "Hide customization options"
 msgstr "Ẩn tùy chọn trùy chỉnh"
 
+#: src/features/community/CommunityScreen.tsx:560
+msgid "Hide from community"
+msgstr "Ẩn khỏi cộng đồng"
+
 #: src/components/dms/SystemMessageGroup.tsx:57
 msgid "Hide group chat updates"
 msgstr "Ẩn cập nhật nhóm chat"
@@ -7018,9 +7308,18 @@ msgstr "Ẩn trả lời cho tôi"
 msgid "Hide reposts in feeds"
 msgstr ""
 
+#: src/features/community/CommunityScreen.tsx:443
+#: src/features/community/CommunityScreen.tsx:449
+msgid "Hide rules"
+msgstr "Ẩn nội quy"
+
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:105
 msgid "Hide this card"
 msgstr "Ẩn thẻ này"
+
+#: src/features/community/CommunityScreen.tsx:554
+msgid "Hide this post from the community"
+msgstr "Ẩn bài này khỏi cộng đồng"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:926
 msgid "Hide this post?"
@@ -7064,7 +7363,7 @@ msgstr "Ẩn nội dung"
 msgid "Hides the invite friends promo banner"
 msgstr "Ẩn biểu ngữ quảng bá mời bạn bè"
 
-#: src/features/checklist/NewUserChecklist.tsx:161
+#: src/features/checklist/NewUserChecklist.tsx:182
 msgid "Hides these first steps for good"
 msgstr "Ẩn các bước đầu tiên này vĩnh viễn"
 
@@ -7112,11 +7411,15 @@ msgstr "Hmmmm, không thể tải dịch vụ kiểm duyệt đó."
 msgid "Hold up! We’re gradually giving access to video, and you’re still waiting in line. Check back soon!"
 msgstr "Chờ nhé! Chúng tôi đang dần dần cấp quyền truy cập video, và bạn vẫn đang trong hàng chờ. Hãy kiểm tra lại sau!"
 
-#: src/Navigation.tsx:846
-#: src/Navigation.tsx:867
+#: src/features/community/components/accessText.ts:19
+msgid "Holders only"
+msgstr "Chỉ người nắm giữ"
+
+#: src/Navigation.tsx:872
+#: src/Navigation.tsx:893
 #: src/view/shell/bottom-bar/BottomBar.tsx:200
-#: src/view/shell/desktop/LeftNav.tsx:681
-#: src/view/shell/Drawer.tsx:541
+#: src/view/shell/desktop/LeftNav.tsx:682
+#: src/view/shell/Drawer.tsx:550
 msgid "Home"
 msgstr "Trang chủ"
 
@@ -7554,11 +7857,11 @@ msgid "Invite code not accepted. Check that you input it correctly and try again
 msgstr "Không chấp nhận mã mời. Hãy kiểm tra bạn đã nhập đúng chưa và thử lại."
 
 #: src/features/referral/ReferralScreen.tsx:49
-#: src/Navigation.tsx:557
+#: src/Navigation.tsx:583
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:364
 #: src/screens/Settings/Settings.tsx:193
 #: src/screens/Settings/Settings.tsx:196
-#: src/view/shell/Drawer.tsx:125
+#: src/view/shell/Drawer.tsx:126
 msgid "Invite friends"
 msgstr "Giới thiệu bạn bè"
 
@@ -7651,7 +7954,7 @@ msgid "It's just you right now! Add more people to your starter pack by searchin
 msgstr "Chỉ mới có bạn thôi! Thêm người khác vào gói khởi đầu của bạn bằng cách tìm kiếm ở trên."
 
 #. placeholder {0}: videoState.jobId
-#: src/view/com/composer/Composer.tsx:2705
+#: src/view/com/composer/Composer.tsx:2719
 msgid "Job ID: {0}"
 msgstr "ID công việc: {0}"
 
@@ -7662,6 +7965,9 @@ msgstr "Công việc"
 
 #: src/components/dms/ChatInvite/Root.tsx:118
 #: src/components/intents/GroupChatJoinDialog.tsx:301
+#: src/features/community/CommunityScreen.tsx:376
+#: src/features/community/CommunityScreen.tsx:383
+#: src/features/community/CommunityScreen.tsx:483
 msgid "Join"
 msgstr "Tham gia"
 
@@ -7677,7 +7983,7 @@ msgstr "Tham gia"
 msgid "Join group chat"
 msgstr ""
 
-#: src/Navigation.tsx:527
+#: src/Navigation.tsx:553
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:202
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:207
 #: src/screens/StarterPack/StarterPackScreen.tsx:467
@@ -7685,22 +7991,42 @@ msgstr ""
 msgid "Join Krao"
 msgstr "Tham gia Krao"
 
+#: src/features/community/CommunitiesScreen.tsx:213
+msgid "Join one from Discover, or start your own."
+msgstr "Tham gia một cộng đồng trong Khám phá, hoặc tự lập cộng đồng của bạn."
+
 #: src/components/intents/GroupChatJoinDialog.tsx:194
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:29
 msgid "Join request rescinded."
 msgstr "Đã thu hồi yêu cầu tham gia."
+
+#: src/features/community/CommunityScreen.tsx:526
+msgid "Join the community to post in it."
+msgstr "Hãy tham gia cộng đồng để đăng bài vào đó."
 
 #: src/components/StarterPack/QrCode.tsx:64
 #: src/view/shell/NavSignupCard.tsx:41
 msgid "Join the conversation"
 msgstr "Tham gia trò chuyện"
 
+#: src/features/community/CommunityScreen.tsx:477
+msgid "Join this community?"
+msgstr "Tham gia cộng đồng này?"
+
+#: src/features/community/components/CommunityCard.tsx:119
+msgid "Joined"
+msgstr "Đã tham gia"
+
+#: src/features/community/CommunityEditScreen.tsx:295
+msgid "Joining is a public record. Members will be told it can show that they are verified, or hold the token or NFT you ask for."
+msgstr "Việc tham gia là một bản ghi công khai. Thành viên sẽ được báo rằng nó có thể cho thấy họ đã xác thực, hoặc đang nắm giữ token hay NFT bạn yêu cầu."
+
 #: src/lib/interests.ts:63
 msgid "Journalism"
 msgstr "Báo chí"
 
-#: src/view/com/composer/Composer.tsx:1605
-#: src/view/com/composer/Composer.tsx:1620
+#: src/view/com/composer/Composer.tsx:1615
+#: src/view/com/composer/Composer.tsx:1630
 #: src/view/com/composer/drafts/DraftsButton.tsx:126
 msgid "Keep editing"
 msgstr ""
@@ -7731,7 +8057,7 @@ msgstr "Theo quy định của pháp luật Việt Nam, Krao yêu cầu mọi t�
 msgid "Krao asks every account to verify a phone number before posting or sending messages, as Vietnamese law requires. A phone number belongs to one account only. Krao does not show it to anyone."
 msgstr "Theo quy định của pháp luật Việt Nam, Krao yêu cầu mọi tài khoản xác thực số điện thoại trước khi đăng bài hoặc nhắn tin. Mỗi số điện thoại chỉ thuộc một tài khoản. Krao không hiển thị số của bạn cho bất kỳ ai."
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:658
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:660
 msgid "Krao cannot confirm the authenticity of the claimed date."
 msgstr "Krao không thể xác nhận tính xác thực của ngày được nêu."
 
@@ -7897,7 +8223,7 @@ msgstr "Nhãn trên tài khoản của bạn"
 msgid "Language"
 msgstr ""
 
-#: src/Navigation.tsx:257
+#: src/Navigation.tsx:283
 msgid "Language Settings"
 msgstr "Cài đặt ngôn ngữ"
 
@@ -8030,6 +8356,8 @@ msgid "Learn more."
 msgstr "Tìm hiểu thêm."
 
 #: src/components/dms/LeaveConvoPrompt.tsx:63
+#: src/features/community/CommunityScreen.tsx:405
+#: src/features/community/CommunityScreen.tsx:412
 #: src/screens/Messages/ConversationSettings/index.tsx:582
 msgid "Leave"
 msgstr "Rời đi"
@@ -8151,8 +8479,8 @@ msgstr "Thích bảng tin này"
 msgid "Like this labeler"
 msgstr "Thích dịch vụ gắn nhãn này"
 
-#: src/Navigation.tsx:335
-#: src/Navigation.tsx:340
+#: src/Navigation.tsx:361
+#: src/Navigation.tsx:366
 msgid "Liked by"
 msgstr "Thích bởi"
 
@@ -8220,7 +8548,8 @@ msgstr "Giới hạn phải là số nguyên lớn hơn 0."
 msgid "Linear"
 msgstr "Ngang hàng"
 
-#: src/features/gating/components/GatedContent.tsx:111
+#: src/features/gating/components/GatedContent.tsx:124
+#: src/features/poll/components/PostPoll.tsx:142
 #: src/features/tips/components/TipDialog.tsx:180
 #: src/features/tips/components/TipDialog.tsx:189
 #: src/screens/Settings/WalletsSettings.tsx:117
@@ -8228,7 +8557,7 @@ msgstr "Ngang hàng"
 msgid "Link a wallet"
 msgstr "Liên kết ví"
 
-#: src/features/gating/components/GatedContent.tsx:92
+#: src/features/gating/components/GatedContent.tsx:105
 msgid "Link a wallet that meets the requirement from Krao on the web to unlock this content."
 msgstr "Hãy liên kết một ví đáp ứng điều kiện trên Krao bản web để mở khoá nội dung này."
 
@@ -8236,11 +8565,15 @@ msgstr "Hãy liên kết một ví đáp ứng điều kiện trên Krao bản w
 msgid "Link a wallet to show it on your profile and to sign in with it. Your wallet signs a message that names your account, so anyone can verify the link. Krao never asks for your keys or moves your funds."
 msgstr "Liên kết ví để hiển thị trên hồ sơ và đăng nhập bằng ví. Ví của bạn ký một thông điệp nêu tên tài khoản của bạn, để mọi người có thể xác minh liên kết. Krao không bao giờ hỏi khóa của bạn hay di chuyển tiền của bạn."
 
+#: src/features/community/components/accessText.ts:44
+msgid "Link a wallet to your account to see if you qualify."
+msgstr "Hãy liên kết ví với tài khoản để xem bạn có đủ điều kiện không."
+
 #: src/components/Lightbox/Lightbox.web.tsx:301
 msgid "Link copied to clipboard"
 msgstr ""
 
-#: src/features/checklist/NewUserChecklist.tsx:120
+#: src/features/checklist/NewUserChecklist.tsx:141
 msgid "Link or create a wallet"
 msgstr "Liên kết hoặc tạo ví"
 
@@ -8256,7 +8589,7 @@ msgstr "Đã được liên kết với tài khoản khác trước, nên không
 msgid "Linking wallets in the mobile app is coming soon. For now, link your wallet from Krao on the web."
 msgstr "Tính năng liên kết ví trên ứng dụng di động sắp ra mắt. Hiện tại, hãy liên kết ví từ Krao trên web."
 
-#: src/Navigation.tsx:290
+#: src/Navigation.tsx:316
 msgid "List"
 msgstr "Danh sách"
 
@@ -8347,12 +8680,12 @@ msgctxt "toast"
 msgid "List unmuted"
 msgstr "Đã đã bỏ ẩn toàn danh sách"
 
-#: src/Navigation.tsx:191
+#: src/Navigation.tsx:197
 #: src/view/screens/Lists.tsx:60
 #: src/view/screens/Profile.tsx:234
 #: src/view/screens/Profile.tsx:242
-#: src/view/shell/desktop/LeftNav.tsx:750
-#: src/view/shell/Drawer.tsx:644
+#: src/view/shell/desktop/LeftNav.tsx:751
+#: src/view/shell/Drawer.tsx:653
 msgid "Lists"
 msgstr "Danh sách"
 
@@ -8473,7 +8806,7 @@ msgstr "Đã khóa"
 
 #: src/features/referral/admin/RewardsAdminScreen.tsx:78
 #: src/features/referral/admin/RewardsAdminScreen.tsx:80
-#: src/Navigation.tsx:365
+#: src/Navigation.tsx:391
 msgid "Log"
 msgstr "Log"
 
@@ -8486,7 +8819,7 @@ msgid "Logo by @sawaratsuki.bsky.social"
 msgstr "Logo bởi @sawaratsuki.bsky.social"
 
 #: src/view/shell/desktop/RightNav.tsx:139
-#: src/view/shell/Drawer.tsx:812
+#: src/view/shell/Drawer.tsx:839
 msgid "Logo by <0>@sawaratsuki.bsky.social</0>"
 msgstr "Logo bởi <0>@sawaratsuki.bsky.social</0>"
 
@@ -8521,9 +8854,21 @@ msgstr "Có vẻ như bạn đang thiếu bảng tin theo dõi. <0>Nhấn vào �
 msgid "Love GIFs"
 msgstr "Yêu GIF"
 
+#: src/features/community/CommunityEditScreen.tsx:247
+msgid "Lowercase letters, numbers and dashes. It can’t be changed later."
+msgstr "Chữ thường, số và dấu gạch ngang. Không thể đổi sau này."
+
+#: src/features/community/CommunityScreen.tsx:672
+msgid "Make {label} a moderator"
+msgstr "Đặt {label} làm người điều hành"
+
 #: src/components/dialogs/EmailDialog/index.tsx:39
 msgid "Make adjustments to email settings for your account"
 msgstr ""
+
+#: src/features/community/CommunityScreen.tsx:685
+msgid "Make moderator"
+msgstr "Đặt làm người điều hành"
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:310
 msgid "Make one for me"
@@ -8533,7 +8878,7 @@ msgstr "Tạo cho tôi một cái"
 msgid "Make sure this is where you intend to go!"
 msgstr "Hãy chắc rằng đây là nơi bạn muốn đến!"
 
-#: src/features/gating/components/GatedContent.tsx:105
+#: src/features/gating/components/GatedContent.tsx:118
 msgid "Manage linked wallets"
 msgstr "Quản lý ví đã liên kết"
 
@@ -8636,6 +8981,8 @@ msgid "Member removed from group chat."
 msgstr ""
 
 #. The heading above the list of chat members.
+#: src/features/community/CommunityScreen.tsx:192
+#: src/features/community/CommunityScreen.tsx:194
 #: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:34
 msgid "Members"
 msgstr "Thành viên"
@@ -8643,6 +8990,18 @@ msgstr "Thành viên"
 #: src/screens/Messages/ConversationSettings/prompts.tsx:98
 msgid "Members can still read chat history but can’t send new messages."
 msgstr "Thành viên vẫn có thể đọc lịch sử trò chuyện nhưng không thể gửi tin nhắn mới."
+
+#: src/features/gating/describe.ts:56
+msgid "Members only"
+msgstr "Chỉ dành cho thành viên"
+
+#: src/features/community/composer/CommunityPickerDialog.tsx:119
+msgid "Members-only text"
+msgstr "Nội dung chỉ dành cho thành viên"
+
+#: src/features/gating/describe.ts:18
+msgid "membership of a Krao community"
+msgstr "tư cách thành viên của một cộng đồng Krao"
 
 #: src/components/WhoCanReply.tsx:302
 msgid "mentioned users"
@@ -8728,7 +9087,7 @@ msgstr "Tin nhắn quá dài ({graphemeCount}/{MAX_DM_GRAPHEME_LENGTH})"
 msgid "Message options"
 msgstr "Tuỳ chọn tin nhắn"
 
-#: src/Navigation.tsx:861
+#: src/Navigation.tsx:887
 msgid "Messages"
 msgstr "Tin nhắn"
 
@@ -8745,6 +9104,11 @@ msgctxt "Name of app icon variant"
 msgid "Midnight"
 msgstr "Nửa đêm"
 
+#: src/features/community/CommunitiesScreen.tsx:63
+msgid "Mine"
+msgstr "Của tôi"
+
+#: src/features/community/CommunityEditScreen.tsx:476
 #: src/features/gating/components/GateDialog.tsx:324
 msgid "Minimum balance"
 msgstr "Số dư tối thiểu"
@@ -8767,12 +9131,12 @@ msgid "Missing media"
 msgstr ""
 
 #. Moderation inbox settings
-#: src/Navigation.tsx:206
+#: src/Navigation.tsx:232
 #: src/screens/ModerationInbox/Settings.tsx:34
 msgid "Mod inbox settings"
 msgstr ""
 
-#: src/Navigation.tsx:196
+#: src/Navigation.tsx:222
 #: src/screens/Moderation/index.tsx:104
 msgid "Moderation"
 msgstr "Kiểm duyệt"
@@ -8786,7 +9150,7 @@ msgstr "Kiểm duyệt và bộ lọc nội dung"
 msgid "Moderation details"
 msgstr "Chi tiết kiểm duyệt"
 
-#: src/Navigation.tsx:201
+#: src/Navigation.tsx:227
 #: src/screens/Moderation/index.tsx:297
 #: src/screens/ModerationInbox/index.tsx:41
 msgid "Moderation inbox"
@@ -8826,7 +9190,7 @@ msgstr "Đã cập nhật danh sách kiểm duyệt"
 msgid "Moderation lists"
 msgstr "Danh sách kiểm duyệt"
 
-#: src/Navigation.tsx:221
+#: src/Navigation.tsx:247
 #: src/view/screens/ModerationModlists.tsx:60
 msgid "Moderation Lists"
 msgstr "Danh sách kiểm duyệt"
@@ -8835,13 +9199,17 @@ msgstr "Danh sách kiểm duyệt"
 msgid "moderation settings"
 msgstr "Cài đặt kiểm duyệt"
 
-#: src/Navigation.tsx:350
+#: src/Navigation.tsx:376
 msgid "Moderation states"
 msgstr "Trạng thái kiểm duyệt"
 
 #: src/screens/Moderation/index.tsx:315
 msgid "Moderation tools"
 msgstr "Công cụ kiểm duyệt"
+
+#: src/features/community/CommunityScreen.tsx:643
+msgid "Moderator"
+msgstr "Người điều hành"
 
 #: src/components/moderation/ModerationDetailsDialog.tsx:72
 #: src/lib/moderation/useModerationCauseDescription.ts:45
@@ -8989,7 +9357,7 @@ msgstr "Đã tắt tiếng"
 msgid "Muted accounts"
 msgstr "Tài khoản bị ẩn"
 
-#: src/Navigation.tsx:226
+#: src/Navigation.tsx:252
 #: src/view/screens/ModerationMutedAccounts.tsx:107
 msgid "Muted Accounts"
 msgstr "Tài khoản bị ẩn"
@@ -9020,6 +9388,10 @@ msgstr ""
 msgid "My birthdate"
 msgstr ""
 
+#: src/features/community/CommunitiesScreen.tsx:61
+msgid "My communities"
+msgstr "Cộng đồng của tôi"
+
 #: src/screens/StarterPack/Wizard/StepDetails.tsx:77
 msgid "My favorite feeds and people - join me!"
 msgstr ""
@@ -9033,6 +9405,7 @@ msgid "My Starter Pack"
 msgstr ""
 
 #: src/components/dialogs/lists/CreateOrEditListDialog.tsx:426
+#: src/features/community/CommunityEditScreen.tsx:208
 msgid "Name"
 msgstr "Tên"
 
@@ -9057,7 +9430,7 @@ msgstr ""
 msgid "Navigates to the next screen"
 msgstr "Điều hướng đến màn hình kế tiếp"
 
-#: src/view/shell/Drawer.tsx:96
+#: src/view/shell/Drawer.tsx:97
 msgid "Navigates to your profile"
 msgstr "Điều hướng đến hồ sơ của bạn"
 
@@ -9201,7 +9574,7 @@ msgstr "Bài đăng mới"
 
 #: src/features/followingV2/home/FeedPage.tsx:192
 #: src/view/com/feeds/FeedPage.tsx:191
-#: src/view/shell/desktop/LeftNav.tsx:607
+#: src/view/shell/desktop/LeftNav.tsx:608
 msgctxt "action"
 msgid "New post"
 msgstr "Bài đăng mới"
@@ -9246,12 +9619,21 @@ msgstr "Mới dùng ví? Ví là ứng dụng giữ token và ký thay bạn; Kr
 msgid "New user info dialog"
 msgstr "Hộp thoại thông tin người dùng mới"
 
+#: src/features/community/CommunitiesScreen.tsx:93
+#: src/features/community/CommunitiesScreen.tsx:98
+msgid "Newest"
+msgstr "Mới nhất"
+
 #: src/screens/PostThread/components/HeaderDropdown.tsx:95
 #: src/screens/PostThread/components/HeaderDropdown.tsx:100
 #: src/screens/Settings/ThreadPreferences.tsx:73
 #: src/screens/Settings/ThreadPreferences.tsx:76
 msgid "Newest replies first"
 msgstr "Trả lời mới nhất trước"
+
+#: src/features/community/CommunitiesScreen.tsx:93
+msgid "Newest, selected"
+msgstr "Mới nhất, đã chọn"
 
 #: src/lib/interests.ts:67
 #: src/screens/Search/modules/ExploreTrendingTopics.tsx:252
@@ -9294,15 +9676,19 @@ msgstr "Ảnh đại diện NFT"
 msgid "NFT contract"
 msgstr "Hợp đồng NFT"
 
+#: src/features/community/CommunityEditScreen.tsx:487
 #: src/features/gating/components/GateDialog.tsx:334
 msgid "NFT contract on Base"
 msgstr "Hợp đồng NFT trên Base"
 
+#: src/features/community/CommunityEditScreen.tsx:445
+#: src/features/community/CommunityEditScreen.tsx:450
 #: src/features/gating/components/GateDialog.tsx:289
 #: src/features/gating/components/GateDialog.tsx:294
 msgid "NFT holders"
 msgstr "Người nắm giữ NFT"
 
+#: src/features/community/CommunityEditScreen.tsx:445
 #: src/features/gating/components/GateDialog.tsx:289
 msgid "NFT holders, selected"
 msgstr "Người giữ NFT, đang chọn"
@@ -9352,6 +9738,18 @@ msgstr ""
 #: src/screens/Settings/BetaFeaturesSettings.tsx:185
 msgid "No beta features at the moment."
 msgstr "Hiện chưa có tính năng thử nghiệm nào."
+
+#: src/features/community/CommunitiesScreen.tsx:198
+msgid "No communities match your search"
+msgstr "Không có cộng đồng nào khớp với tìm kiếm"
+
+#: src/features/community/CommunitiesScreen.tsx:202
+msgid "No communities yet"
+msgstr "Chưa có cộng đồng nào"
+
+#: src/features/community/composer/CommunityPickerDialog.tsx:84
+msgid "No community"
+msgstr "Không chọn cộng đồng"
 
 #: src/components/contacts/screens/ViewMatches.tsx:689
 msgid "No contacts found"
@@ -9443,6 +9841,10 @@ msgstr ""
 msgid "No media yet"
 msgstr ""
 
+#: src/features/community/CommunityScreen.tsx:510
+msgid "No members yet"
+msgstr "Chưa có thành viên"
+
 #: src/screens/Messages/components/ChatListItem.tsx:336
 msgid "No messages yet"
 msgstr "Chưa có tin nhắn nào"
@@ -9501,6 +9903,10 @@ msgstr ""
 msgid "No posts here"
 msgstr ""
 
+#: src/features/community/CommunityScreen.tsx:508
+msgid "No posts here yet"
+msgstr "Chưa có bài viết nào ở đây"
+
 #: src/screens/Profile/Sections/Feed.tsx:84
 #: src/view/screens/Profile.tsx:442
 msgid "No posts yet"
@@ -9522,6 +9928,10 @@ msgstr ""
 #: src/view/com/post-thread/PostRepostedBy.tsx:90
 msgid "No reposts yet"
 msgstr "Chưa có lượt đăng lại nào"
+
+#: src/features/community/CommunityScreen.tsx:512
+msgid "No requests waiting"
+msgstr "Không có yêu cầu nào đang chờ"
 
 #: src/view/com/composer/text-input/mobile/Autocomplete.tsx:60
 #: src/view/com/composer/text-input/web/Autocomplete.tsx:193
@@ -9659,7 +10069,7 @@ msgstr "Không được tính: mỗi tài khoản tối đa 10 ví"
 msgid "Not followed by anyone you’re following"
 msgstr ""
 
-#: src/Navigation.tsx:181
+#: src/Navigation.tsx:187
 #: src/view/screens/Profile.tsx:132
 msgid "Not Found"
 msgstr "Không tìm thấy"
@@ -9728,14 +10138,14 @@ msgstr ""
 msgid "Nothing saved yet"
 msgstr "Chưa lưu gì"
 
-#: src/Navigation.tsx:216
+#: src/Navigation.tsx:242
 #: src/screens/ModerationInbox/Notice.tsx:40
 msgid "Notice"
 msgstr ""
 
 #: src/components/dialogs/NotificationSettingsDialog.tsx:72
-#: src/Navigation.tsx:490
-#: src/Navigation.tsx:622
+#: src/Navigation.tsx:516
+#: src/Navigation.tsx:648
 #: src/view/screens/Notifications.tsx:134
 msgid "Notification settings"
 msgstr "Cài đặt thông báo"
@@ -9745,8 +10155,8 @@ msgstr "Cài đặt thông báo"
 msgid "Notification sounds"
 msgstr "Âm thanh thông báo"
 
-#: src/Navigation.tsx:617
-#: src/Navigation.tsx:856
+#: src/Navigation.tsx:643
+#: src/Navigation.tsx:882
 #: src/screens/Messages/Settings.tsx:255
 #: src/screens/Notifications/ActivityList.tsx:31
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:93
@@ -9755,8 +10165,8 @@ msgstr "Âm thanh thông báo"
 #: src/screens/Settings/Settings.tsx:220
 #: src/view/screens/Notifications.tsx:128
 #: src/view/shell/bottom-bar/BottomBar.tsx:283
-#: src/view/shell/desktop/LeftNav.tsx:702
-#: src/view/shell/Drawer.tsx:594
+#: src/view/shell/desktop/LeftNav.tsx:703
+#: src/view/shell/Drawer.tsx:603
 msgid "Notifications"
 msgstr "Thông báo"
 
@@ -9804,7 +10214,7 @@ msgstr "OK"
 #: src/components/dms/InitiateChatFlow.tsx:838
 #: src/components/dms/MessageItem.tsx:763
 #: src/screens/Login/PasswordUpdatedForm.tsx:35
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:664
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:666
 msgid "Okay"
 msgstr "OK"
 
@@ -9818,6 +10228,10 @@ msgstr "Trả lời cũ nhất trước"
 #: src/screens/Settings/AccountSettings.tsx:169
 msgid "On"
 msgstr "Bật"
+
+#: src/features/poll/components/PollEditorDialog.tsx:261
+msgid "on Base"
+msgstr "trên Base"
 
 #: src/screens/Settings/components/AlgoVisibilityOptOut.tsx:43
 #~ msgid "On Bluesky, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
@@ -9847,6 +10261,10 @@ msgstr "trên<0><1/><2><3/></2></0>"
 msgid "Onboarding reset"
 msgstr "Đặt lại quá trình hướng dẫn"
 
+#: src/features/poll/components/PollEditorDialog.tsx:44
+msgid "One account, one vote"
+msgstr "Mỗi tài khoản một phiếu"
+
 #: src/components/dms/dialogs/NewChatDialog.tsx:113
 #: src/components/dms/dialogs/ShareViaChatDialog.tsx:129
 msgid "One of the selected recipients does not allow group chats."
@@ -9857,11 +10275,11 @@ msgstr "Một trong những người nhận đã chọn không cho phép nhóm c
 msgid "One of the selected recipients has blocked you and cannot be messaged."
 msgstr "Một trong những người nhận đã chọn đã chặn bạn nên không thể nhắn tin."
 
-#: src/view/com/composer/Composer.tsx:968
+#: src/view/com/composer/Composer.tsx:972
 msgid "One or more GIFs is missing alt text."
 msgstr "Một hoặc nhiều GIF thiếu văn bản thay thế."
 
-#: src/view/com/composer/Composer.tsx:965
+#: src/view/com/composer/Composer.tsx:969
 msgid "One or more images is missing alt text."
 msgstr "Một hoặc nhiều hình ảnh thiếu văn bản thay thế."
 
@@ -9873,13 +10291,17 @@ msgstr ""
 msgid "One or more of your selected files are too large. Maximum size is {VIDEO_MAX_SIZE_MB} MB."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:761
+#: src/view/com/composer/Composer.tsx:765
 msgid "One or more posts are too long to save as a draft. {MAX_DRAFT_GRAPHEME_LENGTH, plural, one {The maximum number of characters is # character.} other {The maximum number of characters is # characters.}}"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:975
+#: src/view/com/composer/Composer.tsx:979
 msgid "One or more videos is missing alt text."
 msgstr "Một hoặc nhiều video thiếu văn bản thay thế"
+
+#: src/features/poll/components/PollEditorDialog.tsx:35
+msgid "One vote per verified account."
+msgstr "Mỗi tài khoản đã xác thực một phiếu."
 
 #. placeholder {0}: settings.map((rule, i) => ( <Fragment key={`rule-${i}`}> <Rule rule={rule} post={post} lists={post.threadgate!.lists} /> <Separator i={i} length={settings.length} /> </Fragment> ))
 #: src/components/WhoCanReply.tsx:265
@@ -9890,9 +10312,13 @@ msgstr "Chỉ {0} có thể trả lời"
 #. placeholder {0}: result.accepted.length
 #. placeholder {1}: next.length
 #. placeholder {2}: next.length
-#: src/view/com/composer/Composer.tsx:240
+#: src/view/com/composer/Composer.tsx:242
 msgid "Only {0} of {1} {2, plural, one {image} other {images}} added; limit is {MAX_GALLERY_IMAGES}"
 msgstr ""
+
+#: src/features/community/components/accessText.ts:26
+msgid "Only accounts that completed identity verification."
+msgstr "Chỉ các tài khoản đã hoàn tất xác minh danh tính."
 
 #: src/screens/Messages/JoinRequests.tsx:196
 msgid "Only admins can accept join requests."
@@ -9920,6 +10346,10 @@ msgstr "Chỉ hỗ trợ tệp hình ảnh"
 msgid "Only Krao admins can open this page."
 msgstr "Chỉ admin của Krao mới mở được trang này."
 
+#: src/features/gating/components/GatedContent.tsx:91
+msgid "Only members of the community can read this. <0>Open the community</0>"
+msgstr "Chỉ thành viên cộng đồng đọc được nội dung này. <0>Mở cộng đồng</0>"
+
 #. placeholder {0}: createSanitizedDisplayName( joinLinkPreview.owner, true, moderateProfile(joinLinkPreview.owner, moderationOpts).ui( 'displayName', ), )
 #: src/screens/Messages/JoinRequest.tsx:226
 msgid "Only people {0} follows can join."
@@ -9946,6 +10376,14 @@ msgstr ""
 msgid "Only replies"
 msgstr ""
 
+#: src/features/community/CommunityEditScreen.tsx:105
+msgid "Only the owner can edit this community."
+msgstr "Chỉ chủ sở hữu mới sửa được cộng đồng này."
+
+#: src/features/community/components/accessText.ts:48
+msgid "Only verified accounts can join. Verify your identity first."
+msgstr "Chỉ tài khoản đã xác thực mới tham gia được. Hãy xác minh danh tính trước."
+
 #: src/features/compliance/components/usePhoneErrorMessage.ts:16
 msgid "Only Vietnamese phone numbers (+84) can be verified for now."
 msgstr "Hiện chỉ xác thực được số điện thoại Việt Nam (+84)."
@@ -9971,6 +10409,8 @@ msgstr "Rất tiếc, hồ sơ này không tồn tại. Hãy thử quét mã kh�
 msgid "Oops!"
 msgstr "Ôi!"
 
+#: src/features/community/components/accessText.ts:30
+#: src/features/community/components/accessText.ts:31
 #: src/features/referral/admin/components/KycTab.tsx:100
 msgid "Open"
 msgstr "Mở"
@@ -10015,7 +10455,7 @@ msgid "Open drawer menu"
 msgstr "Mở trình đơn"
 
 #: src/screens/Messages/components/MessageComposer.tsx:246
-#: src/view/com/composer/Composer.tsx:2322
+#: src/view/com/composer/Composer.tsx:2336
 msgid "Open emoji picker"
 msgstr "Mở trình chọn biểu tượng cảm xúc"
 
@@ -10114,15 +10554,27 @@ msgstr "Mở trang storybook"
 msgid "Open system log"
 msgstr "Mở log hệ thống"
 
+#: src/features/gating/components/GatedContent.tsx:95
+msgid "Open the community"
+msgstr "Mở cộng đồng"
+
+#: src/features/community/CommunityScreen.tsx:468
+msgid "Open the community group chat"
+msgstr "Mở nhóm chat của cộng đồng"
+
+#: src/features/community/CommunityScreen.tsx:470
+msgid "Open the group chat"
+msgstr "Mở nhóm chat"
+
 #: src/components/intents/GroupChatJoinDialog.tsx:452
 msgid "Open this group chat"
 msgstr ""
 
-#: src/features/checklist/NewUserChecklist.tsx:123
+#: src/features/checklist/NewUserChecklist.tsx:144
 msgid "Open wallets"
 msgstr "Mở ví"
 
-#: src/features/checklist/NewUserChecklist.tsx:99
+#: src/features/checklist/NewUserChecklist.tsx:120
 msgid "Open your profile"
 msgstr "Mở hồ sơ của bạn"
 
@@ -10138,9 +10590,17 @@ msgstr "Mở hộp thoại để thêm cảnh báo nội dung cho bài đăng c�
 msgid "Opens a dialog to change the hosting provider you sign in to"
 msgstr "Mở hộp thoại để đổi nhà cung cấp dịch vụ lưu trữ mà bạn đăng nhập"
 
+#: src/features/community/composer/KraoComposerPills.tsx:41
+msgid "Opens a dialog to choose a community for this post"
+msgstr "Mở hộp thoại để chọn cộng đồng cho bài viết này"
+
 #: src/view/com/composer/threadgate/ThreadgateBtn.tsx:152
 msgid "Opens a dialog to choose who can interact with this post"
 msgstr ""
+
+#: src/features/community/composer/KraoComposerPills.tsx:53
+msgid "Opens a dialog to set up a poll"
+msgstr "Mở hộp thoại để tạo khảo sát"
 
 #: src/features/safety/SafetyHost.tsx:122
 msgid "Opens a link on the scam list"
@@ -10236,6 +10696,10 @@ msgstr ""
 msgid "Opens profile"
 msgstr "Mở hồ sơ"
 
+#: src/features/community/components/CommunityCard.tsx:87
+msgid "Opens the community page"
+msgstr "Mở trang cộng đồng"
+
 #: src/features/inviteFriends/components/FollowersPromoBanner.tsx:53
 msgid "Opens the find and invite friends settings"
 msgstr "Mở cài đặt tìm và mời bạn bè"
@@ -10249,7 +10713,7 @@ msgstr ""
 msgid "Opens the identity verification provider"
 msgstr "Mở trang của đơn vị xác minh danh tính"
 
-#: src/view/shell/Drawer.tsx:126
+#: src/view/shell/Drawer.tsx:127
 msgid "Opens the invite friends sheet to share your profile"
 msgstr ""
 
@@ -10300,6 +10764,16 @@ msgstr ""
 #: src/components/StarterPack/Main/ProfilesList.tsx:187
 msgid "Opted out of this Starter Pack"
 msgstr ""
+
+#. placeholder {0}: i + 1
+#: src/features/poll/components/PollEditorDialog.tsx:159
+#: src/features/poll/components/PollEditorDialog.tsx:160
+msgid "Option {0}"
+msgstr "Lựa chọn {0}"
+
+#: src/features/poll/components/PollEditorDialog.tsx:151
+msgid "Options"
+msgstr "Các lựa chọn"
 
 #: src/components/dialogs/MutedWords.tsx:310
 msgid "Options:"
@@ -10393,8 +10867,9 @@ msgid "Our moderators have reviewed reports and decided to disable your access t
 msgstr "Đội ngũ kiểm duyệt của chúng tôi đã xem xét các báo cáo và quyết định vô hiệu hóa quyền truy cập trò chuyện của bạn trên Krao."
 
 #: src/components/dialogs/StarterPackDialog.tsx:372
+#: src/features/community/CommunityScreen.tsx:641
 msgid "Owner"
-msgstr ""
+msgstr "Chủ sở hữu"
 
 #: src/components/dms/LeaveConvoPrompt.tsx:46
 msgid "Owner must lock the group before leaving."
@@ -10470,13 +10945,17 @@ msgstr "Những người {ownerName} theo dõi có thể tham gia ngay"
 msgid "People {ownerName} follows can request to join"
 msgstr "Những người {ownerName} theo dõi có thể yêu cầu tham gia"
 
+#: src/features/community/components/accessText.ts:14
+msgid "People ask to join and an owner or moderator approves them."
+msgstr "Mọi người xin tham gia và chủ sở hữu hoặc người điều hành sẽ duyệt."
+
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:277
+#: src/Navigation.tsx:303
 msgid "People followed by @{0}"
 msgstr "Người\tđược @{0} theo dõi"
 
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:270
+#: src/Navigation.tsx:296
 msgid "People following @{0}"
 msgstr "Người đang theo dõi @{0}"
 
@@ -10507,6 +10986,10 @@ msgstr "Người tôi theo dõi có thể tham gia ngay"
 #: src/screens/Messages/components/InviteLinkDialog.tsx:166
 msgid "People I follow can request to join"
 msgstr "Người tôi theo dõi có thể yêu cầu tham gia"
+
+#: src/features/community/components/accessText.ts:20
+msgid "People who hold the token or NFT you set, in a wallet linked to their account."
+msgstr "Người nắm giữ token hoặc NFT bạn đặt ra, trong ví đã liên kết với tài khoản."
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:512
 msgid "People you follow"
@@ -10541,7 +11024,7 @@ msgstr "Thú cưng"
 #: src/features/compliance/components/PhoneVerifyForm.tsx:137
 #: src/features/compliance/components/PhoneVerifyForm.tsx:142
 #: src/features/compliance/PhoneScreen.tsx:22
-#: src/Navigation.tsx:549
+#: src/Navigation.tsx:575
 #: src/screens/Settings/AccountSettings.tsx:173
 #: src/screens/Settings/AccountSettings.tsx:176
 msgid "Phone number"
@@ -10876,11 +11359,37 @@ msgstr "Điểm phải là số nguyên."
 msgid "Politics"
 msgstr "Chính trị"
 
+#: src/features/community/composer/KraoComposerPills.tsx:57
+#: src/features/poll/components/PollEditorDialog.tsx:81
+msgid "Poll"
+msgstr "Khảo sát"
+
+#: src/features/community/composer/KraoComposerPills.tsx:32
+msgid "Poll added"
+msgstr "Đã thêm khảo sát"
+
+#: src/features/poll/components/PollEditorDialog.tsx:204
+msgid "Poll length"
+msgstr "Thời gian khảo sát"
+
+#: src/features/poll/components/PollEditorDialog.tsx:140
+msgid "Poll question"
+msgstr "Câu hỏi khảo sát"
+
+#: src/features/community/CommunitiesScreen.tsx:84
+#: src/features/community/CommunitiesScreen.tsx:89
+msgid "Popular"
+msgstr "Phổ biến"
+
+#: src/features/community/CommunitiesScreen.tsx:84
+msgid "Popular, selected"
+msgstr "Phổ biến, đã chọn"
+
 #: src/view/com/composer/labels/LabelsBtn.tsx:152
 msgid "Porn"
 msgstr "Hình ảnh khiêu dâm"
 
-#: src/view/com/composer/Composer.tsx:1962
+#: src/view/com/composer/Composer.tsx:1972
 msgctxt "action"
 msgid "Post"
 msgstr "Đăng"
@@ -10906,12 +11415,12 @@ msgstr ""
 msgid "Post a video"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1960
+#: src/view/com/composer/Composer.tsx:1970
 msgctxt "action"
 msgid "Post All"
 msgstr "Đăng tất cả"
 
-#: src/view/com/composer/Composer.tsx:1619
+#: src/view/com/composer/Composer.tsx:1629
 msgid "Post anyway"
 msgstr ""
 
@@ -10925,10 +11434,10 @@ msgid "Post by {account}"
 msgstr ""
 
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:303
-#: src/Navigation.tsx:310
-#: src/Navigation.tsx:317
-#: src/Navigation.tsx:324
+#: src/Navigation.tsx:329
+#: src/Navigation.tsx:336
+#: src/Navigation.tsx:343
+#: src/Navigation.tsx:350
 msgid "Post by @{0}"
 msgstr "Đăng bởi @{0}"
 
@@ -10941,16 +11450,20 @@ msgctxt "toast"
 msgid "Post deleted"
 msgstr "Đã xóa bài đăng"
 
-#: src/lib/api/index.ts:195
+#: src/lib/api/index.ts:210
 msgid "Post failed to upload. Please check your Internet connection and try again."
 msgstr "Không đăng bài đăng được. Vui lòng kiểm tra kết nối mạng và thử lại."
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:138
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:139
 #: src/screens/PostThread/components/ThreadItemPost.tsx:122
 #: src/screens/PostThread/components/ThreadItemTreePost.tsx:113
 #: src/screens/VideoFeed/index.tsx:577
 msgid "Post has been deleted"
 msgstr "Bài đăng đã bị xoá"
+
+#: src/features/community/CommunityScreen.tsx:427
+msgid "Post here"
+msgstr "Đăng ở đây"
 
 #: src/components/moderation/ModerationDetailsDialog.tsx:127
 #: src/lib/moderation/useModerationCauseDescription.ts:104
@@ -10962,11 +11475,15 @@ msgstr "Bài đăng bị ẩn do từ cấm"
 msgid "Post Hidden by You"
 msgstr "Bài đăng ẩn bởi bạn"
 
+#: src/features/community/CommunityScreen.tsx:163
+msgid "Post hidden from this community"
+msgstr "Đã ẩn bài khỏi cộng đồng này"
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:687
 msgid "Post interaction settings"
 msgstr "Cài đặt tương tác bài đăng"
 
-#: src/Navigation.tsx:237
+#: src/Navigation.tsx:263
 #: src/screens/ModerationInteractionSettings/index.tsx:36
 msgid "Post Interaction Settings"
 msgstr "Cài đặt tương tác bài đăng"
@@ -11013,6 +11530,16 @@ msgstr ""
 msgid "Post restored"
 msgstr ""
 
+#: src/features/community/composer/CommunityPickerDialog.tsx:32
+#: src/features/community/composer/CommunityPickerDialog.tsx:56
+#: src/features/community/composer/KraoComposerPills.tsx:31
+msgid "Post to a community"
+msgstr "Đăng vào cộng đồng"
+
+#: src/features/community/CommunityScreen.tsx:422
+msgid "Post to this community"
+msgstr "Đăng vào cộng đồng này"
+
 #. Include search results with or without replies
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:392
 msgid "Post type"
@@ -11028,8 +11555,15 @@ msgstr "Đã gở ghim bài đăng"
 msgid "Posted {0}"
 msgstr ""
 
+#. placeholder {0}: state.community.name
+#: src/features/community/composer/KraoComposerPills.tsx:30
+msgid "Posting to {0}"
+msgstr "Đăng vào {0}"
+
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:254
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:266
+#: src/features/community/CommunityScreen.tsx:187
+#: src/features/community/CommunityScreen.tsx:189
 #: src/screens/ProfileList/index.tsx:164
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:216
 #: src/screens/StarterPack/StarterPackScreen.tsx:194
@@ -11104,8 +11638,8 @@ msgstr "Quyền riêng tư"
 msgid "Privacy and security"
 msgstr "Quyền riêng tư và bảo mật"
 
-#: src/Navigation.tsx:467
-#: src/Navigation.tsx:475
+#: src/Navigation.tsx:493
+#: src/Navigation.tsx:501
 #: src/screens/Settings/ActivityPrivacySettings.tsx:41
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:48
 msgid "Privacy and Security"
@@ -11118,12 +11652,12 @@ msgstr "Cài đặt quyền riêng tư và bảo mật"
 
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:37
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:104
-#: src/Navigation.tsx:375
+#: src/Navigation.tsx:401
 #: src/screens/Settings/AboutSettings.tsx:102
 #: src/screens/Settings/AboutSettings.tsx:105
 #: src/view/screens/PrivacyPolicy.tsx:25
-#: src/view/shell/Drawer.tsx:807
-#: src/view/shell/Drawer.tsx:808
+#: src/view/shell/Drawer.tsx:834
+#: src/view/shell/Drawer.tsx:835
 msgid "Privacy Policy"
 msgstr "Chính sách bảo mật"
 
@@ -11131,15 +11665,15 @@ msgstr "Chính sách bảo mật"
 msgid "Privacy violation of a minor"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2758
+#: src/view/com/composer/Composer.tsx:2772
 msgid "Processing GIF..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:2760
+#: src/view/com/composer/Composer.tsx:2774
 msgid "Processing video..."
 msgstr "Đang xử lý video..."
 
-#: src/lib/api/index.ts:66
+#: src/lib/api/index.ts:75
 msgid "Processing..."
 msgstr "Đang xử lý..."
 
@@ -11148,9 +11682,9 @@ msgid "profile"
 msgstr "hồ sơ"
 
 #: src/view/shell/bottom-bar/BottomBar.tsx:326
-#: src/view/shell/desktop/LeftNav.tsx:773
-#: src/view/shell/Drawer.tsx:95
-#: src/view/shell/Drawer.tsx:695
+#: src/view/shell/desktop/LeftNav.tsx:784
+#: src/view/shell/Drawer.tsx:96
+#: src/view/shell/Drawer.tsx:722
 msgid "Profile"
 msgstr "Hồ sơ"
 
@@ -11190,22 +11724,22 @@ msgid "Public, sharable lists of users to mute or block in bulk."
 msgstr "Danh sách công khai, chia sẻ được của người dùng để cho việc ẩn hoặc chặn hàng loạt."
 
 #. Accessibility label for button to publish a single post
-#: src/view/com/composer/Composer.tsx:1946
+#: src/view/com/composer/Composer.tsx:1956
 msgid "Publish post"
 msgstr "Đăng bài"
 
 #. Accessibility label for button to publish multiple posts in a thread
-#: src/view/com/composer/Composer.tsx:1941
+#: src/view/com/composer/Composer.tsx:1951
 msgid "Publish posts"
 msgstr "Đăng bài"
 
 #. Accessibility label for button to publish multiple replies in a thread
-#: src/view/com/composer/Composer.tsx:1930
+#: src/view/com/composer/Composer.tsx:1940
 msgid "Publish replies"
 msgstr "Đăng trả lời"
 
 #. Accessibility label for button to publish a single reply
-#: src/view/com/composer/Composer.tsx:1935
+#: src/view/com/composer/Composer.tsx:1945
 msgid "Publish reply"
 msgstr "Đăng trả lời"
 
@@ -11242,6 +11776,10 @@ msgstr "Đã tải mã QR!"
 msgid "QR code saved to your camera roll!"
 msgstr "Đã lưu mã QR vào camera roll!"
 
+#: src/features/poll/components/PollEditorDialog.tsx:135
+msgid "Question (optional)"
+msgstr "Câu hỏi (không bắt buộc)"
+
 #: src/components/PostControls/RepostButton.tsx:176
 #: src/components/PostControls/RepostButton.tsx:199
 #: src/components/PostControls/RepostButton.web.tsx:84
@@ -11272,7 +11810,7 @@ msgstr "Trích dẫn bài đăng đã bị tắt"
 msgid "Quotes"
 msgstr "Trích dẫn"
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:487
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:489
 msgid "Quotes of this post"
 msgstr "Trích dẫn của bài đăng này"
 
@@ -11445,7 +11983,7 @@ msgstr "Kết nối lại"
 #: src/features/referral/admin/RewardsAdminScreen.tsx:38
 #: src/features/referral/ReferralScreen.tsx:168
 #: src/features/referral/ReferralScreen.tsx:171
-#: src/Navigation.tsx:533
+#: src/Navigation.tsx:559
 msgid "Referral admin"
 msgstr "Quản trị giới thiệu"
 
@@ -11532,6 +12070,10 @@ msgstr "Xóa {displayName} khỏi nhóm chat này"
 #: src/screens/Messages/ConversationSettings/prompts.tsx:168
 msgid "Remove {displayName}?"
 msgstr "Xóa {displayName}?"
+
+#: src/features/community/CommunityScreen.tsx:691
+msgid "Remove {label} as moderator"
+msgstr "Gỡ {label} khỏi vai trò người điều hành"
 
 #: src/screens/Search/components/SearchHistory.tsx:182
 msgid "Remove {q}"
@@ -11634,6 +12176,10 @@ msgstr "Gỡ tệp"
 msgid "Remove member"
 msgstr ""
 
+#: src/features/community/CommunityScreen.tsx:704
+msgid "Remove moderator"
+msgstr "Gỡ người điều hành"
+
 #: src/components/dialogs/MutedWords.tsx:615
 msgid "Remove mute word from your list"
 msgstr "Xóa từ cấm khỏi danh sách của bạn"
@@ -11641,6 +12187,16 @@ msgstr "Xóa từ cấm khỏi danh sách của bạn"
 #: src/features/wallet/components/NftAvatarSection.tsx:101
 msgid "Remove NFT badge"
 msgstr "Xóa huy hiệu NFT"
+
+#. placeholder {0}: i + 1
+#: src/features/poll/components/PollEditorDialog.tsx:169
+msgid "Remove option {0}"
+msgstr "Xóa lựa chọn {0}"
+
+#: src/features/poll/components/PollEditorDialog.tsx:315
+#: src/features/poll/components/PollEditorDialog.tsx:320
+msgid "Remove poll"
+msgstr "Xóa khảo sát"
 
 #: src/screens/Search/components/SearchHistory.tsx:243
 msgid "Remove profile"
@@ -11650,6 +12206,10 @@ msgstr "Xóa hồ sơ"
 #: src/components/PostControls/RepostButton.tsx:163
 msgid "Remove repost"
 msgstr "Xóa lượt đăng lại"
+
+#: src/features/community/CommunityEditScreen.tsx:394
+msgid "Remove requirement"
+msgstr "Xóa điều kiện"
 
 #: src/components/contacts/screens/ViewMatches.tsx:508
 #: src/screens/Settings/FindContactsSettings.tsx:354
@@ -11812,7 +12372,7 @@ msgstr "Trả lời cho bài đăng này đã bị tắt."
 msgid "Reply"
 msgstr "Trả lời"
 
-#: src/view/com/composer/Composer.tsx:1958
+#: src/view/com/composer/Composer.tsx:1968
 msgctxt "action"
 msgid "Reply"
 msgstr "Trả lời"
@@ -12001,7 +12561,7 @@ msgstr "Đăng lại"
 msgid "Reposts Hidden"
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:466
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:468
 msgid "Reposts of this post"
 msgstr "Lượt đăng lại của bài đăng này"
 
@@ -12044,15 +12604,18 @@ msgid "Request to join"
 msgstr "Yêu cầu tham gia"
 
 #: src/components/dms/ChatInvite/Root.tsx:132
+#: src/features/community/components/CommunityCard.tsx:124
 msgid "Requested"
 msgstr "Đã yêu cầu"
 
 #. Incoming message requests
+#: src/features/community/CommunityScreen.tsx:198
+#: src/features/community/CommunityScreen.tsx:200
 #: src/screens/Messages/components/InboxRequests.tsx:25
 msgid "Requests"
 msgstr "Yêu cầu"
 
-#: src/Navigation.tsx:601
+#: src/Navigation.tsx:627
 #: src/screens/Messages/JoinRequests.tsx:56
 #: src/screens/Messages/JoinRequests.tsx:422
 msgid "Requests to join"
@@ -12150,6 +12713,14 @@ msgstr ""
 #: src/screens/ModerationInbox/Subject.tsx:54
 #~ msgid "Restored post"
 #~ msgstr ""
+
+#: src/features/poll/components/PollEditorDialog.tsx:286
+msgid "Results"
+msgstr "Kết quả"
+
+#: src/features/poll/components/PostPoll.tsx:191
+msgid "Results show when the poll ends."
+msgstr "Kết quả sẽ hiện khi khảo sát kết thúc."
 
 #: src/screens/Settings/FindContactsSettings.tsx:553
 #: src/screens/Settings/FindContactsSettings.tsx:569
@@ -12256,10 +12827,15 @@ msgstr "Luật đang bật"
 msgid "Rule violated:"
 msgstr ""
 
+#: src/features/community/CommunityScreen.tsx:449
 #: src/features/referral/admin/RewardsAdminScreen.tsx:68
 #: src/features/referral/admin/RewardsAdminScreen.tsx:70
 msgid "Rules"
 msgstr "Luật"
+
+#: src/features/community/CommunityEditScreen.tsx:258
+msgid "Rules (one per line)"
+msgstr "Nội quy (mỗi dòng một điều)"
 
 #. Accessibility label for the icon-only pill that filters the GIF picker to sad/crying GIFs.
 #: src/features/gifPicker/components/GifCategoryPills.tsx:75
@@ -12296,26 +12872,27 @@ msgstr "Lưu ngày sinh"
 
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:195
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:204
+#: src/features/community/CommunityEditScreen.tsx:101
 #: src/screens/SavedFeeds.tsx:120
 #: src/screens/SavedFeeds.tsx:124
 #: src/screens/SavedFeeds.tsx:311
 #: src/screens/SavedFeeds.tsx:315
-#: src/view/com/composer/Composer.tsx:1600
+#: src/view/com/composer/Composer.tsx:1610
 #: src/view/com/composer/drafts/DraftsButton.tsx:121
 msgid "Save changes"
 msgstr "Lưu thay đổi"
 
-#: src/view/com/composer/Composer.tsx:1572
+#: src/view/com/composer/Composer.tsx:1582
 #: src/view/com/composer/drafts/DraftsButton.tsx:89
 msgid "Save changes?"
 msgstr "Lưu thay đổi?"
 
-#: src/view/com/composer/Composer.tsx:1600
+#: src/view/com/composer/Composer.tsx:1610
 #: src/view/com/composer/drafts/DraftsButton.tsx:121
 msgid "Save draft"
 msgstr "Lưu bản nháp"
 
-#: src/view/com/composer/Composer.tsx:1574
+#: src/view/com/composer/Composer.tsx:1584
 #: src/view/com/composer/drafts/DraftsButton.tsx:91
 msgid "Save draft?"
 msgstr "Lưu bản nháp?"
@@ -12331,6 +12908,11 @@ msgstr "Lưu hình"
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:255
 msgid "Save new handle"
 msgstr "Lưu tên tài khoản mới"
+
+#: src/features/poll/components/PollEditorDialog.tsx:303
+#: src/features/poll/components/PollEditorDialog.tsx:309
+msgid "Save poll"
+msgstr "Lưu khảo sát"
 
 #: src/components/StarterPack/QrCodeDialog.tsx:200
 msgid "Save QR code"
@@ -12359,8 +12941,8 @@ msgstr "Lưu vào bảng tin của tôi"
 msgid "Save your position in the Following feed between sessions. New posts wait above you until you’re ready to view them."
 msgstr ""
 
-#: src/view/shell/desktop/LeftNav.tsx:760
-#: src/view/shell/Drawer.tsx:670
+#: src/view/shell/desktop/LeftNav.tsx:771
+#: src/view/shell/Drawer.tsx:697
 msgctxt "link to bookmarks screen"
 msgid "Saved"
 msgstr "Đã lưu"
@@ -12376,7 +12958,7 @@ msgid "Saved Feeds"
 msgstr "Bảng tin đã lưu"
 
 #: src/components/dialogs/nuxs/BookmarksAnnouncement.tsx:145
-#: src/Navigation.tsx:661
+#: src/Navigation.tsx:687
 #: src/screens/Bookmarks.tsx:60
 msgid "Saved Posts"
 msgstr "Bài đã lưu"
@@ -12386,7 +12968,7 @@ msgstr "Bài đã lưu"
 msgid "Saved to your feeds"
 msgstr "Đã lưu vào bảng tin của bạn"
 
-#: src/features/checklist/NewUserChecklist.tsx:113
+#: src/features/checklist/NewUserChecklist.tsx:134
 msgid "Say hello to the community."
 msgstr "Hãy chào cộng đồng."
 
@@ -12415,7 +12997,7 @@ msgstr "Quét"
 
 #: src/features/inviteFriends/InviteScannerScreen.tsx:101
 #: src/features/inviteFriends/InviteScannerScreen.web.tsx:23
-#: src/Navigation.tsx:355
+#: src/Navigation.tsx:381
 msgid "Scan QR code"
 msgstr "Quét mã QR"
 
@@ -12454,7 +13036,7 @@ msgstr "Tìm kiếm"
 
 #. placeholder {0}: profile.handle
 #. placeholder {0}: route.params.name
-#: src/Navigation.tsx:296
+#: src/Navigation.tsx:322
 #: src/screens/Profile/ProfileSearch.tsx:37
 msgid "Search @{0}'s posts"
 msgstr "Tìm kiếm bài đăng của @{0}"
@@ -12462,6 +13044,10 @@ msgstr "Tìm kiếm bài đăng của @{0}"
 #: src/components/ProgressGuide/FollowDialog.tsx:693
 msgid "Search by name or interest"
 msgstr "Tìm theo tên hoặc sở thích"
+
+#: src/features/community/CommunitiesScreen.tsx:77
+msgid "Search communities"
+msgstr "Tìm cộng đồng"
 
 #: src/components/contacts/screens/ViewMatches.tsx:364
 msgid "Search contacts"
@@ -12853,7 +13439,7 @@ msgstr "Gửi email"
 msgid "Send error report"
 msgstr "Gửi báo cáo lỗi"
 
-#: src/view/shell/Drawer.tsx:440
+#: src/view/shell/Drawer.tsx:449
 msgid "Send feedback"
 msgstr "Gửi phản hồi"
 
@@ -12900,7 +13486,7 @@ msgstr "Gửi email xác minh"
 msgid "Send via chat"
 msgstr ""
 
-#: src/features/checklist/NewUserChecklist.tsx:128
+#: src/features/checklist/NewUserChecklist.tsx:149
 msgid "Send your first tip"
 msgstr "Gửi tip đầu tiên"
 
@@ -12963,10 +13549,10 @@ msgstr "Đặt nhà cung cấp dịch vụ lưu trữ thủ công"
 msgid "Sets email for password reset"
 msgstr "Đặt email để đặt lại mật khẩu"
 
-#: src/Navigation.tsx:252
+#: src/Navigation.tsx:278
 #: src/screens/Settings/Settings.tsx:104
-#: src/view/shell/desktop/LeftNav.tsx:783
-#: src/view/shell/Drawer.tsx:708
+#: src/view/shell/desktop/LeftNav.tsx:794
+#: src/view/shell/Drawer.tsx:735
 msgid "Settings"
 msgstr "Cài đặt"
 
@@ -13153,7 +13739,7 @@ msgstr ""
 msgid "Share your thoughts…"
 msgstr "Chia sẻ suy nghĩ của bạn…"
 
-#: src/Navigation.tsx:360
+#: src/Navigation.tsx:386
 msgid "Shared Preferences Tester"
 msgstr "Trình kiểm tra cài đặt đã chia sẻ"
 
@@ -13287,6 +13873,18 @@ msgstr "Hiển thị bài đăng lại"
 msgid "Show reposts in feeds"
 msgstr ""
 
+#: src/features/poll/components/PollEditorDialog.tsx:295
+msgid "Show results after the poll ends"
+msgstr "Hiện kết quả sau khi khảo sát kết thúc"
+
+#: src/features/poll/components/PollEditorDialog.tsx:290
+msgid "Show results while voting"
+msgstr "Hiện kết quả trong lúc bỏ phiếu"
+
+#: src/features/community/CommunityScreen.tsx:443
+msgid "Show rules"
+msgstr "Xem nội quy"
+
 #: src/screens/Settings/FollowingFeedPreferences.tsx:133
 #: src/screens/Settings/FollowingFeedPreferences.tsx:143
 msgid "Show samples of your saved feeds in your Following feed"
@@ -13310,7 +13908,7 @@ msgstr "Hiển thị cảnh báo và bộ lọc từ bảng tin"
 msgid "Show when you’re live"
 msgstr ""
 
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:605
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:607
 msgid "Shows information about when this post was created"
 msgstr "Hiển thị thông tin về thời gian đăng của bài này"
 
@@ -13353,7 +13951,7 @@ msgstr "Hiển thị nội dung"
 msgid "Sign in"
 msgstr "Đăng nhập"
 
-#: src/features/gating/components/GatedContent.tsx:68
+#: src/features/gating/components/GatedContent.tsx:70
 msgid "Sign in and link a wallet to unlock this content."
 msgstr "Đăng nhập và liên kết ví để mở khóa nội dung này."
 
@@ -13387,6 +13985,10 @@ msgstr "Đăng nhập vào tải khoản chưa được liệt kê"
 #~ msgid "Sign in to Bluesky or create a new account"
 #~ msgstr "Đăng nhập vào Bluesky hoặc tạo tài khoản mới"
 
+#: src/features/community/CommunityScreen.tsx:433
+msgid "Sign in to join this community."
+msgstr "Đăng nhập để tham gia cộng đồng này."
+
 #: src/components/dialogs/Signin.tsx:47
 msgid "Sign in to Krao or create a new account"
 msgstr "Đăng nhập Krao hoặc tạo tài khoản mới"
@@ -13399,6 +14001,10 @@ msgstr "Đăng nhập để yêu cầu quyền truy cập nhóm chat này."
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:659
 msgid "Sign in to view post"
 msgstr ""
+
+#: src/features/poll/components/PostPoll.tsx:186
+msgid "Sign in to vote."
+msgstr "Đăng nhập để bỏ phiếu."
 
 #: src/features/wallet/components/WalletSignInButton.tsx:44
 #: src/features/wallet/components/WalletSignInButton.tsx:55
@@ -13414,9 +14020,9 @@ msgstr "Đăng nhập bằng ví"
 #: src/screens/SignupQueued.tsx:100
 #: src/screens/SignupQueued.tsx:103
 #: src/screens/Takendown.tsx:89
-#: src/view/shell/desktop/LeftNav.tsx:231
-#: src/view/shell/desktop/LeftNav.tsx:286
-#: src/view/shell/desktop/LeftNav.tsx:289
+#: src/view/shell/desktop/LeftNav.tsx:232
+#: src/view/shell/desktop/LeftNav.tsx:287
+#: src/view/shell/desktop/LeftNav.tsx:290
 msgid "Sign out"
 msgstr "Đăng xuất"
 
@@ -13425,7 +14031,7 @@ msgid "Sign Out"
 msgstr "Đăng xuất"
 
 #: src/screens/Settings/Settings.tsx:324
-#: src/view/shell/desktop/LeftNav.tsx:228
+#: src/view/shell/desktop/LeftNav.tsx:229
 msgid "Sign out?"
 msgstr "Đăng xuất?"
 
@@ -13470,7 +14076,7 @@ msgstr "Bỏ qua"
 msgid "Skip contact sharing and continue to the app"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1617
+#: src/view/com/composer/Composer.tsx:1627
 msgid "Skip empty posts?"
 msgstr ""
 
@@ -13709,8 +14315,12 @@ msgstr "Bắt đầu trò chuyện"
 msgid "Start chat with {displayName}"
 msgstr "Bắt đầu trò chuyện với {displayName}"
 
-#: src/Navigation.tsx:632
-#: src/Navigation.tsx:637
+#: src/features/community/CommunityScreen.tsx:524
+msgid "Start the conversation with Post here."
+msgstr "Bắt đầu cuộc trò chuyện bằng nút Đăng ở đây."
+
+#: src/Navigation.tsx:658
+#: src/Navigation.tsx:663
 #: src/screens/StarterPack/Wizard/index.tsx:190
 msgid "Starter Pack"
 msgstr "Gói khởi đầu"
@@ -13779,7 +14389,7 @@ msgstr "Dữ liệu đã được xóa, bạn cần khởi động lại ứng d
 msgid "Stored as part of a secure code for matching with others"
 msgstr ""
 
-#: src/Navigation.tsx:345
+#: src/Navigation.tsx:371
 #: src/screens/Settings/Settings.tsx:493
 msgid "Storybook"
 msgstr "Storybook"
@@ -13919,7 +14529,7 @@ msgctxt "Name of app icon variant"
 msgid "Sunset"
 msgstr "Hoàng hôn"
 
-#: src/Navigation.tsx:370
+#: src/Navigation.tsx:396
 #: src/view/screens/Support.tsx:25
 #: src/view/screens/Support.tsx:28
 msgid "Support"
@@ -13949,11 +14559,11 @@ msgstr "Tài khoản bị đình chỉ không thể tham gia trò chuyện."
 #: src/screens/Settings/Settings.tsx:128
 #: src/screens/Settings/Settings.tsx:140
 #: src/screens/Settings/Settings.tsx:652
-#: src/view/shell/desktop/LeftNav.tsx:266
+#: src/view/shell/desktop/LeftNav.tsx:267
 msgid "Switch account"
 msgstr "Chuyển tài khoản"
 
-#: src/view/shell/desktop/LeftNav.tsx:128
+#: src/view/shell/desktop/LeftNav.tsx:129
 msgid "Switch accounts"
 msgstr "Chuyển tài khoản"
 
@@ -13968,7 +14578,7 @@ msgid "Switch OTA channel"
 msgstr ""
 
 #. placeholder {0}: sanitizeHandle( profile?.handle ?? account.handle, '@', )
-#: src/view/shell/desktop/LeftNav.tsx:368
+#: src/view/shell/desktop/LeftNav.tsx:369
 msgid "Switch to {0}"
 msgstr "Chuyển sang {0}"
 
@@ -14139,12 +14749,12 @@ msgstr "Điều khoản"
 #: src/components/dialogs/BirthDateSettings.tsx:181
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:32
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:99
-#: src/Navigation.tsx:380
+#: src/Navigation.tsx:406
 #: src/screens/Settings/AboutSettings.tsx:94
 #: src/screens/Settings/AboutSettings.tsx:97
 #: src/view/screens/TermsOfService.tsx:25
-#: src/view/shell/Drawer.tsx:800
-#: src/view/shell/Drawer.tsx:802
+#: src/view/shell/Drawer.tsx:827
+#: src/view/shell/Drawer.tsx:829
 msgid "Terms of Service"
 msgstr "Điều khoản dịch vụ"
 
@@ -14158,7 +14768,7 @@ msgstr "Văn bản & thẻ"
 msgid "Text input field"
 msgstr "Trường nhập văn bản"
 
-#: src/features/checklist/NewUserChecklist.tsx:129
+#: src/features/checklist/NewUserChecklist.tsx:150
 msgid "Thank someone for a post with a small tip. It needs a linked wallet, and the person you tip needs one too."
 msgstr "Cảm ơn ai đó vì một bài viết bằng một khoản tip nhỏ. Bạn cần có ví đã liên kết, và người nhận tip cũng cần có ví."
 
@@ -14214,6 +14824,14 @@ msgstr "Hết bảng tin video!"
 msgid "The account will be able to interact with you after unblocking."
 msgstr "Tài khoản có thể tương tác với bạn sau khi bỏ chặn."
 
+#: src/features/community/CommunityEditScreen.tsx:251
+msgid "The address can’t be changed."
+msgstr "Không thể đổi địa chỉ."
+
+#: src/features/community/CommunityEditScreen.tsx:194
+msgid "The address needs 3 to {SLUG_MAX} lowercase letters, numbers or dashes."
+msgstr "Địa chỉ cần từ 3 đến {SLUG_MAX} chữ thường, số hoặc dấu gạch ngang."
+
 #: src/screens/Settings/AppIconSettings/index.tsx:39
 #: src/screens/Settings/AppIconSettings/index.tsx:225
 msgid "The app will be restarted"
@@ -14231,6 +14849,10 @@ msgstr ""
 #: src/screens/Moderation/index.tsx:474
 #~ msgid "The Bluesky web application"
 #~ msgstr "Ứng dụng web Bluesky"
+
+#: src/features/community/CommunityEditScreen.tsx:200
+msgid "The chat link must start with https://"
+msgstr "Liên kết chat phải bắt đầu bằng https://"
 
 #: src/features/compliance/components/usePhoneErrorMessage.ts:24
 msgid "The code expired or was not requested. Ask for a new one."
@@ -14312,6 +14934,14 @@ msgstr ""
 #: src/features/referral/admin/components/RulesTab.tsx:66
 msgid "the new account"
 msgstr "tài khoản mới"
+
+#: src/features/community/composer/CommunityPickerDialog.tsx:59
+msgid "The post shows in the community’s feed. It stays a normal post on your profile too."
+msgstr "Bài viết hiện trong bảng tin của cộng đồng. Nó vẫn là một bài viết bình thường trên trang cá nhân của bạn."
+
+#: src/features/community/CommunityScreen.tsx:555
+msgid "The post stays on its author’s profile"
+msgstr "Bài viết vẫn ở trang cá nhân của tác giả"
 
 #: src/screens/ModerationInbox/Report.tsx:47
 msgid "The post was restored"
@@ -14580,6 +15210,10 @@ msgstr "Các cài đặt này chỉ áp dụng cho bảng tin Following."
 msgid "These URLs"
 msgstr ""
 
+#: src/features/community/CommunityScreen.tsx:286
+msgid "They are removed from the community and can’t join again. You can’t undo this from the app yet."
+msgstr "Họ bị loại khỏi cộng đồng và không thể tham gia lại. Hiện chưa hoàn tác được trong ứng dụng."
+
 #: src/components/moderation/BlockDialog.tsx:354
 msgid "They own this chat"
 msgstr ""
@@ -14699,6 +15333,10 @@ msgstr ""
 #: src/features/referral/components/ReferralCodeField.tsx:54
 msgid "This code is not valid. Check it with the person who invited you."
 msgstr "Mã này không hợp lệ. Hãy hỏi lại người đã mời bạn."
+
+#: src/features/community/CommunityScreen.tsx:104
+msgid "This community doesn’t exist."
+msgstr "Cộng đồng này không tồn tại."
 
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:148
 msgid "This confirmation code is not valid. Please try again."
@@ -14922,13 +15560,17 @@ msgstr "NFT này không được ví đã liên kết nào của bạn nắm gi�
 msgid "This person is blocking you"
 msgstr "Người này đang chặn bạn"
 
+#: src/features/poll/components/PostPoll.tsx:139
+msgid "This poll counts your token balance, and you have no linked wallet. Your vote would count as zero, and you can only vote once. <0>Link a wallet first</0>"
+msgstr "Khảo sát này tính theo số dư token của bạn, mà bạn chưa liên kết ví nào. Phiếu của bạn sẽ được tính bằng không, và bạn chỉ bỏ phiếu được một lần. <0>Hãy liên kết ví trước</0>"
+
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:639
 #~ msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Bluesky on <1>{1}</1>."
 #~ msgstr "Bài đăng này khai rằng đã được tạo vào <0>{0}</0>, nhưng lần đầu tiên được Bluesky nhìn thấy vào <1>{1}</1>."
 
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
-#: src/screens/PostThread/components/ThreadItemAnchor.tsx:645
+#: src/screens/PostThread/components/ThreadItemAnchor.tsx:647
 msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Krao on <1>{1}</1>."
 msgstr "Bài đăng này tự nhận được tạo vào <0>{0}</0>, nhưng Krao thấy lần đầu vào <1>{1}</1>."
 
@@ -14944,7 +15586,7 @@ msgstr "Bài viết này không có nội dung giới hạn."
 msgid "This post is only visible to logged-in users."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1061
+#: src/view/com/composer/Composer.tsx:1066
 msgid "This post looks like it has a seed phrase or private key. Anyone who has it can take all your funds. Remove it before posting."
 msgstr "Bài viết này có vẻ chứa seed phrase hoặc khóa riêng. Ai có chúng đều có thể lấy hết tiền của bạn. Hãy xóa trước khi đăng."
 
@@ -14956,7 +15598,7 @@ msgstr ""
 msgid "This post will be hidden from feeds and threads. This cannot be undone."
 msgstr "Bài đăng này sẽ bị ẩn khỏi bảng tin và thảo luận. Hành động này không thể hoàn tác."
 
-#: src/view/com/composer/Composer.tsx:1175
+#: src/view/com/composer/Composer.tsx:1184
 msgid "This post's author has disabled quote posts."
 msgstr "Tác giả bài đăng này đã tắt chức năng trích dẫn bài đăng."
 
@@ -14998,6 +15640,14 @@ msgstr "Trang này nằm trong danh sách lừa đảo"
 #: src/features/gating/components/GateDialog.tsx:363
 msgid "This text looks like it has a seed phrase or private key. Anyone who has it can take all your funds, gated or not. Remove it first."
 msgstr "Nội dung này có vẻ chứa seed phrase hoặc khóa riêng. Ai có chúng đều có thể lấy hết tiền của bạn, dù có khóa nội dung hay không. Hãy xóa trước."
+
+#: src/features/community/composer/CommunityPickerDialog.tsx:133
+msgid "This text looks like it has a seed phrase or private key. Remove it first."
+msgstr "Nội dung này có vẻ chứa cụm từ khôi phục hoặc khóa riêng. Hãy xóa nó trước."
+
+#: src/features/poll/components/PostPoll.tsx:79
+msgid "this token"
+msgstr "token này"
 
 #: src/components/verification/VerificationCreatePrompt.tsx:94
 msgid "This user does not have a display name, and therefore cannot be verified."
@@ -15101,7 +15751,7 @@ msgstr "Cài đặt thảo luận"
 msgid "Threaded"
 msgstr "Phân luồng"
 
-#: src/Navigation.tsx:413
+#: src/Navigation.tsx:439
 msgid "Threads Preferences"
 msgstr "Cài đặt thảo luận"
 
@@ -15207,11 +15857,14 @@ msgstr "Bật/tắt tiếng"
 msgid "Token {0}"
 msgstr "Token {0}"
 
+#: src/features/community/CommunityEditScreen.tsx:435
+#: src/features/community/CommunityEditScreen.tsx:441
 #: src/features/gating/components/GateDialog.tsx:279
 #: src/features/gating/components/GateDialog.tsx:285
 msgid "Token balance"
 msgstr "Số dư token"
 
+#: src/features/community/CommunityEditScreen.tsx:435
 #: src/features/gating/components/GateDialog.tsx:279
 msgid "Token balance, selected"
 msgstr "Số dư token, đang chọn"
@@ -15230,16 +15883,19 @@ msgstr "ID token"
 msgid "Token ID (optional, any token if empty)"
 msgstr "ID token (tùy chọn, để trống là bất kỳ token nào)"
 
+#: src/features/community/components/accessText.ts:18
+msgid "Token or NFT holders"
+msgstr "Người nắm giữ token hoặc NFT"
+
 #. placeholder {0}: describeRule(rule)
-#: src/features/gating/components/GateBadge.tsx:35
-#: src/features/gating/components/GateBadge.tsx:38
+#: src/features/gating/describe.ts:57
 msgid "Token-gated · holders of {0}"
 msgstr "Giới hạn theo token · người nắm giữ {0}"
 
 #: src/features/gating/components/GatedContent.tsx:61
 #: src/features/gating/components/GatedContent.tsx:64
-msgid "Token-gated · holders of {requirementText}"
-msgstr "Giới hạn theo token · người nắm giữ {requirementText}"
+#~ msgid "Token-gated · holders of {requirementText}"
+#~ msgstr "Giới hạn theo token · người nắm giữ {requirementText}"
 
 #: src/features/gating/components/GateDialog.tsx:153
 msgid "Token-gated content added"
@@ -15249,7 +15905,7 @@ msgstr "Đã thêm nội dung giới hạn theo token"
 msgid "Token-gated content replaced"
 msgstr "Đã thay nội dung giới hạn theo token"
 
-#: src/features/gating/components/GatedContent.tsx:154
+#: src/features/gating/components/GatedContent.tsx:167
 msgid "Token-gated image"
 msgstr "Ảnh giới hạn theo token"
 
@@ -15288,7 +15944,7 @@ msgstr "Hàng đầu"
 msgid "Top replies first"
 msgstr "Phản hồi hàng đầu trước"
 
-#: src/Navigation.tsx:585
+#: src/Navigation.tsx:611
 msgid "Topic"
 msgstr "Chủ đề"
 
@@ -15368,8 +16024,14 @@ msgstr ""
 msgid "Try a different search term."
 msgstr ""
 
-#: src/features/gating/components/GatedContent.tsx:124
-#: src/features/gating/components/GatedContent.tsx:130
+#: src/features/community/CommunitiesScreen.tsx:148
+#: src/features/community/CommunitiesScreen.tsx:154
+#: src/features/community/CommunityScreen.tsx:110
+#: src/features/community/CommunityScreen.tsx:116
+#: src/features/community/CommunityScreen.tsx:248
+#: src/features/community/CommunityScreen.tsx:254
+#: src/features/gating/components/GatedContent.tsx:137
+#: src/features/gating/components/GatedContent.tsx:143
 #: src/features/inviteFriends/InviteScannerScreen.tsx:240
 #: src/features/inviteFriends/InviteScannerScreen.tsx:245
 msgid "Try again"
@@ -15554,6 +16216,8 @@ msgctxt "moderation-report-filter"
 msgid "Under review"
 msgstr "Đang xét duyệt"
 
+#: src/features/community/CommunityScreen.tsx:165
+#: src/features/community/CommunityScreen.tsx:167
 #: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:50
 #: src/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner.tsx:56
 #: src/features/liveEvents/components/SidebarLiveEventFeedsBanner.tsx:40
@@ -15787,7 +16451,7 @@ msgstr "Đã bỏ đăng ký danh sách"
 msgid "Unsupported clipboard content"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1709
+#: src/view/com/composer/Composer.tsx:1719
 msgid "Unsupported video type: {mimeType}"
 msgstr ""
 
@@ -15795,6 +16459,10 @@ msgstr ""
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:326
 msgid "Until"
 msgstr ""
+
+#: src/features/community/CommunityEditScreen.tsx:196
+msgid "Up to {RULES_MAX} rules, each up to {RULE_MAX} characters."
+msgstr "Tối đa {RULES_MAX} điều, mỗi điều tối đa {RULE_MAX} ký tự."
 
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:198
 msgid "Up to 50 people"
@@ -15880,21 +16548,21 @@ msgstr "Tải lên từ Files"
 msgid "Upload from Library"
 msgstr "Tải lên từ Thư viện"
 
-#: src/view/com/composer/Composer.tsx:2751
+#: src/view/com/composer/Composer.tsx:2765
 msgid "Uploading GIF..."
 msgstr ""
 
-#: src/lib/api/index.ts:337
-#: src/lib/api/index.ts:364
+#: src/lib/api/index.ts:352
+#: src/lib/api/index.ts:379
 msgid "Uploading images..."
 msgstr "Đang tải lên hình..."
 
-#: src/lib/api/index.ts:437
-#: src/lib/api/index.ts:461
+#: src/lib/api/index.ts:452
+#: src/lib/api/index.ts:476
 msgid "Uploading link thumbnail..."
 msgstr "Đang tải lên hình cho liên kết..."
 
-#: src/view/com/composer/Composer.tsx:2753
+#: src/view/com/composer/Composer.tsx:2767
 msgid "Uploading video..."
 msgstr "Đang tải lên video..."
 
@@ -16072,6 +16740,10 @@ msgstr "Mã hợp lệ"
 msgid "Value:"
 msgstr "Giá trị:"
 
+#: src/features/community/components/accessText.ts:50
+msgid "Verification can’t be checked right now. Try again later."
+msgstr "Hiện chưa kiểm tra được xác thực. Hãy thử lại sau."
+
 #: src/components/verification/VerificationCreatePrompt.tsx:40
 msgid "Verification failed, please try again."
 msgstr "Xác minh không thành công, xin vui lòng thử lại."
@@ -16084,7 +16756,7 @@ msgstr "Việc xác minh thường do đơn vị xác minh thực hiện. Chỉ 
 msgid "Verification settings"
 msgstr "Cài đặt xác minh"
 
-#: src/Navigation.tsx:245
+#: src/Navigation.tsx:271
 #: src/screens/Moderation/VerificationSettings.tsx:34
 msgid "Verification Settings"
 msgstr "Cài đặt xác minh"
@@ -16116,6 +16788,15 @@ msgstr "Đã được một đối tác tin cậy xác minh"
 #: src/components/verification/VerificationsDialog.tsx:106
 msgid "Verified by:"
 msgstr "Xác minh bởi:"
+
+#: src/features/community/components/accessText.ts:25
+msgid "Verified only"
+msgstr "Chỉ người đã xác thực"
+
+#: src/features/community/components/accessText.ts:24
+#: src/features/poll/components/PollEditorDialog.tsx:34
+msgid "Verified people"
+msgstr "Người đã xác thực"
 
 #: src/features/wallet/components/ChainBadges.tsx:23
 msgid "Verified wallet"
@@ -16170,7 +16851,7 @@ msgstr ""
 
 #: src/components/contacts/screens/PhoneInput.tsx:175
 #: src/components/contacts/screens/VerifyNumber.tsx:220
-#: src/view/com/composer/Composer.tsx:1491
+#: src/view/com/composer/Composer.tsx:1501
 msgid "Verify phone number"
 msgstr "Xác thực số điện thoại"
 
@@ -16210,7 +16891,7 @@ msgstr "Hãy xác thực số điện thoại để nhận huy hiệu. Huy hiệ
 #~ msgid "Verify your phone number to post."
 #~ msgstr "Hãy xác thực số điện thoại để đăng bài."
 
-#: src/view/com/composer/Composer.tsx:1178
+#: src/view/com/composer/Composer.tsx:1187
 msgid "Verify your phone number to post. Your post will be saved as a draft."
 msgstr "Hãy xác thực số điện thoại để đăng bài. Bài của bạn sẽ được lưu thành bản nháp."
 
@@ -16252,7 +16933,7 @@ msgstr "Video"
 msgid "Video failed to process"
 msgstr "Không thể xử lý video"
 
-#: src/Navigation.tsx:653
+#: src/Navigation.tsx:679
 msgid "Video Feed"
 msgstr "Bảng tin video"
 
@@ -16287,11 +16968,11 @@ msgstr "Không tìm thấy video."
 msgid "Video settings"
 msgstr "Cài đặt video"
 
-#: src/view/com/composer/Composer.tsx:2771
+#: src/view/com/composer/Composer.tsx:2785
 msgid "Video uploaded"
 msgstr "Đã tải lên video"
 
-#: src/view/com/composer/Composer.tsx:404
+#: src/view/com/composer/Composer.tsx:408
 msgid "Video uploads aren’t available yet."
 msgstr ""
 
@@ -16304,8 +16985,8 @@ msgstr "Video: {0}"
 msgid "Videos"
 msgstr "Video"
 
-#: src/view/com/composer/Composer.tsx:463
-#: src/view/com/composer/Composer.tsx:595
+#: src/view/com/composer/Composer.tsx:467
+#: src/view/com/composer/Composer.tsx:599
 #: src/view/com/composer/SelectMediaButton.tsx:446
 msgid "Videos must be 10 minutes or less."
 msgstr ""
@@ -16314,7 +16995,7 @@ msgstr ""
 msgid "Vietnamese numbers can be written 0912345678 or +84912345678."
 msgstr "Số Việt Nam có thể viết 0912345678 hoặc +84912345678."
 
-#: src/view/com/composer/Composer.tsx:1286
+#: src/view/com/composer/Composer.tsx:1295
 msgctxt "Action to view the post the user just created"
 msgid "View"
 msgstr ""
@@ -16381,7 +17062,7 @@ msgstr "Xem toàn bộ thảo luận"
 #: src/features/compliance/moderation/GateModerationScreen.tsx:214
 #: src/features/referral/ReferralScreen.tsx:181
 #: src/features/referral/ReferralScreen.tsx:184
-#: src/Navigation.tsx:541
+#: src/Navigation.tsx:567
 msgid "View gated content"
 msgstr "Xem nội dung gate"
 
@@ -16420,7 +17101,7 @@ msgstr "Xem thêm"
 msgid "View more trending videos"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1281
+#: src/view/com/composer/Composer.tsx:1290
 msgid "View post"
 msgstr ""
 
@@ -16548,9 +17229,27 @@ msgstr ""
 msgid "Volume"
 msgstr "Ẩm lượng"
 
+#: src/features/poll/components/PostPoll.tsx:152
+#: src/features/poll/components/PostPoll.tsx:159
+#: src/features/poll/components/PostPoll.tsx:220
+msgid "Vote"
+msgstr "Bỏ phiếu"
+
+#: src/features/poll/components/PostPoll.tsx:74
+msgid "Votes are final. You can’t change your vote, and deleting it and voting again won’t count."
+msgstr "Phiếu bầu là cuối cùng. Bạn không đổi được phiếu, và xóa phiếu rồi bỏ lại sẽ không được tính."
+
+#: src/features/poll/components/PollEditorDialog.tsx:127
+msgid "Votes are public records, and they can’t be changed once cast."
+msgstr "Phiếu bầu là bản ghi công khai và không thể đổi sau khi đã bỏ."
+
 #: src/features/referral/admin/components/KycTab.tsx:196
 msgid "waiting for a second reviewer"
 msgstr "chờ người duyệt thứ hai"
+
+#: src/features/community/components/accessText.ts:52
+msgid "Waiting for an owner or moderator to approve you."
+msgstr "Đang chờ chủ sở hữu hoặc người điều hành duyệt bạn."
 
 #: src/screens/Settings/WalletsSettings.tsx:128
 msgid "Wallet linked"
@@ -16560,7 +17259,7 @@ msgstr "Đã liên kết ví"
 msgid "Wallet unlinked"
 msgstr "Đã hủy liên kết ví"
 
-#: src/Navigation.tsx:520
+#: src/Navigation.tsx:546
 #: src/screens/Settings/Settings.tsx:185
 #: src/screens/Settings/Settings.tsx:188
 #: src/screens/Settings/WalletsSettings.tsx:72
@@ -16807,7 +17506,7 @@ msgstr ""
 msgid "We're sorry, you cannot access this screen at this time."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1173
+#: src/view/com/composer/Composer.tsx:1182
 msgid "We're sorry! The post you are replying to has been deleted."
 msgstr "Xin lỗi! Bài đăng bạn đang trả lời đã bị xóa."
 
@@ -16841,6 +17540,10 @@ msgstr ""
 msgid "We've confirmed your age assurance status. You can now close this dialog."
 msgstr ""
 
+#: src/features/poll/components/PollEditorDialog.tsx:39
+msgid "Weighted by token balance"
+msgstr "Tính theo số dư token"
+
 #: src/screens/Deactivated.tsx:121
 msgid "Welcome back!"
 msgstr "Chào mừng trở lại!"
@@ -16861,6 +17564,10 @@ msgstr "Bạn quan tâm đến những gì?"
 msgid "What do you want to call your Starter Pack?"
 msgstr ""
 
+#: src/features/community/composer/CommunityPickerDialog.tsx:120
+msgid "What only members should see"
+msgstr "Điều chỉ thành viên mới được xem"
+
 #: src/features/referral/admin/components/KycTab.tsx:322
 msgid "What you checked and why"
 msgstr "Bạn đã kiểm tra gì và vì sao"
@@ -16875,7 +17582,7 @@ msgid "what’s up"
 msgstr ""
 
 #: src/view/com/auth/SplashScreen.web.tsx:98
-#: src/view/com/composer/Composer.tsx:1673
+#: src/view/com/composer/Composer.tsx:1683
 #: src/view/com/feeds/ComposerPrompt.tsx:206
 msgid "What's up?"
 msgstr "Có gì mới?"
@@ -16887,6 +17594,10 @@ msgstr "Khi bạn nhấp vào dấu tích, bạn sẽ thấy tổ chức đã x�
 #: src/components/WhoCanReply.tsx:208
 msgid "Who can interact with this post?"
 msgstr "Ai có thể tương tác với bài đăng này?"
+
+#: src/features/community/CommunityEditScreen.tsx:274
+msgid "Who can join"
+msgstr "Ai có thể tham gia"
 
 #: src/screens/Messages/components/InviteLinkDialog.tsx:245
 msgid "Who can join this group chat and how"
@@ -16904,6 +17615,10 @@ msgstr "Ai có thể mở khóa"
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:132
 msgid "Who can verify?"
 msgstr "Ai có thể xác minh?"
+
+#: src/features/poll/components/PollEditorDialog.tsx:228
+msgid "Who can vote"
+msgstr "Ai có thể bỏ phiếu"
 
 #: src/features/compliance/moderation/GateModerationScreen.tsx:278
 msgid "Who read gated content"
@@ -16969,26 +17684,26 @@ msgstr "Bạn có muốn chặn người dùng này và/hoặc rời cuộc trò
 msgid "Would you like to save this as a draft before viewing your drafts?"
 msgstr "Bạn có muốn lưu bài này thành bản nháp trước khi xem các bản nháp không?"
 
-#: src/view/com/composer/Composer.tsx:1588
+#: src/view/com/composer/Composer.tsx:1598
 msgid "Would you like to save this as a draft to edit later?"
 msgstr "Bạn có muốn lưu bài này thành bản nháp để sửa sau không?"
 
-#: src/features/checklist/NewUserChecklist.tsx:115
+#: src/features/checklist/NewUserChecklist.tsx:136
 #: src/view/screens/Profile.tsx:446
 #: src/view/screens/Profile.tsx:447
 msgid "Write a post"
 msgstr "Viết bài"
 
-#: src/view/com/composer/Composer.tsx:1771
+#: src/view/com/composer/Composer.tsx:1781
 msgid "Write post"
 msgstr "Soạn bài đăng"
 
-#: src/features/checklist/NewUserChecklist.tsx:112
+#: src/features/checklist/NewUserChecklist.tsx:133
 msgid "Write your first post"
 msgstr "Viết bài đầu tiên"
 
 #: src/screens/PostThread/components/ThreadComposePrompt.tsx:91
-#: src/view/com/composer/Composer.tsx:1671
+#: src/view/com/composer/Composer.tsx:1681
 msgid "Write your reply"
 msgstr "Soạn trả lời"
 
@@ -17187,11 +17902,11 @@ msgid "You can now sign in with your new password."
 msgstr "Bạn có thể đăng nhập bằng mật khẩu mới của mình."
 
 #. Toast shown when the user tries to add more images but the post gallery is already at the cap
-#: src/view/com/composer/Composer.tsx:227
+#: src/view/com/composer/Composer.tsx:229
 msgid "You can only add up to {MAX_GALLERY_IMAGES, plural, other {# images}} per post"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1593
+#: src/view/com/composer/Composer.tsx:1603
 msgid "You can only save drafts up to 1000 characters."
 msgstr "Bản nháp chỉ lưu được tối đa 1000 ký tự."
 
@@ -17224,6 +17939,10 @@ msgstr ""
 #: src/components/TrendingTopics.tsx:53
 msgid "You can update this later from your settings."
 msgstr "Bạn có thể cập nhật lại sau trong phần cài đặt."
+
+#: src/features/community/components/accessText.ts:58
+msgid "You can’t join this community right now."
+msgstr "Hiện bạn chưa tham gia được cộng đồng này."
 
 #: src/components/dms/ActionsWrapper.web.tsx:82
 #: src/components/dms/MessageContextMenu.tsx:128
@@ -17349,7 +18068,7 @@ msgstr ""
 msgid "You have temporarily reached the limit for video uploads. Please try again later."
 msgstr "Bạn đã tạm thời đạt giới hạn tải lên video. Vui lòng thử lại sau."
 
-#: src/view/com/composer/Composer.tsx:1583
+#: src/view/com/composer/Composer.tsx:1593
 msgid "You have unsaved changes to this draft, would you like to save them?"
 msgstr "Bản nháp này có thay đổi chưa lưu, bạn có muốn lưu không?"
 
@@ -17364,6 +18083,14 @@ msgstr ""
 #: src/view/com/lists/ProfileLists.tsx:159
 msgid "You haven't created any lists yet."
 msgstr ""
+
+#: src/features/community/CommunitiesScreen.tsx:200
+msgid "You haven’t joined a community yet"
+msgstr "Bạn chưa tham gia cộng đồng nào"
+
+#: src/features/community/composer/CommunityPickerDialog.tsx:74
+msgid "You haven’t joined a community yet. Find one under Communities in the menu."
+msgstr "Bạn chưa tham gia cộng đồng nào. Hãy tìm trong mục Cộng đồng ở menu."
 
 #: src/view/com/feeds/ProfileFeedgens.tsx:160
 msgid "You haven't made any custom feeds yet."
@@ -17520,13 +18247,17 @@ msgstr "Bạn đã yêu cầu tham gia"
 msgid "You verified your phone number a moment ago. Wait a few seconds and try again."
 msgstr "Bạn vừa xác thực số điện thoại. Hãy đợi vài giây rồi thử lại."
 
+#: src/features/community/components/accessText.ts:56
+msgid "You were banned from this community."
+msgstr "Bạn đã bị cấm khỏi cộng đồng này."
+
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:334
 #: src/screens/StarterPack/StarterPackScreen.tsx:761
 msgid "You will be eligible to appear in this Starter Pack again."
 msgstr ""
 
 #: src/screens/Settings/Settings.tsx:325
-#: src/view/shell/desktop/LeftNav.tsx:229
+#: src/view/shell/desktop/LeftNav.tsx:230
 msgid "You will be signed out of all your accounts."
 msgstr "Bạn sẽ đăng xuất khỏi tất cả tài khoản của mình."
 
@@ -17645,7 +18376,7 @@ msgstr ""
 msgid "You've reached the end of your feed! Find some more accounts to follow."
 msgstr "Bạn đã đến cuối bảng tin! Hãy tìm thêm một số tài khoản để theo dõi."
 
-#: src/view/com/composer/Composer.tsx:748
+#: src/view/com/composer/Composer.tsx:752
 msgid "You've reached the maximum number of drafts"
 msgstr ""
 
@@ -17810,7 +18541,7 @@ msgstr "Lượt thích đầu của bạn!"
 msgid "Your followers"
 msgstr "Người theo dõi bạn"
 
-#: src/features/checklist/NewUserChecklist.tsx:105
+#: src/features/checklist/NewUserChecklist.tsx:126
 msgid "Your Following feed fills up with posts from the people you follow."
 msgstr "Bảng tin Đang theo dõi sẽ đầy bài viết từ những người bạn theo dõi."
 
@@ -17843,7 +18574,7 @@ msgstr "Nhà cung cấp dịch vụ lưu trữ của bạn được tự động
 msgid "Your identity could not be verified, so points that depend on it were cancelled. Contact Krao support if you think this is a mistake."
 msgstr "Không thể xác minh danh tính của bạn, nên các điểm phụ thuộc vào việc này đã bị huỷ. Hãy liên hệ hỗ trợ Krao nếu bạn cho rằng có nhầm lẫn."
 
-#: src/Navigation.tsx:512
+#: src/Navigation.tsx:538
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:62
 #: src/screens/Settings/ContentAndMediaSettings.tsx:94
 #: src/screens/Settings/ContentAndMediaSettings.tsx:97
@@ -17860,17 +18591,29 @@ msgstr "Mục quan tâm của bạn đã được cập nhật!"
 msgid "Your interests help us find what you like!"
 msgstr "Mục quan tâm của bạn giúp chúng tôi tìm những gì bạn thích!"
 
-#: src/features/gating/components/GatedContent.tsx:90
+#: src/features/community/components/accessText.ts:46
+msgid "Your linked wallets don’t hold what this community asks for."
+msgstr "Các ví đã liên kết của bạn không nắm giữ thứ mà cộng đồng này yêu cầu."
+
+#: src/features/gating/components/GatedContent.tsx:103
 msgid "Your linked wallets don’t meet this requirement yet."
 msgstr "Các ví bạn đã liên kết chưa đáp ứng điều kiện này."
 
-#: src/features/gating/components/GatedContent.tsx:101
+#: src/features/gating/components/GatedContent.tsx:114
 msgid "Your linked wallets don’t meet this requirement yet. <0>Manage wallets</0>"
 msgstr "Các ví đã liên kết của bạn chưa đáp ứng yêu cầu này. <0>Quản lý ví</0>"
 
 #: src/screens/Signup/StepInfo/index.tsx:372
 msgid "Your location has been updated."
 msgstr "Vị trí của bạn đã được cập nhật."
+
+#: src/features/community/CommunityScreen.tsx:481
+msgid "Your membership is a public record. It can show that you hold the required token or NFT in a wallet linked to your account."
+msgstr "Tư cách thành viên của bạn là một bản ghi công khai. Nó có thể cho thấy bạn nắm giữ token hoặc NFT được yêu cầu trong ví đã liên kết với tài khoản."
+
+#: src/features/community/CommunityScreen.tsx:480
+msgid "Your membership is a public record. It shows that your account passed identity checks (a verified phone number or KYC), even if you keep your verified badge hidden."
+msgstr "Tư cách thành viên của bạn là một bản ghi công khai. Nó cho thấy tài khoản của bạn đã qua kiểm tra danh tính (số điện thoại đã xác thực hoặc KYC), kể cả khi bạn ẩn huy hiệu xác thực."
 
 #: src/components/dialogs/MutedWords.tsx:380
 msgid "Your muted words"
@@ -17916,6 +18659,10 @@ msgstr "Bài viết vẫn công khai như phần giới thiệu. Văn bản và 
 #~ msgid "Your post stays public as a teaser. This extra text and these images are stored on Krao’s gate service, not in your public repo, and are only shown to people whose linked wallets meet the requirement."
 #~ msgstr "Bài đăng của bạn vẫn công khai như một đoạn giới thiệu. Văn bản và hình ảnh bổ sung này được lưu trên dịch vụ cổng của Krao, không phải trong kho công khai của bạn, và chỉ hiển thị với những người có ví đã liên kết đáp ứng yêu cầu."
 
+#: src/features/community/composer/CommunityPickerDialog.tsx:111
+msgid "Your post stays visible as a teaser. The extra text is kept on Krao’s gate service and shown only to members."
+msgstr "Bài viết của bạn vẫn hiển thị như phần giới thiệu. Nội dung thêm được lưu ở dịch vụ gate của Krao và chỉ hiện cho thành viên."
+
 #: src/screens/ModerationInbox/Notice.tsx:51
 msgid "Your post was removed"
 msgstr ""
@@ -17925,11 +18672,15 @@ msgctxt "moderation-report-action"
 msgid "Your post was removed"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1277
+#: src/view/com/composer/Composer.tsx:1286
 msgid "Your post was sent"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1274
+#: src/features/community/composer/useKraoComposer.ts:81
+msgid "Your post was sent, but the members-only text could not be saved."
+msgstr "Bài viết đã được đăng, nhưng không lưu được nội dung chỉ dành cho thành viên."
+
+#: src/view/com/composer/Composer.tsx:1283
 msgid "Your posts were sent"
 msgstr ""
 
@@ -17958,11 +18709,11 @@ msgstr "Hồ sơ, bài đăng, bảng tin và danh sách của bạn sẽ không
 msgid "Your referral code"
 msgstr "Mã giới thiệu của bạn"
 
-#: src/view/com/composer/Composer.tsx:1276
+#: src/view/com/composer/Composer.tsx:1285
 msgid "Your reply was sent"
 msgstr ""
 
-#: src/Navigation.tsx:211
+#: src/Navigation.tsx:237
 #: src/screens/ModerationInbox/Report.tsx:36
 msgid "Your report"
 msgstr ""
@@ -17985,7 +18736,7 @@ msgstr ""
 msgid "Your selected interests help us serve you content you care about."
 msgstr "Mục quan tâm mà bạn chọn giúp chúng tôi đưa nội dung mà bạn quan tâm đến."
 
-#: src/view/com/composer/Composer.tsx:1618
+#: src/view/com/composer/Composer.tsx:1628
 msgid "Your thread has empty posts that will be skipped. The remaining posts will be published as a thread."
 msgstr ""
 
@@ -18000,3 +18751,23 @@ msgstr "Tên người dùng và mật khẩu của bạn sẽ được chia sẻ
 #: src/components/verification/VerificationsDialog.tsx:67
 msgid "Your verifications"
 msgstr "Xác minh của bạn"
+
+#: src/features/poll/components/PostPoll.tsx:180
+msgid "Your vote counted with the weight of your balance."
+msgstr "Phiếu của bạn được tính theo số dư của bạn."
+
+#: src/features/poll/components/PostPoll.tsx:80
+msgid "Your vote is a public record and can show that you hold {symbol} in a linked wallet. It counts as your balance when the poll started."
+msgstr "Phiếu của bạn là một bản ghi công khai và có thể cho thấy bạn nắm giữ {symbol} trong ví đã liên kết. Phiếu được tính bằng số dư của bạn lúc khảo sát bắt đầu."
+
+#: src/features/poll/components/PostPoll.tsx:76
+msgid "Your vote is a public record and shows that your account is verified."
+msgstr "Phiếu của bạn là một bản ghi công khai và cho thấy tài khoản của bạn đã được xác thực."
+
+#: src/features/poll/components/PostPoll.tsx:170
+msgid "Your vote is being counted."
+msgstr "Phiếu của bạn đang được tính."
+
+#: src/features/poll/components/PostPoll.tsx:175
+msgid "Your vote was not counted."
+msgstr "Phiếu của bạn không được tính."
