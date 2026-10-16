@@ -16,6 +16,7 @@ import {ListFooter} from '#/components/Lists'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
 import {flattenPages} from '#/features/community/queries'
+import {PinFeedButton} from '#/features/growth/PinFeedButton'
 import {Change} from './components/Change'
 import {PriceChart} from './components/PriceChart'
 import {TokenAvatar} from './components/TokenAvatar'
@@ -221,6 +222,16 @@ function TokenHeader({token}: {token: TokenView}) {
       </SegmentedControl.Root>
 
       <PriceChart symbol={token.symbol} range={range} />
+
+      {token.holderFeed ? (
+        <PinFeedButton
+          testID="pinHolderFeedButton"
+          uri={token.holderFeed}
+          size="large"
+          pinLabel={l`Pin the $${token.symbol} holders feed`}
+          unpinLabel={l`Unpin the $${token.symbol} holders feed`}
+        />
+      ) : null}
 
       <Text
         testID="tokenDisclaimer"

@@ -56,6 +56,42 @@ export function slugify(name: string): string {
     .replace(/-+$/g, '')
 }
 
+/** The record key of a community's feed generator (in the owner's repo) */
+export function communityFeedRkey(slug: string): string {
+  return `community-${slug}`
+}
+
+/** app.bsky.feed.generator display names are at most 24 graphemes */
+export const FEED_NAME_MAX = 24
+
+/**
+ * The feed generator record that makes a community's public posts a feed.
+ * `did` is the service the AppView asks for the skeleton (the community
+ * response names it); the name is cut short by code points, which is at most
+ * as many graphemes.
+ */
+export function buildCommunityFeedRecord({
+  name,
+  description,
+  did,
+  createdAt,
+}: {
+  name: string
+  description?: string
+  did: string
+  createdAt: string
+}) {
+  return {
+    $type: 'app.bsky.feed.generator',
+    did,
+    displayName: Array.from(name.trim()).slice(0, FEED_NAME_MAX).join(''),
+    description: description
+      ? Array.from(description).slice(0, 300).join('')
+      : undefined,
+    createdAt,
+  }
+}
+
 export function makeCommunityUri(owner: string, slug: string): string {
   return `at://${owner}/${COMMUNITY_COLLECTION}/${slug}`
 }

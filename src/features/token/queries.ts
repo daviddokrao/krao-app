@@ -26,6 +26,8 @@ export type TokenView = {
   /** Decimal string, in percent */
   change24h?: string
   updatedAt?: string
+  /** The feed of the accounts that hold the token (a generator at-uri), when there is one */
+  holderFeed?: string
 }
 
 export type PriceRange = '1d' | '7d' | '30d'

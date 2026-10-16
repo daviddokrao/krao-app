@@ -2,9 +2,12 @@ import {describe, expect, it} from '@jest/globals'
 
 import {
   buildAccess,
+  buildCommunityFeedRecord,
   canModerate,
   type CommunityDraft,
+  communityFeedRkey,
   communityPath,
+  FEED_NAME_MAX,
   getMembershipAction,
   isOwner,
   isValidSlug,
@@ -198,5 +201,32 @@ describe('parseRules and notices', () => {
     expect(toReasonKey('NoWallet')).toBe('NoWallet')
     expect(toReasonKey('whatever')).toBe('other')
     expect(toReasonKey(undefined)).toBe('other')
+  })
+})
+
+describe('community feed generator', () => {
+  it('names the record key after the slug', () => {
+    expect(communityFeedRkey('hanoi-dev')).toBe('community-hanoi-dev')
+  })
+  it('builds a generator record that fits the lexicon limits', () => {
+    const record = buildCommunityFeedRecord({
+      name: '  Cộng đồng lập trình viên Hà Nội rất dài  ',
+      description: 'd'.repeat(400),
+      did: 'did:web:feeds.example',
+      createdAt: '2026-10-16T00:00:00.000Z',
+    })
+    expect(record.$type).toBe('app.bsky.feed.generator')
+    expect(record.did).toBe('did:web:feeds.example')
+    expect(Array.from(record.displayName).length).toBeLessThanOrEqual(
+      FEED_NAME_MAX,
+    )
+    expect(record.displayName.startsWith('Cộng đồng')).toBe(true)
+    expect(record.description?.length).toBe(300)
+  })
+  it('leaves out an empty description', () => {
+    expect(
+      buildCommunityFeedRecord({name: 'A', did: 'did:x:y', createdAt: 'z'})
+        .description,
+    ).toBeUndefined()
   })
 })

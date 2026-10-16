@@ -30,6 +30,7 @@ import * as ProfileCard from '#/components/ProfileCard'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
+import {PinFeedButton} from '#/features/growth/PinFeedButton'
 import {useAccessText, useReasonText} from './components/accessText'
 import {CommunityAvatar, MemberCount} from './components/CommunityCard'
 import {kraoComposer} from './composer/store'
@@ -47,6 +48,7 @@ import {
   type MemberView,
   useCommunityFeedQuery,
   useCommunityQuery,
+  useEnableCommunityFeedMutation,
   useJoinCommunityMutation,
   useLeaveCommunityMutation,
   useMembersQuery,
@@ -436,6 +438,8 @@ function CommunityHeader({community}: {community: CommunityView}) {
         {busy && <Loader />}
       </View>
 
+      <CommunityFeedControls community={community} />
+
       {community.rules.length > 0 && (
         <View style={[a.gap_sm]}>
           <Button
@@ -483,6 +487,60 @@ function CommunityHeader({community}: {community: CommunityView}) {
         confirmButtonCta={action === 'request' ? l`Ask to join` : l`Join`}
         onConfirm={doJoin}
       />
+    </View>
+  )
+}
+
+/**
+ * The community's public posts as a feed: anyone signed in can pin it; the
+ * owner can turn it on while it does not exist yet
+ */
+function CommunityFeedControls({community}: {community: CommunityView}) {
+  const {t: l} = useLingui()
+  const enable = useEnableCommunityFeedMutation()
+  if (community.feed) {
+    return (
+      <View style={[a.flex_row, a.flex_wrap]}>
+        <PinFeedButton
+          testID="pinCommunityFeedButton"
+          uri={community.feed}
+          pinLabel={l`Pin the community feed`}
+          unpinLabel={l`Unpin the community feed`}
+        />
+      </View>
+    )
+  }
+  if (!isOwner(community.viewer) || !community.feedGeneratorDid) return null
+  return (
+    <View style={[a.gap_sm, a.align_start]}>
+      {enable.isError && (
+        <Admonition type="error">{cleanError(enable.error)}</Admonition>
+      )}
+      <Button
+        testID="enableCommunityFeedButton"
+        label={l`Turn on a feed for this community`}
+        color="secondary"
+        size="small"
+        disabled={enable.isPending || enable.isSuccess}
+        onPress={() =>
+          enable.mutate(
+            {
+              community,
+              description: l`Public posts from the ${community.name} community on Krao.`,
+            },
+            {
+              onSuccess: () =>
+                Toast.show(
+                  l`The feed is on. It can take a moment to show up for others.`,
+                ),
+            },
+          )
+        }>
+        {enable.isPending && <ButtonIcon icon={Loader} />}
+        <ButtonText>
+          <Trans>Turn on the community feed</Trans>
+        </ButtonText>
+      </Button>
     </View>
   )
 }

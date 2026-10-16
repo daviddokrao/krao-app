@@ -13,6 +13,7 @@ import {
   useQueryClient,
 } from '@tanstack/react-query'
 
+import {logger} from '#/logger'
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
 import {useAppviewClient, usePdsClient, useSession} from '#/state/session'
@@ -22,12 +23,19 @@ import {app, com, net} from '#/lexicons'
 import {indexerFetch} from './api'
 import {
   buildAccess,
+  buildCommunityFeedRecord,
   type CommunityDraft,
+  communityFeedRkey,
   makeCommunityUri,
   parseRules,
 } from './logic'
 
-export type CommunityView = net.krao.community.defs.CommunityView
+export type CommunityView = net.krao.community.defs.CommunityView & {
+  /** The community's feed (a generator at-uri), once the indexer has seen the generator */
+  feed?: string
+  /** Set on a single community: the service its feed generator has to name */
+  feedGeneratorDid?: string
+}
 export type MemberView = net.krao.community.defs.MemberView & {
   /** Filled in from the appview, one request per 25 members */
   profile?: app.bsky.actor.defs.ProfileViewDetailed
@@ -57,11 +65,14 @@ export function useCommunityQuery(uri: string | undefined) {
     }),
     queryFn: async () => {
       const method = net.krao.community.getCommunity.$lxm
-      const res = await indexerFetch<{community: CommunityView}>(method, {
+      const res = await indexerFetch<{
+        community: CommunityView
+        feedGeneratorDid?: string
+      }>(method, {
         params: {uri},
         token: currentAccount ? await getToken(method) : undefined,
       })
-      return res.community
+      return {...res.community, feedGeneratorDid: res.feedGeneratorDid}
     },
     /*
      * A community opened right after it was created may not be indexed yet,
@@ -299,6 +310,7 @@ export function useSaveCommunityMutation() {
   const {currentAccount} = useSession()
   const pdsClient = usePdsClient()
   const invalidate = useInvalidateCommunities()
+  const getToken = useIndexerAuth()
   return useMutation({
     mutationFn: async ({
       draft,
@@ -351,10 +363,134 @@ export function useSaveCommunityMutation() {
         },
         validate: true,
       })
-      return makeCommunityUri(did, draft.slug)
+      const uri = makeCommunityUri(did, draft.slug)
+      // Not awaited: the indexer needs a moment to index the new community
+      void createFeedWhenIndexed({
+        pdsClient,
+        did,
+        uri,
+        slug: draft.slug,
+        name: fields.name,
+        getToken,
+      })
+      return uri
     },
     onSuccess: () => {
       void invalidate()
+    },
+  })
+}
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
+/**
+ * A new community gets its feed generator too. The generator has to name the
+ * indexer's feed service, which only the community response tells, so wait
+ * for the indexer to know the community. Failing is fine: the owner can
+ * turn the feed on from the community page.
+ */
+async function createFeedWhenIndexed({
+  pdsClient,
+  did,
+  uri,
+  slug,
+  name,
+  getToken,
+}: {
+  pdsClient: Pds
+  did: string
+  uri: string
+  slug: string
+  name: string
+  getToken: (lxm: string) => Promise<string>
+}) {
+  const method = net.krao.community.getCommunity.$lxm
+  for (let attempt = 0; attempt < 8; attempt++) {
+    await sleep(1500)
+    try {
+      const res = await indexerFetch<{feedGeneratorDid?: string}>(method, {
+        params: {uri},
+        token: await getToken(method),
+      })
+      if (!res.feedGeneratorDid) return
+      await createCommunityFeed({
+        pdsClient,
+        did,
+        slug,
+        name,
+        feedGeneratorDid: res.feedGeneratorDid,
+      })
+      return
+    } catch (e) {
+      if ((e as {error?: string})?.error !== 'NotFound') {
+        logger.debug('community feed not created', {error: String(e)})
+        return
+      }
+    }
+  }
+}
+
+async function createCommunityFeed({
+  pdsClient,
+  did,
+  slug,
+  name,
+  description,
+  feedGeneratorDid,
+}: {
+  pdsClient: Pds
+  did: string
+  slug: string
+  name: string
+  description?: string
+  feedGeneratorDid: string
+}) {
+  await pdsClient.call(com.atproto.repo.createRecord, {
+    repo: did as DidString,
+    collection: 'app.bsky.feed.generator',
+    rkey: communityFeedRkey(slug),
+    record: buildCommunityFeedRecord({
+      name,
+      description,
+      did: feedGeneratorDid,
+      createdAt: now(),
+    }),
+  })
+}
+
+/** The owner turns on the community's feed (a generator record in their repo) */
+export function useEnableCommunityFeedMutation() {
+  const {currentAccount} = useSession()
+  const pdsClient = usePdsClient()
+  const invalidate = useInvalidateCommunities()
+  return useMutation({
+    mutationFn: async ({
+      community,
+      description,
+    }: {
+      community: CommunityView
+      description?: string
+    }) => {
+      if (!currentAccount) throw new Error('Not signed in')
+      if (!community.feedGeneratorDid) {
+        throw new Error('The community feed is not available yet')
+      }
+      await createCommunityFeed({
+        pdsClient,
+        did: currentAccount.did,
+        slug: community.slug,
+        name: community.name,
+        description,
+        feedGeneratorDid: community.feedGeneratorDid,
+      })
+    },
+    onSuccess: async () => {
+      /*
+       * The indexer sees the generator record a moment later; refresh now
+       * and again shortly, so the pin button shows up without a reload
+       */
+      await invalidate()
+      setTimeout(() => void invalidate(), 4000)
     },
   })
 }
