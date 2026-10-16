@@ -13,6 +13,7 @@ import {createQueryKey} from '#/state/queries/util'
 import {useAppviewClient, usePdsClient, useSession} from '#/state/session'
 import {KRAO_GATE_DID} from '#/env'
 import {indexerFetch} from '#/features/community/api'
+import {type PreviewRequest} from '#/features/miniapp/preview'
 import {useRewardsAuth} from '#/features/referral/queries'
 import {TIP_ASSETS, type TipAsset} from '#/features/tips/assets'
 import {transferFromLinkedWallet} from '#/features/tips/queries'
@@ -412,12 +413,15 @@ export function useSubscribeMutation() {
       creatorAddress,
       previousExpiresAt,
       onPhase,
+      approve,
     }: {
       plan: PlanView
       creatorAddress: string
       /** The current expiry when renewing: a later one means it counted */
       previousExpiresAt?: string
       onPhase?: (phase: 'paying' | 'confirming') => void
+      /** Krao: the transaction preview before the wallet is asked */
+      approve?: (request: PreviewRequest) => Promise<boolean>
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
       const did = currentAccount.did
@@ -462,6 +466,7 @@ export function useSubscribeMutation() {
         asset: USDC,
         to: creatorAddress,
         amount: BigInt(plan.priceUsdc),
+        approve,
       })
       const record = buildPaymentRecord({
         plan: {uri: plan.uri, cid: plan.cid},

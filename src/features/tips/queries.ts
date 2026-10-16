@@ -13,6 +13,9 @@ import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient, useSession} from '#/state/session'
 import {KRAO_INDEXER_URL} from '#/env'
 import {TOP_SUPPORTERS_KEY} from '#/features/creator/queries'
+import {TransactionDeclinedError} from '#/features/miniapp/errors'
+import {MINIAPP_CHAIN} from '#/features/miniapp/logic'
+import {type PreviewRequest} from '#/features/miniapp/preview'
 import {getChainProfile} from '#/features/wallet/api'
 import {connectEvmWallet} from '#/features/wallet/evm'
 import {createChainProfileQueryKey} from '#/features/wallet/queries'
@@ -127,12 +130,19 @@ export async function transferFromLinkedWallet({
   asset,
   to,
   amount,
+  approve,
 }: {
   queryClient: QueryClient
   did: string
   asset: TipAsset
   to: string
   amount: bigint
+  /**
+   * Shows the user a preview of the transaction and answers whether they
+   * accept it (see useTxApproval). Asked after the wallet is known and
+   * before it is asked to sign; a "no" ends in TransactionDeclinedError.
+   */
+  approve?: (request: PreviewRequest) => Promise<boolean>
 }): Promise<{txHash: string; walletAddress: string}> {
   const wallet = await connectEvmWallet()
   const me = await queryClient.fetchQuery({
@@ -147,15 +157,24 @@ export async function transferFromLinkedWallet({
       w.account.split(':')[2]?.toLowerCase() === wallet.address.toLowerCase(),
   )
   if (!linked) throw new UnlinkedTipWalletError()
+  const tx: {to: string; data?: string; value?: bigint} = asset.contract
+    ? {to: asset.contract, data: erc20TransferData(to, amount)}
+    : {to, value: amount}
+  if (approve) {
+    const accepted = await approve({
+      kind: 'transaction',
+      chain: MINIAPP_CHAIN,
+      from: wallet.address,
+      to: tx.to,
+      data: tx.data,
+      value: tx.value?.toString(),
+    })
+    if (!accepted) throw new TransactionDeclinedError()
+  }
   if (wallet.chainId !== TIP_CHAIN_ID) {
     await wallet.switchChain(TIP_CHAIN_ID)
   }
-  const txHash = asset.contract
-    ? await wallet.sendTransaction({
-        to: asset.contract,
-        data: erc20TransferData(to, amount),
-      })
-    : await wallet.sendTransaction({to, value: amount})
+  const txHash = await wallet.sendTransaction(tx)
   return {txHash, walletAddress: wallet.address}
 }
 
@@ -215,6 +234,7 @@ export function useSendTipMutation() {
       amount,
       message,
       anonymous,
+      approve,
     }: {
       recipientDid: string
       recipientAddress: string
@@ -224,6 +244,8 @@ export function useSendTipMutation() {
       message?: string
       /** Hide the tipper's name in the recipient's top supporters */
       anonymous?: boolean
+      /** Krao: the transaction preview before the wallet is asked */
+      approve?: (request: PreviewRequest) => Promise<boolean>
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
       const writeTip = (rkey: string, record: PendingTipRecord) =>
@@ -238,6 +260,7 @@ export function useSendTipMutation() {
         asset,
         to: recipientAddress,
         amount,
+        approve,
       })
 
       const record: PendingTipRecord = {

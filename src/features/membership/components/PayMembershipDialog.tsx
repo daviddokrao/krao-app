@@ -14,6 +14,8 @@ import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {IS_WEB} from '#/env'
+import {TransactionDeclinedError} from '#/features/miniapp/errors'
+import {useTxApproval} from '#/features/miniapp/txApproval'
 import {AddressDisplay} from '#/features/safety/components/AddressDisplay'
 import {useExpectedAddressQuery} from '#/features/safety/queries'
 import {
@@ -109,6 +111,7 @@ function PayInner({
     (addressCheck.data.matchesExpected === false ||
       addressCheck.data.lookalikes.length > 0)
   const subscribe = useSubscribeMutation()
+  const approval = useTxApproval()
   const savePending = useSavePendingPaymentsMutation()
   /*
    * A payment started in an earlier opening of this dialog (closed while it
@@ -122,19 +125,21 @@ function PayInner({
 
   const errorMessage = !subscribe.error
     ? null
-    : subscribe.error instanceof WalletUnavailableError
-      ? IS_WEB
-        ? l`No Ethereum wallet was found in this browser.`
-        : l`No wallet app was found on this phone.`
-      : subscribe.error instanceof WalletRejectedError
-        ? l`The request was cancelled in your wallet.`
-        : subscribe.error instanceof PaymentNotRecordedError
-          ? l`Your payment was sent, but it could not be saved to your account yet. Save it now: you will not be charged again.`
-          : subscribe.error instanceof PlanChangedError
-            ? l`This plan was changed or closed by @${creatorHandle}. Nothing was paid. Go back and check the plan again.`
-            : subscribe.error instanceof UnlinkedTipWalletError
-              ? l`Link this wallet to your account in Settings → Wallets before paying with it.`
-              : l`Something went wrong with the payment. Please try again.`
+    : subscribe.error instanceof TransactionDeclinedError
+      ? null
+      : subscribe.error instanceof WalletUnavailableError
+        ? IS_WEB
+          ? l`No Ethereum wallet was found in this browser.`
+          : l`No wallet app was found on this phone.`
+        : subscribe.error instanceof WalletRejectedError
+          ? l`The request was cancelled in your wallet.`
+          : subscribe.error instanceof PaymentNotRecordedError
+            ? l`Your payment was sent, but it could not be saved to your account yet. Save it now: you will not be charged again.`
+            : subscribe.error instanceof PlanChangedError
+              ? l`This plan was changed or closed by @${creatorHandle}. Nothing was paid. Go back and check the plan again.`
+              : subscribe.error instanceof UnlinkedTipWalletError
+                ? l`Link this wallet to your account in Settings → Wallets before paying with it.`
+                : l`Something went wrong with the payment. Please try again.`
 
   const onPay = () => {
     if (!creatorWallet.data || otherRunning) return
@@ -145,6 +150,7 @@ function PayInner({
         creatorAddress: creatorWallet.data,
         previousExpiresAt,
         onPhase: setPhase,
+        approve: approval.approve,
       },
       {
         onSuccess: ({confirmed}) =>
@@ -170,6 +176,9 @@ function PayInner({
           )
         }),
     })
+
+  // Krao: the preview of the transaction replaces the form while it waits
+  if (approval.panel) return approval.panel
 
   return (
     <View style={[a.gap_lg]}>

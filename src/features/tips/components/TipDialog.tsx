@@ -15,6 +15,8 @@ import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {IS_WEB} from '#/env'
+import {TransactionDeclinedError} from '#/features/miniapp/errors'
+import {useTxApproval} from '#/features/miniapp/txApproval'
 import {AddressDisplay} from '#/features/safety/components/AddressDisplay'
 import {useExpectedAddressQuery} from '#/features/safety/queries'
 import {
@@ -112,6 +114,7 @@ function TipDialogInner({
     (addressCheck.data.matchesExpected === false ||
       addressCheck.data.lookalikes.length > 0)
   const sendTip = useSendTipMutation()
+  const approval = useTxApproval()
   const savePending = useSavePendingTipsMutation()
   const [asset, setAsset] = useState<TipAsset>(TIP_ASSETS[0])
   const [amountText, setAmountText] = useState(TIP_ASSETS[0].presets[1])
@@ -122,17 +125,19 @@ function TipDialogInner({
 
   const errorMessage = !sendTip.error
     ? null
-    : sendTip.error instanceof WalletUnavailableError
-      ? IS_WEB
-        ? l`No Ethereum wallet was found in this browser.`
-        : l`No wallet app was found on this phone.`
-      : sendTip.error instanceof WalletRejectedError
-        ? l`The request was cancelled in your wallet.`
-        : sendTip.error instanceof TipNotRecordedError
-          ? l`Your tip was sent, but it could not be saved to your account yet. It will be saved the next time you send a tip.`
-          : sendTip.error instanceof UnlinkedTipWalletError
-            ? l`Link this wallet to your account in Settings → Wallets before tipping with it.`
-            : l`Something went wrong sending the tip. Please try again.`
+    : sendTip.error instanceof TransactionDeclinedError
+      ? null
+      : sendTip.error instanceof WalletUnavailableError
+        ? IS_WEB
+          ? l`No Ethereum wallet was found in this browser.`
+          : l`No wallet app was found on this phone.`
+        : sendTip.error instanceof WalletRejectedError
+          ? l`The request was cancelled in your wallet.`
+          : sendTip.error instanceof TipNotRecordedError
+            ? l`Your tip was sent, but it could not be saved to your account yet. It will be saved the next time you send a tip.`
+            : sendTip.error instanceof UnlinkedTipWalletError
+              ? l`Link this wallet to your account in Settings → Wallets before tipping with it.`
+              : l`Something went wrong sending the tip. Please try again.`
 
   const onSend = () => {
     if (!amount || !recipientWallet.data) return
@@ -145,6 +150,7 @@ function TipDialogInner({
         amount,
         message: message.trim(),
         anonymous: allowAnonymous && anonymous,
+        approve: approval.approve,
       },
       {
         onSuccess: () => {
@@ -159,6 +165,9 @@ function TipDialogInner({
       },
     )
   }
+
+  // Krao: the preview of the transaction replaces the form while it waits
+  if (approval.panel) return approval.panel
 
   return (
     <View style={[a.gap_lg]}>
