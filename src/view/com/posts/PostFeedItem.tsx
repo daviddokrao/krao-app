@@ -55,6 +55,7 @@ import {SubtleHover} from '#/components/SubtleHover'
 import {Features, useAnalytics} from '#/analytics'
 import {GateBadge} from '#/features/gating/components/GateBadge'
 import {useActorStatus} from '#/features/liveNow'
+import {PostPoll} from '#/features/poll/components/PostPoll'
 import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
 import {FeedTipSummary} from '#/features/tips/components/TipSummary'
 import {NftAvatarMark} from '#/features/wallet/components/NftAvatarMark'
@@ -453,6 +454,7 @@ let FeedItemInner = ({
               feedDescriptor={feedDescriptor}
             />
             <GateBadge uri={post.uri} />
+            <PostPoll uri={post.uri} cid={post.cid} />
             <FeedTipSummary uri={post.uri} />
             <PostControls
               post={post}

@@ -59,6 +59,15 @@ interface PostOpts {
    * PDS, never the appview.
    */
   pdsClient: Client
+  /**
+   * Krao: extra records written in the same commit as the first post (its
+   * community submission, its poll). Given the post's uri, cid and rkey.
+   */
+  extraWrites?: (post: {
+    uri: string
+    cid: string
+    rkey: string
+  }) => com.atproto.repo.applyWrites.$InputBody['writes']
 }
 
 export async function post(queryClient: QueryClient, opts: PostOpts) {
@@ -83,6 +92,8 @@ export async function post(queryClient: QueryClient, opts: PostOpts) {
   const did = opts.pdsClient.assertDid
   const writes: com.atproto.repo.applyWrites.$InputBody['writes'] = []
   const uris: string[] = []
+  // Krao: the cid of each post, for records that point at it
+  const cids: string[] = []
 
   let now = new Date()
   let tid: TID | undefined
@@ -173,6 +184,10 @@ export async function post(queryClient: QueryClient, opts: PostOpts) {
       cid: await computeCid(record),
       uri,
     }
+    cids.push(ref.cid)
+    if (i === 0 && opts.extraWrites) {
+      writes.push(...opts.extraWrites({uri, cid: ref.cid, rkey}))
+    }
     replyPromise = {
       root: reply?.root ?? ref,
       parent: ref,
@@ -199,7 +214,7 @@ export async function post(queryClient: QueryClient, opts: PostOpts) {
     }
   }
 
-  return {uris}
+  return {uris, cids}
 }
 
 async function resolveRT(appviewClient: Client, richtext: RichText) {

@@ -22,6 +22,10 @@ export type SearchParams = {
 export type CommonNavigatorParams = {
   NotFound: undefined
   Lists: undefined
+  Communities: undefined
+  CommunityCreate: undefined
+  Community: {name: string; slug: string}
+  CommunityEdit: {name: string; slug: string}
   Moderation: undefined
   ModerationInbox: undefined
   ModerationInboxSettings: undefined

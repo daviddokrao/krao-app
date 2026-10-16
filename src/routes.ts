@@ -16,6 +16,11 @@ export const router = new Router<AllNavigatableRoutes>({
   LegacyNotificationSettings: '/notifications/settings',
   Settings: '/settings',
   Lists: '/lists',
+  // Krao communities
+  Communities: '/communities',
+  CommunityCreate: '/communities/new',
+  Community: '/community/:name/:slug',
+  CommunityEdit: '/community/:name/:slug/edit',
   // moderation
   Moderation: '/moderation',
   ModerationInbox: '/moderation/inbox',

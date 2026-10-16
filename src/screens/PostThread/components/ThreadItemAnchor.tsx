@@ -61,6 +61,7 @@ import {WhoCanReply} from '#/components/WhoCanReply'
 import {Features, useAnalytics} from '#/analytics'
 import {GatedContent} from '#/features/gating/components/GatedContent'
 import {useActorStatus} from '#/features/liveNow'
+import {PostPoll} from '#/features/poll/components/PostPoll'
 import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
 import {TipSummary} from '#/features/tips/components/TipSummary'
 import {app} from '#/lexicons'
@@ -442,6 +443,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
               isThreadAuthor={isThreadAuthor}
             />
             <GatedContent uri={post.uri} />
+            <PostPoll uri={post.uri} cid={post.cid} />
             <TipSummary uri={post.uri} />
             {post.repostCount !== 0 ||
             post.likeCount !== 0 ||

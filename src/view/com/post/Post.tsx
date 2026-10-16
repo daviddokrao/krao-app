@@ -34,6 +34,7 @@ import {TranslatedPost} from '#/components/Post/Translated'
 import {PostControls} from '#/components/PostControls'
 import {RichText} from '#/components/RichText'
 import {SubtleHover} from '#/components/SubtleHover'
+import {PostPoll} from '#/features/poll/components/PostPoll'
 import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
@@ -258,6 +259,7 @@ function PostInner({
                 </View>
               ) : null}
             </ContentHider>
+            <PostPoll uri={post.uri} cid={post.cid} />
             <PostControls
               post={post}
               record={record}

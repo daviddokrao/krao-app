@@ -56,6 +56,7 @@ import {type Props as SVGIconProps} from '#/components/icons/common'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
 import {Earth_Stroke2_Corner0_Rounded as EarthIcon} from '#/components/icons/Earth'
 import {EditBig_Stroke2_Corner2_Rounded as EditBigIcon} from '#/components/icons/EditBig'
+import {Group3_Stroke2_Corner0_Rounded as GroupIcon} from '#/components/icons/Group3'
 import {
   Hashtag_Filled_Corner0_Rounded as HashtagFilledIcon,
   Hashtag_Stroke2_Corner0_Rounded as HashtagIcon,
@@ -754,6 +755,16 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             icons={{
               inactive: ListIcon,
               active: ListFilledIcon,
+            }}
+          />
+          <NavItem
+            label={l`Communities`}
+            href="/communities"
+            navItem="communities"
+            minimal={leftNavMinimal}
+            icons={{
+              inactive: GroupIcon,
+              active: GroupIcon,
             }}
           />
           <NavItem

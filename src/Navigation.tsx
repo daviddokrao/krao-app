@@ -144,6 +144,12 @@ import {
 import {useAnalytics} from '#/analytics'
 import {setNavigationMetadata} from '#/analytics/metadata'
 import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB, KRAO_WEB_URL} from '#/env'
+import {CommunitiesScreen} from '#/features/community/CommunitiesScreen'
+import {
+  CommunityCreateScreen,
+  CommunityEditScreen,
+} from '#/features/community/CommunityEditScreen'
+import {CommunityScreen} from '#/features/community/CommunityScreen'
 import {GateModerationScreen} from '#/features/compliance/moderation/GateModerationScreen'
 import {PhoneScreen} from '#/features/compliance/PhoneScreen'
 import {HomeScreen} from '#/features/followingV2/home'
@@ -189,6 +195,26 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         name="Lists"
         component={ListsScreen}
         options={{title: title(msg`Lists`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="Communities"
+        getComponent={() => CommunitiesScreen}
+        options={{title: title(msg`Communities`)}}
+      />
+      <Stack.Screen
+        name="CommunityCreate"
+        getComponent={() => CommunityCreateScreen}
+        options={{title: title(msg`Create a community`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="Community"
+        getComponent={() => CommunityScreen}
+        options={{title: title(msg`Community`)}}
+      />
+      <Stack.Screen
+        name="CommunityEdit"
+        getComponent={() => CommunityEditScreen}
+        options={{title: title(msg`Edit community`), requireAuth: true}}
       />
       <Stack.Screen
         name="Moderation"

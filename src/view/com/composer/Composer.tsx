@@ -145,6 +145,8 @@ import {
   IS_WEB_SAFARI,
   KRAO_GIF_SEARCH,
 } from '#/env'
+import {KraoComposerPills} from '#/features/community/composer/KraoComposerPills'
+import {useKraoComposer} from '#/features/community/composer/useKraoComposer'
 import {isPhoneVerificationRequired} from '#/features/compliance/phone'
 import {type Gif} from '#/features/gifPicker/types'
 import {containsSecret} from '#/features/safety/guard'
@@ -277,6 +279,8 @@ export const ComposePost = ({
   const chatClient = useChatClient()
   const pdsClient = usePdsClient()
   const queryClient = useQueryClient()
+  // Krao: community submission, member-only text and poll (single hook point)
+  const krao = useKraoComposer()
   /*
    * The host the video service-auth token is minted for. This is the same value
    * that seeds the session's PDS routing, so the audience always matches the host
@@ -997,6 +1001,7 @@ export const ComposePost = ({
   )
 
   const canPost =
+    krao.isValid && // Krao: community and poll drafts are complete
     !missingAltError &&
     !hasUnavailableChatInvite &&
     thread.posts.some(post => !isEmptyPost(post)) &&
@@ -1089,17 +1094,21 @@ export const ComposePost = ({
     let postSuccessData: OnPostSuccessData
     try {
       logger.info(`composer: posting...`)
-      postUri = (
-        await apilib.post(queryClient, {
-          thread: filteredThread,
-          replyTo: replyTo?.uri,
-          onStateChange: setPublishingStage,
-          langs: currentLanguages,
-          appviewClient: client,
-          chatClient,
-          pdsClient,
-        })
-      ).uris[0]
+      const posted = await apilib.post(queryClient, {
+        thread: filteredThread,
+        replyTo: replyTo?.uri,
+        onStateChange: setPublishingStage,
+        langs: currentLanguages,
+        appviewClient: client,
+        chatClient,
+        pdsClient,
+        // Krao: only a new post, not a reply, can carry a community or poll
+        extraWrites: replyTo ? undefined : krao.getWrites,
+      })
+      postUri = posted.uris[0]
+      if (postUri && !replyTo && posted.cids[0]) {
+        void krao.afterPost({uri: postUri, cid: posted.cids[0]})
+      }
 
       // Fire published event for every video that made it into the post.
       // The status guard upstream ensures each video.telemetry is present and
@@ -1317,6 +1326,7 @@ export const ComposePost = ({
     emptyPostsPromptControl,
     getFilteredThread,
     linkQueries,
+    krao,
   ])
 
   const handleConfirmSkipEmpty = () => {
@@ -2146,6 +2156,10 @@ function ComposerPills({
             style={bottomBarAnimatedStyle}
           />
         )}
+        {!isReply && thread.posts[0]?.id === post.id ? (
+          // Krao: community and poll pills, on the first post only
+          <KraoComposerPills />
+        ) : null}
         {hasMedia || hasLink ? (
           <LabelsBtn
             labels={post.labels}
