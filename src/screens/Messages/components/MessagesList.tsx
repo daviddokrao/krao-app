@@ -66,6 +66,7 @@ import {useAnalytics} from '#/analytics'
 import {IS_ANDROID, IS_NATIVE, IS_WEB} from '#/env'
 import {DmSafetyBanner} from '#/features/safety/components/DmSafetyBanner'
 import {LinksDisabledProvider} from '#/features/safety/linksDisabled'
+import {ChatTipButton} from '#/features/tips/components/ChatTipButton'
 import {app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 import {ChatStatusInfo} from './ChatStatusInfo'
@@ -871,6 +872,15 @@ export function MessagesList({
                         messageEmbed={messageEmbed}
                         setEmbed={setEmbed}
                         loading={loading}
+                        tipTarget={
+                          convoState.convo.kind === 'direct' &&
+                          convoState.convo.primaryMember
+                            ? {
+                                did: convoState.convo.primaryMember.did,
+                                handle: convoState.convo.primaryMember.handle,
+                              }
+                            : undefined
+                        }
                       />
                     )}
                   </ConversationFooter>
@@ -899,6 +909,7 @@ function Composer({
   messageEmbed,
   setEmbed,
   loading,
+  tipTarget,
 }: {
   textInputId: string
   onSendMessage: (
@@ -909,6 +920,8 @@ function Composer({
   messageEmbed: MessageEmbedState | undefined
   setEmbed: (embedUrl: string | undefined) => void
   loading?: boolean
+  /** Krao: the other member of a 1:1 chat, who can be tipped */
+  tipTarget?: {did: string; handle: string}
 }) {
   const handleSendMessage = useNonReactiveCallback(
     (
@@ -926,7 +939,16 @@ function Composer({
       onSendMessage={handleSendMessage}
       messageEmbed={messageEmbed}
       setEmbed={setEmbed}
-      loading={loading}>
+      loading={loading}
+      leading={
+        tipTarget && (
+          <ChatTipButton
+            did={tipTarget.did}
+            handle={tipTarget.handle}
+            onSendMessage={text => void onSendMessage(text)}
+          />
+        )
+      }>
       <MessageInputReply />
       <MessageInputEmbed embed={messageEmbed} setEmbed={setEmbed} />
     </MessageComposer>

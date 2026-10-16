@@ -51,6 +51,7 @@ export function MessageComposer({
   messageEmbed,
   setEmbed,
   children,
+  leading,
   loading = false,
 }: {
   textInputId?: string
@@ -62,6 +63,8 @@ export function MessageComposer({
   messageEmbed: MessageEmbedState | undefined
   setEmbed: (embedUrl: string | undefined) => void
   children?: React.ReactNode
+  /** Krao: a button before the input (eg tip) */
+  leading?: React.ReactNode
   loading?: boolean
 }) {
   const t = useTheme()
@@ -225,6 +228,7 @@ export function MessageComposer({
         <GlassContainer
           style={[a.w_full, a.flex_row, a.gap_sm, a.align_end]}
           spacing={tokens.space.sm}>
+          {leading}
           <GlassView
             isInteractive
             glassEffectStyle="regular"
