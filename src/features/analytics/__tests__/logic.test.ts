@@ -37,7 +37,7 @@ describe('formatPercent', () => {
 })
 
 describe('buildFunnelRows', () => {
-  it('computes the share of the start and of the previous step', () => {
+  it('computes the share of the start only', () => {
     const rows = buildFunnelRows([
       {id: 'registered', count: 200},
       {id: 'phoneVerified', count: 100},
@@ -53,8 +53,19 @@ describe('buildFunnelRows', () => {
       'firstTip',
     ])
     expect(rows.map(r => r.ofStart)).toEqual([100, 50, 20, 10, 2.5])
-    expect(rows.map(r => r.ofPrevious)).toEqual([100, 50, 40, 50, 25])
     expect(rows.map(r => r.bar)).toEqual([100, 50, 20, 10, 2.5])
+    expect(rows.every(r => !('ofPrevious' in r))).toBe(true)
+  })
+  it('does not compare a step with the one before (steps are not subsets)', () => {
+    // A wallet does not need KYC: 16 wallets after 2 KYC is normal
+    const rows = buildFunnelRows([
+      {id: 'registered', count: 39},
+      {id: 'phoneVerified', count: 30},
+      {id: 'kycApproved', count: 2},
+      {id: 'walletLinked', count: 16},
+    ])
+    expect(rows[3].ofStart).toBe(41)
+    expect(rows.every(r => r.ofStart <= 100)).toBe(true)
   })
   it('puts steps in order whatever order they come in, and fills gaps', () => {
     const rows = buildFunnelRows([
@@ -62,15 +73,13 @@ describe('buildFunnelRows', () => {
       {id: 'registered', count: 10},
     ])
     expect(rows.map(r => r.count)).toEqual([10, 0, 0, 0, 1])
-    expect(rows[1].ofPrevious).toBe(0)
-    // A step after an empty one has nothing to compare with
-    expect(rows[4].ofPrevious).toBe(0)
+    expect(rows[1].ofStart).toBe(0)
     expect(rows[4].ofStart).toBe(10)
   })
   it('survives no data and caps the bar', () => {
     const empty = buildFunnelRows([])
     expect(empty.every(r => r.count === 0 && r.bar === 0)).toBe(true)
-    expect(empty[0].ofPrevious).toBe(0)
+    expect(empty[0].ofStart).toBe(0)
     const over = buildFunnelRows([
       {id: 'registered', count: 10},
       {id: 'walletLinked', count: 15},

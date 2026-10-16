@@ -61,16 +61,18 @@ export type FunnelRow = {
   count: number
   /** Share of the first step (everyone who registered) */
   ofStart: number
-  /** Share of the step before; the first step has 100 when it has accounts */
-  ofPrevious: number
   /** Bar width, 0 to 100, relative to the first step (never above 100) */
   bar: number
 }
 
 /**
- * The funnel in its fixed order, with the share of the first step and of the
- * previous one. Steps the service did not send count as 0; steps it sends
- * twice keep the last count; unknown ids are dropped.
+ * The funnel in its fixed order, with the share of the first step. Steps the
+ * service did not send count as 0; steps it sends twice keep the last count;
+ * unknown ids are dropped.
+ *
+ * There is no "share of the step before": the service counts each step
+ * whatever the order it was reached in (a wallet does not need KYC), so a
+ * step is not a subset of the one before and that ratio can exceed 100%.
  */
 export function buildFunnelRows(steps: FunnelStep[]): FunnelRow[] {
   const counts = new Map<FunnelStepId, number>()
@@ -80,18 +82,14 @@ export function buildFunnelRows(steps: FunnelStep[]): FunnelRow[] {
     }
   }
   const start = counts.get('registered') ?? 0
-  let previous = start
-  return FUNNEL_ORDER.map((id, i) => {
+  return FUNNEL_ORDER.map(id => {
     const count = counts.get(id) ?? 0
-    const row: FunnelRow = {
+    return {
       id,
       count,
       ofStart: percent(count, start),
-      ofPrevious: i === 0 ? percent(count, count) : percent(count, previous),
       bar: Math.min(100, percent(count, start)),
     }
-    previous = count
-    return row
   })
 }
 

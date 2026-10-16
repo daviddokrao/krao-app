@@ -224,7 +224,7 @@ function FunnelSection() {
       <Text style={[a.text_sm, a.leading_snug]}>
         <Trans>
           Accounts created in this period, and how many of them reached each
-          step.
+          step, in any order.
         </Trans>
       </Text>
       {funnel.isLoading ? (
@@ -249,7 +249,6 @@ function FunnelBar({row, first}: {row: FunnelRow; first: boolean}) {
   const label = stepLabel(row.id)
   const count = i18n.number(row.count)
   const share = formatPercent(row.ofStart)
-  const previous = formatPercent(row.ofPrevious)
   return (
     <View
       testID={`funnel-${row.id}`}
@@ -257,7 +256,7 @@ function FunnelBar({row, first}: {row: FunnelRow; first: boolean}) {
       accessibilityLabel={
         first
           ? l`${label}: ${count}`
-          : l`${label}: ${count}, ${share} of sign-ups, ${previous} of the step before`
+          : l`${label}: ${count}, ${share} of sign-ups`
       }
       accessibilityHint=""
       style={[a.gap_xs]}>
@@ -286,9 +285,7 @@ function FunnelBar({row, first}: {row: FunnelRow; first: boolean}) {
       </View>
       {!first && (
         <Text style={[a.text_xs, t.atoms.text_contrast_medium]}>
-          <Trans>
-            {share} of sign-ups · {previous} of the step before
-          </Trans>
+          <Trans>{share} of sign-ups</Trans>
         </Text>
       )}
     </View>
