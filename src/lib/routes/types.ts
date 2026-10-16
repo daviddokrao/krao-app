@@ -84,6 +84,7 @@ export type CommonNavigatorParams = {
   AboutSettings: undefined
   WalletsSettings: undefined
   ReferralSettings: undefined
+  Leaderboard: undefined
   MembershipSettings: undefined
   MembershipMembers: undefined
   MyMemberships: undefined

@@ -155,6 +155,7 @@ import {PhoneScreen} from '#/features/compliance/PhoneScreen'
 import {CreatorDashboardScreen} from '#/features/creator/CreatorDashboardScreen'
 import {HomeScreen} from '#/features/followingV2/home'
 import {InviteScannerScreen} from '#/features/inviteFriends'
+import {LeaderboardScreen} from '#/features/leaderboard/LeaderboardScreen'
 import {MembershipOfferScreen} from '#/features/membership/MembershipOfferScreen'
 import {MembershipSettingsScreen} from '#/features/membership/MembershipSettingsScreen'
 import {MembersScreen} from '#/features/membership/MembersScreen'
@@ -595,6 +596,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => ReferralScreen}
         options={{
           title: title(msg`Invite friends`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="Leaderboard"
+        getComponent={() => LeaderboardScreen}
+        options={{
+          title: title(msg`Weekly leaderboard`),
           requireAuth: true,
         }}
       />

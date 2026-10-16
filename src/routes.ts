@@ -72,6 +72,7 @@ export const router = new Router<AllNavigatableRoutes>({
   AboutSettings: '/settings/about',
   WalletsSettings: '/settings/wallets',
   ReferralSettings: '/settings/referral',
+  Leaderboard: '/settings/leaderboard',
   MembershipSettings: '/settings/membership',
   MembershipMembers: '/settings/membership/members',
   MyMemberships: '/settings/memberships',
