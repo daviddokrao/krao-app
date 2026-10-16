@@ -90,6 +90,7 @@ export type CommonNavigatorParams = {
   MyMemberships: undefined
   CreatorDashboard: undefined
   RewardsAdmin: undefined
+  AnalyticsAdmin: undefined
   GateModeration: undefined
   PhoneSettings: undefined
   Join: {code: string}

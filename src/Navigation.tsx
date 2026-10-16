@@ -144,6 +144,7 @@ import {
 import {useAnalytics} from '#/analytics'
 import {setNavigationMetadata} from '#/analytics/metadata'
 import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB, KRAO_WEB_URL} from '#/env'
+import {AnalyticsScreen} from '#/features/analytics/AnalyticsScreen'
 import {CommunitiesScreen} from '#/features/community/CommunitiesScreen'
 import {
   CommunityCreateScreen,
@@ -572,6 +573,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => RewardsAdminScreen}
         options={{
           title: title(msg`Referral admin`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="AnalyticsAdmin"
+        getComponent={() => AnalyticsScreen}
+        options={{
+          title: title(msg`Analytics`),
           requireAuth: true,
         }}
       />

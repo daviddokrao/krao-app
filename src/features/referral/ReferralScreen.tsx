@@ -18,6 +18,7 @@ import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldCheckIcon} from '#/componen
 import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
+import {AnalyticsLink} from '../analytics/AnalyticsLink'
 import {useIsGateModeratorQuery} from '../compliance/moderation/queries'
 import {useRewardsRolesQuery} from './admin/queries'
 import {getReferralUrl, type Referral} from './api'
@@ -175,6 +176,7 @@ export function ReferralScreen({}: Props) {
                   <Trans>Referral admin</Trans>
                 </SettingsList.ItemText>
               </SettingsList.LinkItem>
+              <AnalyticsLink />
             </>
           )}
           {isGateModerator && (

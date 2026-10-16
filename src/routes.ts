@@ -78,6 +78,7 @@ export const router = new Router<AllNavigatableRoutes>({
   MyMemberships: '/settings/memberships',
   CreatorDashboard: '/settings/creator-dashboard',
   RewardsAdmin: '/settings/referral/admin',
+  AnalyticsAdmin: '/settings/referral/admin/analytics',
   GateModeration: '/settings/gate-moderation',
   PhoneSettings: '/settings/phone',
   Join: '/join/:code',
