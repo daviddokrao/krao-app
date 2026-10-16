@@ -1094,21 +1094,19 @@ export const ComposePost = ({
     let postSuccessData: OnPostSuccessData
     try {
       logger.info(`composer: posting...`)
-      const posted = await apilib.post(queryClient, {
-        thread: filteredThread,
-        replyTo: replyTo?.uri,
-        onStateChange: setPublishingStage,
-        langs: currentLanguages,
-        appviewClient: client,
-        chatClient,
-        pdsClient,
-        // Krao: only a new post, not a reply, can carry a community or poll
-        extraWrites: replyTo ? undefined : krao.getWrites,
-      })
-      postUri = posted.uris[0]
-      if (postUri && !replyTo && posted.cids[0]) {
-        void krao.afterPost({uri: postUri, cid: posted.cids[0]})
-      }
+      postUri = (
+        await apilib.post(queryClient, {
+          thread: filteredThread,
+          replyTo: replyTo?.uri,
+          onStateChange: setPublishingStage,
+          langs: currentLanguages,
+          appviewClient: client,
+          chatClient,
+          pdsClient,
+          // Krao: only a new post, not a reply, can carry a community or poll
+          extraWrites: replyTo ? undefined : krao.getWrites,
+        })
+      ).uris[0]
 
       // Fire published event for every video that made it into the post.
       // The status guard upstream ensures each video.telemetry is present and

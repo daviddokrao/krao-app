@@ -178,6 +178,38 @@ function useServiceAuth() {
   }
 }
 
+/**
+ * For a post that is about to be published: stores its gated text on the gate
+ * service and returns the gate rule record, to be written in the same commit
+ * as the post. If storing fails nothing is published, so a post never goes
+ * out without the gated part its author meant it to have.
+ */
+export function usePrepareGateForNewPost() {
+  const getToken = useServiceAuth()
+  return async ({
+    post,
+    text,
+    condition,
+  }: {
+    post: {uri: string; cid: string}
+    text: string
+    condition: GateCondition
+  }) => {
+    await gateFetch('net.krao.gate.putContent', {
+      token: await getToken(net.krao.gate.putContent.$lxm),
+      body: {uri: post.uri, text},
+    })
+    return {
+      $type: 'net.krao.gate.rule',
+      subject: post,
+      conditions: [condition],
+      match: 'all',
+      service: KRAO_GATE_DID,
+      createdAt: toDatetimeString(new Date()),
+    }
+  }
+}
+
 const gateRuleQueryKey = (uri: string) => createQueryKey('gate-rule', {uri})
 
 /** Rule lookups made together (eg for a page of feed posts) share a request */

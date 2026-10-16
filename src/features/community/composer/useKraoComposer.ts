@@ -1,9 +1,7 @@
 import {useEffect} from 'react'
 import {toDatetimeString} from '@atproto/syntax'
-import {useLingui} from '@lingui/react/macro'
 
-import * as Toast from '#/components/Toast'
-import {useCreateGateMutation} from '#/features/gating/queries'
+import {usePrepareGateForNewPost} from '#/features/gating/queries'
 import {buildPollRecord, validatePollDraft} from '#/features/poll/logic'
 import {containsSecret} from '#/features/safety/guard'
 import {memberOnlyCondition} from '../logic'
@@ -12,12 +10,11 @@ import {kraoComposer, useKraoComposerState} from './store'
 /**
  * The single hook point of the composer for Krao (communities and polls).
  * `isValid` gates the Post button; `getWrites` adds records to the post's
- * own atomic write; `afterPost` finishes what needs the published post.
+ * own atomic write.
  */
 export function useKraoComposer() {
-  const {t: l} = useLingui()
   const state = useKraoComposerState()
-  const createGate = useCreateGateMutation()
+  const prepareGate = usePrepareGateForNewPost()
 
   useEffect(() => {
     kraoComposer.consumePreset()
@@ -32,9 +29,13 @@ export function useKraoComposer() {
 
   return {
     isValid: !memberOnlyProblem && !pollProblem,
-    /** Records written in the same commit as the first post */
-    getWrites(post: {uri: string; cid: string; rkey: string}) {
-      const {community, poll} = kraoComposer.get()
+    /**
+     * Records written in the same commit as the first post. The members-only
+     * text is stored on the gate service first; if that fails, this throws
+     * and nothing is published.
+     */
+    async getWrites(post: {uri: string; cid: string; rkey: string}) {
+      const {community, poll, memberOnly, memberOnlyText} = kraoComposer.get()
       const now = new Date()
       const createdAt = toDatetimeString(now)
       const writes: unknown[] = []
@@ -49,6 +50,18 @@ export function useKraoComposer() {
             createdAt,
           },
         })
+        const text = memberOnlyText.trim()
+        if (memberOnly && text) {
+          writes.push({
+            $type: 'com.atproto.repo.applyWrites#create',
+            collection: 'net.krao.gate.rule',
+            value: await prepareGate({
+              post: {uri: post.uri, cid: post.cid},
+              text,
+              condition: memberOnlyCondition(community.uri),
+            }),
+          })
+        }
       }
       if (poll) {
         writes.push({
@@ -65,23 +78,6 @@ export function useKraoComposer() {
         })
       }
       return writes as never[]
-    },
-    /** The member-only content is stored once the post exists */
-    async afterPost(post: {uri: string; cid: string}) {
-      const {community, memberOnly, memberOnlyText} = kraoComposer.get()
-      if (!community || !memberOnly || !memberOnlyText.trim()) return
-      try {
-        await createGate.mutateAsync({
-          post,
-          text: memberOnlyText.trim(),
-          condition: memberOnlyCondition(community.uri),
-        })
-      } catch {
-        Toast.show(
-          l`Your post was sent, but the members-only text could not be saved.`,
-          {type: 'error'},
-        )
-      }
     },
   }
 }
