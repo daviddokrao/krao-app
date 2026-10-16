@@ -63,6 +63,13 @@ export function useCommunityQuery(uri: string | undefined) {
       })
       return res.community
     },
+    /*
+     * A community opened right after it was created may not be indexed yet,
+     * so give the indexer a few seconds before showing "doesn't exist"
+     */
+    retry: (count, error) =>
+      (error as {error?: string})?.error === 'NotFound' && count < 5,
+    retryDelay: 1000,
   })
 }
 
