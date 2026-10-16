@@ -34,6 +34,7 @@ import {TranslatedPost} from '#/components/Post/Translated'
 import {PostControls} from '#/components/PostControls'
 import {RichText} from '#/components/RichText'
 import {SubtleHover} from '#/components/SubtleHover'
+import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 
@@ -231,6 +232,7 @@ function PostInner({
                     authorHandle={post.author.handle}
                     shouldProxyLinks={true}
                   />
+                  <AddressWarnings text={richText.text} />
                   {limitLines && (
                     <ShowMoreTextButton
                       style={[a.text_md]}

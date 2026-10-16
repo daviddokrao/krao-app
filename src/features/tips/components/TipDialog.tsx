@@ -14,12 +14,13 @@ import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {AddressDisplay} from '#/features/safety/components/AddressDisplay'
+import {useExpectedAddressQuery} from '#/features/safety/queries'
 import {
   WalletRejectedError,
   WalletUnavailableError,
 } from '#/features/wallet/evm'
 import {useChainProfileQuery} from '#/features/wallet/queries'
-import {shortAddress} from '#/features/wallet/siwe'
 import {formatUnits, parseUnits, TIP_ASSETS, type TipAsset} from '../assets'
 import {
   TipNotRecordedError,
@@ -79,6 +80,13 @@ function TipDialogInner({
   const hasOwnWallet = !!myChainProfile?.wallets.some(
     w => w.status === 'verified' && w.account.startsWith('eip155:'),
   )
+  // Krao: is the address the recipient's own, and does another one look like it
+  const recipientAddress = recipientWallet.data?.split(':').pop()
+  const addressCheck = useExpectedAddressQuery(recipientAddress, target.did)
+  const addressSuspect =
+    !!addressCheck.data &&
+    (addressCheck.data.matchesExpected === false ||
+      addressCheck.data.lookalikes.length > 0)
   const sendTip = useSendTipMutation()
   const savePending = useSavePendingTipsMutation()
   const [asset, setAsset] = useState<TipAsset>(TIP_ASSETS[0])
@@ -247,9 +255,29 @@ function TipDialogInner({
             </TextField.Root>
           </View>
 
-          <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
-            <Trans>To wallet {shortAddress(recipientWallet.data)}</Trans>
-          </Text>
+          <View style={[a.gap_xs]}>
+            <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
+              <Trans>To wallet</Trans>
+            </Text>
+            <AddressDisplay
+              address={recipientAddress ?? recipientWallet.data}
+            />
+            <Text style={[a.text_xs, t.atoms.text_contrast_medium]}>
+              <Trans>
+                Check the first 6 and last 4 characters (in color) against your
+                own records.
+              </Trans>
+            </Text>
+          </View>
+          {addressSuspect && (
+            <Admonition type="warning">
+              <Trans>
+                This address does not match the wallet Krao has verified for @
+                {target.handle}, or another verified wallet looks very similar
+                to it. Do not send a tip unless you are sure.
+              </Trans>
+            </Admonition>
+          )}
 
           {errorMessage && <Admonition type="error">{errorMessage}</Admonition>}
           {savePending.error && (

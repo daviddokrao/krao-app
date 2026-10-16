@@ -29,7 +29,13 @@ export type NftAvatar = {
   checkedAt?: string
 }
 
-export type BadgeId = 'wallet-verified' | 'nft-avatar' | 'tipper' | 'supported'
+export type BadgeId =
+  | 'wallet-verified'
+  | 'nft-avatar'
+  | 'tipper'
+  | 'supported'
+  /** Krao: a real person (verified phone or identity), when they show it */
+  | 'human'
 
 export type ChainProfile = {
   did: string

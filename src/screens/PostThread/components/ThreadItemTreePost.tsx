@@ -46,6 +46,7 @@ import {RichText} from '#/components/RichText'
 import * as Skele from '#/components/Skeleton'
 import {SubtleHover} from '#/components/SubtleHover'
 import {Text} from '#/components/Typography'
+import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
 import {type app} from '#/lexicons'
 
 /**
@@ -373,6 +374,7 @@ const ThreadItemTreePostInner = memo(function ThreadItemTreePostInner({
                           ) : undefined
                         }
                       />
+                      <AddressWarnings text={richText.text} />
                       {limitLines && (
                         <View style={[a.flex_row, a.align_center, a.gap_xs]}>
                           <ShowMoreTextButton

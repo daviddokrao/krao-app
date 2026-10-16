@@ -148,6 +148,7 @@ import {
 import {openPhoneVerification} from '#/features/compliance/events'
 import {isPhoneVerificationRequired} from '#/features/compliance/phone'
 import {type Gif} from '#/features/gifPicker/types'
+import {blockIfSecret} from '#/features/safety/guard'
 import {app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 import {
@@ -1038,6 +1039,13 @@ export const ComposePost = ({
     }
 
     const {type: emptyType, filteredThread} = getFilteredThread()
+
+    // Krao: never post a seed phrase or private key
+    if (
+      blockIfSecret(...filteredThread.posts.map(post => post.richtext.text))
+    ) {
+      return
+    }
 
     if (emptyType === 'non-trailing' && !skipEmptyConfirmedRef.current) {
       emptyPostsPromptControl.open()

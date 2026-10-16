@@ -29,6 +29,7 @@ import {Trash_Stroke2_Corner2_Rounded} from '#/components/icons/Trash'
 import * as Layout from '#/components/Layout'
 import {ExportKraoDataDialog} from '#/features/compliance/components/ExportKraoDataDialog'
 import {usePhoneStatusQuery} from '#/features/compliance/queries'
+import {HumanBadgeToggle} from '#/features/safety/components/HumanBadgeToggle'
 import {ChangeHandleDialog} from './components/ChangeHandleDialog'
 import {ChangePasswordDialog} from './components/ChangePasswordDialog'
 import {DeactivateAccountDialog} from './components/DeactivateAccountDialog'
@@ -182,6 +183,9 @@ export function AccountSettingsScreen({}: Props) {
               </SettingsList.BadgeText>
             )}
           </SettingsList.LinkItem>
+          <SettingsList.Item style={[a.align_start]}>
+            <HumanBadgeToggle />
+          </SettingsList.Item>
           <SettingsList.Divider />
           <SettingsList.PressableItem
             label={l`Export my data`}

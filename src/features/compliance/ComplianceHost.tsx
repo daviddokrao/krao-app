@@ -8,6 +8,7 @@ import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import {Text} from '#/components/Typography'
+import {SafetyHost} from '../safety/SafetyHost'
 import {PhoneVerifyForm} from './components/PhoneVerifyForm'
 import {clearPendingConsent, getPendingConsent} from './consent'
 import {
@@ -21,13 +22,15 @@ import {usePhoneStatusQuery, useRecordConsentMutation} from './queries'
 /**
  * Mounted once in the shell: the "verify your phone number" dialog, which
  * posting, replying and chatting open when the service refuses an account
- * with no verified number, and the Krao steps that follow sign-up.
+ * with no verified number, and the Krao steps that follow sign-up. Also hosts
+ * the safety warnings (scam links, seed phrases).
  */
 export function ComplianceHost() {
   return (
     <>
       <PhoneRequiredDialog />
       <AfterSignup />
+      <SafetyHost />
     </>
   )
 }

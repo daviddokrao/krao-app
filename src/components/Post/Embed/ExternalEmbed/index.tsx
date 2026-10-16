@@ -19,6 +19,7 @@ import {Earth_Stroke2_Corner0_Rounded as Globe} from '#/components/icons/Globe'
 import {Link} from '#/components/Link'
 import {Text} from '#/components/Typography'
 import {IS_NATIVE} from '#/env'
+import {UnsafeLinkNotice} from '#/features/safety/components/UnsafeLinkNotice'
 import {type app} from '#/lexicons'
 import {ExternalGif} from './ExternalGif'
 import {ExternalPlayer} from './ExternalPlayer'
@@ -159,6 +160,10 @@ export const ExternalEmbed = ({
             </View>
             <View style={[a.px_md]}>
               <Divider />
+              {/* Krao: the site is on the scam list */}
+              <View style={[a.pt_sm]}>
+                <UnsafeLinkNotice url={link.uri} />
+              </View>
               <View
                 style={[
                   a.flex_row,

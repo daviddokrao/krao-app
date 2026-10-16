@@ -43,6 +43,8 @@ import {
 import {IS_NATIVE} from '#/env'
 import {openPhoneVerification} from '#/features/compliance/events'
 import {isPhoneVerificationRequired} from '#/features/compliance/phone'
+import {showSecretWarning} from '#/features/safety/events'
+import {isSensitiveSecretError} from '#/features/safety/guard'
 import {type app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 
@@ -1204,6 +1206,10 @@ export class Convo {
         // Krao: chat needs a verified phone number
         if (isPhoneVerificationRequired(e)) {
           openPhoneVerification('chat')
+        }
+        // Krao: the chat service refuses seed phrases and private keys
+        if (isSensitiveSecretError(e)) {
+          showSecretWarning(['seedPhrase', 'privateKey'])
         }
 
         switch (e.message) {
