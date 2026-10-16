@@ -258,8 +258,8 @@ function PostInner({
                   />
                 </View>
               ) : null}
+              <PostPoll uri={post.uri} cid={post.cid} />
             </ContentHider>
-            <PostPoll uri={post.uri} cid={post.cid} />
             <PostControls
               post={post}
               record={record}

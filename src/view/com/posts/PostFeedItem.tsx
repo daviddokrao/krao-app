@@ -454,7 +454,6 @@ let FeedItemInner = ({
               feedDescriptor={feedDescriptor}
             />
             <GateBadge uri={post.uri} />
-            <PostPoll uri={post.uri} cid={post.cid} />
             <FeedTipSummary uri={post.uri} />
             <PostControls
               post={post}
@@ -583,6 +582,7 @@ let PostContent = ({
           />
         </View>
       ) : null}
+      <PostPoll uri={post.uri} cid={post.cid} />
     </ContentHider>
   )
 }

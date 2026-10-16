@@ -437,13 +437,13 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                   />
                 </View>
               )}
+              <PostPoll uri={post.uri} cid={post.cid} />
             </ContentHider>
             <ExpandedPostDetails
               post={item.value.post}
               isThreadAuthor={isThreadAuthor}
             />
             <GatedContent uri={post.uri} />
-            <PostPoll uri={post.uri} cid={post.cid} />
             <TipSummary uri={post.uri} />
             {post.repostCount !== 0 ||
             post.likeCount !== 0 ||
