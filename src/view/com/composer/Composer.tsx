@@ -149,6 +149,7 @@ import {KraoComposerPills} from '#/features/community/composer/KraoComposerPills
 import {useKraoComposer} from '#/features/community/composer/useKraoComposer'
 import {isPhoneVerificationRequired} from '#/features/compliance/phone'
 import {type Gif} from '#/features/gifPicker/types'
+import {useComposerMiniAppLink} from '#/features/miniapp/composerLink'
 import {containsSecret} from '#/features/safety/guard'
 import {app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
@@ -1706,11 +1707,15 @@ let ComposerPost = memo(function ComposerPost({
       : 0
   const onImageAdd = useAddImagesWithCap(postImagesCount, dispatchPost)
 
+  // Krao: a Mini App link becomes the post's Mini App, not a link card
+  const onMiniAppLink = useComposerMiniAppLink()
+  const isKraoEmbedPost = !isReply && isFirstPost
   const onNewLink = useCallback(
     (uri: string) => {
+      if (isKraoEmbedPost && onMiniAppLink(uri)) return
       dispatchPost({type: 'embed_add_uri', uri: uri as UriString})
     },
-    [dispatchPost],
+    [dispatchPost, isKraoEmbedPost, onMiniAppLink],
   )
 
   const onPhotoPasted = useCallback(

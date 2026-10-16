@@ -172,5 +172,24 @@ export function parseMiniAppLink(input: string): string | undefined {
   }
 }
 
+/**
+ * The record uri of a link to a Mini App on Krao's own web app (one of
+ * `hostOrigins`), or undefined. Used for links typed or pasted into a post,
+ * so a `/miniapp/...` path on any other site stays an ordinary link.
+ */
+export function kraoMiniAppLinkUri(
+  url: string,
+  hostOrigins: readonly string[],
+): string | undefined {
+  let parsed: URL
+  try {
+    parsed = new URL(url.trim())
+  } catch {
+    return undefined
+  }
+  if (!hostOrigins.includes(parsed.origin)) return undefined
+  return parseMiniAppLink(parsed.pathname)
+}
+
 /** Where a platform string for the SDK comes from */
 export type MiniAppPlatform = 'web' | 'ios' | 'android'

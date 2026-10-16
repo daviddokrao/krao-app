@@ -5,6 +5,7 @@ import {
   canRunApp,
   isSameOriginAsHost,
   knownPermissions,
+  kraoMiniAppLinkUri,
   manifestOrigin,
   miniAppPath,
   miniAppRefFromEmbed,
@@ -174,5 +175,46 @@ describe('the post embed', () => {
         app: {uri: 'at://did:plc:x/app.bsky.feed.post/3k', cid: 'c'},
       }),
     ).toBeUndefined()
+  })
+})
+
+describe('kraoMiniAppLinkUri', () => {
+  const hosts = ['https://krao.net', 'http://localhost:8100']
+
+  it('reads a Mini App link on Krao’s own web app', () => {
+    expect(
+      kraoMiniAppLinkUri(
+        'https://krao.net/miniapp/did:plc:dev123/3kabc',
+        hosts,
+      ),
+    ).toBe(URI)
+    expect(
+      kraoMiniAppLinkUri(
+        'http://localhost:8100/miniapp/did:plc:dev123/3kabc/',
+        hosts,
+      ),
+    ).toBe(URI)
+  })
+
+  it('leaves the same path on another site an ordinary link', () => {
+    expect(
+      kraoMiniAppLinkUri(
+        'https://evil.test/miniapp/did:plc:dev123/3kabc',
+        hosts,
+      ),
+    ).toBeUndefined()
+    expect(
+      kraoMiniAppLinkUri(
+        'https://krao.net.evil.test/miniapp/did:plc:a/b',
+        hosts,
+      ),
+    ).toBeUndefined()
+  })
+
+  it('ignores other Krao pages and text that is not a URL', () => {
+    expect(
+      kraoMiniAppLinkUri('https://krao.net/profile/alice.krao.net', hosts),
+    ).toBeUndefined()
+    expect(kraoMiniAppLinkUri('not a url', hosts)).toBeUndefined()
   })
 })
