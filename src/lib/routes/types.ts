@@ -92,6 +92,9 @@ export type CommonNavigatorParams = {
   RewardsAdmin: undefined
   AnalyticsAdmin: undefined
   GateModeration: undefined
+  MiniAppsAdmin: undefined
+  MiniApps: undefined
+  MiniApp: {did: string; rkey: string}
   PhoneSettings: undefined
   Join: {code: string}
   AppIconSettings: undefined

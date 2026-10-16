@@ -20,6 +20,9 @@ export const router = new Router<AllNavigatableRoutes>({
   Communities: '/communities',
   CommunityCreate: '/communities/new',
   Community: '/community/:name/:slug',
+  // Krao Mini Apps
+  MiniApps: '/miniapps',
+  MiniApp: '/miniapp/:did/:rkey',
   CommunityEdit: '/community/:name/:slug/edit',
   // moderation
   Moderation: '/moderation',
@@ -80,6 +83,7 @@ export const router = new Router<AllNavigatableRoutes>({
   RewardsAdmin: '/settings/referral/admin',
   AnalyticsAdmin: '/settings/referral/admin/analytics',
   GateModeration: '/settings/gate-moderation',
+  MiniAppsAdmin: '/settings/miniapps-admin',
   PhoneSettings: '/settings/phone',
   Join: '/join/:code',
   AppIconSettings: '/settings/app-icon',

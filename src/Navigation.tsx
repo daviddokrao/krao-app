@@ -161,6 +161,9 @@ import {MembershipOfferScreen} from '#/features/membership/MembershipOfferScreen
 import {MembershipSettingsScreen} from '#/features/membership/MembershipSettingsScreen'
 import {MembersScreen} from '#/features/membership/MembersScreen'
 import {MyMembershipsScreen} from '#/features/membership/MyMembershipsScreen'
+import {MiniAppsAdminScreen} from '#/features/miniapp/MiniAppsAdminScreen'
+import {MiniAppScreen} from '#/features/miniapp/MiniAppScreen'
+import {MiniAppsScreen} from '#/features/miniapp/MiniAppsScreen'
 import {RewardsAdminScreen} from '#/features/referral/admin/RewardsAdminScreen'
 import {JoinScreen} from '#/features/referral/JoinScreen'
 import {ReferralScreen} from '#/features/referral/ReferralScreen'
@@ -591,6 +594,24 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
           title: title(msg`View gated content`),
           requireAuth: true,
         }}
+      />
+      <Stack.Screen
+        name="MiniAppsAdmin"
+        getComponent={() => MiniAppsAdminScreen}
+        options={{
+          title: title(msg`Review Mini Apps`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MiniApps"
+        getComponent={() => MiniAppsScreen}
+        options={{title: title(msg`Mini Apps`)}}
+      />
+      <Stack.Screen
+        name="MiniApp"
+        getComponent={() => MiniAppScreen}
+        options={{title: title(msg`Mini App`), requireAuth: true}}
       />
       <Stack.Screen
         name="PhoneSettings"

@@ -18,6 +18,7 @@ import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldCheckIcon} from '#/componen
 import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
+import {MiniAppsAdminLink} from '#/features/miniapp/MiniAppsAdminLink'
 import {AnalyticsLink} from '../analytics/AnalyticsLink'
 import {useIsGateModeratorQuery} from '../compliance/moderation/queries'
 import {useRewardsRolesQuery} from './admin/queries'
@@ -192,6 +193,7 @@ export function ReferralScreen({}: Props) {
               </SettingsList.LinkItem>
             </>
           )}
+          <MiniAppsAdminLink />
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>

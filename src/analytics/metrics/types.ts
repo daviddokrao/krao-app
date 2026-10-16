@@ -91,6 +91,7 @@ export type Events = {
       | 'search'
       | 'atmosphere'
       | 'communities'
+      | 'miniapps'
       | 'chat'
       | 'notifications'
       | 'profile'

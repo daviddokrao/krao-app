@@ -82,6 +82,7 @@ import {
   UserCircle_Filled_Corner0_Rounded as UserCircleFilledIcon,
   UserCircle_Stroke2_Corner0_Rounded as UserCircleIcon,
 } from '#/components/icons/UserCircle'
+import {Window_Stroke2_Corner2_Rounded as AppWindowIcon} from '#/components/icons/Window'
 import {CENTER_COLUMN_OFFSET, CENTER_COLUMN_WIDTH} from '#/components/Layout'
 import * as Menu from '#/components/Menu'
 import * as Prompt from '#/components/Prompt'
@@ -765,6 +766,16 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             icons={{
               inactive: GroupIcon,
               active: GroupIcon,
+            }}
+          />
+          <NavItem
+            label={l`Mini Apps`}
+            href="/miniapps"
+            navItem="miniapps"
+            minimal={leftNavMinimal}
+            icons={{
+              inactive: AppWindowIcon,
+              active: AppWindowIcon,
             }}
           />
           <NavItem
