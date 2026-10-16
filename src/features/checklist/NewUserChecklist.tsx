@@ -65,7 +65,15 @@ function Checklist({did, handle}: {did: string; handle: string}) {
   const show = shouldShowChecklist({
     ready: profileReady && chainReady,
     dismissed,
-    newAccount: isNewAccount(profile.data?.createdAt),
+    /*
+     * Krao's appview does not return createdAt (it comes from the profile
+     * record), so fall back to when the account was first indexed
+     */
+    newAccount: isNewAccount({
+      createdAt: profile.data?.createdAt ?? profile.data?.indexedAt,
+      postsCount: profile.data?.postsCount,
+      followsCount: profile.data?.followsCount,
+    }),
     done,
   })
 

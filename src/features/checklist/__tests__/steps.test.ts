@@ -104,18 +104,32 @@ describe('isNewAccount', () => {
   const daysAgo = (n: number) => new Date(now - n * 86400e3).toISOString()
 
   it('is true within the first 30 days', () => {
-    expect(isNewAccount(daysAgo(0), now)).toBe(true)
-    expect(isNewAccount(daysAgo(NEW_ACCOUNT_DAYS - 1), now)).toBe(true)
+    expect(isNewAccount({createdAt: daysAgo(0)}, now)).toBe(true)
+    expect(isNewAccount({createdAt: daysAgo(NEW_ACCOUNT_DAYS - 1)}, now)).toBe(
+      true,
+    )
   })
 
-  it('is false afterwards', () => {
-    expect(isNewAccount(daysAgo(NEW_ACCOUNT_DAYS), now)).toBe(false)
-    expect(isNewAccount(daysAgo(400), now)).toBe(false)
+  it('is false afterwards, whatever the account has done', () => {
+    expect(isNewAccount({createdAt: daysAgo(NEW_ACCOUNT_DAYS)}, now)).toBe(
+      false,
+    )
+    expect(
+      isNewAccount(
+        {createdAt: daysAgo(400), postsCount: 0, followsCount: 0},
+        now,
+      ),
+    ).toBe(false)
   })
 
-  it('is false when the creation date is unknown or invalid', () => {
-    expect(isNewAccount(undefined, now)).toBe(false)
-    expect(isNewAccount('yesterday', now)).toBe(false)
+  it('without a date, is true only for an account that has done nothing yet', () => {
+    expect(isNewAccount({}, now)).toBe(true)
+    expect(isNewAccount({postsCount: 0, followsCount: 0}, now)).toBe(true)
+    expect(isNewAccount({postsCount: 3, followsCount: 0}, now)).toBe(false)
+    expect(isNewAccount({postsCount: 0, followsCount: 2}, now)).toBe(false)
+    expect(isNewAccount({createdAt: 'yesterday', postsCount: 9}, now)).toBe(
+      false,
+    )
   })
 })
 

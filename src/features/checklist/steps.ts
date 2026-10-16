@@ -64,13 +64,22 @@ export function mergeDone(
   return CHECKLIST_STEPS.filter(id => before.has(id) || detected.has(id))
 }
 
+/**
+ * Whether the account counts as new: under 30 days old when its creation date
+ * is known. Krao's appview only has a date once the account has a profile
+ * record; an account with none and no posts or follows yet has done nothing
+ * on Krao, so it is treated as new too.
+ */
 export function isNewAccount(
-  createdAt: string | undefined,
+  {
+    createdAt,
+    postsCount = 0,
+    followsCount = 0,
+  }: {createdAt?: string; postsCount?: number; followsCount?: number},
   now: number = Date.now(),
 ): boolean {
-  if (!createdAt) return false
-  const created = Date.parse(createdAt)
-  if (Number.isNaN(created)) return false
+  const created = createdAt ? Date.parse(createdAt) : NaN
+  if (Number.isNaN(created)) return postsCount === 0 && followsCount === 0
   return now - created < NEW_ACCOUNT_DAYS * 24 * 60 * 60 * 1000
 }
 
