@@ -50,6 +50,15 @@ const BLOCKED_SCHEMES = new Set([
   'intent',
   'about',
   'vbscript',
+  // Our own scheme: a peer must not drive the app's own deep links
+  'krao',
+  // System handlers that would dial, text or mail on the wallet's say-so
+  'tel',
+  'telprompt',
+  'sms',
+  'mailto',
+  'facetime',
+  'facetime-audio',
 ])
 
 /**

@@ -66,6 +66,18 @@ describe('walletOpenLink', () => {
     expect(walletOpenLink({native: 'file:///etc/passwd'})).toBeUndefined()
   })
 
+  it('never opens our own deep links or dialer/messaging handlers', () => {
+    expect(
+      walletOpenLink({native: 'krao://intent/compose?text=hi'}),
+    ).toBeUndefined()
+    expect(walletOpenLink({native: 'KRAO://profile/x'})).toBeUndefined()
+    expect(walletOpenLink({native: 'tel://123'})).toBeUndefined()
+    expect(walletOpenLink({native: 'sms://123'})).toBeUndefined()
+    expect(
+      walletOpenLink({native: 'tel://1', universal: 'https://w.example'}),
+    ).toBe('https://w.example')
+  })
+
   it('returns nothing without redirect metadata', () => {
     expect(walletOpenLink(undefined)).toBeUndefined()
     expect(walletOpenLink(null)).toBeUndefined()
