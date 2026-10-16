@@ -69,6 +69,11 @@ interface PostOpts {
     cid: string
     rkey: string
   }) => Promise<com.atproto.repo.applyWrites.$InputBody['writes']>
+  /**
+   * Krao: the embed of the first post when it has none of its own (a Mini
+   * App). Never replaces an embed the draft already has.
+   */
+  extraEmbed?: () => unknown
 }
 
 export async function post(queryClient: QueryClient, opts: PostOpts) {
@@ -127,7 +132,11 @@ export async function post(queryClient: QueryClient, opts: PostOpts) {
     uris.push(uri)
 
     const rt = await rtPromise
-    const embed = await embedPromise
+    const embed =
+      (await embedPromise) ??
+      (i === 0
+        ? (opts.extraEmbed?.() as app.bsky.feed.post.Main['embed'])
+        : undefined)
     const reply = await replyPromise
     const record: app.bsky.feed.post.Main = {
       // IMPORTANT: $type has to exist, CID is calculated with the `$type` field

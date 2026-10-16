@@ -61,6 +61,7 @@ import {WhoCanReply} from '#/components/WhoCanReply'
 import {Features, useAnalytics} from '#/analytics'
 import {GatedContent} from '#/features/gating/components/GatedContent'
 import {useActorStatus} from '#/features/liveNow'
+import {MiniAppEmbed} from '#/features/miniapp/components/MiniAppEmbed'
 import {PostPoll} from '#/features/poll/components/PostPoll'
 import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
 import {TipSummary} from '#/features/tips/components/TipSummary'
@@ -438,6 +439,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                 </View>
               )}
               <PostPoll uri={post.uri} cid={post.cid} />
+              <MiniAppEmbed record={record} />
             </ContentHider>
             <ExpandedPostDetails
               post={item.value.post}

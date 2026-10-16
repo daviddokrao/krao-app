@@ -55,6 +55,7 @@ import {SubtleHover} from '#/components/SubtleHover'
 import {Features, useAnalytics} from '#/analytics'
 import {GateBadge} from '#/features/gating/components/GateBadge'
 import {useActorStatus} from '#/features/liveNow'
+import {MiniAppEmbed} from '#/features/miniapp/components/MiniAppEmbed'
 import {PostPoll} from '#/features/poll/components/PostPoll'
 import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
 import {FeedTipSummary} from '#/features/tips/components/TipSummary'
@@ -583,6 +584,7 @@ let PostContent = ({
         </View>
       ) : null}
       <PostPoll uri={post.uri} cid={post.cid} />
+      <MiniAppEmbed record={record} />
     </ContentHider>
   )
 }

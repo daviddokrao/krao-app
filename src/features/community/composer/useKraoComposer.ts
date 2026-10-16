@@ -2,6 +2,7 @@ import {useEffect} from 'react'
 import {toDatetimeString} from '@atproto/syntax'
 
 import {usePrepareGateForNewPost} from '#/features/gating/queries'
+import {buildMiniAppEmbed} from '#/features/miniapp/logic'
 import {buildPollRecord, validatePollDraft} from '#/features/poll/logic'
 import {containsSecret} from '#/features/safety/guard'
 import {memberOnlyCondition} from '../logic'
@@ -29,6 +30,15 @@ export function useKraoComposer() {
 
   return {
     isValid: !memberOnlyProblem && !pollProblem,
+    hasMiniApp: !!state.miniApp,
+    /**
+     * The post's embed when it carries a Mini App. A post has one embed, so
+     * the composer must not offer both (see KraoComposerPills).
+     */
+    getEmbed() {
+      const {miniApp} = kraoComposer.get()
+      return miniApp ? buildMiniAppEmbed(miniApp) : undefined
+    },
     /**
      * Records written in the same commit as the first post. The members-only
      * text is stored on the gate service first; if that fails, this throws

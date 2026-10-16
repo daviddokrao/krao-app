@@ -1000,8 +1000,15 @@ export const ComposePost = ({
       !bsky.isType(chat.bsky.group.defs.joinLinkPreviewView, q.data.view),
   )
 
+  const firstDraft = thread.posts[0]
+  const firstPostHasEmbed = !!(
+    firstDraft?.embed.media ||
+    firstDraft?.embed.link ||
+    firstDraft?.embed.quote
+  )
   const canPost =
     krao.isValid && // Krao: community and poll drafts are complete
+    !(krao.hasMiniApp && firstPostHasEmbed) && // a post has one embed
     !missingAltError &&
     !hasUnavailableChatInvite &&
     thread.posts.some(post => !isEmptyPost(post)) &&
@@ -1105,6 +1112,7 @@ export const ComposePost = ({
           pdsClient,
           // Krao: only a new post, not a reply, can carry a community or poll
           extraWrites: replyTo ? undefined : krao.getWrites,
+          extraEmbed: replyTo ? undefined : krao.getEmbed,
         })
       ).uris[0]
 
@@ -2156,7 +2164,11 @@ function ComposerPills({
         )}
         {!isReply && thread.posts[0]?.id === post.id ? (
           // Krao: community and poll pills, on the first post only
-          <KraoComposerPills />
+          <KraoComposerPills
+            hasOtherEmbed={
+              !!(post.embed.media || post.embed.link || post.embed.quote)
+            }
+          />
         ) : null}
         {hasMedia || hasLink ? (
           <LabelsBtn

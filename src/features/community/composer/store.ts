@@ -17,6 +17,8 @@ export type KraoComposerState = {
   memberOnly: boolean
   memberOnlyText: string
   poll?: PollDraft
+  /** A Mini App the post carries as its embed (net.krao.embed.miniapp) */
+  miniApp?: {uri: string; cid: string; name: string}
 }
 
 const initial: KraoComposerState = {memberOnly: false, memberOnlyText: ''}
