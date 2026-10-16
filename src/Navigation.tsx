@@ -157,6 +157,7 @@ import {InviteScannerScreen} from '#/features/inviteFriends'
 import {RewardsAdminScreen} from '#/features/referral/admin/RewardsAdminScreen'
 import {JoinScreen} from '#/features/referral/JoinScreen'
 import {ReferralScreen} from '#/features/referral/ReferralScreen'
+import {TokenScreen} from '#/features/token/TokenScreen'
 import {router} from '#/routes'
 
 const navigationRef = createNavigationContainerRef<AllNavigatorParams>()
@@ -604,6 +605,11 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         name="Hashtag"
         getComponent={() => HashtagScreen}
         options={{title: title(msg`Hashtag`)}}
+      />
+      <Stack.Screen
+        name="Token"
+        getComponent={() => TokenScreen}
+        options={{title: title(msg`Token`)}}
       />
       <Stack.Screen
         name="Topic"

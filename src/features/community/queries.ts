@@ -202,7 +202,7 @@ export function usePendingMembersQuery(uri: string, enabled: boolean) {
 }
 
 /** Posts as the appview returns them, in the order of `uris` */
-async function hydratePosts(client: Client, uris: string[]) {
+export async function hydratePosts(client: Client, uris: string[]) {
   const byUri = new Map<string, app.bsky.feed.defs.PostView>()
   for (let i = 0; i < uris.length; i += 25) {
     const res = await client.call(app.bsky.feed.getPosts, {

@@ -92,6 +92,7 @@ export type CommonNavigatorParams = {
   InviteScanner: undefined
   Search: SearchParams
   Hashtag: {tag: string; author?: string}
+  Token: {symbol: string}
   Topic: {topic: string}
   MessagesConversation: {conversation: string; embed?: string; accept?: true}
   MessagesConversationSettings: {conversation: string}

@@ -87,6 +87,7 @@ export const router = new Router<AllNavigatableRoutes>({
   CopyrightPolicy: '/support/copyright',
   // hashtags
   Hashtag: '/hashtag/:tag',
+  Token: '/token/:symbol',
   Topic: '/topic/:topic',
   // DMs
   Messages: '/messages',
