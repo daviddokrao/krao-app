@@ -4,6 +4,7 @@ import {type StoredChecklist} from '#/features/checklist/steps'
 import {type Gif} from '#/features/gifPicker/types'
 import {type InviteThemeKey} from '#/features/inviteFriends/themes'
 import {type PaymentRecord} from '#/features/membership/logic'
+import {type MiniAppGrant} from '#/features/miniapp/grants'
 import {type PendingTipRecord} from '#/features/tips/pendingTips'
 import {type Geolocation} from '#/geolocation/types'
 
@@ -105,6 +106,8 @@ export type Device = {
   kraoPendingTips?: {did: string; rkey: string; record: PendingTipRecord}[]
   /** Krao: membership payments sent but not recorded yet */
   kraoPendingPayments?: {did: string; rkey: string; record: PaymentRecord}[]
+  /** Krao: what each account allowed each Mini App (by app uri and cid) */
+  kraoMiniAppGrants?: MiniAppGrant[]
 }
 
 export type Account = {
