@@ -92,6 +92,8 @@ export type Device = {
   }
   /** Krao: the referral code from the last krao.net/join/<code> link */
   kraoPendingReferralCode?: {code: string; savedAt: number}
+  /** Krao: the first-open check for an invite code that came with the install is done */
+  kraoDeferredCodeChecked?: boolean
   /** Krao: the consent given at sign-up, until it is recorded for the account */
   kraoPendingConsent?: {
     handle?: string

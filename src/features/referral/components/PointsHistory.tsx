@@ -19,6 +19,10 @@ export function usePointsEntryLabel() {
     'growth.wallet-linked.referrer': l`Someone you invited linked a wallet`,
     'growth.first-post': l`Posted for the first time`,
     'growth.first-post.referrer': l`Someone you invited posted for the first time`,
+    'growth.community-joined': l`Joined your first community`,
+    'growth.community-joined.referrer': l`Someone you invited joined their first community`,
+    'growth.active-30d': l`Active 20 days in your first month`,
+    'growth.active-30d.referrer': l`Someone you invited was active 20 days in their first month`,
   }
   return (entry: Pick<PointsEntry, 'event' | 'ruleId' | 'note'>) => {
     const event = matchPointsEvent(entry.event, entry.ruleId)

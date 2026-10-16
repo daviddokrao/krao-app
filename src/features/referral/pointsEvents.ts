@@ -10,6 +10,10 @@ export const POINTS_EVENTS = [
   'growth.wallet-linked.referrer',
   'growth.first-post',
   'growth.first-post.referrer',
+  'growth.community-joined',
+  'growth.community-joined.referrer',
+  'growth.active-30d',
+  'growth.active-30d.referrer',
 ] as const
 
 export type PointsEvent = (typeof POINTS_EVENTS)[number]
@@ -18,6 +22,8 @@ export type PointsEvent = (typeof POINTS_EVENTS)[number]
 const EVENT_ALIASES: Record<string, PointsEvent> = {
   'wallet.linked': 'growth.wallet-linked',
   'post.first': 'growth.first-post',
+  'community.joined': 'growth.community-joined',
+  'active.30d': 'growth.active-30d',
 }
 
 /**

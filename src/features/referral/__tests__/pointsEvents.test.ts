@@ -36,4 +36,14 @@ describe('matchPointsEvent', () => {
     expect(matchPointsEvent()).toBeUndefined()
     expect(matchPointsEvent('')).toBeUndefined()
   })
+  it('knows the community and activity rules', () => {
+    expect(matchPointsEvent('growth.community-joined')).toBe(
+      'growth.community-joined',
+    )
+    expect(matchPointsEvent('growth.active-30d.referrer')).toBe(
+      'growth.active-30d.referrer',
+    )
+    expect(matchPointsEvent('community.joined')).toBe('growth.community-joined')
+    expect(matchPointsEvent('active.30d')).toBe('growth.active-30d')
+  })
 })
