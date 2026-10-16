@@ -72,6 +72,7 @@ import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
 import {IS_INTERNAL, IS_IOS, IS_NATIVE} from '#/env'
+import {AdminLink} from '#/features/admin/AdminLink'
 import {useActorStatus} from '#/features/liveNow'
 import {type app} from '#/lexicons'
 import {device, useStorage} from '#/storage'
@@ -223,6 +224,7 @@ export function SettingsScreen({}: Props) {
               <Trans>Creator dashboard</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
+          <AdminLink />
           <SettingsList.LinkItem
             to="/settings/privacy-and-security"
             label={l`Privacy and security`}>

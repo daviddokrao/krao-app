@@ -91,6 +91,9 @@ export type CommonNavigatorParams = {
   CreatorDashboard: undefined
   RewardsAdmin: undefined
   AnalyticsAdmin: undefined
+  AdminHub: undefined
+  AdminRoles: undefined
+  AdminAuditLog: undefined
   GateModeration: undefined
   MiniAppsAdmin: undefined
   MiniApps: undefined

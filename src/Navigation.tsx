@@ -144,6 +144,9 @@ import {
 import {useAnalytics} from '#/analytics'
 import {setNavigationMetadata} from '#/analytics/metadata'
 import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB, KRAO_WEB_URL} from '#/env'
+import {AdminHubScreen} from '#/features/admin/AdminHubScreen'
+import {AuditLogScreen} from '#/features/admin/AuditLogScreen'
+import {RolesScreen} from '#/features/admin/RolesScreen'
 import {AnalyticsScreen} from '#/features/analytics/AnalyticsScreen'
 import {CommunitiesScreen} from '#/features/community/CommunitiesScreen'
 import {
@@ -586,6 +589,21 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
           title: title(msg`Analytics`),
           requireAuth: true,
         }}
+      />
+      <Stack.Screen
+        name="AdminHub"
+        getComponent={() => AdminHubScreen}
+        options={{title: title(msg`Krao admin`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="AdminRoles"
+        getComponent={() => RolesScreen}
+        options={{title: title(msg`Roles`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="AdminAuditLog"
+        getComponent={() => AuditLogScreen}
+        options={{title: title(msg`Audit log`), requireAuth: true}}
       />
       <Stack.Screen
         name="GateModeration"
