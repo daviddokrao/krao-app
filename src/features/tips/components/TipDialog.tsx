@@ -10,6 +10,7 @@ import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import * as TextField from '#/components/forms/TextField'
+import * as Toggle from '#/components/forms/Toggle'
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
@@ -38,12 +39,25 @@ export type TipTarget = {
   subject?: {uri: string; cid: string}
 }
 
+export type TipSent = {
+  /** Base units of the asset */
+  amount: bigint
+  asset: TipAsset
+  anonymous: boolean
+}
+
 export function TipDialog({
   control,
   target,
+  allowAnonymous = true,
+  onSent,
 }: {
   control: Dialog.DialogControlProps
   target: TipTarget
+  /** Offer "Tip anonymously"; off in a chat, where the tipper is known */
+  allowAnonymous?: boolean
+  /** Called once the dialog has closed after a tip was sent */
+  onSent?: (tip: TipSent) => void
 }) {
   const {t: l} = useLingui()
   return (
@@ -52,7 +66,12 @@ export function TipDialog({
       <Dialog.ScrollableInner
         label={l`Send a tip`}
         style={web({maxWidth: 420})}>
-        <TipDialogInner control={control} target={target} />
+        <TipDialogInner
+          control={control}
+          target={target}
+          allowAnonymous={allowAnonymous}
+          onSent={onSent}
+        />
         <Dialog.Close />
       </Dialog.ScrollableInner>
     </Dialog.Outer>
@@ -62,9 +81,13 @@ export function TipDialog({
 function TipDialogInner({
   control,
   target,
+  allowAnonymous,
+  onSent,
 }: {
   control: Dialog.DialogControlProps
   target: TipTarget
+  allowAnonymous: boolean
+  onSent?: (tip: TipSent) => void
 }) {
   const t = useTheme()
   const {t: l} = useLingui()
@@ -93,6 +116,7 @@ function TipDialogInner({
   const [asset, setAsset] = useState<TipAsset>(TIP_ASSETS[0])
   const [amountText, setAmountText] = useState(TIP_ASSETS[0].presets[1])
   const [message, setMessage] = useState('')
+  const [anonymous, setAnonymous] = useState(false)
   const amount = parseUnits(amountText, asset.decimals)
   const canConnect = CAN_CONNECT_WALLET
 
@@ -120,6 +144,7 @@ function TipDialogInner({
         asset,
         amount,
         message: message.trim(),
+        anonymous: allowAnonymous && anonymous,
       },
       {
         onSuccess: () => {
@@ -128,6 +153,7 @@ function TipDialogInner({
               l`Tip sent: ${formatUnits(amount, asset.decimals)} ${asset.symbol}`,
               {type: 'success'},
             )
+            onSent?.({amount, asset, anonymous: allowAnonymous && anonymous})
           })
         },
       },
@@ -257,6 +283,28 @@ function TipDialogInner({
               />
             </TextField.Root>
           </View>
+
+          {allowAnonymous && (
+            <View style={[a.gap_xs]}>
+              <Toggle.Item
+                name="tip_anonymously"
+                label={l`Tip anonymously`}
+                value={anonymous}
+                onChange={setAnonymous}
+                style={[a.w_full]}>
+                <Toggle.LabelText style={[a.flex_1]}>
+                  <Trans>Tip anonymously</Trans>
+                </Toggle.LabelText>
+                <Toggle.Platform />
+              </Toggle.Item>
+              <Text style={[a.text_xs, t.atoms.text_contrast_medium]}>
+                <Trans>
+                  Your name is hidden from their top supporters. The transfer
+                  itself is still public on the blockchain.
+                </Trans>
+              </Text>
+            </View>
+          )}
 
           <View style={[a.gap_xs]}>
             <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>

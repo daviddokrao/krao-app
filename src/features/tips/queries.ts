@@ -1,12 +1,18 @@
 import {TID} from '@atproto/common-web'
 import {toDatetimeString} from '@atproto/syntax'
-import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
+import {
+  type QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 
 import {createBatchLoader} from '#/lib/batchLoader'
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
 import {usePdsClient, useSession} from '#/state/session'
 import {KRAO_INDEXER_URL} from '#/env'
+import {TOP_SUPPORTERS_KEY} from '#/features/creator/queries'
 import {getChainProfile} from '#/features/wallet/api'
 import {connectEvmWallet} from '#/features/wallet/evm'
 import {createChainProfileQueryKey} from '#/features/wallet/queries'
@@ -109,6 +115,50 @@ export class UnlinkedTipWalletError extends Error {}
 /** The transfer went through but its record could not be written yet */
 export class TipNotRecordedError extends Error {}
 
+/**
+ * Send `amount` of `asset` from the connected wallet to `to` on Base. The
+ * indexer only credits payments sent from one of the sender's verified
+ * wallets, so this checks before any money moves. Shared by tips and
+ * memberships.
+ */
+export async function transferFromLinkedWallet({
+  queryClient,
+  did,
+  asset,
+  to,
+  amount,
+}: {
+  queryClient: QueryClient
+  did: string
+  asset: TipAsset
+  to: string
+  amount: bigint
+}): Promise<{txHash: string; walletAddress: string}> {
+  const wallet = await connectEvmWallet()
+  const me = await queryClient.fetchQuery({
+    queryKey: createChainProfileQueryKey(did),
+    queryFn: () => getChainProfile(did),
+    staleTime: STALE.SECONDS.THIRTY,
+  })
+  const linked = me.wallets.some(
+    w =>
+      w.status === 'verified' &&
+      w.account.startsWith('eip155:') &&
+      w.account.split(':')[2]?.toLowerCase() === wallet.address.toLowerCase(),
+  )
+  if (!linked) throw new UnlinkedTipWalletError()
+  if (wallet.chainId !== TIP_CHAIN_ID) {
+    await wallet.switchChain(TIP_CHAIN_ID)
+  }
+  const txHash = asset.contract
+    ? await wallet.sendTransaction({
+        to: asset.contract,
+        data: erc20TransferData(to, amount),
+      })
+    : await wallet.sendTransaction({to, value: amount})
+  return {txHash, walletAddress: wallet.address}
+}
+
 const RECORD_RETRY_DELAYS_MS = [0, 1000, 3000]
 
 /**
@@ -164,6 +214,7 @@ export function useSendTipMutation() {
       asset,
       amount,
       message,
+      anonymous,
     }: {
       recipientDid: string
       recipientAddress: string
@@ -171,6 +222,8 @@ export function useSendTipMutation() {
       asset: TipAsset
       amount: bigint
       message?: string
+      /** Hide the tipper's name in the recipient's top supporters */
+      anonymous?: boolean
     }) => {
       if (!currentAccount) throw new Error('Not signed in')
       const writeTip = (rkey: string, record: PendingTipRecord) =>
@@ -179,33 +232,13 @@ export function useSendTipMutation() {
       for (const {rkey, record} of pendingTipsFor(currentAccount.did)) {
         await writeTip(rkey, record).catch(() => {})
       }
-      const wallet = await connectEvmWallet()
-      /*
-       * The indexer only credits tips sent from one of the tipper's verified
-       * wallets, so check before any money moves
-       */
-      const me = await queryClient.fetchQuery({
-        queryKey: createChainProfileQueryKey(currentAccount.did),
-        queryFn: () => getChainProfile(currentAccount.did),
-        staleTime: STALE.SECONDS.THIRTY,
+      const {txHash, walletAddress} = await transferFromLinkedWallet({
+        queryClient,
+        did: currentAccount.did,
+        asset,
+        to: recipientAddress,
+        amount,
       })
-      const linked = me.wallets.some(
-        w =>
-          w.status === 'verified' &&
-          w.account.startsWith('eip155:') &&
-          w.account.split(':')[2]?.toLowerCase() ===
-            wallet.address.toLowerCase(),
-      )
-      if (!linked) throw new UnlinkedTipWalletError()
-      if (wallet.chainId !== TIP_CHAIN_ID) {
-        await wallet.switchChain(TIP_CHAIN_ID)
-      }
-      const txHash = asset.contract
-        ? await wallet.sendTransaction({
-            to: asset.contract,
-            data: erc20TransferData(recipientAddress, amount),
-          })
-        : await wallet.sendTransaction({to: recipientAddress, value: amount})
 
       const record: PendingTipRecord = {
         recipient: recipientDid as `did:${string}:${string}`,
@@ -213,9 +246,10 @@ export function useSendTipMutation() {
         asset: asset.id,
         amount: amount.toString(),
         txHash,
-        from: evmAccountId(TIP_CHAIN_ID, wallet.address),
+        from: evmAccountId(TIP_CHAIN_ID, walletAddress),
         to: evmAccountId(TIP_CHAIN_ID, recipientAddress),
         message: message || undefined,
+        anonymous: anonymous || undefined,
         createdAt: toDatetimeString(new Date()),
       }
       // The money has moved: keep the record until it is written
@@ -241,6 +275,7 @@ export function useSendTipMutation() {
        */
       const queryKeys = [
         createChainProfileQueryKey(recipientDid),
+        [TOP_SUPPORTERS_KEY],
         ...(currentAccount
           ? [createChainProfileQueryKey(currentAccount.did)]
           : []),

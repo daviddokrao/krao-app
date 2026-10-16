@@ -3,6 +3,7 @@ import {type SessionRecord} from '#/analytics/identifiers/session'
 import {type StoredChecklist} from '#/features/checklist/steps'
 import {type Gif} from '#/features/gifPicker/types'
 import {type InviteThemeKey} from '#/features/inviteFriends/themes'
+import {type PaymentRecord} from '#/features/membership/logic'
 import {type PendingTipRecord} from '#/features/tips/pendingTips'
 import {type Geolocation} from '#/geolocation/types'
 
@@ -100,6 +101,8 @@ export type Device = {
   }
   /** Krao: tips whose transfer was sent but whose record is not written yet */
   kraoPendingTips?: {did: string; rkey: string; record: PendingTipRecord}[]
+  /** Krao: membership payments sent but not recorded yet */
+  kraoPendingPayments?: {did: string; rkey: string; record: PaymentRecord}[]
 }
 
 export type Account = {

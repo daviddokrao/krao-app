@@ -10,6 +10,7 @@ export type PendingTipRecord = {
   from: string
   to: string
   message?: string
+  anonymous?: boolean
   createdAt: string
 }
 
