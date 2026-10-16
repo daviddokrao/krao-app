@@ -34,6 +34,7 @@ import {DataUnavailableScreen} from '#/ageAssurance/components/DataUnavailableSc
 import {NoAccessScreen} from '#/ageAssurance/components/NoAccessScreen'
 import {RedirectOverlay} from '#/ageAssurance/components/RedirectOverlay'
 import {PassiveAnalytics} from '#/analytics/PassiveAnalytics'
+import {ComplianceHost} from '#/features/compliance/ComplianceHost'
 import {FlatNavigator, RoutesContainer} from '#/Navigation'
 import {Composer} from './Composer'
 import {DrawerContent} from './Drawer'
@@ -73,6 +74,7 @@ function ShellInner() {
       <Lightbox />
       <NuxDialogs />
       <GlobalReportDialog />
+      <ComplianceHost />
 
       {welcomeModalControl.isOpen && (
         <WelcomeModal control={welcomeModalControl} />

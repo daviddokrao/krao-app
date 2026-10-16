@@ -145,6 +145,8 @@ import {
   IS_WEB_SAFARI,
   KRAO_GIF_SEARCH,
 } from '#/env'
+import {openPhoneVerification} from '#/features/compliance/events'
+import {isPhoneVerificationRequired} from '#/features/compliance/phone'
 import {type Gif} from '#/features/gifPicker/types'
 import {app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
@@ -1146,6 +1148,10 @@ export const ComposePost = ({
         err = l`We're sorry! The post you are replying to has been deleted.`
       } else if (e instanceof EmbeddingDisabledError) {
         err = l`This post's author has disabled quote posts.`
+      } else if (isPhoneVerificationRequired(e)) {
+        // Krao: posting needs a verified phone number
+        err = l`Verify your phone number to post.`
+        openPhoneVerification('post')
       }
       setError(err)
       setIsPublishing(false)

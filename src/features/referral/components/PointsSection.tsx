@@ -17,6 +17,7 @@ import {
   usePointsBalanceQuery,
   useStartKycMutation,
 } from '../queries'
+import {PointsNote} from './PointsNote'
 
 /**
  * The viewer's Krao points (pending and approved) and identity verification,
@@ -55,10 +56,12 @@ export function PointsSection() {
         <Text style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
           <Trans>
             Points from referrals are pending until both you and the other
-            person have verified your identity. Points are not money; Krao may
-            let you convert them to tokens later.
+            person have verified your identity.
           </Trans>
         </Text>
+      </SettingsList.Item>
+      <SettingsList.Item>
+        <PointsNote />
       </SettingsList.Item>
       <KycRow />
     </>

@@ -80,6 +80,8 @@ export type CommonNavigatorParams = {
   WalletsSettings: undefined
   ReferralSettings: undefined
   RewardsAdmin: undefined
+  GateModeration: undefined
+  PhoneSettings: undefined
   Join: {code: string}
   AppIconSettings: undefined
   FindContactsSettings: undefined

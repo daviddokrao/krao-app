@@ -41,6 +41,8 @@ import {
   parseConvoView,
 } from '#/components/dms/util'
 import {IS_NATIVE} from '#/env'
+import {openPhoneVerification} from '#/features/compliance/events'
+import {isPhoneVerificationRequired} from '#/features/compliance/phone'
 import {type app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 
@@ -1198,6 +1200,11 @@ export class Convo {
         this.pendingMessageFailure = 'recoverable'
       } else {
         this.pendingMessageFailure = 'unrecoverable'
+
+        // Krao: chat needs a verified phone number
+        if (isPhoneVerificationRequired(e)) {
+          openPhoneVerification('chat')
+        }
 
         switch (e.message) {
           case 'block between recipient and sender':

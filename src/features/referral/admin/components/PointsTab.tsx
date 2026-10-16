@@ -8,6 +8,7 @@ import {Button, ButtonText} from '#/components/Button'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
+import {PointsNote} from '../../components/PointsNote'
 import {useAdjustPointsMutation, useRevokePointsMutation} from '../queries'
 import {Field} from './CodesTab'
 import {useResolveAccount} from './shared'
@@ -16,6 +17,7 @@ import {useResolveAccount} from './shared'
 export function PointsTab() {
   return (
     <View style={[a.gap_lg]}>
+      <PointsNote />
       <AdjustForm />
       <RevokeForm />
     </View>

@@ -144,6 +144,8 @@ import {
 import {useAnalytics} from '#/analytics'
 import {setNavigationMetadata} from '#/analytics/metadata'
 import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB, KRAO_WEB_URL} from '#/env'
+import {GateModerationScreen} from '#/features/compliance/moderation/GateModerationScreen'
+import {PhoneScreen} from '#/features/compliance/PhoneScreen'
 import {HomeScreen} from '#/features/followingV2/home'
 import {InviteScannerScreen} from '#/features/inviteFriends'
 import {RewardsAdminScreen} from '#/features/referral/admin/RewardsAdminScreen'
@@ -529,6 +531,22 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => RewardsAdminScreen}
         options={{
           title: title(msg`Referral admin`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="GateModeration"
+        getComponent={() => GateModerationScreen}
+        options={{
+          title: title(msg`View gated content`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="PhoneSettings"
+        getComponent={() => PhoneScreen}
+        options={{
+          title: title(msg`Phone number`),
           requireAuth: true,
         }}
       />

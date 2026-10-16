@@ -90,6 +90,8 @@ export type Device = {
   }
   /** Krao: the referral code from the last krao.net/join/<code> link */
   kraoPendingReferralCode?: {code: string; savedAt: number}
+  /** Krao: the consent given at sign-up, until it is recorded for the account */
+  kraoPendingConsent?: {version: string; items: string[]; savedAt: number}
   /** Krao: tips whose transfer was sent but whose record is not written yet */
   kraoPendingTips?: {did: string; rkey: string; record: PendingTipRecord}[]
 }
