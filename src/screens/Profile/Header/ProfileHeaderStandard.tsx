@@ -37,6 +37,7 @@ import {RichText} from '#/components/RichText'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
+import {ProfileCreatorSection} from '#/features/creator/components/ProfileCreatorSection'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
 import {ProfileTipButton} from '#/features/tips/components/ProfileTipButton'
@@ -177,6 +178,11 @@ let ProfileHeaderStandard = ({
                     />
                   </View>
                 )}
+
+              <ProfileCreatorSection
+                did={profile.did}
+                handle={profile.handle}
+              />
             </View>
           )}
 

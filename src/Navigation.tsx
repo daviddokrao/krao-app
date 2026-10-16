@@ -152,8 +152,13 @@ import {
 import {CommunityScreen} from '#/features/community/CommunityScreen'
 import {GateModerationScreen} from '#/features/compliance/moderation/GateModerationScreen'
 import {PhoneScreen} from '#/features/compliance/PhoneScreen'
+import {CreatorDashboardScreen} from '#/features/creator/CreatorDashboardScreen'
 import {HomeScreen} from '#/features/followingV2/home'
 import {InviteScannerScreen} from '#/features/inviteFriends'
+import {MembershipOfferScreen} from '#/features/membership/MembershipOfferScreen'
+import {MembershipSettingsScreen} from '#/features/membership/MembershipSettingsScreen'
+import {MembersScreen} from '#/features/membership/MembersScreen'
+import {MyMembershipsScreen} from '#/features/membership/MyMembershipsScreen'
 import {RewardsAdminScreen} from '#/features/referral/admin/RewardsAdminScreen'
 import {JoinScreen} from '#/features/referral/JoinScreen'
 import {ReferralScreen} from '#/features/referral/ReferralScreen'
@@ -302,6 +307,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => ProfileFollowsScreen}
         options={({route}) => ({
           title: title(msg`People followed by @${route.params.name}`),
+        })}
+      />
+      <Stack.Screen
+        name="ProfileMembership"
+        getComponent={() => MembershipOfferScreen}
+        options={({route}) => ({
+          title: title(msg`Membership of @${route.params.name}`),
+          requireAuth: true,
         })}
       />
       <Stack.Screen
@@ -582,6 +595,38 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => ReferralScreen}
         options={{
           title: title(msg`Invite friends`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MembershipSettings"
+        getComponent={() => MembershipSettingsScreen}
+        options={{
+          title: title(msg`Membership`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MembershipMembers"
+        getComponent={() => MembersScreen}
+        options={{
+          title: title(msg`Members`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MyMemberships"
+        getComponent={() => MyMembershipsScreen}
+        options={{
+          title: title(msg`My memberships`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="CreatorDashboard"
+        getComponent={() => CreatorDashboardScreen}
+        options={{
+          title: title(msg`Creator dashboard`),
           requireAuth: true,
         }}
       />

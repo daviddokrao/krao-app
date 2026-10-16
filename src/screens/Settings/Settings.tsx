@@ -49,6 +49,8 @@ import {Contacts_Stroke2_Corner2_Rounded as ContactsIcon} from '#/components/ico
 import {DotGrid3x1_Stroke2_Corner0_Rounded as DotsHorizontal} from '#/components/icons/DotGrid'
 import {Gift1_Stroke2_Corner0_Rounded as GiftIcon} from '#/components/icons/Gift1'
 import {Earth_Stroke2_Corner2_Rounded as EarthIcon} from '#/components/icons/Globe'
+import {Growth_Stroke2_Corner0_Rounded as GrowthIcon} from '#/components/icons/Growth'
+import {Heart2_Stroke2_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PaintRoller_Stroke2_Corner2_Rounded as PaintRollerIcon} from '#/components/icons/PaintRoller'
 import {
@@ -58,6 +60,7 @@ import {
   PersonX_Stroke2_Corner0_Rounded as PersonXIcon,
 } from '#/components/icons/Person'
 import {RaisingHand4Finger_Stroke2_Corner2_Rounded as HandIcon} from '#/components/icons/RaisingHand'
+import {Star_Stroke2_Corner0_Rounded as StarIcon} from '#/components/icons/Star'
 import {Window_Stroke2_Corner2_Rounded as WindowIcon} from '#/components/icons/Window'
 import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
@@ -194,6 +197,30 @@ export function SettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={GiftIcon} />
             <SettingsList.ItemText>
               <Trans>Invite friends</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem
+            to="/settings/membership"
+            label={l`Membership`}>
+            <SettingsList.ItemIcon icon={StarIcon} />
+            <SettingsList.ItemText>
+              <Trans>Membership</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem
+            to="/settings/memberships"
+            label={l`My memberships`}>
+            <SettingsList.ItemIcon icon={HeartIcon} />
+            <SettingsList.ItemText>
+              <Trans>My memberships</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.LinkItem>
+          <SettingsList.LinkItem
+            to="/settings/creator-dashboard"
+            label={l`Creator dashboard`}>
+            <SettingsList.ItemIcon icon={GrowthIcon} />
+            <SettingsList.ItemText>
+              <Trans>Creator dashboard</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.LinkItem

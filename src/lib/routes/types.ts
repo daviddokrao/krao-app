@@ -40,6 +40,7 @@ export type CommonNavigatorParams = {
   Profile: {name: string; hideBackButton?: boolean}
   ProfileFollowers: {name: string}
   ProfileFollows: {name: string}
+  ProfileMembership: {name: string}
   ProfileKnownFollowers: {name: string}
   ProfileSearch: {name: string} & SearchParams
   ProfileList: {name: string; rkey: string}
@@ -83,6 +84,10 @@ export type CommonNavigatorParams = {
   AboutSettings: undefined
   WalletsSettings: undefined
   ReferralSettings: undefined
+  MembershipSettings: undefined
+  MembershipMembers: undefined
+  MyMemberships: undefined
+  CreatorDashboard: undefined
   RewardsAdmin: undefined
   GateModeration: undefined
   PhoneSettings: undefined
