@@ -187,6 +187,12 @@ export const KRAO_DISCOVER_FEED: string =
   'at://krao.net/app.bsky.feed.generator/popular'
 
 /**
+ * Krao's Vietnamese-language feed (at-uri; the owner may be a handle). When
+ * set, new accounts whose app language is Vietnamese get it pinned too.
+ */
+export const KRAO_VI_FEED: string = process.env.EXPO_PUBLIC_KRAO_VI_FEED || ''
+
+/**
  * Krao's moderation service (labeler), by DID or handle. It labels content
  * for everyone and receives reports and appeals. Unset, no app labeler is
  * used.
