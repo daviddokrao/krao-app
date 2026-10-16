@@ -62,31 +62,44 @@ function Checklist({did, handle}: {did: string; handle: string}) {
   // A failed chain lookup must not hide the card for good
   const chainReady = !chain.isLoading
   const dismissed = !!stored?.dismissed
+  /*
+   * Krao's appview does not return createdAt until the account has a profile
+   * record, so fall back to when it was first indexed, then to when this
+   * device first saw it as new
+   */
+  const createdAt = profile.data?.createdAt ?? profile.data?.indexedAt
+  const newAccount = isNewAccount({
+    createdAt,
+    since: stored?.since,
+    postsCount: profile.data?.postsCount,
+    followsCount: profile.data?.followsCount,
+  })
   const show = shouldShowChecklist({
     ready: profileReady && chainReady,
     dismissed,
-    /*
-     * Krao's appview does not return createdAt (it comes from the profile
-     * record), so fall back to when the account was first indexed
-     */
-    newAccount: isNewAccount({
-      createdAt: profile.data?.createdAt ?? profile.data?.indexedAt,
-      postsCount: profile.data?.postsCount,
-      followsCount: profile.data?.followsCount,
-    }),
+    newAccount,
     done,
   })
 
-  // Remember steps once they are done, so they stay ticked
+  /*
+   * Remember steps once they are done, so they stay ticked, and when the
+   * account was first seen as new, so the card outlives its first follows
+   */
   const doneKey = done.join(',')
   const storedKey = (stored?.done ?? []).join(',')
+  const needsSince = !createdAt && newAccount && stored?.since === undefined
   useEffect(() => {
-    if (profileReady && chainReady && doneKey !== storedKey) {
-      setStored({...stored, done})
+    if (!profileReady || !chainReady) return
+    if (doneKey !== storedKey || needsSince) {
+      setStored({
+        ...stored,
+        done,
+        ...(needsSince ? {since: Date.now()} : {}),
+      })
     }
     // setStored/stored/done change every render; the keys carry the content
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profileReady, chainReady, doneKey, storedKey])
+  }, [profileReady, chainReady, doneKey, storedKey, needsSince])
 
   if (!show) return null
 

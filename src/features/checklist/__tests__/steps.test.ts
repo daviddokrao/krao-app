@@ -131,6 +131,20 @@ describe('isNewAccount', () => {
       false,
     )
   })
+
+  it('without a date, counts from when this device first saw it as new', () => {
+    const since = (n: number) => now - n * 86400e3
+    expect(
+      isNewAccount({since: since(2), postsCount: 1, followsCount: 5}, now),
+    ).toBe(true)
+    expect(
+      isNewAccount({since: since(NEW_ACCOUNT_DAYS), followsCount: 5}, now),
+    ).toBe(false)
+    // A real creation date wins over the device's own date
+    expect(isNewAccount({createdAt: daysAgo(400), since: since(1)}, now)).toBe(
+      false,
+    )
+  })
 })
 
 describe('shouldShowChecklist', () => {

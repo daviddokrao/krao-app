@@ -47,6 +47,12 @@ export type StoredChecklist = {
   /** Steps seen done before, so a step stays ticked (eg after an unfollow) */
   done?: ChecklistStepId[]
   dismissed?: boolean
+  /**
+   * When this device first saw the account as new, in ms. Stands in for the
+   * creation date when the appview has none, so the card stays once the user
+   * starts on the steps.
+   */
+  since?: number
 }
 
 const VALID_STEPS = new Set<string>(CHECKLIST_STEPS)
@@ -65,22 +71,32 @@ export function mergeDone(
 }
 
 /**
- * Whether the account counts as new: under 30 days old when its creation date
- * is known. Krao's appview only has a date once the account has a profile
- * record; an account with none and no posts or follows yet has done nothing
- * on Krao, so it is treated as new too.
+ * Whether the account counts as new: under 30 days old, counted from its
+ * creation date or else from when this device first saw it as new (`since`).
+ * Krao's appview only has a creation date once the account has a profile
+ * record; an account with neither date and no posts or follows yet has done
+ * nothing on Krao, so it is new too.
  */
 export function isNewAccount(
   {
     createdAt,
+    since,
     postsCount = 0,
     followsCount = 0,
-  }: {createdAt?: string; postsCount?: number; followsCount?: number},
+  }: {
+    createdAt?: string
+    since?: number
+    postsCount?: number
+    followsCount?: number
+  },
   now: number = Date.now(),
 ): boolean {
   const created = createdAt ? Date.parse(createdAt) : NaN
-  if (Number.isNaN(created)) return postsCount === 0 && followsCount === 0
-  return now - created < NEW_ACCOUNT_DAYS * 24 * 60 * 60 * 1000
+  const start = Number.isNaN(created) ? since : created
+  if (start === undefined || Number.isNaN(start)) {
+    return postsCount === 0 && followsCount === 0
+  }
+  return now - start < NEW_ACCOUNT_DAYS * 24 * 60 * 60 * 1000
 }
 
 export function isChecklistComplete(done: ChecklistStepId[]): boolean {
