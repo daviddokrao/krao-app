@@ -1,5 +1,6 @@
 import {type ID as PolicyUpdate202508} from '#/components/PolicyUpdateOverlay/updates/202508/config'
 import {type SessionRecord} from '#/analytics/identifiers/session'
+import {type StoredChecklist} from '#/features/checklist/steps'
 import {type Gif} from '#/features/gifPicker/types'
 import {type InviteThemeKey} from '#/features/inviteFriends/themes'
 import {type PendingTipRecord} from '#/features/tips/pendingTips'
@@ -140,4 +141,7 @@ export type Account = {
    * labeler headers.
    */
   labelers?: string[]
+
+  /** Krao: progress of the new-user checklist, and whether it was closed */
+  kraoChecklist?: StoredChecklist
 }

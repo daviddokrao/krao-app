@@ -67,6 +67,7 @@ import {isStandardSiteEmbed} from '#/components/Post/Embed/StandardSiteEmbed/uti
 import {RichText} from '#/components/RichText'
 import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE, IS_WEB} from '#/env'
+import {NewUserChecklist} from '#/features/checklist/NewUserChecklist'
 import {isFollowingV2Eligible} from '#/features/followingV2/eligibility'
 import {DiscoverFeedLiveEventFeedsAndTrendingBanner} from '#/features/liveEvents/components/DiscoverFeedLiveEventFeedsAndTrendingBanner'
 import {
@@ -1448,7 +1449,11 @@ let PostFeed = ({
           keyExtractor={(item: FeedRow) => item.key}
           renderItem={renderItem}
           ListFooterComponent={FeedFooter}
-          ListHeaderComponent={ListHeaderComponent}
+          // Krao: first steps for new accounts at the top of Following
+          ListHeaderComponent={
+            ListHeaderComponent ??
+            (feed === 'following' ? NewUserChecklist : undefined)
+          }
           refreshing={isPTRing}
           onRefresh={() => void onRefresh()}
           headerOffset={headerOffset}
