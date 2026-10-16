@@ -135,7 +135,11 @@ function RuleCard({rule}: {rule: Rule}) {
           {rule.id} · v{rule.version} ·{' '}
           {rule.event === 'account.created'
             ? l`on sign-up`
-            : l`on identity verification`}{' '}
+            : rule.event === 'wallet.linked'
+              ? l`on the first linked wallet`
+              : rule.event === 'post.first'
+                ? l`on the first post`
+                : l`on identity verification`}{' '}
           · {l`to ${who[rule.beneficiary]}`}
           {rule.vesting.length ? ` · ${l`approved after KYC`}` : ''}
           {rule.campaignId ? ` · ${l`campaign ${rule.campaignId}`}` : ''}

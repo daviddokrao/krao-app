@@ -48,7 +48,7 @@ export type Rule = {
   version: number
   enabled: boolean
   description?: string
-  event: 'account.created' | 'kyc.approved'
+  event: 'account.created' | 'kyc.approved' | 'wallet.linked' | 'post.first'
   beneficiary: 'actor' | 'referrer'
   amount: number
   vesting: ('kyc:self' | 'kyc:related')[]

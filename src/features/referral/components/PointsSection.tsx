@@ -56,8 +56,8 @@ export function PointsSection() {
       <SettingsList.Item>
         <Text style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
           <Trans>
-            Points from referrals are pending until both you and the other
-            person have verified your identity.
+            Points are pending until you verify your identity. Points from
+            referrals also wait for the other person to verify theirs.
           </Trans>
         </Text>
       </SettingsList.Item>

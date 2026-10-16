@@ -15,8 +15,10 @@ export function usePointsEntryLabel() {
   const labels: Record<PointsEvent, string> = {
     'referral.inviter': l`A friend joined with your code`,
     'referral.invitee': l`You joined with a referral code`,
-    'wallet.linked': l`Linked a wallet`,
-    'post.first': l`Posted for the first time`,
+    'growth.wallet-linked': l`Linked a wallet`,
+    'growth.wallet-linked.referrer': l`Someone you invited linked a wallet`,
+    'growth.first-post': l`Posted for the first time`,
+    'growth.first-post.referrer': l`Someone you invited posted for the first time`,
   }
   return (entry: Pick<PointsEntry, 'event' | 'ruleId' | 'note'>) => {
     const event = matchPointsEvent(entry.event, entry.ruleId)
