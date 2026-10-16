@@ -21,6 +21,7 @@ import {Text} from '#/components/Typography'
 import {useIsGateModeratorQuery} from '../compliance/moderation/queries'
 import {useRewardsRolesQuery} from './admin/queries'
 import {getReferralUrl, type Referral} from './api'
+import {PointsHistory} from './components/PointsHistory'
 import {PointsSection, ReferralCounts} from './components/PointsSection'
 import {ReferralQr} from './components/ReferralQr'
 import {useReferralOverviewQuery, useReferralsQuery} from './queries'
@@ -156,6 +157,9 @@ export function ReferralScreen({}: Props) {
 
           <SettingsList.Divider />
           <PointsSection />
+
+          <SettingsList.Divider />
+          <PointsHistory />
 
           <SettingsList.Divider />
           <ReferralList />

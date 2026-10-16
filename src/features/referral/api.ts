@@ -31,6 +31,8 @@ export type PointsEntry = {
   amount: number
   status: 'pending' | 'approved' | 'void'
   ruleId?: string
+  /** The event the points are for (eg wallet.linked), when the service reports it */
+  event?: string
   relatedDid?: string
   waitingFor: ('kyc:self' | 'kyc:related')[]
   note?: string
