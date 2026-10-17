@@ -165,6 +165,7 @@ export function AuditLogScreen({}: Props) {
 
 function Entry({entry, first}: {entry: AuditEntry; first: boolean}) {
   const t = useTheme()
+  const {t: l} = useLingui()
   const formatDate = useFormatDate()
   const serviceText = useServiceText()
   const known = auditService(entry)
@@ -195,7 +196,7 @@ function Entry({entry, first}: {entry: AuditEntry; first: boolean}) {
           <AccountName did={entry.actor} />
         ) : (
           <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
-            {entry.actor}
+            {entry.actor === 'system' ? l`Automatic` : entry.actor}
           </Text>
         )}
       </View>
