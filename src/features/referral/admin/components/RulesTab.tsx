@@ -9,6 +9,8 @@ import * as Toggle from '#/components/forms/Toggle'
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
+import {RewardsError} from '../../api'
+import {PointsNote} from '../../components/PointsNote'
 import {type Rule, useRulesQuery, useUpsertRuleMutation} from '../queries'
 import {Field} from './CodesTab'
 import {EmptyRow} from './shared'
@@ -37,6 +39,7 @@ export function RulesTab() {
           rule version that gave them.
         </Trans>
       </Admonition.Admonition>
+      <PointsNote />
       {data.map(rule => (
         <RuleCard key={`${rule.id}:${rule.version}`} rule={rule} />
       ))}
@@ -62,7 +65,6 @@ function RuleCard({rule}: {rule: Rule}) {
   const who: Record<Rule['beneficiary'], string> = {
     actor: l`the new account`,
     referrer: l`the referrer`,
-    referrer2: l`the referrer’s referrer`,
   }
 
   const optionalInt = (value: string) => {
@@ -106,7 +108,12 @@ function RuleCard({rule}: {rule: Rule}) {
       {
         onSuccess: saved =>
           Toast.show(l`Saved as version ${saved.version}`, {type: 'success'}),
-        onError: err => setError(err.message),
+        onError: err =>
+          setError(
+            err instanceof RewardsError && err.error === 'MultiLevelReferral'
+              ? l`Referral rewards go to one level only: the new account or its referrer.`
+              : err.message,
+          ),
       },
     )
   }
@@ -128,7 +135,15 @@ function RuleCard({rule}: {rule: Rule}) {
           {rule.id} · v{rule.version} ·{' '}
           {rule.event === 'account.created'
             ? l`on sign-up`
-            : l`on identity verification`}{' '}
+            : rule.event === 'wallet.linked'
+              ? l`on the first linked wallet`
+              : rule.event === 'post.first'
+                ? l`on the first post`
+                : rule.event === 'community.joined'
+                  ? l`on joining the first community`
+                  : rule.event === 'active.30d'
+                    ? l`on 20 active days in the first month`
+                    : l`on identity verification`}{' '}
           · {l`to ${who[rule.beneficiary]}`}
           {rule.vesting.length ? ` · ${l`approved after KYC`}` : ''}
           {rule.campaignId ? ` · ${l`campaign ${rule.campaignId}`}` : ''}

@@ -14,7 +14,7 @@ export function useWalletSignInMutation() {
   const {loginWithWalletSession} = useSessionApi()
   return useMutation({
     mutationFn: async ({service}: {service: string}) => {
-      const wallet = await connectEvmWallet()
+      const wallet = await connectEvmWallet({fresh: true})
       const account = evmAccountId(wallet.chainId, wallet.address)
       const {message} = await getWalletChallenge(service, account)
       const signature = await wallet.signMessage(message)

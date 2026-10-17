@@ -48,8 +48,14 @@ export type Rule = {
   version: number
   enabled: boolean
   description?: string
-  event: 'account.created' | 'kyc.approved'
-  beneficiary: 'actor' | 'referrer' | 'referrer2'
+  event:
+    | 'account.created'
+    | 'kyc.approved'
+    | 'wallet.linked'
+    | 'post.first'
+    | 'community.joined'
+    | 'active.30d'
+  beneficiary: 'actor' | 'referrer'
   amount: number
   vesting: ('kyc:self' | 'kyc:related')[]
   codeKinds?: CodeKind[]

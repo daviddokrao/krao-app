@@ -90,6 +90,8 @@ export type Events = {
       | 'home'
       | 'search'
       | 'atmosphere'
+      | 'communities'
+      | 'miniapps'
       | 'chat'
       | 'notifications'
       | 'profile'

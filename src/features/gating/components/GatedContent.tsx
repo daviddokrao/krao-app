@@ -9,9 +9,14 @@ import {Button, ButtonText} from '#/components/Button'
 import {InlineLinkText} from '#/components/Link'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
-import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {communityPath} from '#/features/community/logic'
+import {CAN_CONNECT_WALLET} from '#/features/wallet/mode'
 import {useChainProfileQuery} from '#/features/wallet/queries'
-import {useDescribeRule} from '../describe'
+import {
+  getMembershipOnlyCommunity,
+  getMembershipOnlyCreator,
+  useGateHeading,
+} from '../describe'
 import {
   type GatedMedia,
   GateError,
@@ -28,19 +33,21 @@ export function GatedContent({uri}: {uri: string}) {
   const t = useTheme()
   const {t: l} = useLingui()
   const {hasSession, currentAccount} = useSession()
-  const describeRule = useDescribeRule()
+  const gateHeading = useGateHeading()
   const {data: rule} = useGateRuleQuery(uri)
   const content = useGatedContentQuery(uri, !!rule?.hasContent)
   const {data: myChainProfile} = useChainProfileQuery(
     rule?.hasContent ? currentAccount?.did : undefined,
   )
   const hasWallet = !!myChainProfile?.wallets.some(w => w.status === 'verified')
-  // Wallets are linked from the web for now (no WalletConnect on native)
-  const canLinkHere = IS_WEB || KRAO_DEV_WALLET
+  // Native needs WalletConnect (a project ID) to reach a wallet app
+  const canLinkHere = CAN_CONNECT_WALLET
 
   if (!rule?.hasContent) return null
 
-  const requirementText = describeRule(rule)
+  const heading = gateHeading(rule)
+  const communityUri = getMembershipOnlyCommunity(rule)
+  const creatorDid = getMembershipOnlyCreator(rule)
   const notEligible =
     content.error instanceof GateError && content.error.error === 'NotEligible'
 
@@ -58,10 +65,10 @@ export function GatedContent({uri}: {uri: string}) {
       ]}>
       <Text
         // The label leaves the emoji out: screen readers would read it aloud
-        accessibilityLabel={l`Token-gated · holders of ${requirementText}`}
+        accessibilityLabel={heading}
         accessibilityHint=""
         style={[a.text_sm, a.font_semi_bold, {color: t.palette.primary_700}]}>
-        🔒 <Trans>Token-gated · holders of {requirementText}</Trans>
+        🔒 {heading}
       </Text>
       {!hasSession ? (
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
@@ -84,6 +91,28 @@ export function GatedContent({uri}: {uri: string}) {
             ),
           )}
         </>
+      ) : notEligible && creatorDid ? (
+        <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
+          <Trans>
+            Only members can read this.{' '}
+            <InlineLinkText
+              to={`/profile/${creatorDid}/membership`}
+              label={l`See the membership offer`}>
+              See the membership offer
+            </InlineLinkText>
+          </Trans>
+        </Text>
+      ) : notEligible && communityUri ? (
+        <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
+          <Trans>
+            Only members of the community can read this.{' '}
+            <InlineLinkText
+              to={communityPath(communityUri)}
+              label={l`Open the community`}>
+              Open the community
+            </InlineLinkText>
+          </Trans>
+        </Text>
       ) : notEligible && !canLinkHere ? (
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           {hasWallet ? (

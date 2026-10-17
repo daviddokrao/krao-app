@@ -8,6 +8,7 @@ import * as Admonition from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {Gift1_Stroke2_Corner0_Rounded as GiftIcon} from '#/components/icons/Gift1'
 import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldCheckIcon} from '#/components/icons/Shield'
+import {Star_Stroke2_Corner0_Rounded as StarIcon} from '#/components/icons/Star'
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
@@ -17,6 +18,7 @@ import {
   usePointsBalanceQuery,
   useStartKycMutation,
 } from '../queries'
+import {PointsNote} from './PointsNote'
 
 /**
  * The viewer's Krao points (pending and approved) and identity verification,
@@ -24,7 +26,7 @@ import {
  */
 export function PointsSection() {
   const t = useTheme()
-  const {i18n} = useLingui()
+  const {t: l, i18n} = useLingui()
   const balance = usePointsBalanceQuery()
 
   return (
@@ -54,13 +56,23 @@ export function PointsSection() {
       <SettingsList.Item>
         <Text style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
           <Trans>
-            Points from referrals are pending until both you and the other
-            person have verified your identity. Points are not money; Krao may
-            let you convert them to tokens later.
+            Points are pending until you verify your identity. Points from
+            referrals also wait for the other person to verify theirs.
           </Trans>
         </Text>
       </SettingsList.Item>
+      <SettingsList.Item>
+        <PointsNote />
+      </SettingsList.Item>
       <KycRow />
+      <SettingsList.LinkItem
+        to="/settings/leaderboard"
+        label={l`Weekly leaderboard`}>
+        <SettingsList.ItemIcon icon={StarIcon} />
+        <SettingsList.ItemText>
+          <Trans>Weekly leaderboard</Trans>
+        </SettingsList.ItemText>
+      </SettingsList.LinkItem>
     </>
   )
 }

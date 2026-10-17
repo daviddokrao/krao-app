@@ -59,6 +59,21 @@ interface PostOpts {
    * PDS, never the appview.
    */
   pdsClient: Client
+  /**
+   * Krao: extra records written in the same commit as the first post (its
+   * community submission, poll, members-only gate). Given the post's uri, cid
+   * and rkey. Throwing stops the post from being published.
+   */
+  extraWrites?: (post: {
+    uri: string
+    cid: string
+    rkey: string
+  }) => Promise<com.atproto.repo.applyWrites.$InputBody['writes']>
+  /**
+   * Krao: the embed of the first post when it has none of its own (a Mini
+   * App). Never replaces an embed the draft already has.
+   */
+  extraEmbed?: () => unknown
 }
 
 export async function post(queryClient: QueryClient, opts: PostOpts) {
@@ -117,7 +132,11 @@ export async function post(queryClient: QueryClient, opts: PostOpts) {
     uris.push(uri)
 
     const rt = await rtPromise
-    const embed = await embedPromise
+    const embed =
+      (await embedPromise) ??
+      (i === 0
+        ? (opts.extraEmbed?.() as app.bsky.feed.post.Main['embed'])
+        : undefined)
     const reply = await replyPromise
     const record: app.bsky.feed.post.Main = {
       // IMPORTANT: $type has to exist, CID is calculated with the `$type` field
@@ -172,6 +191,9 @@ export async function post(queryClient: QueryClient, opts: PostOpts) {
     const ref = {
       cid: await computeCid(record),
       uri,
+    }
+    if (i === 0 && opts.extraWrites) {
+      writes.push(...(await opts.extraWrites({uri, cid: ref.cid, rkey})))
     }
     replyPromise = {
       root: reply?.root ?? ref,

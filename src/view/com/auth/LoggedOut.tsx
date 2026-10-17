@@ -23,6 +23,7 @@ import {atoms as a, native, tokens, useTheme} from '#/alf'
 import {Button, ButtonIcon} from '#/components/Button'
 import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
 import {useAnalytics} from '#/analytics'
+import {DeferredCodeCheck} from '#/features/referral/DeferredCodeCheck'
 import {app} from '#/lexicons'
 import {SplashScreen} from './SplashScreen'
 
@@ -158,6 +159,9 @@ export function LoggedOut({onDismiss}: {onDismiss?: () => void}) {
               ax.metric('splash:createAccountPressed', {})
             }}
           />
+        ) : undefined}
+        {screenState === ScreenState.S_LoginOrCreateAccount ? (
+          <DeferredCodeCheck />
         ) : undefined}
         {screenState === ScreenState.S_Login ? (
           <Login

@@ -9,6 +9,7 @@ import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a, useTheme} from '#/alf'
 import * as Admonition from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
+import * as Toggle from '#/components/forms/Toggle'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import * as Layout from '#/components/Layout'
 import {InlineLinkText} from '#/components/Link'
@@ -23,9 +24,11 @@ import {
   WalletRejectedError,
   WalletUnavailableError,
 } from '#/features/wallet/evm'
+import {CAN_CONNECT_WALLET} from '#/features/wallet/mode'
 import {
   useChainProfileQuery,
   useLinkWalletMutation,
+  useSetShowPrimaryNameMutation,
   useUnlinkWalletMutation,
 } from '#/features/wallet/queries'
 import {shortAddress} from '#/features/wallet/siwe'
@@ -50,12 +53,14 @@ export function WalletsSettingsScreen({}: Props) {
   const {currentAccount} = useSession()
   const {data, isLoading, isError} = useChainProfileQuery(currentAccount?.did)
   const link = useLinkWalletMutation()
-  const canConnect = IS_WEB || KRAO_DEV_WALLET
+  const canConnect = CAN_CONNECT_WALLET
 
   const linkError = !link.error
     ? null
     : link.error instanceof WalletUnavailableError
-      ? l`No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again.`
+      ? IS_WEB
+        ? l`No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again.`
+        : l`No wallet app was found on this phone. Install one such as MetaMask, Trust Wallet or Coinbase Wallet, then try again.`
       : link.error instanceof WalletRejectedError
         ? l`The request was cancelled in your wallet.`
         : l`Something went wrong linking the wallet. Please try again.`
@@ -160,6 +165,27 @@ export function WalletsSettingsScreen({}: Props) {
                 </Trans>
               </Admonition.Admonition>
             )}
+            {!IS_WEB && canConnect && !KRAO_DEV_WALLET && (
+              <Admonition.Admonition type="tip" style={[a.mt_md]}>
+                <Trans>
+                  New to wallets? A wallet is an app that holds your tokens and
+                  signs for you; Krao never sees its keys. Install one on this
+                  phone, such as{' '}
+                  <InlineLinkText
+                    to="https://metamask.io/download/"
+                    label={l`Get MetaMask`}>
+                    MetaMask
+                  </InlineLinkText>{' '}
+                  or{' '}
+                  <InlineLinkText
+                    to="https://www.coinbase.com/wallet/downloads"
+                    label={l`Get Coinbase Wallet`}>
+                    Coinbase Wallet
+                  </InlineLinkText>
+                  , then come back here and tap Link a wallet.
+                </Trans>
+              </Admonition.Admonition>
+            )}
             {linkError && (
               <Admonition.Admonition type="error" style={[a.mt_md]}>
                 {linkError}
@@ -174,6 +200,17 @@ export function WalletsSettingsScreen({}: Props) {
               </Admonition.Admonition>
             )}
           </SettingsList.Item>
+          {data &&
+            (data.primaryName ||
+              data.wallets.some(w => w.showPrimaryName === false)) && (
+              <>
+                <SettingsList.Divider />
+                <PrimaryNameToggle
+                  shown={!data.wallets.some(w => w.showPrimaryName === false)}
+                  name={data.primaryName?.name}
+                />
+              </>
+            )}
           {data && data.wallets.some(w => w.status === 'verified') && (
             <>
               <SettingsList.Divider />
@@ -241,6 +278,52 @@ function WalletRow({wallet}: {wallet: LinkedWallet}) {
           )
         }
       />
+    </SettingsList.Item>
+  )
+}
+
+/** Show or hide the verified Basename/ENS name under the handle */
+function PrimaryNameToggle({shown, name}: {shown: boolean; name?: string}) {
+  const t = useTheme()
+  const {t: l} = useLingui()
+  const setShow = useSetShowPrimaryNameMutation()
+  return (
+    <SettingsList.Item style={[a.flex_col, a.align_stretch, a.gap_sm]}>
+      <Toggle.Item
+        name="show_primary_name"
+        label={l`Show my Basename or ENS name on my profile`}
+        value={shown}
+        disabled={setShow.isPending}
+        onChange={show =>
+          setShow.mutate(
+            {show},
+            {
+              onError: () =>
+                Toast.show(l`Could not change this setting.`, {
+                  type: 'error',
+                }),
+            },
+          )
+        }
+        style={[a.w_full]}>
+        <Toggle.LabelText style={[a.flex_1]}>
+          <Trans>Show my Basename or ENS name on my profile</Trans>
+        </Toggle.LabelText>
+        <Toggle.Platform />
+      </Toggle.Item>
+      <Text style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
+        {name ? (
+          <Trans>
+            {name} points to a wallet linked to your account, so it can be shown
+            under your handle.
+          </Trans>
+        ) : (
+          <Trans>
+            A name that points to a wallet linked to your account can be shown
+            under your handle.
+          </Trans>
+        )}
+      </Text>
     </SettingsList.Item>
   )
 }

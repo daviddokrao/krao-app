@@ -17,7 +17,8 @@ import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {useApplyPullRequestOTAUpdate} from './useOTAUpdates'
 
-type IntentType = 'compose' | 'verify-email' | 'age-assurance' | 'apply-ota'
+type IntentType =
+  'compose' | 'verify-email' | 'age-assurance' | 'apply-ota' | 'wallet'
 
 const VALID_IMAGE_REGEX = /^[\w.:\-_/]+\|\d+(\.\d+)?\|\d+(\.\d+)?$/
 
@@ -80,6 +81,14 @@ export function useIntentHandler() {
         }
         case 'age-assurance': {
           // Handled in `#/ageAssurance/components/RedirectOverlay.tsx`
+          return
+        }
+        case 'wallet': {
+          /*
+           * Where wallet apps return to after a WalletConnect request (see
+           * features/wallet). Nothing to do: the user is already where they
+           * were.
+           */
           return
         }
         case 'apply-ota': {

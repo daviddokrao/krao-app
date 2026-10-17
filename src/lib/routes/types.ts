@@ -22,6 +22,10 @@ export type SearchParams = {
 export type CommonNavigatorParams = {
   NotFound: undefined
   Lists: undefined
+  Communities: undefined
+  CommunityCreate: undefined
+  Community: {name: string; slug: string}
+  CommunityEdit: {name: string; slug: string}
   Moderation: undefined
   ModerationInbox: undefined
   ModerationInboxSettings: undefined
@@ -36,6 +40,7 @@ export type CommonNavigatorParams = {
   Profile: {name: string; hideBackButton?: boolean}
   ProfileFollowers: {name: string}
   ProfileFollows: {name: string}
+  ProfileMembership: {name: string}
   ProfileKnownFollowers: {name: string}
   ProfileSearch: {name: string} & SearchParams
   ProfileList: {name: string; rkey: string}
@@ -79,13 +84,28 @@ export type CommonNavigatorParams = {
   AboutSettings: undefined
   WalletsSettings: undefined
   ReferralSettings: undefined
+  Leaderboard: undefined
+  MembershipSettings: undefined
+  MembershipMembers: undefined
+  MyMemberships: undefined
+  CreatorDashboard: undefined
   RewardsAdmin: undefined
+  AnalyticsAdmin: undefined
+  AdminHub: undefined
+  AdminRoles: undefined
+  AdminAuditLog: undefined
+  GateModeration: undefined
+  MiniAppsAdmin: undefined
+  MiniApps: undefined
+  MiniApp: {did: string; rkey: string}
+  PhoneSettings: undefined
   Join: {code: string}
   AppIconSettings: undefined
   FindContactsSettings: undefined
   InviteScanner: undefined
   Search: SearchParams
   Hashtag: {tag: string; author?: string}
+  Token: {symbol: string}
   Topic: {topic: string}
   MessagesConversation: {conversation: string; embed?: string; accept?: true}
   MessagesConversationSettings: {conversation: string}

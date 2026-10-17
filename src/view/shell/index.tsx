@@ -46,6 +46,7 @@ import {NoAccessScreen} from '#/ageAssurance/components/NoAccessScreen'
 import {RedirectOverlay} from '#/ageAssurance/components/RedirectOverlay'
 import {PassiveAnalytics} from '#/analytics/PassiveAnalytics'
 import {IS_ANDROID, IS_IOS, IS_LIQUID_GLASS} from '#/env'
+import {ComplianceHost} from '#/features/compliance/ComplianceHost'
 import {RoutesContainer, TabsNavigator} from '#/Navigation'
 import {Composer} from './Composer'
 import {DrawerContent} from './Drawer'
@@ -117,6 +118,7 @@ function ShellInner() {
       <Lightbox />
       <NuxDialogs />
       <GlobalReportDialog />
+      <ComplianceHost />
 
       {/* Until policy update has been completed by the user, don't render anything that is portaled */}
       {policyUpdateState.completed && (

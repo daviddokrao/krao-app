@@ -43,6 +43,7 @@ import {
 } from '#/components/icons/Bookmark'
 import {BulletList_Stroke2_Corner0_Rounded as ListIcon} from '#/components/icons/BulletList'
 import {Earth_Stroke2_Corner0_Rounded as EarthIcon} from '#/components/icons/Earth'
+import {Group3_Stroke2_Corner0_Rounded as GroupIcon} from '#/components/icons/Group3'
 import {
   Hashtag_Filled_Corner0_Rounded as HashtagFilledIcon,
   Hashtag_Stroke2_Corner0_Rounded as HashtagIcon,
@@ -64,6 +65,7 @@ import {
   UserCircle_Filled_Corner0_Rounded as UserCircleFilledIcon,
   UserCircle_Stroke2_Corner0_Rounded as UserCircleIcon,
 } from '#/components/icons/UserCircle'
+import {Window_Stroke2_Corner2_Rounded as AppWindowIcon} from '#/components/icons/Window'
 import {InlineLinkText} from '#/components/Link'
 import {OTAChannelNotice} from '#/components/OTAChannelNotice'
 import {ProfileBadges} from '#/components/ProfileBadges'
@@ -292,6 +294,20 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
     setDrawerOpen(false)
   }, [navigation, setDrawerOpen, ax])
 
+  // Krao: communities
+  const onPressCommunities = useCallback(() => {
+    ax.metric('nav:click', {item: 'communities', surface: 'drawer'})
+    navigation.navigate('Communities')
+    setDrawerOpen(false)
+  }, [navigation, setDrawerOpen, ax])
+
+  // Krao: Mini Apps
+  const onPressMiniApps = useCallback(() => {
+    ax.metric('nav:click', {item: 'miniapps', surface: 'drawer'})
+    navigation.navigate('MiniApps')
+    setDrawerOpen(false)
+  }, [navigation, setDrawerOpen, ax])
+
   const onPressBookmarks = useCallback(() => {
     ax.metric('nav:click', {item: 'saved', surface: 'drawer'})
     navigation.navigate('Bookmarks')
@@ -377,6 +393,8 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
             )}
             <FeedsMenuItem isActive={isAtFeeds} onPress={onPressMyFeeds} />
             <ListsMenuItem onPress={onPressLists} />
+            <CommunitiesMenuItem onPress={onPressCommunities} />
+            <MiniAppsMenuItem onPress={onPressMiniApps} />
             <BookmarksMenuItem
               isActive={isAtBookmarks}
               onPress={onPressBookmarks}
@@ -647,6 +665,38 @@ let ListsMenuItem = ({onPress}: {onPress: () => void}): React.ReactNode => {
   )
 }
 ListsMenuItem = memo(ListsMenuItem)
+
+let CommunitiesMenuItem = ({
+  onPress,
+}: {
+  onPress: () => void
+}): React.ReactNode => {
+  const {t: l} = useLingui()
+  const t = useTheme()
+
+  return (
+    <MenuItem
+      icon={<GroupIcon style={[t.atoms.text]} width={iconWidth} />}
+      label={l`Communities`}
+      onPress={onPress}
+    />
+  )
+}
+CommunitiesMenuItem = memo(CommunitiesMenuItem)
+
+let MiniAppsMenuItem = ({onPress}: {onPress: () => void}): React.ReactNode => {
+  const {t: l} = useLingui()
+  const t = useTheme()
+
+  return (
+    <MenuItem
+      icon={<AppWindowIcon style={[t.atoms.text]} width={iconWidth} />}
+      label={l`Mini Apps`}
+      onPress={onPress}
+    />
+  )
+}
+MiniAppsMenuItem = memo(MiniAppsMenuItem)
 
 let BookmarksMenuItem = ({
   isActive,

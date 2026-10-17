@@ -17,6 +17,7 @@ import {
 } from '#/lib/constants'
 import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
 import {logger} from '#/logger'
+import {getAppLanguageAsContentLanguage} from '#/state/preferences/languages'
 import {useSetHasCheckedForStarterPack} from '#/state/preferences/used-starter-packs'
 import {getAllListMembers} from '#/state/queries/list-members'
 import {preferencesQueryKey} from '#/state/queries/preferences'
@@ -43,6 +44,7 @@ import {ArrowRight_Stroke2_Corner0_Rounded as ArrowRight} from '#/components/ico
 import {Loader} from '#/components/Loader'
 import {useAnalytics} from '#/analytics'
 import {IS_WEB} from '#/env'
+import {getViFeedToPin} from '#/features/growth/viFeed'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 import {ValuePropositionPager} from './ValuePropositionPager'
@@ -103,6 +105,8 @@ export function StepFinished() {
       ...(kraoAccountDid.startsWith('did:') ? [kraoAccountDid] : []),
       ...(listItems?.map(i => i.subject.did) ?? []),
     ]
+    // Krao's Vietnamese feed, for accounts set up in Vietnamese
+    const viFeed = await getViFeedToPin(getAppLanguageAsContentLanguage())
     const starterPackRef = starterPack
       ? {uri: starterPack.uri, cid: starterPack.cid}
       : undefined
@@ -127,6 +131,16 @@ export function StepFinished() {
               ...TIMELINE_SAVED_FEED,
               id: TID.nextStr(),
             },
+            ...(viFeed
+              ? [
+                  {
+                    type: 'feed' as const,
+                    value: viFeed,
+                    pinned: true,
+                    id: TID.nextStr(),
+                  },
+                ]
+              : []),
           ]
 
           // Any Starter Pack feeds will be pinned _after_ the defaults

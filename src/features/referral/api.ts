@@ -31,6 +31,8 @@ export type PointsEntry = {
   amount: number
   status: 'pending' | 'approved' | 'void'
   ruleId?: string
+  /** The event the points are for (eg wallet.linked), when the service reports it */
+  event?: string
   relatedDid?: string
   waitingFor: ('kyc:self' | 'kyc:related')[]
   note?: string
@@ -49,6 +51,7 @@ export class RewardsError extends Error {
   constructor(
     public error: string | undefined,
     message: string,
+    public status?: number,
   ) {
     super(message)
   }
@@ -85,7 +88,7 @@ export async function rewardsFetch<T>(
   const data: unknown = await res.json().catch(() => ({}))
   if (!res.ok) {
     const {error, message} = data as {error?: string; message?: string}
-    throw new RewardsError(error, message ?? `HTTP ${res.status}`)
+    throw new RewardsError(error, message ?? `HTTP ${res.status}`, res.status)
   }
   return data as T
 }

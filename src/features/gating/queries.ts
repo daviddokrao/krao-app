@@ -21,7 +21,25 @@ export type NftHoldingCondition = {
   contract: string
   tokenId?: string
 }
-export type GateCondition = TokenBalanceCondition | NftHoldingCondition
+/** Krao community: satisfied by members of the community (M29) */
+export type CommunityMemberCondition = {
+  $type: 'net.krao.gate.defs#communityMember'
+  /** at:// URI of the net.krao.community.profile record */
+  community: string
+}
+/** Krao: satisfied by paying members of a creator (any plan, or one) */
+export type MembershipCondition = {
+  $type: 'net.krao.gate.defs#membership'
+  /** DID of the creator */
+  creator: string
+  /** at:// URI of one net.krao.membership.plan; any plan when missing */
+  plan?: string
+}
+export type GateCondition =
+  | TokenBalanceCondition
+  | NftHoldingCondition
+  | CommunityMemberCondition
+  | MembershipCondition
 
 export type GateRule = {
   uri: string
@@ -168,6 +186,38 @@ function useServiceAuth() {
       lxm: lxm as `${string}.${string}.${string}`,
     })
     return token
+  }
+}
+
+/**
+ * For a post that is about to be published: stores its gated text on the gate
+ * service and returns the gate rule record, to be written in the same commit
+ * as the post. If storing fails nothing is published, so a post never goes
+ * out without the gated part its author meant it to have.
+ */
+export function usePrepareGateForNewPost() {
+  const getToken = useServiceAuth()
+  return async ({
+    post,
+    text,
+    condition,
+  }: {
+    post: {uri: string; cid: string}
+    text: string
+    condition: GateCondition
+  }) => {
+    await gateFetch('net.krao.gate.putContent', {
+      token: await getToken(net.krao.gate.putContent.$lxm),
+      body: {uri: post.uri, text},
+    })
+    return {
+      $type: 'net.krao.gate.rule',
+      subject: post,
+      conditions: [condition],
+      match: 'all',
+      service: KRAO_GATE_DID,
+      createdAt: toDatetimeString(new Date()),
+    }
   }
 }
 

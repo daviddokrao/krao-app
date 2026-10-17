@@ -11,6 +11,10 @@ import {matchXrpcError} from '#/lib/xrpc-error'
 import {useSessionApi} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
 import {type AnalyticsContextType, useAnalytics} from '#/analytics'
+import {
+  clearPendingConsent,
+  setPendingConsent,
+} from '#/features/compliance/consent'
 import {clearPendingReferralCode} from '#/features/referral/pendingCode'
 import {com} from '#/lexicons'
 
@@ -45,6 +49,8 @@ export type SignupState = {
   password: string
   inviteCode: string
   handle: string
+  /** Krao: the consent to the terms and to the processing of personal data */
+  consent: {terms: boolean; data: boolean}
 
   error: string
   errorField?: ErrorField
@@ -71,6 +77,7 @@ export type SignupAction =
   | {type: 'setDateOfBirth'; value: Date | undefined}
   | {type: 'setInviteCode'; value: string}
   | {type: 'setHandle'; value: string}
+  | {type: 'setConsent'; value: {terms: boolean; data: boolean}}
   | {type: 'setError'; value: string; field?: ErrorField}
   | {type: 'clearError'}
   | {type: 'setIsLoading'; value: boolean}
@@ -92,6 +99,7 @@ export const initialState: SignupState = {
   password: '',
   handle: '',
   inviteCode: '',
+  consent: {terms: false, data: false},
 
   error: '',
   errorField: undefined,
@@ -180,6 +188,10 @@ export function reducer(s: SignupState, a: SignupAction): SignupState {
     }
     case 'setHandle': {
       next.handle = a.value
+      break
+    }
+    case 'setConsent': {
+      next.consent = a.value
       break
     }
     case 'setIsLoading': {
@@ -326,16 +338,26 @@ export function useSubmitSignup() {
           value: l`Please complete the verification captcha.`,
         })
       }
+      if (!state.consent.terms || !state.consent.data) {
+        dispatch({type: 'setStep', value: SignupStep.INFO})
+        return dispatch({
+          type: 'setError',
+          value: l`Please agree to the terms and to the processing of your data.`,
+        })
+      }
       dispatch({type: 'setError', value: ''})
       dispatch({type: 'setIsLoading', value: true})
 
       const verificationCode = state.pendingSubmit?.verificationCode
       try {
+        // Recorded for the new account once it is signed in (ComplianceHost)
+        const handle = createFullHandle(state.handle, state.userDomain)
+        setPendingConsent(handle)
         await createAccount(
           {
             service: state.serviceUrl,
             email: state.email,
-            handle: createFullHandle(state.handle, state.userDomain),
+            handle,
             password: state.password,
             birthDate: dateOfBirth,
             inviteCode: state.inviteCode.trim(),
@@ -358,6 +380,7 @@ export function useSubmitSignup() {
         clearPendingReferralCode()
         onboardingDispatch({type: 'start'})
       } catch (err) {
+        clearPendingConsent()
         const e = err as Error
         if (
           matchXrpcError(e, com.atproto.server.createAccount) ===

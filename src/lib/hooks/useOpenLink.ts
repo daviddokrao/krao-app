@@ -17,6 +17,7 @@ import {useDialogContext} from '#/components/Dialog'
 import {useGlobalDialogsControlContext} from '#/components/dialogs/Context'
 import {useAnalytics} from '#/analytics'
 import {IS_NATIVE} from '#/env'
+import {openLinkIfSafe, showAfterClosing} from '#/features/safety/guard'
 
 export function useOpenLink() {
   const ax = useAnalytics()
@@ -25,8 +26,13 @@ export function useOpenLink() {
   const dialogContext = useDialogContext()
   const {inAppBrowserConsentControl} = useGlobalDialogsControlContext()
 
-  const openLink = useCallback(
-    (url: string, override?: boolean, shouldProxy?: boolean) => {
+  const openLinkUnchecked = useCallback(
+    (
+      url: string,
+      override?: boolean,
+      shouldProxy?: boolean,
+      tab?: Window | null,
+    ) => {
       if (isBskyRSSUrl(url) && isRelativeUrl(url)) {
         url = createBskyAppAbsoluteUrl(url)
       }
@@ -71,9 +77,27 @@ export function useOpenLink() {
           return
         }
       }
+      if (tab) {
+        // Krao: the tab opened ahead while the link was checked (web)
+        tab.location.href = url
+        return
+      }
       void Linking.openURL(url)
     },
     [ax, enabled, inAppBrowserConsentControl, t, dialogContext],
+  )
+
+  // Krao: a link on the scam list asks first (see features/safety)
+  const openLink = useCallback(
+    (url: string, override?: boolean, shouldProxy?: boolean) => {
+      openLinkIfSafe(
+        url,
+        tab => openLinkUnchecked(url, override, shouldProxy, tab),
+        show => showAfterClosing(dialogContext, show),
+        {aheadTab: true},
+      )
+    },
+    [openLinkUnchecked, dialogContext],
   )
 
   return openLink

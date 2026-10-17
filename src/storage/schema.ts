@@ -1,7 +1,10 @@
 import {type ID as PolicyUpdate202508} from '#/components/PolicyUpdateOverlay/updates/202508/config'
 import {type SessionRecord} from '#/analytics/identifiers/session'
+import {type StoredChecklist} from '#/features/checklist/steps'
 import {type Gif} from '#/features/gifPicker/types'
 import {type InviteThemeKey} from '#/features/inviteFriends/themes'
+import {type PaymentRecord} from '#/features/membership/logic'
+import {type MiniAppGrant} from '#/features/miniapp/grants'
 import {type PendingTipRecord} from '#/features/tips/pendingTips'
 import {type Geolocation} from '#/geolocation/types'
 
@@ -90,8 +93,21 @@ export type Device = {
   }
   /** Krao: the referral code from the last krao.net/join/<code> link */
   kraoPendingReferralCode?: {code: string; savedAt: number}
+  /** Krao: the first-open check for an invite code that came with the install is done */
+  kraoDeferredCodeChecked?: boolean
+  /** Krao: the consent given at sign-up, until it is recorded for the account */
+  kraoPendingConsent?: {
+    handle?: string
+    version: string
+    items: string[]
+    savedAt: number
+  }
   /** Krao: tips whose transfer was sent but whose record is not written yet */
   kraoPendingTips?: {did: string; rkey: string; record: PendingTipRecord}[]
+  /** Krao: membership payments sent but not recorded yet */
+  kraoPendingPayments?: {did: string; rkey: string; record: PaymentRecord}[]
+  /** Krao: what each account allowed each Mini App (by app uri and cid) */
+  kraoMiniAppGrants?: MiniAppGrant[]
 }
 
 export type Account = {
@@ -133,4 +149,7 @@ export type Account = {
    * labeler headers.
    */
   labelers?: string[]
+
+  /** Krao: progress of the new-user checklist, and whether it was closed */
+  kraoChecklist?: StoredChecklist
 }

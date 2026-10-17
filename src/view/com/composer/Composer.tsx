@@ -145,7 +145,12 @@ import {
   IS_WEB_SAFARI,
   KRAO_GIF_SEARCH,
 } from '#/env'
+import {KraoComposerPills} from '#/features/community/composer/KraoComposerPills'
+import {useKraoComposer} from '#/features/community/composer/useKraoComposer'
+import {isPhoneVerificationRequired} from '#/features/compliance/phone'
 import {type Gif} from '#/features/gifPicker/types'
+import {useComposerMiniAppLink} from '#/features/miniapp/composerLink'
+import {containsSecret} from '#/features/safety/guard'
 import {app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 import {
@@ -275,6 +280,8 @@ export const ComposePost = ({
   const chatClient = useChatClient()
   const pdsClient = usePdsClient()
   const queryClient = useQueryClient()
+  // Krao: community submission, member-only text and poll (single hook point)
+  const krao = useKraoComposer()
   /*
    * The host the video service-auth token is minted for. This is the same value
    * that seeds the session's PDS routing, so the audience always matches the host
@@ -300,6 +307,8 @@ export const ComposePost = ({
   const [isPublishing, setIsPublishing] = useState(false)
   const [publishingStage, setPublishingStage] = useState('')
   const [error, setError] = useState('')
+  // Krao: the error is "verify your phone number", with a way to do it
+  const [phoneRequired, setPhoneRequired] = useState(false)
 
   /**
    * Track when a draft was created so we can measure draft age in metrics.
@@ -851,6 +860,16 @@ export const ComposePost = ({
     onClose()
   }, [thread.posts, ax, onClose])
 
+  // Krao: posting needs a verified phone number. The composer closes before
+  // the phone screen opens (a dialog cannot open over it on iOS); the post is
+  // kept as a draft.
+  const onVerifyPhone = async () => {
+    const {success} = await saveCurrentDraft()
+    if (!success) return
+    onClose()
+    navigation.navigate('PhoneSettings')
+  }
+
   // Check if composer is empty (no content to save)
   const isComposerEmpty = useMemo(() => {
     // Has multiple posts means it's not empty
@@ -982,7 +1001,15 @@ export const ComposePost = ({
       !bsky.isType(chat.bsky.group.defs.joinLinkPreviewView, q.data.view),
   )
 
+  const firstDraft = thread.posts[0]
+  const firstPostHasEmbed = !!(
+    firstDraft?.embed.media ||
+    firstDraft?.embed.link ||
+    firstDraft?.embed.quote
+  )
   const canPost =
+    krao.isValid && // Krao: community and poll drafts are complete
+    !(krao.hasMiniApp && firstPostHasEmbed) && // a post has one embed
     !missingAltError &&
     !hasUnavailableChatInvite &&
     thread.posts.some(post => !isEmptyPost(post)) &&
@@ -1037,6 +1064,18 @@ export const ComposePost = ({
 
     const {type: emptyType, filteredThread} = getFilteredThread()
 
+    // Krao: never post a seed phrase or private key. Said inline: a dialog
+    // from the shell cannot open over the composer on iOS.
+    if (
+      containsSecret(...filteredThread.posts.map(post => post.richtext.text))
+    ) {
+      setPhoneRequired(false)
+      setError(
+        l`This post looks like it has a seed phrase or private key. Anyone who has it can take all your funds. Remove it before posting.`,
+      )
+      return
+    }
+
     if (emptyType === 'non-trailing' && !skipEmptyConfirmedRef.current) {
       emptyPostsPromptControl.open()
       return
@@ -1056,6 +1095,7 @@ export const ComposePost = ({
 
     skipEmptyConfirmedRef.current = false
     setError('')
+    setPhoneRequired(false)
     setIsPublishing(true)
 
     let postUri: string | undefined
@@ -1071,6 +1111,9 @@ export const ComposePost = ({
           appviewClient: client,
           chatClient,
           pdsClient,
+          // Krao: only a new post, not a reply, can carry a community or poll
+          extraWrites: replyTo ? undefined : krao.getWrites,
+          extraEmbed: replyTo ? undefined : krao.getEmbed,
         })
       ).uris[0]
 
@@ -1146,6 +1189,10 @@ export const ComposePost = ({
         err = l`We're sorry! The post you are replying to has been deleted.`
       } else if (e instanceof EmbeddingDisabledError) {
         err = l`This post's author has disabled quote posts.`
+      } else if (isPhoneVerificationRequired(e)) {
+        // Krao: posting needs a verified phone number
+        err = l`Verify your phone number to post. Your post will be saved as a draft.`
+        setPhoneRequired(true)
       }
       setError(err)
       setIsPublishing(false)
@@ -1286,6 +1333,7 @@ export const ComposePost = ({
     emptyPostsPromptControl,
     getFilteredThread,
     linkQueries,
+    krao,
   ])
 
   const handleConfirmSkipEmpty = () => {
@@ -1454,8 +1502,19 @@ export const ComposePost = ({
             {missingAltError && <AltTextReminder error={missingAltError} />}
             <ErrorBanner
               error={error}
+              action={
+                phoneRequired
+                  ? {
+                      label: l`Verify phone number`,
+                      onPress: () => void onVerifyPhone(),
+                    }
+                  : undefined
+              }
               videoState={erroredVideo}
-              clearError={() => setError('')}
+              clearError={() => {
+                setError('')
+                setPhoneRequired(false)
+              }}
               clearVideo={
                 erroredVideoPostId
                   ? () => clearVideo(erroredVideoPostId)
@@ -1648,11 +1707,15 @@ let ComposerPost = memo(function ComposerPost({
       : 0
   const onImageAdd = useAddImagesWithCap(postImagesCount, dispatchPost)
 
+  // Krao: a Mini App link becomes the post's Mini App, not a link card
+  const onMiniAppLink = useComposerMiniAppLink()
+  const isKraoEmbedPost = !isReply && isFirstPost
   const onNewLink = useCallback(
     (uri: string) => {
+      if (isKraoEmbedPost && onMiniAppLink(uri)) return
       dispatchPost({type: 'embed_add_uri', uri: uri as UriString})
     },
-    [dispatchPost],
+    [dispatchPost, isKraoEmbedPost, onMiniAppLink],
   )
 
   const onPhotoPasted = useCallback(
@@ -2104,6 +2167,14 @@ function ComposerPills({
             style={bottomBarAnimatedStyle}
           />
         )}
+        {!isReply && thread.posts[0]?.id === post.id ? (
+          // Krao: community and poll pills, on the first post only
+          <KraoComposerPills
+            hasOtherEmbed={
+              !!(post.embed.media || post.embed.link || post.embed.quote)
+            }
+          />
+        ) : null}
         {hasMedia || hasLink ? (
           <LabelsBtn
             labels={post.labels}
@@ -2583,11 +2654,14 @@ const styles = StyleSheet.create({
 
 function ErrorBanner({
   error: standardError,
+  action,
   videoState,
   clearError,
   clearVideo,
 }: {
   error: string
+  /** Krao: what the user can do about the error */
+  action?: {label: string; onPress: () => void}
   videoState: VideoState | NoVideoState
   clearError: () => void
   clearVideo: () => void
@@ -2638,6 +2712,16 @@ function ErrorBanner({
             <ButtonIcon icon={XIcon} />
           </Button>
         </View>
+        {standardError && action && (
+          <Button
+            label={action.label}
+            size="small"
+            color="primary"
+            style={[a.self_start, {marginLeft: 28}]}
+            onPress={action.onPress}>
+            <ButtonText>{action.label}</ButtonText>
+          </Button>
+        )}
         {videoError && videoState.jobId && (
           <Text
             style={[

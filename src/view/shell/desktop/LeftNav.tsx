@@ -56,6 +56,7 @@ import {type Props as SVGIconProps} from '#/components/icons/common'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
 import {Earth_Stroke2_Corner0_Rounded as EarthIcon} from '#/components/icons/Earth'
 import {EditBig_Stroke2_Corner2_Rounded as EditBigIcon} from '#/components/icons/EditBig'
+import {Group3_Stroke2_Corner0_Rounded as GroupIcon} from '#/components/icons/Group3'
 import {
   Hashtag_Filled_Corner0_Rounded as HashtagFilledIcon,
   Hashtag_Stroke2_Corner0_Rounded as HashtagIcon,
@@ -81,6 +82,7 @@ import {
   UserCircle_Filled_Corner0_Rounded as UserCircleFilledIcon,
   UserCircle_Stroke2_Corner0_Rounded as UserCircleIcon,
 } from '#/components/icons/UserCircle'
+import {Window_Stroke2_Corner2_Rounded as AppWindowIcon} from '#/components/icons/Window'
 import {CENTER_COLUMN_OFFSET, CENTER_COLUMN_WIDTH} from '#/components/Layout'
 import * as Menu from '#/components/Menu'
 import * as Prompt from '#/components/Prompt'
@@ -754,6 +756,26 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             icons={{
               inactive: ListIcon,
               active: ListFilledIcon,
+            }}
+          />
+          <NavItem
+            label={l`Communities`}
+            href="/communities"
+            navItem="communities"
+            minimal={leftNavMinimal}
+            icons={{
+              inactive: GroupIcon,
+              active: GroupIcon,
+            }}
+          />
+          <NavItem
+            label={l`Mini Apps`}
+            href="/miniapps"
+            navItem="miniapps"
+            minimal={leftNavMinimal}
+            icons={{
+              inactive: AppWindowIcon,
+              active: AppWindowIcon,
             }}
           />
           <NavItem

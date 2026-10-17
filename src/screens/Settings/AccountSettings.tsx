@@ -18,13 +18,18 @@ import {At_Stroke2_Corner2_Rounded as AtIcon} from '#/components/icons/At'
 import {BirthdayCake_Stroke2_Corner2_Rounded as BirthdayCakeIcon} from '#/components/icons/BirthdayCake'
 import {Bot_Stroke2_Corner0_Rounded as RobotIcon} from '#/components/icons/Bot'
 import {Car_Stroke2_Corner2_Rounded as CarIcon} from '#/components/icons/Car'
+import {Download_Stroke2_Corner0_Rounded as DownloadIcon} from '#/components/icons/Download'
 import {Envelope_Stroke2_Corner2_Rounded as EnvelopeIcon} from '#/components/icons/Envelope'
 import {Freeze_Stroke2_Corner2_Rounded as FreezeIcon} from '#/components/icons/Freeze'
 import {Lock_Stroke2_Corner2_Rounded as LockIcon} from '#/components/icons/Lock'
 import {PencilLine_Stroke2_Corner2_Rounded as PencilIcon} from '#/components/icons/Pencil'
+import {Phone_Stroke2_Corner0_Rounded as PhoneIcon} from '#/components/icons/Phone'
 import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldIcon} from '#/components/icons/Shield'
 import {Trash_Stroke2_Corner2_Rounded} from '#/components/icons/Trash'
 import * as Layout from '#/components/Layout'
+import {ExportKraoDataDialog} from '#/features/compliance/components/ExportKraoDataDialog'
+import {usePhoneStatusQuery} from '#/features/compliance/queries'
+import {HumanBadgeToggle} from '#/features/safety/components/HumanBadgeToggle'
 import {ChangeHandleDialog} from './components/ChangeHandleDialog'
 import {ChangePasswordDialog} from './components/ChangePasswordDialog'
 import {DeactivateAccountDialog} from './components/DeactivateAccountDialog'
@@ -42,6 +47,8 @@ export function AccountSettingsScreen({}: Props) {
   const changeHandleControl = useDialogControl()
   const changePasswordControl = useDialogControl()
   const exportCarControl = useDialogControl()
+  const exportKraoControl = useDialogControl()
+  const {data: phoneStatus} = usePhoneStatusQuery()
   const deactivateAccountControl = useDialogControl()
   const deleteAccountControl = useDialogControl()
 
@@ -163,6 +170,22 @@ export function AccountSettingsScreen({}: Props) {
               </SettingsList.BadgeText>
             )}
           </SettingsList.LinkItem>
+          <SettingsList.LinkItem to="/settings/phone" label={l`Phone number`}>
+            <SettingsList.ItemIcon icon={PhoneIcon} />
+            <SettingsList.ItemText>
+              <Trans>Phone number</Trans>
+            </SettingsList.ItemText>
+            {phoneStatus && (
+              <SettingsList.BadgeText>
+                {phoneStatus.verified
+                  ? (phoneStatus.maskedPhone ?? l`Verified`)
+                  : l`Not verified`}
+              </SettingsList.BadgeText>
+            )}
+          </SettingsList.LinkItem>
+          <SettingsList.Item style={[a.align_start]}>
+            <HumanBadgeToggle />
+          </SettingsList.Item>
           <SettingsList.Divider />
           <SettingsList.PressableItem
             label={l`Export my data`}
@@ -170,6 +193,15 @@ export function AccountSettingsScreen({}: Props) {
             <SettingsList.ItemIcon icon={CarIcon} />
             <SettingsList.ItemText>
               <Trans>Export my data</Trans>
+            </SettingsList.ItemText>
+            <SettingsList.Chevron />
+          </SettingsList.PressableItem>
+          <SettingsList.PressableItem
+            label={l`Download my Krao data`}
+            onPress={() => exportKraoControl.open()}>
+            <SettingsList.ItemIcon icon={DownloadIcon} />
+            <SettingsList.ItemText>
+              <Trans>Download my Krao data</Trans>
             </SettingsList.ItemText>
             <SettingsList.Chevron />
           </SettingsList.PressableItem>
@@ -199,6 +231,7 @@ export function AccountSettingsScreen({}: Props) {
       <ChangeHandleDialog control={changeHandleControl} />
       <ChangePasswordDialog control={changePasswordControl} />
       <ExportCarDialog control={exportCarControl} />
+      <ExportKraoDataDialog control={exportKraoControl} />
       <DeactivateAccountDialog control={deactivateAccountControl} />
       <DeleteAccountDialog
         control={deleteAccountControl}
