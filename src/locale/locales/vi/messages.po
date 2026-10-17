@@ -1873,8 +1873,8 @@ msgstr "Thêm bảng tin được đề xuất"
 msgid "Add requirement"
 msgstr "Thêm điều kiện"
 
-#: src/features/admin/RolesScreen.tsx:159
-#: src/features/admin/RolesScreen.tsx:166
+#: src/features/admin/RolesScreen.tsx:165
+#: src/features/admin/RolesScreen.tsx:172
 msgid "Add role"
 msgstr "Thêm vai trò"
 
@@ -1882,7 +1882,7 @@ msgstr "Thêm vai trò"
 msgid "Add some feeds to your Starter Pack!"
 msgstr ""
 
-#: src/features/admin/RolesScreen.tsx:131
+#: src/features/admin/RolesScreen.tsx:135
 msgid "Add someone"
 msgstr "Thêm người"
 
@@ -1978,7 +1978,7 @@ msgstr "Địa chỉ"
 msgid "Adjust points"
 msgstr "Điều chỉnh điểm"
 
-#: src/features/admin/text.ts:13
+#: src/features/admin/text.ts:18
 #: src/screens/Messages/ConversationSettings/Member.tsx:94
 #: src/screens/Messages/ConversationSettings/MemberMenu.tsx:158
 msgid "Admin"
@@ -2397,8 +2397,8 @@ msgstr "Mô phỏng iPhone hiển thị ứng dụng Krao mở trang hồ sơ c�
 msgid "an unknown labeler"
 msgstr "dịch vụ nhãn không xác định"
 
-#: src/features/admin/text.ts:29
-#: src/features/admin/text.ts:54
+#: src/features/admin/text.ts:34
+#: src/features/admin/text.ts:59
 #: src/features/analytics/AnalyticsLink.tsx:22
 #: src/features/analytics/AnalyticsLink.tsx:25
 #: src/features/analytics/AnalyticsScreen.tsx:52
@@ -2874,7 +2874,7 @@ msgid "Atmosphere"
 msgstr ""
 
 #: src/features/admin/AuditLogScreen.tsx:73
-#: src/features/admin/text.ts:58
+#: src/features/admin/text.ts:63
 #: src/Navigation.tsx:606
 msgid "Audit log"
 msgstr "Nhật ký quản trị"
@@ -2894,6 +2894,7 @@ msgstr ""
 msgid "Automated account"
 msgstr ""
 
+#: src/features/admin/AuditLogScreen.tsx:199
 #: src/screens/Login/components/HostingProviderDialog.tsx:165
 #: src/screens/Login/components/HostingProviderDialog.tsx:167
 msgid "Automatic"
@@ -3717,7 +3718,7 @@ msgstr "Biểu đồ"
 msgid "Chart period"
 msgstr "Khoảng thời gian của biểu đồ"
 
-#: src/features/admin/text.ts:67
+#: src/features/admin/text.ts:91
 #: src/lib/hooks/useNotificationHandler.ts:139
 #: src/Navigation.tsx:725
 #: src/view/shell/bottom-bar/BottomBar.tsx:246
@@ -4700,6 +4701,10 @@ msgstr "Không thể đổi huy hiệu. Hãy thử lại sau."
 msgid "Could not change the code"
 msgstr "Không thể thay đổi mã"
 
+#: src/features/admin/text.ts:81
+msgid "Could not change the role. Try again."
+msgstr "Không đổi được vai trò. Hãy thử lại."
+
 #: src/screens/Settings/WalletsSettings.tsx:302
 msgid "Could not change this setting."
 msgstr "Không đổi được cài đặt này."
@@ -4805,7 +4810,7 @@ msgstr "Không tải được bảng xếp hạng."
 msgid "Could not load the log."
 msgstr "Không thể tải nhật ký."
 
-#: src/features/admin/RolesScreen.tsx:69
+#: src/features/admin/RolesScreen.tsx:72
 msgid "Could not load the roles."
 msgstr "Không tải được danh sách vai trò."
 
@@ -7290,7 +7295,7 @@ msgctxt "from-feed"
 msgid "From <0/>"
 msgstr "Từ <0/>"
 
-#: src/features/admin/RolesScreen.tsx:220
+#: src/features/admin/RolesScreen.tsx:232
 msgid "from configuration"
 msgstr "từ cấu hình"
 
@@ -7303,7 +7308,7 @@ msgstr ""
 msgid "Funnel"
 msgstr "Phễu"
 
-#: src/features/admin/text.ts:50
+#: src/features/admin/text.ts:55
 #: src/features/compliance/moderation/GateModerationScreen.tsx:58
 msgid "Gate moderation"
 msgstr "Kiểm duyệt nội dung gate"
@@ -7734,7 +7739,7 @@ msgstr ""
 msgid "Half way there!"
 msgstr "Nửa đường rồi!"
 
-#: src/features/admin/RolesScreen.tsx:139
+#: src/features/admin/RolesScreen.tsx:143
 #: src/features/referral/admin/components/KycTab.tsx:83
 #: src/features/referral/admin/components/PointsTab.tsx:92
 #: src/features/referral/admin/components/PointsTab.tsx:157
@@ -8381,11 +8386,15 @@ msgstr ""
 msgid "Include video timestamp ({videoTimestamp})"
 msgstr ""
 
+#: src/features/admin/RolesScreen.tsx:234
+msgid "included with Admin"
+msgstr "có sẵn nhờ Admin"
+
 #: src/screens/Login/LoginForm.tsx:162
 msgid "Incorrect username or password"
 msgstr "Tên người dùng hoặc mật khẩu không hợp lệ"
 
-#: src/features/admin/text.ts:66
+#: src/features/admin/text.ts:90
 msgid "Indexer"
 msgstr "Indexer"
 
@@ -8892,8 +8901,8 @@ msgstr "Biểu tượng Krao+"
 msgid "KWS website"
 msgstr ""
 
-#: src/features/admin/text.ts:20
-#: src/features/admin/text.ts:44
+#: src/features/admin/text.ts:25
+#: src/features/admin/text.ts:49
 #: src/features/referral/admin/RewardsAdminScreen.tsx:60
 msgid "KYC"
 msgstr "KYC"
@@ -9655,7 +9664,7 @@ msgstr "Quản lý từ cấm và thẻ"
 msgid "Manage your plans"
 msgstr "Quản lý các gói của bạn"
 
-#: src/features/admin/text.ts:14
+#: src/features/admin/text.ts:19
 msgid "Manages roles and has every other role"
 msgstr "Quản lý vai trò và có mọi vai trò khác"
 
@@ -10014,7 +10023,7 @@ msgstr ""
 msgid "Mod inbox settings"
 msgstr ""
 
-#: src/features/admin/text.ts:68
+#: src/features/admin/text.ts:92
 #: src/Navigation.tsx:236
 #: src/screens/Moderation/index.tsx:104
 msgid "Moderation"
@@ -10086,7 +10095,7 @@ msgstr "Trạng thái kiểm duyệt"
 msgid "Moderation tools"
 msgstr "Công cụ kiểm duyệt"
 
-#: src/features/admin/text.ts:26
+#: src/features/admin/text.ts:31
 #: src/features/community/CommunityScreen.tsx:701
 msgid "Moderator"
 msgstr "Người điều hành"
@@ -10617,7 +10626,7 @@ msgid "No"
 msgstr ""
 
 #: src/features/admin/AuditLogScreen.tsx:63
-#: src/features/admin/RolesScreen.tsx:105
+#: src/features/admin/RolesScreen.tsx:109
 #: src/features/referral/admin/components/CodesTab.tsx:77
 #: src/features/referral/admin/components/KycTab.tsx:62
 #: src/features/referral/admin/components/PointsTab.tsx:64
@@ -11372,9 +11381,13 @@ msgstr "Chỉ những người theo dõi mà tôi cũng theo dõi"
 msgid "Only image files are supported"
 msgstr "Chỉ hỗ trợ tệp hình ảnh"
 
+#: src/features/admin/text.ts:79
+msgid "Only Krao admins can change roles."
+msgstr "Chỉ admin Krao mới đổi được vai trò."
+
 #: src/features/admin/AdminHubScreen.tsx:71
 #: src/features/admin/AuditLogScreen.tsx:82
-#: src/features/admin/RolesScreen.tsx:60
+#: src/features/admin/RolesScreen.tsx:63
 #: src/features/analytics/AnalyticsScreen.tsx:61
 #: src/features/analytics/AnalyticsScreen.tsx:90
 #: src/features/referral/admin/RewardsAdminScreen.tsx:49
@@ -13131,11 +13144,11 @@ msgstr "Đọc Chính sách quyền riêng tư của Krao"
 msgid "Read the Krao Terms of Service"
 msgstr "Đọc Điều khoản dịch vụ của Krao"
 
-#: src/features/admin/text.ts:29
+#: src/features/admin/text.ts:34
 msgid "Reads aggregate figures"
 msgstr "Xem số liệu tổng hợp"
 
-#: src/features/admin/text.ts:27
+#: src/features/admin/text.ts:32
 msgid "Reads gated content to handle reports"
 msgstr "Xem nội dung gate để xử lý báo cáo"
 
@@ -13222,11 +13235,11 @@ msgstr "Quản trị giới thiệu"
 msgid "Referral code"
 msgstr "Mã giới thiệu"
 
-#: src/features/admin/text.ts:18
+#: src/features/admin/text.ts:23
 msgid "Referral codes, reward rules and point corrections"
 msgstr "Mã mời, luật thưởng và điều chỉnh điểm"
 
-#: src/features/admin/text.ts:42
+#: src/features/admin/text.ts:47
 msgid "Referral codes, rules and points"
 msgstr "Mã mời, luật thưởng và điểm"
 
@@ -13292,6 +13305,11 @@ msgstr "Tải lại hội thoại"
 #: src/view/com/posts/PostFeedErrorMessage.tsx:219
 msgid "Remove"
 msgstr "Xóa"
+
+#. placeholder {0}: roleText[removing].name
+#: src/features/admin/RolesScreen.tsx:267
+msgid "Remove {0} from {name}?"
+msgstr "Gỡ {0} khỏi {name}?"
 
 #. placeholder {0}: selected.name
 #: src/features/miniapp/components/MiniAppPickerDialog.tsx:161
@@ -13459,6 +13477,10 @@ msgstr "Xóa lượt đăng lại"
 msgid "Remove requirement"
 msgstr "Xóa điều kiện"
 
+#: src/features/admin/RolesScreen.tsx:275
+msgid "Remove role"
+msgstr "Gỡ vai trò"
+
 #: src/components/contacts/screens/ViewMatches.tsx:508
 #: src/screens/Settings/FindContactsSettings.tsx:354
 msgid "Remove suggestion"
@@ -13471,6 +13493,10 @@ msgstr "Gỡ giới hạn theo token?"
 #: src/view/com/posts/PostFeedErrorMessage.tsx:217
 msgid "Remove this feed from your saved feeds"
 msgstr "Xóa bảng tin này khỏi bảng tin đã lưu của bạn"
+
+#: src/features/admin/RolesScreen.tsx:268
+msgid "Remove this role?"
+msgstr "Gỡ vai trò này?"
 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:583
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:585
@@ -14095,7 +14121,7 @@ msgstr "Xét duyệt {accountLabel}"
 msgid "Review an account"
 msgstr "Duyệt một tài khoản"
 
-#: src/features/admin/text.ts:44
+#: src/features/admin/text.ts:49
 msgid "Review identity checks"
 msgstr "Duyệt xác minh danh tính"
 
@@ -14104,7 +14130,7 @@ msgstr "Duyệt xác minh danh tính"
 msgid "Review identity verification"
 msgstr "Duyệt xác minh danh tính"
 
-#: src/features/admin/text.ts:47
+#: src/features/admin/text.ts:52
 #: src/features/miniapp/MiniAppsAdminLink.tsx:21
 #: src/features/miniapp/MiniAppsAdminLink.tsx:24
 #: src/Navigation.tsx:620
@@ -14124,11 +14150,11 @@ msgstr "Đã lưu kết quả duyệt"
 msgid "Review what you sign"
 msgstr "Xem lại thứ bạn sắp ký"
 
-#: src/features/admin/text.ts:20
+#: src/features/admin/text.ts:25
 msgid "Reviews identity checks"
 msgstr "Duyệt xác minh danh tính"
 
-#: src/features/admin/text.ts:23
+#: src/features/admin/text.ts:28
 msgid "Reviews Mini Apps, risky domains and tokens"
 msgstr "Duyệt Mini App, tên miền và token rủi ro"
 
@@ -14154,23 +14180,23 @@ msgstr "Thu hồi {0}?"
 msgid "Revoked {0}"
 msgstr "Đã thu hồi {0}"
 
-#: src/features/admin/text.ts:17
-#: src/features/admin/text.ts:41
-#: src/features/admin/text.ts:65
+#: src/features/admin/text.ts:22
+#: src/features/admin/text.ts:46
+#: src/features/admin/text.ts:89
 msgid "Rewards"
 msgstr "Điểm thưởng"
 
-#: src/features/admin/RolesScreen.tsx:112
-#: src/features/admin/RolesScreen.tsx:188
+#: src/features/admin/RolesScreen.tsx:116
+#: src/features/admin/RolesScreen.tsx:198
 msgid "Role added"
 msgstr "Đã thêm vai trò"
 
-#: src/features/admin/RolesScreen.tsx:188
+#: src/features/admin/RolesScreen.tsx:198
 msgid "Role removed"
 msgstr "Đã gỡ vai trò"
 
-#: src/features/admin/RolesScreen.tsx:51
-#: src/features/admin/text.ts:57
+#: src/features/admin/RolesScreen.tsx:54
+#: src/features/admin/text.ts:62
 #: src/Navigation.tsx:601
 msgid "Roles"
 msgstr "Vai trò"
@@ -14199,8 +14225,8 @@ msgstr "Nội quy (mỗi dòng một điều)"
 msgid "Sad GIFs"
 msgstr "GIF buồn"
 
-#: src/features/admin/text.ts:22
-#: src/features/admin/text.ts:46
+#: src/features/admin/text.ts:27
+#: src/features/admin/text.ts:51
 msgid "Safety"
 msgstr "An toàn"
 
@@ -15480,7 +15506,7 @@ msgstr "Yêu cầu đăng nhập"
 msgid "Sign-up period"
 msgstr "Khoảng đăng ký"
 
-#: src/features/admin/text.ts:55
+#: src/features/admin/text.ts:60
 msgid "Sign-ups, funnel, retention"
 msgstr "Đăng ký, phễu, giữ chân"
 
@@ -16100,7 +16126,8 @@ msgstr "Thu hồi toàn bộ điểm?"
 msgid "Take the conversation private."
 msgstr ""
 
-#: src/features/admin/RolesScreen.tsx:134
+#: src/features/admin/RolesScreen.tsx:138
+#: src/features/admin/RolesScreen.tsx:273
 msgid "Takes effect within a minute in every Krao service, and is logged."
 msgstr "Có hiệu lực trong vòng một phút ở mọi dịch vụ Krao và được ghi nhật ký."
 
@@ -16555,6 +16582,10 @@ msgstr ""
 msgid "The server appears to be experiencing issues. Please try again in a few moments."
 msgstr "Máy chủ có vẻ đang có vấn đề. Vui lòng thử lại sau ít phút."
 
+#: src/features/admin/text.ts:77
+msgid "The service doesn’t know this role. Update the app and try again."
+msgstr "Dịch vụ không biết vai trò này. Hãy cập nhật ứng dụng rồi thử lại."
+
 #: src/features/miniapp/components/TxPreviewPanel.tsx:403
 msgid "The site that asked is on Krao’s scam list."
 msgstr "Trang đã yêu cầu nằm trong danh sách lừa đảo của Krao."
@@ -16765,6 +16796,10 @@ msgstr "Họ bị loại khỏi cộng đồng và không thể tham gia lại. 
 #: src/components/moderation/BlockDialog.tsx:354
 msgid "They own this chat"
 msgstr ""
+
+#: src/features/admin/RolesScreen.tsx:272
+msgid "They will no longer manage roles, and lose every role they had only as an admin. Takes effect within a minute in every Krao service, and is logged."
+msgstr "Người này sẽ không quản lý vai trò nữa và mất mọi vai trò chỉ có nhờ là admin. Có hiệu lực trong vòng một phút ở mọi dịch vụ Krao và được ghi nhật ký."
 
 #: src/screens/Messages/ConversationSettings/prompts.tsx:169
 msgid "They won’t be able to rejoin unless you invite them again."
@@ -17189,6 +17224,10 @@ msgstr "Chỉ những người dùng đã đăng nhập mới xem được hồ 
 #: src/components/PostControls/PostMenu/PostMenuItems.tsx:962
 msgid "This reply will be sorted into a hidden section at the bottom of your thread and will mute notifications for subsequent replies - both for yourself and others."
 msgstr "Trả lời này sẽ được sắp xếp vào mục ẩn ở cuối thảo luận của bạn và sẽ tắt thông báo cho các trả lời tiếp theo - cho cả bạn và người khác."
+
+#: src/features/admin/text.ts:73
+msgid "This role comes from the services’ configuration and can’t be removed here."
+msgstr "Vai trò này đến từ cấu hình của dịch vụ, không gỡ được ở đây."
 
 #: src/screens/Messages/ConversationSettings/index.tsx:153
 #: src/screens/Messages/JoinRequests.tsx:108
@@ -18801,7 +18840,7 @@ msgstr "Xem toàn bộ thảo luận"
 msgid "View gated content"
 msgstr "Xem nội dung gate"
 
-#: src/features/admin/text.ts:51
+#: src/features/admin/text.ts:56
 msgid "View gated content for a report"
 msgstr "Xem nội dung gate để xử lý báo cáo"
 
@@ -19332,7 +19371,7 @@ msgstr "Chào mừng bạn!"
 msgid "Welcome!"
 msgstr ""
 
-#: src/features/admin/text.ts:58
+#: src/features/admin/text.ts:63
 msgid "What admins did, by service"
 msgstr "Việc quản trị viên đã làm, theo dịch vụ"
 
@@ -19383,7 +19422,7 @@ msgstr "Khi bạn tham gia gói thành viên của một nhà sáng tạo, gói 
 msgid "When you tap on a check, you’ll see which organizations have granted verification."
 msgstr "Khi bạn nhấp vào dấu tích, bạn sẽ thấy tổ chức đã xác minh người đó."
 
-#: src/features/admin/text.ts:57
+#: src/features/admin/text.ts:62
 msgid "Who can do what in this area"
 msgstr "Ai được làm gì trong khu này"
 
@@ -19756,6 +19795,10 @@ msgstr "Bạn có thể cập nhật lại sau trong phần cài đặt."
 #: src/features/community/components/accessText.ts:58
 msgid "You can’t join this community right now."
 msgstr "Hiện bạn chưa tham gia được cộng đồng này."
+
+#: src/features/admin/text.ts:75
+msgid "You can’t remove your own Admin role. Ask another admin."
+msgstr "Bạn không thể tự gỡ vai trò Admin của mình. Hãy nhờ một admin khác."
 
 #: src/components/dms/ActionsWrapper.web.tsx:82
 #: src/components/dms/MessageContextMenu.tsx:128
