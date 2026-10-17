@@ -11,25 +11,28 @@ import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Toggle from '#/components/forms/Toggle'
 import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
+import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {Field} from '#/features/referral/admin/components/CodesTab'
 import {
   AccountName,
   EmptyRow,
+  useAccountLabel,
   useFormatDate,
   useResolveAccount,
 } from '#/features/referral/admin/components/shared'
 import {
   type AdminRole,
   canToggleRole,
+  isImpliedRole,
   isLockedRole,
   type RoleMember,
   ROLES,
   sortMembers,
 } from './logic'
 import {isForbidden, useRolesListQuery, useSetRoleMutation} from './queries'
-import {useRoleText} from './text'
+import {useRoleText, useSetRoleErrorText} from './text'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'AdminRoles'>
 
@@ -92,6 +95,7 @@ function AddMember() {
   const roleText = useRoleText()
   const resolve = useResolveAccount()
   const setRole = useSetRoleMutation()
+  const errorText = useSetRoleErrorText()
   const [handle, setHandle] = useState('')
   const [role, setRoleValue] = useState<AdminRole>('moderator')
   const [error, setError] = useState('')
@@ -112,7 +116,7 @@ function AddMember() {
           Toast.show(l`Role added`, {type: 'success'})
           setHandle('')
         },
-        onError: err => setError(err.message),
+        onError: err => setError(errorText(err)),
       },
     )
   }
@@ -137,7 +141,9 @@ function AddMember() {
         </Text>
       </View>
       <Field label={l`Handle`} value={handle} onChange={setHandle} />
-      <View style={[a.flex_row, a.flex_wrap, a.gap_sm]}>
+      <View
+        style={[a.flex_row, a.flex_wrap, a.gap_sm]}
+        accessibilityRole="radiogroup">
         {ROLES.map(r => (
           <Button
             key={r}
@@ -177,9 +183,13 @@ function Member({member}: {member: RoleMember}) {
   const roleText = useRoleText()
   const formatDate = useFormatDate()
   const setRole = useSetRoleMutation()
+  const errorText = useSetRoleErrorText()
+  const name = useAccountLabel(member.did)
+  const removePrompt = Prompt.usePromptControl()
+  const [removing, setRemoving] = useState<AdminRole | null>(null)
   const [error, setError] = useState('')
 
-  const onToggle = (role: AdminRole, enabled: boolean) => {
+  const save = (role: AdminRole, enabled: boolean) => {
     setError('')
     setRole.mutate(
       {did: member.did, role, enabled},
@@ -188,9 +198,19 @@ function Member({member}: {member: RoleMember}) {
           Toast.show(enabled ? l`Role added` : l`Role removed`, {
             type: 'success',
           }),
-        onError: err => setError(err.message),
+        onError: err => setError(errorText(err)),
       },
     )
+  }
+
+  /** Granting is immediate; taking a role away is confirmed first */
+  const onToggle = (role: AdminRole, enabled: boolean) => {
+    if (enabled) {
+      save(role, true)
+      return
+    }
+    setRemoving(role)
+    removePrompt.open()
   }
 
   return (
@@ -206,19 +226,25 @@ function Member({member}: {member: RoleMember}) {
       {ROLES.map(role => {
         const held = member.roles.find(r => r.role === role)
         const locked = !!held && isLockedRole(held)
+        const implied = isImpliedRole(member, role)
         const allowed = canToggleRole(currentAccount?.did, member, role)
+        const note = locked
+          ? l`from configuration`
+          : implied
+            ? l`included with Admin`
+            : ''
+        const label = note
+          ? `${roleText[role].name} · ${note}`
+          : roleText[role].name
         return (
           <View key={role}>
             <Toggle.Item
               name={role}
-              label={roleText[role].name}
-              value={!!held}
+              label={label}
+              value={!!held || implied}
               disabled={!allowed || setRole.isPending}
               onChange={enabled => onToggle(role, enabled)}>
-              <Toggle.LabelText style={[a.flex_1]}>
-                {roleText[role].name}
-                {locked ? ` · ${l`from configuration`}` : ''}
-              </Toggle.LabelText>
+              <Toggle.LabelText style={[a.flex_1]}>{label}</Toggle.LabelText>
               <Toggle.Platform />
             </Toggle.Item>
             {held?.grantedAt ? (
@@ -234,6 +260,24 @@ function Member({member}: {member: RoleMember}) {
       {error ? (
         <Admonition.Admonition type="error">{error}</Admonition.Admonition>
       ) : null}
+      <Prompt.Basic
+        control={removePrompt}
+        title={
+          removing
+            ? l`Remove ${roleText[removing].name} from ${name}?`
+            : l`Remove this role?`
+        }
+        description={
+          removing === 'admin'
+            ? l`They will no longer manage roles, and lose every role they had only as an admin. Takes effect within a minute in every Krao service, and is logged.`
+            : l`Takes effect within a minute in every Krao service, and is logged.`
+        }
+        confirmButtonCta={l`Remove role`}
+        confirmButtonColor="negative"
+        onConfirm={() => {
+          if (removing) save(removing, false)
+        }}
+      />
     </View>
   )
 }

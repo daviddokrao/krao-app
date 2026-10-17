@@ -1,6 +1,11 @@
 import {useLingui} from '@lingui/react/macro'
 
-import {type AdminRole, type AdminSectionId, type AuditService} from './logic'
+import {
+  type AdminRole,
+  type AdminSectionId,
+  type AuditService,
+  setRoleProblem,
+} from './logic'
 
 /** Names and one-line descriptions of the roles, in the app's language */
 export function useRoleText(): Record<
@@ -56,6 +61,25 @@ export function useSectionText(): Record<
     },
     roles: {name: l`Roles`, description: l`Who can do what in this area`},
     audit: {name: l`Audit log`, description: l`What admins did, by service`},
+  }
+}
+
+/** What to tell the admin when the service refuses a role change */
+export function useSetRoleErrorText(): (error: unknown) => string {
+  const {t: l} = useLingui()
+  return error => {
+    switch (setRoleProblem(error)) {
+      case 'env':
+        return l`This role comes from the services’ configuration and can’t be removed here.`
+      case 'ownAdmin':
+        return l`You can’t remove your own Admin role. Ask another admin.`
+      case 'unknownRole':
+        return l`The service doesn’t know this role. Update the app and try again.`
+      case 'forbidden':
+        return l`Only Krao admins can change roles.`
+      default:
+        return l`Could not change the role. Try again.`
+    }
   }
 }
 

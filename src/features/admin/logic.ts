@@ -132,7 +132,36 @@ export function canToggleRole(
   const held = member.roles.find(r => r.role === role)
   if (held && isLockedRole(held)) return false
   if (held && role === 'admin' && member.did === viewerDid) return false
+  if (isImpliedRole(member, role)) return false
   return true
+}
+
+/**
+ * A role the member has only because they are an admin: shown as on, and
+ * not switched on its own (granting it would change nothing).
+ */
+export function isImpliedRole(member: RoleMember, role: AdminRole): boolean {
+  return (
+    role !== 'admin' &&
+    !member.roles.some(r => r.role === role) &&
+    member.roles.some(r => r.role === 'admin')
+  )
+}
+
+export type SetRoleProblem =
+  'env' | 'ownAdmin' | 'unknownRole' | 'forbidden' | 'other'
+
+/** Why the service refused a role change (`setRole` errors), for a message */
+export function setRoleProblem(error: unknown): SetRoleProblem {
+  const {error: name, status} = (error ?? {}) as {
+    error?: unknown
+    status?: unknown
+  }
+  if (name === 'EnvRole') return 'env'
+  if (name === 'OwnAdminRole') return 'ownAdmin'
+  if (name === 'UnknownRole') return 'unknownRole'
+  if (status === 401 || status === 403) return 'forbidden'
+  return 'other'
 }
 
 /** Members in a stable order: handle, then DID; members with no role last */

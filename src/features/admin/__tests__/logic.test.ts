@@ -6,9 +6,11 @@ import {
   formatAuditDetails,
   hasRole,
   isDid,
+  isImpliedRole,
   normalizeRoles,
   type RoleMember,
   sectionsForRoles,
+  setRoleProblem,
   sortMembers,
 } from '../logic'
 
@@ -86,7 +88,41 @@ describe('canToggleRole', () => {
     expect(canToggleRole('did:plc:you', member, 'admin')).toBe(true)
   })
   it('lets a role be added', () => {
-    expect(canToggleRole('did:plc:me', member, 'moderator')).toBe(true)
+    const plain: RoleMember = {
+      did: 'did:plc:me',
+      roles: [{role: 'safety', source: 'db'}],
+    }
+    expect(canToggleRole('did:plc:you', plain, 'moderator')).toBe(true)
+  })
+  it('does not switch roles an admin already has through admin', () => {
+    expect(canToggleRole('did:plc:you', member, 'moderator')).toBe(false)
+    expect(isImpliedRole(member, 'moderator')).toBe(true)
+    // Held on its own: a real grant, not implied
+    expect(isImpliedRole(member, 'safety')).toBe(false)
+    expect(isImpliedRole(member, 'admin')).toBe(false)
+    expect(
+      isImpliedRole(
+        {did: 'did:plc:x', roles: [{role: 'kyc', source: 'db'}]},
+        'safety',
+      ),
+    ).toBe(false)
+  })
+})
+
+describe('setRoleProblem', () => {
+  it('names the errors of setRole', () => {
+    expect(setRoleProblem({error: 'EnvRole', status: 400})).toBe('env')
+    expect(setRoleProblem({error: 'OwnAdminRole', status: 400})).toBe(
+      'ownAdmin',
+    )
+    expect(setRoleProblem({error: 'UnknownRole', status: 400})).toBe(
+      'unknownRole',
+    )
+    expect(setRoleProblem({error: 'AuthRequired', status: 403})).toBe(
+      'forbidden',
+    )
+    expect(setRoleProblem(new Error('offline'))).toBe('other')
+    expect(setRoleProblem(undefined)).toBe('other')
   })
 })
 
