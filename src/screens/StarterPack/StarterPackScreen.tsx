@@ -10,6 +10,7 @@ import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useQueryClient} from '@tanstack/react-query'
 
 import {batchedUpdates} from '#/lib/batchedUpdates'
+import {BRAND_NAME} from '#/lib/brand'
 import {HITSLOP_20} from '#/lib/constants'
 import {isBlockedOrBlocking, isMuted} from '#/lib/moderation/blocked-and-muted'
 import {makeProfileLink, makeStarterPackLink} from '#/lib/routes/links'
@@ -464,7 +465,7 @@ function Header({
           {richText ? <RichText value={richText} style={[a.text_md]} /> : null}
           {!hasSession ? (
             <Button
-              label={l`Join Krao`}
+              label={l`Join ${BRAND_NAME}`}
               onPress={() => {
                 setActiveStarterPack({
                   uri: starterPack.uri,
@@ -474,7 +475,7 @@ function Header({
               color="primary"
               size="large">
               <ButtonText style={[a.text_lg]}>
-                <Trans>Join Krao</Trans>
+                <Trans>Join {BRAND_NAME}</Trans>
               </ButtonText>
             </Button>
           ) : null}
@@ -495,7 +496,7 @@ function Header({
                     value={starterPack.joinedAllTimeCount || 0}
                     other="# people have"
                   />{' '}
-                  joined Krao via this Starter Pack!
+                  joined {BRAND_NAME} via this Starter Pack!
                 </Trans>
               </Text>
             </View>

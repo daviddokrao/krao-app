@@ -1,3 +1,4 @@
+import {BRAND} from '#/lib/brand'
 import {isVietnamese, toDidFeedUri} from '../viFeed'
 
 describe('isVietnamese', () => {
@@ -12,7 +13,7 @@ describe('isVietnamese', () => {
 
 describe('toDidFeedUri', () => {
   const resolve = jest.fn((h: string) =>
-    Promise.resolve(h === 'krao.net' ? 'did:plc:abc' : undefined),
+    Promise.resolve(h === `${BRAND.domain}` ? 'did:plc:abc' : undefined),
   )
 
   it('keeps a DID-owned feed without resolving', async () => {
@@ -23,7 +24,10 @@ describe('toDidFeedUri', () => {
 
   it('resolves a handle owner', async () => {
     expect(
-      await toDidFeedUri('at://krao.net/app.bsky.feed.generator/vi', resolve),
+      await toDidFeedUri(
+        `at://${BRAND.domain}/app.bsky.feed.generator/vi`,
+        resolve,
+      ),
     ).toBe('at://did:plc:abc/app.bsky.feed.generator/vi')
   })
 

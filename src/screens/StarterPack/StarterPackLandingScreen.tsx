@@ -7,6 +7,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND, BRAND_NAME} from '#/lib/brand'
 import {JOINED_THIS_WEEK} from '#/lib/constants'
 import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
 import {createStarterPackGooglePlayUri} from '#/lib/strings/starter-pack'
@@ -199,12 +200,12 @@ function LandingScreenLoaded({
           ) : null}
           <View style={[a.gap_sm]}>
             <Button
-              label={_(msg`Join Krao`)}
+              label={_(msg`Join ${BRAND_NAME}`)}
               onPress={onJoinPress}
               color="primary"
               size="large">
               <ButtonText style={[a.text_lg]}>
-                <Trans>Join Krao</Trans>
+                <Trans>Join {BRAND_NAME}</Trans>
               </ButtonText>
             </Button>
             <View style={[a.flex_row, a.align_center, a.gap_xs]}>
@@ -318,12 +319,12 @@ function LandingScreenLoaded({
       <Prompt.Outer control={androidDialogControl}>
         <Prompt.Content>
           <Prompt.TitleText>
-            <Trans>Download Krao</Trans>
+            <Trans>Download {BRAND_NAME}</Trans>
           </Prompt.TitleText>
           <Prompt.DescriptionText>
             <Trans>
-              The experience is better in the app. Download Krao now and we'll
-              pick back up where you left off.
+              The experience is better in the app. Download {BRAND_NAME} now and
+              we'll pick back up where you left off.
             </Trans>
           </Prompt.DescriptionText>
         </Prompt.Content>
@@ -354,7 +355,7 @@ function LandingScreenLoaded({
       {IS_WEB && (
         <meta
           name="apple-itunes-app"
-          content="app-id=io.krao.app, app-clip-bundle-id=io.krao.app.AppClip, app-clip-display=card"
+          content={`app-id=${BRAND.app.id}, app-clip-bundle-id=${BRAND.app.id}.AppClip, app-clip-display=card`}
         />
       )}
     </View>
@@ -393,7 +394,7 @@ export function AppClipOverlay({
               a.text_4xl,
               {lineHeight: 40, color: 'white'},
             ]}>
-            Download Krao to get started!
+            Download {BRAND_NAME} to get started!
           </Text>
           <Text style={[a.text_lg, {color: 'white'}]}>
             We’ll remember the Starter Pack you chose and use it when you create

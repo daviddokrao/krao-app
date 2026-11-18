@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useQuery} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {createQueryKey} from '#/state/queries/util'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
@@ -89,8 +90,8 @@ function PickerInner({
         </Text>
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
-            The post shows a card people can tap to open the Mini App. Only apps
-            Krao has approved can be added.
+            The post shows a card people can tap to open the Mini App. Only apps{' '}
+            {BRAND_NAME} has approved can be added.
           </Trans>
         </Text>
       </View>
@@ -124,8 +125,8 @@ function PickerInner({
         {linked.data && !canRunApp(linked.data) && (
           <Admonition type="warning">
             <Trans>
-              {linked.data.name} has not been approved by Krao, so it can’t be
-              added to a post.
+              {linked.data.name} has not been approved by {BRAND_NAME}, so it
+              can’t be added to a post.
             </Trans>
           </Admonition>
         )}

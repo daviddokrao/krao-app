@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals'
 
+import {BRAND} from '#/lib/brand'
 import {
   getChatInviteCodeFromUrl,
   isPossiblyAUrl,
@@ -32,42 +33,50 @@ describe('linkRequiresWarning', () => {
     ['http://site.pages', 'http://site.pages.dev', true],
     ['http://site.pages.dev', 'site.pages', true],
     ['http://site.pages', 'site.pages.dev', true],
-    ['http://krao.net/profile/bob.test/post/3kbeuduu7m22v', 'my post', false],
-    ['https://krao.net/profile/bob.test/post/3kbeuduu7m22v', 'my post', false],
-    ['http://krao.net/', 'bluesky', false],
-    ['https://krao.net/', 'bluesky', false],
     [
-      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
-      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
+      `http://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
+      'my post',
       false,
     ],
     [
-      'https://krao.net/profile/bob.test/post/3kbeuduu7m22v',
-      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
+      `https://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
+      'my post',
+      false,
+    ],
+    [`http://${BRAND.domain}/`, 'bluesky', false],
+    [`https://${BRAND.domain}/`, 'bluesky', false],
+    [
+      `http://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
+      `http://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
       false,
     ],
     [
-      'http://krao.net/',
-      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
+      `https://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
+      `http://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
       false,
     ],
     [
-      'https://krao.net/',
-      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
+      `http://${BRAND.domain}/`,
+      `http://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
       false,
     ],
     [
-      'http://krao.net/profile/bob.test/post/3kbeuduu7m22v',
+      `https://${BRAND.domain}/`,
+      `http://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
+      false,
+    ],
+    [
+      `http://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
       'https://google.com',
       true,
     ],
     [
-      'https://krao.net/profile/bob.test/post/3kbeuduu7m22v',
+      `https://${BRAND.domain}/profile/bob.test/post/3kbeuduu7m22v`,
       'https://google.com',
       true,
     ],
-    ['http://krao.net/', 'https://google.com', true],
-    ['https://krao.net/', 'https://google.com', true],
+    [`http://${BRAND.domain}/`, 'https://google.com', true],
+    [`https://${BRAND.domain}/`, 'https://google.com', true],
 
     // case insensitive
     ['https://Example.com', 'example.com', false],
@@ -78,8 +87,12 @@ describe('linkRequiresWarning', () => {
     ['example.com', 'example.com', true],
     ['/profile', 'Username', false],
     ['#', 'Show More', false],
-    ['https://docs.krao.net', 'https://docs.krao.net', false],
-    ['https://krao.net/compose/intent?text=test', 'Compose a post', false],
+    [`https://docs.${BRAND.domain}`, `https://docs.${BRAND.domain}`, false],
+    [
+      `https://${BRAND.domain}/compose/intent?text=test`,
+      'Compose a post',
+      false,
+    ],
   ]
 
   it.each(cases)(
@@ -154,17 +167,17 @@ describe('isTrustedUrl', () => {
     ['/profile', true],
     ['/profile/', true],
     ['/profile/bob.test', true],
-    ['https://krao.net', true],
-    ['https://krao.net/', true],
-    ['https://krao.net/profile/bob.test', true],
-    ['https://www.krao.net', true],
-    ['https://www.krao.net/', true],
-    ['https://docs.krao.net', true],
+    [`https://${BRAND.domain}`, true],
+    [`https://${BRAND.domain}/`, true],
+    [`https://${BRAND.domain}/profile/bob.test`, true],
+    [`https://www.${BRAND.domain}`, true],
+    [`https://www.${BRAND.domain}/`, true],
+    [`https://docs.${BRAND.domain}`, true],
     ['https://bsky.social', false],
     ['https://bsky.social/blog', false],
     ['https://blueskyweb.xyz', false],
     ['https://blueskyweb.zendesk.com', false],
-    ['http://krao.net', true],
+    [`http://${BRAND.domain}`, true],
     ['http://bsky.social', false],
     ['http://blueskyweb.xyz', false],
     ['http://blueskyweb.zendesk.com', false],
@@ -184,31 +197,31 @@ describe('getChatInviteCodeFromUrl', () => {
   type Case = [string, string | undefined]
 
   const cases: Case[] = [
-    ['https://krao.net/chat/abcdefg', 'abcdefg'],
-    ['https://krao.net/chat/abcdefghij', 'abcdefghij'],
+    [`https://${BRAND.domain}/chat/abcdefg`, 'abcdefg'],
+    [`https://${BRAND.domain}/chat/abcdefghij`, 'abcdefghij'],
     // http is not recognized as a krao.net url
-    ['http://krao.net/chat/abcdefg', undefined],
-    ['https://krao.net/chat/abcdefg?utm=foo', 'abcdefg'],
-    ['https://krao.net/chat/abcdefg#section', 'abcdefg'],
+    [`http://${BRAND.domain}/chat/abcdefg`, undefined],
+    [`https://${BRAND.domain}/chat/abcdefg?utm=foo`, 'abcdefg'],
+    [`https://${BRAND.domain}/chat/abcdefg#section`, 'abcdefg'],
     ['/chat/abcdefg', 'abcdefg'],
     ['/chat/abcdefg?utm=foo', 'abcdefg'],
     ['/chat/abcdefg#section', 'abcdefg'],
 
     // too short
-    ['https://krao.net/chat/abcdef', undefined],
+    [`https://${BRAND.domain}/chat/abcdef`, undefined],
     ['/chat/abcdef', undefined],
     // too long
-    ['https://krao.net/chat/abcdefghijk', undefined],
+    [`https://${BRAND.domain}/chat/abcdefghijk`, undefined],
     ['/chat/abcdefghijk', undefined],
     // invalid characters
-    ['https://krao.net/chat/abc-def', undefined],
+    [`https://${BRAND.domain}/chat/abc-def`, undefined],
     ['/chat/abc def', undefined],
     // trailing path
-    ['https://krao.net/chat/abcdefg/extra', undefined],
+    [`https://${BRAND.domain}/chat/abcdefg/extra`, undefined],
     ['/chat/abcdefg/extra', undefined],
     // wrong path
-    ['https://krao.net/profile/abcdefg', undefined],
-    ['https://krao.net/chat', undefined],
+    [`https://${BRAND.domain}/profile/abcdefg`, undefined],
+    [`https://${BRAND.domain}/chat`, undefined],
     // wrong host
     ['https://example.com/chat/abcdefg', undefined],
     // not a url, not a path

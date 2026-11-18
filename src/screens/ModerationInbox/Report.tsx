@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {webLinks} from '#/lib/constants'
 import {NotFoundScreen} from '#/view/screens/NotFound'
 import {atoms as a, useTheme} from '#/alf'
@@ -36,7 +37,7 @@ export function ModerationInboxReportDetailsScreen() {
             <Trans>Your report</Trans>
           </Layout.Header.TitleText>
           <Layout.Header.SubtitleText>
-            <Trans>Krao Moderation Service</Trans>
+            <Trans>{BRAND_NAME} Moderation Service</Trans>
           </Layout.Header.SubtitleText>
         </Layout.Header.Content>
         <Layout.Header.Slot />

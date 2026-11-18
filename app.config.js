@@ -1,5 +1,6 @@
 // @ts-check
 const pkg = require('./package.json')
+const brand = require('./brand.json')
 
 /**
  * @param {import('@expo/config-types').ExpoConfig} _config
@@ -23,10 +24,19 @@ module.exports = function (_config) {
   const IS_E2E = process.env.EXPO_PUBLIC_ENV === 'e2e'
   const IS_DEV = !IS_TESTFLIGHT && !IS_PRODUCTION
 
+  /**
+   * Brand values (see brand.json). The app id also names the extensions,
+   * the app group and the keychain prefix.
+   */
+  const APP_ID = brand.app.id
+  const APP_GROUP = `group.${APP_ID}`
+  const WEB_DOMAIN = brand.domain
+  const GO_DOMAIN = `${brand.hosts.go}.${brand.domain}`
+
   const ASSOCIATED_DOMAINS = [
-    'applinks:krao.net',
-    'appclips:krao.net',
-    'appclips:go.krao.net', // Allows App Clip to work when scanning QR codes
+    `applinks:${WEB_DOMAIN}`,
+    `appclips:${WEB_DOMAIN}`,
+    `appclips:${GO_DOMAIN}`, // Allows App Clip to work when scanning QR codes
     // When testing local services, enter an ngrok (et al) domain here. It must use a standard HTTP/HTTPS port.
     ...(IS_DEV || IS_TESTFLIGHT ? [] : []),
   ]
@@ -51,9 +61,9 @@ module.exports = function (_config) {
   return {
     expo: {
       version: VERSION,
-      name: 'Krao',
-      slug: 'krao',
-      scheme: 'krao',
+      name: brand.name,
+      slug: brand.app.slug,
+      scheme: brand.app.scheme,
       owner: process.env.EXPO_OWNER,
       runtimeVersion: {
         policy: 'appVersion',
@@ -63,7 +73,7 @@ module.exports = function (_config) {
       primaryColor: '#0E8C6E',
       ios: {
         supportsTablet: false,
-        bundleIdentifier: 'io.krao.app',
+        bundleIdentifier: APP_ID,
         appleTeamId: process.env.EXPO_APPLE_TEAM_ID,
         config: {
           usesNonExemptEncryption: false,
@@ -81,7 +91,7 @@ module.exports = function (_config) {
             'Used to save images to your library.',
           NSPhotoLibraryUsageDescription:
             'Used for profile pictures, posts, and other kinds of content',
-          CFBundleSpokenName: 'Krao',
+          CFBundleSpokenName: brand.name,
           CFBundleLocalizations: [
             'en',
             'an',
@@ -130,7 +140,7 @@ module.exports = function (_config) {
         entitlements: {
           'com.apple.developer.kernel.increased-memory-limit': true,
           'com.apple.developer.kernel.extended-virtual-addressing': true,
-          'com.apple.security.application-groups': 'group.io.krao.app',
+          'com.apple.security.application-groups': APP_GROUP,
           'com.apple.developer.usernotifications.communication': true,
           // 'com.apple.developer.device-information.user-assigned-device-name': true,
           'com.apple.developer.declared-age-range': true,
@@ -195,7 +205,7 @@ module.exports = function (_config) {
           backgroundColor: '#0E8C6E',
         },
         googleServicesFile: './google-services.json',
-        package: 'io.krao.app',
+        package: APP_ID,
         intentFilters: [
           {
             action: 'VIEW',
@@ -203,7 +213,7 @@ module.exports = function (_config) {
             data: [
               {
                 scheme: 'https',
-                host: 'krao.net',
+                host: WEB_DOMAIN,
               },
               ...(IS_DEV
                 ? [
@@ -223,7 +233,7 @@ module.exports = function (_config) {
         favicon: './assets/favicon.png',
       },
       updates: {
-        url: 'https://updates.krao.net/manifest',
+        url: `https://${brand.hosts.updates}.${brand.domain}/manifest`,
         enabled: UPDATES_ENABLED,
         fallbackToCacheTimeout: 30000,
         codeSigningCertificate: UPDATES_ENABLED
@@ -454,8 +464,7 @@ module.exports = function (_config) {
         [
           'expo-contacts',
           {
-            contactsPermission:
-              'I agree to allow Krao to use my contacts for friend discovery until I opt out.',
+            contactsPermission: `I agree to allow ${brand.name} to use my contacts for friend discovery until I opt out.`,
           },
         ],
       ],
@@ -467,32 +476,26 @@ module.exports = function (_config) {
                 appExtensions: [
                   {
                     targetName: 'Share-with-Bluesky',
-                    bundleIdentifier: 'io.krao.app.Share-with-Bluesky',
+                    bundleIdentifier: `${APP_ID}.Share-with-Bluesky`,
                     entitlements: {
-                      'com.apple.security.application-groups': [
-                        'group.io.krao.app',
-                      ],
+                      'com.apple.security.application-groups': [APP_GROUP],
                     },
                   },
                   {
                     targetName: 'BlueskyNSE',
-                    bundleIdentifier: 'io.krao.app.BlueskyNSE',
+                    bundleIdentifier: `${APP_ID}.BlueskyNSE`,
                     entitlements: {
-                      'com.apple.security.application-groups': [
-                        'group.io.krao.app',
-                      ],
+                      'com.apple.security.application-groups': [APP_GROUP],
                     },
                   },
                   {
                     targetName: 'BlueskyClip',
-                    bundleIdentifier: 'io.krao.app.AppClip',
-                    parentBundleIdentifier: 'io.krao.app',
+                    bundleIdentifier: `${APP_ID}.AppClip`,
+                    parentBundleIdentifier: APP_ID,
                     entitlements: {
-                      'com.apple.security.application-groups': [
-                        'group.io.krao.app',
-                      ],
+                      'com.apple.security.application-groups': [APP_GROUP],
                       'com.apple.developer.parent-application-identifiers': [
-                        '$(AppIdentifierPrefix)io.krao.app',
+                        `$(AppIdentifierPrefix)${APP_ID}`,
                       ],
                       'com.apple.developer.associated-domains':
                         ASSOCIATED_DOMAINS,

@@ -3,6 +3,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {urls} from '#/lib/constants'
 import {getUserDisplayName} from '#/lib/getUserDisplayName'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
@@ -152,7 +153,7 @@ function Inner({
           to={urls.website.blog.initialVerificationAnnouncement}
           label={_(
             msg({
-              message: `Learn more about verification on Krao`,
+              message: `Learn more about verification on ${BRAND_NAME}`,
               context: `english-only-resource`,
             }),
           )}

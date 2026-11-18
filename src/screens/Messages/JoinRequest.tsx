@@ -5,6 +5,7 @@ import {type ThemeName} from '@bsky.app/alf'
 import {moderateProfile} from '@bsky/sdk/moderation'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {createSanitizedDisplayName} from '#/lib/moderation/create-sanitized-display-name'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
@@ -296,7 +297,7 @@ function ActionButtons({
           setScreenState(LoggedOutScreenState.S_Login)
         }}
         label={l`Sign in`}
-        accessibilityHint={l`Opens flow to sign in to your existing Krao account`}
+        accessibilityHint={l`Opens flow to sign in to your existing ${BRAND_NAME} account`}
         size="large"
         color="primary"
         style={[a.w_full]}>
@@ -310,7 +311,7 @@ function ActionButtons({
           setScreenState(LoggedOutScreenState.S_CreateAccount)
         }}
         label={l`Create new account`}
-        accessibilityHint={l`Opens flow to create a new Krao account`}
+        accessibilityHint={l`Opens flow to create a new ${BRAND_NAME} account`}
         size="large"
         color={isDarkMode ? 'secondary_inverted' : 'secondary'}
         style={[a.w_full]}>

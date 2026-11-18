@@ -6,6 +6,7 @@ import {type ThemeName} from '@bsky.app/alf'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type NavigationProp} from '#/lib/routes/types'
 import {
   atoms as a,
@@ -151,7 +152,7 @@ export function GroupChatsAnnouncement() {
             source={getHero(t.name)}
             style={[a.w_full, {aspectRatio: 343 / 230}]}
             alt={l({
-              message: `Four message bubbles representing a group chat. First message: "Did you hear the news? Krao has group chats now!" Second message: "omg, no way" Third message: "Wow, 50 people in one chat!" Fourth message: "You can send invite links too!"`,
+              message: `Four message bubbles representing a group chat. First message: "Did you hear the news? ${BRAND_NAME} has group chats now!" Second message: "omg, no way" Third message: "Wow, 50 people in one chat!" Fourth message: "You can send invite links too!"`,
               comment:
                 'This is alt text for a marketing image which transcribes English text that appears in the image',
             })}
@@ -190,7 +191,7 @@ export function GroupChatsAnnouncement() {
               icon={ChainLinkIcon}
               titleText={<Trans>Add people with a link</Trans>}
               descriptionText={
-                <Trans>Post it to Krao or share anywhere.</Trans>
+                <Trans>Post it to {BRAND_NAME} or share anywhere.</Trans>
               }
             />
             <Feature

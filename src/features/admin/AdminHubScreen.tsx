@@ -2,6 +2,7 @@ import {View} from 'react-native'
 import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a, useTheme} from '#/alf'
@@ -55,7 +56,7 @@ export function AdminHubScreen({}: Props) {
         <Layout.Header.BackButton />
         <Layout.Header.Content>
           <Layout.Header.TitleText>
-            <Trans>Krao admin</Trans>
+            <Trans>{BRAND_NAME} admin</Trans>
           </Layout.Header.TitleText>
         </Layout.Header.Content>
         <Layout.Header.Slot />
@@ -68,7 +69,7 @@ export function AdminHubScreen({}: Props) {
         ) : !sections.length ? (
           <View style={[a.p_lg]}>
             <Admonition.Admonition type="error">
-              <Trans>Only Krao admins can open this page.</Trans>
+              <Trans>Only {BRAND_NAME} admins can open this page.</Trans>
             </Admonition.Admonition>
           </View>
         ) : (

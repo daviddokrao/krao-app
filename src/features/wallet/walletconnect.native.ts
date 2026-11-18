@@ -3,6 +3,7 @@ import '@walletconnect/react-native-compat'
 import {Linking} from 'react-native'
 import {type EthereumProvider} from '@walletconnect/ethereum-provider'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {KRAO_WEB_URL, WALLETCONNECT_PROJECT_ID} from '#/env'
 import {WalletRejectedError, WalletUnavailableError} from './errors'
 import {
@@ -43,8 +44,8 @@ function getWcProvider(): Promise<WcProvider> {
       // No usage events to WalletConnect's analytics endpoint; only the relay
       telemetryEnabled: false,
       metadata: {
-        name: 'Krao',
-        description: 'Krao Network',
+        name: BRAND_NAME,
+        description: `${BRAND_NAME} Network`,
         url: KRAO_WEB_URL,
         icons: [`${KRAO_WEB_URL.replace(/\/$/, '')}/apple-touch-icon.png`],
         redirect: {native: WALLET_REDIRECT_NATIVE, universal: KRAO_WEB_URL},

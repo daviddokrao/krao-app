@@ -226,8 +226,8 @@ msgstr ""
 #. Number of users (always at least 25) who have joined Krao using a specific Starter Pack
 #. placeholder {0}: starterPack.joinedAllTimeCount || 0
 #: src/screens/StarterPack/StarterPackScreen.tsx:493
-msgid "{0, plural, other {# people have}} joined Krao via this Starter Pack!"
-msgstr "{0, plural, other {# people have}} joined Krao via this Starter Pack!"
+msgid "{0, plural, other {# people have}} joined {BRAND_NAME} via this Starter Pack!"
+msgstr "{0, plural, other {# people have}} joined {BRAND_NAME} via this Starter Pack!"
 
 #. placeholder {0}: starterPack.list.listItemCount - 4
 #: src/components/dialogs/StarterPackDialog.tsx:351
@@ -815,20 +815,20 @@ msgid "{numMatches, plural, one {# contact found} other {# contacts found}}"
 msgstr ""
 
 #: src/components/dialogs/NewskieDialog/utils.ts:47
-msgid "{profileName} joined Krao {timeAgoString} ago"
-msgstr "{profileName} joined Krao {timeAgoString} ago"
+msgid "{profileName} joined {BRAND_NAME} {timeAgoString} ago"
+msgstr "{profileName} joined {BRAND_NAME} {timeAgoString} ago"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:32
-msgid "{profileName} joined Krao just now"
-msgstr "{profileName} joined Krao just now"
+msgid "{profileName} joined {BRAND_NAME} just now"
+msgstr "{profileName} joined {BRAND_NAME} just now"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:45
-msgid "{profileName} joined Krao using a Starter Pack {timeAgoString} ago"
-msgstr "{profileName} joined Krao using a Starter Pack {timeAgoString} ago"
+msgid "{profileName} joined {BRAND_NAME} using a Starter Pack {timeAgoString} ago"
+msgstr "{profileName} joined {BRAND_NAME} using a Starter Pack {timeAgoString} ago"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:31
-msgid "{profileName} joined Krao using a Starter Pack just now"
-msgstr "{profileName} joined Krao using a Starter Pack just now"
+msgid "{profileName} joined {BRAND_NAME} using a Starter Pack just now"
+msgstr "{profileName} joined {BRAND_NAME} using a Starter Pack just now"
 
 #. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
 #. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
@@ -982,8 +982,8 @@ msgstr "<0>Community Guidelines: Harassment</0>"
 
 #: src/screens/Hashtag.tsx:232
 #: src/screens/Search/SearchResults.tsx:398
-msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Krao.</4>"
-msgstr "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on Krao.</4>"
+msgid "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on {BRAND_NAME}.</4>"
+msgstr "<0>Sign in</0><1> or </1><2>create an account</2><3> </3><4>to search for news, sports, politics, and everything else happening on {BRAND_NAME}.</4>"
 
 #: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:251
 msgid "<0>Tap here to update your location with GPS.</0>"
@@ -1027,8 +1027,8 @@ msgid "7 days"
 msgstr ""
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:27
-msgid "A collection of popular feeds you can find on Krao, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
-msgstr "A collection of popular feeds you can find on Krao, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
+msgid "A collection of popular feeds you can find on {BRAND_NAME}, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
+msgstr "A collection of popular feeds you can find on {BRAND_NAME}, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
 
 #: src/screens/ModerationInbox/index.tsx:204
 msgctxt "moderation-report-action"
@@ -1090,8 +1090,8 @@ msgstr ""
 
 #. Contains a post that originally appeared in English. Consider translating the post text if it makes sense in your language, and noting that the post was translated from English.
 #: src/components/dialogs/nuxs/DraftsAnnouncement.tsx:98
-msgid "A screenshot of the post composer with a new button next to the post button that says \"Drafts\", with a rainbow firework effect. Below, the text in the composer reads \"Hey, did you hear the news? Krao has drafts now!!!\"."
-msgstr "A screenshot of the post composer with a new button next to the post button that says \"Drafts\", with a rainbow firework effect. Below, the text in the composer reads \"Hey, did you hear the news? Krao has drafts now!!!\"."
+msgid "A screenshot of the post composer with a new button next to the post button that says \"Drafts\", with a rainbow firework effect. Below, the text in the composer reads \"Hey, did you hear the news? {BRAND_NAME} has drafts now!!!\"."
+msgstr "A screenshot of the post composer with a new button next to the post button that says \"Drafts\", with a rainbow firework effect. Below, the text in the composer reads \"Hey, did you hear the news? {BRAND_NAME} has drafts now!!!\"."
 
 #: src/components/dms/dialogs/NewChatDialog.tsx:102
 #: src/components/dms/dialogs/ShareViaChatDialog.tsx:118
@@ -1231,8 +1231,8 @@ msgid "Account unmuted"
 msgstr ""
 
 #: src/components/verification/VerifierDialog.tsx:101
-msgid "Accounts with a scalloped blue check mark <0><1/></0> can verify others. These trusted verifiers are selected by Krao."
-msgstr "Accounts with a scalloped blue check mark <0><1/></0> can verify others. These trusted verifiers are selected by Krao."
+msgid "Accounts with a scalloped blue check mark <0><1/></0> can verify others. These trusted verifiers are selected by {BRAND_NAME}."
+msgstr "Accounts with a scalloped blue check mark <0><1/></0> can verify others. These trusted verifiers are selected by {BRAND_NAME}."
 
 #: src/screens/Atmosphere.tsx:43
 msgid "Activity"
@@ -1791,21 +1791,21 @@ msgstr ""
 
 #: src/components/contacts/components/HeroImage.tsx:28
 #: src/components/dialogs/nuxs/FindContactsAnnouncement.tsx:79
-msgid "An illustration depicting user avatars flowing from a contact book into the Krao app"
-msgstr "An illustration depicting user avatars flowing from a contact book into the Krao app"
+msgid "An illustration depicting user avatars flowing from a contact book into the {BRAND_NAME} app"
+msgstr "An illustration depicting user avatars flowing from a contact book into the {BRAND_NAME} app"
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:45
-msgid "An illustration of several Krao posts alongside repost, like, and comment icons"
-msgstr "An illustration of several Krao posts alongside repost, like, and comment icons"
+msgid "An illustration of several {BRAND_NAME} posts alongside repost, like, and comment icons"
+msgstr "An illustration of several {BRAND_NAME} posts alongside repost, like, and comment icons"
 
 #: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:111
-msgid "An illustration of the Krao app with a paper airplane flying out of it, representing inviting friends"
-msgstr "An illustration of the Krao app with a paper airplane flying out of it, representing inviting friends"
+msgid "An illustration of the {BRAND_NAME} app with a paper airplane flying out of it, representing inviting friends"
+msgstr "An illustration of the {BRAND_NAME} app with a paper airplane flying out of it, representing inviting friends"
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:87
 #: src/components/verification/VerifierDialog.tsx:89
-msgid "An illustration showing that Krao selects trusted verifiers, and trusted verifiers in turn verify individual user accounts."
-msgstr "An illustration showing that Krao selects trusted verifiers, and trusted verifiers in turn verify individual user accounts."
+msgid "An illustration showing that {BRAND_NAME} selects trusted verifiers, and trusted verifiers in turn verify individual user accounts."
+msgstr "An illustration showing that {BRAND_NAME} selects trusted verifiers, and trusted verifiers in turn verify individual user accounts."
 
 #: src/screens/Messages/components/InviteLinkDialog.tsx:196
 msgid "An invite link lets people join this group chat without being added directly. You control who can join the chat. You can disable the link at any time."
@@ -1835,8 +1835,8 @@ msgid "An issue occurred, please try again."
 msgstr ""
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:122
-msgid "An mockup of a iPhone showing the Krao app open to the profile of a verified user with a blue checkmark next to their display name."
-msgstr "An mockup of a iPhone showing the Krao app open to the profile of a verified user with a blue checkmark next to their display name."
+msgid "An mockup of a iPhone showing the {BRAND_NAME} app open to the profile of a verified user with a blue checkmark next to their display name."
+msgstr "An mockup of a iPhone showing the {BRAND_NAME} app open to the profile of a verified user with a blue checkmark next to their display name."
 
 #: src/components/moderation/ModerationDetailsDialog.tsx:154
 #: src/lib/moderation/useModerationCauseDescription.ts:142
@@ -1868,8 +1868,8 @@ msgid "Announcement"
 msgstr ""
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:39
-msgid "Announcing verification on Krao"
-msgstr "Announcing verification on Krao"
+msgid "Announcing verification on {BRAND_NAME}"
+msgstr "Announcing verification on {BRAND_NAME}"
 
 #. Placeholder text for a date picker
 #: src/screens/Search/components/AdvancedSearchDialog/ClearableDateField.tsx:43
@@ -2127,8 +2127,8 @@ msgid "Artistic or non-erotic nudity."
 msgstr ""
 
 #: src/features/referral/components/ReferralCodeField.tsx:43
-msgid "Ask a Krao member for their code"
-msgstr "Ask a Krao member for their code"
+msgid "Ask a {BRAND_NAME} member for their code"
+msgstr "Ask a {BRAND_NAME} member for their code"
 
 #: src/screens/Settings/components/PwiOptOut.tsx:90
 #: src/screens/Settings/components/PwiOptOut.tsx:94
@@ -3944,8 +3944,8 @@ msgid "Customization options"
 msgstr ""
 
 #: src/screens/Onboarding/Layout.tsx:126
-msgid "Customizes your Krao experience"
-msgstr "Customizes your Krao experience"
+msgid "Customizes your {BRAND_NAME} experience"
+msgstr "Customizes your {BRAND_NAME} experience"
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:202
 msgid "Dangerous challenges or activities"
@@ -4449,8 +4449,8 @@ msgid "Download invite QR code"
 msgstr "Download invite QR code"
 
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:321
-msgid "Download Krao"
-msgstr "Download Krao"
+msgid "Download {BRAND_NAME}"
+msgstr "Download {BRAND_NAME}"
 
 #: src/screens/Settings/components/ExportCarDialog.tsx:123
 msgid "Download profile data"
@@ -4477,8 +4477,8 @@ msgid "Drop to add images"
 msgstr ""
 
 #: src/components/ageAssurance/useAgeAssuranceCopy.ts:20
-msgid "Due to laws in your region, certain features on Krao are currently restricted until you're able to verify you're an adult."
-msgstr "Due to laws in your region, certain features on Krao are currently restricted until you're able to verify you're an adult."
+msgid "Due to laws in your region, certain features on {BRAND_NAME} are currently restricted until you're able to verify you're an adult."
+msgstr "Due to laws in your region, certain features on {BRAND_NAME} are currently restricted until you're able to verify you're an adult."
 
 #: src/components/dialogs/MutedWords.tsx:164
 msgid "Duration:"
@@ -5580,8 +5580,8 @@ msgid "Find people you know"
 msgstr "Find people you know"
 
 #: src/screens/Search/Shell.tsx:765
-msgid "Find posts, users, and feeds on Krao"
-msgstr "Find posts, users, and feeds on Krao"
+msgid "Find posts, users, and feeds on {BRAND_NAME}"
+msgstr "Find posts, users, and feeds on {BRAND_NAME}"
 
 #: src/components/dialogs/nuxs/FindContactsAnnouncement.tsx:98
 msgid "Find your friends"
@@ -5589,8 +5589,8 @@ msgstr ""
 
 #: src/screens/Onboarding/StepFindContactsIntro/index.tsx:46
 #: src/screens/Settings/FindContactsSettings.tsx:136
-msgid "Find your friends on Krao by verifying your phone number and matching with your contacts. We protect your information and you control what happens next. <0>Learn more</0>"
-msgstr "Find your friends on Krao by verifying your phone number and matching with your contacts. We protect your information and you control what happens next. <0>Learn more</0>"
+msgid "Find your friends on {BRAND_NAME} by verifying your phone number and matching with your contacts. We protect your information and you control what happens next. <0>Learn more</0>"
+msgstr "Find your friends on {BRAND_NAME} by verifying your phone number and matching with your contacts. We protect your information and you control what happens next. <0>Learn more</0>"
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:31
 msgid "Find your people"
@@ -5854,8 +5854,8 @@ msgstr ""
 
 #. This is alt text for a marketing image which transcribes English text that appears in the image
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:153
-msgid "Four message bubbles representing a group chat. First message: \"Did you hear the news? Krao has group chats now!\" Second message: \"omg, no way\" Third message: \"Wow, 50 people in one chat!\" Fourth message: \"You can send invite links too!\""
-msgstr "Four message bubbles representing a group chat. First message: \"Did you hear the news? Krao has group chats now!\" Second message: \"omg, no way\" Third message: \"Wow, 50 people in one chat!\" Fourth message: \"You can send invite links too!\""
+msgid "Four message bubbles representing a group chat. First message: \"Did you hear the news? {BRAND_NAME} has group chats now!\" Second message: \"omg, no way\" Third message: \"Wow, 50 people in one chat!\" Fourth message: \"You can send invite links too!\""
+msgstr "Four message bubbles representing a group chat. First message: \"Did you hear the news? {BRAND_NAME} has group chats now!\" Second message: \"omg, no way\" Third message: \"Wow, 50 people in one chat!\" Fourth message: \"You can send invite links too!\""
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:22
 msgid "Free your feed"
@@ -6348,8 +6348,8 @@ msgid "Having trouble?"
 msgstr ""
 
 #: src/components/contacts/screens/PhoneInput.tsx:290
-msgid "Held by Krao for 7 days to prevent abuse, then deleted"
-msgstr "Held by Krao for 7 days to prevent abuse, then deleted"
+msgid "Held by {BRAND_NAME} for 7 days to prevent abuse, then deleted"
+msgstr "Held by {BRAND_NAME} for 7 days to prevent abuse, then deleted"
 
 #: src/screens/Settings/Settings.tsx:275
 #: src/screens/Settings/Settings.tsx:279
@@ -6561,8 +6561,8 @@ msgid "Hosting provider: {0}"
 msgstr "Hosting provider: {0}"
 
 #: src/screens/Login/LoginForm.tsx:669
-msgid "Hosting provider: Krao"
-msgstr "Hosting provider: Krao"
+msgid "Hosting provider: {BRAND_NAME}"
+msgstr "Hosting provider: {BRAND_NAME}"
 
 #: src/components/contacts/components/InviteInfo.tsx:54
 msgid "How it works:"
@@ -6582,8 +6582,8 @@ msgid "Human trafficking"
 msgstr ""
 
 #: src/components/contacts/screens/GetContacts.tsx:269
-msgid "I consent to Krao using my contacts for mutual friend discovery and to retain hashed data for matching until I opt out."
-msgstr "I consent to Krao using my contacts for mutual friend discovery and to retain hashed data for matching until I opt out."
+msgid "I consent to {BRAND_NAME} using my contacts for mutual friend discovery and to retain hashed data for matching until I opt out."
+msgstr "I consent to {BRAND_NAME} using my contacts for mutual friend discovery and to retain hashed data for matching until I opt out."
 
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:140
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:143
@@ -6601,8 +6601,8 @@ msgstr ""
 
 #. placeholder {0}: currentAccount.handle
 #: src/components/contacts/screens/ViewMatches.tsx:586
-msgid "I'm on Krao as {0} - come find me! https://krao.net/download"
-msgstr "I'm on Krao as {0} - come find me! https://krao.net/download"
+msgid "I'm on {BRAND_NAME} as {0} - come find me! {1}"
+msgstr "I'm on {BRAND_NAME} as {0} - come find me! {1}"
 
 #: src/features/referral/components/PointsSection.tsx:103
 msgid "Identity verification"
@@ -6932,8 +6932,8 @@ msgid "Invite"
 msgstr ""
 
 #: src/components/contacts/screens/ViewMatches.tsx:575
-msgid "Invite {name} to join Krao"
-msgstr "Invite {name} to join Krao"
+msgid "Invite {name} to join {BRAND_NAME}"
+msgstr "Invite {name} to join {BRAND_NAME}"
 
 #: src/screens/Signup/state.ts:366
 msgid "Invite code not accepted. Check that you input it correctly and try again."
@@ -7057,8 +7057,8 @@ msgstr "Join group chat"
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:207
 #: src/screens/StarterPack/StarterPackScreen.tsx:467
 #: src/screens/StarterPack/StarterPackScreen.tsx:477
-msgid "Join Krao"
-msgstr "Join Krao"
+msgid "Join {BRAND_NAME}"
+msgstr "Join {BRAND_NAME}"
 
 #: src/components/intents/GroupChatJoinDialog.tsx:194
 #: src/screens/Messages/components/OutgoingRequestListItem.tsx:29
@@ -7091,103 +7091,103 @@ msgstr "Keep your place in the Following feed"
 
 #: src/components/dialogs/ServerInput.tsx:145
 #: src/components/dialogs/ServerInput.tsx:147
-msgid "Krao"
-msgstr "Krao"
+msgid "{BRAND_NAME}"
+msgstr "{BRAND_NAME}"
 
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:656
-msgid "Krao cannot confirm the authenticity of the claimed date."
-msgstr "Krao cannot confirm the authenticity of the claimed date."
+msgid "{BRAND_NAME} cannot confirm the authenticity of the claimed date."
+msgstr "{BRAND_NAME} cannot confirm the authenticity of the claimed date."
 
 #: src/screens/Settings/AppIconSettings/useAppIconSets.ts:165
 msgctxt "Name of app icon variant"
-msgid "Krao Classic™"
-msgstr "Krao Classic™"
+msgid "{BRAND_NAME} Classic™"
+msgstr "{BRAND_NAME} Classic™"
 
 #: src/screens/ModerationInbox/components/AccountStatus.tsx:36
-msgid "Krao has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension."
-msgstr "Krao has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension."
+msgid "{BRAND_NAME} has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension."
+msgstr "{BRAND_NAME} has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension."
 
 #: src/components/contacts/screens/GetContacts.tsx:237
-msgid "Krao helps friends find each other by creating an encoded digital fingerprint, called a \"hash\", and then looking for matching hashes."
-msgstr "Krao helps friends find each other by creating an encoded digital fingerprint, called a \"hash\", and then looking for matching hashes."
+msgid "{BRAND_NAME} helps friends find each other by creating an encoded digital fingerprint, called a \"hash\", and then looking for matching hashes."
+msgstr "{BRAND_NAME} helps friends find each other by creating an encoded digital fingerprint, called a \"hash\", and then looking for matching hashes."
 
 #: src/components/dialogs/ServerInput.tsx:215
 #: src/screens/Login/components/HostingProviderDialog.tsx:236
-msgid "Krao is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
-msgstr "Krao is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
+msgid "{BRAND_NAME} is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
+msgstr "{BRAND_NAME} is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
 
 #: src/components/dialogs/ServerInput.tsx:163
-msgid "Krao is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Krao option."
-msgstr "Krao is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Krao option."
+msgid "{BRAND_NAME} is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default {BRAND_NAME} option."
+msgstr "{BRAND_NAME} is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default {BRAND_NAME} option."
 
 #: src/components/ProgressGuide/List.tsx:115
-msgid "Krao is better with friends!"
-msgstr "Krao is better with friends!"
+msgid "{BRAND_NAME} is better with friends!"
+msgstr "{BRAND_NAME} is better with friends!"
 
 #: src/features/referral/components/ReferralCodeField.tsx:71
-msgid "Krao is invite-only for now: you need a code from a member to join."
-msgstr "Krao is invite-only for now: you need a code from a member to join."
+msgid "{BRAND_NAME} is invite-only for now: you need a code from a member to join."
+msgstr "{BRAND_NAME} is invite-only for now: you need a code from a member to join."
 
 #: src/features/referral/ReferralScreen.tsx:48
-msgid "Krao is invite-only. Share your code: you get 100 points for each friend who joins, and they get 50. Points are approved once you have both verified your identity."
-msgstr "Krao is invite-only. Share your code: you get 100 points for each friend who joins, and they get 50. Points are approved once you have both verified your identity."
+msgid "{BRAND_NAME} is invite-only. Share your code: you get 100 points for each friend who joins, and they get 50. Points are approved once you have both verified your identity."
+msgstr "{BRAND_NAME} is invite-only. Share your code: you get 100 points for each friend who joins, and they get 50. Points are approved once you have both verified your identity."
 
 #: src/screens/Onboarding/StepFindContactsIntro/index.tsx:43
-msgid "Krao is more fun with friends"
-msgstr "Krao is more fun with friends"
+msgid "{BRAND_NAME} is more fun with friends"
+msgstr "{BRAND_NAME} is more fun with friends"
 
 #: src/components/dialogs/nuxs/FindContactsAnnouncement.tsx:108
-msgid "Krao is more fun with friends! Import your contacts to see who’s already here."
-msgstr "Krao is more fun with friends! Import your contacts to see who’s already here."
+msgid "{BRAND_NAME} is more fun with friends! Import your contacts to see who’s already here."
+msgstr "{BRAND_NAME} is more fun with friends! Import your contacts to see who’s already here."
 
 #: src/components/contacts/screens/ViewMatches.tsx:323
-msgid "Krao is more fun with friends. Do you want to invite some of yours? <0/>"
-msgstr "Krao is more fun with friends. Do you want to invite some of yours? <0/>"
+msgid "{BRAND_NAME} is more fun with friends. Do you want to invite some of yours? <0/>"
+msgstr "{BRAND_NAME} is more fun with friends. Do you want to invite some of yours? <0/>"
 
 #: src/screens/ModerationInbox/Notice.tsx:43
 #: src/screens/ModerationInbox/Report.tsx:39
-msgid "Krao Moderation Service"
-msgstr "Krao Moderation Service"
+msgid "{BRAND_NAME} Moderation Service"
+msgstr "{BRAND_NAME} Moderation Service"
 
 #: src/screens/ModerationInbox/Notice.tsx:52
-msgid "Krao Moderation Service removed a post from Krao for violating our <0>Community Guidelines</0>."
-msgstr "Krao Moderation Service removed a post from Krao for violating our <0>Community Guidelines</0>."
+msgid "{BRAND_NAME} Moderation Service removed a post from {BRAND_NAME} for violating our <0>Community Guidelines</0>."
+msgstr "{BRAND_NAME} Moderation Service removed a post from {BRAND_NAME} for violating our <0>Community Guidelines</0>."
 
 #: src/features/inviteFriends/InviteScannerScreen.tsx:113
-msgid "Krao needs camera access to scan QR codes from other profiles."
-msgstr "Krao needs camera access to scan QR codes from other profiles."
+msgid "{BRAND_NAME} needs camera access to scan QR codes from other profiles."
+msgstr "{BRAND_NAME} needs camera access to scan QR codes from other profiles."
 
 #: src/features/referral/components/PointsSection.tsx:36
-msgid "Krao points"
-msgstr "Krao points"
+msgid "{BRAND_NAME} points"
+msgstr "{BRAND_NAME} points"
 
 #: src/screens/Settings/FindContactsSettings.tsx:579
-msgid "Krao stores your contacts as encoded data. Removing your contacts will immediately delete this data."
-msgstr "Krao stores your contacts as encoded data. Removing your contacts will immediately delete this data."
+msgid "{BRAND_NAME} stores your contacts as encoded data. Removing your contacts will immediately delete this data."
+msgstr "{BRAND_NAME} stores your contacts as encoded data. Removing your contacts will immediately delete this data."
 
 #: src/screens/Takendown.tsx:214
-msgid "Krao Terms of Service"
-msgstr "Krao Terms of Service"
+msgid "{BRAND_NAME} Terms of Service"
+msgstr "{BRAND_NAME} Terms of Service"
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:338
-msgid "Krao will choose a set of recommended accounts from people in your network."
-msgstr "Krao will choose a set of recommended accounts from people in your network."
+msgid "{BRAND_NAME} will choose a set of recommended accounts from people in your network."
+msgstr "{BRAND_NAME} will choose a set of recommended accounts from people in your network."
 
 #: src/screens/Settings/components/PwiOptOut.tsx:102
-msgid "Krao will not show your account to logged-out users and will ask other apps to do the same. Other apps may not honor this request. It doesn't make your account private."
-msgstr "Krao will not show your account to logged-out users and will ask other apps to do the same. Other apps may not honor this request. It doesn't make your account private."
+msgid "{BRAND_NAME} will not show your account to logged-out users and will ask other apps to do the same. Other apps may not honor this request. It doesn't make your account private."
+msgstr "{BRAND_NAME} will not show your account to logged-out users and will ask other apps to do the same. Other apps may not honor this request. It doesn't make your account private."
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:137
-msgid "Krao will proactively verify notable and authentic accounts."
-msgstr "Krao will proactively verify notable and authentic accounts."
+msgid "{BRAND_NAME} will proactively verify notable and authentic accounts."
+msgstr "{BRAND_NAME} will proactively verify notable and authentic accounts."
 
 #: src/screens/Settings/AppIconSettings/index.tsx:97
-msgid "Krao+"
-msgstr "Krao+"
+msgid "{BRAND_NAME}+"
+msgstr "{BRAND_NAME}+"
 
 #: src/screens/Settings/AppIconSettings/index.tsx:100
-msgid "Krao+ icons"
-msgstr "Krao+ icons"
+msgid "{BRAND_NAME}+ icons"
+msgstr "{BRAND_NAME}+ icons"
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:209
 msgid "KWS website"
@@ -7298,8 +7298,8 @@ msgid "Learn more about importing contacts"
 msgstr ""
 
 #: src/view/com/auth/SplashScreen.web.tsx:167
-msgid "Learn more about Krao"
-msgstr "Learn more about Krao"
+msgid "Learn more about {BRAND_NAME}"
+msgstr "Learn more about {BRAND_NAME}"
 
 #: src/components/dialogs/ServerInput.tsx:221
 #: src/screens/Login/components/HostingProviderDialog.tsx:241
@@ -7327,13 +7327,13 @@ msgstr ""
 #: src/components/verification/VerificationsDialog.tsx:154
 #: src/components/verification/VerifierDialog.tsx:122
 msgctxt "english-only-resource"
-msgid "Learn more about verification on Krao"
-msgstr "Learn more about verification on Krao"
+msgid "Learn more about verification on {BRAND_NAME}"
+msgstr "Learn more about verification on {BRAND_NAME}"
 
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:130
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:132
-msgid "Learn more about what is public on Krao."
-msgstr "Learn more about what is public on Krao."
+msgid "Learn more about what is public on {BRAND_NAME}."
+msgstr "Learn more about what is public on {BRAND_NAME}."
 
 #: src/screens/Profile/components/GermButton.tsx:217
 msgid "Learn more about your Germ DM link"
@@ -7396,8 +7396,8 @@ msgstr "Leave this group chat"
 
 #: src/components/dialogs/LinkWarning.tsx:83
 #: src/components/dialogs/LinkWarning.tsx:91
-msgid "Leaving Krao"
-msgstr "Leaving Krao"
+msgid "Leaving {BRAND_NAME}"
+msgstr "Leaving {BRAND_NAME}"
 
 #: src/screens/Messages/ConversationSettings/prompts.tsx:145
 msgid "Leaving this chat will lock it permanently and you won’t be able to rejoin."
@@ -7533,16 +7533,16 @@ msgid "Link a wallet"
 msgstr "Link a wallet"
 
 #: src/screens/Settings/WalletsSettings.tsx:78
-msgid "Link a wallet to show it on your profile and to sign in with it. Your wallet signs a message that names your account, so anyone can verify the link. Krao never asks for your keys or moves your funds."
-msgstr "Link a wallet to show it on your profile and to sign in with it. Your wallet signs a message that names your account, so anyone can verify the link. Krao never asks for your keys or moves your funds."
+msgid "Link a wallet to show it on your profile and to sign in with it. Your wallet signs a message that names your account, so anyone can verify the link. {BRAND_NAME} never asks for your keys or moves your funds."
+msgstr "Link a wallet to show it on your profile and to sign in with it. Your wallet signs a message that names your account, so anyone can verify the link. {BRAND_NAME} never asks for your keys or moves your funds."
 
 #: src/components/Lightbox/Lightbox.web.tsx:301
 msgid "Link copied to clipboard"
 msgstr "Link copied to clipboard"
 
 #: src/screens/Settings/WalletsSettings.tsx:136
-msgid "Linking wallets in the mobile app is coming soon. For now, link your wallet from Krao on the web."
-msgstr "Linking wallets in the mobile app is coming soon. For now, link your wallet from Krao on the web."
+msgid "Linking wallets in the mobile app is coming soon. For now, link your wallet from {BRAND_NAME} on the web."
+msgstr "Linking wallets in the mobile app is coming soon. For now, link your wallet from {BRAND_NAME} on the web."
 
 #: src/Navigation.tsx:287
 msgid "List"
@@ -8498,8 +8498,8 @@ msgid "New Starter Pack"
 msgstr "New Starter Pack"
 
 #: src/screens/Login/LoginForm.tsx:576
-msgid "New to Krao? <0>Sign up</0>"
-msgstr "New to Krao? <0>Sign up</0>"
+msgid "New to {BRAND_NAME}? <0>Sign up</0>"
+msgstr "New to {BRAND_NAME}? <0>Sign up</0>"
 
 #: src/components/dialogs/NewskieDialog/index.tsx:100
 msgid "New user info dialog"
@@ -8581,8 +8581,8 @@ msgid "No action taken"
 msgstr "No action taken"
 
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:42
-msgid "No ads, no invasive tracking, no engagement traps. Krao respects your time and attention."
-msgstr "No ads, no invasive tracking, no engagement traps. Krao respects your time and attention."
+msgid "No ads, no invasive tracking, no engagement traps. {BRAND_NAME} respects your time and attention."
+msgstr "No ads, no invasive tracking, no engagement traps. {BRAND_NAME} respects your time and attention."
 
 #: src/screens/Settings/AppPasswords.tsx:109
 msgid "No app passwords yet"
@@ -8915,8 +8915,8 @@ msgid "Note about sharing"
 msgstr ""
 
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:121
-msgid "Note: Krao is part of the Atmosphere, an open public network. These settings ask other apps and websites to limit your visibility, but they can choose not to. Your public content may still appear elsewhere."
-msgstr "Note: Krao is part of the Atmosphere, an open public network. These settings ask other apps and websites to limit your visibility, but they can choose not to. Your public content may still appear elsewhere."
+msgid "Note: {BRAND_NAME} is part of the Atmosphere, an open public network. These settings ask other apps and websites to limit your visibility, but they can choose not to. Your public content may still appear elsewhere."
+msgstr "Note: {BRAND_NAME} is part of the Atmosphere, an open public network. These settings ask other apps and websites to limit your visibility, but they can choose not to. Your public content may still appear elsewhere."
 
 #: src/components/PostControls/ShareMenu/ShareMenuItems.web.tsx:135
 msgid "Note: This post is only visible to logged-in users."
@@ -9018,8 +9018,8 @@ msgid "On"
 msgstr "On"
 
 #: src/screens/Settings/components/AlgoVisibilityOptOut.tsx:43
-msgid "On Krao, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
-msgstr "On Krao, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
+msgid "On {BRAND_NAME}, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
+msgstr "On {BRAND_NAME}, this means your posts will only appear in the Discover feed to people who follow you. Other apps can choose to use this preference in their own algorithmic recommendations."
 
 #: src/features/wallet/components/ChainBadges.tsx:37
 msgid "On-chain badges"
@@ -9339,14 +9339,14 @@ msgstr "Opens device gallery to select up to {MAX_GALLERY_IMAGES, plural, other 
 #: src/screens/Messages/JoinRequest.tsx:313
 #: src/view/com/auth/SplashScreen.tsx:90
 #: src/view/com/auth/SplashScreen.web.tsx:110
-msgid "Opens flow to create a new Krao account"
-msgstr "Opens flow to create a new Krao account"
+msgid "Opens flow to create a new {BRAND_NAME} account"
+msgstr "Opens flow to create a new {BRAND_NAME} account"
 
 #: src/screens/Messages/JoinRequest.tsx:299
 #: src/view/com/auth/SplashScreen.tsx:118
 #: src/view/com/auth/SplashScreen.web.tsx:124
-msgid "Opens flow to sign in to your existing Krao account"
-msgstr "Opens flow to sign in to your existing Krao account"
+msgid "Opens flow to sign in to your existing {BRAND_NAME} account"
+msgstr "Opens flow to sign in to your existing {BRAND_NAME} account"
 
 #: src/components/images/Gallery/index.tsx:460
 msgid "Opens full image"
@@ -9524,8 +9524,8 @@ msgid "Our moderation team has received your report."
 msgstr ""
 
 #: src/screens/Messages/components/ChatDisabled.tsx:54
-msgid "Our moderators have reviewed reports and decided to disable your access to chats on Krao."
-msgstr "Our moderators have reviewed reports and decided to disable your access to chats on Krao."
+msgid "Our moderators have reviewed reports and decided to disable your access to chats on {BRAND_NAME}."
+msgstr "Our moderators have reviewed reports and decided to disable your access to chats on {BRAND_NAME}."
 
 #: src/components/dialogs/StarterPackDialog.tsx:372
 msgid "Owner"
@@ -9783,8 +9783,8 @@ msgid "Please choose your password."
 msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/Update.tsx:283
-msgid "Please click on the link in the email we just sent you to verify your new email address. This is an important step to allow you to continue enjoying all the features of Krao."
-msgstr "Please click on the link in the email we just sent you to verify your new email address. This is an important step to allow you to continue enjoying all the features of Krao."
+msgid "Please click on the link in the email we just sent you to verify your new email address. This is an important step to allow you to continue enjoying all the features of {BRAND_NAME}."
+msgstr "Please click on the link in the email we just sent you to verify your new email address. This is an important step to allow you to continue enjoying all the features of {BRAND_NAME}."
 
 #: src/screens/Signup/state.ts:325
 msgid "Please complete the verification captcha."
@@ -9915,8 +9915,8 @@ msgid "Please submit your report through the Report non-consensual intimate imag
 msgstr "Please submit your report through the Report non-consensual intimate imagery (NCII) form."
 
 #: src/features/inviteFriends/InviteScannerScreen.web.tsx:40
-msgid "Please use the Krao mobile app to scan a QR code."
-msgstr "Please use the Krao mobile app to scan a QR code."
+msgid "Please use the {BRAND_NAME} mobile app to scan a QR code."
+msgstr "Please use the {BRAND_NAME} mobile app to scan a QR code."
 
 #: src/screens/Settings/FindContactsSettings.tsx:110
 msgid "Please use the native app to import your contacts."
@@ -9931,8 +9931,8 @@ msgid "Please verify your email"
 msgstr ""
 
 #: src/features/referral/components/PointsSection.tsx:56
-msgid "Points from referrals are pending until both you and the other person have verified your identity. Points are not money; Krao may let you convert them to tokens later."
-msgstr "Points from referrals are pending until both you and the other person have verified your identity. Points are not money; Krao may let you convert them to tokens later."
+msgid "Points from referrals are pending until both you and the other person have verified your identity. Points are not money; {BRAND_NAME} may let you convert them to tokens later."
+msgstr "Points from referrals are pending until both you and the other person have verified your identity. Points are not money; {BRAND_NAME} may let you convert them to tokens later."
 
 #: src/lib/interests.ts:70
 #: src/screens/Search/modules/ExploreTrendingTopics.tsx:246
@@ -10035,8 +10035,8 @@ msgid "Post Interaction Settings"
 msgstr ""
 
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:193
-msgid "Post it to Krao or share anywhere."
-msgstr "Post it to Krao or share anywhere."
+msgid "Post it to {BRAND_NAME} or share anywhere."
+msgstr "Post it to {BRAND_NAME} or share anywhere."
 
 #. Accessibility label for button that opens dialog to choose post language settings
 #: src/view/com/composer/select-language/PostLanguageSelect.tsx:193
@@ -10397,18 +10397,18 @@ msgid "Read our Terms of Service"
 msgstr "Read our Terms of Service"
 
 #: src/view/com/auth/SplashScreen.web.tsx:172
-msgid "Read the Krao blog"
-msgstr "Read the Krao blog"
+msgid "Read the {BRAND_NAME} blog"
+msgstr "Read the {BRAND_NAME} blog"
 
 #: src/screens/Signup/StepInfo/Policies.tsx:53
 #: src/screens/Signup/StepInfo/Policies.tsx:79
-msgid "Read the Krao Privacy Policy"
-msgstr "Read the Krao Privacy Policy"
+msgid "Read the {BRAND_NAME} Privacy Policy"
+msgstr "Read the {BRAND_NAME} Privacy Policy"
 
 #: src/screens/Signup/StepInfo/Policies.tsx:46
 #: src/screens/Signup/StepInfo/Policies.tsx:66
-msgid "Read the Krao Terms of Service"
-msgstr "Read the Krao Terms of Service"
+msgid "Read the {BRAND_NAME} Terms of Service"
+msgstr "Read the {BRAND_NAME} Terms of Service"
 
 #: src/components/WelcomeModal.tsx:148
 msgid "Real conversations."
@@ -11487,8 +11487,8 @@ msgid "See #{tag} posts by user"
 msgstr ""
 
 #: src/view/com/auth/SplashScreen.web.tsx:177
-msgid "See jobs at Krao"
-msgstr "See jobs at Krao"
+msgid "See jobs at {BRAND_NAME}"
+msgstr "See jobs at {BRAND_NAME}"
 
 #: src/components/FeedInterstitials.tsx:495
 #: src/components/FeedInterstitials.tsx:554
@@ -11784,8 +11784,8 @@ msgid "Send via chat"
 msgstr "Send via chat"
 
 #: src/features/tips/components/TipDialog.tsx:124
-msgid "Sending tips from the mobile app is coming soon. Use Krao on the web for now."
-msgstr "Sending tips from the mobile app is coming soon. Use Krao on the web for now."
+msgid "Sending tips from the mobile app is coming soon. Use {BRAND_NAME} on the web for now."
+msgstr "Sending tips from the mobile app is coming soon. Use {BRAND_NAME} on the web for now."
 
 #. placeholder {0}: formatDateTime(i18n, new Date(message.sentAt), { timeStyle: 'short', })
 #: src/components/dms/MessageContextMenu.tsx:174
@@ -11793,8 +11793,8 @@ msgid "Sent at {0}"
 msgstr "Sent at {0}"
 
 #: src/features/tips/components/TipDialog.tsx:106
-msgid "Sent on Base straight from your wallet to theirs. Krao never holds your funds."
-msgstr "Sent on Base straight from your wallet to theirs. Krao never holds your funds."
+msgid "Sent on Base straight from your wallet to theirs. {BRAND_NAME} never holds your funds."
+msgstr "Sent on Base straight from your wallet to theirs. {BRAND_NAME} never holds your funds."
 
 #: src/components/contacts/screens/PhoneInput.tsx:283
 msgid "Sent to our phone number verification provider Plivo"
@@ -12006,8 +12006,8 @@ msgid "Share this Starter Pack"
 msgstr "Share this Starter Pack"
 
 #: src/components/StarterPack/ShareDialog.tsx:87
-msgid "Share this Starter Pack and help people join your community on Krao."
-msgstr "Share this Starter Pack and help people join your community on Krao."
+msgid "Share this Starter Pack and help people join your community on {BRAND_NAME}."
+msgstr "Share this Starter Pack and help people join your community on {BRAND_NAME}."
 
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:130
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:133
@@ -12240,8 +12240,8 @@ msgid "Sign in to account that is not listed"
 msgstr ""
 
 #: src/components/dialogs/Signin.tsx:47
-msgid "Sign in to Krao or create a new account"
-msgstr "Sign in to Krao or create a new account"
+msgid "Sign in to {BRAND_NAME} or create a new account"
+msgstr "Sign in to {BRAND_NAME} or create a new account"
 
 #: src/screens/Messages/JoinRequest.tsx:223
 msgid "Sign in to request access to this group chat."
@@ -12615,8 +12615,8 @@ msgid "Storybook"
 msgstr ""
 
 #: src/components/dialogs/nuxs/LiveNowBetaDialog.tsx:182
-msgid "Streaming on Twitch? Set your live status on Krao to add a badge to your avatar. Tapping it takes people straight to your stream."
-msgstr "Streaming on Twitch? Set your live status on Krao to add a badge to your avatar. Tapping it takes people straight to your stream."
+msgid "Streaming on Twitch? Set your live status on {BRAND_NAME} to add a badge to your avatar. Tapping it takes people straight to your stream."
+msgstr "Streaming on Twitch? Set your live status on {BRAND_NAME} to add a badge to your avatar. Tapping it takes people straight to your stream."
 
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:123
 #: src/components/ageAssurance/AgeAssuranceAppealDialog.tsx:129
@@ -12821,8 +12821,8 @@ msgid "Take the conversation private."
 msgstr "Take the conversation private."
 
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:110
-msgid "Tap below to allow Krao to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
-msgstr "Tap below to allow Krao to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
+msgid "Tap below to allow {BRAND_NAME} to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
+msgstr "Tap below to allow {BRAND_NAME} to access your GPS location. We will then use that data to more accurately determine the content and features available in your region."
 
 #: src/components/dms/MessageItem.tsx:697
 msgid "Tap for details"
@@ -12842,8 +12842,8 @@ msgid "Tap here to update your location with GPS."
 msgstr "Tap here to update your location with GPS."
 
 #: src/components/PolicyUpdateOverlay/updates/202508/index.tsx:166
-msgid "Tap to acknowledge that you understand and agree to these updates and continue using Krao"
-msgstr "Tap to acknowledge that you understand and agree to these updates and continue using Krao"
+msgid "Tap to acknowledge that you understand and agree to these updates and continue using {BRAND_NAME}"
+msgstr "Tap to acknowledge that you understand and agree to these updates and continue using {BRAND_NAME}"
 
 #: src/components/ContextMenu/Backdrop.ios.tsx:54
 #: src/components/ContextMenu/Backdrop.ios.tsx:80
@@ -13041,8 +13041,8 @@ msgid "The Discover feed now knows what you like"
 msgstr ""
 
 #: src/screens/StarterPack/StarterPackLandingScreen.tsx:324
-msgid "The experience is better in the app. Download Krao now and we'll pick back up where you left off."
-msgstr "The experience is better in the app. Download Krao now and we'll pick back up where you left off."
+msgid "The experience is better in the app. Download {BRAND_NAME} now and we'll pick back up where you left off."
+msgstr "The experience is better in the app. Download {BRAND_NAME} now and we'll pick back up where you left off."
 
 #: src/view/com/posts/FeedShutdownMsg.tsx:73
 msgid "The feed has been replaced with Discover."
@@ -13065,8 +13065,8 @@ msgid "The following settings will be used as your defaults when creating new po
 msgstr ""
 
 #: src/screens/Moderation/index.tsx:475
-msgid "The Krao web application"
-msgstr "The Krao web application"
+msgid "The {BRAND_NAME} web application"
+msgstr "The {BRAND_NAME} web application"
 
 #: src/components/ageAssurance/useAgeAssuranceCopy.ts:23
 msgid "The laws in your region require you to verify you're an adult to access certain features. Tap to learn more."
@@ -13294,8 +13294,8 @@ msgid "There was an unexpected issue in the application. Please let us know if t
 msgstr ""
 
 #: src/screens/SignupQueued.tsx:139
-msgid "There's been a rush of new users to Krao! We'll activate your account as soon as we can."
-msgstr "There's been a rush of new users to Krao! We'll activate your account as soon as we can."
+msgid "There's been a rush of new users to {BRAND_NAME}! We'll activate your account as soon as we can."
+msgstr "There's been a rush of new users to {BRAND_NAME}! We'll activate your account as soon as we can."
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:662
 msgid "These are your default settings"
@@ -13371,8 +13371,8 @@ msgstr ""
 
 #: src/features/liveNow/components/GoLiveDisabledDialog.tsx:112
 #: src/screens/Messages/components/ChatDisabled.tsx:135
-msgid "This appeal will be sent to Krao's moderation service."
-msgstr "This appeal will be sent to Krao's moderation service."
+msgid "This appeal will be sent to {BRAND_NAME}'s moderation service."
+msgstr "This appeal will be sent to {BRAND_NAME}'s moderation service."
 
 #: src/screens/PostThread/components/ThreadItemAnchorNoUnauthenticated.tsx:27
 #: src/screens/PostThread/components/ThreadItemPostNoUnauthenticated.tsx:47
@@ -13380,8 +13380,8 @@ msgid "This author has chosen to make their posts visible only to people who are
 msgstr ""
 
 #: src/screens/Profile/components/GermButton.tsx:249
-msgid "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your Krao account from Germ DM altogether by clicking the button below."
-msgstr "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your Krao account from Germ DM altogether by clicking the button below."
+msgid "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your {BRAND_NAME} account from Germ DM altogether by clicking the button below."
+msgstr "This button lets others open the Germ DM app to send you a message. You can manage its visibility from the Germ DM app, or you can disconnect your {BRAND_NAME} account from Germ DM altogether by clicking the button below."
 
 #: src/screens/Messages/components/ChatEnded.tsx:48
 msgid "This chat has ended"
@@ -13437,8 +13437,8 @@ msgid "This content is not available because one of the users involved has block
 msgstr ""
 
 #: src/view/com/posts/PostFeedErrorMessage.tsx:120
-msgid "This content is not viewable without a Krao account."
-msgstr "This content is not viewable without a Krao account."
+msgid "This content is not viewable without a {BRAND_NAME} account."
+msgstr "This content is not viewable without a {BRAND_NAME} account."
 
 #: src/components/intents/GroupChatJoinDialog.tsx:151
 msgid "This conversation is locked."
@@ -13555,12 +13555,12 @@ msgstr ""
 
 #. placeholder {0}: sanitizeHandle(list.creator.handle, '@')
 #: src/screens/List/ListHiddenScreen.tsx:154
-msgid "This list – created by <0>{0}</0> – contains possible violations of Krao's community guidelines in its name or description."
-msgstr "This list – created by <0>{0}</0> – contains possible violations of Krao's community guidelines in its name or description."
+msgid "This list – created by <0>{0}</0> – contains possible violations of {BRAND_NAME}'s community guidelines in its name or description."
+msgstr "This list – created by <0>{0}</0> – contains possible violations of {BRAND_NAME}'s community guidelines in its name or description."
 
 #: src/screens/List/ListHiddenScreen.tsx:149
-msgid "This list – created by you – contains possible violations of Krao's community guidelines in its name or description."
-msgstr "This list – created by you – contains possible violations of Krao's community guidelines in its name or description."
+msgid "This list – created by you – contains possible violations of {BRAND_NAME}'s community guidelines in its name or description."
+msgstr "This list – created by you – contains possible violations of {BRAND_NAME}'s community guidelines in its name or description."
 
 #: src/screens/ProfileList/AboutSection.tsx:100
 msgid "This list is empty."
@@ -13599,8 +13599,8 @@ msgstr "This person is blocking you"
 #. placeholder {0}: niceDate(i18n, createdAt)
 #. placeholder {1}: niceDate(i18n, indexedAt)
 #: src/screens/PostThread/components/ThreadItemAnchor.tsx:643
-msgid "This post claims to have been created on <0>{0}</0>, but was first seen by Krao on <1>{1}</1>."
-msgstr "This post claims to have been created on <0>{0}</0>, but was first seen by Krao on <1>{1}</1>."
+msgid "This post claims to have been created on <0>{0}</0>, but was first seen by {BRAND_NAME} on <1>{1}</1>."
+msgstr "This post claims to have been created on <0>{0}</0>, but was first seen by {BRAND_NAME} on <1>{1}</1>."
 
 #: src/components/WhoCanReply.tsx:256
 msgid "This post has an unknown type of threadgate on it. Your app may be out of date."
@@ -13718,8 +13718,8 @@ msgid "This will delete \"{0}\" from your muted words. You can always add it bac
 msgstr ""
 
 #: src/screens/Settings/components/DeleteAccountDialog.tsx:337
-msgid "This will irreversibly delete your Krao account <0>{currentHandle}</0> and all associated data. Note that this will affect any other <1>AT Protocol</1> services you use with this account."
-msgstr "This will irreversibly delete your Krao account <0>{currentHandle}</0> and all associated data. Note that this will affect any other <1>AT Protocol</1> services you use with this account."
+msgid "This will irreversibly delete your {BRAND_NAME} account <0>{currentHandle}</0> and all associated data. Note that this will affect any other <1>AT Protocol</1> services you use with this account."
+msgstr "This will irreversibly delete your {BRAND_NAME} account <0>{currentHandle}</0> and all associated data. Note that this will affect any other <1>AT Protocol</1> services you use with this account."
 
 #. placeholder {0}: account.handle
 #: src/screens/Settings/Settings.tsx:706
@@ -14009,8 +14009,8 @@ msgid "Type:"
 msgstr ""
 
 #: src/components/dialogs/DeviceLocationRequestDialog.tsx:87
-msgid "Unable to access location. You'll need to visit your system settings to enable location services for Krao."
-msgstr "Unable to access location. You'll need to visit your system settings to enable location services for Krao."
+msgid "Unable to access location. You'll need to visit your system settings to enable location services for {BRAND_NAME}."
+msgstr "Unable to access location. You'll need to visit your system settings to enable location services for {BRAND_NAME}."
 
 #: src/lib/hooks/useCleanError.ts:32
 #: src/lib/strings/errors.ts:44
@@ -14188,12 +14188,12 @@ msgid "Unfortunately, none of your subscribed labelers supports this report type
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:266
-msgid "Unfortunately, the birthdate you have saved to your profile makes you too young to access Krao."
-msgstr "Unfortunately, the birthdate you have saved to your profile makes you too young to access Krao."
+msgid "Unfortunately, the birthdate you have saved to your profile makes you too young to access {BRAND_NAME}."
+msgstr "Unfortunately, the birthdate you have saved to your profile makes you too young to access {BRAND_NAME}."
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:250
-msgid "Unfortunately, your declared age indicates that you are not old enough to access Krao in your region."
-msgstr "Unfortunately, your declared age indicates that you are not old enough to access Krao in your region."
+msgid "Unfortunately, your declared age indicates that you are not old enough to access {BRAND_NAME} in your region."
+msgstr "Unfortunately, your declared age indicates that you are not old enough to access {BRAND_NAME} in your region."
 
 #: src/components/verification/VerificationsDialog.tsx:210
 msgid "Unknown verifier"
@@ -14463,12 +14463,12 @@ msgid "Uploading video..."
 msgstr ""
 
 #: src/features/wallet/components/NftAvatarSection.tsx:112
-msgid "Use an NFT held by one of your linked wallets on Base. Krao checks ownership on-chain and shows a badge while you hold it."
-msgstr "Use an NFT held by one of your linked wallets on Base. Krao checks ownership on-chain and shows a badge while you hold it."
+msgid "Use an NFT held by one of your linked wallets on Base. {BRAND_NAME} checks ownership on-chain and shows a badge while you hold it."
+msgstr "Use an NFT held by one of your linked wallets on Base. {BRAND_NAME} checks ownership on-chain and shows a badge while you hold it."
 
 #: src/screens/Settings/AppPasswords.tsx:68
-msgid "Use app passwords to sign in to other Krao clients without giving full access to your account or password."
-msgstr "Use app passwords to sign in to other Krao clients without giving full access to your account or password."
+msgid "Use app passwords to sign in to other {BRAND_NAME} clients without giving full access to your account or password."
+msgstr "Use app passwords to sign in to other {BRAND_NAME} clients without giving full access to your account or password."
 
 #: src/features/wallet/components/NftAvatarSection.tsx:184
 #: src/features/wallet/components/NftAvatarSection.tsx:204
@@ -14503,8 +14503,8 @@ msgid "Use this to sign in to the other app along with your handle."
 msgstr ""
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:287
-msgid "Use your account email address, or another real email address you control, in case KWS or Krao needs to contact you."
-msgstr "Use your account email address, or another real email address you control, in case KWS or Krao needs to contact you."
+msgid "Use your account email address, or another real email address you control, in case KWS or {BRAND_NAME} needs to contact you."
+msgstr "Use your account email address, or another real email address you control, in case KWS or {BRAND_NAME} needs to contact you."
 
 #: src/view/screens/Profile.tsx:395
 msgid "user"
@@ -14618,8 +14618,8 @@ msgid "Verification Settings"
 msgstr ""
 
 #: src/screens/Moderation/VerificationSettings.tsx:43
-msgid "Verifications on Krao work differently than on other platforms. <0>Learn more here.</0>"
-msgstr "Verifications on Krao work differently than on other platforms. <0>Learn more here.</0>"
+msgid "Verifications on {BRAND_NAME} work differently than on other platforms. <0>Learn more here.</0>"
+msgstr "Verifications on {BRAND_NAME} work differently than on other platforms. <0>Learn more here.</0>"
 
 #: src/features/referral/components/PointsSection.tsx:80
 #: src/features/referral/ReferralScreen.tsx:183
@@ -15114,8 +15114,8 @@ msgid "We estimate {estimatedTime} until your account is ready."
 msgstr ""
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:206
-msgid "We have partnered with <0>KWS</0> to handle age verification. When you click \"Begin\" below, KWS will email you instructions to complete the verification process. If your email address has already been used to verify your age for another game or service that uses KWS, you won’t need to do it again. When you’re done, you'll be brought back to continue using Krao."
-msgstr "We have partnered with <0>KWS</0> to handle age verification. When you click \"Begin\" below, KWS will email you instructions to complete the verification process. If your email address has already been used to verify your age for another game or service that uses KWS, you won’t need to do it again. When you’re done, you'll be brought back to continue using Krao."
+msgid "We have partnered with <0>KWS</0> to handle age verification. When you click \"Begin\" below, KWS will email you instructions to complete the verification process. If your email address has already been used to verify your age for another game or service that uses KWS, you won’t need to do it again. When you’re done, you'll be brought back to continue using {BRAND_NAME}."
+msgstr "We have partnered with <0>KWS</0> to handle age verification. When you click \"Begin\" below, KWS will email you instructions to complete the verification process. If your email address has already been used to verify your age for another game or service that uses KWS, you won’t need to do it again. When you’re done, you'll be brought back to continue using {BRAND_NAME}."
 
 #. placeholder {0}: currentAccount?.email
 #: src/components/intents/VerifyEmailIntentDialog.tsx:104
@@ -15217,16 +15217,16 @@ msgid "We’re having network issues, try again"
 msgstr "We’re having network issues, try again"
 
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:98
-msgid "We’re introducing a new layer of verification on Krao — an easy-to-see checkmark."
-msgstr "We’re introducing a new layer of verification on Krao — an easy-to-see checkmark."
+msgid "We’re introducing a new layer of verification on {BRAND_NAME} — an easy-to-see checkmark."
+msgstr "We’re introducing a new layer of verification on {BRAND_NAME} — an easy-to-see checkmark."
 
 #: src/screens/Signup/index.tsx:143
 msgid "We’re so excited to have you join us!"
 msgstr "We’re so excited to have you join us!"
 
 #: src/ageAssurance/useVerificationFlow.ts:117
-msgid "We're sorry, but based on the data shared by your device, you are not old enough to access Krao."
-msgstr "We're sorry, but based on the data shared by your device, you are not old enough to access Krao."
+msgid "We're sorry, but based on the data shared by your device, you are not old enough to access {BRAND_NAME}."
+msgstr "We're sorry, but based on the data shared by your device, you are not old enough to access {BRAND_NAME}."
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:230
 #: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:219
@@ -15493,8 +15493,8 @@ msgid "You are a trusted verifier"
 msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:177
-msgid "You are accessing Krao from a region that legally requires us to verify your age before allowing you to access the app."
-msgstr "You are accessing Krao from a region that legally requires us to verify your age before allowing you to access the app."
+msgid "You are accessing {BRAND_NAME} from a region that legally requires us to verify your age before allowing you to access the app."
+msgstr "You are accessing {BRAND_NAME} from a region that legally requires us to verify your age before allowing you to access the app."
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
 #: src/components/dms/MessageItem.tsx:735
@@ -15519,8 +15519,8 @@ msgstr ""
 
 #: src/ageAssurance/components/NoAccessScreen.tsx:403
 #: src/components/ageAssurance/AgeAssuranceAccountCard.tsx:125
-msgid "You are currently unable to access Krao's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
-msgstr "You are currently unable to access Krao's Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
+msgid "You are currently unable to access {BRAND_NAME}'s Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
+msgstr "You are currently unable to access {BRAND_NAME}'s Age Assurance flow. Please <0>contact our moderation team</0> if you believe this is an error."
 
 #: src/screens/SignupQueued.tsx:166
 msgid "You are in line."
@@ -15564,8 +15564,8 @@ msgid "You can adjust your interests at any time from \"Content and media\" sett
 msgstr ""
 
 #: src/screens/Settings/components/DeleteAccountDialog.tsx:218
-msgid "You can also <0>temporarily deactivate</0> your account instead. Your profile, posts, feeds, and lists will no longer be visible to other Krao users. You can reactivate your account at any time by logging in."
-msgstr "You can also <0>temporarily deactivate</0> your account instead. Your profile, posts, feeds, and lists will no longer be visible to other Krao users. You can reactivate your account at any time by logging in."
+msgid "You can also <0>temporarily deactivate</0> your account instead. Your profile, posts, feeds, and lists will no longer be visible to other {BRAND_NAME} users. You can reactivate your account at any time by logging in."
+msgstr "You can also <0>temporarily deactivate</0> your account instead. Your profile, posts, feeds, and lists will no longer be visible to other {BRAND_NAME} users. You can reactivate your account at any time by logging in."
 
 #: src/view/com/posts/FollowingEmptyState.tsx:60
 #: src/view/com/posts/FollowingEndOfFeed.tsx:61
@@ -15598,8 +15598,8 @@ msgid "You can now choose to be notified when specific people post. If there’s
 msgstr ""
 
 #: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:154
-msgid "You can now invite friends with a link or QR code. Share the link anywhere, or let them scan the code to join you on Krao."
-msgstr "You can now invite friends with a link or QR code. Share the link anywhere, or let them scan the code to join you on Krao."
+msgid "You can now invite friends with a link or QR code. Share the link anywhere, or let them scan the code to join you on {BRAND_NAME}."
+msgstr "You can now invite friends with a link or QR code. Share the link anywhere, or let them scan the code to join you on {BRAND_NAME}."
 
 #: src/screens/Login/index.tsx:207
 #: src/screens/Login/PasswordUpdatedForm.tsx:25
@@ -15693,8 +15693,8 @@ msgid "You have blocked this user. You cannot view their content."
 msgstr ""
 
 #: src/components/ageAssurance/useAgeAssuranceCopy.ts:17
-msgid "You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on Krao must remain restricted until you're able to verify you're an adult."
-msgstr "You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on Krao must remain restricted until you're able to verify you're an adult."
+msgid "You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on {BRAND_NAME} must remain restricted until you're able to verify you're an adult."
+msgstr "You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on {BRAND_NAME} must remain restricted until you're able to verify you're an adult."
 
 #: src/view/screens/Notifications.tsx:291
 msgid "You have completely disabled reply, quote, and mention notifications, so this tab will no longer update. To adjust this, visit your <0>notification settings</0>."
@@ -15791,20 +15791,20 @@ msgid "You initiated this flow already, {0} ago. It may take up to 5 minutes for
 msgstr ""
 
 #: src/components/dialogs/NewskieDialog/utils.ts:40
-msgid "You joined Krao {timeAgoString} ago"
-msgstr "You joined Krao {timeAgoString} ago"
+msgid "You joined {BRAND_NAME} {timeAgoString} ago"
+msgstr "You joined {BRAND_NAME} {timeAgoString} ago"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:27
-msgid "You joined Krao just now"
-msgstr "You joined Krao just now"
+msgid "You joined {BRAND_NAME} just now"
+msgstr "You joined {BRAND_NAME} just now"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:39
-msgid "You joined Krao using a Starter Pack {timeAgoString} ago"
-msgstr "You joined Krao using a Starter Pack {timeAgoString} ago"
+msgid "You joined {BRAND_NAME} using a Starter Pack {timeAgoString} ago"
+msgstr "You joined {BRAND_NAME} using a Starter Pack {timeAgoString} ago"
 
 #: src/components/dialogs/NewskieDialog/utils.ts:26
-msgid "You joined Krao using a Starter Pack just now"
-msgstr "You joined Krao using a Starter Pack just now"
+msgid "You joined {BRAND_NAME} using a Starter Pack just now"
+msgstr "You joined {BRAND_NAME} using a Starter Pack just now"
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:83
 msgid "You may appeal non-self labels if you feel they were placed in error."
@@ -15830,8 +15830,8 @@ msgid "You must be a chat owner to remove a member."
 msgstr "You must be a chat owner to remove a member."
 
 #: src/components/dialogs/BirthDateSettings.tsx:177
-msgid "You must be at least 13 years old to use Krao. Read our <0>Terms of Service</0> for more information."
-msgstr "You must be at least 13 years old to use Krao. Read our <0>Terms of Service</0> for more information."
+msgid "You must be at least 13 years old to use {BRAND_NAME}. Read our <0>Terms of Service</0> for more information."
+msgstr "You must be at least 13 years old to use {BRAND_NAME}. Read our <0>Terms of Service</0> for more information."
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:362
 msgid "You must be following at least seven other people to generate a Starter Pack."
@@ -15958,8 +15958,8 @@ msgid "You'll follow these people right away"
 msgstr ""
 
 #: src/components/contacts/screens/GetContacts.tsx:316
-msgid "You'll need to go to the System Settings for Krao and give permission if you want to use this feature."
-msgstr "You'll need to go to the System Settings for Krao and give permission if you want to use this feature."
+msgid "You'll need to go to the System Settings for {BRAND_NAME} and give permission if you want to use this feature."
+msgstr "You'll need to go to the System Settings for {BRAND_NAME} and give permission if you want to use this feature."
 
 #. placeholder {0}: sanitizeHandle(profile.handle, '@')
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:169
@@ -16095,8 +16095,8 @@ msgid "Your account repository, containing all public data records, can be downl
 msgstr ""
 
 #: src/screens/Takendown.tsx:211
-msgid "Your account was found to be in violation of the <0>Krao Terms of Service</0>. You have been sent an email outlining the specific violation and suspension period, if applicable. You can appeal this decision if you believe it was made in error."
-msgstr "Your account was found to be in violation of the <0>Krao Terms of Service</0>. You have been sent an email outlining the specific violation and suspension period, if applicable. You can appeal this decision if you believe it was made in error."
+msgid "Your account was found to be in violation of the <0>{BRAND_NAME} Terms of Service</0>. You have been sent an email outlining the specific violation and suspension period, if applicable. You can appeal this decision if you believe it was made in error."
+msgstr "Your account was found to be in violation of the <0>{BRAND_NAME} Terms of Service</0>. You have been sent an email outlining the specific violation and suspension period, if applicable. You can appeal this decision if you believe it was made in error."
 
 #: src/screens/ModerationInbox/index.tsx:213
 msgctxt "moderation-report-action"
@@ -16120,12 +16120,12 @@ msgid "Your choice will be remembered for future links. You can change it at any
 msgstr ""
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:378
-msgid "Your contact {firstAuthorLink} is on Krao"
-msgstr "Your contact {firstAuthorLink} is on Krao"
+msgid "Your contact {firstAuthorLink} is on {BRAND_NAME}"
+msgstr "Your contact {firstAuthorLink} is on {BRAND_NAME}"
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:376
-msgid "Your contact {firstAuthorName} is on Krao"
-msgstr "Your contact {firstAuthorName} is on Krao"
+msgid "Your contact {firstAuthorName} is on {BRAND_NAME}"
+msgstr "Your contact {firstAuthorName} is on {BRAND_NAME}"
 
 #: src/components/contacts/screens/ViewMatches.tsx:462
 msgid "Your contact {name}"
@@ -16154,8 +16154,8 @@ msgid "Your email appears to be invalid."
 msgstr ""
 
 #: src/components/dialogs/EmailDialog/screens/VerificationReminder.tsx:62
-msgid "Your email has not yet been verified. Please verify your email in order to enjoy all the features of Krao."
-msgstr "Your email has not yet been verified. Please verify your email in order to enjoy all the features of Krao."
+msgid "Your email has not yet been verified. Please verify your email in order to enjoy all the features of {BRAND_NAME}."
+msgstr "Your email has not yet been verified. Please verify your email in order to enjoy all the features of {BRAND_NAME}."
 
 #: src/state/shell/progress-guide.tsx:214
 msgid "Your first like!"
@@ -16175,8 +16175,8 @@ msgid "Your full handle will be <0>@{0}</0>"
 msgstr ""
 
 #: src/screens/Login/components/HostingProviderDialog.tsx:182
-msgid "Your hosting provider can’t be detected from an email address, so the default Krao service will be used. Enter your username instead, or set your provider manually."
-msgstr "Your hosting provider can’t be detected from an email address, so the default Krao service will be used. Enter your username instead, or set your provider manually."
+msgid "Your hosting provider can’t be detected from an email address, so the default {BRAND_NAME} service will be used. Enter your username instead, or set your provider manually."
+msgstr "Your hosting provider can’t be detected from an email address, so the default {BRAND_NAME} service will be used. Enter your username instead, or set your provider manually."
 
 #: src/view/com/composer/state/video.ts:470
 msgid "Your hosting provider does not support videos this large. Please try again with a smaller file."
@@ -16187,8 +16187,8 @@ msgid "Your hosting provider is detected automatically from the username you ent
 msgstr "Your hosting provider is detected automatically from the username you enter."
 
 #: src/features/referral/components/PointsSection.tsx:154
-msgid "Your identity could not be verified, so points that depend on it were cancelled. Contact Krao support if you think this is a mistake."
-msgstr "Your identity could not be verified, so points that depend on it were cancelled. Contact Krao support if you think this is a mistake."
+msgid "Your identity could not be verified, so points that depend on it were cancelled. Contact {BRAND_NAME} support if you think this is a mistake."
+msgstr "Your identity could not be verified, so points that depend on it were cancelled. Contact {BRAND_NAME} support if you think this is a mistake."
 
 #: src/Navigation.tsx:509
 #: src/screens/Search/modules/ExploreInterestsCard.tsx:62
@@ -16228,8 +16228,8 @@ msgid "Your note:"
 msgstr "Your note:"
 
 #: src/screens/Settings/components/ChangePasswordDialog.tsx:74
-msgid "Your password has been changed successfully! Please use your new password when you sign in to Krao from now on."
-msgstr "Your password has been changed successfully! Please use your new password when you sign in to Krao from now on."
+msgid "Your password has been changed successfully! Please use your new password when you sign in to {BRAND_NAME} from now on."
+msgstr "Your password has been changed successfully! Please use your new password when you sign in to {BRAND_NAME} from now on."
 
 #: src/screens/Signup/StepInfo/index.tsx:166
 msgid "Your password must be at least 8 characters long."
@@ -16240,8 +16240,8 @@ msgid "Your post"
 msgstr "Your post"
 
 #: src/features/gating/components/GateDialog.tsx:124
-msgid "Your post stays public as a teaser. This extra text and media are stored on Krao’s gate service, not in your public repo, and are only shown to people whose linked wallets meet the requirement."
-msgstr "Your post stays public as a teaser. This extra text and media are stored on Krao’s gate service, not in your public repo, and are only shown to people whose linked wallets meet the requirement."
+msgid "Your post stays public as a teaser. This extra text and media are stored on {BRAND_NAME}’s gate service, not in your public repo, and are only shown to people whose linked wallets meet the requirement."
+msgstr "Your post stays public as a teaser. This extra text and media are stored on {BRAND_NAME}’s gate service, not in your public repo, and are only shown to people whose linked wallets meet the requirement."
 
 #: src/screens/ModerationInbox/Notice.tsx:51
 msgid "Your post was removed"
@@ -16274,8 +16274,8 @@ msgid "Your profile picture surrounded by concentric circles of other users' pro
 msgstr ""
 
 #: src/screens/Settings/components/DeactivateAccountDialog.tsx:75
-msgid "Your profile, posts, feeds, and lists will no longer be visible to other Krao users. You can reactivate your account at any time by logging in."
-msgstr "Your profile, posts, feeds, and lists will no longer be visible to other Krao users. You can reactivate your account at any time by logging in."
+msgid "Your profile, posts, feeds, and lists will no longer be visible to other {BRAND_NAME} users. You can reactivate your account at any time by logging in."
+msgstr "Your profile, posts, feeds, and lists will no longer be visible to other {BRAND_NAME} users. You can reactivate your account at any time by logging in."
 
 #: src/features/referral/ReferralScreen.tsx:77
 msgid "Your referral code"

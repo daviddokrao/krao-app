@@ -19,6 +19,7 @@ import {
 } from '@react-navigation/native'
 
 import {timeout} from '#/lib/async/timeout'
+import {BRAND, BRAND_NAME, webUrl} from '#/lib/brand'
 import {useAccountSwitcher} from '#/lib/hooks/useAccountSwitcher'
 import {useColorSchemeStyle} from '#/lib/hooks/useColorSchemeStyle'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
@@ -572,7 +573,7 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
       <Stack.Screen
         name="Join"
         getComponent={() => JoinScreen}
-        options={{title: title(msg`Join Krao`)}}
+        options={{title: title(msg`Join ${BRAND_NAME}`)}}
       />
       <Stack.Screen
         name="RewardsAdmin"
@@ -593,7 +594,7 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
       <Stack.Screen
         name="AdminHub"
         getComponent={() => AdminHubScreen}
-        options={{title: title(msg`Krao admin`), requireAuth: true}}
+        options={{title: title(msg`${BRAND_NAME} admin`), requireAuth: true}}
       />
       <Stack.Screen
         name="AdminRoles"
@@ -1014,11 +1015,11 @@ const LINKING = {
   // TODO figure out what we are going to use
   // note: `bluesky://` is what is used in app.config.js
   prefixes: [
-    'krao://',
+    `${BRAND.app.scheme}://`,
     'bsky://',
     'bluesky://',
-    'https://krao.net',
-    ...(KRAO_WEB_URL === 'https://krao.net' ? [] : [KRAO_WEB_URL]),
+    webUrl(),
+    ...(KRAO_WEB_URL === webUrl() ? [] : [KRAO_WEB_URL]),
   ],
 
   getPathFromState(state: State) {
@@ -1237,7 +1238,7 @@ function RoutesContainer({children}: React.PropsWithChildren<{}>) {
 
     if (IS_WEB) {
       void Referrer.getReferrerInfo().then(referrerInfo => {
-        if (referrerInfo && referrerInfo.hostname !== 'krao.net') {
+        if (referrerInfo && referrerInfo.hostname !== BRAND.domain) {
           ax.metric('deepLink:referrerReceived', {
             to: window.location.href,
             referrer: referrerInfo?.referrer,

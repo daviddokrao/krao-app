@@ -9,6 +9,7 @@ import {
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useGenerateStarterPackMutation} from '#/lib/generate-starterpack'
 import {useBottomBarOffset} from '#/lib/hooks/useBottomBarOffset'
 import {useRequireEmailVerification} from '#/lib/hooks/useRequireEmailVerification'
@@ -336,8 +337,8 @@ function Empty() {
           </Prompt.TitleText>
           <Prompt.DescriptionText>
             <Trans>
-              Krao will choose a set of recommended accounts from people in your
-              network.
+              {BRAND_NAME} will choose a set of recommended accounts from people
+              in your network.
             </Trans>
           </Prompt.DescriptionText>
         </Prompt.Content>

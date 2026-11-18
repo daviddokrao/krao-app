@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {cleanError} from '#/lib/strings/errors'
@@ -83,8 +84,8 @@ export function MembershipOfferScreen({route}: Props) {
             <Trans>
               Support @{handle} every month and unlock what they share with
               members. You pay in USDC on Base, straight from your wallet to
-              theirs. Krao never holds the money and takes no fee. A membership
-              lasts {PERIOD_DAYS} days and does not renew by itself.
+              theirs. {BRAND_NAME} never holds the money and takes no fee. A
+              membership lasts {PERIOD_DAYS} days and does not renew by itself.
             </Trans>
           </Text>
 

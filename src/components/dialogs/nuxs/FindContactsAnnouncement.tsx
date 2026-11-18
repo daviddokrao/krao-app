@@ -6,6 +6,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import {isFindContactsFeatureEnabled} from '#/components/contacts/country-allowlist'
@@ -76,7 +77,7 @@ export function FindContactsAnnouncement() {
               source={require('../../../../assets/images/find_friends_illustration.webp')}
               style={[a.w_full, {aspectRatio: 1278 / 661}]}
               alt={_(
-                msg`An illustration depicting user avatars flowing from a contact book into the Krao app`,
+                msg`An illustration depicting user avatars flowing from a contact book into the ${BRAND_NAME} app`,
               )}
               useAppleWebpCodec
             />
@@ -106,8 +107,8 @@ export function FindContactsAnnouncement() {
                 {maxWidth: 340},
               ]}>
               <Trans>
-                Krao is more fun with friends! Import your contacts to see who’s
-                already here.
+                {BRAND_NAME} is more fun with friends! Import your contacts to
+                see who’s already here.
               </Trans>
             </Text>
           </View>

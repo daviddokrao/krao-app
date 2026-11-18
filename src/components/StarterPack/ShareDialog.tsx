@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useSaveImageToMediaLibrary} from '#/lib/media/save-image'
 import {shareUrl} from '#/lib/sharing'
 import {getStarterPackOgCard} from '#/lib/strings/starter-pack'
@@ -85,8 +86,8 @@ function ShareDialogInner({
               </Text>
               <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
                 <Trans>
-                  Share this Starter Pack and help people join your community on
-                  Krao.
+                  Share this Starter Pack and help people join your community on{' '}
+                  {BRAND_NAME}.
                 </Trans>
               </Text>
             </View>

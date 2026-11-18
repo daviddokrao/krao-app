@@ -1,5 +1,6 @@
 import {afterEach, beforeEach, describe, expect, it, jest} from '@jest/globals'
 
+import {BRAND} from '#/lib/brand'
 import {showUnsafeLinkWarning} from '../events'
 import {clearConfirmedLinks, openLinkIfSafe} from '../guard'
 import {
@@ -62,7 +63,7 @@ describe('isCheckableLink', () => {
     expect(isCheckableLink('http://example.com')).toBe(true)
     expect(isCheckableLink('mailto:a@example.com')).toBe(false)
     expect(isCheckableLink('/profile/krao.test')).toBe(false)
-    expect(isCheckableLink('https://krao.net/profile/x')).toBe(false)
+    expect(isCheckableLink(`https://${BRAND.domain}/profile/x`)).toBe(false)
   })
 })
 

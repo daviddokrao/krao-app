@@ -10,6 +10,7 @@ import {Trans} from '@lingui/react/macro'
 import {useQueryClient} from '@tanstack/react-query'
 
 import {uploadBlob} from '#/lib/api'
+import {BRAND_NAME} from '#/lib/brand'
 import {
   DISCOVER_FEED_URI,
   DISCOVER_SAVED_FEED,
@@ -285,7 +286,7 @@ function ValueProposition({
     <>
       <View style={[a.gap_md, a.pt_5xl]}>
         <OnboardingTitleText>
-          <Trans>Welcome to Krao</Trans>
+          <Trans>Welcome to {BRAND_NAME}</Trans>
         </OnboardingTitleText>
         <OnboardingDescriptionText>
           <Trans>

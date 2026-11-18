@@ -6,6 +6,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useHaptics} from '#/lib/haptics'
 import {Logo} from '#/view/icons/Logo'
 import {Logotype} from '#/view/icons/Logotype'
@@ -87,7 +88,9 @@ export const SplashScreen = ({
               haptics.tap()
             }}
             label={_(msg`Create new account`)}
-            accessibilityHint={_(msg`Opens flow to create a new Krao account`)}
+            accessibilityHint={_(
+              msg`Opens flow to create a new ${BRAND_NAME} account`,
+            )}
             size="large"
             color={isDarkMode ? 'secondary_inverted' : 'secondary'}
             style={[
@@ -115,7 +118,7 @@ export const SplashScreen = ({
             }}
             label={_(msg`Sign in`)}
             accessibilityHint={_(
-              msg`Opens flow to sign in to your existing Krao account`,
+              msg`Opens flow to sign in to your existing ${BRAND_NAME} account`,
             )}
             size="large"
             hoverStyle={{opacity: 0.5}}>

@@ -1,6 +1,7 @@
 import {Pressable, View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme} from '#/alf'
 import {ChevronRight_Stroke2_Corner0_Rounded as ChevronRightIcon} from '#/components/icons/Chevron'
 import {CircleInfo_Stroke2_Corner0_Rounded as CircleInfoIcon} from '#/components/icons/CircleInfo'
@@ -33,7 +34,7 @@ export function AccountStatus({
   const description =
     status === 'atRisk'
       ? l`Your account has repeated violations of our Community Guidelines. Another violation may result in your account being permanently suspended.`
-      : l`Krao has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension.`
+      : l`${BRAND_NAME} has taken action on your account or content for violating our community guidelines. Further violations will lead to stronger enforcement, including suspension.`
 
   return (
     <>

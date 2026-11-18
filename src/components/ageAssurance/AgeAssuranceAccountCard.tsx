@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {dateDiff, useGetTimeAgo} from '#/lib/hooks/useTimeAgo'
 import {formatDateTime} from '#/lib/strings/time'
 import {atoms as a, useBreakpoints, useTheme, type ViewStyleProp} from '#/alf'
@@ -123,8 +124,8 @@ function Inner({style}: ViewStyleProp & {}) {
           {isBlocked ? (
             <Admonition type="warning">
               <Trans>
-                You are currently unable to access Krao's Age Assurance flow.
-                Please{' '}
+                You are currently unable to access {BRAND_NAME}'s Age Assurance
+                flow. Please{' '}
                 <InlineLinkText
                   label={l`Contact our moderation team`}
                   {...createStaticClick(() => {

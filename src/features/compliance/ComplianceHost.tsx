@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {logger} from '#/logger'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
@@ -96,14 +97,14 @@ function PhoneRequiredInner({
         <Text style={[a.text_md, a.leading_snug, t.atoms.text_contrast_high]}>
           {reason === 'welcome' ? (
             <Trans>
-              Krao needs a verified phone number before you can post or send
-              messages. You can do it now, or later in Settings under Account
-              and Phone number.
+              {BRAND_NAME} needs a verified phone number before you can post or
+              send messages. You can do it now, or later in Settings under
+              Account and Phone number.
             </Trans>
           ) : (
             <Trans>
-              Krao asks every account to verify a phone number before posting or
-              sending messages, as Vietnamese law requires.
+              {BRAND_NAME} asks every account to verify a phone number before
+              posting or sending messages, as Vietnamese law requires.
             </Trans>
           )}
         </Text>

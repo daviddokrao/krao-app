@@ -2,6 +2,7 @@ import {setStringAsync} from 'expo-clipboard'
 import {useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {webUrl} from '#/lib/brand'
 import {type NavigationProp} from '#/lib/routes/types'
 import {
   type ChatInvitePreview,
@@ -96,7 +97,7 @@ export function Root({
         color: 'primary',
         disabled: false,
         onPress: () => {
-          void setStringAsync(`https://krao.net/chat/${preview.code}`)
+          void setStringAsync(webUrl(`/chat/${preview.code}`))
           Toast.show(l`Copied to clipboard`, {type: 'success'})
         },
       }

@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {ScrollView, View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {logger} from '#/logger'
 import {useSession, useSessionApi} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
@@ -77,8 +78,8 @@ function ConsentPrompt() {
           </Text>
           <Text style={[a.text_md, a.leading_snug, t.atoms.text_contrast_high]}>
             <Trans>
-              Krao updated its terms and how it handles your data. To keep using
-              Krao, please read and agree to them.
+              {BRAND_NAME} updated its terms and how it handles your data. To
+              keep using {BRAND_NAME}, please read and agree to them.
             </Trans>
           </Text>
           <SignupConsent

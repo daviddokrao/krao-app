@@ -14,7 +14,14 @@ import {
 import {Container} from '#/components/container'
 import {Link} from '#/components/link'
 import {Post} from '#/components/post'
-import {APPVIEW_URL, EMBED_URL, HANDLE_DOMAIN, WEB_URL} from '#/krao'
+import {
+  APPVIEW_URL,
+  BRAND_NAME,
+  EMBED_URL,
+  HANDLE_DOMAIN,
+  OFFICIAL_HANDLE,
+  WEB_URL,
+} from '#/krao'
 import {niceDate} from '#/util/nice-date'
 
 import arrowBottom from '../../assets/arrowBottom_stroke2_corner0_rounded.svg'
@@ -79,7 +86,7 @@ function LandingPage() {
               atUri = `at://${did}/app.bsky.feed.post/${rkey}`
             } catch (err) {
               console.log(err)
-              throw new Error('Invalid Krao URL', {cause: err})
+              throw new Error(`Invalid ${BRAND_NAME} URL`, {cause: err})
             }
           }
         }
@@ -104,7 +111,9 @@ function LandingPage() {
         setPost(post)
       } catch (err) {
         console.error(err)
-        setError(err instanceof Error ? err.message : 'Invalid Krao URL')
+        setError(
+          err instanceof Error ? err.message : `Invalid ${BRAND_NAME} URL`,
+        )
       } finally {
         setLoading(false)
       }
@@ -119,7 +128,9 @@ function LandingPage() {
         <img src={logo} className="h-10" />
       </Link>
 
-      <h1 className="text-4xl font-bold text-center">Embed a Krao Post</h1>
+      <h1 className="text-4xl font-bold text-center">
+        Embed a {BRAND_NAME} Post
+      </h1>
 
       <div className="flex flex-col w-full max-w-[600px] gap-6">
         <input
@@ -127,7 +138,7 @@ function LandingPage() {
           value={uri}
           onInput={e => setUri(e.currentTarget.value)}
           className="border rounded-lg py-3 px-4 dark:bg-dimmedBg dark:border-slate-500"
-          placeholder={`${WEB_URL}/profile/krao.net/post/…`}
+          placeholder={`${WEB_URL}/profile/${OFFICIAL_HANDLE}/post/…`}
         />
 
         <div className="flex flex-col gap-1.5">

@@ -3,6 +3,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND, webUrl} from '#/lib/brand'
 import {usePalette} from '#/lib/hooks/usePalette'
 import {
   type CommonNavigatorParams,
@@ -30,8 +31,8 @@ export const PrivacyPolicyScreen = (_props: Props) => {
               The Privacy Policy has been moved to{' '}
               <TextLink
                 style={pal.link}
-                href="https://krao.net/privacy"
-                text="krao.net/privacy"
+                href={webUrl('/privacy')}
+                text={`${BRAND.domain}/privacy`}
               />
             </Trans>
           </Text>

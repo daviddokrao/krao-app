@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME, webUrl} from '#/lib/brand'
 import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
 import {ErrorBoundary} from '#/view/com/util/ErrorBoundary'
 import {Logo} from '#/view/icons/Logo'
@@ -107,7 +108,7 @@ export const SplashScreen = ({
                 onPress={onPressCreateAccount}
                 label={_(msg`Create new account`)}
                 accessibilityHint={_(
-                  msg`Opens flow to create a new Krao account`,
+                  msg`Opens flow to create a new ${BRAND_NAME} account`,
                 )}
                 size="large"
                 variant="solid"
@@ -121,7 +122,7 @@ export const SplashScreen = ({
                 onPress={onPressSignin}
                 label={_(msg`Sign in`)}
                 accessibilityHint={_(
-                  msg`Opens flow to sign in to your existing Krao account`,
+                  msg`Opens flow to sign in to your existing ${BRAND_NAME} account`,
                 )}
                 size="large"
                 variant="solid"
@@ -164,18 +165,18 @@ function Footer() {
         t.atoms.border_contrast_medium,
       ]}>
       <InlineLinkText
-        label={_(msg`Learn more about Krao`)}
-        to="https://krao.net">
+        label={_(msg`Learn more about ${BRAND_NAME}`)}
+        to={webUrl()}>
         <Trans>Business</Trans>
       </InlineLinkText>
       <InlineLinkText
-        label={_(msg`Read the Krao blog`)}
-        to="https://krao.net/blog">
+        label={_(msg`Read the ${BRAND_NAME} blog`)}
+        to={webUrl('/blog')}>
         <Trans>Blog</Trans>
       </InlineLinkText>
       <InlineLinkText
-        label={_(msg`See jobs at Krao`)}
-        to="https://krao.net/jobs">
+        label={_(msg`See jobs at ${BRAND_NAME}`)}
+        to={webUrl('/jobs')}>
         <Trans comment="Link to a page with job openings at Krao">Jobs</Trans>
       </InlineLinkText>
 

@@ -2,6 +2,7 @@ import {useEffect} from 'react'
 import * as Clipboard from 'expo-clipboard'
 import {useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {logger} from '#/logger'
 import * as Prompt from '#/components/Prompt'
 import {IS_ANDROID, IS_IOS} from '#/env'
@@ -67,7 +68,7 @@ export function DeferredCodeCheck() {
     <Prompt.Basic
       control={control}
       title={l`Paste your invite code?`}
-      description={l`If a friend sent you a Krao invite code or link, Krao can read it from your clipboard and fill it in when you sign up. Nothing else is read.`}
+      description={l`If a friend sent you a ${BRAND_NAME} invite code or link, ${BRAND_NAME} can read it from your clipboard and fill it in when you sign up. Nothing else is read.`}
       confirmButtonCta={l`Paste code`}
       cancelButtonCta={l`No, thanks`}
       onConfirm={() => {

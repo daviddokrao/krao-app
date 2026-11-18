@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {type NavigationProp} from '#/lib/routes/types'
 import {useProfileQuery} from '#/state/queries/profile'
@@ -104,10 +105,10 @@ function Checklist({did, handle}: {did: string; handle: string}) {
   if (!show) return null
 
   const walletText = IS_WEB
-    ? l`A wallet is a free app or browser extension that holds your tokens and signs for you. Krao never sees its keys. Install one such as MetaMask, then link it, or link one you already have.`
+    ? l`A wallet is a free app or browser extension that holds your tokens and signs for you. ${BRAND_NAME} never sees its keys. Install one such as MetaMask, then link it, or link one you already have.`
     : CAN_CONNECT_WALLET
-      ? l`A wallet is a free app that holds your tokens and signs for you. Krao never sees its keys. Install one on this phone such as MetaMask, then link it, or link one you already have.`
-      : l`A wallet is a free app that holds your tokens and signs for you. Krao never sees its keys. Install one such as MetaMask or Coinbase Wallet and link it from Krao on the web; linking in the mobile app is coming soon.`
+      ? l`A wallet is a free app that holds your tokens and signs for you. ${BRAND_NAME} never sees its keys. Install one on this phone such as MetaMask, then link it, or link one you already have.`
+      : l`A wallet is a free app that holds your tokens and signs for you. ${BRAND_NAME} never sees its keys. Install one such as MetaMask or Coinbase Wallet and link it from ${BRAND_NAME} on the web; linking in the mobile app is coming soon.`
 
   const steps: Record<
     ChecklistStepId,
@@ -166,7 +167,7 @@ function Checklist({did, handle}: {did: string; handle: string}) {
       <View style={[a.flex_row, a.align_center, a.gap_sm]}>
         <View style={[a.flex_1, a.gap_2xs]}>
           <Text style={[a.text_md, a.font_semi_bold, a.leading_snug]}>
-            <Trans>Get started on Krao</Trans>
+            <Trans>Get started on {BRAND_NAME}</Trans>
           </Text>
           <Text
             testID="newUserChecklistProgress"

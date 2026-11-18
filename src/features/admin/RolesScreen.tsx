@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
@@ -60,7 +61,7 @@ export function RolesScreen({}: Props) {
         <View style={[a.p_lg, a.gap_lg]}>
           {forbidden ? (
             <Admonition.Admonition type="error">
-              <Trans>Only Krao admins can open this page.</Trans>
+              <Trans>Only {BRAND_NAME} admins can open this page.</Trans>
             </Admonition.Admonition>
           ) : (
             <>
@@ -136,7 +137,8 @@ function AddMember() {
         </Text>
         <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
           <Trans>
-            Takes effect within a minute in every Krao service, and is logged.
+            Takes effect within a minute in every {BRAND_NAME} service, and is
+            logged.
           </Trans>
         </Text>
       </View>
@@ -269,8 +271,8 @@ function Member({member}: {member: RoleMember}) {
         }
         description={
           removing === 'admin'
-            ? l`They will no longer manage roles, and lose every role they had only as an admin. Takes effect within a minute in every Krao service, and is logged.`
-            : l`Takes effect within a minute in every Krao service, and is logged.`
+            ? l`They will no longer manage roles, and lose every role they had only as an admin. Takes effect within a minute in every ${BRAND_NAME} service, and is logged.`
+            : l`Takes effect within a minute in every ${BRAND_NAME} service, and is logged.`
         }
         confirmButtonCta={l`Remove role`}
         confirmButtonColor="negative"

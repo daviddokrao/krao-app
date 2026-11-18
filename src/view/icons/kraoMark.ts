@@ -1,5 +1,7 @@
 import {Platform} from 'react-native'
 
+import {BRAND_NAME} from '#/lib/brand'
+
 /**
  * Official Krao brand colors (see assets/brand/README.md).
  */
@@ -34,7 +36,7 @@ export const KRAO_STAR = {
 } as const
 
 /** Wordmark text; the brand font is Sora 700 with -0.035em tracking. */
-export const KRAO_WORDMARK = 'Krao'
+export const KRAO_WORDMARK = BRAND_NAME
 
 /**
  * Sora Bold (assets/fonts/sora, OFL), used only for the wordmark. Web gets a

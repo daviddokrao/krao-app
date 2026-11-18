@@ -10,6 +10,7 @@ import {useIsFocused} from '@react-navigation/native'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
 import {wait} from '#/lib/async/wait'
+import {BRAND_NAME} from '#/lib/brand'
 import {HITSLOP_10, urls} from '#/lib/constants'
 import {isBlockedOrBlocking, isMuted} from '#/lib/moderation/blocked-and-muted'
 import {
@@ -134,9 +135,9 @@ function Intro() {
       </Text>
       <Text style={[a.text_md, a.leading_snug, t.atoms.text_contrast_medium]}>
         <Trans>
-          Find your friends on Krao by verifying your phone number and matching
-          with your contacts. We protect your information and you control what
-          happens next.{' '}
+          Find your friends on {BRAND_NAME} by verifying your phone number and
+          matching with your contacts. We protect your information and you
+          control what happens next.{' '}
           <InlineLinkText
             to={urls.website.blog.findFriendsAnnouncement}
             label={_(
@@ -577,8 +578,8 @@ function StatusFooter({syncedAt}: {syncedAt: string}) {
         </Text>
         <Text style={[a.text_sm, a.leading_snug, t.atoms.text_contrast_medium]}>
           <Trans>
-            Krao stores your contacts as encoded data. Removing your contacts
-            will immediately delete this data.
+            {BRAND_NAME} stores your contacts as encoded data. Removing your
+            contacts will immediately delete this data.
           </Trans>
         </Text>
         <Button

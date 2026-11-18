@@ -9,6 +9,7 @@ jest.mock('#/storage', () => ({
   },
 }))
 
+import {BRAND} from '#/lib/brand'
 import {
   clearPendingConsent,
   CONSENT_VERSION,
@@ -31,20 +32,20 @@ describe('pending consent', () => {
   })
 
   it('keeps what was agreed to until it is recorded', () => {
-    expect(getPendingConsent('lan.krao.net')).toBeUndefined()
-    setPendingConsent('lan.krao.net')
-    expect(getPendingConsent('lan.krao.net')).toEqual({
+    expect(getPendingConsent(`lan.${BRAND.domain}`)).toBeUndefined()
+    setPendingConsent(`lan.${BRAND.domain}`)
+    expect(getPendingConsent(`lan.${BRAND.domain}`)).toEqual({
       version: CONSENT_VERSION,
       items: ALL,
     })
     clearPendingConsent()
-    expect(getPendingConsent('lan.krao.net')).toBeUndefined()
+    expect(getPendingConsent(`lan.${BRAND.domain}`)).toBeUndefined()
   })
 
   it('belongs to the account being created, not to the device', () => {
-    setPendingConsent('Lan.Krao.net')
-    expect(getPendingConsent('lan.krao.net')).toBeDefined()
-    expect(getPendingConsent('someone-else.krao.net')).toBeUndefined()
+    setPendingConsent(`Lan.${BRAND.domain.toUpperCase()}`)
+    expect(getPendingConsent(`lan.${BRAND.domain}`)).toBeDefined()
+    expect(getPendingConsent(`someone-else.${BRAND.domain}`)).toBeUndefined()
     expect(getPendingConsent(undefined)).toBeUndefined()
   })
 
@@ -54,13 +55,13 @@ describe('pending consent', () => {
       items: ALL,
       savedAt: now,
     })
-    expect(getPendingConsent('lan.krao.net')).toBeUndefined()
+    expect(getPendingConsent(`lan.${BRAND.domain}`)).toBeUndefined()
   })
 
   it('drops a consent that was never recorded', () => {
-    setPendingConsent('lan.krao.net')
+    setPendingConsent(`lan.${BRAND.domain}`)
     now += 25 * 60 * 60 * 1000
-    expect(getPendingConsent('lan.krao.net')).toBeUndefined()
+    expect(getPendingConsent(`lan.${BRAND.domain}`)).toBeUndefined()
   })
 })
 

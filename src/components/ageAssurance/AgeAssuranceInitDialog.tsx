@@ -6,6 +6,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {validate as validateEmail} from 'email-validator'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useCleanError} from '#/lib/hooks/useCleanError'
 import {
   SupportCode,
@@ -216,7 +217,7 @@ function Inner() {
                   process. If your email address has already been used to verify
                   your age for another game or service that uses KWS, you won’t
                   need to do it again. When you’re done, you'll be brought back
-                  to continue using Krao.
+                  to continue using {BRAND_NAME}.
                 </Trans>
               </Text>
               <Text style={[a.text_sm, a.leading_snug]}>
@@ -286,8 +287,8 @@ function Inner() {
                   <Admonition type="tip" style={[a.mt_sm]}>
                     <Trans>
                       Use your account email address, or another real email
-                      address you control, in case KWS or Krao needs to contact
-                      you.
+                      address you control, in case KWS or {BRAND_NAME} needs to
+                      contact you.
                     </Trans>
                   </Admonition>
                 )}

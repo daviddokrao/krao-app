@@ -3,6 +3,7 @@ import {type ListRenderItemInfo, View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME, webUrl} from '#/lib/brand'
 import {HITSLOP_10} from '#/lib/constants'
 import {useInitialNumToRender} from '#/lib/hooks/useInitialNumToRender'
 import {usePostViewTracking} from '#/lib/hooks/usePostViewTracking'
@@ -68,7 +69,7 @@ export default function HashtagScreen({
   }, [author])
 
   const onShare = useCallback(() => {
-    const url = new URL('https://krao.net')
+    const url = new URL(webUrl())
     url.pathname = `/hashtag/${decodeURIComponent(tag)}`
     if (author) {
       url.searchParams.set('author', author)
@@ -243,7 +244,7 @@ function HashtagScreenTab({
             <Text> </Text>
             <Text style={t.atoms.text_contrast_medium}>
               to search for news, sports, politics, and everything else
-              happening on Krao.
+              happening on {BRAND_NAME}.
             </Text>
           </Trans>
         </Text>

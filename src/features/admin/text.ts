@@ -1,5 +1,6 @@
 import {useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {
   type AdminRole,
   type AdminSectionId,
@@ -76,7 +77,7 @@ export function useSetRoleErrorText(): (error: unknown) => string {
       case 'unknownRole':
         return l`The service doesn’t know this role. Update the app and try again.`
       case 'forbidden':
-        return l`Only Krao admins can change roles.`
+        return l`Only ${BRAND_NAME} admins can change roles.`
       default:
         return l`Could not change the role. Try again.`
     }

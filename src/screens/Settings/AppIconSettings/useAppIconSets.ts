@@ -2,6 +2,7 @@ import {useMemo} from 'react'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type AppIconSet} from '#/screens/Settings/AppIconSettings/types'
 
 export function useAppIconSets() {
@@ -164,7 +165,7 @@ export function useAppIconSets() {
         name: _(
           msg({
             context: 'Name of app icon variant',
-            message: 'Krao Classic™',
+            message: `${BRAND_NAME} Classic™`,
           }),
         ),
         iosImage: () => {

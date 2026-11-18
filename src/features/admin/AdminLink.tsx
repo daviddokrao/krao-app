@@ -1,5 +1,6 @@
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldCheckIcon} from '#/components/icons/Shield'
 import {useMyRolesQuery} from './queries'
@@ -13,10 +14,10 @@ export function AdminLink() {
   const {data: roles} = useMyRolesQuery()
   if (!roles?.length) return null
   return (
-    <SettingsList.LinkItem to="/admin" label={l`Krao admin`}>
+    <SettingsList.LinkItem to="/admin" label={l`${BRAND_NAME} admin`}>
       <SettingsList.ItemIcon icon={ShieldCheckIcon} />
       <SettingsList.ItemText>
-        <Trans>Krao admin</Trans>
+        <Trans>{BRAND_NAME} admin</Trans>
       </SettingsList.ItemText>
     </SettingsList.LinkItem>
   )

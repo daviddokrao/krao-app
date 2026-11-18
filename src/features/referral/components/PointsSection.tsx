@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Plural, Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useOpenLink} from '#/lib/hooks/useOpenLink'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a, useTheme} from '#/alf'
@@ -35,7 +36,7 @@ export function PointsSection() {
         <SettingsList.ItemIcon icon={GiftIcon} />
         <View style={[a.flex_1, a.gap_2xs]}>
           <Text style={[a.text_md, a.font_semi_bold]}>
-            <Trans>Krao points</Trans>
+            <Trans>{BRAND_NAME} points</Trans>
           </Text>
           {balance.isLoading ? (
             <Loader />
@@ -165,7 +166,8 @@ function KycRow() {
         <Admonition.Admonition type="warning">
           <Trans>
             Your identity could not be verified, so points that depend on it
-            were cancelled. Contact Krao support if you think this is a mistake.
+            were cancelled. Contact {BRAND_NAME} support if you think this is a
+            mistake.
           </Trans>
         </Admonition.Admonition>
       )}

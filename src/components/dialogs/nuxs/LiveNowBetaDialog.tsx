@@ -6,6 +6,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, select, useTheme, utils, web} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -180,8 +181,9 @@ export function LiveNowBetaDialog() {
                 },
               ]}>
               <Trans>
-                Streaming on Twitch? Set your live status on Krao to add a badge
-                to your avatar. Tapping it takes people straight to your stream.
+                Streaming on Twitch? Set your live status on {BRAND_NAME} to add
+                a badge to your avatar. Tapping it takes people straight to your
+                stream.
               </Trans>
             </Text>
           </View>

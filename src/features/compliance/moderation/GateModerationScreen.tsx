@@ -5,6 +5,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useQueryClient} from '@tanstack/react-query'
 
+import {webUrl} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {atoms as a, useTheme} from '#/alf'
 import * as Admonition from '#/components/Admonition'
@@ -161,7 +162,7 @@ function ContentViewer() {
             onChangeText={setPost}
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="https://krao.net/profile/…/post/…"
+            placeholder={webUrl('/profile/…/post/…')}
           />
         </TextField.Root>
       </View>

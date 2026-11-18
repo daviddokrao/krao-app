@@ -2,6 +2,7 @@ import {type AtIdentifierString, AtUri} from '@atproto/syntax'
 import {parse} from 'psl'
 import TLDs from 'tlds'
 
+import {BRAND, BRAND_NAME, webUrl} from '#/lib/brand'
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import {expandProfilePath, shortenProfilePath} from '#/lib/routes/shortProfile'
 import {isInvalidHandle} from '#/lib/strings/handles'
@@ -14,12 +15,10 @@ export const BSKY_APP_HOST = KRAO_WEB_URL.replace(/\/$/, '')
  * Web hosts whose links open inside the app. Krao is its own network, so
  * bsky.app links point at content Krao does not have and open in the browser.
  */
-const APP_URL_PREFIXES = [
-  ...new Set([`${BSKY_APP_HOST}/`, 'https://krao.net/']),
-]
+const APP_URL_PREFIXES = [...new Set([`${BSKY_APP_HOST}/`, `${webUrl()}/`])]
 const BSKY_TRUSTED_HOSTS = [
   ...new Set(
-    ['krao.net', new URL(KRAO_WEB_URL).host, new URL(KRAO_SITE_URL).host].map(
+    [BRAND.domain, new URL(KRAO_WEB_URL).host, new URL(KRAO_SITE_URL).host].map(
       host => host.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
     ),
   ),
@@ -72,7 +71,7 @@ export function toNiceDomain(url: string): string {
   try {
     const urlp = new URL(url)
     if (isKraoHostedUrl(url)) {
-      return 'Krao'
+      return BRAND_NAME
     }
     return urlp.host ? urlp.host : url
   } catch (e) {
@@ -114,7 +113,7 @@ export function toNiceHostingUrl(url: string): string {
   try {
     const urlp = new URL(url)
     if (isKraoHostedUrl(url)) {
-      return 'Krao'
+      return BRAND_NAME
     }
     return urlp.host
   } catch {

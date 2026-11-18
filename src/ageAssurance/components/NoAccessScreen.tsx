@@ -4,6 +4,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {BottomSheetOutlet} from '@bsky.app/bottom-sheet'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {dateDiff, useGetTimeAgo} from '#/lib/hooks/useTimeAgo'
 import {formatDateTime} from '#/lib/strings/time'
 import {useIsBirthdateUpdateAllowed} from '#/state/birthdate'
@@ -176,9 +177,9 @@ export function NoAccessScreen() {
                         </Text>
                         <Text style={[textStyles]}>
                           <Trans>
-                            You are accessing Krao from a region that legally
-                            requires us to verify your age before allowing you
-                            to access the app.
+                            You are accessing {BRAND_NAME} from a region that
+                            legally requires us to verify your age before
+                            allowing you to access the app.
                           </Trans>
                         </Text>
 
@@ -250,8 +251,8 @@ export function NoAccessScreen() {
                           <Text style={[textStyles]}>
                             <Trans>
                               Unfortunately, your declared age indicates that
-                              you are not old enough to access Krao in your
-                              region.
+                              you are not old enough to access {BRAND_NAME} in
+                              your region.
                             </Trans>
                           </Text>
                         )}
@@ -266,7 +267,7 @@ export function NoAccessScreen() {
                       <Text style={[textStyles]}>
                         <Trans>
                           Unfortunately, the birthdate you have saved to your
-                          profile makes you too young to access Krao.
+                          profile makes you too young to access {BRAND_NAME}.
                         </Trans>
                       </Text>
 
@@ -405,8 +406,8 @@ function AccessSection() {
         {isBlocked ? (
           <Admonition type="warning">
             <Trans>
-              You are currently unable to access Krao's Age Assurance flow.
-              Please{' '}
+              You are currently unable to access {BRAND_NAME}'s Age Assurance
+              flow. Please{' '}
               <SimpleInlineLinkText
                 label={l`Contact our moderation team`}
                 {...createStaticClick(() => {
