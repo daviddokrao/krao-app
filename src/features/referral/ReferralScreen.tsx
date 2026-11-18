@@ -7,6 +7,8 @@ import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {shareUrl} from '#/lib/sharing'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useProfilesQuery} from '#/state/queries/profile'
+import {useServiceQuery} from '#/state/queries/service'
+import {useSession} from '#/state/session'
 import {CopyButton} from '#/screens/Settings/components/CopyButton'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a, useTheme} from '#/alf'
@@ -42,6 +44,10 @@ export function ReferralScreen({}: Props) {
   const url = code ? getReferralUrl(code) : ''
   const inviterPoints = overview.data?.inviterPoints
   const inviteePoints = overview.data?.inviteePoints
+  const {currentAccount} = useSession()
+  const {data: server} = useServiceQuery(currentAccount?.service ?? '')
+  // Says "invite-only" unless the PDS lets anyone sign up (eg a public demo)
+  const inviteOnly = server?.inviteCodeRequired !== false
 
   return (
     <Layout.Screen testID="referralScreen">
@@ -58,7 +64,21 @@ export function ReferralScreen({}: Props) {
         <SettingsList.Container>
           <SettingsList.Item>
             <Text style={[a.text_md, a.leading_snug]}>
-              {inviterPoints && inviteePoints ? (
+              {!inviteOnly ? (
+                inviterPoints && inviteePoints ? (
+                  <Trans>
+                    Share your code: you get {inviterPoints} points for each
+                    friend who joins with it, and they get {inviteePoints}.
+                    Points are approved once you have both verified your
+                    identity.
+                  </Trans>
+                ) : (
+                  <Trans>
+                    Share your code to invite friends. Points for referrals are
+                    approved once you have both verified your identity.
+                  </Trans>
+                )
+              ) : inviterPoints && inviteePoints ? (
                 <Trans>
                   Krao is invite-only. Share your code: you get {inviterPoints}{' '}
                   points for each friend who joins, and they get {inviteePoints}

@@ -31,23 +31,22 @@ import {
 import {useProgressGuideControls} from '#/state/shell/progress-guide'
 import {
   OnboardingControls,
-  OnboardingHeaderSlot,
+  OnboardingDescriptionText,
+  OnboardingTitleText,
 } from '#/screens/Onboarding/Layout'
 import {
   type OnboardingState,
   useOnboardingInternalState,
 } from '#/screens/Onboarding/state'
 import {bulkWriteFollows} from '#/screens/Onboarding/util'
-import {atoms as a, useBreakpoints} from '#/alf'
+import {atoms as a} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {ArrowRight_Stroke2_Corner0_Rounded as ArrowRight} from '#/components/icons/Arrow'
 import {Loader} from '#/components/Loader'
 import {useAnalytics} from '#/analytics'
-import {IS_WEB} from '#/env'
 import {getViFeedToPin} from '#/features/growth/viFeed'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
-import {ValuePropositionPager} from './ValuePropositionPager'
 
 export function StepFinished() {
   const {state, dispatch} = useOnboardingInternalState()
@@ -267,6 +266,10 @@ export function StepFinished() {
   )
 }
 
+/**
+ * Krao: one welcome page instead of Bluesky's three value proposition pages,
+ * whose pictures show Bluesky's own feeds and marketing.
+ */
 function ValueProposition({
   finishOnboarding,
   saving,
@@ -276,91 +279,37 @@ function ValueProposition({
   saving: boolean
   state: OnboardingState
 }) {
-  const [subStep, setSubStep] = useState<0 | 1 | 2>(0)
   const {_} = useLingui()
-  const ax = useAnalytics()
-  const {gtMobile} = useBreakpoints()
-
-  const onPress = () => {
-    if (subStep === 2) {
-      finishOnboarding() // has its own metrics
-    } else if (subStep === 1) {
-      setSubStep(2)
-      ax.metric('onboarding:valueProp:stepTwo:nextPressed', {})
-    } else if (subStep === 0) {
-      setSubStep(1)
-      ax.metric('onboarding:valueProp:stepOne:nextPressed', {})
-    }
-  }
 
   return (
     <>
-      {!gtMobile && (
-        <OnboardingHeaderSlot.Portal>
-          <Button
-            disabled={saving}
-            variant="ghost"
-            color="secondary"
-            size="small"
-            label={_(msg`Skip introduction and start using your account`)}
-            onPress={() => {
-              ax.metric('onboarding:valueProp:skipPressed', {})
-              finishOnboarding()
-            }}
-            style={[a.bg_transparent]}>
-            <ButtonText>
-              <Trans>Skip</Trans>
-            </ButtonText>
-          </Button>
-        </OnboardingHeaderSlot.Portal>
-      )}
-
-      <ValuePropositionPager
-        step={subStep}
-        setStep={ss => setSubStep(ss)}
-        avatarUri={state.profileStepResults.imageUri}
-      />
+      <View style={[a.gap_md, a.pt_5xl]}>
+        <OnboardingTitleText>
+          <Trans>Welcome to Krao</Trans>
+        </OnboardingTitleText>
+        <OnboardingDescriptionText>
+          <Trans>
+            Link your wallet to sign in and receive tips, join communities, and
+            unlock posts for token holders. Your feed starts with Discover, and
+            you can pin more feeds at any time.
+          </Trans>
+        </OnboardingDescriptionText>
+      </View>
 
       <OnboardingControls.Portal>
-        <View style={gtMobile && [a.gap_md, a.flex_row]}>
-          {gtMobile && (IS_WEB ? subStep !== 2 : true) && (
-            <Button
-              disabled={saving}
-              color="secondary"
-              size="large"
-              label={_(msg`Skip introduction and start using your account`)}
-              onPress={() => finishOnboarding()}>
-              <ButtonText>
-                <Trans>Skip</Trans>
-              </ButtonText>
-            </Button>
-          )}
-          <Button
-            testID="onboardingFinish"
-            disabled={saving}
-            key={state.activeStep} // remove focus state on nav
-            color="primary"
-            size="large"
-            label={
-              subStep === 2
-                ? _(msg`Complete onboarding and start using your account`)
-                : _(msg`Next`)
-            }
-            onPress={onPress}>
-            <ButtonText>
-              {saving ? (
-                <Trans>Finalizing</Trans>
-              ) : subStep === 2 ? (
-                <Trans>Let's go!</Trans>
-              ) : (
-                <Trans>Next</Trans>
-              )}
-            </ButtonText>
-            {subStep === 2 && (
-              <ButtonIcon icon={saving ? Loader : ArrowRight} />
-            )}
-          </Button>
-        </View>
+        <Button
+          testID="onboardingFinish"
+          disabled={saving}
+          key={state.activeStep} // remove focus state on nav
+          color="primary"
+          size="large"
+          label={_(msg`Complete onboarding and start using your account`)}
+          onPress={() => finishOnboarding()}>
+          <ButtonText>
+            {saving ? <Trans>Finalizing</Trans> : <Trans>Let's go!</Trans>}
+          </ButtonText>
+          <ButtonIcon icon={saving ? Loader : ArrowRight} />
+        </Button>
       </OnboardingControls.Portal>
     </>
   )
