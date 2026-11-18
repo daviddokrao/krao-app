@@ -48,6 +48,8 @@ WORKDIR /embed
 ENV CI=1
 ENV pnpm_config_pm_on_fail=download
 COPY bskyembed/ .
+# src/krao.ts reads the brand from ../../brand.json (the repo root's)
+COPY brand.json /brand.json
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 ENV VITE_KRAO_APPVIEW_URL=https://api.krao.net \
   VITE_KRAO_WEB_URL=https://krao.net \
