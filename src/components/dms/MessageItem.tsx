@@ -52,6 +52,8 @@ import * as ProfileCard from '#/components/ProfileCard'
 import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
 import {Text} from '#/components/Typography'
+import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
+import {useLinksDisabled} from '#/features/safety/linksDisabled'
 import {app, chat} from '#/lexicons'
 import * as bsky from '#/types/bsky'
 import {DateDivider} from './DateDivider'
@@ -146,6 +148,7 @@ let MessageItem = ({
   const {message} = item
   const profile = useMaybeProfileShadow(relatedProfiles.get(message.sender.did))
 
+  const linksDisabled = useLinksDisabled()
   const {openReactions} = useMessageDialogs()
   const {scrollToMessage, highlightedMessage} = useMessageReplies()
 
@@ -602,7 +605,9 @@ let MessageItem = ({
                         enableTags
                         emojiMultiplier={3}
                         shouldProxyLinks={true}
+                        disableLinks={linksDisabled}
                       />
+                      <AddressWarnings text={message.text} />
                     </Animated.View>
                   )}
                 </ActionsWrapper>

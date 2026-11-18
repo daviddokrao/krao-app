@@ -112,7 +112,10 @@ const variants = {
 for (const [file, w, h, headline, fmt] of jobs) {
   let svg = gradientCard({w, h, radius: 24, headline, id: file.length})
   const v = Object.keys(variants).find(k => file.includes(`_${k}.`))
-  if (v) svg = svg.replace('#0E8C6E', variants[v][0]).replace('#075444', variants[v][1])
+  if (v)
+    svg = svg
+      .replace('#0E8C6E', variants[v][0])
+      .replace('#075444', variants[v][1])
   const img = sharp(Buffer.from(svg))
   await (fmt === 'webp' ? img.webp({quality: 90}) : img.png()).toFile(
     path.join(OUT, file),

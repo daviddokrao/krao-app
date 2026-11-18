@@ -2,7 +2,12 @@ import {secp256k1} from '@noble/curves/secp256k1'
 import {keccak_256} from '@noble/hashes/sha3'
 import {bytesToHex, hexToBytes, utf8ToBytes} from '@noble/hashes/utils'
 
-import {IS_WEB, KRAO_DEV_RPC_URL, KRAO_DEV_WALLET} from '#/env'
+import {KRAO_DEV_RPC_URL} from '#/env'
+import {WalletRejectedError, WalletUnavailableError} from './errors'
+import {WALLET_MODE} from './mode'
+import {type Eip1193Provider} from './walletConnectLinks'
+
+export {WalletRejectedError, WalletUnavailableError}
 
 export type EvmWallet = {
   address: string
@@ -18,9 +23,6 @@ export type EvmWallet = {
     data?: string
   }) => Promise<string>
 }
-
-export class WalletUnavailableError extends Error {}
-export class WalletRejectedError extends Error {}
 
 /** Chains Krao uses, to add to wallets that do not know them (EIP-3085) */
 const KNOWN_CHAINS: Record<
@@ -40,22 +42,39 @@ const KNOWN_CHAINS: Record<
   },
 }
 
-type Eip1193Provider = {
-  request: (args: {method: string; params?: unknown[]}) => Promise<unknown>
+/**
+ * Where the EIP-1193 provider comes from: the browser's injected wallet on
+ * web, a wallet app through WalletConnect on native (when a project ID is
+ * set). `fresh` asks WalletConnect to pair again, to pick another wallet.
+ */
+async function getEip1193Provider(
+  fresh: boolean,
+): Promise<Eip1193Provider | undefined> {
+  if (WALLET_MODE === 'injected') {
+    return (globalThis as {ethereum?: Eip1193Provider}).ethereum
+  }
+  if (WALLET_MODE === 'walletconnect') {
+    // Loaded on demand so the WalletConnect packages never reach the web bundle
+    const {walletConnect} = await import('./walletconnect')
+    return walletConnect.getProvider({fresh})
+  }
+  return undefined
 }
 
 /**
  * Connect an EVM wallet: the built-in dev wallet when enabled, otherwise the
- * browser's injected provider (MetaMask, Rabby, Coinbase extension...).
- * Native apps need WalletConnect, which is not wired up yet.
+ * browser's injected provider (MetaMask, Rabby, Coinbase extension...) or, on
+ * native with a WalletConnect project ID, a wallet app on the phone.
  */
-export async function connectEvmWallet(): Promise<EvmWallet> {
-  if (KRAO_DEV_WALLET) {
+export async function connectEvmWallet({
+  fresh = false,
+}: {
+  fresh?: boolean
+} = {}): Promise<EvmWallet> {
+  if (WALLET_MODE === 'dev') {
     return devWallet()
   }
-  const provider = IS_WEB
-    ? (globalThis as {ethereum?: Eip1193Provider}).ethereum
-    : undefined
+  const provider = await getEip1193Provider(fresh)
   if (!provider) {
     throw new WalletUnavailableError('No Ethereum wallet found')
   }

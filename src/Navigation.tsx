@@ -144,11 +144,33 @@ import {
 import {useAnalytics} from '#/analytics'
 import {setNavigationMetadata} from '#/analytics/metadata'
 import {IS_LIQUID_GLASS, IS_NATIVE, IS_WEB, KRAO_WEB_URL} from '#/env'
+import {AdminHubScreen} from '#/features/admin/AdminHubScreen'
+import {AuditLogScreen} from '#/features/admin/AuditLogScreen'
+import {RolesScreen} from '#/features/admin/RolesScreen'
+import {AnalyticsScreen} from '#/features/analytics/AnalyticsScreen'
+import {CommunitiesScreen} from '#/features/community/CommunitiesScreen'
+import {
+  CommunityCreateScreen,
+  CommunityEditScreen,
+} from '#/features/community/CommunityEditScreen'
+import {CommunityScreen} from '#/features/community/CommunityScreen'
+import {GateModerationScreen} from '#/features/compliance/moderation/GateModerationScreen'
+import {PhoneScreen} from '#/features/compliance/PhoneScreen'
+import {CreatorDashboardScreen} from '#/features/creator/CreatorDashboardScreen'
 import {HomeScreen} from '#/features/followingV2/home'
 import {InviteScannerScreen} from '#/features/inviteFriends'
+import {LeaderboardScreen} from '#/features/leaderboard/LeaderboardScreen'
+import {MembershipOfferScreen} from '#/features/membership/MembershipOfferScreen'
+import {MembershipSettingsScreen} from '#/features/membership/MembershipSettingsScreen'
+import {MembersScreen} from '#/features/membership/MembersScreen'
+import {MyMembershipsScreen} from '#/features/membership/MyMembershipsScreen'
+import {MiniAppsAdminScreen} from '#/features/miniapp/MiniAppsAdminScreen'
+import {MiniAppScreen} from '#/features/miniapp/MiniAppScreen'
+import {MiniAppsScreen} from '#/features/miniapp/MiniAppsScreen'
 import {RewardsAdminScreen} from '#/features/referral/admin/RewardsAdminScreen'
 import {JoinScreen} from '#/features/referral/JoinScreen'
 import {ReferralScreen} from '#/features/referral/ReferralScreen'
+import {TokenScreen} from '#/features/token/TokenScreen'
 import {router} from '#/routes'
 
 const navigationRef = createNavigationContainerRef<AllNavigatorParams>()
@@ -187,6 +209,26 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         name="Lists"
         component={ListsScreen}
         options={{title: title(msg`Lists`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="Communities"
+        getComponent={() => CommunitiesScreen}
+        options={{title: title(msg`Communities`)}}
+      />
+      <Stack.Screen
+        name="CommunityCreate"
+        getComponent={() => CommunityCreateScreen}
+        options={{title: title(msg`Create a community`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="Community"
+        getComponent={() => CommunityScreen}
+        options={{title: title(msg`Community`)}}
+      />
+      <Stack.Screen
+        name="CommunityEdit"
+        getComponent={() => CommunityEditScreen}
+        options={{title: title(msg`Edit community`), requireAuth: true}}
       />
       <Stack.Screen
         name="Moderation"
@@ -273,6 +315,14 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         getComponent={() => ProfileFollowsScreen}
         options={({route}) => ({
           title: title(msg`People followed by @${route.params.name}`),
+        })}
+      />
+      <Stack.Screen
+        name="ProfileMembership"
+        getComponent={() => MembershipOfferScreen}
+        options={({route}) => ({
+          title: title(msg`Membership of @${route.params.name}`),
+          requireAuth: true,
         })}
       />
       <Stack.Screen
@@ -533,10 +583,107 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         }}
       />
       <Stack.Screen
+        name="AnalyticsAdmin"
+        getComponent={() => AnalyticsScreen}
+        options={{
+          title: title(msg`Analytics`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="AdminHub"
+        getComponent={() => AdminHubScreen}
+        options={{title: title(msg`Krao admin`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="AdminRoles"
+        getComponent={() => RolesScreen}
+        options={{title: title(msg`Roles`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="AdminAuditLog"
+        getComponent={() => AuditLogScreen}
+        options={{title: title(msg`Audit log`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="GateModeration"
+        getComponent={() => GateModerationScreen}
+        options={{
+          title: title(msg`View gated content`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MiniAppsAdmin"
+        getComponent={() => MiniAppsAdminScreen}
+        options={{
+          title: title(msg`Review Mini Apps`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MiniApps"
+        getComponent={() => MiniAppsScreen}
+        options={{title: title(msg`Mini Apps`)}}
+      />
+      <Stack.Screen
+        name="MiniApp"
+        getComponent={() => MiniAppScreen}
+        options={{title: title(msg`Mini App`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="PhoneSettings"
+        getComponent={() => PhoneScreen}
+        options={{
+          title: title(msg`Phone number`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
         name="ReferralSettings"
         getComponent={() => ReferralScreen}
         options={{
           title: title(msg`Invite friends`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="Leaderboard"
+        getComponent={() => LeaderboardScreen}
+        options={{
+          title: title(msg`Weekly leaderboard`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MembershipSettings"
+        getComponent={() => MembershipSettingsScreen}
+        options={{
+          title: title(msg`Membership`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MembershipMembers"
+        getComponent={() => MembersScreen}
+        options={{
+          title: title(msg`Members`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="MyMemberships"
+        getComponent={() => MyMembershipsScreen}
+        options={{
+          title: title(msg`My memberships`),
+          requireAuth: true,
+        }}
+      />
+      <Stack.Screen
+        name="CreatorDashboard"
+        getComponent={() => CreatorDashboardScreen}
+        options={{
+          title: title(msg`Creator dashboard`),
           requireAuth: true,
         }}
       />
@@ -560,6 +707,11 @@ function commonScreens(Stack: typeof Flat, unreadCountLabel?: string) {
         name="Hashtag"
         getComponent={() => HashtagScreen}
         options={{title: title(msg`Hashtag`)}}
+      />
+      <Stack.Screen
+        name="Token"
+        getComponent={() => TokenScreen}
+        options={{title: title(msg`Token`)}}
       />
       <Stack.Screen
         name="Topic"

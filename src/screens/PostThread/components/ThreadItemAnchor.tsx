@@ -61,6 +61,9 @@ import {WhoCanReply} from '#/components/WhoCanReply'
 import {Features, useAnalytics} from '#/analytics'
 import {GatedContent} from '#/features/gating/components/GatedContent'
 import {useActorStatus} from '#/features/liveNow'
+import {MiniAppEmbed} from '#/features/miniapp/components/MiniAppEmbed'
+import {PostPoll} from '#/features/poll/components/PostPoll'
+import {AddressWarnings} from '#/features/safety/components/AddressWarnings'
 import {TipSummary} from '#/features/tips/components/TipSummary'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
@@ -421,6 +424,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
               ) : (
                 <ThreadItemPostNumber inline={false} value={postNumbering} />
               )}
+              <AddressWarnings text={richText?.text} />
               <TranslatedPost post={post} postTextStyle={[a.text_lg]} />
               {post.embed && (
                 <View style={[richText?.text ? a.py_xs : []]}>
@@ -434,6 +438,8 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                   />
                 </View>
               )}
+              <PostPoll uri={post.uri} cid={post.cid} />
+              <MiniAppEmbed record={record} />
             </ContentHider>
             <ExpandedPostDetails
               post={item.value.post}

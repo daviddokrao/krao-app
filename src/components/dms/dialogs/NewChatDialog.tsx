@@ -16,6 +16,7 @@ import {InitiateChatFlow} from '#/components/dms/InitiateChatFlow'
 import {MessagePlus_Stroke2_Corner0_Rounded as NewChatIcon} from '#/components/icons/Message'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
+import {useChatPhoneRequiredToast} from '#/features/compliance/toast'
 import {chat} from '#/lexicons'
 
 export function NewChat({
@@ -38,6 +39,8 @@ export function NewChat({
 
   const isGroupChatEnabled = !ax.features.enabled(ax.features.GroupChatsDisable)
 
+  const showPhoneRequired = useChatPhoneRequiredToast()
+
   const {mutate: createChat} = useGetConvoForMembers({
     onSuccess: data => {
       onNewChat(data.convo.id)
@@ -48,6 +51,7 @@ export function NewChat({
       ax.metric('chat:open', {logContext: 'NewChatDialog'})
     },
     onError: error => {
+      if (showPhoneRequired(error)) return
       logger.error('Failed to create chat', {safeMessage: error})
       let errorMessage = l`An issue occurred starting the chat, please try again.`
       if (isNetworkError(error)) {
@@ -83,6 +87,7 @@ export function NewChat({
       ax.metric('groupchat:create', {logContext: 'NewChatDialog'})
     },
     onError: error => {
+      if (showPhoneRequired(error)) return
       logger.error('Failed to create groupchat', {safeMessage: error})
       let errorMessage = l`An issue occurred starting the group chat, please try again.`
       if (isNetworkError(error)) {

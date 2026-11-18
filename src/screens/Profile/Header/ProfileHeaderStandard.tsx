@@ -37,10 +37,12 @@ import {RichText} from '#/components/RichText'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {IS_IOS, IS_NATIVE} from '#/env'
+import {ProfileCreatorSection} from '#/features/creator/components/ProfileCreatorSection'
 import {InviteFriendsDialog} from '#/features/inviteFriends'
 import {useActorStatus} from '#/features/liveNow'
 import {ProfileTipButton} from '#/features/tips/components/ProfileTipButton'
 import {ChainBadges} from '#/features/wallet/components/ChainBadges'
+import {ProfileHeaderPrimaryName} from '#/features/wallet/components/PrimaryName'
 import {type app} from '#/lexicons'
 import {GermButton} from '../components/GermButton'
 import {ProfileHeaderDisplayName} from './DisplayName'
@@ -141,6 +143,7 @@ let ProfileHeaderStandard = ({
               moderation={moderation}
             />
             <ProfileHeaderHandle profile={profile} />
+            <ProfileHeaderPrimaryName did={profile.did} />
             <ChainBadges did={profile.did} />
           </View>
           {!isPlaceholderProfile && !isBlockedUser && (
@@ -177,6 +180,11 @@ let ProfileHeaderStandard = ({
                     />
                   </View>
                 )}
+
+              <ProfileCreatorSection
+                did={profile.did}
+                handle={profile.handle}
+              />
             </View>
           )}
 

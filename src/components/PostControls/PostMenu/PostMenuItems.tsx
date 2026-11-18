@@ -93,7 +93,7 @@ import {
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
-import {IS_INTERNAL, IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {IS_INTERNAL} from '#/env'
 import {GateDialog} from '#/features/gating/components/GateDialog'
 import {
   useGateRuleQuery,
@@ -101,6 +101,7 @@ import {
 } from '#/features/gating/queries'
 import {TipDialog} from '#/features/tips/components/TipDialog'
 import {useTipRecipientWallet} from '#/features/tips/queries'
+import {CAN_CONNECT_WALLET} from '#/features/wallet/mode'
 import {type app} from '#/lexicons'
 
 let PostMenuItems = ({
@@ -180,10 +181,10 @@ let PostMenuItems = ({
   const isPostHidden = hiddenPosts && hiddenPosts.includes(postUri)
   const isAuthor = postAuthor.did === currentAccount?.did
   /*
-   * Tips need a wallet to send from (the web wallet or the dev wallet; native
-   * WalletConnect is not wired up yet) and one to send to
+   * Tips need a wallet to send from (a browser wallet, the dev wallet, or a
+   * wallet app through WalletConnect on native) and one to send to
    */
-  const canSendTips = hasSession && !isAuthor && (IS_WEB || KRAO_DEV_WALLET)
+  const canSendTips = hasSession && !isAuthor && CAN_CONNECT_WALLET
   const recipientWallet = useTipRecipientWallet(
     canSendTips ? postAuthor.did : '',
   )

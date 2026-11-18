@@ -18,8 +18,12 @@ import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldCheckIcon} from '#/componen
 import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
+import {MiniAppsAdminLink} from '#/features/miniapp/MiniAppsAdminLink'
+import {AnalyticsLink} from '../analytics/AnalyticsLink'
+import {useIsGateModeratorQuery} from '../compliance/moderation/queries'
 import {useRewardsRolesQuery} from './admin/queries'
 import {getReferralUrl, type Referral} from './api'
+import {PointsHistory} from './components/PointsHistory'
 import {PointsSection, ReferralCounts} from './components/PointsSection'
 import {ReferralQr} from './components/ReferralQr'
 import {useReferralOverviewQuery, useReferralsQuery} from './queries'
@@ -32,6 +36,7 @@ export function ReferralScreen({}: Props) {
   const {t: l} = useLingui()
   const overview = useReferralOverviewQuery()
   const {data: roles} = useRewardsRolesQuery()
+  const {data: isGateModerator} = useIsGateModeratorQuery()
   const [showQr, setShowQr] = useState(false)
   const code = overview.data?.code
   const url = code ? getReferralUrl(code) : ''
@@ -156,6 +161,9 @@ export function ReferralScreen({}: Props) {
           <PointsSection />
 
           <SettingsList.Divider />
+          <PointsHistory />
+
+          <SettingsList.Divider />
           <ReferralList />
 
           {!!roles?.length && (
@@ -169,8 +177,23 @@ export function ReferralScreen({}: Props) {
                   <Trans>Referral admin</Trans>
                 </SettingsList.ItemText>
               </SettingsList.LinkItem>
+              <AnalyticsLink />
             </>
           )}
+          {isGateModerator && (
+            <>
+              <SettingsList.Divider />
+              <SettingsList.LinkItem
+                to="/settings/gate-moderation"
+                label={l`View gated content`}>
+                <SettingsList.ItemIcon icon={ShieldCheckIcon} />
+                <SettingsList.ItemText>
+                  <Trans>View gated content</Trans>
+                </SettingsList.ItemText>
+              </SettingsList.LinkItem>
+            </>
+          )}
+          <MiniAppsAdminLink />
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>

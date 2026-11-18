@@ -17,13 +17,13 @@ import {
 
 /**
  * A short-lived token from the user's PDS proving who they are to the
- * rewards service, scoped to one method.
+ * rewards service (or another Krao service, by `aud`), scoped to one method.
  */
 export function useRewardsAuth() {
   const pdsClient = usePdsClient()
-  return async (lxm: string) => {
+  return async (lxm: string, aud: string = KRAO_REWARDS_DID) => {
     const {token} = await pdsClient.call(com.atproto.server.getServiceAuth, {
-      aud: KRAO_REWARDS_DID,
+      aud,
       lxm: lxm as `${string}.${string}.${string}`,
     })
     return token
@@ -31,7 +31,7 @@ export function useRewardsAuth() {
 }
 
 /** A signed-in query of the rewards service */
-function useRewardsQuery<T>(
+export function useRewardsQuery<T>(
   method: string,
   name: string,
   opts: {

@@ -29,6 +29,7 @@ import {
 } from '#/ageAssurance/util'
 import {useAnalytics} from '#/analytics'
 import {IS_NATIVE} from '#/env'
+import {SignupConsent} from '#/features/compliance/components/SignupConsent'
 import {ReferralCodeField} from '#/features/referral/components/ReferralCodeField'
 import {
   useDeviceGeolocationApi,
@@ -101,6 +102,7 @@ export function StepInfo({
   const isDeviceGeolocationGranted = useIsDeviceGeolocationGranted()
 
   const [hasWarnedEmail, setHasWarnedEmail] = useState<boolean>(false)
+  const [consentMissing, setConsentMissing] = useState(false)
 
   const tldtsRef = useRef<typeof tldts>(undefined)
   useEffect(() => {
@@ -173,6 +175,11 @@ export function StepInfo({
         value: l`Please enter your date of birth.`,
         field: 'date-of-birth',
       })
+    }
+
+    if (!state.consent.terms || !state.consent.data) {
+      setConsentMissing(true)
+      return
     }
 
     preemptivelyCompleteActivePolicyUpdate()
@@ -305,6 +312,14 @@ export function StepInfo({
 
             <View style={[a.gap_sm]}>
               <Policies serviceDescription={state.serviceDescription} />
+              <SignupConsent
+                value={state.consent}
+                isInvalid={consentMissing}
+                onChange={value => {
+                  dispatch({type: 'setConsent', value})
+                  if (value.terms && value.data) setConsentMissing(false)
+                }}
+              />
 
               {!isOverRegionMinAccessAge || !isOverAppMinAccessAge ? (
                 <Admonition.Outer type="error">

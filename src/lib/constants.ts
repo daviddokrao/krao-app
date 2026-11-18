@@ -190,7 +190,7 @@ export function applyKraoServiceDids({
  * not resolve. Callers keep their configured value then: that one feature
  * fails, the rest of the app works.
  */
-async function resolveHandle(handle: string) {
+export async function resolveHandle(handle: string) {
   if (!handle || handle.startsWith('did:')) return undefined
   try {
     const url = new URL(

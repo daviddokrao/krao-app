@@ -2,7 +2,9 @@ import {useMemo} from 'react'
 import {Client} from '@atproto/lex'
 import {interpretLabelValueDefinitions} from '@bsky/sdk/moderation'
 
+import {KRAO_LABELER_DID} from '#/lib/constants'
 import {isNonConfigurableModerationAuthority} from '#/state/session/additional-moderation-authorities'
+import {withImpersonationDefinition} from '#/features/safety/impersonation'
 import {useLabelersDetailedInfoQuery} from '../labeler'
 import {usePreferencesQuery} from './index'
 
@@ -39,11 +41,14 @@ export function useLabelDefinitionsQuery() {
   const labelers = useMyLabelersQuery()
   return useMemo(() => {
     return {
-      labelDefs: Object.fromEntries(
-        (labelers.data || []).map(labeler => [
-          labeler.creator.did,
-          interpretLabelValueDefinitions(labeler),
-        ]),
+      labelDefs: withImpersonationDefinition(
+        Object.fromEntries(
+          (labelers.data || []).map(labeler => [
+            labeler.creator.did,
+            interpretLabelValueDefinitions(labeler),
+          ]),
+        ),
+        KRAO_LABELER_DID,
       ),
       labelers: labelers.data || [],
     }

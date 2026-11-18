@@ -96,7 +96,7 @@ export function useLinkWalletMutation() {
   return useMutation({
     mutationFn: async ({label}: {label?: string} = {}) => {
       if (!currentAccount) throw new Error('Not signed in')
-      const wallet = await connectEvmWallet()
+      const wallet = await connectEvmWallet({fresh: true})
       const message = formatWalletLinkMessage({
         address: wallet.address,
         chainId: wallet.chainId,
@@ -128,6 +128,58 @@ export function useLinkWalletMutation() {
             value: record,
           },
         ],
+      })
+    },
+    onSuccess: () => {
+      if (currentAccount) refetch(currentAccount.did)
+    },
+  })
+}
+
+/**
+ * Show or hide the verified Basename/ENS name on the profile: sets
+ * `showPrimaryName` on every EVM wallet link record (rewritten in place, same
+ * rkey, so the signed proof stays valid). The indexer hides a wallet's name
+ * when any of its links says false.
+ */
+export function useSetShowPrimaryNameMutation() {
+  const {currentAccount} = useSession()
+  const pdsClient = usePdsClient()
+  const refetch = useRefetchChainProfile()
+  return useMutation({
+    mutationFn: async ({show}: {show: boolean}) => {
+      if (!currentAccount) throw new Error('Not signed in')
+      const writes: $Typed<com.atproto.repo.applyWrites.Update>[] = []
+      let cursor: string | undefined
+      for (let i = 0; i < 10; i++) {
+        const res = await pdsClient.list(net.krao.actor.wallet, {
+          repo: currentAccount.did,
+          cursor,
+          limit: 100,
+        })
+        for (const record of res.records) {
+          const value = record.value as Record<string, unknown>
+          if (
+            typeof value.account !== 'string' ||
+            !value.account.startsWith('eip155:') ||
+            (value.showPrimaryName ?? true) === show
+          ) {
+            continue
+          }
+          writes.push({
+            $type: 'com.atproto.repo.applyWrites#update',
+            collection: 'net.krao.actor.wallet',
+            rkey: new AtUri(record.uri).rkey,
+            value: {...value, showPrimaryName: show},
+          })
+        }
+        cursor = res.cursor
+        if (!cursor) break
+      }
+      if (!writes.length) return
+      await pdsClient.call(com.atproto.repo.applyWrites, {
+        repo: currentAccount.did,
+        writes,
       })
     },
     onSuccess: () => {

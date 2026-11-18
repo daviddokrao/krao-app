@@ -10,6 +10,8 @@ export type LinkedWallet = {
   status: WalletStatus
   /** Why an invalid wallet does not count (from the indexer, in English) */
   reason?: string
+  /** False when the owner hid this wallet's Basename/ENS name */
+  showPrimaryName?: boolean
   createdAt?: string
 }
 
@@ -29,7 +31,20 @@ export type NftAvatar = {
   checkedAt?: string
 }
 
-export type BadgeId = 'wallet-verified' | 'nft-avatar' | 'tipper' | 'supported'
+export type BadgeId =
+  | 'wallet-verified'
+  | 'nft-avatar'
+  | 'tipper'
+  | 'supported'
+  /** Krao: a real person (verified phone or identity), when they show it */
+  | 'human'
+
+/** A Basename or ENS name that points to a wallet verified for the account */
+export type PrimaryName = {
+  name: string
+  source: 'basename' | 'ens'
+  address: string
+}
 
 export type ChainProfile = {
   did: string
@@ -37,6 +52,7 @@ export type ChainProfile = {
   nftAvatar?: NftAvatar
   tipsReceivedCount?: number
   badges?: {id: string; count?: number}[]
+  primaryName?: PrimaryName
 }
 
 export type ResolvedNft = {

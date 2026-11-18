@@ -3,6 +3,7 @@ import {useLingui} from '@lingui/react/macro'
 
 import {atoms as a, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
+import {useHumanBadgeQuery} from '#/features/safety/queries'
 import {type BadgeId} from '../api'
 import {useChainProfileQuery} from '../queries'
 
@@ -14,7 +15,8 @@ export function ChainBadges({did}: {did: string}) {
   const t = useTheme()
   const {t: l} = useLingui()
   const {data} = useChainProfileQuery(did)
-  const badges = data?.badges ?? []
+  const {data: isHuman} = useHumanBadgeQuery(did)
+  const badges = [...(isHuman ? [{id: 'human'}] : []), ...(data?.badges ?? [])]
   if (!badges.length) return null
 
   const labels: Record<BadgeId, (count?: number) => string> = {
@@ -22,12 +24,14 @@ export function ChainBadges({did}: {did: string}) {
     'nft-avatar': () => l`NFT avatar`,
     tipper: count => l`Tipper · ${count ?? 0}`,
     supported: count => l`Supported · ${count ?? 0}`,
+    human: () => l`Real person`,
   }
   const icons: Record<BadgeId, string> = {
     'wallet-verified': '🔗',
     'nft-avatar': '⬡',
     tipper: '💎',
     supported: '✨',
+    human: '✔',
   }
 
   return (

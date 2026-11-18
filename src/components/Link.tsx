@@ -34,6 +34,7 @@ import {ArrowShareRight_Stroke2_Corner2_Rounded as ShareIcon} from '#/components
 import * as PeekMenu from '#/components/PeekMenu'
 import {Text, type TextProps} from '#/components/Typography'
 import {IS_IOS, IS_NATIVE, IS_WEB} from '#/env'
+import {openLinkIfSafe} from '#/features/safety/guard'
 import {router} from '#/routes'
 import {useGlobalDialogsControlContext} from './dialogs/Context'
 
@@ -167,10 +168,14 @@ export function useLink({
       }
 
       if (requiresWarning) {
-        linkWarningDialogControl.open({
-          displayText,
-          href,
-        })
+        // Krao: the scam list is asked before the "leaving Krao" warning, so
+        // that a dialog never has to open from another's close callback
+        openLinkIfSafe(href, () =>
+          linkWarningDialogControl.open({
+            displayText,
+            href,
+          }),
+        )
       } else {
         if (isExternal) {
           void openLink(href, overridePresentation, shouldProxy)

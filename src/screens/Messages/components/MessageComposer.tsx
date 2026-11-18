@@ -23,6 +23,7 @@ import {useHaptics} from '#/lib/haptics'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {isBskyChatInviteUrl, isBskyPostUrl} from '#/lib/strings/url-helpers'
 import {useEmail} from '#/state/email-verification'
+import {useCurrentConvoId} from '#/state/messages/current-convo-id'
 import {
   useMessageDraft,
   useSaveMessageDraft,
@@ -37,6 +38,8 @@ import {PaperPlaneVertical_Filled_Stroke2_Corner1_Rounded as PaperPlaneIcon} fro
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {IS_ANDROID, IS_IOS, IS_LIQUID_GLASS, IS_NATIVE, IS_WEB} from '#/env'
+import {onRestoreMessageText} from '#/features/safety/events'
+import {blockIfSecret} from '#/features/safety/guard'
 import {type chat} from '#/lexicons'
 import {type MessageEmbedState} from './MessageInputEmbed'
 
@@ -48,6 +51,7 @@ export function MessageComposer({
   messageEmbed,
   setEmbed,
   children,
+  leading,
   loading = false,
 }: {
   textInputId?: string
@@ -59,6 +63,8 @@ export function MessageComposer({
   messageEmbed: MessageEmbedState | undefined
   setEmbed: (embedUrl: string | undefined) => void
   children?: React.ReactNode
+  /** Krao: a button before the input (eg tip) */
+  leading?: React.ReactNode
   loading?: boolean
 }) {
   const t = useTheme()
@@ -72,6 +78,18 @@ export function MessageComposer({
 
   const [text, setText] = useState(getDraft)
   useSaveMessageDraft(text)
+
+  // Krao: a message the chat service refused comes back to the input
+  const {currentConvoId} = useCurrentConvoId()
+  useEffect(
+    () =>
+      onRestoreMessageText(({convoId, text: restored}) => {
+        if (convoId === currentConvoId) {
+          composerInternalApiRef.current?.insert(restored)
+        }
+      }),
+    [currentConvoId, composerInternalApiRef],
+  )
 
   useEffect(() => {
     if (!replyTo) return
@@ -129,6 +147,9 @@ export function MessageComposer({
       )
       return
     }
+
+    // Krao: never send a seed phrase or private key (the chat service refuses too)
+    if (blockIfSecret(message)) return
 
     isSubmittingRef.current = true
     clearDraft()
@@ -207,6 +228,7 @@ export function MessageComposer({
         <GlassContainer
           style={[a.w_full, a.flex_row, a.gap_sm, a.align_end]}
           spacing={tokens.space.sm}>
+          {leading}
           <GlassView
             isInteractive
             glassEffectStyle="regular"

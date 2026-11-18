@@ -23,6 +23,7 @@ overrides:
   '@types/psl': '1.1.1'
   'react-native-screens': '4.26.2'
 allowBuilds:
+  '@reown/appkit': false
   '@sentry/cli': true
   '@swc/core': false
   'core-js': false

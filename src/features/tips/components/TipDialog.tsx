@@ -10,16 +10,21 @@ import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import * as TextField from '#/components/forms/TextField'
+import * as Toggle from '#/components/forms/Toggle'
 import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
-import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {IS_WEB} from '#/env'
+import {TransactionDeclinedError} from '#/features/miniapp/errors'
+import {useTxApproval} from '#/features/miniapp/txApproval'
+import {AddressDisplay} from '#/features/safety/components/AddressDisplay'
+import {useExpectedAddressQuery} from '#/features/safety/queries'
 import {
   WalletRejectedError,
   WalletUnavailableError,
 } from '#/features/wallet/evm'
+import {CAN_CONNECT_WALLET} from '#/features/wallet/mode'
 import {useChainProfileQuery} from '#/features/wallet/queries'
-import {shortAddress} from '#/features/wallet/siwe'
 import {formatUnits, parseUnits, TIP_ASSETS, type TipAsset} from '../assets'
 import {
   TipNotRecordedError,
@@ -36,12 +41,25 @@ export type TipTarget = {
   subject?: {uri: string; cid: string}
 }
 
+export type TipSent = {
+  /** Base units of the asset */
+  amount: bigint
+  asset: TipAsset
+  anonymous: boolean
+}
+
 export function TipDialog({
   control,
   target,
+  allowAnonymous = true,
+  onSent,
 }: {
   control: Dialog.DialogControlProps
   target: TipTarget
+  /** Offer "Tip anonymously"; off in a chat, where the tipper is known */
+  allowAnonymous?: boolean
+  /** Called once the dialog has closed after a tip was sent */
+  onSent?: (tip: TipSent) => void
 }) {
   const {t: l} = useLingui()
   return (
@@ -50,7 +68,12 @@ export function TipDialog({
       <Dialog.ScrollableInner
         label={l`Send a tip`}
         style={web({maxWidth: 420})}>
-        <TipDialogInner control={control} target={target} />
+        <TipDialogInner
+          control={control}
+          target={target}
+          allowAnonymous={allowAnonymous}
+          onSent={onSent}
+        />
         <Dialog.Close />
       </Dialog.ScrollableInner>
     </Dialog.Outer>
@@ -60,9 +83,13 @@ export function TipDialog({
 function TipDialogInner({
   control,
   target,
+  allowAnonymous,
+  onSent,
 }: {
   control: Dialog.DialogControlProps
   target: TipTarget
+  allowAnonymous: boolean
+  onSent?: (tip: TipSent) => void
 }) {
   const t = useTheme()
   const {t: l} = useLingui()
@@ -79,25 +106,38 @@ function TipDialogInner({
   const hasOwnWallet = !!myChainProfile?.wallets.some(
     w => w.status === 'verified' && w.account.startsWith('eip155:'),
   )
+  // Krao: is the address the recipient's own, and does another one look like it
+  const recipientAddress = recipientWallet.data?.split(':').pop()
+  const addressCheck = useExpectedAddressQuery(recipientAddress, target.did)
+  const addressSuspect =
+    !!addressCheck.data &&
+    (addressCheck.data.matchesExpected === false ||
+      addressCheck.data.lookalikes.length > 0)
   const sendTip = useSendTipMutation()
+  const approval = useTxApproval()
   const savePending = useSavePendingTipsMutation()
   const [asset, setAsset] = useState<TipAsset>(TIP_ASSETS[0])
   const [amountText, setAmountText] = useState(TIP_ASSETS[0].presets[1])
   const [message, setMessage] = useState('')
+  const [anonymous, setAnonymous] = useState(false)
   const amount = parseUnits(amountText, asset.decimals)
-  const canConnect = IS_WEB || KRAO_DEV_WALLET
+  const canConnect = CAN_CONNECT_WALLET
 
   const errorMessage = !sendTip.error
     ? null
-    : sendTip.error instanceof WalletUnavailableError
-      ? l`No Ethereum wallet was found in this browser.`
-      : sendTip.error instanceof WalletRejectedError
-        ? l`The request was cancelled in your wallet.`
-        : sendTip.error instanceof TipNotRecordedError
-          ? l`Your tip was sent, but it could not be saved to your account yet. It will be saved the next time you send a tip.`
-          : sendTip.error instanceof UnlinkedTipWalletError
-            ? l`Link this wallet to your account in Settings → Wallets before tipping with it.`
-            : l`Something went wrong sending the tip. Please try again.`
+    : sendTip.error instanceof TransactionDeclinedError
+      ? null
+      : sendTip.error instanceof WalletUnavailableError
+        ? IS_WEB
+          ? l`No Ethereum wallet was found in this browser.`
+          : l`No wallet app was found on this phone.`
+        : sendTip.error instanceof WalletRejectedError
+          ? l`The request was cancelled in your wallet.`
+          : sendTip.error instanceof TipNotRecordedError
+            ? l`Your tip was sent, but it could not be saved to your account yet. It will be saved the next time you send a tip.`
+            : sendTip.error instanceof UnlinkedTipWalletError
+              ? l`Link this wallet to your account in Settings → Wallets before tipping with it.`
+              : l`Something went wrong sending the tip. Please try again.`
 
   const onSend = () => {
     if (!amount || !recipientWallet.data) return
@@ -109,6 +149,8 @@ function TipDialogInner({
         asset,
         amount,
         message: message.trim(),
+        anonymous: allowAnonymous && anonymous,
+        approve: approval.approve,
       },
       {
         onSuccess: () => {
@@ -117,11 +159,15 @@ function TipDialogInner({
               l`Tip sent: ${formatUnits(amount, asset.decimals)} ${asset.symbol}`,
               {type: 'success'},
             )
+            onSent?.({amount, asset, anonymous: allowAnonymous && anonymous})
           })
         },
       },
     )
   }
+
+  // Krao: the preview of the transaction replaces the form while it waits
+  if (approval.panel) return approval.panel
 
   return (
     <View style={[a.gap_lg]}>
@@ -247,9 +293,51 @@ function TipDialogInner({
             </TextField.Root>
           </View>
 
-          <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
-            <Trans>To wallet {shortAddress(recipientWallet.data)}</Trans>
-          </Text>
+          {allowAnonymous && (
+            <View style={[a.gap_xs]}>
+              <Toggle.Item
+                name="tip_anonymously"
+                label={l`Tip anonymously`}
+                value={anonymous}
+                onChange={setAnonymous}
+                style={[a.w_full]}>
+                <Toggle.LabelText style={[a.flex_1]}>
+                  <Trans>Tip anonymously</Trans>
+                </Toggle.LabelText>
+                <Toggle.Platform />
+              </Toggle.Item>
+              <Text style={[a.text_xs, t.atoms.text_contrast_medium]}>
+                <Trans>
+                  Your name is hidden from their top supporters. The transfer
+                  itself is still public on the blockchain.
+                </Trans>
+              </Text>
+            </View>
+          )}
+
+          <View style={[a.gap_xs]}>
+            <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
+              <Trans>To wallet</Trans>
+            </Text>
+            <AddressDisplay
+              address={recipientAddress ?? recipientWallet.data}
+            />
+            <Text style={[a.text_xs, t.atoms.text_contrast_medium]}>
+              <Trans>
+                Check the first 6 and last 4 characters (in color) against your
+                own records.
+              </Trans>
+            </Text>
+          </View>
+          {addressSuspect && (
+            <Admonition type="warning">
+              <Trans>
+                This address does not match the wallet Krao has verified for @
+                {target.handle}, or another verified wallet looks very similar
+                to it. Do not send a tip unless you are sure.
+              </Trans>
+            </Admonition>
+          )}
 
           {errorMessage && <Admonition type="error">{errorMessage}</Admonition>}
           {savePending.error && (

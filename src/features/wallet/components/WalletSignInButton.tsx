@@ -6,25 +6,29 @@ import * as Admonition from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {ChainLink_Stroke2_Corner0_Rounded as ChainLinkIcon} from '#/components/icons/ChainLink'
 import {Loader} from '#/components/Loader'
-import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
+import {IS_WEB} from '#/env'
 import {XrpcError} from '../api'
 import {WalletRejectedError, WalletUnavailableError} from '../evm'
+import {CAN_CONNECT_WALLET} from '../mode'
 import {useWalletSignInMutation} from '../signIn'
 
 /**
  * "Sign in with wallet" for the login form. Only shown where a wallet can be
- * reached: browsers with an injected wallet, or the dev wallet.
+ * reached: browsers with an injected wallet, wallet apps through WalletConnect
+ * on native, or the dev wallet.
  */
 export function WalletSignInButton({service}: {service: string}) {
   const {t: l} = useLingui()
   const {mutate, isPending, error, reset} = useWalletSignInMutation()
 
-  if (!IS_WEB && !KRAO_DEV_WALLET) return null
+  if (!CAN_CONNECT_WALLET) return null
 
   const errorMessage = !error
     ? null
     : error instanceof WalletUnavailableError
-      ? l`No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again.`
+      ? IS_WEB
+        ? l`No Ethereum wallet was found in this browser. Install a wallet extension such as MetaMask, then try again.`
+        : l`No wallet app was found on this phone. Install one such as MetaMask, Trust Wallet or Coinbase Wallet, then try again.`
       : error instanceof WalletRejectedError
         ? l`The request was cancelled in your wallet.`
         : error instanceof XrpcError && error.error === 'WalletNotLinked'

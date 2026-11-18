@@ -50,6 +50,9 @@ import {VideoClip_Stroke1_Corner0_Rounded as VideoIcon} from '#/components/icons
 import * as Layout from '#/components/Layout'
 import {ScreenHider} from '#/components/moderation/ScreenHider'
 import {ProfileStarterPacks} from '#/components/StarterPack/ProfileStarterPacks'
+import {hasOnchainContent} from '#/features/onchain/logic'
+import {ProfileOnchainSection} from '#/features/onchain/OnchainSection'
+import {useOnchainProfileQuery} from '#/features/onchain/queries'
 import {type app} from '#/lexicons'
 import {navigate} from '#/Navigation'
 
@@ -201,6 +204,7 @@ function ProfileScreenLoaded({
   const listsSectionRef = useRef<SectionRef>(null)
   const starterPacksSectionRef = useRef<SectionRef>(null)
   const labelsSectionRef = useRef<SectionRef>(null)
+  const onchainSectionRef = useRef<SectionRef>(null)
 
   useSetTitle(combinedDisplayName(profile))
 
@@ -228,6 +232,11 @@ function ProfileScreenLoaded({
   // subtract starterpack count from list count, since starterpacks are a type of list
   const listCount = (profile.associated?.lists || 0) - starterPackCount
   const showListsTab = hasSession && (isMe || listCount > 0)
+  // Krao: verified wallets, NFTs and support, when the account has any
+  const {data: onchain} = useOnchainProfileQuery(
+    hasLabeler ? undefined : profile.did,
+  )
+  const showOnchainTab = !!onchain && hasOnchainContent(onchain)
 
   const sectionTitles = [
     showFiltersTab ? _(msg`Labels`) : undefined,
@@ -240,6 +249,7 @@ function ProfileScreenLoaded({
     showFeedsTab ? _(msg`Feeds`) : undefined,
     showStarterPacksTab ? _(msg`Starter Packs`) : undefined,
     showListsTab && !hasLabeler ? _(msg`Lists`) : undefined,
+    showOnchainTab ? _(msg`On-chain`) : undefined,
   ].filter(Boolean) as string[]
 
   let nextIndex = 0
@@ -252,6 +262,7 @@ function ProfileScreenLoaded({
   let feedsIndex: number | null = null
   let starterPacksIndex: number | null = null
   let listsIndex: number | null = null
+  let onchainIndex: number | null = null
   if (showFiltersTab) {
     filtersIndex = nextIndex++
   }
@@ -279,6 +290,9 @@ function ProfileScreenLoaded({
   if (showListsTab) {
     listsIndex = nextIndex++
   }
+  if (showOnchainTab) {
+    onchainIndex = nextIndex++
+  }
 
   const scrollSectionToTop = useCallback(
     (index: number) => {
@@ -300,6 +314,8 @@ function ProfileScreenLoaded({
         starterPacksSectionRef.current?.scrollToTop()
       } else if (index === listsIndex) {
         listsSectionRef.current?.scrollToTop()
+      } else if (index === onchainIndex) {
+        onchainSectionRef.current?.scrollToTop()
       }
     },
     [
@@ -311,6 +327,7 @@ function ProfileScreenLoaded({
       likesIndex,
       feedsIndex,
       listsIndex,
+      onchainIndex,
       starterPacksIndex,
     ],
   )
@@ -589,6 +606,19 @@ function ProfileScreenLoaded({
               <ProfileLists
                 ref={listsSectionRef}
                 did={profile.did}
+                scrollElRef={scrollElRef as ListRef}
+                headerOffset={headerHeight}
+                enabled={isFocused}
+                setScrollViewTag={setScrollViewTag}
+              />
+            )
+          : null}
+        {showOnchainTab && onchain
+          ? ({headerHeight, isFocused, scrollElRef}) => (
+              <ProfileOnchainSection
+                ref={onchainSectionRef}
+                did={profile.did}
+                onchain={onchain}
                 scrollElRef={scrollElRef as ListRef}
                 headerOffset={headerHeight}
                 enabled={isFocused}
