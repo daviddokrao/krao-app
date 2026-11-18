@@ -51,7 +51,7 @@ export function NftAvatarSection({profile}: {profile: ChainProfile}) {
     ? null
     : lookup.error instanceof XrpcError && lookup.error.error === 'NotFound'
       ? l`No NFT with that token ID exists in this contract on Base.`
-      : lookup.error.message
+      : l`Could not look up this NFT. Check the contract address and token ID.`
 
   return (
     <View style={[a.gap_md]}>
@@ -72,6 +72,8 @@ export function NftAvatarSection({profile}: {profile: ChainProfile}) {
           <Image
             source={{uri: nftImageUrl(current.nft)}}
             style={[{width: 56, height: 56}, a.rounded_full]}
+            accessibilityLabel={l`Your NFT profile picture`}
+            accessibilityHint=""
             accessibilityIgnoresInvertColors
           />
           <View style={[a.flex_1, a.gap_2xs]}>
@@ -163,6 +165,8 @@ export function NftAvatarSection({profile}: {profile: ChainProfile}) {
             <Image
               source={{uri: nftImageUrl(lookup.data.nft)}}
               style={[{width: 72, height: 72}, a.rounded_md]}
+              accessibilityLabel={l`Preview of the NFT`}
+              accessibilityHint=""
               accessibilityIgnoresInvertColors
             />
             <View style={[a.flex_1, a.gap_2xs]}>
@@ -213,7 +217,12 @@ export function NftAvatarSection({profile}: {profile: ChainProfile}) {
             </Admonition>
           )}
           {setAvatar.error && (
-            <Admonition type="error">{setAvatar.error.message}</Admonition>
+            <Admonition type="error">
+              <Trans>
+                Could not set this NFT as your profile picture. Please try
+                again.
+              </Trans>
+            </Admonition>
           )}
         </View>
       )}

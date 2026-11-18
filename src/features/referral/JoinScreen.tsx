@@ -32,7 +32,11 @@ export function JoinScreen({route}: Props) {
      * Once per link: the screen remounts under Home (eg when the sign-up
      * view closes on web) and must not reopen sign-up
      */
-    if (handledCode === code) return
+    if (handledCode === code) {
+      // Opened again (the same link twice): leave instead of spinning here
+      navigation.navigate('Home')
+      return
+    }
     handledCode = code
     if (hasSession) {
       navigation.navigate('ReferralSettings')

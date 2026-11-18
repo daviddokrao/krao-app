@@ -20,6 +20,7 @@ import {parseUnits, TIP_ASSETS, type TipAsset} from '#/features/tips/assets'
 import {
   type GateCondition,
   GATED_IMAGES_MAX,
+  GateError,
   useCreateGateMutation,
 } from '../queries'
 
@@ -70,6 +71,22 @@ function GateDialogInner({
   const t = useTheme()
   const {t: l} = useLingui()
   const createGate = useCreateGateMutation()
+  const gateErrorMessage = (err: Error) => {
+    const code = err instanceof GateError ? err.error : undefined
+    if (code === 'UploadLimitExceeded') {
+      return l`You reached today’s limit for gated uploads. Try again tomorrow.`
+    }
+    if (code === 'RateLimitExceeded') {
+      return l`Too many requests. Please wait a minute and try again.`
+    }
+    if (/at most \d+ MB/.test(err.message)) {
+      return l`This file is too large. Images can be up to 5 MB and videos up to 50 MB.`
+    }
+    if (/must be a JPEG/.test(err.message)) {
+      return l`Use a JPEG, PNG, GIF or WebP image, or an MP4 or WebM video.`
+    }
+    return l`Something went wrong saving the gated content. Please try again.`
+  }
   const [text, setText] = useState('')
   const [images, setImages] = useState<PickerImage[]>([])
   const [alts, setAlts] = useState<Record<string, string>>({})
@@ -246,7 +263,9 @@ function GateDialogInner({
         </TextField.LabelText>
         <View style={[a.flex_row, a.gap_sm]}>
           <Button
-            label={l`Token balance`}
+            label={
+              kind === 'token' ? l`Token balance, selected` : l`Token balance`
+            }
             color={kind === 'token' ? 'primary' : 'secondary'}
             size="small"
             onPress={() => setKind('token')}>
@@ -255,7 +274,7 @@ function GateDialogInner({
             </ButtonText>
           </Button>
           <Button
-            label={l`NFT holders`}
+            label={kind === 'nft' ? l`NFT holders, selected` : l`NFT holders`}
             color={kind === 'nft' ? 'primary' : 'secondary'}
             size="small"
             onPress={() => setKind('nft')}>
@@ -271,7 +290,11 @@ function GateDialogInner({
               {TIP_ASSETS.map(option => (
                 <Button
                   key={option.id}
-                  label={option.symbol}
+                  label={
+                    option.id === asset.id
+                      ? l`${option.symbol}, selected`
+                      : option.symbol
+                  }
                   color={
                     option.id === asset.id ? 'primary_subtle' : 'secondary'
                   }
@@ -324,7 +347,9 @@ function GateDialogInner({
       </View>
 
       {createGate.error && (
-        <Admonition type="error">{createGate.error.message}</Admonition>
+        <Admonition type="error">
+          {gateErrorMessage(createGate.error)}
+        </Admonition>
       )}
 
       <Button

@@ -4,6 +4,7 @@ import {useHaptics} from '#/lib/haptics'
 import {Button, ButtonIcon} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {Gift1_Stroke2_Corner0_Rounded as GiftIcon} from '#/components/icons/Gift1'
+import {IS_WEB, KRAO_DEV_WALLET} from '#/env'
 import {useTipRecipientWallet} from '../queries'
 import {TipDialog} from './TipDialog'
 
@@ -15,8 +16,10 @@ export function ProfileTipButton({did, handle}: {did: string; handle: string}) {
   const {t: l} = useLingui()
   const haptics = useHaptics()
   const control = useDialogControl()
-  const {data: recipientWallet} = useTipRecipientWallet(did)
-  if (!recipientWallet) return null
+  // Sending needs a wallet here: the web one (no WalletConnect on native yet)
+  const canSend = IS_WEB || KRAO_DEV_WALLET
+  const {data: recipientWallet} = useTipRecipientWallet(canSend ? did : '')
+  if (!canSend || !recipientWallet) return null
 
   return (
     <>

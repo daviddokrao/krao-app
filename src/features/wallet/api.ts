@@ -8,6 +8,8 @@ export type LinkedWallet = {
   account: string
   label?: string
   status: WalletStatus
+  /** Why an invalid wallet does not count (from the indexer, in English) */
+  reason?: string
   createdAt?: string
 }
 
