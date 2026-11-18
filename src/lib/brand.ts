@@ -5,7 +5,12 @@ import brandJson from '#/../brand.json'
  * (`brand.json` at the repo root, also read by `app.config.js`), so editing it
  * renames the app. Keep the schema in sync with the backend's `@krao/brand`.
  */
-export const BRAND = brandJson
+export const BRAND = {
+  ...brandJson,
+  // Hosts and schemes compare case-insensitively: keep them lower case
+  domain: brandJson.domain.toLowerCase(),
+  app: {...brandJson.app, scheme: brandJson.app.scheme.toLowerCase()},
+}
 
 /** The product name shown to users */
 export const BRAND_NAME: string = BRAND.name
