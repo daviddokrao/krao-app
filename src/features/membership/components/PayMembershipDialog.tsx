@@ -4,6 +4,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {useIsMutating} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type NavigationProp} from '#/lib/routes/types'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme, web} from '#/alf'
@@ -193,8 +194,8 @@ function PayInner({
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
             You pay {price} USDC on Base straight from your wallet to @
-            {creatorHandle}’s. Krao never holds your funds and takes no fee.
-            Access lasts {PERIOD_DAYS} days and does not renew by itself.
+            {creatorHandle}’s. {BRAND_NAME} never holds your funds and takes no
+            fee. Access lasts {PERIOD_DAYS} days and does not renew by itself.
           </Trans>
         </Text>
       </View>
@@ -219,8 +220,8 @@ function PayInner({
       ) : !CAN_CONNECT_WALLET ? (
         <Admonition type="info">
           <Trans>
-            Paying from the mobile app is coming soon. Use Krao on the web for
-            now.
+            Paying from the mobile app is coming soon. Use {BRAND_NAME} on the
+            web for now.
           </Trans>
         </Admonition>
       ) : isMyProfileError ? (
@@ -265,9 +266,9 @@ function PayInner({
           {addressSuspect && (
             <Admonition type="warning">
               <Trans>
-                This address does not match the wallet Krao has verified for @
-                {creatorHandle}, or another verified wallet looks very similar
-                to it. Do not pay unless you are sure.
+                This address does not match the wallet {BRAND_NAME} has verified
+                for @{creatorHandle}, or another verified wallet looks very
+                similar to it. Do not pay unless you are sure.
               </Trans>
             </Admonition>
           )}
@@ -346,8 +347,8 @@ function PayInner({
               {subscribe.isPending && phase === 'confirming' && (
                 <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
                   <Trans>
-                    Your payment was sent. This takes a few seconds while Krao
-                    checks it on the blockchain.
+                    Your payment was sent. This takes a few seconds while{' '}
+                    {BRAND_NAME} checks it on the blockchain.
                   </Trans>
                 </Text>
               )}

@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme} from '#/alf'
 import {Shield_Stroke2_Corner0_Rounded as ShieldIcon} from '#/components/icons/Shield'
 import {Text} from '#/components/Typography'
@@ -30,8 +31,8 @@ export function DmSafetyBanner() {
           t.atoms.text_contrast_high,
         ]}>
         <Trans>
-          Krao never asks for your seed phrase, private key or a signature in a
-          message.
+          {BRAND_NAME} never asks for your seed phrase, private key or a
+          signature in a message.
         </Trans>
       </Text>
     </View>

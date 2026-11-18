@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
 import {atoms as a, useTheme} from '#/alf'
 import {Loader} from '#/components/Loader'
@@ -26,7 +27,7 @@ export function usePointsEntryLabel() {
   }
   return (entry: Pick<PointsEntry, 'event' | 'ruleId' | 'note'>) => {
     const event = matchPointsEvent(entry.event, entry.ruleId)
-    return event ? labels[event] : entry.note || l`Krao points`
+    return event ? labels[event] : entry.note || l`${BRAND_NAME} points`
   }
 }
 

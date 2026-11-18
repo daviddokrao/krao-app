@@ -6,6 +6,7 @@ import {msg, plural} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {logger} from '#/logger'
 import {isSignupQueued, usePdsClient, useSessionApi} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
@@ -137,8 +138,8 @@ export function SignupQueued() {
             </Text>
             <P style={[t.atoms.text_contrast_medium]}>
               <Trans>
-                There's been a rush of new users to Krao! We'll activate your
-                account as soon as we can.
+                There's been a rush of new users to {BRAND_NAME}! We'll activate
+                your account as soon as we can.
               </Trans>
             </P>
 

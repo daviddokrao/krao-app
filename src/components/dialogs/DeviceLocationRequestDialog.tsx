@@ -5,6 +5,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
 import {wait} from '#/lib/async/wait'
+import {BRAND_NAME} from '#/lib/brand'
 import {useCleanError} from '#/lib/hooks/useCleanError'
 import {isNetworkError} from '#/lib/network-error'
 import {logger} from '#/logger'
@@ -84,7 +85,7 @@ function DeviceLocationRequestDialogInner({onLocationAcquired}: Props) {
       } else {
         setError(
           _(
-            msg`Unable to access location. You'll need to visit your system settings to enable location services for Krao.`,
+            msg`Unable to access location. You'll need to visit your system settings to enable location services for ${BRAND_NAME}.`,
           ),
         )
       }
@@ -108,9 +109,9 @@ function DeviceLocationRequestDialogInner({onLocationAcquired}: Props) {
       <View style={[a.gap_sm, a.pb_xs]}>
         <Text style={[a.text_md, a.leading_snug, t.atoms.text_contrast_medium]}>
           <Trans>
-            Tap below to allow Krao to access your GPS location. We will then
-            use that data to more accurately determine the content and features
-            available in your region.
+            Tap below to allow {BRAND_NAME} to access your GPS location. We will
+            then use that data to more accurately determine the content and
+            features available in your region.
           </Trans>
         </Text>
       </View>

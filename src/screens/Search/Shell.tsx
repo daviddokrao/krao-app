@@ -23,6 +23,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {useFocusEffect, useNavigation, useRoute} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
+import {BRAND_NAME, webUrl} from '#/lib/brand'
 import {HITSLOP_10, HITSLOP_20} from '#/lib/constants'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {MagnifyingGlassIcon} from '#/lib/icons'
@@ -500,7 +501,7 @@ export function SearchScreenShell({
   )
 
   const onShareSearch = useCallback(() => {
-    const url = new URL('https://krao.net')
+    const url = new URL(webUrl())
     url.pathname = '/search'
     if (query) url.searchParams.set('q', query)
     for (const [key, value] of Object.entries(definedFilterParams(filters))) {
@@ -764,7 +765,7 @@ let SearchScreenInner = ({
             style={t.atoms.text_contrast_medium as StyleProp<ViewStyle>}
           />
           <Text style={[t.atoms.text_contrast_medium, a.text_md]}>
-            <Trans>Find posts, users, and feeds on Krao</Trans>
+            <Trans>Find posts, users, and feeds on {BRAND_NAME}</Trans>
           </Text>
         </View>
       </View>

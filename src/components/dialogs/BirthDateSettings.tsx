@@ -2,6 +2,7 @@ import {useCallback, useMemo, useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME, webUrl} from '#/lib/brand'
 import {useCleanError} from '#/lib/hooks/useCleanError'
 import {isAppPassword} from '#/lib/jwt'
 import {getAge, getDateAgo} from '#/lib/strings/time'
@@ -175,9 +176,9 @@ function BirthdayInner({
       {isUnder13 && (
         <Admonition type="error">
           <Trans>
-            You must be at least 13 years old to use Krao. Read our{' '}
+            You must be at least 13 years old to use {BRAND_NAME}. Read our{' '}
             <SimpleInlineLinkText
-              to="https://krao.net/terms"
+              to={webUrl('/terms')}
               label={l`Terms of Service`}>
               Terms of Service
             </SimpleInlineLinkText>{' '}

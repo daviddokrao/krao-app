@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Image} from 'expo-image'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useCallOnce} from '#/lib/once'
 import {Nux} from '#/state/queries/nuxs'
 import {atoms as a, useTheme, web} from '#/alf'
@@ -108,7 +109,7 @@ function Announcement({
               accessibilityIgnoresInvertColors
               source={require('../../../../assets/images/invite_friends_announcement_nux.webp')}
               style={[a.w_full, {aspectRatio: 754 / 440}]}
-              alt={l`An illustration of the Krao app with a paper airplane flying out of it, representing inviting friends`}
+              alt={l`An illustration of the ${BRAND_NAME} app with a paper airplane flying out of it, representing inviting friends`}
             />
             <View
               style={[
@@ -153,7 +154,8 @@ function Announcement({
                 ]}>
                 <Trans>
                   You can now invite friends with a link or QR code. Share the
-                  link anywhere, or let them scan the code to join you on Krao.
+                  link anywhere, or let them scan the code to join you on{' '}
+                  {BRAND_NAME}.
                 </Trans>
               </Text>
             </View>

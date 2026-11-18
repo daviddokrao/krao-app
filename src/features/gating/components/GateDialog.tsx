@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Image} from 'expo-image'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {openUnifiedPicker} from '#/lib/media/picker'
 import {type PickerImage} from '#/lib/media/picker.shared'
 import {useSession} from '#/state/session'
@@ -187,8 +188,8 @@ function GateDialogInner({
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
             Your post stays public as a teaser. This extra text and media are
-            stored on Krao’s gate service, not in your public repo, and are only
-            shown to people whose linked wallets meet the requirement.
+            stored on {BRAND_NAME}’s gate service, not in your public repo, and
+            are only shown to people whose linked wallets meet the requirement.
           </Trans>
         </Text>
       </View>

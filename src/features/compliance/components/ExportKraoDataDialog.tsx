@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {saveBytesToDisk} from '#/lib/media/manip'
 import {logger} from '#/logger'
 import {atoms as a, useTheme, web} from '#/alf'
@@ -32,9 +33,12 @@ export function ExportKraoDataDialog({
       onSuccess: data => void save(data),
       onError: e => {
         logger.error('Error occurred while exporting Krao data', {message: e})
-        Toast.show(l`Could not download your Krao data. Try again later.`, {
-          type: 'error',
-        })
+        Toast.show(
+          l`Could not download your ${BRAND_NAME} data. Try again later.`,
+          {
+            type: 'error',
+          },
+        )
       },
     })
   }
@@ -52,7 +56,7 @@ export function ExportKraoDataDialog({
       if (saved) {
         Toast.show(
           failed
-            ? l`File saved, but some Krao data could not be included.`
+            ? l`File saved, but some ${BRAND_NAME} data could not be included.`
             : l`File saved successfully!`,
           {type: failed ? 'warning' : 'success'},
         )
@@ -67,11 +71,11 @@ export function ExportKraoDataDialog({
     <Dialog.Outer control={control} nativeOptions={{preventExpansion: true}}>
       <Dialog.Handle />
       <Dialog.ScrollableInner
-        label={l`Download my Krao data`}
+        label={l`Download my ${BRAND_NAME} data`}
         style={web({maxWidth: 500})}>
         <View style={[a.relative, a.w_full]}>
           <Text style={[a.mb_sm, a.text_2xl, a.font_bold]}>
-            <Trans>Download my Krao data</Trans>
+            <Trans>Download my {BRAND_NAME} data</Trans>
           </Text>
           <Text
             style={[
@@ -81,9 +85,9 @@ export function ExportKraoDataDialog({
               t.atoms.text_contrast_high,
             ]}>
             <Trans>
-              Krao keeps some data outside your public repository: your points
-              and referrals, identity and phone verification status, linked
-              wallets, tips, gated posts, chat messages and notification
+              {BRAND_NAME} keeps some data outside your public repository: your
+              points and referrals, identity and phone verification status,
+              linked wallets, tips, gated posts, chat messages and notification
               devices. This file has all of it, as JSON.
             </Trans>
           </Text>
@@ -91,12 +95,12 @@ export function ExportKraoDataDialog({
             testID="downloadKraoDataButton"
             color="primary"
             size="large"
-            label={l`Download Krao data`}
+            label={l`Download ${BRAND_NAME} data`}
             disabled={exportData.isPending}
             onPress={onDownload}>
             <ButtonIcon icon={exportData.isPending ? Loader : DownloadIcon} />
             <ButtonText>
-              <Trans context="button">Download Krao data</Trans>
+              <Trans context="button">Download {BRAND_NAME} data</Trans>
             </ButtonText>
           </Button>
         </View>

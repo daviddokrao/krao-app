@@ -5,6 +5,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {useQuery} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {urls} from '#/lib/constants'
 import {useCallOnce} from '#/lib/once'
 import {atoms as a} from '#/alf'
@@ -40,13 +41,13 @@ export function StepFindContactsIntro() {
       <OnboardingPosition />
       <ContactsHeroImage />
       <OnboardingTitleText style={[a.mt_sm]}>
-        <Trans>Krao is more fun with friends</Trans>
+        <Trans>{BRAND_NAME} is more fun with friends</Trans>
       </OnboardingTitleText>
       <OnboardingDescriptionText>
         <Trans>
-          Find your friends on Krao by verifying your phone number and matching
-          with your contacts. We protect your information and you control what
-          happens next.{' '}
+          Find your friends on {BRAND_NAME} by verifying your phone number and
+          matching with your contacts. We protect your information and you
+          control what happens next.{' '}
           <InlineLinkText
             to={urls.website.blog.findFriendsAnnouncement}
             label={_(

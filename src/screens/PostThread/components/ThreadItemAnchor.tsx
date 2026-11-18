@@ -4,6 +4,7 @@ import {AtUri} from '@atproto/syntax'
 import {RichText as RichTextAPI} from '@bsky/sdk/richtext'
 import {Plural, Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {makeProfileLink} from '#/lib/routes/links'
@@ -651,7 +652,7 @@ function BackdatedPostIndicator({post}: {post: app.bsky.feed.defs.PostView}) {
               <RNText style={[a.font_semi_bold]}>
                 {niceDate(i18n, createdAt)}
               </RNText>
-              , but was first seen by Krao on{' '}
+              , but was first seen by {BRAND_NAME} on{' '}
               <RNText style={[a.font_semi_bold]}>
                 {niceDate(i18n, indexedAt)}
               </RNText>
@@ -660,7 +661,7 @@ function BackdatedPostIndicator({post}: {post: app.bsky.feed.defs.PostView}) {
           </Prompt.DescriptionText>
           <Prompt.DescriptionText>
             <Trans>
-              Krao cannot confirm the authenticity of the claimed date.
+              {BRAND_NAME} cannot confirm the authenticity of the claimed date.
             </Trans>
           </Prompt.DescriptionText>
         </Prompt.Content>

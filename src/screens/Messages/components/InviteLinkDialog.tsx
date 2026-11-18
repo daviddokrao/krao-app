@@ -4,6 +4,7 @@ import {Image} from 'expo-image'
 import {moderateProfile, type ModerationOpts} from '@bsky/sdk/moderation'
 import {Plural, Trans, useLingui} from '@lingui/react/macro'
 
+import {webUrl} from '#/lib/brand'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {createSanitizedDisplayName} from '#/lib/moderation/create-sanitized-display-name'
 import {shareUrl} from '#/lib/sharing'
@@ -315,8 +316,8 @@ export function InviteLinkDialog({
       const linkEnabled = joinLink?.enabledStatus === 'enabled'
       const linkDisabled = joinLink?.enabledStatus === 'disabled'
       const joinLinkURI = joinLink?.code
-        ? `https://krao.net/chat/${joinLink.code}`
-        : 'https://krao.net/'
+        ? webUrl(`/chat/${joinLink.code}`)
+        : `${webUrl()}/`
       const createdAt = joinLink ? new Date(joinLink.createdAt) : null
       const currentOption =
         whoCanJoinOptions.find(

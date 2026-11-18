@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useLingui} from '@lingui/react/macro'
 
+import {BRAND, webUrl} from '#/lib/brand'
 import {type FilterField} from './utils'
 
 export function useFilterFieldLabels(): Record<
@@ -31,14 +32,14 @@ export function useFilterFieldLabels(): Record<
         message: 'From these people',
         comment: 'Advanced search filter',
       }),
-      label: 'krao.net atproto.com',
+      label: `${BRAND.domain} atproto.com`,
     },
     mentions: {
       title: l({
         message: 'Mentions of these people',
         comment: 'Advanced search filter',
       }),
-      label: 'krao.net atproto.com',
+      label: `${BRAND.domain} atproto.com`,
     },
     tags: {
       title: l({
@@ -52,14 +53,14 @@ export function useFilterFieldLabels(): Record<
         message: 'These domains',
         comment: 'Advanced search filter',
       }),
-      label: 'krao.net atproto.com',
+      label: `${BRAND.domain} atproto.com`,
     },
     urls: {
       title: l({
         message: 'These URLs',
         comment: 'Advanced search filter',
       }),
-      label: 'https://krao.net https://atproto.com',
+      label: `${webUrl()} https://atproto.com`,
     },
   }
 }

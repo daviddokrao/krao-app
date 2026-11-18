@@ -10,6 +10,7 @@ import {
 import {useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {expandProfilePath} from '#/lib/routes/shortProfile'
 import {type NavigationProp} from '#/lib/routes/types'
 import {isBskyAppUrl} from '#/lib/strings/url-helpers'
@@ -121,7 +122,7 @@ export function InviteScannerScreen() {
               t.atoms.text_contrast_medium,
               {maxWidth: 320},
             ]}>
-            {l`Krao needs camera access to scan QR codes from other profiles.`}
+            {l`${BRAND_NAME} needs camera access to scan QR codes from other profiles.`}
           </Text>
           <Button
             label={l`Grant access`}

@@ -7,6 +7,7 @@ import {
 } from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useProfileFollowsQuery} from '#/state/queries/profile-follows'
 import {useSession} from '#/state/session'
 import {
@@ -112,7 +113,7 @@ export function ProgressGuideList({style}: {style?: StyleProp<ViewStyle>}) {
               current={guide.numFollows + 1}
               total={7 + 1}
               title={l`Follow 7 accounts`}
-              subtitle={l`Krao is better with friends!`}
+              subtitle={l`${BRAND_NAME} is better with friends!`}
             />
           </>
         )}

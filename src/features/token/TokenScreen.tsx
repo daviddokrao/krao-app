@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {cleanError} from '#/lib/strings/errors'
 import {Post} from '#/view/com/post/Post'
@@ -53,7 +54,7 @@ export function TokenScreen({route}: Props) {
           <Admonition type="error">
             {token.error && 'error' in token.error
               ? token.error.error === 'NotFound'
-                ? l`This token isn’t listed on Krao.`
+                ? l`This token isn’t listed on ${BRAND_NAME}.`
                 : cleanError(token.error)
               : cleanError(token.error)}
           </Admonition>

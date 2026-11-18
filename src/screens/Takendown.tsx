@@ -8,6 +8,7 @@ import {Trans} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 import {countGraphemes} from 'unicode-segmenter/grapheme'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {
   MAX_REPORT_REASON_GRAPHEME_LENGTH,
   modProxyService,
@@ -211,10 +212,10 @@ export function Takendown() {
                 <Trans>
                   Your account was found to be in violation of the{' '}
                   <SimpleInlineLinkText
-                    label={_(msg`Krao Terms of Service`)}
+                    label={_(msg`${BRAND_NAME} Terms of Service`)}
                     to={webLinks.tos}
                     style={[a.text_md, a.leading_snug]}>
-                    Krao Terms of Service
+                    {BRAND_NAME} Terms of Service
                   </SimpleInlineLinkText>
                   . You have been sent an email outlining the specific violation
                   and suspension period, if applicable. You can appeal this

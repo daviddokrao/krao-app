@@ -5,6 +5,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {urls} from '#/lib/constants'
 import {atoms as a, useBreakpoints, useTheme, web} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
@@ -36,7 +37,7 @@ export function InitialVerificationAnnouncement() {
       <Dialog.Handle />
 
       <Dialog.ScrollableInner
-        label={_(msg`Announcing verification on Krao`)}
+        label={_(msg`Announcing verification on ${BRAND_NAME}`)}
         style={[
           a.w_full,
           gtMobile && web({width: 'auto', maxWidth: 400, minWidth: 200}),
@@ -84,7 +85,7 @@ export function InitialVerificationAnnouncement() {
                 },
               ]}
               alt={_(
-                msg`An illustration showing that Krao selects trusted verifiers, and trusted verifiers in turn verify individual user accounts.`,
+                msg`An illustration showing that ${BRAND_NAME} selects trusted verifiers, and trusted verifiers in turn verify individual user accounts.`,
               )}
               useAppleWebpCodec
             />
@@ -96,8 +97,8 @@ export function InitialVerificationAnnouncement() {
             </Text>
             <Text style={[a.leading_snug, a.text_md]}>
               <Trans>
-                We’re introducing a new layer of verification on Krao — an
-                easy-to-see checkmark.
+                We’re introducing a new layer of verification on {BRAND_NAME} —
+                an easy-to-see checkmark.
               </Trans>
             </Text>
           </View>
@@ -119,7 +120,7 @@ export function InitialVerificationAnnouncement() {
                 },
               ]}
               alt={_(
-                msg`An mockup of a iPhone showing the Krao app open to the profile of a verified user with a blue checkmark next to their display name.`,
+                msg`An mockup of a iPhone showing the ${BRAND_NAME} app open to the profile of a verified user with a blue checkmark next to their display name.`,
               )}
               useAppleWebpCodec
             />
@@ -135,7 +136,8 @@ export function InitialVerificationAnnouncement() {
             <View style={[a.gap_sm]}>
               <Text style={[a.leading_snug, a.text_md]}>
                 <Trans>
-                  Krao will proactively verify notable and authentic accounts.
+                  {BRAND_NAME} will proactively verify notable and authentic
+                  accounts.
                 </Trans>
               </Text>
               <Text style={[a.leading_snug, a.text_md]}>

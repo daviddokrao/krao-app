@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {atoms as a, useTheme} from '#/alf'
 import * as Admonition from '#/components/Admonition'
@@ -58,7 +59,7 @@ export function AnalyticsScreen({}: Props) {
         <View style={[a.p_lg, a.gap_2xl]}>
           {forbidden ? (
             <Admonition.Admonition type="error">
-              <Trans>Only Krao admins can open this page.</Trans>
+              <Trans>Only {BRAND_NAME} admins can open this page.</Trans>
             </Admonition.Admonition>
           ) : (
             <>
@@ -87,7 +88,7 @@ function LoadError({error, onRetry}: {error: unknown; onRetry: () => void}) {
     <View style={[a.gap_md]}>
       <Admonition.Admonition type="error">
         {isForbidden(error) ? (
-          <Trans>Only Krao admins can open this page.</Trans>
+          <Trans>Only {BRAND_NAME} admins can open this page.</Trans>
         ) : (
           <Trans>Could not load these figures.</Trans>
         )}

@@ -5,6 +5,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {
   useProfileQuery,
   useProfileUpdateMutation,
@@ -100,9 +101,9 @@ export function PwiOptOut() {
 
       <Text style={[a.leading_snug, t.atoms.text_contrast_high]}>
         <Trans>
-          Krao will not show your account to logged-out users and will ask other
-          apps to do the same. Other apps may not honor this request. It doesn't
-          make your account private.
+          {BRAND_NAME} will not show your account to logged-out users and will
+          ask other apps to do the same. Other apps may not honor this request.
+          It doesn't make your account private.
         </Trans>
       </Text>
     </View>

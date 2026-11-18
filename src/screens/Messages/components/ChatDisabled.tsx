@@ -3,6 +3,7 @@ import {type StyleProp, View, type ViewStyle} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {modProxyService} from '#/lib/constants'
 import {logger} from '#/logger'
 import {useAppviewClient, useSession} from '#/state/session'
@@ -53,7 +54,7 @@ export function ChatDisabled({
           ]}>
           <Trans>
             Our moderators have reviewed reports and decided to disable your
-            access to chats on Krao.
+            access to chats on {BRAND_NAME}.
           </Trans>
         </Text>
         <AppealDialog />
@@ -132,7 +133,9 @@ function DialogInner() {
         <Trans>Appeal this decision</Trans>
       </Text>
       <Text style={[a.text_md, a.leading_snug]}>
-        <Trans>This appeal will be sent to Krao's moderation service.</Trans>
+        <Trans>
+          This appeal will be sent to {BRAND_NAME}'s moderation service.
+        </Trans>
       </Text>
       <View style={[a.my_md]}>
         <Dialog.Input

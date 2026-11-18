@@ -6,6 +6,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {PressableScale} from '#/lib/custom-animations/PressableScale'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {AppIconImage} from '#/screens/Settings/AppIconSettings/AppIconImage'
@@ -94,10 +95,10 @@ export function AppIconSettingsScreen({}: Props) {
                 a.font_semi_bold,
                 t.atoms.text_contrast_medium,
               ]}>
-              <Trans>Krao+</Trans>
+              <Trans>{BRAND_NAME}+</Trans>
             </Text>
             <Group
-              label={_(msg`Krao+ icons`)}
+              label={_(msg`${BRAND_NAME}+ icons`)}
               value={currentAppIcon}
               onChange={onSetAppIcon}>
               {sets.core.map((icon, i) => (

@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {useSession} from '#/state/session'
 import * as SettingsList from '#/screens/Settings/components/SettingsList'
@@ -83,8 +84,8 @@ export function WalletsSettingsScreen({}: Props) {
               <Trans>
                 Link a wallet to show it on your profile and to sign in with it.
                 Your wallet signs a message that names your account, so anyone
-                can verify the link. Krao never asks for your keys or moves your
-                funds.
+                can verify the link. {BRAND_NAME} never asks for your keys or
+                moves your funds.
               </Trans>
             </Text>
           </SettingsList.Item>
@@ -140,7 +141,7 @@ export function WalletsSettingsScreen({}: Props) {
               <Admonition.Admonition type="info">
                 <Trans>
                   Linking wallets in the mobile app is coming soon. For now,
-                  link your wallet from Krao on the web.
+                  link your wallet from {BRAND_NAME} on the web.
                 </Trans>
               </Admonition.Admonition>
             )}
@@ -148,8 +149,8 @@ export function WalletsSettingsScreen({}: Props) {
               <Admonition.Admonition type="tip" style={[a.mt_md]}>
                 <Trans>
                   New to wallets? A wallet is an app that holds your tokens and
-                  signs for you; Krao never sees its keys. Install one in your
-                  browser, such as{' '}
+                  signs for you; {BRAND_NAME} never sees its keys. Install one
+                  in your browser, such as{' '}
                   <InlineLinkText
                     to="https://metamask.io/download/"
                     label={l`Get MetaMask`}>
@@ -169,8 +170,8 @@ export function WalletsSettingsScreen({}: Props) {
               <Admonition.Admonition type="tip" style={[a.mt_md]}>
                 <Trans>
                   New to wallets? A wallet is an app that holds your tokens and
-                  signs for you; Krao never sees its keys. Install one on this
-                  phone, such as{' '}
+                  signs for you; {BRAND_NAME} never sees its keys. Install one
+                  on this phone, such as{' '}
                   <InlineLinkText
                     to="https://metamask.io/download/"
                     label={l`Get MetaMask`}>

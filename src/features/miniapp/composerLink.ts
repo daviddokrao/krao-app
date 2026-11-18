@@ -1,6 +1,7 @@
 import {useLingui} from '@lingui/react/macro'
 import {useQueryClient} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {createQueryKey} from '#/state/queries/util'
 import * as Toast from '#/components/Toast'
 import {kraoComposer} from '#/features/community/composer/store'
@@ -32,7 +33,7 @@ export function useComposerMiniAppLink() {
       })
       if (!canRunApp(app)) {
         Toast.show(
-          l`${app.name} has not been approved by Krao, so it can’t be added to a post.`,
+          l`${app.name} has not been approved by ${BRAND_NAME}, so it can’t be added to a post.`,
           {type: 'error'},
         )
         return

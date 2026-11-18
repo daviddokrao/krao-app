@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {useCloseAllActiveElements} from '#/state/util'
 import {Logo} from '#/view/icons/Logo'
@@ -44,7 +45,7 @@ function SigninDialogInner({}: {control: Dialog.DialogOuterProps['control']}) {
 
   return (
     <Dialog.ScrollableInner
-      label={_(msg`Sign in to Krao or create a new account`)}
+      label={_(msg`Sign in to ${BRAND_NAME} or create a new account`)}
       style={[a.w_full, gtMobile && web({width: 'auto', maxWidth: 420})]}>
       <View style={[!IS_NATIVE && a.p_2xl]}>
         <View

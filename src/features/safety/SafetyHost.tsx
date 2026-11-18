@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useBreakpoints, useTheme, web} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -185,8 +186,8 @@ function SecretInner({kinds}: {kinds: SecretKind[]}) {
           <Text style={[t.atoms.text_contrast_high, a.text_md, a.leading_snug]}>
             <Trans>
               Anyone who has your seed phrase or private key can take all your
-              funds. Krao will never ask for them, and nobody else should. It
-              was not sent: remove it from the text and try again.
+              funds. {BRAND_NAME} will never ask for them, and nobody else
+              should. It was not sent: remove it from the text and try again.
             </Trans>
           </Text>
         </View>

@@ -2,6 +2,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {cleanError} from '#/lib/strings/errors'
 import {List} from '#/view/com/util/List'
@@ -30,8 +31,9 @@ export function MiniAppsScreen({}: Props) {
     <View style={[a.px_xl, a.pt_md, a.pb_md]}>
       <Text style={[a.text_md, a.leading_snug, t.atoms.text_contrast_medium]}>
         <Trans>
-          Small apps that run inside Krao. Krao reviews each one, and you decide
-          what it may do. Nothing is signed or sent without showing you first.
+          Small apps that run inside {BRAND_NAME}. {BRAND_NAME} reviews each
+          one, and you decide what it may do. Nothing is signed or sent without
+          showing you first.
         </Trans>
       </Text>
     </View>

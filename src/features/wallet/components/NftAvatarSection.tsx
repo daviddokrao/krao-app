@@ -4,6 +4,7 @@ import {Image} from 'expo-image'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
@@ -112,8 +113,8 @@ export function NftAvatarSection({profile}: {profile: ChainProfile}) {
 
       <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
         <Trans>
-          Use an NFT held by one of your linked wallets on Base. Krao checks
-          ownership on-chain and shows a badge while you hold it.
+          Use an NFT held by one of your linked wallets on Base. {BRAND_NAME}{' '}
+          checks ownership on-chain and shows a badge while you hold it.
         </Trans>
       </Text>
       <View style={[a.gap_sm]}>

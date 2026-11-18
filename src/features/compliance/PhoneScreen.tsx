@@ -2,6 +2,7 @@ import {View} from 'react-native'
 import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {atoms as a, useTheme} from '#/alf'
 import * as Layout from '#/components/Layout'
@@ -28,9 +29,10 @@ export function PhoneScreen({}: Props) {
         <View style={[a.p_lg, a.gap_lg]}>
           <Text style={[a.text_md, a.leading_snug, t.atoms.text_contrast_high]}>
             <Trans>
-              Krao asks every account to verify a phone number before posting or
-              sending messages, as Vietnamese law requires. A phone number
-              belongs to one account only. Krao does not show it to anyone.
+              {BRAND_NAME} asks every account to verify a phone number before
+              posting or sending messages, as Vietnamese law requires. A phone
+              number belongs to one account only. {BRAND_NAME} does not show it
+              to anyone.
             </Trans>
           </Text>
           <PhoneVerifyForm />

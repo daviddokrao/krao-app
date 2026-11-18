@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonText} from '#/components/Button'
@@ -108,7 +109,7 @@ function PickerInner({control}: {control: Dialog.DialogControlProps}) {
             testID="communityMemberOnly"
             selected={state.memberOnly}
             title={l`Add text only members can read`}
-            description={l`Your post stays visible as a teaser. The extra text is kept on Krao’s gate service and shown only to members.`}
+            description={l`Your post stays visible as a teaser. The extra text is kept on ${BRAND_NAME}’s gate service and shown only to members.`}
             onPress={() => kraoComposer.update({memberOnly: !state.memberOnly})}
           />
           {state.memberOnly && (

@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {webLinks} from '#/lib/constants'
 import {atoms as a, useTheme} from '#/alf'
 import * as Toggle from '#/components/forms/Toggle'
@@ -41,14 +42,14 @@ export function SignupConsent({
             <Trans>
               I have read and agree to the{' '}
               <InlineLinkText
-                label={l`Read the Krao Terms of Service`}
+                label={l`Read the ${BRAND_NAME} Terms of Service`}
                 to={webLinks.tos}
                 style={[a.text_sm]}>
                 Terms of Service
               </InlineLinkText>{' '}
               and the{' '}
               <InlineLinkText
-                label={l`Read the Krao Privacy Policy`}
+                label={l`Read the ${BRAND_NAME} Privacy Policy`}
                 to={webLinks.privacy}
                 style={[a.text_sm]}>
                 Privacy Policy
@@ -61,7 +62,7 @@ export function SignupConsent({
       <Toggle.Item
         testID="consentDataCheckbox"
         name="consentData"
-        label={l`I agree to Krao processing my phone number, identity verification and wallet data`}
+        label={l`I agree to ${BRAND_NAME} processing my phone number, identity verification and wallet data`}
         value={value.data}
         isInvalid={isInvalid && !value.data}
         onChange={data => onChange({...value, data})}>
@@ -69,10 +70,10 @@ export function SignupConsent({
           <Toggle.Checkbox />
           <Text style={[a.flex_1, a.text_sm, a.leading_snug]}>
             <Trans>
-              I agree that Krao processes my phone number, my identity
+              I agree that {BRAND_NAME} processes my phone number, my identity
               verification (KYC) and my linked wallet data, as described in the{' '}
               <InlineLinkText
-                label={l`Read the Krao Privacy Policy`}
+                label={l`Read the ${BRAND_NAME} Privacy Policy`}
                 to={webLinks.privacy}
                 style={[a.text_sm]}>
                 Privacy Policy

@@ -5,6 +5,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {useQueryClient} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useGoBack} from '#/lib/hooks/useGoBack'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {logger} from '#/logger'
@@ -147,8 +148,8 @@ export function ListHiddenScreen({
               </Trans>
             ) : isOwner ? (
               <Trans>
-                This list – created by you – contains possible violations of
-                Krao's community guidelines in its name or description.
+                This list – created by you – contains possible violations of{' '}
+                {BRAND_NAME}'s community guidelines in its name or description.
               </Trans>
             ) : (
               <Trans>
@@ -156,8 +157,8 @@ export function ListHiddenScreen({
                 <Text style={[a.font_semi_bold]}>
                   {sanitizeHandle(list.creator.handle, '@')}
                 </Text>{' '}
-                – contains possible violations of Krao's community guidelines in
-                its name or description.
+                – contains possible violations of {BRAND_NAME}'s community
+                guidelines in its name or description.
               </Trans>
             )}
           </Text>

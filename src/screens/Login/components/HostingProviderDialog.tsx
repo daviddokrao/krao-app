@@ -2,6 +2,7 @@ import {useCallback, useImperativeHandle, useRef, useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import * as persisted from '#/state/persisted'
 import {atoms as a, useTheme, web} from '#/alf'
 import {Admonition} from '#/components/Admonition'
@@ -181,8 +182,8 @@ function DialogInner({
               {isEmail ? (
                 <Trans>
                   Your hosting provider can’t be detected from an email address,
-                  so the default Krao service will be used. Enter your username
-                  instead, or set your provider manually.
+                  so the default {BRAND_NAME} service will be used. Enter your
+                  username instead, or set your provider manually.
                 </Trans>
               ) : (
                 <Trans>
@@ -234,7 +235,7 @@ function DialogInner({
             nativeID="dialog-description"
             style={[t.atoms.text_contrast_medium, a.text_sm, a.leading_snug]}>
             <Trans>
-              Krao is an open network where you can choose your hosting
+              {BRAND_NAME} is an open network where you can choose your hosting
               provider. If you're a developer, you can host your own server.
             </Trans>{' '}
             <InlineLinkText

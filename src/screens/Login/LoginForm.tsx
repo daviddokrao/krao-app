@@ -3,6 +3,7 @@ import {Keyboard, type TextInput, View} from 'react-native'
 import {LexAuthFactorError} from '@atproto/lex-password-session'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {DEFAULT_SERVICE, HITSLOP_10, HITSLOP_20} from '#/lib/constants'
 import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
 import {cleanError, isNetworkError} from '#/lib/strings/errors'
@@ -574,7 +575,7 @@ export const LoginForm = ({
       {IS_NATIVE && (
         <Text style={[a.text_md, native([a.text_center, a.mx_auto]), a.mt_sm]}>
           <Trans>
-            New to Krao?{' '}
+            New to {BRAND_NAME}?{' '}
             <InlineLinkText
               label={l`Sign up`}
               style={[a.text_md, native(a.text_center)]}
@@ -666,7 +667,7 @@ function HostingProviderIndicator({
         {state.status === 'detected' || state.status === 'overridden' ? (
           <Trans>Hosting provider: {toNiceHostingUrl(state.pdsUrl)}</Trans>
         ) : state.status === 'email' ? (
-          <Trans>Hosting provider: Krao</Trans>
+          <Trans>Hosting provider: {BRAND_NAME}</Trans>
         ) : (
           <Trans>Hosting provider</Trans>
         )}

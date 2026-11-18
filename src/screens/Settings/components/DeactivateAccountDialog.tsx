@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {logger} from '#/logger'
 import {usePdsClient, useSessionApi} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
@@ -74,8 +75,8 @@ function DeactivateAccountDialogInner({
       <Prompt.DescriptionText>
         <Trans>
           Your profile, posts, feeds, and lists will no longer be visible to
-          other Krao users. You can reactivate your account at any time by
-          logging in.
+          other {BRAND_NAME} users. You can reactivate your account at any time
+          by logging in.
         </Trans>
       </Prompt.DescriptionText>
 

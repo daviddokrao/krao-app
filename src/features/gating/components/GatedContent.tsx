@@ -2,6 +2,7 @@ import {View} from 'react-native'
 import {Image} from 'expo-image'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme} from '#/alf'
 import {Admonition} from '#/components/Admonition'
@@ -119,8 +120,8 @@ export function GatedContent({uri}: {uri: string}) {
             <Trans>Your linked wallets don’t meet this requirement yet.</Trans>
           ) : (
             <Trans>
-              Link a wallet that meets the requirement from Krao on the web to
-              unlock this content.
+              Link a wallet that meets the requirement from {BRAND_NAME} on the
+              web to unlock this content.
             </Trans>
           )}
         </Text>

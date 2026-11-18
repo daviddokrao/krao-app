@@ -2,6 +2,7 @@ import {forwardRef} from 'react'
 import {type TextProps} from 'react-native'
 import Svg, {type PathProps, type SvgProps} from 'react-native-svg'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {KRAO_BRAND, KRAO_STAR} from '#/view/icons/kraoMark'
 import {KraoStarShape} from '#/view/icons/KraoStarShape'
 import {flatten, useTheme} from '#/alf'
@@ -37,7 +38,7 @@ export const Logo = forwardRef(function LogoImpl(props: Props, ref) {
       // @ts-expect-error it's fiiiiine
       ref={ref}
       viewBox={KRAO_STAR.viewBox}
-      accessibilityLabel="Krao"
+      accessibilityLabel={BRAND_NAME}
       accessibilityHint=""
       {...rest}
       style={[{width: size, height: size}, styles]}>

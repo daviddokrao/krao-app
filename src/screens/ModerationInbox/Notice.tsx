@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {countGraphemes} from 'unicode-segmenter/grapheme'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {MAX_REPORT_REASON_GRAPHEME_LENGTH, webLinks} from '#/lib/constants'
 import {NotFoundScreen} from '#/view/screens/NotFound'
 import {atoms as a, useTheme} from '#/alf'
@@ -40,7 +41,7 @@ export function ModerationInboxNoticeDetailsScreen() {
             <Trans>Notice</Trans>
           </Layout.Header.TitleText>
           <Layout.Header.SubtitleText>
-            <Trans>Krao Moderation Service</Trans>
+            <Trans>{BRAND_NAME} Moderation Service</Trans>
           </Layout.Header.SubtitleText>
         </Layout.Header.Content>
         <Layout.Header.Slot />
@@ -50,7 +51,8 @@ export function ModerationInboxNoticeDetailsScreen() {
         <View style={[a.p_lg, a.gap_lg]}>
           <ActionSummaryText header={l`Your post was removed`}>
             <Trans>
-              Krao Moderation Service removed a post from Krao for violating our{' '}
+              {BRAND_NAME} Moderation Service removed a post from {BRAND_NAME}{' '}
+              for violating our{' '}
               <InlineLinkText
                 to={webLinks.community}
                 label={l`Read our Community Guidelines`}

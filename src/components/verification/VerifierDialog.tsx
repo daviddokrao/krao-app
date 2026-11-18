@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {urls} from '#/lib/constants'
 import {getUserDisplayName} from '#/lib/getUserDisplayName'
 import {useSession} from '#/state/session'
@@ -86,7 +87,7 @@ function Inner({
               },
             ]}
             alt={_(
-              msg`An illustration showing that Krao selects trusted verifiers, and trusted verifiers in turn verify individual user accounts.`,
+              msg`An illustration showing that ${BRAND_NAME} selects trusted verifiers, and trusted verifiers in turn verify individual user accounts.`,
             )}
             useAppleWebpCodec
           />
@@ -103,7 +104,8 @@ function Inner({
               <RNText>
                 <VerifierCheck width={14} />
               </RNText>{' '}
-              can verify others. These trusted verifiers are selected by Krao.
+              can verify others. These trusted verifiers are selected by{' '}
+              {BRAND_NAME}.
             </Trans>
           </Text>
         </View>
@@ -120,7 +122,7 @@ function Inner({
             to={urls.website.blog.initialVerificationAnnouncement}
             label={_(
               msg({
-                message: `Learn more about verification on Krao`,
+                message: `Learn more about verification on ${BRAND_NAME}`,
                 context: `english-only-resource`,
               }),
             )}

@@ -4,6 +4,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {
   type CommonNavigatorParams,
@@ -526,7 +527,7 @@ function CommunityFeedControls({community}: {community: CommunityView}) {
           enable.mutate(
             {
               community,
-              description: l`Public posts from the ${community.name} community on Krao.`,
+              description: l`Public posts from the ${community.name} community on ${BRAND_NAME}.`,
             },
             {
               onSuccess: () =>

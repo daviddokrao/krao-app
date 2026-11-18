@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {modProxyService} from '#/lib/constants'
 import {useAppviewClient} from '#/state/session'
 import {atoms as a, useTheme, web} from '#/alf'
@@ -87,7 +88,7 @@ function ReportInner({
       {
         onSuccess: () =>
           control.close(() => {
-            Toast.show(l`Thanks. Krao’s moderators will look at it.`, {
+            Toast.show(l`Thanks. ${BRAND_NAME}’s moderators will look at it.`, {
               type: 'success',
             })
           }),
@@ -102,8 +103,9 @@ function ReportInner({
         </Text>
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
-            Tell Krao what is wrong with {app.name}: a scam, a fake login, a
-            request that looks like theft. Krao can take it down.
+            Tell {BRAND_NAME} what is wrong with {app.name}: a scam, a fake
+            login, a request that looks like theft. {BRAND_NAME} can take it
+            down.
           </Trans>
         </Text>
       </View>

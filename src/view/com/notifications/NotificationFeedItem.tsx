@@ -20,6 +20,7 @@ import {Plural, Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {MAX_POST_LINES} from '#/lib/constants'
 import {useAnimatedValue} from '#/lib/hooks/useAnimatedValue'
 import {makeProfileLink} from '#/lib/routes/links'
@@ -373,9 +374,11 @@ let NotificationFeedItem = ({
     }
     icon = <PersonPlusIcon size="xl" style={{color: t.palette.primary_500}} />
   } else if (item.type === 'contact-match') {
-    a11yLabel = l`Your contact ${firstAuthorName} is on Krao`
+    a11yLabel = l`Your contact ${firstAuthorName} is on ${BRAND_NAME}`
     notificationContent = (
-      <Trans>Your contact {firstAuthorLink} is on Krao</Trans>
+      <Trans>
+        Your contact {firstAuthorLink} is on {BRAND_NAME}
+      </Trans>
     )
     icon = (
       <ContactsIconFilled size="xl" style={{color: t.palette.primary_500}} />

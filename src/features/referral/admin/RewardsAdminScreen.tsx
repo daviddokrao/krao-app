@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {atoms as a} from '#/alf'
 import * as Admonition from '#/components/Admonition'
@@ -46,7 +47,7 @@ export function RewardsAdminScreen({}: Props) {
             <Loader />
           ) : !roles?.length ? (
             <Admonition.Admonition type="error">
-              <Trans>Only Krao admins can open this page.</Trans>
+              <Trans>Only {BRAND_NAME} admins can open this page.</Trans>
             </Admonition.Admonition>
           ) : (
             <>

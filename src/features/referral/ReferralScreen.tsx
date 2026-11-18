@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {shareUrl} from '#/lib/sharing'
 import {sanitizeHandle} from '#/lib/strings/handles'
@@ -60,16 +61,16 @@ export function ReferralScreen({}: Props) {
             <Text style={[a.text_md, a.leading_snug]}>
               {inviterPoints && inviteePoints ? (
                 <Trans>
-                  Krao is invite-only. Share your code: you get {inviterPoints}{' '}
-                  points for each friend who joins, and they get {inviteePoints}
-                  . Points are approved once you have both verified your
-                  identity.
+                  {BRAND_NAME} is invite-only. Share your code: you get{' '}
+                  {inviterPoints} points for each friend who joins, and they get{' '}
+                  {inviteePoints}. Points are approved once you have both
+                  verified your identity.
                 </Trans>
               ) : (
                 <Trans>
-                  Krao is invite-only. Share your code to invite friends. Points
-                  for referrals are approved once you have both verified your
-                  identity.
+                  {BRAND_NAME} is invite-only. Share your code to invite
+                  friends. Points for referrals are approved once you have both
+                  verified your identity.
                 </Trans>
               )}
             </Text>

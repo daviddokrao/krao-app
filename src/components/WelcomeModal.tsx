@@ -5,6 +5,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import * as FocusGuards from '@radix-ui/react-focus-guards'
 import * as FocusScope from '@radix-ui/react-focus-scope'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {Logo} from '#/view/icons/Logo'
 import {atoms as a, flatten, useBreakpoints, web} from '#/alf'
@@ -114,7 +115,7 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                       a.user_select_none,
                       {color: '#354358', letterSpacing: -0.5},
                     ]}>
-                    Krao
+                    {BRAND_NAME}
                   </Text>
                 </View>
               </View>

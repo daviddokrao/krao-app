@@ -5,6 +5,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {useQuery, useQueryClient} from '@tanstack/react-query'
 
 import {useAppState} from '#/lib/appState'
+import {BRAND} from '#/lib/brand'
 import {
   type AllNavigatorParams,
   type NativeStackScreenProps,
@@ -103,7 +104,7 @@ export function NotificationSettingsScreen({}: Props) {
             [
               {
                 key: 'android.provider.extra.APP_PACKAGE',
-                value: 'io.krao.app',
+                value: BRAND.app.id,
               },
             ],
           )

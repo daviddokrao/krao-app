@@ -5,6 +5,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import * as EmailValidator from 'email-validator'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {cleanError, isNetworkError} from '#/lib/strings/errors'
 import {checkAndFormatResetCode} from '#/lib/strings/password'
 import {matchXrpcError} from '#/lib/xrpc-error'
@@ -71,7 +72,7 @@ function Inner() {
     Done: {
       title: _(msg`Password changed`),
       message: _(
-        msg`Your password has been changed successfully! Please use your new password when you sign in to Krao from now on.`,
+        msg`Your password has been changed successfully! Please use your new password when you sign in to ${BRAND_NAME} from now on.`,
       ),
     },
   }

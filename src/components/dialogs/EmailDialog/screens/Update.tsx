@@ -4,6 +4,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {validate as validateEmail} from 'email-validator'
 
 import {wait} from '#/lib/async/wait'
+import {BRAND_NAME} from '#/lib/brand'
 import {useCleanError} from '#/lib/hooks/useCleanError'
 import {logger} from '#/logger'
 import {useSession} from '#/state/session'
@@ -283,7 +284,7 @@ export function Update(_props: ScreenProps<ScreenID.Update>) {
               <Trans>
                 Please click on the link in the email we just sent you to verify
                 your new email address. This is an important step to allow you
-                to continue enjoying all the features of Krao.
+                to continue enjoying all the features of {BRAND_NAME}.
               </Trans>
             </Text>
           </View>

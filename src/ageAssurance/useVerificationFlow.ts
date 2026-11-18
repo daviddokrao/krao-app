@@ -2,6 +2,7 @@ import {useCallback, useState} from 'react'
 import type * as AgeRange from 'expo-age-range'
 import {useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useSession} from '#/state/session'
 import {type DialogControlProps} from '#/components/Dialog'
 import * as Toast from '#/components/Toast'
@@ -114,7 +115,7 @@ export function useAgeAssuranceVerificationFlow({
           const {state} = unsafeGetAndComputeAgeAssurance({did})
           if (state.access === aa.Access.None) {
             Toast.show(
-              l`We're sorry, but based on the data shared by your device, you are not old enough to access Krao.`,
+              l`We're sorry, but based on the data shared by your device, you are not old enough to access ${BRAND_NAME}.`,
               {type: 'info'},
             )
           } else if (state.access === aa.Access.Unknown) {

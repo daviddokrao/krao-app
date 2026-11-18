@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {Pressable, View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND} from '#/lib/brand'
 import {atoms as a, useTheme, web} from '#/alf'
 import * as Admonition from '#/components/Admonition'
 import {Button, ButtonText} from '#/components/Button'
@@ -81,7 +82,7 @@ export function KycTab() {
           <TextField.Root>
             <TextField.Input
               label={l`Handle`}
-              placeholder="alice.krao.net"
+              placeholder={`alice.${BRAND.domain}`}
               value={lookup}
               onChangeText={setLookup}
               autoCapitalize="none"
