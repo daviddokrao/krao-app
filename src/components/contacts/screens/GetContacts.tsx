@@ -12,6 +12,7 @@ import {Trans} from '@lingui/react/macro'
 import {useMutation, useQueryClient} from '@tanstack/react-query'
 
 import {uploadBlob} from '#/lib/api'
+import {BRAND_NAME} from '#/lib/brand'
 import {cleanError, isNetworkError} from '#/lib/strings/errors'
 import {matchXrpcError} from '#/lib/xrpc-error'
 import {logger} from '#/logger'
@@ -235,8 +236,9 @@ export function GetContacts({
         </Text>
         <Text style={style}>
           <Trans>
-            Krao helps friends find each other by creating an encoded digital
-            fingerprint, called a "hash", and then looking for matching hashes.
+            {BRAND_NAME} helps friends find each other by creating an encoded
+            digital fingerprint, called a "hash", and then looking for matching
+            hashes.
           </Trans>
         </Text>
         <Text style={style}>
@@ -267,8 +269,8 @@ export function GetContacts({
         ]}>
         <Text style={[a.text_sm, a.pb_xs]}>
           <Trans>
-            I consent to Krao using my contacts for mutual friend discovery and
-            to retain hashed data for matching until I opt out.
+            I consent to {BRAND_NAME} using my contacts for mutual friend
+            discovery and to retain hashed data for matching until I opt out.
           </Trans>
         </Text>
         <Button
@@ -313,7 +315,7 @@ class PermissionDeniedError extends Error {
 function showPermissionDeniedAlert() {
   Alert.alert(
     t`You've denied access to your contacts`,
-    t`You'll need to go to the System Settings for Krao and give permission if you want to use this feature.`,
+    t`You'll need to go to the System Settings for ${BRAND_NAME} and give permission if you want to use this feature.`,
     [
       {
         text: t`OK`,

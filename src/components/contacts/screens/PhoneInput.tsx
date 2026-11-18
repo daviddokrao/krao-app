@@ -7,6 +7,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {urls} from '#/lib/constants'
 import {
   type CountryCode,
@@ -287,7 +288,9 @@ function LegalDisclaimer() {
       </Text>
       <Text style={style}>
         &bull;{' '}
-        <Trans>Held by Krao for 7 days to prevent abuse, then deleted</Trans>
+        <Trans>
+          Held by {BRAND_NAME} for 7 days to prevent abuse, then deleted
+        </Trans>
       </Text>
       <Text style={style}>
         &bull;{' '}

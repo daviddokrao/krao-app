@@ -1,3 +1,4 @@
+import {BRAND} from '#/lib/brand'
 import {
   type EmbedPlayerType,
   getEmbedPlayerMediaType,
@@ -19,7 +20,7 @@ describe.each([
     url.searchParams.set('t', timestamp)
 
     expect(parseEmbedPlayerFromUrl(url.href)?.playerUri).toBe(
-      `https://krao.net/iframe/youtube.html?videoId=videoId&start=${seconds}`,
+      `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=${seconds}`,
     )
   })
 
@@ -30,7 +31,7 @@ describe.each([
       if (timestamp !== null) url.searchParams.set('t', timestamp)
 
       expect(parseEmbedPlayerFromUrl(url.href)?.playerUri).toBe(
-        'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+        `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
       )
     },
   )

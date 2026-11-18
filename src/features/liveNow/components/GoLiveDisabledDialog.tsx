@@ -5,6 +5,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {useMutation} from '@tanstack/react-query'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {modProxyService} from '#/lib/constants'
 import {logger} from '#/logger'
 import {useAppviewClient} from '#/state/session'
@@ -110,7 +111,7 @@ export function DialogInner({
           </Text>
           <Text style={[a.text_md, a.leading_snug]}>
             <Trans>
-              This appeal will be sent to Krao's moderation service.
+              This appeal will be sent to {BRAND_NAME}'s moderation service.
             </Trans>
           </Text>
         </View>

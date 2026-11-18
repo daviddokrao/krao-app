@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals'
 
+import {BRAND} from '#/lib/brand'
 import {
   expandProfilePath,
   getReservedPaths,
@@ -8,17 +9,17 @@ import {
 
 describe('shortenProfilePath', () => {
   it('drops the Krao handle domain', () => {
-    expect(shortenProfilePath('/profile/lan.krao.net')).toBe('/lan')
-    expect(shortenProfilePath('/profile/lan.krao.net/post/3abc')).toBe(
+    expect(shortenProfilePath(`/profile/lan.${BRAND.domain}`)).toBe('/lan')
+    expect(shortenProfilePath(`/profile/lan.${BRAND.domain}/post/3abc`)).toBe(
       '/lan/post/3abc',
     )
-    expect(shortenProfilePath('/profile/lan.krao.net/followers')).toBe(
+    expect(shortenProfilePath(`/profile/lan.${BRAND.domain}/followers`)).toBe(
       '/lan/followers',
     )
   })
 
   it('keeps the query string', () => {
-    expect(shortenProfilePath('/profile/lan.krao.net?tab=media')).toBe(
+    expect(shortenProfilePath(`/profile/lan.${BRAND.domain}?tab=media`)).toBe(
       '/lan?tab=media',
     )
   })
@@ -36,11 +37,11 @@ describe('shortenProfilePath', () => {
   })
 
   it('leaves names that clash with app pages under /profile', () => {
-    expect(shortenProfilePath('/profile/search.krao.net')).toBe(
-      '/profile/search.krao.net',
+    expect(shortenProfilePath(`/profile/search.${BRAND.domain}`)).toBe(
+      `/profile/search.${BRAND.domain}`,
     )
-    expect(shortenProfilePath('/profile/settings.krao.net/post/x')).toBe(
-      '/profile/settings.krao.net/post/x',
+    expect(shortenProfilePath(`/profile/settings.${BRAND.domain}/post/x`)).toBe(
+      `/profile/settings.${BRAND.domain}/post/x`,
     )
   })
 
@@ -52,12 +53,12 @@ describe('shortenProfilePath', () => {
 
 describe('expandProfilePath', () => {
   it('adds the Krao handle domain to a bare name', () => {
-    expect(expandProfilePath('/lan')).toBe('/profile/lan.krao.net')
+    expect(expandProfilePath('/lan')).toBe(`/profile/lan.${BRAND.domain}`)
     expect(expandProfilePath('/Lan/post/3abc')).toBe(
-      '/profile/lan.krao.net/post/3abc',
+      `/profile/lan.${BRAND.domain}/post/3abc`,
     )
     expect(expandProfilePath('lan/followers')).toBe(
-      '/profile/lan.krao.net/followers',
+      `/profile/lan.${BRAND.domain}/followers`,
     )
   })
 
@@ -74,7 +75,7 @@ describe('expandProfilePath', () => {
       '/search',
       '/settings/account',
       '/messages/abc',
-      '/profile/lan.krao.net',
+      `/profile/lan.${BRAND.domain}`,
       '/hashtag/web3',
       '/starter-pack/lan/3abc',
       '/intent/compose',
@@ -87,7 +88,7 @@ describe('expandProfilePath', () => {
 
   it('round-trips with shortenProfilePath', () => {
     for (const path of [
-      '/profile/lan.krao.net/post/3abc',
+      `/profile/lan.${BRAND.domain}/post/3abc`,
       '/profile/lan.example.com',
       '/profile/did:plc:abc/lists/3xyz',
     ]) {

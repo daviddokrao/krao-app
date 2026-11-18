@@ -23,6 +23,8 @@ export const DEFAULT_LIVE_EVENTS = {
 }
 
 async function fetchLiveEvents(): Promise<LiveEventsWorkerResponse | null> {
+  // No live-event worker configured: no live events
+  if (!LIVE_EVENTS_URL) return null
   try {
     const res = await fetch(`${LIVE_EVENTS_URL}/config`)
     if (!res.ok) return null

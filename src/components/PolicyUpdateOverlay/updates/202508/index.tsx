@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {webLinks} from '#/lib/constants'
 import {useA11y} from '#/state/a11y'
 import {atoms as a, useTheme} from '#/alf'
@@ -163,7 +164,7 @@ export function Content({state}: {state: PolicyUpdateState}) {
           <Button
             label={_(msg`Continue`)}
             accessibilityHint={_(
-              msg`Tap to acknowledge that you understand and agree to these updates and continue using Krao`,
+              msg`Tap to acknowledge that you understand and agree to these updates and continue using ${BRAND_NAME}`,
             )}
             color="primary"
             size="large"

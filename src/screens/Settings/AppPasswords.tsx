@@ -11,6 +11,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {cleanError} from '#/lib/strings/errors'
 import {formatDateTime} from '#/lib/strings/time'
@@ -66,8 +67,8 @@ export function AppPasswordsScreen({}: Props) {
             <SettingsList.Item>
               <Admonition type="tip" style={[a.flex_1]}>
                 <Trans>
-                  Use app passwords to sign in to other Krao clients without
-                  giving full access to your account or password.
+                  Use app passwords to sign in to other {BRAND_NAME} clients
+                  without giving full access to your account or password.
                 </Trans>
               </Admonition>
             </SettingsList.Item>

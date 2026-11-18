@@ -1,5 +1,6 @@
 import {useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {formatUnits, getTipAsset} from '#/features/tips/assets'
 import {shortAddress} from '#/features/wallet/siwe'
 import {type GateCondition, type GateRule} from './queries'
@@ -15,7 +16,7 @@ export function useDescribeCondition() {
       return l`≥ ${amount} ${asset.symbol} on Base`
     }
     if (condition.$type === 'net.krao.gate.defs#communityMember') {
-      return l`membership of a Krao community`
+      return l`membership of a ${BRAND_NAME} community`
     }
     if (condition.$type === 'net.krao.gate.defs#membership') {
       return condition.plan

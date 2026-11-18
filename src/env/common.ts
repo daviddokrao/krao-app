@@ -1,5 +1,6 @@
 import {type DidString} from '@atproto/syntax'
 
+import {BRAND, brandDid, brandUrl, webUrl} from '#/lib/brand'
 import packageJson from '#/../package.json'
 
 /**
@@ -69,41 +70,41 @@ export const LOG_DEBUG: string = process.env.EXPO_PUBLIC_LOG_DEBUG || ''
  * The DID of the Bluesky appview to proxy to
  */
 export const BLUESKY_PROXY_DID: DidString =
-  process.env.EXPO_PUBLIC_BLUESKY_PROXY_DID || 'did:web:api.krao.net'
+  process.env.EXPO_PUBLIC_BLUESKY_PROXY_DID || brandDid('api')
 
 /**
  * The PDS used for sign up and as the default sign in provider
  */
 export const DEFAULT_SERVICE_URL: string =
-  process.env.EXPO_PUBLIC_DEFAULT_SERVICE || 'https://pds.krao.net'
+  process.env.EXPO_PUBLIC_DEFAULT_SERVICE || brandUrl('pds')
 
 /**
  * The public appview used for logged-out requests
  */
 export const PUBLIC_API_URL: string =
-  process.env.EXPO_PUBLIC_PUBLIC_API || 'https://api.krao.net'
+  process.env.EXPO_PUBLIC_PUBLIC_API || brandUrl('api')
 
 /**
  * Krao's web app, which also hosts pages native apps embed (eg the YouTube
  * player)
  */
 export const KRAO_WEB_URL: string =
-  process.env.EXPO_PUBLIC_KRAO_WEB_URL || 'https://krao.net'
+  process.env.EXPO_PUBLIC_KRAO_WEB_URL || webUrl()
 
 /**
  * Krao's public website, home of the help center and the policy pages (terms,
  * privacy, community guidelines...)
  */
 export const KRAO_SITE_URL: string =
-  process.env.EXPO_PUBLIC_KRAO_SITE_URL || 'https://krao.net'
+  process.env.EXPO_PUBLIC_KRAO_SITE_URL || webUrl()
 
 /**
  * The handle domain of accounts on Krao's PDS, with its leading dot. Profile
- * URLs drop it: `krao.net/lan` is the profile of `lan.krao.net`.
+ * URLs drop it: `<domain>/lan` is the profile of `lan.<domain>`.
  */
 export const KRAO_HANDLE_DOMAIN: string = (() => {
   const domain: string =
-    process.env.EXPO_PUBLIC_KRAO_HANDLE_DOMAIN || '.krao.net'
+    process.env.EXPO_PUBLIC_KRAO_HANDLE_DOMAIN || `.${BRAND.domain}`
   return (domain.startsWith('.') ? domain : `.${domain}`).toLowerCase()
 })()
 
@@ -111,7 +112,7 @@ export const KRAO_HANDLE_DOMAIN: string = (() => {
  * Krao indexer serving net.krao.* queries (linked wallets etc)
  */
 export const KRAO_INDEXER_URL: string =
-  process.env.EXPO_PUBLIC_KRAO_INDEXER_URL || 'https://indexer.krao.net'
+  process.env.EXPO_PUBLIC_KRAO_INDEXER_URL || brandUrl('indexer')
 
 /**
  * Krao gate service holding token-gated post content, and the DID it answers
@@ -167,16 +168,16 @@ export const KRAO_VIDEO_DID: string =
 /** Krao's chat service URL for signed-out reads; unset, there are none */
 export const KRAO_CHAT_URL: string = process.env.EXPO_PUBLIC_KRAO_CHAT_URL || ''
 export const KRAO_GATE_DID: string =
-  process.env.EXPO_PUBLIC_KRAO_GATE_DID || 'did:web:gate.krao.net'
+  process.env.EXPO_PUBLIC_KRAO_GATE_DID || brandDid('gate')
 
 /**
  * Krao's rewards service (referral codes, points, identity verification) and
  * the DID it answers to (the audience of the service auth tokens sent to it)
  */
 export const KRAO_REWARDS_URL: string =
-  process.env.EXPO_PUBLIC_KRAO_REWARDS_URL || 'https://rewards.krao.net'
+  process.env.EXPO_PUBLIC_KRAO_REWARDS_URL || brandUrl('rewards')
 export const KRAO_REWARDS_DID: string =
-  process.env.EXPO_PUBLIC_KRAO_REWARDS_DID || 'did:web:rewards.krao.net'
+  process.env.EXPO_PUBLIC_KRAO_REWARDS_DID || brandDid('rewards')
 
 /**
  * Krao's "popular" feed, the app's Discover feed. Its owner may be given by
@@ -184,7 +185,7 @@ export const KRAO_REWARDS_DID: string =
  */
 export const KRAO_DISCOVER_FEED: string =
   process.env.EXPO_PUBLIC_KRAO_DISCOVER_FEED ||
-  'at://krao.net/app.bsky.feed.generator/popular'
+  `at://${BRAND.social.officialHandle}/app.bsky.feed.generator/popular`
 
 /**
  * Krao's Vietnamese-language feed (at-uri; the owner may be a handle). When
@@ -225,7 +226,7 @@ export const KRAO_DEV_RPC_URL: string =
  * The DID of the chat service to proxy to
  */
 export const CHAT_PROXY_DID: DidString =
-  process.env.EXPO_PUBLIC_CHAT_PROXY_DID || 'did:web:chat.krao.net'
+  process.env.EXPO_PUBLIC_CHAT_PROXY_DID || brandDid('chat')
 
 /**
  * Metrics API host. Metrics are disabled when unset.
@@ -266,32 +267,27 @@ export const GCP_PROJECT_ID: number =
     ? 0
     : Number(process.env.EXPO_PUBLIC_GCP_PROJECT_ID)
 
-/**
- * URLs for the app config web worker. Can be a
- * locally running server, see `env.example` for more.
+/*
+ * Krao: Bluesky's geolocation, live-event and app-config workers have no Krao
+ * counterpart, so the app calls them only when a URL is set (`*_DEV_URL` in
+ * development, `EXPO_PUBLIC_*_URL` in a build; see `.env.example`). Unset, the
+ * app uses its built-in defaults without a request.
  */
-export const GEOLOCATION_DEV_URL = process.env.GEOLOCATION_DEV_URL
-export const GEOLOCATION_PROD_URL = `https://ip.krao.net`
-export const GEOLOCATION_URL = IS_DEV
-  ? (GEOLOCATION_DEV_URL ?? GEOLOCATION_PROD_URL)
-  : GEOLOCATION_PROD_URL
 
-/**
- * URLs for the live-event config web worker. Can be a
- * locally running server, see `env.example` for more.
- */
-export const LIVE_EVENTS_DEV_URL = process.env.LIVE_EVENTS_DEV_URL
-export const LIVE_EVENTS_PROD_URL = `https://live-events.krao.net`
-export const LIVE_EVENTS_URL = IS_DEV
-  ? (LIVE_EVENTS_DEV_URL ?? LIVE_EVENTS_PROD_URL)
-  : LIVE_EVENTS_PROD_URL
+/** URL of the IP geolocation worker, if any */
+export const GEOLOCATION_URL: string | undefined =
+  (IS_DEV && process.env.GEOLOCATION_DEV_URL) ||
+  process.env.EXPO_PUBLIC_GEOLOCATION_URL ||
+  undefined
 
-/**
- * URLs for the app-config web worker. Can be a
- * locally running server, see `env.example` for more.
- */
-export const APP_CONFIG_DEV_URL = process.env.APP_CONFIG_DEV_URL
-export const APP_CONFIG_PROD_URL = `https://app-config.krao.net`
-export const APP_CONFIG_URL = IS_DEV
-  ? (APP_CONFIG_DEV_URL ?? APP_CONFIG_PROD_URL)
-  : APP_CONFIG_PROD_URL
+/** URL of the live-event config worker, if any */
+export const LIVE_EVENTS_URL: string | undefined =
+  (IS_DEV && process.env.LIVE_EVENTS_DEV_URL) ||
+  process.env.EXPO_PUBLIC_LIVE_EVENTS_URL ||
+  undefined
+
+/** URL of the app-config worker, if any */
+export const APP_CONFIG_URL: string | undefined =
+  (IS_DEV && process.env.APP_CONFIG_DEV_URL) ||
+  process.env.EXPO_PUBLIC_APP_CONFIG_URL ||
+  undefined

@@ -2,13 +2,14 @@ import {Linking} from 'react-native'
 import {useCameraPermissions as useExpoCameraPermissions} from 'expo-camera'
 import * as MediaLibrary from 'expo-media-library/legacy'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {Alert} from '#/view/com/util/Alert'
 import {IS_WEB} from '#/env'
 
 const openPermissionAlert = (perm: string) => {
   Alert.alert(
     'Permission needed',
-    `Krao does not have permission to access your ${perm}.`,
+    `${BRAND_NAME} does not have permission to access your ${perm}.`,
     [
       {
         text: 'Cancel',

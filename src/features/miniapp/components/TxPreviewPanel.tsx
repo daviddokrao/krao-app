@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme} from '#/alf'
 import {Admonition} from '#/components/Admonition'
 import {Button, ButtonText} from '#/components/Button'
@@ -116,8 +117,8 @@ export function TxPreviewPanel({
           {verdict?.unavailable && (
             <Admonition type="warning">
               <Trans>
-                Krao could not simulate this. Check the details above very
-                carefully before you continue.
+                {BRAND_NAME} could not simulate this. Check the details above
+                very carefully before you continue.
               </Trans>
             </Admonition>
           )}
@@ -398,13 +399,13 @@ function useWarningText() {
     unlimitedApproval: l`It lets someone spend an unlimited amount of your tokens.`,
     approvalForAll: l`It lets someone move all of your NFTs from a collection.`,
     eip7702Delegation: l`It hands control of your account to a contract.`,
-    unknownContract: l`The contract is not one Krao knows.`,
+    unknownContract: l`The contract is not one ${BRAND_NAME} knows.`,
     lookalikeAddress: l`The address looks like a wallet verified by someone else. It may be a fake.`,
-    unsafeOrigin: l`The site that asked is on Krao’s scam list.`,
-    simulationUnavailable: l`Krao could not simulate this.`,
+    unsafeOrigin: l`The site that asked is on ${BRAND_NAME}’s scam list.`,
+    simulationUnavailable: l`${BRAND_NAME} could not simulate this.`,
     marketplaceOrder: l`It is a marketplace order that can sell your NFTs or tokens for almost nothing.`,
     blindSignature: l`It is a block of data you can’t read. Only sign it if you trust the site.`,
-    walletProofPhishing: l`This looks like Krao’s wallet proof, asked for by another site. Do not sign it.`,
+    walletProofPhishing: l`This looks like ${BRAND_NAME}’s wallet proof, asked for by another site. Do not sign it.`,
     chainMismatch: l`It names a different network than the one you are on.`,
   }
   return (w: PreviewWarning) => texts[w.code] ?? w.message ?? w.code

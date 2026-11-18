@@ -1,5 +1,7 @@
+import {BRAND} from '#/lib/brand'
+
 /** App URL schemes; `bluesky://` still arrives from older native modules. */
-const APP_SCHEMES = ['krao://', 'bluesky://']
+const APP_SCHEMES = [`${BRAND.app.scheme}://`, 'bluesky://']
 
 export function parseLinkingUrl(url: string): URL {
   /*

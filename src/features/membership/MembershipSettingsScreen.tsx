@@ -4,6 +4,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {
   type CommonNavigatorParams,
   type NavigationProp,
@@ -96,8 +97,8 @@ export function MembershipSettingsScreen({}: Props) {
             <Text style={[a.text_md, a.leading_snug]}>
               <Trans>
                 Offer paid memberships to your followers. Members pay you in
-                USDC on Base, straight from their wallet to yours. Krao never
-                holds the money and takes no fee. A membership lasts{' '}
+                USDC on Base, straight from their wallet to yours. {BRAND_NAME}{' '}
+                never holds the money and takes no fee. A membership lasts{' '}
                 {PERIOD_DAYS} days and does not renew by itself yet: members
                 renew when they choose to.
               </Trans>

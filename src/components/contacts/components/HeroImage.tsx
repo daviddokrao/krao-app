@@ -3,6 +3,7 @@ import {Image} from 'expo-image'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme} from '#/alf'
 
 export function ContactsHeroImage() {
@@ -25,7 +26,7 @@ export function ContactsHeroImage() {
         accessibilityIgnoresInvertColors
         style={[a.w_full, {aspectRatio: 1278 / 661}]}
         alt={_(
-          msg`An illustration depicting user avatars flowing from a contact book into the Krao app`,
+          msg`An illustration depicting user avatars flowing from a contact book into the ${BRAND_NAME} app`,
         )}
         useAppleWebpCodec
       />

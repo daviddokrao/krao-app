@@ -2,6 +2,7 @@ import {memo, useCallback, useMemo, useState} from 'react'
 import {ActivityIndicator, View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {urls} from '#/lib/constants'
 import {usePostViewTracking} from '#/lib/hooks/usePostViewTracking'
 import {useCallOnce} from '#/lib/once'
@@ -409,7 +410,7 @@ let SearchScreenPostResults = ({
             <Text> </Text>
             <Text style={t.atoms.text_contrast_medium}>
               to search for news, sports, politics, and everything else
-              happening on Krao.
+              happening on {BRAND_NAME}.
             </Text>
           </Trans>
         </Text>

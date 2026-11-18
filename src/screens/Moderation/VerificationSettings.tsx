@@ -3,6 +3,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {urls} from '#/lib/constants'
 import {
   usePreferencesQuery,
@@ -41,7 +42,8 @@ export function Screen() {
           <SettingsList.Item>
             <Admonition type="tip" style={[a.flex_1]}>
               <Trans>
-                Verifications on Krao work differently than on other platforms.{' '}
+                Verifications on {BRAND_NAME} work differently than on other
+                platforms.{' '}
                 <InlineLinkText
                   overridePresentation
                   to={urls.website.blog.initialVerificationAnnouncement}

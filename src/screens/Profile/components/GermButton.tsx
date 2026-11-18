@@ -8,6 +8,7 @@ import {Trans} from '@lingui/react/macro'
 import {useMutation, useQueryClient} from '@tanstack/react-query'
 
 import {until} from '#/lib/async/until'
+import {BRAND_NAME} from '#/lib/brand'
 import {isNetworkError} from '#/lib/strings/errors'
 import {RQKEY} from '#/state/queries/profile'
 import {useAppviewClient, usePdsClient, useSession} from '#/state/session'
@@ -249,8 +250,8 @@ function GermSelfButton({did}: {did: string}) {
             <Trans>
               This button lets others open the Germ DM app to send you a
               message. You can manage its visibility from the Germ DM app, or
-              you can disconnect your Krao account from Germ DM altogether by
-              clicking the button below.
+              you can disconnect your {BRAND_NAME} account from Germ DM
+              altogether by clicking the button below.
             </Trans>
           </Text>
           <View style={[a.mt_2xl, a.gap_md]}>

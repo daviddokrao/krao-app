@@ -26,9 +26,11 @@ const onGeolocationServiceResponseUpdate = (
 }
 
 async function fetchGeolocationServiceData(
-  url: string,
+  url: string | undefined,
 ): Promise<Geolocation | undefined> {
   if (debug.enabled) return debug.resolve(debug.geolocation)
+  // No geolocation worker configured: the fallback (no country) applies
+  if (!url) return FALLBACK_GEOLOCATION_SERVICE_RESPONSE
   const res = await fetch(url)
   if (!res.ok) {
     throw new Error(`fetchGeolocationServiceData failed ${res.status}`)

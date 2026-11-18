@@ -8,7 +8,7 @@ import {applyTheme, initSystemColorMode} from '#/color-mode'
 import {Container} from '#/components/container'
 import {Link} from '#/components/link'
 import {Post} from '#/components/post'
-import {APPVIEW_URL, WEB_URL} from '#/krao'
+import {APPVIEW_URL, BRAND_NAME, WEB_URL} from '#/krao'
 import {getRkey} from '#/util/rkey'
 
 import logo from '../../assets/logo.svg'
@@ -84,7 +84,7 @@ function PwiOptOut({post}: {post: app.bsky.feed.defs.PostView}) {
         <Link
           href={href}
           className="max-w-80 rounded-lg bg-brand text-white text-center py-1 px-4 w-full mx-auto">
-          View on Krao
+          View on {BRAND_NAME}
         </Link>
       </div>
     </Container>

@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals'
 
+import {BRAND} from '#/lib/brand'
 import {parsePostRef} from '../moderation/postRef'
 
 describe('parsePostRef', () => {
@@ -15,10 +16,10 @@ describe('parsePostRef', () => {
 
   it('reads post links with a handle or a DID', () => {
     expect(
-      parsePostRef('https://krao.net/profile/ana.test/post/3kabc'),
+      parsePostRef(`https://${BRAND.domain}/profile/ana.test/post/3kabc`),
     ).toEqual({name: 'ana.test', rkey: '3kabc'})
     expect(
-      parsePostRef(' https://krao.net/profile/did:plc:abc/post/3kabc/ '),
+      parsePostRef(` https://${BRAND.domain}/profile/did:plc:abc/post/3kabc/ `),
     ).toEqual({uri: 'at://did:plc:abc/app.bsky.feed.post/3kabc'})
   })
 
@@ -26,7 +27,7 @@ describe('parsePostRef', () => {
     for (const bad of [
       '',
       'hello',
-      'https://krao.net/profile/ana.test',
+      `https://${BRAND.domain}/profile/ana.test`,
       'at://did:plc:abc/app.bsky.feed.like/3kabc',
       'at://did:plc:abc',
     ]) {

@@ -16,6 +16,7 @@ import {SaveFormat} from 'expo-image-manipulator'
 import * as MediaLibrary from 'expo-media-library/legacy'
 import * as Sharing from 'expo-sharing'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {logger} from '#/logger'
 import {IS_ANDROID, IS_IOS} from '#/env'
 import {renderImage} from './image-manipulator'
@@ -100,7 +101,7 @@ export async function shareImageModal({uri}: {uri: string}) {
   }
 }
 
-const ALBUM_NAME = 'Krao'
+const ALBUM_NAME = BRAND_NAME
 
 /**
  * Saves an image to the user's device. Uses the CDN's `download` preset

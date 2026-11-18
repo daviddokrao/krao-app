@@ -18,18 +18,15 @@ import {scheduleOnRN} from 'react-native-worklets'
 import {Image} from 'expo-image'
 import * as SplashScreen from 'expo-splash-screen'
 
+import {BRAND_ASSETS} from '#/lib/brandAssets'
 import {KRAO_BRAND, KRAO_STAR} from '#/view/icons/kraoMark'
 import {KraoStarShape} from '#/view/icons/KraoStarShape'
 import {Logotype} from '#/view/icons/Logotype'
 import {atoms as a} from '#/alf'
-// @ts-expect-error
-import splashImagePointer from '../assets/splash/splash.png'
-// @ts-expect-error
-import darkSplashImagePointer from '../assets/splash/splash-dark.png'
 
-const splashImageUri = RNImage.resolveAssetSource(splashImagePointer)!.uri
+const splashImageUri = RNImage.resolveAssetSource(BRAND_ASSETS.splash)!.uri
 const darkSplashImageUri = RNImage.resolveAssetSource(
-  darkSplashImagePointer,
+  BRAND_ASSETS.splashDark,
 )!.uri
 
 export const Logo = forwardRef(function LogoImpl(props: SvgProps, ref) {

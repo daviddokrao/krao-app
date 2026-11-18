@@ -2,6 +2,7 @@ import {View} from 'react-native'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme} from '#/alf'
 
 export type ValuePropositionPagerProps = {
@@ -24,7 +25,7 @@ export function useValuePropText(step: 0 | 1 | 2) {
         msg`No more doomscrolling junk-filled algorithms. Find feeds that work for you, not against you.`,
       ),
       alt: _(
-        msg`A collection of popular feeds you can find on Krao, including News, Booksky, Game Dev, Blacksky, and Fountain Pens`,
+        msg`A collection of popular feeds you can find on ${BRAND_NAME}, including News, Booksky, Game Dev, Blacksky, and Fountain Pens`,
       ),
     },
     {
@@ -39,10 +40,10 @@ export function useValuePropText(step: 0 | 1 | 2) {
     {
       title: _(msg`Forget the noise`),
       description: _(
-        msg`No ads, no invasive tracking, no engagement traps. Krao respects your time and attention.`,
+        msg`No ads, no invasive tracking, no engagement traps. ${BRAND_NAME} respects your time and attention.`,
       ),
       alt: _(
-        msg`An illustration of several Krao posts alongside repost, like, and comment icons`,
+        msg`An illustration of several ${BRAND_NAME} posts alongside repost, like, and comment icons`,
       ),
     },
   ][step]

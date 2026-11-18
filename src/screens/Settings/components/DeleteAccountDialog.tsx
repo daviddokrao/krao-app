@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {webLinks} from '#/lib/constants'
 import {useCleanError} from '#/lib/hooks/useCleanError'
 import {sanitizeHandle} from '#/lib/strings/handles'
@@ -223,8 +224,8 @@ function DeleteAccountDialogInner({
                 temporarily deactivate
               </SimpleInlineLinkText>{' '}
               your account instead. Your profile, posts, feeds, and lists will
-              no longer be visible to other Krao users. You can reactivate your
-              account at any time by logging in.
+              no longer be visible to other {BRAND_NAME} users. You can
+              reactivate your account at any time by logging in.
             </Trans>
           </Admonition>
         </>
@@ -335,7 +336,7 @@ function DeleteAccountDialogInner({
             </Prompt.TitleText>
             <Prompt.DescriptionText>
               <Trans>
-                This will irreversibly delete your Krao account{' '}
+                This will irreversibly delete your {BRAND_NAME} account{' '}
                 <Span style={[a.font_semi_bold, t.atoms.text]}>
                   {currentHandle}
                 </Span>{' '}

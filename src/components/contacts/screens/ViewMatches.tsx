@@ -10,6 +10,7 @@ import {Plural, Trans} from '@lingui/react/macro'
 import {useMutation, useQueryClient} from '@tanstack/react-query'
 
 import {wait} from '#/lib/async/wait'
+import {BRAND_NAME, webUrl} from '#/lib/brand'
 import {cleanError, isNetworkError} from '#/lib/strings/errors'
 import {logger} from '#/logger'
 import {
@@ -321,8 +322,8 @@ export function ViewMatches({
             largeTitle
             subtitleText={
               <Trans>
-                Krao is more fun with friends. Do you want to invite some of
-                yours?{' '}
+                {BRAND_NAME} is more fun with friends. Do you want to invite
+                some of yours?{' '}
                 <InviteInfo
                   iconStyle={t.atoms.text_contrast_medium}
                   iconOffset={2}
@@ -572,7 +573,7 @@ function ContactItem({
         </Text>
         {phoneNumber && currentAccount && (
           <Button
-            label={_(msg`Invite ${name} to join Krao`)}
+            label={_(msg`Invite ${name} to join ${BRAND_NAME}`)}
             color="secondary"
             size="small"
             onPress={async () => {
@@ -583,7 +584,7 @@ function ContactItem({
                 await SMS.sendSMSAsync(
                   [phoneNumber],
                   _(
-                    msg`I'm on Krao as ${currentAccount.handle} - come find me! https://krao.net/download`,
+                    msg`I'm on ${BRAND_NAME} as ${currentAccount.handle} - come find me! ${webUrl('/download')}`,
                   ),
                 )
               } catch (err) {

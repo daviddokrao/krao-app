@@ -3,6 +3,7 @@ import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type NavigationProp} from '#/lib/routes/types'
 import {useSession} from '#/state/session'
 import {atoms as a, useTheme, web} from '#/alf'
@@ -177,8 +178,8 @@ function TipDialogInner({
         </Text>
         <Text style={[a.text_md, t.atoms.text_contrast_medium]}>
           <Trans>
-            Sent on Base straight from your wallet to theirs. Krao never holds
-            your funds.
+            Sent on Base straight from your wallet to theirs. {BRAND_NAME} never
+            holds your funds.
           </Trans>
         </Text>
       </View>
@@ -195,8 +196,8 @@ function TipDialogInner({
       ) : !canConnect ? (
         <Admonition type="info">
           <Trans>
-            Sending tips from the mobile app is coming soon. Use Krao on the web
-            for now.
+            Sending tips from the mobile app is coming soon. Use {BRAND_NAME} on
+            the web for now.
           </Trans>
         </Admonition>
       ) : isMyProfileError ? (
@@ -332,9 +333,9 @@ function TipDialogInner({
           {addressSuspect && (
             <Admonition type="warning">
               <Trans>
-                This address does not match the wallet Krao has verified for @
-                {target.handle}, or another verified wallet looks very similar
-                to it. Do not send a tip unless you are sure.
+                This address does not match the wallet {BRAND_NAME} has verified
+                for @{target.handle}, or another verified wallet looks very
+                similar to it. Do not send a tip unless you are sure.
               </Trans>
             </Admonition>
           )}

@@ -1,5 +1,6 @@
 import {AtUri} from '@atproto/syntax'
 
+import {webUrl} from '#/lib/brand'
 import {isInvalidHandle} from '#/lib/strings/handles'
 import {type app} from '#/lexicons'
 
@@ -51,9 +52,9 @@ export function makeStarterPackLink(
   rkey?: string,
 ) {
   if (typeof starterPackOrName === 'string') {
-    return `https://krao.net/start/${starterPackOrName}/${rkey}`
+    return webUrl(`/start/${starterPackOrName}/${rkey}`)
   } else {
     const uriRkey = new AtUri(starterPackOrName.uri).rkey
-    return `https://krao.net/start/${starterPackOrName.creator.handle}/${uriRkey}`
+    return webUrl(`/start/${starterPackOrName.creator.handle}/${uriRkey}`)
   }
 }

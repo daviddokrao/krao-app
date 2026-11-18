@@ -2,6 +2,7 @@ import {useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND} from '#/lib/brand'
 import {atoms as a, useTheme} from '#/alf'
 import * as Admonition from '#/components/Admonition'
 import {Button, ButtonText} from '#/components/Button'
@@ -150,7 +151,7 @@ function CreateCodeForm() {
         label={l`Referrer credited (handle, optional)`}
         value={owner}
         onChange={setOwner}
-        placeholder="partner.krao.net"
+        placeholder={`partner.${BRAND.domain}`}
       />
       <Field
         label={l`Campaign id (optional, for campaign rules)`}

@@ -4,6 +4,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import * as persisted from '#/state/persisted'
 import {useSession} from '#/state/session'
@@ -142,10 +143,8 @@ function DialogInner({
           <SegmentedControl.Item
             testID="bskyServiceSelectBtn"
             value={DEFAULT_SERVICE}
-            label={_(msg`Krao`)}>
-            <SegmentedControl.ItemText>
-              {_(msg`Krao`)}
-            </SegmentedControl.ItemText>
+            label={BRAND_NAME}>
+            <SegmentedControl.ItemText>{BRAND_NAME}</SegmentedControl.ItemText>
           </SegmentedControl.Item>
           <SegmentedControl.Item
             testID="customSelectBtn"
@@ -161,9 +160,9 @@ function DialogInner({
           <View role="tabpanel">
             <Admonition type="tip">
               <Trans>
-                Krao is an open network where you can choose your own provider.
-                If you're new here, we recommend sticking with the default Krao
-                option.
+                {BRAND_NAME} is an open network where you can choose your own
+                provider. If you're new here, we recommend sticking with the
+                default {BRAND_NAME} option.
               </Trans>
             </Admonition>
           </View>
@@ -213,8 +212,9 @@ function DialogInner({
               </Trans>
             ) : (
               <Trans>
-                Krao is an open network where you can choose your hosting
-                provider. If you're a developer, you can host your own server.
+                {BRAND_NAME} is an open network where you can choose your
+                hosting provider. If you're a developer, you can host your own
+                server.
               </Trans>
             )}{' '}
             <InlineLinkText

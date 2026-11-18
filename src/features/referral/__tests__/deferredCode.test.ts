@@ -1,3 +1,4 @@
+import {BRAND} from '#/lib/brand'
 import {
   isReferralCodeShape,
   parseClipboardCode,
@@ -33,9 +34,11 @@ describe('parseClipboardCode', () => {
     expect(parseClipboardCode('  K7K7K7K7\n')).toBe('K7K7K7K7')
   })
   it('accepts a join link', () => {
-    expect(parseClipboardCode('https://krao.net/join/abc123')).toBe('ABC123')
-    expect(parseClipboardCode('krao.net/join/abc123/')).toBe('ABC123')
-    expect(parseClipboardCode('https://krao.net/join/abc123?x=1')).toBe(
+    expect(parseClipboardCode(`https://${BRAND.domain}/join/abc123`)).toBe(
+      'ABC123',
+    )
+    expect(parseClipboardCode(`${BRAND.domain}/join/abc123/`)).toBe('ABC123')
+    expect(parseClipboardCode(`https://${BRAND.domain}/join/abc123?x=1`)).toBe(
       'ABC123',
     )
   })

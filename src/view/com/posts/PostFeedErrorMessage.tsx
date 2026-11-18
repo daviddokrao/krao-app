@@ -6,6 +6,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {usePalette} from '#/lib/hooks/usePalette'
 import {type NavigationProp} from '#/lib/routes/types'
 import {cleanError} from '#/lib/strings/errors'
@@ -117,7 +118,7 @@ function FeedgenErrorMessage({
           msgLingui`Hmm, the feed server appears to be offline. Please let the feed owner know about this issue.`,
         ),
         [KnownError.FeedSignedInOnly]: _l(
-          msgLingui`This content is not viewable without a Krao account.`,
+          msgLingui`This content is not viewable without a ${BRAND_NAME} account.`,
         ),
         [KnownError.FeedgenUnknown]: _l(
           msgLingui`Hmm, some kind of issue occurred when contacting the feed server. Please let the feed owner know about this issue.`,

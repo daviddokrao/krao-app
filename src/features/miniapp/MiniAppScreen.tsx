@@ -4,6 +4,7 @@ import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {
   type CommonNavigatorParams,
   type NavigationProp,
@@ -78,8 +79,8 @@ export function MiniAppScreen({route}: Props) {
             titleText={<Trans>Mini App not found</Trans>}
             bodyText={
               <Trans>
-                This Mini App does not exist any more, or Krao could not be
-                reached.
+                This Mini App does not exist any more, or {BRAND_NAME} could not
+                be reached.
               </Trans>
             }
             onRetry={() => void query.refetch()}
@@ -103,11 +104,11 @@ function AppGate({app}: {app: MiniAppView}) {
         <PlainHeader title={app.name} />
         <Message
           testID="miniAppNotApproved"
-          titleText={<Trans>Mini App not approved by Krao</Trans>}
+          titleText={<Trans>Mini App not approved by {BRAND_NAME}</Trans>}
           bodyText={
             <Trans>
-              {status[app.status]}. Krao only opens Mini Apps it has reviewed,
-              and a changed Mini App has to be reviewed again.
+              {status[app.status]}. {BRAND_NAME} only opens Mini Apps it has
+              reviewed, and a changed Mini App has to be reviewed again.
             </Trans>
           }
         />
@@ -123,7 +124,8 @@ function AppGate({app}: {app: MiniAppView}) {
           titleText={<Trans>This Mini App can’t be opened</Trans>}
           bodyText={
             <Trans>
-              Its address is not one Krao can run safely. Nothing was loaded.
+              Its address is not one {BRAND_NAME} can run safely. Nothing was
+              loaded.
             </Trans>
           }
         />
@@ -403,9 +405,9 @@ function PermissionPrompt({
         </View>
         <Admonition type="info">
           <Trans>
-            Krao has reviewed this Mini App, but it is made by someone else.
-            Your funds stay in your wallet: every signature and payment is shown
-            to you first.
+            {BRAND_NAME} has reviewed this Mini App, but it is made by someone
+            else. Your funds stay in your wallet: every signature and payment is
+            shown to you first.
           </Trans>
         </Admonition>
         <View style={[a.gap_sm]}>

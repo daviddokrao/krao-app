@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals'
 
+import {BRAND} from '#/lib/brand'
 import {
   isUserRejection,
   needsWalletApproval,
@@ -26,7 +27,7 @@ describe('walletPairingLinks', () => {
 
 describe('wallet redirect', () => {
   it('is an inert intent link the app scheme ignores', () => {
-    expect(WALLET_REDIRECT_NATIVE).toBe('krao://intent/wallet')
+    expect(WALLET_REDIRECT_NATIVE).toBe(`${BRAND.app.scheme}://intent/wallet`)
   })
 })
 
@@ -68,9 +69,11 @@ describe('walletOpenLink', () => {
 
   it('never opens our own deep links or dialer/messaging handlers', () => {
     expect(
-      walletOpenLink({native: 'krao://intent/compose?text=hi'}),
+      walletOpenLink({native: `${BRAND.app.scheme}://intent/compose?text=hi`}),
     ).toBeUndefined()
-    expect(walletOpenLink({native: 'KRAO://profile/x'})).toBeUndefined()
+    expect(
+      walletOpenLink({native: `${BRAND.app.scheme.toUpperCase()}://profile/x`}),
+    ).toBeUndefined()
     expect(walletOpenLink({native: 'tel://123'})).toBeUndefined()
     expect(walletOpenLink({native: 'sms://123'})).toBeUndefined()
     expect(

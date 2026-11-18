@@ -5,6 +5,7 @@ import QRCode from 'react-native-qrcode-styled'
 import {type ViewShotRef} from 'react-native-view-shot'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND_ASSETS} from '#/lib/brandAssets'
 import {Logo} from '#/view/icons/Logo'
 import {Logotype} from '#/view/icons/Logotype'
 import {atoms as a, useTheme} from '#/alf'
@@ -153,7 +154,7 @@ export function QrCodeInner({link}: {link: string}) {
         }}
         innerEyesOptions={{borderRadius: 3}}
         logo={{
-          href: require('../../../assets/logo.png'),
+          href: BRAND_ASSETS.qrLogo,
           ...(IS_WEB && {
             onChange: onLogoAreaChange,
             padding: 28,

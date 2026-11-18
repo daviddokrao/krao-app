@@ -3,6 +3,7 @@ import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {webLinks} from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {useNotificationDeclarationQuery} from '#/state/queries/activity-subscriptions'
@@ -119,17 +120,21 @@ export function PrivacyAndSecuritySettingsScreen({}: Props) {
                 <Admonition.Content>
                   <Admonition.Text>
                     <Trans>
-                      Note: Krao is part of the Atmosphere, an open public
-                      network. These settings ask other apps and websites to
-                      limit your visibility, but they can choose not to. Your
+                      Note: {BRAND_NAME} is part of the Atmosphere, an open
+                      public network. These settings ask other apps and websites
+                      to limit your visibility, but they can choose not to. Your
                       public content may still appear elsewhere.
                     </Trans>
                   </Admonition.Text>
                   <Admonition.Text>
                     <InlineLinkText
-                      label={_(msg`Learn more about what is public on Krao.`)}
+                      label={_(
+                        msg`Learn more about what is public on ${BRAND_NAME}.`,
+                      )}
                       to={webLinks.privacy}>
-                      <Trans>Learn more about what is public on Krao.</Trans>
+                      <Trans>
+                        Learn more about what is public on {BRAND_NAME}.
+                      </Trans>
                     </InlineLinkText>
                   </Admonition.Text>
                 </Admonition.Content>

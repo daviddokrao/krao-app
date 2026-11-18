@@ -1,5 +1,6 @@
 import {useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type MiniAppStatus, type Permission} from '../logic'
 
 /** What each permission lets a Mini App do, in the words of the prompt */
@@ -31,9 +32,9 @@ export function usePermissionText(): Record<
 export function useStatusText(): Record<MiniAppStatus, string> {
   const {t: l} = useLingui()
   return {
-    approved: l`Approved by Krao`,
-    pending: l`Waiting for Krao’s review`,
-    revoked: l`Removed by Krao`,
+    approved: l`Approved by ${BRAND_NAME}`,
+    pending: l`Waiting for ${BRAND_NAME}’s review`,
+    revoked: l`Removed by ${BRAND_NAME}`,
     invalid: l`Not valid`,
   }
 }

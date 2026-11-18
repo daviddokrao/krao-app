@@ -1,6 +1,7 @@
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {useProfileQuery} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
@@ -197,11 +198,11 @@ export function AccountSettingsScreen({}: Props) {
             <SettingsList.Chevron />
           </SettingsList.PressableItem>
           <SettingsList.PressableItem
-            label={l`Download my Krao data`}
+            label={l`Download my ${BRAND_NAME} data`}
             onPress={() => exportKraoControl.open()}>
             <SettingsList.ItemIcon icon={DownloadIcon} />
             <SettingsList.ItemText>
-              <Trans>Download my Krao data</Trans>
+              <Trans>Download my {BRAND_NAME} data</Trans>
             </SettingsList.ItemText>
             <SettingsList.Chevron />
           </SettingsList.PressableItem>

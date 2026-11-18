@@ -2,6 +2,7 @@ import {useMemo} from 'react'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {useAgeAssurance} from '#/ageAssurance'
 
 export function useAgeAssuranceCopy() {
@@ -14,10 +15,10 @@ export function useAgeAssuranceCopy() {
     return {
       notice: hasCompletedFlow
         ? _(
-            msg`You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on Krao must remain restricted until you're able to verify you're an adult.`,
+            msg`You have completed the Age Assurance process, but based on the results, we cannot be sure that you are 18 years of age or older. Due to laws in your region, certain features on ${BRAND_NAME} must remain restricted until you're able to verify you're an adult.`,
           )
         : _(
-            msg`Due to laws in your region, certain features on Krao are currently restricted until you're able to verify you're an adult.`,
+            msg`Due to laws in your region, certain features on ${BRAND_NAME} are currently restricted until you're able to verify you're an adult.`,
           ),
       banner: _(
         msg`The laws in your region require you to verify you're an adult to access certain features. Tap to learn more.`,

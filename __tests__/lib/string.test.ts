@@ -1,6 +1,7 @@
 import {RichText} from '@bsky/sdk/richtext'
 import {i18n} from '@lingui/core'
 
+import {BRAND, brandUrl} from '#/lib/brand'
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import {parseEmbedPlayerFromUrl} from '#/lib/strings/embed-player'
 import {
@@ -239,12 +240,12 @@ describe('toNiceDomain', () => {
     DEFAULT_SERVICE,
     '#123123123',
   ]
-  // Krao's own PDS reads as "Krao"; other hosts, Bluesky's included, by host
+  // Krao's own PDS reads as the brand name; other hosts, Bluesky's included, by host
   const outputs = [
     'example.com',
     'bsky.app',
     'bsky.social',
-    'Krao',
+    BRAND.name,
     '#123123123',
   ]
 
@@ -284,8 +285,8 @@ describe('toShareUrl', () => {
   const inputs = ['https://bsky.app', '/3jk7x4irgv52r', 'item/test/123']
   const outputs = [
     'https://bsky.app',
-    'https://krao.net/3jk7x4irgv52r',
-    'https://krao.net/item/test/123',
+    `https://${BRAND.domain}/3jk7x4irgv52r`,
+    `https://${BRAND.domain}/item/test/123`,
   ]
 
   it('appends https, when not present', () => {
@@ -474,70 +475,68 @@ describe('parseEmbedPlayerFromUrl', () => {
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=1',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=1`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri:
-        'https://krao.net/iframe/youtube.html?videoId=videoId&start=3723',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=3723`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=1',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=1`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri:
-        'https://krao.net/iframe/youtube.html?videoId=videoId&start=90',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=90`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
     {
       type: 'youtube_short',
       source: 'youtubeShorts',
       hideDetails: true,
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
     {
       type: 'youtube_video',
       source: 'youtube',
-      playerUri: 'https://krao.net/iframe/youtube.html?videoId=videoId&start=0',
+      playerUri: `https://${BRAND.domain}/iframe/youtube.html?videoId=videoId&start=0`,
     },
 
     undefined,
@@ -788,7 +787,7 @@ describe('parseEmbedPlayerFromUrl', () => {
       source: 'tenor',
       isGif: true,
       hideDetails: true,
-      playerUri: 'https://indexer.krao.net/gifs/t/someID_AAAAM/someName.gif',
+      playerUri: `${brandUrl('indexer')}/gifs/t/someID_AAAAM/someName.gif`,
       dimensions: {
         width: 100,
         height: 100,
@@ -881,7 +880,7 @@ describe('parseEmbedPlayerFromUrl', () => {
       source: 'klipy',
       isGif: true,
       hideDetails: true,
-      playerUri: 'https://indexer.krao.net/gifs/k/ii/abc123/73/ac/someFile.gif',
+      playerUri: `${brandUrl('indexer')}/gifs/k/ii/abc123/73/ac/someFile.gif`,
       dimensions: {
         width: 300,
         height: 200,
@@ -894,7 +893,7 @@ describe('parseEmbedPlayerFromUrl', () => {
       source: 'klipy',
       isGif: true,
       hideDetails: true,
-      playerUri: 'https://indexer.krao.net/gifs/k/ii/abc123/73/ac/someFile.gif',
+      playerUri: `${brandUrl('indexer')}/gifs/k/ii/abc123/73/ac/someFile.gif`,
       dimensions: {
         width: 300,
         height: 200,
@@ -1102,7 +1101,7 @@ describe('klipyUrlToGifRelayUrl', () => {
 
   it.each(inputs)('returns a Krao GIF relay url for input url', input => {
     const out = klipyUrlToGifRelayUrl(input)
-    expect(out.startsWith('https://indexer.krao.net/gifs/k/')).toEqual(true)
+    expect(out.startsWith(`${brandUrl('indexer')}/gifs/k/`)).toEqual(true)
   })
 
   it('preserves the path and query params when rewriting', () => {
@@ -1110,7 +1109,7 @@ describe('klipyUrlToGifRelayUrl', () => {
       'https://static.klipy.com/ii/abc123/73/ac/someFile.gif?hh=200&ww=300',
     )
     expect(out).toEqual(
-      'https://indexer.krao.net/gifs/k/ii/abc123/73/ac/someFile.gif?hh=200&ww=300',
+      `${brandUrl('indexer')}/gifs/k/ii/abc123/73/ac/someFile.gif?hh=200&ww=300`,
     )
   })
 

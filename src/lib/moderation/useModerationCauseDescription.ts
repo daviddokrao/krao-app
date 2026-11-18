@@ -3,6 +3,7 @@ import {type ModerationCause} from '@bsky/sdk/moderation'
 import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 
+import {BRAND_NAME, brandHost} from '#/lib/brand'
 import {KRAO_LABELER_DID} from '#/lib/constants'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useLabelDefinitions} from '#/state/preferences'
@@ -136,8 +137,8 @@ export function useModerationCauseDescription(
       let sourceDisplayName = labeler?.creator.displayName
       if (!source) {
         if (cause.label.src === KRAO_LABELER_DID) {
-          source = 'moderation.krao.net'
-          sourceDisplayName = 'Krao Moderation Service'
+          source = brandHost('mod')
+          sourceDisplayName = `${BRAND_NAME} Moderation Service`
         } else {
           source = _(msg`an unknown labeler`)
         }

@@ -3,6 +3,7 @@ import {msg} from '@lingui/core/macro'
 import {useLingui} from '@lingui/react'
 import {Trans} from '@lingui/react/macro'
 
+import {BRAND, webUrl} from '#/lib/brand'
 import {usePalette} from '#/lib/hooks/usePalette'
 import {
   type CommonNavigatorParams,
@@ -29,8 +30,8 @@ export const TermsOfServiceScreen = (_props: Props) => {
             <Trans>The Terms of Service have been moved to</Trans>{' '}
             <TextLink
               style={pal.link}
-              href="https://krao.net/terms"
-              text="krao.net/terms"
+              href={webUrl('/terms')}
+              text={`${BRAND.domain}/terms`}
             />
           </Text>
         </View>

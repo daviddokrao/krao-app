@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {logger} from '#/logger'
 import {atoms as a, useTheme} from '#/alf'
 import * as Toggle from '#/components/forms/Toggle'
@@ -56,8 +57,8 @@ export function HumanBadgeToggle() {
           </Trans>
         ) : (
           <Trans>
-            Shows on your profile that a real person is behind this account.
-            Krao does not say how you were verified.
+            Shows on your profile that a real person is behind this account.{' '}
+            {BRAND_NAME} does not say how you were verified.
           </Trans>
         )}
       </Text>

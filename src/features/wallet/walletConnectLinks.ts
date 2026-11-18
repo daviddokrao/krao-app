@@ -1,3 +1,5 @@
+import {BRAND} from '#/lib/brand'
+
 /*
  * Pure helpers for connecting wallet apps through WalletConnect on native.
  * Kept free of the WalletConnect packages so they run (and test) anywhere.
@@ -8,7 +10,7 @@
  * intent: the link handler ignores it, so returning from the wallet does not
  * navigate away from the dialog or screen that asked for the signature.
  */
-export const WALLET_REDIRECT_NATIVE = 'krao://intent/wallet'
+export const WALLET_REDIRECT_NATIVE = `${BRAND.app.scheme}://intent/wallet`
 
 /**
  * Wallet apps to try, in order, for a WalletConnect pairing URI. Each is a
@@ -51,7 +53,7 @@ const BLOCKED_SCHEMES = new Set([
   'about',
   'vbscript',
   // Our own scheme: a peer must not drive the app's own deep links
-  'krao',
+  BRAND.app.scheme,
   // System handlers that would dial, text or mail on the wallet's say-so
   'tel',
   'telprompt',

@@ -8,6 +8,7 @@ import {Trans} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
 import {useMutation} from '@tanstack/react-query'
 
+import {webUrl} from '#/lib/brand'
 import {STATUS_PAGE_URL} from '#/lib/constants'
 import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {purgeTemporaryImageFiles} from '#/state/gallery'
@@ -90,7 +91,7 @@ export function AboutSettingsScreen({}: Props) {
       <Layout.Content>
         <SettingsList.Container>
           <SettingsList.LinkItem
-            to="https://krao.net/terms"
+            to={webUrl('/terms')}
             label={_(msg`Terms of Service`)}>
             <SettingsList.ItemIcon icon={NewspaperIcon} />
             <SettingsList.ItemText>
@@ -98,7 +99,7 @@ export function AboutSettingsScreen({}: Props) {
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
           <SettingsList.LinkItem
-            to="https://krao.net/privacy"
+            to={webUrl('/privacy')}
             label={_(msg`Privacy Policy`)}>
             <SettingsList.ItemIcon icon={NewspaperIcon} />
             <SettingsList.ItemText>

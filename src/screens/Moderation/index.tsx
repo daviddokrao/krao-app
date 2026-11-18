@@ -4,6 +4,7 @@ import {LABELS} from '@bsky/sdk/moderation'
 import {plural} from '@lingui/core/macro'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {getLabelingServiceTitle, isAppLabeler} from '#/lib/moderation'
 import {
   type CommonNavigatorParams,
@@ -472,7 +473,7 @@ export function ModerationScreenInner({
                     <Trans>
                       Adult content can only be enabled via the Web at{' '}
                       <InlineLinkText
-                        label={l`The Krao web application`}
+                        label={l`The ${BRAND_NAME} web application`}
                         to=""
                         onPress={evt => {
                           evt.preventDefault()

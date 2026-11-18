@@ -1,6 +1,7 @@
 import {type TextInput, View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useProfileQuery} from '#/state/queries/profile'
 import {atoms as a, native, useTheme} from '#/alf'
@@ -40,7 +41,7 @@ export function ReferralCodeField({
         <TextField.Input
           testID="referralCodeInput"
           onChangeText={text => onChange(text.trim().toUpperCase())}
-          label={l`Ask a Krao member for their code`}
+          label={l`Ask a ${BRAND_NAME} member for their code`}
           value={value}
           autoCapitalize="characters"
           autoCorrect={false}
@@ -69,7 +70,8 @@ export function ReferralCodeField({
       ) : (
         <Text style={[a.text_sm, a.mt_xs, t.atoms.text_contrast_medium]}>
           <Trans>
-            Krao is invite-only for now: you need a code from a member to join.
+            {BRAND_NAME} is invite-only for now: you need a code from a member
+            to join.
           </Trans>
         </Text>
       )}

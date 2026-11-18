@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 
+import {BRAND_NAME} from '#/lib/brand'
 import {atoms as a, useTheme} from '#/alf'
 import {Link} from '#/components/Link'
 import {Text} from '#/components/Typography'
@@ -76,7 +77,7 @@ function MiniAppEmbedCard({uri}: {uri: string}) {
               a.font_semi_bold,
               {color: t.palette.negative_500},
             ]}>
-            <Trans>Mini App not approved by Krao</Trans>
+            <Trans>Mini App not approved by {BRAND_NAME}</Trans>
           </Text>
         )}
       </View>

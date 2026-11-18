@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals'
 
+import {BRAND} from '#/lib/brand'
 import {
   buildMiniAppEmbed,
   canRunApp,
@@ -90,15 +91,18 @@ describe('manifestOrigin', () => {
 
 describe('isSameOriginAsHost', () => {
   it('compares whole origins', () => {
-    expect(isSameOriginAsHost('https://krao.net', 'https://krao.net')).toBe(
-      true,
-    )
-    expect(isSameOriginAsHost('https://app.krao.net', 'https://krao.net')).toBe(
-      false,
-    )
-    expect(isSameOriginAsHost('http://krao.net', 'https://krao.net')).toBe(
-      false,
-    )
+    expect(
+      isSameOriginAsHost(`https://${BRAND.domain}`, `https://${BRAND.domain}`),
+    ).toBe(true)
+    expect(
+      isSameOriginAsHost(
+        `https://app.${BRAND.domain}`,
+        `https://${BRAND.domain}`,
+      ),
+    ).toBe(false)
+    expect(
+      isSameOriginAsHost(`http://${BRAND.domain}`, `https://${BRAND.domain}`),
+    ).toBe(false)
   })
 })
 
@@ -137,10 +141,12 @@ describe('Mini App uris and links', () => {
   it('reads pasted links', () => {
     expect(parseMiniAppLink('/miniapp/did:plc:dev123/3kabc')).toBe(URI)
     expect(
-      parseMiniAppLink('https://krao.net/miniapp/did:plc:dev123/3kabc'),
+      parseMiniAppLink(`https://${BRAND.domain}/miniapp/did:plc:dev123/3kabc`),
     ).toBe(URI)
     expect(parseMiniAppLink(` ${URI} `)).toBe(URI)
-    expect(parseMiniAppLink('https://krao.net/profile/x')).toBeUndefined()
+    expect(
+      parseMiniAppLink(`https://${BRAND.domain}/profile/x`),
+    ).toBeUndefined()
     expect(parseMiniAppLink('/miniapp/did:plc:dev123')).toBeUndefined()
     expect(parseMiniAppLink('')).toBeUndefined()
     expect(parseMiniAppLink('/miniapp/%E0%A4%A/x')).toBeUndefined()
@@ -179,12 +185,12 @@ describe('the post embed', () => {
 })
 
 describe('kraoMiniAppLinkUri', () => {
-  const hosts = ['https://krao.net', 'http://localhost:8100']
+  const hosts = [`https://${BRAND.domain}`, 'http://localhost:8100']
 
   it('reads a Mini App link on Krao’s own web app', () => {
     expect(
       kraoMiniAppLinkUri(
-        'https://krao.net/miniapp/did:plc:dev123/3kabc',
+        `https://${BRAND.domain}/miniapp/did:plc:dev123/3kabc`,
         hosts,
       ),
     ).toBe(URI)
@@ -205,7 +211,7 @@ describe('kraoMiniAppLinkUri', () => {
     ).toBeUndefined()
     expect(
       kraoMiniAppLinkUri(
-        'https://krao.net.evil.test/miniapp/did:plc:a/b',
+        `https://${BRAND.domain}.evil.test/miniapp/did:plc:a/b`,
         hosts,
       ),
     ).toBeUndefined()
@@ -213,7 +219,10 @@ describe('kraoMiniAppLinkUri', () => {
 
   it('ignores other Krao pages and text that is not a URL', () => {
     expect(
-      kraoMiniAppLinkUri('https://krao.net/profile/alice.krao.net', hosts),
+      kraoMiniAppLinkUri(
+        `https://${BRAND.domain}/profile/alice.${BRAND.domain}`,
+        hosts,
+      ),
     ).toBeUndefined()
     expect(kraoMiniAppLinkUri('not a url', hosts)).toBeUndefined()
   })
