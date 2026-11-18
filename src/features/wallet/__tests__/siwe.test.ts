@@ -77,7 +77,7 @@ describe('formatWalletLinkMessage', () => {
     const msg = formatWalletLinkMessage(args)
     expect(msg).toContain(`${BRAND.domain} wants you to sign in`)
     expect(msg).toContain(base.address)
-    expect(msg).toContain('Link this wallet to my Krao account.')
+    expect(msg).toContain(`Link this wallet to my ${BRAND.name} account.`)
     expect(msg).toContain('URI: did:plc:abc123')
     expect(msg).toContain('Chain ID: 8453')
   })

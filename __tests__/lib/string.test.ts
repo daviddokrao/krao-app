@@ -240,12 +240,12 @@ describe('toNiceDomain', () => {
     DEFAULT_SERVICE,
     '#123123123',
   ]
-  // Krao's own PDS reads as "Krao"; other hosts, Bluesky's included, by host
+  // Krao's own PDS reads as the brand name; other hosts, Bluesky's included, by host
   const outputs = [
     'example.com',
     'bsky.app',
     'bsky.social',
-    'Krao',
+    BRAND.name,
     '#123123123',
   ]
 

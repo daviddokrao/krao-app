@@ -43,7 +43,7 @@ describe('pending consent', () => {
   })
 
   it('belongs to the account being created, not to the device', () => {
-    setPendingConsent('Lan.Krao.net')
+    setPendingConsent(`Lan.${BRAND.domain.toUpperCase()}`)
     expect(getPendingConsent(`lan.${BRAND.domain}`)).toBeDefined()
     expect(getPendingConsent(`someone-else.${BRAND.domain}`)).toBeUndefined()
     expect(getPendingConsent(undefined)).toBeUndefined()

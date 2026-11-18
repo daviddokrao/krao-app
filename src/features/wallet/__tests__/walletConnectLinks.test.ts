@@ -71,7 +71,9 @@ describe('walletOpenLink', () => {
     expect(
       walletOpenLink({native: `${BRAND.app.scheme}://intent/compose?text=hi`}),
     ).toBeUndefined()
-    expect(walletOpenLink({native: 'KRAO://profile/x'})).toBeUndefined()
+    expect(
+      walletOpenLink({native: `${BRAND.app.scheme.toUpperCase()}://profile/x`}),
+    ).toBeUndefined()
     expect(walletOpenLink({native: 'tel://123'})).toBeUndefined()
     expect(walletOpenLink({native: 'sms://123'})).toBeUndefined()
     expect(

@@ -1,6 +1,7 @@
 import {beforeAll, describe, expect, it} from '@jest/globals'
 import {i18n} from '@lingui/core'
 
+import {BRAND} from '#/lib/brand'
 import {getJoinMessage} from './utils'
 
 beforeAll(() => {
@@ -14,22 +15,22 @@ describe('NewskieDialog getJoinMessage', () => {
     {
       isMe: true,
       joinedViaStarterPack: false,
-      expected: 'You joined Krao just now',
+      expected: `You joined ${BRAND.name} just now`,
     },
     {
       isMe: true,
       joinedViaStarterPack: true,
-      expected: 'You joined Krao using a Starter Pack just now',
+      expected: `You joined ${BRAND.name} using a Starter Pack just now`,
     },
     {
       isMe: false,
       joinedViaStarterPack: false,
-      expected: 'Alice joined Krao just now',
+      expected: `Alice joined ${BRAND.name} just now`,
     },
     {
       isMe: false,
       joinedViaStarterPack: true,
-      expected: 'Alice joined Krao using a Starter Pack just now',
+      expected: `Alice joined ${BRAND.name} using a Starter Pack just now`,
     },
   ])('$expected', ({isMe, joinedViaStarterPack, expected}) => {
     expect(
@@ -48,22 +49,22 @@ describe('NewskieDialog getJoinMessage', () => {
     {
       isMe: true,
       joinedViaStarterPack: false,
-      expected: 'You joined Krao 5 seconds ago',
+      expected: `You joined ${BRAND.name} 5 seconds ago`,
     },
     {
       isMe: true,
       joinedViaStarterPack: true,
-      expected: 'You joined Krao using a Starter Pack 5 seconds ago',
+      expected: `You joined ${BRAND.name} using a Starter Pack 5 seconds ago`,
     },
     {
       isMe: false,
       joinedViaStarterPack: false,
-      expected: 'Alice joined Krao 5 seconds ago',
+      expected: `Alice joined ${BRAND.name} 5 seconds ago`,
     },
     {
       isMe: false,
       joinedViaStarterPack: true,
-      expected: 'Alice joined Krao using a Starter Pack 5 seconds ago',
+      expected: `Alice joined ${BRAND.name} using a Starter Pack 5 seconds ago`,
     },
   ])('$expected', ({isMe, joinedViaStarterPack, expected}) => {
     expect(
@@ -88,6 +89,6 @@ describe('NewskieDialog getJoinMessage', () => {
         createdAt: new Date(now + 60_000).toISOString(),
         now,
       }),
-    ).toBe('You joined Krao just now')
+    ).toBe(`You joined ${BRAND.name} just now`)
   })
 })

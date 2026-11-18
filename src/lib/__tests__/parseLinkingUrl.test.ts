@@ -15,7 +15,7 @@ describe('parseLinkingUrl', () => {
 
   it(`should correctly parse ${BRAND.app.scheme}:// URLs`, () => {
     const urlp = parseLinkingUrl(`${BRAND.app.scheme}://intent/compose?text=gm`)
-    expect(urlp.protocol).toBe('krao:')
+    expect(urlp.protocol).toBe(`${BRAND.app.scheme}:`)
     expect(urlp.host).toBe('')
     expect(urlp.pathname).toBe('/intent/compose')
     expect(urlp.searchParams.get('text')).toBe('gm')
