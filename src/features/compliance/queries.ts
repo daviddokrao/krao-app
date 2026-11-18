@@ -14,6 +14,8 @@ export type PhoneStatus = {
   verified: boolean
   /** Whether codes can be sent (an SMS provider is set up) */
   available?: boolean
+  /** Whether posting and chat need a verified number; missing means they do */
+  required?: boolean
   verifiedAt?: string
   maskedPhone?: string
 }

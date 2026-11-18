@@ -193,7 +193,12 @@ function AfterSignup() {
   useEffect(() => {
     if (!signedUp.current || prompted.current || !status.data) return
     prompted.current = true
-    if (!status.data.verified && status.data.available !== false) {
+    // Not where posting and chat work without a number (eg a public demo)
+    if (
+      !status.data.verified &&
+      status.data.available !== false &&
+      status.data.required !== false
+    ) {
       openPhoneVerification('welcome')
     }
   }, [status.data])

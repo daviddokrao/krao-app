@@ -71,6 +71,15 @@ export function StepSuggestedStarterpacks() {
               </Trans>
             </Admonition>
           </View>
+        ) : !suggestedStarterPacks?.starterPacks.length ? (
+          <View style={[a.flex_1, a.pt_xl]}>
+            <Admonition type="info">
+              <Trans>
+                There are no starter packs yet. You can find more people to
+                follow later in Explore.
+              </Trans>
+            </Admonition>
+          </View>
         ) : (
           <View style={[a.flex_1]}>
             {suggestedStarterPacks?.starterPacks.map(
