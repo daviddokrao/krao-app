@@ -25,7 +25,8 @@ function getReferrerInfoSync(): ReferrerInfo | null {
   ) {
     try {
       const url = new URL(document.referrer)
-      if (url.hostname !== 'bsky.app') {
+      // Navigation within the app itself is not a referral
+      if (url.hostname !== window.location.hostname) {
         return {
           referrer: url.href,
           hostname: url.hostname,

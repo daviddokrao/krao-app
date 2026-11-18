@@ -1,6 +1,7 @@
 import {View} from 'react-native'
 // @ts-expect-error missing types
 import QRCode from 'react-native-qrcode-styled'
+import {useLingui} from '@lingui/react/macro'
 
 import {atoms as a, useTheme} from '#/alf'
 import {IS_WEB} from '#/env'
@@ -8,8 +9,14 @@ import {IS_WEB} from '#/env'
 /** The join link as a QR code, for inviting someone in person */
 export function ReferralQr({url}: {url: string}) {
   const t = useTheme()
+  const {t: l} = useLingui()
   return (
-    <View style={[a.align_center]}>
+    <View
+      style={[a.align_center]}
+      accessible
+      accessibilityRole="image"
+      accessibilityLabel={l`QR code for your invite link`}
+      accessibilityHint="">
       <QRCode
         data={url}
         style={[

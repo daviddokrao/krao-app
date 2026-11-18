@@ -1,4 +1,9 @@
-import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
@@ -101,32 +106,58 @@ export function useRewardsRolesQuery() {
 const adminKey = (name: string, args: Record<string, string> = {}) =>
   createQueryKey('rewards-admin', {name, ...args})
 
-export function useKycQueueQuery(status: KycStatus | 'all') {
+const PAGE_SIZE = 50
+
+/**
+ * A paginated admin list. `data` is every item loaded so far; more pages come
+ * with fetchNextPage while hasNextPage.
+ */
+function useAdminList<T>(
+  name: string,
+  method: string,
+  params: Record<string, string>,
+  pick: (page: Record<string, unknown>) => T[],
+) {
   const call = useAdminCall()
-  return useQuery({
+  return useInfiniteQuery({
     staleTime: STALE.SECONDS.FIFTEEN,
-    queryKey: adminKey('kyc', {status}),
-    queryFn: async () =>
-      (
-        await call<{records: KycRecord[]}>(`${ADMIN}.listKyc`, {
-          params: status === 'all' ? {} : {status},
+    queryKey: adminKey(name, params),
+    initialPageParam: undefined as string | undefined,
+    queryFn: async ({pageParam}) => {
+      // `pick` may filter rows out: keep reading until a page has some
+      let cursor = pageParam
+      for (;;) {
+        const page = await call<Record<string, unknown>>(`${ADMIN}.${method}`, {
+          params: {
+            ...params,
+            limit: String(PAGE_SIZE),
+            ...(cursor ? {cursor} : {}),
+          },
         })
-      ).records,
+        const items = pick(page)
+        cursor = page.cursor as string | undefined
+        if (items.length || !cursor) return {items, cursor}
+      }
+    },
+    getNextPageParam: page => page.cursor,
+    select: data => data.pages.flatMap(page => page.items),
   })
 }
 
+export function useKycQueueQuery(status: KycStatus | 'all') {
+  return useAdminList<KycRecord>(
+    'kyc',
+    'listKyc',
+    status === 'all' ? {} : {status},
+    page => page.records as KycRecord[],
+  )
+}
+
+/** Campaign and partner codes; personal codes are managed per account */
 export function useCodesQuery() {
-  const call = useAdminCall()
-  return useQuery({
-    staleTime: STALE.SECONDS.FIFTEEN,
-    queryKey: adminKey('codes'),
-    queryFn: async () =>
-      (
-        await call<{codes: CodeView[]}>(`${ADMIN}.listCodes`, {
-          params: {limit: '100'},
-        })
-      ).codes.filter(c => c.kind !== 'personal'),
-  })
+  return useAdminList<CodeView>('codes', 'listCodes', {}, page =>
+    (page.codes as CodeView[]).filter(c => c.kind !== 'personal'),
+  )
 }
 
 export function useRulesQuery() {
@@ -140,17 +171,12 @@ export function useRulesQuery() {
 }
 
 export function useAuditLogQuery() {
-  const call = useAdminCall()
-  return useQuery({
-    staleTime: STALE.SECONDS.FIFTEEN,
-    queryKey: adminKey('audit'),
-    queryFn: async () =>
-      (
-        await call<{entries: AuditEntry[]}>(`${ADMIN}.listAuditLog`, {
-          params: {limit: '100'},
-        })
-      ).entries,
-  })
+  return useAdminList<AuditEntry>(
+    'audit',
+    'listAuditLog',
+    {},
+    page => page.entries as AuditEntry[],
+  )
 }
 
 /** A procedure; refreshes every admin list once it succeeds */

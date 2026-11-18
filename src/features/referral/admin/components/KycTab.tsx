@@ -14,11 +14,19 @@ import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {type KycStatus, RewardsError} from '../../api'
 import {
+  type KycRecord,
   type ReasonCode,
   useKycQueueQuery,
   useReviewKycMutation,
 } from '../queries'
-import {AccountName, EmptyRow, useFormatDate, useResolveAccount} from './shared'
+import {
+  AccountName,
+  EmptyRow,
+  LoadMore,
+  useAccountLabel,
+  useFormatDate,
+  useResolveAccount,
+} from './shared'
 
 type Filter = 'pending' | 'retry' | 'rejected' | 'approved' | 'all'
 
@@ -26,9 +34,9 @@ type Filter = 'pending' | 'retry' | 'rejected' | 'approved' | 'all'
 export function KycTab() {
   const t = useTheme()
   const {t: l} = useLingui()
-  const formatDate = useFormatDate()
   const [filter, setFilter] = useState<Filter>('pending')
-  const {data, isLoading, isError} = useKycQueueQuery(filter)
+  const query = useKycQueueQuery(filter)
+  const {data, isLoading, isError} = query
   const control = Dialog.useDialogControl()
   const [reviewDid, setReviewDid] = useState('')
   const [lookup, setLookup] = useState('')
@@ -133,42 +141,68 @@ export function KycTab() {
       ) : (
         <View style={[a.border, a.rounded_md, t.atoms.border_contrast_low]}>
           {data.map((record, i) => (
-            <Pressable
+            <KycRow
               key={record.did}
-              accessibilityRole="button"
-              accessibilityLabel={l`Review this account`}
-              accessibilityHint=""
+              record={record}
+              first={i === 0}
+              statusLabel={statusLabel}
               onPress={() => open(record.did)}
-              style={[
-                a.p_md,
-                a.gap_2xs,
-                i > 0 && [a.border_t, t.atoms.border_contrast_low],
-                web({cursor: 'pointer'}),
-              ]}>
-              <AccountName did={record.did} />
-              <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
-                {statusLabel[record.status]}
-                {record.provider ? ` · ${record.provider}` : ''}
-                {record.pendingSecondApproval
-                  ? ` · ${l`waiting for a second reviewer`}`
-                  : ''}
-                {` · ${formatDate(record.updatedAt)}`}
-              </Text>
-              {record.rejectReason ? (
-                <Text style={[a.text_sm, {color: t.palette.negative_500}]}>
-                  {record.rejectReason}
-                </Text>
-              ) : null}
-            </Pressable>
+            />
           ))}
         </View>
       )}
+      <LoadMore query={query} />
 
       <Dialog.Outer control={control}>
         <Dialog.Handle />
         <ReviewDialog did={reviewDid} />
       </Dialog.Outer>
     </View>
+  )
+}
+
+function KycRow({
+  record,
+  first,
+  statusLabel,
+  onPress,
+}: {
+  record: KycRecord
+  first: boolean
+  statusLabel: Record<KycStatus, string>
+  onPress: () => void
+}) {
+  const t = useTheme()
+  const {t: l} = useLingui()
+  const formatDate = useFormatDate()
+  const accountLabel = useAccountLabel(record.did)
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={l`Review ${accountLabel}`}
+      accessibilityHint=""
+      onPress={onPress}
+      style={[
+        a.p_md,
+        a.gap_2xs,
+        !first && [a.border_t, t.atoms.border_contrast_low],
+        web({cursor: 'pointer'}),
+      ]}>
+      <AccountName did={record.did} />
+      <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
+        {statusLabel[record.status]}
+        {record.provider ? ` · ${record.provider}` : ''}
+        {record.pendingSecondApproval
+          ? ` · ${l`waiting for a second reviewer`}`
+          : ''}
+        {` · ${formatDate(record.updatedAt)}`}
+      </Text>
+      {record.rejectReason ? (
+        <Text style={[a.text_sm, {color: t.palette.negative_500}]}>
+          {record.rejectReason}
+        </Text>
+      ) : null}
+    </Pressable>
   )
 }
 

@@ -93,9 +93,14 @@ import {
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
-import {IS_INTERNAL} from '#/env'
+import {IS_INTERNAL, IS_WEB, KRAO_DEV_WALLET} from '#/env'
 import {GateDialog} from '#/features/gating/components/GateDialog'
+import {
+  useGateRuleQuery,
+  useRemoveGateMutation,
+} from '#/features/gating/queries'
 import {TipDialog} from '#/features/tips/components/TipDialog'
+import {useTipRecipientWallet} from '#/features/tips/queries'
 import {type app} from '#/lexicons'
 
 let PostMenuItems = ({
@@ -150,6 +155,7 @@ let PostMenuItems = ({
   const quotePostDetachConfirmControl = useDialogControl()
   const hideReplyConfirmControl = useDialogControl()
   const tipDialogControl = useDialogControl()
+  const removeGatePromptControl = useDialogControl()
   const gateDialogControl = useDialogControl()
   const {mutateAsync: toggleReplyVisibility} =
     useToggleReplyVisibilityMutation()
@@ -173,6 +179,30 @@ let PostMenuItems = ({
   )
   const isPostHidden = hiddenPosts && hiddenPosts.includes(postUri)
   const isAuthor = postAuthor.did === currentAccount?.did
+  /*
+   * Tips need a wallet to send from (the web wallet or the dev wallet; native
+   * WalletConnect is not wired up yet) and one to send to
+   */
+  const canSendTips = hasSession && !isAuthor && (IS_WEB || KRAO_DEV_WALLET)
+  const recipientWallet = useTipRecipientWallet(
+    canSendTips ? postAuthor.did : '',
+  )
+  const {data: gateRule, isLoading: isGateRuleLoading} = useGateRuleQuery(
+    post.uri,
+  )
+  const ownGateRule = isAuthor ? (gateRule ?? undefined) : undefined
+  const removeGate = useRemoveGateMutation()
+  const onRemoveGate = () => {
+    if (!ownGateRule) return
+    removeGate.mutate(
+      {postUri: post.uri},
+      {
+        onSuccess: () => Toast.show(l`Token gate removed`, {type: 'success'}),
+        onError: () =>
+          Toast.show(l`Could not remove the token gate`, {type: 'error'}),
+      },
+    )
+  }
   const isRootPostAuthor = new AtUri(rootUri).host === currentAccount?.did
   const threadgateHiddenReplies = useMergedThreadgateHiddenReplies({
     threadgateRecord,
@@ -512,7 +542,7 @@ let PostMenuItems = ({
   return (
     <>
       <Menu.Outer>
-        {hasSession && !isAuthor && (
+        {canSendTips && !!recipientWallet.data && (
           <>
             <Menu.Group>
               <Menu.Item
@@ -531,11 +561,30 @@ let PostMenuItems = ({
             <Menu.Group>
               <Menu.Item
                 testID="postDropdownGateBtn"
-                label={l`Add token-gated content`}
+                // Until the gate is known, "Add" could put a second rule on it
+                disabled={isGateRuleLoading}
+                label={
+                  ownGateRule
+                    ? l`Replace token-gated content`
+                    : l`Add token-gated content`
+                }
                 onPress={() => gateDialogControl.open()}>
-                <Menu.ItemText>{l`Add token-gated content`}</Menu.ItemText>
+                <Menu.ItemText>
+                  {ownGateRule
+                    ? l`Replace token-gated content`
+                    : l`Add token-gated content`}
+                </Menu.ItemText>
                 <Menu.ItemIcon icon={LockIcon} position="right" />
               </Menu.Item>
+              {ownGateRule && (
+                <Menu.Item
+                  testID="postDropdownRemoveGateBtn"
+                  label={l`Remove token gate`}
+                  onPress={() => removeGatePromptControl.open()}>
+                  <Menu.ItemText>{l`Remove token gate`}</Menu.ItemText>
+                  <Menu.ItemIcon icon={LockIcon} position="right" />
+                </Menu.Item>
+              )}
               <Menu.Item
                 testID="pinPostBtn"
                 label={
@@ -844,6 +893,7 @@ let PostMenuItems = ({
         <GateDialog
           control={gateDialogControl}
           post={{uri: post.uri, cid: post.cid}}
+          replaceRuleUri={ownGateRule?.uri}
         />
       )}
       <TipDialog
@@ -853,6 +903,14 @@ let PostMenuItems = ({
           handle: postAuthor.handle,
           subject: {uri: post.uri, cid: post.cid},
         }}
+      />
+      <Prompt.Basic
+        control={removeGatePromptControl}
+        title={l`Remove the token gate?`}
+        description={l`The gated text and media will be deleted. The post itself stays.`}
+        onConfirm={onRemoveGate}
+        confirmButtonCta={l`Remove`}
+        confirmButtonColor="negative"
       />
       <Prompt.Basic
         control={deletePromptControl}

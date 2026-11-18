@@ -22,6 +22,24 @@ export type EvmWallet = {
 export class WalletUnavailableError extends Error {}
 export class WalletRejectedError extends Error {}
 
+/** Chains Krao uses, to add to wallets that do not know them (EIP-3085) */
+const KNOWN_CHAINS: Record<
+  number,
+  {
+    chainName: string
+    nativeCurrency: {name: string; symbol: string; decimals: number}
+    rpcUrls: string[]
+    blockExplorerUrls: string[]
+  }
+> = {
+  8453: {
+    chainName: 'Base',
+    nativeCurrency: {name: 'Ether', symbol: 'ETH', decimals: 18},
+    rpcUrls: ['https://mainnet.base.org'],
+    blockExplorerUrls: ['https://basescan.org'],
+  },
+}
+
 type Eip1193Provider = {
   request: (args: {method: string; params?: unknown[]}) => Promise<unknown>
 }
@@ -71,9 +89,24 @@ export async function connectEvmWallet(): Promise<EvmWallet> {
           address,
         ])) as string,
       switchChain: async chainId => {
-        await request('wallet_switchEthereumChain', [
-          {chainId: `0x${chainId.toString(16)}`},
-        ])
+        const hexId = `0x${chainId.toString(16)}`
+        try {
+          await request('wallet_switchEthereumChain', [{chainId: hexId}])
+        } catch (err) {
+          // EIP-3326 code 4902: the wallet does not know the chain yet
+          const params = KNOWN_CHAINS[chainId]
+          if ((err as {code?: number})?.code !== 4902 || !params) throw err
+          await request('wallet_addEthereumChain', [
+            {chainId: hexId, ...params},
+          ])
+          // Adding may not switch (EIP-3085 leaves it to the wallet)
+          await request('wallet_switchEthereumChain', [{chainId: hexId}])
+        }
+        // Never send on another chain than the one asked for
+        const current = (await request('eth_chainId')) as string
+        if (parseInt(current, 16) !== chainId) {
+          throw new WalletRejectedError('The wallet did not switch networks')
+        }
       },
       sendTransaction: async ({to, value, data}) =>
         (await request('eth_sendTransaction', [

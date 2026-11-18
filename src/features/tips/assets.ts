@@ -46,12 +46,15 @@ export function formatUnits(amount: string | bigint, decimals: number): string {
   const value = BigInt(amount)
   const base = 10n ** BigInt(decimals)
   const whole = value / base
+  // At most 6 decimals; zeros left over after cutting are dropped too
   const fraction = (value % base)
     .toString()
     .padStart(decimals, '0')
-    .replace(/0+$/, '')
     .slice(0, 6)
-  return fraction ? `${whole}.${fraction}` : whole.toString()
+    .replace(/0+$/, '')
+  if (fraction) return `${whole}.${fraction}`
+  // A non-zero amount too small to show
+  return whole === 0n && value > 0n ? '<0.000001' : whole.toString()
 }
 
 /** Calldata for ERC-20 transfer(to, amount) */

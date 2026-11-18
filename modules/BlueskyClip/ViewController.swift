@@ -34,7 +34,7 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
     webView.navigationDelegate = self
     self.view.addSubview(webView)
     self.webView = webView
-    self.webView?.load(URLRequest(url: URL(string: "https://bsky.app/?splash=true&clip=true")!))
+    self.webView?.load(URLRequest(url: URL(string: "https://krao.net/?splash=true&clip=true")!))
   }
 
   func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -79,13 +79,14 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
 
   func isStarterPackUrl(_ url: URL) -> Bool {
     switch url.host() {
-    case "bsky.app":
+    case "krao.net":
       if url.pathComponents.count == 4,
          url.pathComponents[1] == "start" || url.pathComponents[1] == "starter-pack" {
         return true
       }
       return false
-    case "go.bsky.app":
+    case "go.krao.net":
+      // Short links (the App Clip's associated domain): https://go.krao.net/<code>
       if url.pathComponents.count == 2 {
         return true
       }
@@ -102,7 +103,7 @@ class ViewController: UIViewController, WKScriptMessageHandler, WKNavigationDele
         self.webView?.load(URLRequest(url: url))
       }
     } else {
-      self.webView?.load(URLRequest(url: URL(string: "https://bsky.app/?splash=true&clip=true")!))
+      self.webView?.load(URLRequest(url: URL(string: "https://krao.net/?splash=true&clip=true")!))
     }
   }
 

@@ -12,6 +12,19 @@ describe('parseLinkingUrl', () => {
     expect(urlp.pathname).toBe('/intent/age-assurance')
   })
 
+  it('should correctly parse krao:// URLs', () => {
+    const urlp = parseLinkingUrl('krao://intent/compose?text=gm')
+    expect(urlp.protocol).toBe('krao:')
+    expect(urlp.host).toBe('')
+    expect(urlp.pathname).toBe('/intent/compose')
+    expect(urlp.searchParams.get('text')).toBe('gm')
+  })
+
+  it('should leave krao:/// URLs as they are', () => {
+    const urlp = parseLinkingUrl('krao:///intent/compose')
+    expect(urlp.pathname).toBe('/intent/compose')
+  })
+
   it('should correctly parse standard URLs', () => {
     const url =
       'https://bsky.app/intent/age-assurance?result=success&actorDid=did:example:123'
