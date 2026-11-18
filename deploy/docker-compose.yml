@@ -1,0 +1,17 @@
+# Krao sandbox demo: static web app. The backend runs as the separate
+# kraonet-backend project (krao-atproto/deploy).
+services:
+  web:
+    build:
+      context: ../
+      dockerfile: deploy/Dockerfile.web
+    container_name: kraonet-web
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile.web:/etc/caddy/Caddyfile:ro
+    expose: ["80"]
+    networks: [edge]
+
+networks:
+  edge:
+    external: true
