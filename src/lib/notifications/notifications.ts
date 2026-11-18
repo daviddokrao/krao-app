@@ -6,6 +6,7 @@ import {type Client} from '@atproto/lex'
 import BackgroundNotificationHandler from '@bsky.app/expo-background-notification-handler'
 import debounce from 'lodash.debounce'
 
+import {BRAND} from '#/lib/brand'
 import {
   NOTIF_SERVICE,
   PUBLIC_APPVIEW_DID,
@@ -60,7 +61,7 @@ async function _registerPushToken({
         : PUBLIC_APPVIEW_DID,
       platform: Platform.OS,
       token: token.data,
-      appId: 'io.krao.app',
+      appId: BRAND.app.id,
       ageRestricted: extra.ageRestricted ?? false,
     }
 
@@ -391,7 +392,7 @@ export async function unregisterPushToken(clients: TemporaryPushClient[]) {
               : PUBLIC_APPVIEW_DID,
             platform: Platform.OS,
             token: token.data,
-            appId: 'io.krao.app',
+            appId: BRAND.app.id,
           },
           {
             service: NOTIF_SERVICE,

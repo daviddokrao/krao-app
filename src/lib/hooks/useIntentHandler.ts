@@ -4,6 +4,7 @@ import * as Linking from 'expo-linking'
 import * as WebBrowser from 'expo-web-browser'
 import {Referrer} from '@bsky.app/expo-bluesky-swiss-army'
 
+import {BRAND} from '#/lib/brand'
 import {useOpenComposer} from '#/lib/hooks/useOpenComposer'
 import {parseLinkingUrl} from '#/lib/parseLinkingUrl'
 import {CHAT_INVITE_CODE_REGEX} from '#/lib/strings/url-helpers'
@@ -42,7 +43,7 @@ export function useIntentHandler() {
       }
 
       const referrerInfo = await Referrer.getReferrerInfo()
-      if (referrerInfo && referrerInfo.hostname !== 'krao.net') {
+      if (referrerInfo && referrerInfo.hostname !== BRAND.domain) {
         ax.metric('deepLink:referrerReceived', {
           to: url,
           referrer: referrerInfo?.referrer,

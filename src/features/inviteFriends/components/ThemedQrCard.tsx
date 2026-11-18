@@ -6,6 +6,7 @@ import {type ViewShotRef} from 'react-native-view-shot'
 import {Image} from 'expo-image'
 import {LinearGradient} from 'expo-linear-gradient'
 
+import {BRAND_ASSETS} from '#/lib/brandAssets'
 import {Logo} from '#/view/icons/Logo'
 import {atoms as a, useTheme} from '#/alf'
 import {hexToRgb, rgbToHex} from '#/alf/util/colorGeneration'
@@ -137,9 +138,7 @@ export function ThemedQrCard({
                 hidePieces: true,
                 padding: 2,
                 scale: 0.95,
-                href: avatarUri
-                  ? {uri: avatarUri}
-                  : require('../../../../assets/logo.png'),
+                href: avatarUri ? {uri: avatarUri} : BRAND_ASSETS.qrLogo,
               }}
             />
             <View

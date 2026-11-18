@@ -1,3 +1,4 @@
+import {BRAND, BRAND_NAME} from '#/lib/brand'
 /**
  * Sign-In With Ethereum (EIP-4361) messages. Mirrors `formatSignInMessage` in
  * krao-atproto's @krao/wallet package, which verifies them server side.
@@ -53,9 +54,9 @@ export function formatWalletLinkMessage({
   did: string
 }): string {
   return formatSiweMessage({
-    domain: 'krao.net',
+    domain: BRAND.domain,
     address,
-    statement: 'Link this wallet to my Krao account.',
+    statement: `Link this wallet to my ${BRAND_NAME} account.`,
     uri: did,
     chainId,
     nonce: randomNonce(),
