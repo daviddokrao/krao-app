@@ -13,6 +13,9 @@ export type ReferralOverview = {
   invitedBy?: string
   referralCount: number
   verifiedCount: number
+  /** What the referral rules give now, when they are on */
+  inviterPoints?: number
+  inviteePoints?: number
 }
 
 export type Referral = {
@@ -57,11 +60,14 @@ export async function rewardsFetch<T>(
     params,
     token,
     post,
+    body,
   }: {
     params?: Record<string, string>
     token?: string
-    /** A procedure; none of the rewards procedures the app calls take input */
+    /** A procedure without input */
     post?: boolean
+    /** A procedure's JSON input */
+    body?: unknown
   } = {},
 ): Promise<T> {
   const url = new URL(`/xrpc/${method}`, KRAO_REWARDS_URL)
@@ -69,8 +75,12 @@ export async function rewardsFetch<T>(
     url.searchParams.set(k, v)
   }
   const res = await fetch(url.toString(), {
-    method: post ? 'POST' : 'GET',
-    headers: token ? {authorization: `Bearer ${token}`} : {},
+    method: post || body !== undefined ? 'POST' : 'GET',
+    headers: {
+      ...(token ? {authorization: `Bearer ${token}`} : {}),
+      ...(body !== undefined ? {'content-type': 'application/json'} : {}),
+    },
+    body: body !== undefined ? JSON.stringify(body) : undefined,
   })
   const data: unknown = await res.json().catch(() => ({}))
   if (!res.ok) {

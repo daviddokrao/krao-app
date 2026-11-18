@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import {View} from 'react-native'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
@@ -13,11 +14,14 @@ import * as Admonition from '#/components/Admonition'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {ArrowShareRight_Stroke2_Corner2_Rounded as ShareIcon} from '#/components/icons/ArrowShareRight'
 import {PersonPlus_Stroke2_Corner0_Rounded as PersonPlusIcon} from '#/components/icons/Person'
+import {ShieldCheck_Stroke2_Corner0_Rounded as ShieldCheckIcon} from '#/components/icons/Shield'
 import * as Layout from '#/components/Layout'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
-import {getReferralUrl} from './api'
+import {useRewardsRolesQuery} from './admin/queries'
+import {getReferralUrl, type Referral} from './api'
 import {PointsSection, ReferralCounts} from './components/PointsSection'
+import {ReferralQr} from './components/ReferralQr'
 import {useReferralOverviewQuery, useReferralsQuery} from './queries'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'ReferralSettings'>
@@ -27,8 +31,12 @@ export function ReferralScreen({}: Props) {
   const t = useTheme()
   const {t: l} = useLingui()
   const overview = useReferralOverviewQuery()
+  const {data: roles} = useRewardsRolesQuery()
+  const [showQr, setShowQr] = useState(false)
   const code = overview.data?.code
   const url = code ? getReferralUrl(code) : ''
+  const inviterPoints = overview.data?.inviterPoints
+  const inviteePoints = overview.data?.inviteePoints
 
   return (
     <Layout.Screen testID="referralScreen">
@@ -45,11 +53,20 @@ export function ReferralScreen({}: Props) {
         <SettingsList.Container>
           <SettingsList.Item>
             <Text style={[a.text_md, a.leading_snug]}>
-              <Trans>
-                Krao is invite-only. Share your code: you get 100 points for
-                each friend who joins, and they get 50. Points are approved once
-                you have both verified your identity.
-              </Trans>
+              {inviterPoints && inviteePoints ? (
+                <Trans>
+                  Krao is invite-only. Share your code: you get {inviterPoints}{' '}
+                  points for each friend who joins, and they get {inviteePoints}
+                  . Points are approved once you have both verified your
+                  identity.
+                </Trans>
+              ) : (
+                <Trans>
+                  Krao is invite-only. Share your code to invite friends. Points
+                  for referrals are approved once you have both verified your
+                  identity.
+                </Trans>
+              )}
             </Text>
           </SettingsList.Item>
 
@@ -112,6 +129,20 @@ export function ReferralScreen({}: Props) {
                   </ButtonText>
                 </Button>
               </View>
+              <Button
+                label={showQr ? l`Hide QR code` : l`Show QR code`}
+                color="secondary"
+                size="small"
+                onPress={() => setShowQr(!showQr)}>
+                <ButtonText>
+                  {showQr ? (
+                    <Trans>Hide QR code</Trans>
+                  ) : (
+                    <Trans>Show QR code</Trans>
+                  )}
+                </ButtonText>
+              </Button>
+              {showQr && <ReferralQr url={url} />}
               <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
                 <ReferralCounts
                   count={overview.data?.referralCount ?? 0}
@@ -126,6 +157,20 @@ export function ReferralScreen({}: Props) {
 
           <SettingsList.Divider />
           <ReferralList />
+
+          {!!roles?.length && (
+            <>
+              <SettingsList.Divider />
+              <SettingsList.LinkItem
+                to="/settings/referral/admin"
+                label={l`Referral admin`}>
+                <SettingsList.ItemIcon icon={ShieldCheckIcon} />
+                <SettingsList.ItemText>
+                  <Trans>Referral admin</Trans>
+                </SettingsList.ItemText>
+              </SettingsList.LinkItem>
+            </>
+          )}
         </SettingsList.Container>
       </Layout.Content>
     </Layout.Screen>
@@ -133,15 +178,10 @@ export function ReferralScreen({}: Props) {
 }
 
 function ReferralList() {
-  const t = useTheme()
-  const {i18n} = useLingui()
-  const {data, isLoading} = useReferralsQuery()
-  const referrals = data?.referrals ?? []
-  // getProfiles takes at most 25 accounts
-  const {data: profiles} = useProfilesQuery({
-    handles: referrals.slice(0, 25).map(r => r.did),
-  })
-  const byDid = new Map(profiles?.profiles.map(p => [p.did, p]))
+  const {data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage} =
+    useReferralsQuery()
+  const {t: l} = useLingui()
+  const pages = data?.pages ?? []
 
   if (isLoading) {
     return (
@@ -150,7 +190,7 @@ function ReferralList() {
       </SettingsList.Item>
     )
   }
-  if (!referrals.length) {
+  if (!pages[0]?.referrals.length) {
     return (
       <SettingsList.Item>
         <SettingsList.ItemIcon icon={PersonPlusIcon} />
@@ -167,28 +207,54 @@ function ReferralList() {
           <Trans>People you invited</Trans>
         </Text>
       </SettingsList.Item>
-      {referrals.map(r => {
-        const profile = byDid.get(r.did as `did:${string}:${string}`)
-        return (
-          <SettingsList.Item key={r.did}>
-            <View style={[a.flex_1, a.gap_2xs]}>
-              <Text emoji style={[a.text_md]} numberOfLines={1}>
-                {profile
-                  ? profile.displayName || sanitizeHandle(profile.handle, '@')
-                  : r.did}
-              </Text>
-              <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
-                {i18n.date(new Date(r.joinedAt), {dateStyle: 'medium'})} ·{' '}
-                {r.verified ? (
-                  <Trans>Verified</Trans>
-                ) : (
-                  <Trans>Not verified yet</Trans>
-                )}
-              </Text>
-            </View>
-          </SettingsList.Item>
-        )
-      })}
+      {pages.map((page, i) => (
+        <ReferralPage key={i} referrals={page.referrals} />
+      ))}
+      {hasNextPage && (
+        <SettingsList.Item>
+          <Button
+            label={l`Show more people you invited`}
+            color="secondary"
+            size="small"
+            disabled={isFetchingNextPage}
+            onPress={() => void fetchNextPage()}>
+            <ButtonText>
+              <Trans>Show more</Trans>
+            </ButtonText>
+          </Button>
+        </SettingsList.Item>
+      )}
     </>
   )
+}
+
+function ReferralPage({referrals}: {referrals: Referral[]}) {
+  const t = useTheme()
+  const {i18n} = useLingui()
+  const {data: profiles} = useProfilesQuery({
+    handles: referrals.map(r => r.did),
+  })
+  const byDid = new Map(profiles?.profiles.map(p => [p.did, p]))
+  return referrals.map(r => {
+    const profile = byDid.get(r.did as `did:${string}:${string}`)
+    return (
+      <SettingsList.Item key={r.did}>
+        <View style={[a.flex_1, a.gap_2xs]}>
+          <Text emoji style={[a.text_md]} numberOfLines={1}>
+            {profile
+              ? profile.displayName || sanitizeHandle(profile.handle, '@')
+              : r.did}
+          </Text>
+          <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
+            {i18n.date(new Date(r.joinedAt), {dateStyle: 'medium'})} ·{' '}
+            {r.verified ? (
+              <Trans>Verified</Trans>
+            ) : (
+              <Trans>Not verified yet</Trans>
+            )}
+          </Text>
+        </View>
+      </SettingsList.Item>
+    )
+  })
 }

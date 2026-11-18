@@ -1,4 +1,4 @@
-import {useMutation, useQuery} from '@tanstack/react-query'
+import {useInfiniteQuery, useMutation, useQuery} from '@tanstack/react-query'
 
 import {STALE} from '#/state/queries'
 import {createQueryKey} from '#/state/queries/util'
@@ -19,7 +19,7 @@ import {
  * A short-lived token from the user's PDS proving who they are to the
  * rewards service, scoped to one method.
  */
-function useRewardsAuth() {
+export function useRewardsAuth() {
   const pdsClient = usePdsClient()
   return async (lxm: string) => {
     const {token} = await pdsClient.call(com.atproto.server.getServiceAuth, {
@@ -51,12 +51,30 @@ export function useReferralOverviewQuery() {
   )
 }
 
-/** Accounts that joined with the viewer's code, newest first */
+type ReferralPage = {referrals: Referral[]; cursor?: string}
+
+/**
+ * Accounts that joined with the viewer's code, newest first, in pages of 25
+ * (as many profiles as getProfiles hydrates at once)
+ */
 export function useReferralsQuery() {
-  return useRewardsQuery<{referrals: Referral[]}>(
-    'net.krao.referral.listReferrals',
-    'referral-list',
-  )
+  const {currentAccount} = useSession()
+  const getToken = useRewardsAuth()
+  const method = 'net.krao.referral.listReferrals'
+  return useInfiniteQuery({
+    enabled: !!currentAccount,
+    staleTime: STALE.SECONDS.THIRTY,
+    queryKey: createQueryKey('referral-list', {
+      did: currentAccount?.did ?? '',
+    }),
+    initialPageParam: undefined as string | undefined,
+    queryFn: async ({pageParam}): Promise<ReferralPage> =>
+      rewardsFetch<ReferralPage>(method, {
+        params: {limit: '25', ...(pageParam ? {cursor: pageParam} : {})},
+        token: await getToken(method),
+      }),
+    getNextPageParam: (page: ReferralPage) => page.cursor,
+  })
 }
 
 export function usePointsBalanceQuery() {
