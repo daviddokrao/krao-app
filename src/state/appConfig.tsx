@@ -32,6 +32,8 @@ async function fetchAppConfig(): Promise<AppConfigResponse | null> {
   try {
     if (!fetchAppConfigPromise) {
       fetchAppConfigPromise = (async () => {
+        // No app-config worker configured: the defaults apply
+        if (!APP_CONFIG_URL) return DEFAULT_APP_CONFIG_RESPONSE
         const r = await fetch(`${APP_CONFIG_URL}/config`)
         if (!r.ok) throw new Error(await r.text())
         const data = await r.json()
