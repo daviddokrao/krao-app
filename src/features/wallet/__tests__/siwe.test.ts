@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals'
 
+import {BRAND} from '#/lib/brand'
 import {
   evmAccountId,
   formatSiweMessage,
@@ -9,7 +10,7 @@ import {
 } from '../siwe'
 
 const base: SignInMessage = {
-  domain: 'krao.net',
+  domain: `${BRAND.domain}`,
   address: '0xAb16A96D359eC26a11e2C2b3d8f8B8942d5Bfcdb',
   uri: 'did:plc:abc123',
   chainId: 8453,
@@ -21,7 +22,7 @@ describe('formatSiweMessage', () => {
   it('formats a minimal message', () => {
     expect(formatSiweMessage(base)).toBe(
       [
-        'krao.net wants you to sign in with your Ethereum account:',
+        `${BRAND.domain} wants you to sign in with your Ethereum account:`,
         base.address,
         '',
         'URI: did:plc:abc123',
@@ -74,7 +75,7 @@ describe('formatWalletLinkMessage', () => {
 
   it('names the DID as the URI and the wallet address', () => {
     const msg = formatWalletLinkMessage(args)
-    expect(msg).toContain('krao.net wants you to sign in')
+    expect(msg).toContain(`${BRAND.domain} wants you to sign in`)
     expect(msg).toContain(base.address)
     expect(msg).toContain('Link this wallet to my Krao account.')
     expect(msg).toContain('URI: did:plc:abc123')

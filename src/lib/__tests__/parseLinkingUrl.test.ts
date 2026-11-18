@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals'
 
+import {BRAND} from '#/lib/brand'
 import {parseLinkingUrl} from '../parseLinkingUrl'
 
 describe('parseLinkingUrl', () => {
@@ -12,16 +13,16 @@ describe('parseLinkingUrl', () => {
     expect(urlp.pathname).toBe('/intent/age-assurance')
   })
 
-  it('should correctly parse krao:// URLs', () => {
-    const urlp = parseLinkingUrl('krao://intent/compose?text=gm')
+  it(`should correctly parse ${BRAND.app.scheme}:// URLs`, () => {
+    const urlp = parseLinkingUrl(`${BRAND.app.scheme}://intent/compose?text=gm`)
     expect(urlp.protocol).toBe('krao:')
     expect(urlp.host).toBe('')
     expect(urlp.pathname).toBe('/intent/compose')
     expect(urlp.searchParams.get('text')).toBe('gm')
   })
 
-  it('should leave krao:/// URLs as they are', () => {
-    const urlp = parseLinkingUrl('krao:///intent/compose')
+  it(`should leave ${BRAND.app.scheme}:/// URLs as they are`, () => {
+    const urlp = parseLinkingUrl(`${BRAND.app.scheme}:///intent/compose`)
     expect(urlp.pathname).toBe('/intent/compose')
   })
 
